@@ -1114,9 +1114,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
   object-fit: contain;
 }
-/* Logo Daitsu é quadrado — aumentar para equiparar visualmente */
-.ctab[data-brand="daitsu"] { min-width: 180px; }
-.ctab[data-brand="daitsu"] img { height: 44px; width: 44px; }
+/* Logo Daitsu tem muito whitespace — crop ao centro para ampliar o texto */
+.ctab[data-brand="daitsu"] { min-width: 180px; overflow: hidden; padding: 0; }
+.ctab[data-brand="daitsu"] img {
+  width: 180px;
+  height: 68px;
+  object-fit: none;
+  object-position: center;
+}
 
 .ctab:hover {
   border-color: var(--primary);
