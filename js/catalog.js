@@ -237,11 +237,11 @@ const PRODUCTS = [
   },
 
   /* ===================================================
-     DAITSU
+     DAITSU — Série ARTIC
      =================================================== */
   {
-    id: 'daitsu-ads9ui',
-    brand: 'daitsu', series: 'ADS UI-DA', model: 'ADS 9UI-DA',
+    id: 'daitsu-artic-9',
+    brand: 'daitsu', series: 'ARTIC', model: 'ADS 9UI-ARTIC',
     btu: 9000, kw: 2.5,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 25, noiseOut: 52,
@@ -249,11 +249,11 @@ const PRODUCTS = [
     features: ['Modo auto', 'Timer 24h', 'Auto-restart', 'Controlo remoto'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 449,
-    image: 'assets/products/daitsu-ads9ui.jpg',
+    image: 'assets/products/daitsu-artic-9.jpg',
   },
   {
-    id: 'daitsu-ads12ui',
-    brand: 'daitsu', series: 'ADS UI-DA', model: 'ADS 12UI-DA',
+    id: 'daitsu-artic-12',
+    brand: 'daitsu', series: 'ARTIC', model: 'ADS 12UI-ARTIC',
     btu: 12000, kw: 3.5,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 28, noiseOut: 54,
@@ -261,11 +261,11 @@ const PRODUCTS = [
     features: ['Modo auto', 'Timer 24h', 'Auto-restart', 'Controlo remoto'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 549,
-    image: 'assets/products/daitsu-ads12ui.jpg',
+    image: 'assets/products/daitsu-artic-12.jpg',
   },
   {
-    id: 'daitsu-ads18ui',
-    brand: 'daitsu', series: 'ADS UI-DA', model: 'ADS 18UI-DA',
+    id: 'daitsu-artic-18',
+    brand: 'daitsu', series: 'ARTIC', model: 'ADS 18UI-ARTIC',
     btu: 18000, kw: 5.0,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 35, noiseOut: 57,
@@ -273,11 +273,11 @@ const PRODUCTS = [
     features: ['Modo auto', 'Timer 24h', 'Auto-restart', 'Controlo remoto'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 699,
-    image: 'assets/products/daitsu-ads18ui.jpg',
+    image: 'assets/products/daitsu-artic-18.jpg',
   },
   {
-    id: 'daitsu-ads24ui',
-    brand: 'daitsu', series: 'ADS UI-DA', model: 'ADS 24UI-DA',
+    id: 'daitsu-artic-24',
+    brand: 'daitsu', series: 'ARTIC', model: 'ADS 24UI-ARTIC',
     btu: 24000, kw: 7.0,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 40, noiseOut: 59,
@@ -285,43 +285,7 @@ const PRODUCTS = [
     features: ['Modo auto', 'Timer 24h', 'Auto-restart', 'Controlo remoto'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 849,
-    image: 'assets/products/daitsu-ads24ui.jpg',
-  },
-  {
-    id: 'daitsu-aps9udon',
-    brand: 'daitsu', series: 'APS UDON', model: 'APS 9UDON',
-    btu: 9000, kw: 2.5,
-    energyCool: 'A+++', energyHeat: 'A++',
-    noiseIn: 22, noiseOut: 50,
-    tech: ['Inverter DC', 'R-32', 'WiFi integrado'],
-    features: ['App de controlo', 'Filtro plasma', 'Timer semanal', 'Modo eco', 'Deteção de presença'],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 749,
-    image: 'assets/products/daitsu-aps9udon.jpg',
-  },
-  {
-    id: 'daitsu-aps12udon',
-    brand: 'daitsu', series: 'APS UDON', model: 'APS 12UDON',
-    btu: 12000, kw: 3.5,
-    energyCool: 'A+++', energyHeat: 'A++',
-    noiseIn: 24, noiseOut: 52,
-    tech: ['Inverter DC', 'R-32', 'WiFi integrado'],
-    features: ['App de controlo', 'Filtro plasma', 'Timer semanal', 'Modo eco', 'Deteção de presença'],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 849,
-    image: 'assets/products/daitsu-aps12udon.jpg',
-  },
-  {
-    id: 'daitsu-aps18udon',
-    brand: 'daitsu', series: 'APS UDON', model: 'APS 18UDON',
-    btu: 18000, kw: 5.0,
-    energyCool: 'A+++', energyHeat: 'A++',
-    noiseIn: 30, noiseOut: 55,
-    tech: ['Inverter DC', 'R-32', 'WiFi integrado'],
-    features: ['App de controlo', 'Filtro plasma', 'Timer semanal', 'Modo eco', 'Deteção de presença'],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1049,
-    image: 'assets/products/daitsu-aps18udon.jpg',
+    image: 'assets/products/daitsu-artic-24.jpg',
   },
 ];
 
@@ -485,7 +449,7 @@ function modalHTML(p) {
             <span class="modal__price-note">* Preço de equipamento. Instalação não incluída.</span>
           </div>
           <div class="modal__btn-row">
-            <a href="#orcamento" class="btn btn--primary modal-close-trigger">Pedir Orçamento →</a>
+            <a href="${location.pathname.includes('catalogo') ? 'index.html#orcamento' : '#orcamento'}" class="btn btn--primary modal-close-trigger">Pedir Orçamento →</a>
             <a href="https://wa.me/351964501776?text=${waMsg}" target="_blank" rel="noopener" class="btn btn--whatsapp">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
               WhatsApp
