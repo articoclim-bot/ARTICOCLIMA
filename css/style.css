@@ -1114,13 +1114,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
   object-fit: contain;
 }
-/* Logo Daitsu tem muito whitespace — crop ao centro para ampliar o texto */
+/* Logo Daitsu tem whitespace — escalar para texto ficar à escala dos outros */
 .ctab[data-brand="daitsu"] { min-width: 180px; overflow: hidden; padding: 0; }
 .ctab[data-brand="daitsu"] img {
-  width: 180px;
-  height: 68px;
-  object-fit: none;
-  object-position: center;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
 }
 
 .ctab:hover {
