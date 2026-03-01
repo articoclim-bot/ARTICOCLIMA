@@ -141,7 +141,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .nav {
   display: flex;
   align-items: center;
-  height: 68px;
+  height: 84px;
   gap: 32px;
 }
 
