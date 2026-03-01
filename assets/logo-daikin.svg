@@ -1,0 +1,2098 @@
+
+<!DOCTYPE HTML>
+<html lang="pt">
+    <head>
+    <meta charset="UTF-8"/>
+    <title>404 | Daikin</title>
+    
+    
+    <meta name="template" content="/conf/b2c/settings/wcm/templates/error-page"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+
+    
+    
+
+
+
+<meta name="content-page-ref" content="2BRR2qyRaCPFVLoN-jc_SOSWMX9TsJOpVXpAFvZFXf1o3Q1SD7OeW2kL_248qsGboVsGmtFk3TWzWMc4hfllkQ"/>
+<script defer="defer" type="text/javascript" src="/.rum/@adobe/helix-rum-js@%5E2/dist/micro.js"></script>
+<link rel="canonical" href="/content/b2c/portugal/pt_pt/error/404.html"/>
+
+
+    
+<link rel="stylesheet" href="https://use.typekit.net/jya6rlt.css"/>
+
+
+    
+    
+<link rel="stylesheet" href="/etc.clientlibs/b2c/clientlibs/core.lc-d8e9a44764866640e709abbb8b7e48f7-lc.min.css" type="text/css">
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+
+
+
+
+    <meta property="og:title" content="404"/>
+    
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://www.daikinuae.com/content/b2c/portugal/pt_pt/error/404.html"/>
+    <meta property="og:locale" content="pt_PT"/>
+    
+
+    <meta name="twitter:card" content="summary"/>
+    
+    
+    
+    
+    
+    <meta name="google-site-verification" content="SEMlCN-tY2sLVVfdmO6mVOo-xjH3Mg14dy1um8bsFrM"/>          
+
+
+
+        <style>
+@media screen and (max-width: 1195px) {
+.cmp-standard-header__content:has(.button__caption) .cmp-standard-header__button .cmp-button {
+width:100% !important;
+}
+}
+</style>
+
+<style>
+@media screen and (max-width: 576px) {
+	.cmp-standard-header__content .cmp-standard-header__button.primary-button {
+		width: 100%;
+	}
+}
+</style>
+
+<style>
+@media screen and (min-width: 835px) and (max-width: 1194px) {
+.cmp-standard-header__content {
+	display: grid;
+    grid-template-columns: auto auto 1fr;
+    grid-template-areas:
+        "first first first"
+        "second third fourth";
+}
+.cmp-standard-header__description {
+	grid-area: first;
+}
+.cmp-standard-header__button--primary {
+	grid-area: second;
+}
+.cmp-standard-header__button--secondary {
+	grid-area: third;
+}
+}
+</style>
+
+<style>
+@media screen and (min-width: 1195px) {
+    .standard-header:not(.standard-header--with-desktop-image) .cmp-standard-header:has(.button__caption) {
+        .cmp-text,
+        .secondary-button {
+            margin-bottom: var(--captionHeight) !important;
+        }
+    }
+}
+</style>
+
+
+    <style>
+        .async-hide {
+            opacity: 0 !important;
+        }
+    </style>
+    <script>
+        ;(function (a, s, y, n, c, h, i, d, e) {
+            s.className += " " + y
+            h.end = i = function () {
+                s.className = s.className.replace(RegExp(" ?" + y), "")
+            }
+            ;(a[n] = a[n] || []).hide = h
+            setTimeout(function () {
+                i()
+                h.end = null
+            }, c)
+        })(window, document.documentElement, "async-hide", "dataLayer", 2000, {
+            'GTM\u002DNVSRQQW': true,
+        })
+    </script>
+    <script>
+        ;(function (w, d, s, l, i) {
+            w[l] = w[l] || []
+            w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" })
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != "dataLayer" ? "&l=" + l : ""
+            j.async = true
+            j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl
+            f.parentNode.insertBefore(j, f)
+        })(window, document, "script", "dataLayer", 'GTM\u002DNVSRQQW')
+    </script>
+
+
+
+
+
+    
+
+<!-- <sly data-sly-include="microsoft-clarity.html" /> -->
+
+
+
+     
+    
+    
+    
+
+    
+
+    
+    
+    
+    
+    <script async src="/etc.clientlibs/core/wcm/components/commons/datalayer/v2/clientlibs/core.wcm.components.commons.datalayer.v2.lc-1e0136bad0acfb78be509234578e44f9-lc.min.js"></script>
+
+
+    
+    <script async src="/etc.clientlibs/core/wcm/components/commons/datalayer/acdl/core.wcm.components.commons.datalayer.acdl.lc-bf921af342fd2c40139671dbf0920a1f-lc.min.js"></script>
+
+
+
+    
+    <link rel="icon" sizes="192x192" href="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/icon-192x192.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/apple-touch-icon-180x180.png"/>
+    <link rel="apple-touch-icon" sizes="167x167" href="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/apple-touch-icon-167x167.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/apple-touch-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/apple-touch-icon-120x120.png"/>
+    <meta name="msapplication-square310x310logo" content="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/icon-310x310.png"/>
+    <meta name="msapplication-wide310x150logo" content="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/icon-310x150.png"/>
+    <meta name="msapplication-square150x150logo" content="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/icon-150x150.png"/>
+    <meta name="msapplication-square70x70logo" content="/etc.clientlibs/b2c/clientlibs/b2c-theme/resources/icon-70x70.png"/>
+
+    <link as="style" href="https://static-p42510-e167893.adobeaemcloud.com/f4244430a0ae00e7051b197812edd5b8ba6a66433cae6267ae8dfa92c0ab3638/theme.css" rel="preload stylesheet" type="text/css">
+    <script src="https://static-p42510-e167893.adobeaemcloud.com/f4244430a0ae00e7051b197812edd5b8ba6a66433cae6267ae8dfa92c0ab3638/theme.js" async type="text/javascript"></script>
+    
+</head>
+    <body class="page basicpage" id="page-34cc01aebf" data-cmp-link-accessibility-enabled data-cmp-link-accessibility-text="opens in a new tab" data-cmp-data-layer-enabled>
+          
+    <script>
+        window.adobeDataLayer = window.adobeDataLayer || [];
+        adobeDataLayer.push({
+            page: JSON.parse("{\x22page\u002D34cc01aebf\x22:{\x22@type\x22:\x22b2c\/components\/b2c\/page\x22,\x22repo:modifyDate\x22:\x222025\u002D06\u002D12T16:53:43Z\x22,\x22dc:title\x22:\x22404\x22,\x22xdm:template\x22:\x22\/conf\/b2c\/settings\/wcm\/templates\/error\u002Dpage\x22,\x22xdm:language\x22:\x22pt\u002DPT\x22,\x22xdm:tags\x22:[],\x22repo:path\x22:\x22\/content\/b2c\/portugal\/pt_pt\/error\/404.html\x22}}"),
+            event:'cmp:show',
+            eventInfo: {
+                path: 'page.page\u002D34cc01aebf'
+            }
+        });
+    </script>    
+
+          
+          
+              
+
+<div class="cmp-page__skiptomaincontent">
+    <a class="cmp-page__skiptomaincontent-link" href="#main-content">Skip to main content</a>
+</div>
+
+    <link rel="stylesheet" href="/etc.clientlibs/core/wcm/components/page/v2/page/clientlibs/site/skiptomaincontent.lc-696ce9a06faa733b225ffb8c05f16db9-lc.min.css" type="text/css">
+
+
+
+              <noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-NVSRQQW" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+</noscript>
+
+<svg class="svg-symbols" aria-hidden="true" focusable="false" style="display:none;">
+    <defs>
+        <symbol id="logo--daikin" viewBox="0 0 150 32">
+            <title id="logo--daikin__title">Daikin</title>
+            <path d="M34.1639 0.000247955H0.000976562V31.5188L34.1639 0.000247955Z" fill="#44C8F5"/>
+            <path d="M17.0792 2.95639e-05H0V15.7666L17.0792 2.95639e-05Z" fill="#231F20"/>
+            <path d="M81.8687 6.84127L77.4092 24.6711H85.2884L89.7442 6.84127H81.8687Z" fill="#00A0E4"/>
+            <path d="M63.8733 17.1751H62.0663L64.9797 12.0315L65.9247 17.1751H63.8733ZM62.7523 6.8395L52.6191 24.6685H57.8303L59.5123 21.6967H66.7466L67.2857 24.6685H74.9769L71.7078 6.8395H62.7523Z" fill="#00A0E4"/>
+            <path d="M117.851 6.84127L113.403 24.6711H121.281L125.729 6.84127H117.851Z" fill="#00A0E4"/>
+            <path d="M114.331 6.84127H106.257L99.499 12.6736L100.974 6.84127H93.4223L88.9746 24.6711H96.5026L98.0405 18.5159L102.066 24.6711H111.178L104.429 15.3334L114.331 6.84127Z" fill="#00A0E4"/>
+            <path d="M46.4368 14.9439C46.4368 14.9439 45.9251 20.7352 40.9904 20.7352H38.1983L40.6574 11.1184H43.1914C44.0981 11.1238 46.7224 11.3592 46.4368 14.9439ZM46.0373 6.84949L43.9996 6.8431H34.141L29.6934 24.6657H39.4826L43.3556 24.6711C48.8084 24.6711 54.1746 20.6121 54.1746 14.3948C54.1746 7.07935 46.0373 6.84949 46.0373 6.84949Z" fill="#00A0E4"/>
+            <path d="M144.546 6.83854L141.918 17.3374L138.418 6.83854H129.655L125.204 24.6711H130.652L133.306 14.0801L136.818 24.6711H145.542L150 6.83854H144.546Z" fill="#00A0E4"/>
+        </symbol>
+        <symbol id="logo--daikin-white" viewBox="0 0 150 32">
+            <title id="logo--daikin-white__title">Daikin</title>
+            <path d="M34.1639 0.518803H19L0.000976562 18.0002V32.0374L34.1639 0.518803Z" fill="white"/>
+            <path d="M17.0792 0.518584H0V16.2852L17.0792 0.518584Z" fill="white"/>
+            <path d="M81.8687 7.35983L77.4092 25.1897H85.2884L89.7442 7.35983H81.8687Z" fill="white"/>
+            <path d="M63.8733 17.6937H62.0663L64.9797 12.55L65.9247 17.6937H63.8733ZM62.7523 7.35806L52.6191 25.187H57.8303L59.5123 22.2152H66.7466L67.2857 25.187H74.9769L71.7078 7.35806H62.7523Z" fill="white"/>
+            <path d="M117.851 7.35983L113.403 25.1897H121.281L125.729 7.35983H117.851Z" fill="white"/>
+            <path d="M114.331 7.35983H106.257L99.499 13.1921L100.974 7.35983H93.4223L88.9746 25.1897H96.5026L98.0405 19.0345L102.066 25.1897H111.178L104.429 15.852L114.331 7.35983Z" fill="white"/>
+            <path d="M46.4368 15.4625C46.4368 15.4625 45.9251 21.2538 40.9904 21.2538H38.1983L40.6574 11.6369H43.1914C44.0981 11.6424 46.7224 11.8777 46.4368 15.4625ZM46.0373 7.36804L43.9996 7.36165H34.141L29.6934 25.1842H39.4826L43.3556 25.1897C48.8084 25.1897 54.1746 21.1306 54.1746 14.9134C54.1746 7.5979 46.0373 7.36804 46.0373 7.36804Z" fill="white"/>
+            <path d="M144.546 7.35709L141.918 17.856L138.418 7.35709H129.655L125.204 25.1897H130.652L133.306 14.5987L136.818 25.1897H145.542L150 7.35709H144.546Z" fill="white"/>
+        </symbol>
+    </defs>
+</svg>
+
+<div class="root container">
+
+    
+    
+    
+    <div id="container-f13995e309" class="cmp-container">
+        
+        <div class="navigation"><div id="navigation-a8f8a28688" data-cmp-data-layer="{&#34;navigation-a8f8a28688&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation&#34;}}">
+    <div class="navigation-bar js-navigation-bar js-navigation-bar-headroom-enabled">
+        <div class="navigation-segments">
+    <div class="container-max">
+        <div class="top-navbar__segments navigation-segments__content">
+            <nav>
+                <ul class="navigation-segments__menu">
+                    
+                        <li>
+                            <a class="navigation-segments__link navigation-segments__link-segment navigation-segments__link-segment--active" data-segment-name="Particular" data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-particular-16de23877e&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Particular&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular.html&#34;}}" href="/pt_pt/particular.html">
+                                Particular </a>
+                        </li>
+                    
+                        <li>
+                            <a class="navigation-segments__link navigation-segments__link-segment " data-segment-name="Comercial" data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-comercial-ea59536d80&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Comercial&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/commercial.html&#34;}}" href="/pt_pt/commercial.html">
+                                Comercial </a>
+                        </li>
+                    
+                        <li>
+                            <a class="navigation-segments__link navigation-segments__link-segment " data-segment-name="Parceiros" data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-parceiros-359a667ac6&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Parceiros&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/installers.html&#34;}}" href="https://www.daikin.pt/pt_pt/installers.html">
+                                Parceiros </a>
+                        </li>
+                    
+                        <li>
+                            <a class="navigation-segments__link navigation-segments__link-segment " data-segment-name="Daikin life" data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-daikin-life-422e8e00cc&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Daikin life&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/careers/daikin-life.html&#34;}}" href="https://www.daikin.pt/pt_pt/careers/daikin-life.html">
+                                Daikin life </a>
+                        </li>
+                    
+                </ul>
+            </nav>
+            <div aria-label="Language Navigation">
+    <div class="js-navigation-segments__language-dropdown navigation-segments__language-dropdown">
+        <span class="navigation-bar__icon js-language-dropdown__close language-dropdown__close"></span>
+        <ul class="language-dropdown__list">
+            
+                <li class="language-dropdown__list-item">
+                    <span class="navigation-segments__link navigation-segments__link-language language-dropdown__link language-dropdown__link--active" href="/content/b2c/portugal/pt_pt/error/404.html">PT</span>
+                </li>
+            
+                <li class="language-dropdown__list-item">
+                    <span class="navigation-segments__link navigation-segments__link-language language-dropdown__link language-dropdown__link--active" href="/content/b2c/portugal/en_pt.html">PT</span>
+                </li>
+            
+        </ul>
+    </div>
+    <a class="navigation-segments__link navigation-segments__link-language js-navigation-segments__link-language" href="#">
+        PT
+        <span class="navigation-bar__icon navigation-segments__chevron-down"></span>
+    </a>
+</div>
+                
+        </div>
+    </div>
+</div>
+
+        <div class="navigation-topmenu">
+    <div class="container-max">
+        <div class="navigation-topmenu__content">
+            <a class="navigation-topmenu__brand" aria-label="Daikin" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-logo-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Daikin Logo&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular.html&#34;}}" href="/pt_pt/particular.html">
+                <svg focusable="false" role="img" aria-labelledby="logo--daikin__title" class="logo logo--daikin">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo--daikin"></use>
+                </svg>
+            </a>
+            <nav class="navigation-topmenu__menu">
+                <ul class="navigation-topmenu__menu-items">
+                    
+                        <li data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-produtos-e-conselhos-3df0272da8&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Produtos e conselhos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice.html&#34;}}">
+                            <a class="navigation-topmenu__item navigation-topmenu__link js-navigation-submenu-trigger" href="#navigation--navigation-a8f8a28688--0">
+                                Produtos e conselhos
+                                <span class="navigation-bar__icon navigation-topmenu__chevron-down"></span>
+                            </a>
+                            
+                        </li>
+                    
+                        <li data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-inspiração-b85f7c0c6a&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Inspiração&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration.html&#34;}}">
+                            <a class="navigation-topmenu__item navigation-topmenu__link js-navigation-submenu-trigger" href="#navigation--navigation-a8f8a28688--1">
+                                Inspiração
+                                <span class="navigation-bar__icon navigation-topmenu__chevron-down"></span>
+                            </a>
+                            
+                        </li>
+                    
+                        <li data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-serviços-5257807012&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Serviços&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services.html&#34;}}">
+                            <a class="navigation-topmenu__item navigation-topmenu__link js-navigation-submenu-trigger" href="#navigation--navigation-a8f8a28688--2">
+                                Serviços
+                                <span class="navigation-bar__icon navigation-topmenu__chevron-down"></span>
+                            </a>
+                            
+                        </li>
+                    
+                        <li data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-contacte-nos-f65003c379&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Contacte-nos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/contact-us.html&#34;}}">
+                            
+                            <a class="navigation-topmenu__item navigation-topmenu__link" href="/pt_pt/particular/contact-us.html">
+                                Contacte-nos
+                            </a>
+                        </li>
+                    
+                        <li data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-simulador-fba1e9c5fa&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Simulador&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html&#34;}}">
+                            
+                            <a class="navigation-topmenu__item navigation-topmenu__link" href="/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html">
+                                Simulador
+                            </a>
+                        </li>
+                    
+                </ul>
+            </nav>
+            <div class="navigation-topmenu__container-right">
+                <div class="navigation-topmenu__item navigation-topmenu__button-container has-button">
+
+                    
+
+                    
+                        <button class="cmp-button cta-button js-button-modal nav-small-cta" type="button" data-modal-path="https://www.daikin.pt/xf/b2c/pt_pt/form/installer-request/master/_jcr_content.modal.html" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-cta-16de23877e&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Contacte um instalador&#34;}}">
+                            <span class="cmp-button__text cta-button__text">Contacte um instalador</span>
+                        </button>
+                    
+
+                    
+                </div>
+                <div class="navigation-topmenu__item navigation-topmenu__item--hamburger navigation-topmenu__button-container">
+                    <a class="navigation-topmenu__button navigation-topmenu__button--hamburger js-navigation-topmenu" href="#mobile-menu" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-mobile-navigation-hamburger-button-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Mobile navigation&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikinuae.com/content/b2c/portugal/pt_pt/error/404.html#mobile-menu&#34;}}" aria-expanded="false">
+                        <span class="visually-hidden">Alternar navegação</span>
+                        <span class="navigation-bar__icon navigation-topmenu__hamburger-icon"></span>
+                        <span class="navigation-bar__icon navigation-topmenu__hamburger-icon--close"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navigation-topmenu__mirror"></div>
+
+        <nav class="navigation-mobile js-navigation-mobile" aria-hidden="true">
+    <div class="navigation-mobile__content">
+        <ul class="navigation-mobile__menu js-navigation-mobile-menu navigation-mobile__list-L1" id="mobile-menu" aria-hidden="false">
+            
+            
+                <li class="navigation-mobile__item" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-produtos-e-conselhos-3df0272da8&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Produtos e conselhos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                    
+                    
+                    
+                    
+                        <a href="#navigation-a8f8a28688-0" class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--chevron">
+                            <span>Produtos e conselhos</span>
+                        </a>
+                    
+                </li>
+              
+            
+                <li class="navigation-mobile__item" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-inspiração-b85f7c0c6a&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Inspiração&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                    
+                    
+                    
+                    
+                        <a href="#navigation-a8f8a28688-1" class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--chevron">
+                            <span>Inspiração</span>
+                        </a>
+                    
+                </li>
+              
+            
+                <li class="navigation-mobile__item" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-serviços-5257807012&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Serviços&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                    
+                    
+                    
+                    
+                        <a href="#navigation-a8f8a28688-2" class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--chevron">
+                            <span>Serviços</span>
+                        </a>
+                    
+                </li>
+              
+            
+                <li class="navigation-mobile__item" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-contacte-nos-f65003c379&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Contacte-nos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/contact-us.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                    
+                    
+                        <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/contact-us.html">
+                            <span style="display: block">Contacte-nos</span>
+                        </a>
+                    
+                    
+                    
+                </li>
+              
+            
+                <li class="navigation-mobile__item" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-simulador-fba1e9c5fa&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Simulador&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                    
+                    
+                        <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html">
+                            <span style="display: block">Simulador</span>
+                        </a>
+                    
+                    
+                    
+                </li>
+              
+            
+
+            
+            <li class="navigation-mobile__item navigation-mobile__item--languages">
+                <a href="#languages" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-change-language-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Alterar idioma&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikinuae.com/content/b2c/portugal/pt_pt/error/404.html#languages&#34;}}" class="navigation-mobile__link navigation-mobile__link navigation-mobile__link--chevron js-navigation-mobile-link">
+                    <span>Alterar idioma</span>
+                </a>
+            </li>
+
+            
+
+            
+          <ul class="navigation-mobile__list navigation-mobile__list__site" aria-hidden="false">
+          <li class="navigation-mobile__item">
+              <a data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-particular-16de23877e&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Particular&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular.html&#34;}}" class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--active" href="/pt_pt/particular.html">Particular</a>
+          </li>
+        
+          <li class="navigation-mobile__item">
+              <a data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-comercial-ea59536d80&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Comercial&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/commercial.html&#34;}}" class="navigation-mobile__link js-navigation-mobile-link " href="/pt_pt/commercial.html">Comercial</a>
+          </li>
+        
+          <li class="navigation-mobile__item">
+              <a data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-parceiros-359a667ac6&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Parceiros&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/installers.html&#34;}}" class="navigation-mobile__link js-navigation-mobile-link " href="https://www.daikin.pt/pt_pt/installers.html">Parceiros</a>
+          </li>
+        
+          <li class="navigation-mobile__item">
+              <a data-cmp-clickable data-cmp-data-layer="{&#34;top-navigation-segment-item-daikin-life-422e8e00cc&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Daikin life&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/careers/daikin-life.html&#34;}}" class="navigation-mobile__link js-navigation-mobile-link " href="https://www.daikin.pt/pt_pt/careers/daikin-life.html">Daikin life</a>
+          </li>
+        </ul>
+          
+      </ul>
+        
+        
+            
+                <div class="navigation-mobile__menu js-navigation-mobile-menu" id="navigation-a8f8a28688-0" aria-labelledby="Produtos e conselhos" aria-hidden="true">
+                    
+                    <div class="navigation-mobile__back-link">
+                        <a href="#mobile-menu" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-second-level-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikinuae.com/content/b2c/portugal/pt_pt/error/404.html#mobile-menu&#34;}}" class="navigation-mobile__link navigation-mobile__link--arrow js-navigation-mobile-back-link">
+                            <span aria-hidden="true">Regressar</span>
+                            <span class="visually-hidden">Regressar a Produtos e conselhos</span>
+                        </a>
+                    </div>
+                    
+                    <ul class="navigation-mobile__list navigation-mobile__sublist navigation-mobile__list-L2">
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-nossa-gama-d07d9b66be&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Nossa gama&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                            
+                            
+                                <a href="#navigation-a8f8a28688-0-0" class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--chevron">
+                                    <span>Nossa gama</span>
+                                </a>
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-as-suas-necessidades-cbe6ea817c&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;As suas necessidades&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                            
+                            
+                                <a href="#navigation-a8f8a28688-0-1" class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--chevron">
+                                    <span>As suas necessidades</span>
+                                </a>
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-simulador-de-soluções-residenciais-fba1e9c5fa&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Simulador de Soluções Residenciais&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html">
+                                    <span style="display: block">Simulador de Soluções Residenciais</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    </ul>
+                </div>
+            
+        
+            
+                <div class="navigation-mobile__menu js-navigation-mobile-menu" id="navigation-a8f8a28688-1" aria-labelledby="Inspiração" aria-hidden="true">
+                    
+                    <div class="navigation-mobile__back-link">
+                        <a href="#mobile-menu" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-second-level-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikinuae.com/content/b2c/portugal/pt_pt/error/404.html#mobile-menu&#34;}}" class="navigation-mobile__link navigation-mobile__link--arrow js-navigation-mobile-back-link">
+                            <span aria-hidden="true">Regressar</span>
+                            <span class="visually-hidden">Regressar a Inspiração</span>
+                        </a>
+                    </div>
+                    
+                    <ul class="navigation-mobile__list navigation-mobile__sublist navigation-mobile__list-L2">
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-artigos-37270e88af&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Artigos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration/articles.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/inspiration/articles.html">
+                                    <span style="display: block">Artigos</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-obras-de-referência-1134e20af6&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Obras de referência&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration/obras-de-referencia.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/inspiration/obras-de-referencia.html">
+                                    <span style="display: block">Obras de referência</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-experience-center-e22cbadb89&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Experience Center&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration/virtual-experience-centre.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/inspiration/virtual-experience-centre.html">
+                                    <span style="display: block">Experience Center</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-pobreza-energética-bf7fa96112&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Pobreza energética&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/destaques/pobreza-energetica.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/destaques/pobreza-energetica.html">
+                                    <span style="display: block">Pobreza energética</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-podcast-daikin-no-ar-00c58c16e8&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Podcast Daikin no Ar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/no-ar.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/no-ar.html">
+                                    <span style="display: block">Podcast Daikin no Ar</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-visão-geral-b85f7c0c6a&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Visão geral&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/inspiration.html">
+                                    <span style="display: block">Visão geral</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    </ul>
+                </div>
+            
+        
+            
+                <div class="navigation-mobile__menu js-navigation-mobile-menu" id="navigation-a8f8a28688-2" aria-labelledby="Serviços" aria-hidden="true">
+                    
+                    <div class="navigation-mobile__back-link">
+                        <a href="#mobile-menu" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-second-level-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikinuae.com/content/b2c/portugal/pt_pt/error/404.html#mobile-menu&#34;}}" class="navigation-mobile__link navigation-mobile__link--arrow js-navigation-mobile-back-link">
+                            <span aria-hidden="true">Regressar</span>
+                            <span class="visually-hidden">Regressar a Serviços</span>
+                        </a>
+                    </div>
+                    
+                    <ul class="navigation-mobile__list navigation-mobile__sublist navigation-mobile__list-L2">
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-garantia-dfe2ebcbbb&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Garantia&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/warranty.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/services/warranty.html">
+                                    <span style="display: block">Garantia</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-manutenção-eea0a8f609&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Manutenção&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/maintenance.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/services/maintenance.html">
+                                    <span style="display: block">Manutenção</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-stand-by-me-8e44a112be&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Stand By Me&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/stand-by-me.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/services/stand-by-me.html">
+                                    <span style="display: block">Stand By Me</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-aplicações-e-conetividade-ffcf588b5c&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Aplicações e conetividade&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/apps-and-connectivity.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/services/apps-and-connectivity.html">
+                                    <span style="display: block">Aplicações e conetividade</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-assistência-técnica-654affd291&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Assistência Técnica&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/technical-support.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/services/technical-support.html">
+                                    <span style="display: block">Assistência Técnica</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-a-nossa-rede-de-parceiros-bcd9815be0&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;A nossa rede de parceiros&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/our-partner-network.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/services/our-partner-network.html">
+                                    <span style="display: block">A nossa rede de parceiros</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-monitorização-remota-a8da240536&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Monitorização remota&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/service/operate_maintenance_repairs/remote_monitoring/daikin-cloud-service-residential.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="https://www.daikin.pt/pt_pt/service/operate_maintenance_repairs/remote_monitoring/daikin-cloud-service-residential.html">
+                                    <span style="display: block">Monitorização remota</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-contacte-nos-f65003c379&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Contacte-nos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/contact-us.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/contact-us.html">
+                                    <span style="display: block">Contacte-nos</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    
+                        <li class="navigation-mobile__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-todos-os-serviços-5257807012&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Todos os serviços&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                            
+                            
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/services.html">
+                                    <span style="display: block">Todos os serviços</span>
+                                </a>
+                            
+                            
+                            
+                        </li>
+                    </ul>
+                </div>
+            
+        
+            
+        
+            
+        
+        
+        
+            
+                
+                    <div class="navigation-mobile__menu js-navigation-mobile-menu" id="navigation-a8f8a28688-0-0" aria-labelledby="Nossa gama" aria-hidden="true">
+                        
+                        <div class="navigation-mobile__back-link">
+                            <a href="#navigation-a8f8a28688-0" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-third-level-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;}}" class="navigation-mobile__link navigation-mobile__link--arrow js-navigation-mobile-back-link">
+                                <span aria-hidden="true">Regressar</span>
+                                <span class="visually-hidden">Regressar a Nossa gama</span>
+                            </a>
+                        </div>
+                        
+                        <ul class="navigation-mobile__list navigation-mobile__sublist navigation-mobile__list-L3">
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-bombas-de-calor-85e3e4549f&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Bombas de calor&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/heat-pumps.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/heat-pumps.html">
+                                    <span style="display: block">Bombas de calor</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-sistemas-de-ar-condicionado-76cc2e80c1&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Sistemas de ar condicionado&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/air-conditioners.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/air-conditioners.html">
+                                    <span style="display: block">Sistemas de ar condicionado</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-purificadores-de-ar-40425f8a92&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Purificadores de ar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html">
+                                    <span style="display: block">Purificadores de ar</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-sistemas-de-ventilação-4e93c55dbd&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Sistemas de ventilação&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html">
+                                    <span style="display: block">Sistemas de ventilação</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-caldeiras-de-condensação-a-gás-53c0ccee67&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Caldeiras de condensação a gás&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/gas-condensing-boilers.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/gas-condensing-boilers.html">
+                                    <span style="display: block">Caldeiras de condensação a gás</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-emissores-térmicos-137bf785cb&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Emissores térmicos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/emitters.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/emitters.html">
+                                    <span style="display: block">Emissores térmicos</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-depósitos-de-água-quente-sanitária-f18d539c72&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Depósitos de água quente sanitária&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/tanks.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/tanks.html">
+                                    <span style="display: block">Depósitos de água quente sanitária</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-painéis-solares-térmicos-abbe5b4dbc&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Painéis solares térmicos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/solar-panels.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/solar-panels.html">
+                                    <span style="display: block">Painéis solares térmicos</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-toda-a-gama-de-produtos-d07d9b66be&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Toda a gama de produtos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories.html">
+                                    <span style="display: block">Toda a gama de produtos</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                
+            
+                
+                    <div class="navigation-mobile__menu js-navigation-mobile-menu" id="navigation-a8f8a28688-0-1" aria-labelledby="As suas necessidades" aria-hidden="true">
+                        
+                        <div class="navigation-mobile__back-link">
+                            <a href="#navigation-a8f8a28688-0" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-third-level-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;}}" class="navigation-mobile__link navigation-mobile__link--arrow js-navigation-mobile-back-link">
+                                <span aria-hidden="true">Regressar</span>
+                                <span class="visually-hidden">Regressar a As suas necessidades</span>
+                            </a>
+                        </div>
+                        
+                        <ul class="navigation-mobile__list navigation-mobile__sublist navigation-mobile__list-L3">
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-arrefecimento-cffb6a36e5&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Arrefecimento&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades/cooling.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/necessidades/cooling.html">
+                                    <span style="display: block">Arrefecimento</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-aquecimento-e-arrefecimento-0f933d0a5a&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Aquecimento e arrefecimento&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades/heating-and-cooling.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/necessidades/heating-and-cooling.html">
+                                    <span style="display: block">Aquecimento e arrefecimento</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-aquecimento,-arrefecimento-e-água-quente-2c12c68d16&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Aquecimento, arrefecimento e água quente&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades/heating-cooling-and-hot-water.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/necessidades/heating-cooling-and-hot-water.html">
+                                    <span style="display: block">Aquecimento, arrefecimento e água quente</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-bombas-de-calor-de-água-quente-sanitária-f9790b7a6e&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Bombas de calor de água quente sanitária&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/heat-pumps/domestic-hot-water-heat-pumps.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/heat-pumps/domestic-hot-water-heat-pumps.html">
+                                    <span style="display: block">Bombas de calor de água quente sanitária</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-purificadores-de-ar-40425f8a92&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Purificadores de ar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html">
+                                    <span style="display: block">Purificadores de ar</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-sistemas-de-ventilação-4e93c55dbd&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Sistemas de ventilação&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html">
+                                    <span style="display: block">Sistemas de ventilação</span>
+                                </a>
+                            </li>
+                        
+                            <li class="navigation-mobile__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-todas-as-necessidades-cbe6ea817c&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Todas as necessidades&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades.html&#34;}}" style="-webkit-transform: translateZ(0)">
+                                <a class="navigation-mobile__link js-navigation-mobile-link" style="-webkit-backface-visibility: hidden" href="/pt_pt/particular/products-and-advice/necessidades.html">
+                                    <span style="display: block">Todas as necessidades</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+        
+            
+        
+            
+        
+        
+        <div class="navigation-mobile__menu js-navigation-mobile-menu" id="languages" aria-labelledby="Alterar idioma" aria-hidden="true">
+            
+            <div class="navigation-mobile__back-link">
+                <a href="#mobile-menu" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-first-level-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikinuae.com/content/b2c/portugal/pt_pt/error/404.html#mobile-menu&#34;}}" class="navigation-mobile__link navigation-mobile__link--arrow js-navigation-mobile-back-link">
+                    <span aria-hidden="true">Regressar</span>
+                    <span class="visually-hidden">Regressar a Alterar idioma</span>
+                </a>
+            </div>
+            
+            <ul class="navigation-mobile__list">
+                <li class="navigation-mobile__item">
+                    <a class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--active" href="/content/b2c/portugal/pt_pt/error/404.html">Portuguese</a>
+                </li>
+            
+                <li class="navigation-mobile__item">
+                    <a class="navigation-mobile__link js-navigation-mobile-link navigation-mobile__link--active" href="/content/b2c/portugal/en_pt.html">Portuguese</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    </div>
+    <div id="b2c-modal-navigation-submenu" class="modal modal--navigation" aria-labelledby="navigation-submenu-title" aria-hidden="true">
+    <div class="modal__overlay" data-a11y-dialog-hide></div>
+    <div class="modal__wrapper" role="document">
+        <header class="modal__header">
+            <span id="navigation-submenu-title" class="modal__title">Navigation</span>
+            <button data-a11y-dialog-hide class="modal__close" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-close-button-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Close navigation&#34;}}" aria-label="Fechar"></button>
+        </header>
+        <div class="modal__content" id="b2c-modal-navigation-submenu-content">
+            <nav class="navigation-submenu js-navigation-submenu">
+                
+                
+                    
+                        <div class="navigation-submenu__menu js-navigation-submenu-menu" id="navigation--navigation-a8f8a28688--0" aria-labelledby="Produtos e conselhos" aria-hidden="true">
+                            
+                            <ul class="navigation-submenu__list navigation-submenu__list-L2">
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-nossa-gama-d07d9b66be&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Nossa gama&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories.html&#34;}}">
+                                    
+                                    
+                                    
+                                    
+                                        <a href="#navigation--navigation-a8f8a28688--0-0" class="navigation-submenu__link js-navigation-submenu-link navigation-submenu__link--chevron">
+                                            <span>Nossa gama</span>
+                                        </a>
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-as-suas-necessidades-cbe6ea817c&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;As suas necessidades&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades.html&#34;}}">
+                                    
+                                    
+                                    
+                                    
+                                        <a href="#navigation--navigation-a8f8a28688--0-1" class="navigation-submenu__link js-navigation-submenu-link navigation-submenu__link--chevron">
+                                            <span>As suas necessidades</span>
+                                        </a>
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-simulador-de-soluções-residenciais-fba1e9c5fa&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Simulador de Soluções Residenciais&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html">
+                                            <span>Simulador de Soluções Residenciais</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                    
+                
+                    
+                        <div class="navigation-submenu__menu js-navigation-submenu-menu" id="navigation--navigation-a8f8a28688--1" aria-labelledby="Inspiração" aria-hidden="true">
+                            
+                            <ul class="navigation-submenu__list navigation-submenu__list-L2">
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-artigos-37270e88af&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Artigos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration/articles.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/inspiration/articles.html">
+                                            <span>Artigos</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-obras-de-referência-1134e20af6&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Obras de referência&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration/obras-de-referencia.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/inspiration/obras-de-referencia.html">
+                                            <span>Obras de referência</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-experience-center-e22cbadb89&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Experience Center&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration/virtual-experience-centre.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/inspiration/virtual-experience-centre.html">
+                                            <span>Experience Center</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-pobreza-energética-bf7fa96112&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Pobreza energética&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/destaques/pobreza-energetica.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/destaques/pobreza-energetica.html">
+                                            <span>Pobreza energética</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-podcast-daikin-no-ar-00c58c16e8&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Podcast Daikin no Ar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/no-ar.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/no-ar.html">
+                                            <span>Podcast Daikin no Ar</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-visão-geral-b85f7c0c6a&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Visão geral&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/inspiration.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/inspiration.html">
+                                            <span>Visão geral</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                    
+                
+                    
+                        <div class="navigation-submenu__menu js-navigation-submenu-menu" id="navigation--navigation-a8f8a28688--2" aria-labelledby="Serviços" aria-hidden="true">
+                            
+                            <ul class="navigation-submenu__list navigation-submenu__list-L2">
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-garantia-dfe2ebcbbb&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Garantia&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/warranty.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/services/warranty.html">
+                                            <span>Garantia</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-manutenção-eea0a8f609&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Manutenção&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/maintenance.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/services/maintenance.html">
+                                            <span>Manutenção</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-stand-by-me-8e44a112be&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Stand By Me&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/stand-by-me.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/services/stand-by-me.html">
+                                            <span>Stand By Me</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-aplicações-e-conetividade-ffcf588b5c&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Aplicações e conetividade&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/apps-and-connectivity.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/services/apps-and-connectivity.html">
+                                            <span>Aplicações e conetividade</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-assistência-técnica-654affd291&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Assistência Técnica&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/technical-support.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/services/technical-support.html">
+                                            <span>Assistência Técnica</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-a-nossa-rede-de-parceiros-bcd9815be0&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;A nossa rede de parceiros&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services/our-partner-network.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/services/our-partner-network.html">
+                                            <span>A nossa rede de parceiros</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-monitorização-remota-a8da240536&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Monitorização remota&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/service/operate_maintenance_repairs/remote_monitoring/daikin-cloud-service-residential.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="https://www.daikin.pt/pt_pt/service/operate_maintenance_repairs/remote_monitoring/daikin-cloud-service-residential.html">
+                                            <span>Monitorização remota</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-contacte-nos-f65003c379&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Contacte-nos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/contact-us.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/contact-us.html">
+                                            <span>Contacte-nos</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            
+                                <li class="navigation-submenu__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-todos-os-serviços-5257807012&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Todos os serviços&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/services.html&#34;}}">
+                                    
+                                    
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/services.html">
+                                            <span>Todos os serviços</span>
+                                        </a>
+                                    
+                                    
+                                    
+                                </li>
+                            </ul>
+                        </div>
+                    
+                
+                    
+                
+                    
+                
+                
+                
+                    
+                        
+                            <div class="navigation-submenu__menu js-navigation-submenu-menu" id="navigation--navigation-a8f8a28688--0-0" aria-labelledby="Nossa gama" aria-hidden="true">
+                                
+                                <ul class="navigation-submenu__list navigation-submenu__list-L3">
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-bombas-de-calor-85e3e4549f&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Bombas de calor&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/heat-pumps.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/heat-pumps.html">Bombas de calor</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-sistemas-de-ar-condicionado-76cc2e80c1&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Sistemas de ar condicionado&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/air-conditioners.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/air-conditioners.html">Sistemas de ar condicionado</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-purificadores-de-ar-40425f8a92&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Purificadores de ar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html">Purificadores de ar</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-sistemas-de-ventilação-4e93c55dbd&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Sistemas de ventilação&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html">Sistemas de ventilação</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-caldeiras-de-condensação-a-gás-53c0ccee67&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Caldeiras de condensação a gás&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/gas-condensing-boilers.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/gas-condensing-boilers.html">Caldeiras de condensação a gás</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-emissores-térmicos-137bf785cb&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Emissores térmicos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/emitters.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/emitters.html">Emissores térmicos</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-depósitos-de-água-quente-sanitária-f18d539c72&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Depósitos de água quente sanitária&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/tanks.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/tanks.html">Depósitos de água quente sanitária</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-painéis-solares-térmicos-abbe5b4dbc&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Painéis solares térmicos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/solar-panels.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/solar-panels.html">Painéis solares térmicos</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-toda-a-gama-de-produtos-d07d9b66be&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Toda a gama de produtos&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories.html">Toda a gama de produtos</a>
+                                    </li>
+                                </ul>
+                                
+                                <div class="navigation-submenu__back-link">
+                                    <a href="#navigation--navigation-a8f8a28688--0" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;}}" class="navigation-submenu__link navigation-submenu__link--arrow js-navigation-submenu-back-link">
+                                        <span aria-hidden="true">Regressar</span>
+                                        <span class="visually-hidden">Regressar a Nossa gama</span>
+                                    </a>
+                                </div>
+                            </div>
+                        
+                    
+                        
+                            <div class="navigation-submenu__menu js-navigation-submenu-menu" id="navigation--navigation-a8f8a28688--0-1" aria-labelledby="As suas necessidades" aria-hidden="true">
+                                
+                                <ul class="navigation-submenu__list navigation-submenu__list-L3">
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-arrefecimento-cffb6a36e5&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Arrefecimento&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades/cooling.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/necessidades/cooling.html">Arrefecimento</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-aquecimento-e-arrefecimento-0f933d0a5a&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Aquecimento e arrefecimento&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades/heating-and-cooling.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/necessidades/heating-and-cooling.html">Aquecimento e arrefecimento</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-aquecimento,-arrefecimento-e-água-quente-2c12c68d16&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Aquecimento, arrefecimento e água quente&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades/heating-cooling-and-hot-water.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/necessidades/heating-cooling-and-hot-water.html">Aquecimento, arrefecimento e água quente</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-bombas-de-calor-de-água-quente-sanitária-f9790b7a6e&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Bombas de calor de água quente sanitária&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/heat-pumps/domestic-hot-water-heat-pumps.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/heat-pumps/domestic-hot-water-heat-pumps.html">Bombas de calor de água quente sanitária</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-purificadores-de-ar-40425f8a92&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Purificadores de ar&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/air-purifiers.html">Purificadores de ar</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item " data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-sistemas-de-ventilação-4e93c55dbd&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Sistemas de ventilação&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/product-categories/ventilation-systems.html">Sistemas de ventilação</a>
+                                    </li>
+                                
+                                    <li class="navigation-submenu__item navigation-submenu__item--highlighted" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-segment-item-todas-as-necessidades-cbe6ea817c&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Todas as necessidades&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.daikin.pt/pt_pt/particular/products-and-advice/necessidades.html&#34;}}">
+                                        <a class="navigation-submenu__link js-navigation-submenu-link" href="/pt_pt/particular/products-and-advice/necessidades.html">Todas as necessidades</a>
+                                    </li>
+                                </ul>
+                                
+                                <div class="navigation-submenu__back-link">
+                                    <a href="#navigation--navigation-a8f8a28688--0" data-cmp-clickable data-cmp-data-layer="{&#34;navigation-a8f8a28688-back-button-2618c17cff&#34;:{&#34;parentId&#34;:&#34;navigation-a8f8a28688&#34;,&#34;@type&#34;:&#34;b2c/components/b2c/navigation/button&#34;,&#34;dc:title&#34;:&#34;Regressar&#34;}}" class="navigation-submenu__link navigation-submenu__link--arrow js-navigation-submenu-back-link">
+                                        <span aria-hidden="true">Regressar</span>
+                                        <span class="visually-hidden">Regressar a As suas necessidades</span>
+                                    </a>
+                                </div>
+                            </div>
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                
+                    
+                
+                    
+                
+            </nav>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+<main class="container container-content">
+
+    
+    
+    
+    <div id="main-content" class="cmp-container">
+        
+        <div class="standard-header background--color-grey"><div class="cmp-standard-header j" id="standard-header-a2656ce4d0" data-cmp-data-layer="{&#34;standard-header-a2656ce4d0&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/standard-header-composite/standard-header&#34;}}">
+    <div class="cmp-column__data">
+        <div class="sticky-nav-to-parent-link">
+
+    
+
+</div>
+
+        <div class="sticky-nav-title">
+<div data-cmp-data-layer="{&#34;title-b2461be5be&#34;:{&#34;@type&#34;:&#34;core/wcm/components/title/v3/title&#34;,&#34;dc:title&#34;:&#34;Esta página parece não estar disponível...&#34;}}" id="title-b2461be5be" class="cmp-title">
+    <h1 class="cmp-title__text">Esta página parece não estar disponível...</h1>
+</div>
+
+    
+
+</div>
+
+        <div class="cmp-standard-header__content">
+            <div class="description text cmp-standard-header__description">
+
+
+    
+
+</div>
+
+            <div class="cmp-standard-header__content-buttons">
+                <div class="primary-button button has-button cmp-standard-header__button cmp-standard-header__button--primary sticky-nav-primary-button">
+    
+
+    
+
+    
+
+
+
+    
+
+</div>
+
+                <div class="secondary-button button cmp-standard-header__button cmp-standard-header__button--secondary has-button has-button--style-white sticky-nav-secondary-button">
+    
+
+    
+
+    
+
+
+
+    
+
+</div>
+
+            </div>
+        </div>
+    </div>
+    <div class="cmp-column">
+        
+        <div class="cmp-standard-header__image">
+            <div class="image"><div data-asset-id="2a7e701d-372e-474a-a599-68de9d298872" id="image-08bfa54660" data-cmp-data-layer="{&#34;image-08bfa54660&#34;:{&#34;@type&#34;:&#34;b2c/components/core/image&#34;,&#34;repo:modifyDate&#34;:&#34;2023-08-29T14:03:13Z&#34;,&#34;image&#34;:{&#34;repo:id&#34;:&#34;2a7e701d-372e-474a-a599-68de9d298872&#34;,&#34;repo:modifyDate&#34;:&#34;2023-03-24T07:48:11Z&#34;,&#34;@type&#34;:&#34;image/png&#34;,&#34;repo:path&#34;:&#34;/content/dam/b2c/shared/images/illustrations/404_NoPage.png&#34;,&#34;xdm:tags&#34;:[&#34;year:2023&#34;],&#34;xdm:smartTags&#34;:{&#34;symbol&#34;:0.5890509486198425,&#34;concept&#34;:0.5937093496322632,&#34;sign&#34;:0.5661534667015076,&#34;icon&#34;:0.5543743968009949,&#34;pattern&#34;:0.5251628160476685,&#34;red&#34;:0.5389291048049927,&#34;world&#34;:0.5589401721954346,&#34;white&#34;:0.5254359841346741,&#34;design&#34;:0.6620110273361206,&#34;drawing&#34;:0.538711667060852,&#34;vector&#34;:0.6433862447738647,&#34;art&#34;:0.5588887929916382,&#34;business&#34;:0.6253238916397095,&#34;black&#34;:0.6369251608848572,&#34;abstract&#34;:0.6177756786346436,&#34;label&#34;:0.5646355748176575,&#34;collection&#34;:0.5451590418815613,&#34;technology&#34;:0.5302043557167053,&#34;globe&#34;:0.5339011549949646,&#34;background&#34;:0.6427116394042969,&#34;vintage&#34;:0.5354283452033997,&#34;earth&#34;:0.5345998406410217,&#34;illustration&#34;:0.5787854790687561,&#34;circle&#34;:0.5298517942428589,&#34;card&#34;:0.5302585363388062}}}}" class="cmp-image " itemscope itemtype="http://schema.org/ImageObject">
+    
+        <!-- Enhanced responsive image with picture element -->
+        <picture class="cmp-image__picture">
+            <!-- Mobile-first responsive sources -->
+            <source media="(max-width: 640px)" srcset="/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=320&amp;quality=80&amp;preferwebp=true 320w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=640&amp;quality=80&amp;preferwebp=true 640w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1024&amp;quality=80&amp;preferwebp=true 1024w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1600&amp;quality=80&amp;preferwebp=true 1600w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1920&amp;quality=80&amp;preferwebp=true 1920w" sizes="(max-width: 640px) 100vw, 640px"/>
+            
+            <!-- Tablet -->
+            <source media="(max-width: 1024px)" srcset="/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=320&amp;quality=80&amp;preferwebp=true 320w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=640&amp;quality=80&amp;preferwebp=true 640w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1024&amp;quality=80&amp;preferwebp=true 1024w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1600&amp;quality=80&amp;preferwebp=true 1600w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1920&amp;quality=80&amp;preferwebp=true 1920w" sizes="(max-width: 1024px) 100vw, 1024px"/>
+            
+            <!-- Desktop -->
+            <source media="(max-width: 1600px)" srcset="/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=320&amp;quality=80&amp;preferwebp=true 320w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=640&amp;quality=80&amp;preferwebp=true 640w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1024&amp;quality=80&amp;preferwebp=true 1024w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1600&amp;quality=80&amp;preferwebp=true 1600w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1920&amp;quality=80&amp;preferwebp=true 1920w" sizes="(max-width: 1600px) 100vw, 1600px"/>
+            
+            <!-- Large desktop -->
+            <source srcset="/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=320&amp;quality=80&amp;preferwebp=true 320w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=640&amp;quality=80&amp;preferwebp=true 640w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1024&amp;quality=80&amp;preferwebp=true 1024w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1600&amp;quality=80&amp;preferwebp=true 1600w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1920&amp;quality=80&amp;preferwebp=true 1920w" sizes="100vw"/>
+            
+            <!-- Fallback img with enhanced attributes -->
+            <img srcset="/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=320&amp;quality=80&amp;preferwebp=true 320w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=640&amp;quality=80&amp;preferwebp=true 640w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1024&amp;quality=80&amp;preferwebp=true 1024w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1600&amp;quality=80&amp;preferwebp=true 1600w,/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?width=1920&amp;quality=80&amp;preferwebp=true 1920w" src="/adobe/dynamicmedia/deliver/dm-aid--2a7e701d-372e-474a-a599-68de9d298872/404-nopage.png?quality=80&preferwebp=true" loading="lazy" fetchpriority="auto" class="cmp-image__image" itemprop="contentUrl" width="8000" height="4500" alt="Página indisponível" decoding="async" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, (max-width: 1600px) 100vw, 100vw"/>
+        </picture>
+    
+    
+    
+</div>
+
+    
+
+</div>
+
+        </div>
+        
+    </div>
+    <div class="js-cmp-sticky-nav__wrapper cmp-sticky-nav__wrapper cmp-sticky-nav__wrapper--standard-header">
+        <div class="container-max">
+            <div class="cmp-sticky-nav"></div>
+        </div>
+    </div>
+</div></div>
+
+        
+    </div>
+
+</main>
+<div class="doormat container-content"><div class="container">
+    <svg focusable="false" role="img" aria-labelledby="logo--daikin__title" class="logo logo--daikin">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo--daikin-white"></use>
+    </svg>
+    <div><div class="xfpage page basicpage">
+
+
+    
+    <div id="container-f44c6af39f" class="cmp-container">
+        
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    
+        <div class="container doormat-block aem-GridColumn aem-GridColumn--default--12">
+
+    
+    
+    
+    <div id="container-cc74cd269e" class="cmp-container">
+        
+        <div class="container doormat-block__column">
+
+    
+    
+    
+    <div id="container-48e3a022f3" class="cmp-container">
+        
+        <div class="title doormat-block__title">
+<div data-cmp-data-layer="{&#34;title-aa6f81f5b0&#34;:{&#34;@type&#34;:&#34;core/wcm/components/title/v3/title&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Conheça&#34;}}" id="title-aa6f81f5b0" class="cmp-title">
+    <h2 class="cmp-title__text">Conheça</h2>
+</div>
+
+    
+
+</div>
+<div class="container doormat-block__links">
+
+    
+    
+    
+    <div id="container-b008c2a5a5" class="cmp-container">
+        
+        <div class="button doormat-block__link">
+    
+    <a id="button-62e543b665" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-62e543b665&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Categorias de produtos&#34;}}" href="/pt_pt/particular/products-and-advice/product-categories.html">
+        <span class="cmp-button__text cta-button__text">Categorias de produtos</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-62e4ed998c" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-62e4ed998c&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-11-27T12:12:17Z&#34;,&#34;dc:title&#34;:&#34;Recomendação de soluções Daikin&#34;}}" href="/pt_pt/particular/products-and-advice/navegador-de-solu%C3%A7%C3%A3o-residencial.html">
+        <span class="cmp-button__text cta-button__text">Recomendação de soluções Daikin</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-99dd75f7fe" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-99dd75f7fe&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-27T10:44:35Z&#34;,&#34;dc:title&#34;:&#34;Encontrar um instalador&#34;}}" href="/pt_pt/particular/contact-us/pedido-de-instalador.html">
+        <span class="cmp-button__text cta-button__text">Encontrar um instalador</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-76ff969596" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-76ff969596&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-10-24T10:53:49Z&#34;,&#34;dc:title&#34;:&#34;Showroom&#34;}}" href="/pt_pt/particular/inspiration/showroom.html">
+        <span class="cmp-button__text cta-button__text">Showroom</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-fddbd16438" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-fddbd16438&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Sobre a Daikin&#34;}}" href="/pt_pt/particular/about-us.html">
+        <span class="cmp-button__text cta-button__text">Sobre a Daikin</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-db416e2a14" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-db416e2a14&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2024-05-08T10:07:10Z&#34;,&#34;dc:title&#34;:&#34;Notícias&#34;}}" href="/pt_pt/particular/noticias.html">
+        <span class="cmp-button__text cta-button__text">Notícias</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-56b87ab3a8" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-56b87ab3a8&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-27T18:12:24Z&#34;,&#34;dc:title&#34;:&#34;Etiquetas energéticas&#34;}}" href="https://www.daikin.pt/pt_pt/about/daikin-innovations/seasonal-efficiency.html">
+        <span class="cmp-button__text cta-button__text">Etiquetas energéticas</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-3806bb28c2" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-3806bb28c2&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2025-11-27T15:05:00Z&#34;,&#34;dc:title&#34;:&#34;Reciclagem de embalagens&#34;}}" href="/pt_pt/particular/reciclagem-de-embalagens.html">
+        <span class="cmp-button__text cta-button__text">Reciclagem de embalagens</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+
+        
+    </div>
+
+</div>
+
+        
+    </div>
+
+</div>
+<div class="container doormat-block__column">
+
+    
+    
+    
+    <div id="container-04cde1017a" class="cmp-container">
+        
+        <div class="title doormat-block__title">
+<div data-cmp-data-layer="{&#34;title-9774691b42&#34;:{&#34;@type&#34;:&#34;core/wcm/components/title/v3/title&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Assistência&#34;}}" id="title-9774691b42" class="cmp-title">
+    <h2 class="cmp-title__text">Assistência</h2>
+</div>
+
+    
+
+</div>
+<div class="container doormat-block__links">
+
+    
+    
+    
+    <div id="container-039ca5360f" class="cmp-container">
+        
+        <div class="button doormat-block__link">
+    
+    <a id="button-8f185fed25" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-8f185fed25&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Os nossos serviços&#34;}}" href="/pt_pt/particular/services.html">
+        <span class="cmp-button__text cta-button__text">Os nossos serviços</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-42c4ebedcd" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-42c4ebedcd&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Perguntas frequentes&#34;}}" href="/pt_pt/particular/services.html#faq">
+        <span class="cmp-button__text cta-button__text">Perguntas frequentes</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-97915d0fd6" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-97915d0fd6&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Stand By Me&#34;}}" href="https://standbyme.daikin.pt/pt/" target="_blank">
+        <span class="cmp-button__text cta-button__text">Stand By Me</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-114005f107" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-114005f107&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Solicitar manutenção&#34;}}" href="/pt_pt/particular/services/maintenance.html" target="_blank">
+        <span class="cmp-button__text cta-button__text">Solicitar manutenção</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-1fdff05646" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-1fdff05646&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Assistência técnica&#34;}}" href="/pt_pt/particular/services/technical-support.html" target="_blank">
+        <span class="cmp-button__text cta-button__text">Assistência técnica</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+
+        
+    </div>
+
+</div>
+
+        
+    </div>
+
+</div>
+<div class="container doormat-block__column">
+
+    
+    
+    
+    <div id="container-2a2df27066" class="cmp-container">
+        
+        <div class="title doormat-block__title">
+<div data-cmp-data-layer="{&#34;title-d51d7a977c&#34;:{&#34;@type&#34;:&#34;core/wcm/components/title/v3/title&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Mais Daikin&#34;}}" id="title-d51d7a977c" class="cmp-title">
+    <h2 class="cmp-title__text">Mais Daikin</h2>
+</div>
+
+    
+
+</div>
+<div class="container doormat-block__links">
+
+    
+    
+    
+    <div id="container-23f8a66928" class="cmp-container">
+        
+        <div class="button doormat-block__link">
+    
+    <a id="button-92b6b5d963" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-92b6b5d963&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Utilização comercial&#34;}}" href="https://www.daikin.pt/pt_pt/commercial-homepage.html" target="_blank">
+        <span class="cmp-button__text cta-button__text">Utilização comercial</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-74497ccb8b" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-74497ccb8b&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Indústrias&#34;}}" href="https://www.daikin.pt/pt_pt/industrial.html" target="_blank">
+        <span class="cmp-button__text cta-button__text">Indústrias</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-d4241f6172" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-d4241f6172&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Parceiros&#34;}}" href="https://www.daikin.pt/pt_pt/installers.html" target="_blank">
+        <span class="cmp-button__text cta-button__text">Parceiros</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-1ee868fd2b" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-1ee868fd2b&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Daikin life&#34;}}" href="https://www.daikin.pt/pt_pt/careers/daikin-life.html" target="_blank">
+        <span class="cmp-button__text cta-button__text">Daikin life</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-1519f433b7" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-1519f433b7&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2025-12-10T11:56:57Z&#34;,&#34;dc:title&#34;:&#34;Podcast Daikin no Ar&#34;}}" href="/pt_pt/particular/no-ar.html">
+        <span class="cmp-button__text cta-button__text">Podcast Daikin no Ar</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="contact-us" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;contact-us&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-27T10:42:35Z&#34;,&#34;dc:title&#34;:&#34;Contacte-nos&#34;}}" href="/pt_pt/particular/contact-us.html">
+        <span class="cmp-button__text cta-button__text">Contacte-nos</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+
+        
+    </div>
+
+</div>
+
+        
+    </div>
+
+</div>
+<div class="container doormat-block__column">
+
+    
+    
+    
+    <div id="container-9b320bc5bf" class="cmp-container">
+        
+        <div class="title-screenreader-only title visually-transparent"><div data-cmp-data-layer="{&#34;title-84be2e311f&#34;:{&#34;@type&#34;:&#34;core/wcm/components/title/v3/title&#34;,&#34;dc:title&#34;:&#34;404&#34;}}" id="title-84be2e311f" class="cmp-title">
+    <h2 class="cmp-title__text">Ligações utilitárias</h2>
+</div></div>
+<div class="container doormat-block__links">
+
+    
+    
+    
+    <div id="container-452a3a8f08" class="cmp-container">
+        
+        <div class="button doormat-block__link">
+    
+    <a id="button-343d79924e" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-343d79924e&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Política de proteção de dados&#34;}}" href="/pt_pt/particular/data-protection-policy.html">
+        <span class="cmp-button__text cta-button__text">Política de proteção de dados</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-6a9dd11702" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-6a9dd11702&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Aviso de cookies&#34;}}" href="/pt_pt/particular/cookie-notice.html">
+        <span class="cmp-button__text cta-button__text">Aviso de cookies</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-ebaec4ea52" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-ebaec4ea52&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Ética empresarial&#34;}}" href="/pt_pt/particular/corporate-ethics.html">
+        <span class="cmp-button__text cta-button__text">Ética empresarial</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-b8c310e841" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-b8c310e841&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2023-09-12T12:09:10Z&#34;,&#34;dc:title&#34;:&#34;Aviso legal&#34;}}" href="/pt_pt/particular/legal-notice.html">
+        <span class="cmp-button__text cta-button__text">Aviso legal</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-3267b1dedb" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-3267b1dedb&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2024-04-10T13:38:52Z&#34;,&#34;dc:title&#34;:&#34;Livro de Reclamações&#34;}}" href="/pt_pt/particular/pretende-apresentar-uma-reclamacao.html">
+        <span class="cmp-button__text cta-button__text">Livro de Reclamações</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-0394d6e2fe" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-0394d6e2fe&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2025-07-03T15:13:34Z&#34;,&#34;dc:title&#34;:&#34;Período de suporte definido&#34;}}" href="https://my.daikin.eu/content/dam/b2c/shared/documents/ProductList_Defined_Support_Period.xlsx/_jcr_content/renditions/original./ProductList_Defined_Support_Period.xlsx">
+        <span class="cmp-button__text cta-button__text">Período de suporte definido</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-e14061cb07" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-e14061cb07&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2025-07-08T16:31:48Z&#34;,&#34;dc:title&#34;:&#34;Política de divulgação e relatórios de vulnerabilidades do Grupo Daikin Europe&#34;}}" href="/pt_pt/particular/vulnerability-reporting-and-disclosure-policy.html">
+        <span class="cmp-button__text cta-button__text">Política de divulgação e relatórios de vulnerabilidades do Grupo Daikin Europe</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="button doormat-block__link">
+    
+    <a id="button-7045a596a7" class="cmp-button cta-button" data-cmp-clickable data-cmp-data-layer="{&#34;button-7045a596a7&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/button&#34;,&#34;repo:modifyDate&#34;:&#34;2025-12-18T16:52:08Z&#34;,&#34;dc:title&#34;:&#34;Data Act&#34;}}" href="/pt_pt/particular/aviso-de-acesso-e-partilha-de-dados.html">
+        <span class="cmp-button__text cta-button__text">Data Act</span>
+    </a>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+<div class="image"><div data-asset-id="ed4b9a16-b50b-40e9-892c-a50fd1014214" id="image-706c520d81" data-cmp-data-layer="{&#34;image-706c520d81&#34;:{&#34;@type&#34;:&#34;b2c/components/core/image&#34;,&#34;repo:modifyDate&#34;:&#34;2024-06-27T15:57:08Z&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.livroreclamacoes.pt/Inicio/PerguntasFrequentes&#34;,&#34;image&#34;:{&#34;repo:id&#34;:&#34;ed4b9a16-b50b-40e9-892c-a50fd1014214&#34;,&#34;repo:modifyDate&#34;:&#34;2024-06-27T15:56:21Z&#34;,&#34;@type&#34;:&#34;image/png&#34;,&#34;repo:path&#34;:&#34;/content/dam/b2c/portugal/i006572.png&#34;,&#34;xdm:tags&#34;:[&#34;year:2024&#34;,&#34; properties:orientation/landscape&#34;],&#34;xdm:smartTags&#34;:{&#34;typography&#34;:0.822,&#34;movie&#34;:0.78,&#34;label&#34;:0.752,&#34;title&#34;:0.754,&#34;ovoid&#34;:0.833,&#34;minimalist photography&#34;:0.884,&#34;linedrawing&#34;:0.823,&#34;qr code&#34;:0.789,&#34;line art&#34;:0.781,&#34;rectangle&#34;:0.796,&#34;text&#34;:0.813,&#34;webpage&#34;:0.751,&#34;business card&#34;:0.76}}}}" class="cmp-image " itemscope itemtype="http://schema.org/ImageObject">
+    <a class="cmp-image__link" data-cmp-clickable href="https://www.livroreclamacoes.pt/Inicio/PerguntasFrequentes" target="_blank">
+        <!-- Enhanced responsive image with picture element -->
+        <picture class="cmp-image__picture">
+            <!-- Mobile-first responsive sources -->
+            <source media="(max-width: 640px)" sizes="(max-width: 640px) 100vw, 640px"/>
+            
+            <!-- Tablet -->
+            <source media="(max-width: 1024px)" sizes="(max-width: 1024px) 100vw, 1024px"/>
+            
+            <!-- Desktop -->
+            <source media="(max-width: 1600px)" sizes="(max-width: 1600px) 100vw, 1600px"/>
+            
+            <!-- Large desktop -->
+            <source sizes="100vw"/>
+            
+            <!-- Fallback img with enhanced attributes -->
+            <img src="/xf/b2c/pt_pt/doormat/doormat/master/_jcr_content/root/doormat-block/doormat-column-container-4/cta-container/image.coreimg.png/1719503828623/i006572.png" loading="lazy" fetchpriority="auto" class="cmp-image__image" itemprop="contentUrl" width="140" height="58" alt="Livro de reclamações" decoding="async" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, (max-width: 1600px) 100vw, 100vw"/>
+        </picture>
+    </a>
+    
+    
+</div>
+
+    
+
+</div>
+
+        
+    </div>
+
+</div>
+
+        
+    </div>
+
+</div>
+
+        
+    </div>
+
+</div>
+
+    
+    
+</div>
+
+    </div>
+
+    
+</div>
+</div>
+</div>
+</div>
+<div class="footer container-content"><footer class="footer-block">
+    <div class="footer-block__content container">
+        <div class="footer-block__rating"></div>
+            <div class="footer-block__trustpilot">
+                
+
+    
+
+
+            </div>        
+            <div class="footer-block__social-links">
+            <ul class="footer-block__social-links-list">
+                <li class="footer-block__social-link">
+                    <a class="social-icon social-icon--linkedin" data-cmp-clickable data-cmp-data-layer="{&#34;LinkedIn-2618c17cff&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/footer/button&#34;,&#34;dc:title&#34;:&#34;LinkedIn&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.linkedin.com/company/daikinportugal/&#34;}}" id="LinkedIn" href="https://www.linkedin.com/company/daikinportugal/" target="_blank">
+                        <span class="visually-hidden">LinkedIn</span>
+                    </a>
+                </li>
+            
+                <li class="footer-block__social-link">
+                    <a class="social-icon social-icon--facebook" data-cmp-clickable data-cmp-data-layer="{&#34;Facebook-2618c17cff&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/footer/button&#34;,&#34;dc:title&#34;:&#34;Facebook&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.facebook.com/DaikinPortugal&#34;}}" id="Facebook" href="https://www.facebook.com/DaikinPortugal" target="_blank">
+                        <span class="visually-hidden">Facebook</span>
+                    </a>
+                </li>
+            
+                <li class="footer-block__social-link">
+                    <a class="social-icon social-icon--instagram" data-cmp-clickable data-cmp-data-layer="{&#34;Instagram-2618c17cff&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/footer/button&#34;,&#34;dc:title&#34;:&#34;Instagram&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.instagram.com/daikinportugal/&#34;}}" id="Instagram" href="https://www.instagram.com/daikinportugal/" target="_blank">
+                        <span class="visually-hidden">Instagram</span>
+                    </a>
+                </li>
+            
+                <li class="footer-block__social-link">
+                    <a class="social-icon social-icon--youtube" data-cmp-clickable data-cmp-data-layer="{&#34;YouTube-2618c17cff&#34;:{&#34;@type&#34;:&#34;b2c/components/b2c/footer/button&#34;,&#34;dc:title&#34;:&#34;YouTube&#34;,&#34;xdm:linkURL&#34;:&#34;https://www.youtube.com/user/DaikinPortugal&#34;}}" id="YouTube" href="https://www.youtube.com/user/DaikinPortugal" target="_blank">
+                        <span class="visually-hidden">YouTube</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+</div>
+
+        
+    </div>
+
+</div>
+
+
+              
+    
+    
+    
+    
+<script src="/etc.clientlibs/core/wcm/components/commons/site/clientlibs/container.lc-0a6aff292f5cc42142779cde92054524-lc.min.js"></script>
+<script src="/etc.clientlibs/b2c/clientlibs/core.lc-373d9f7c8eae9b9a89ff22610fcb0fe2-lc.min.js"></script>
+
+
+
+
+    
+    
+
+
+
+
+
+    
+
+    
+
+    
+    
+    
+    
+
+          
+      </body>
+  </html>
