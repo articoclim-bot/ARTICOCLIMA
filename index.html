@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ARTICOCLIMA - Instalação, substituição e manutenção de ar condicionado. Orçamento gratuito e rápido." />
+  <title>ARTICOCLIMA - Climatização Profissional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#inicio" class="nav__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="44" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-nav" color-interpolation-filters="sRGB">
+              <!-- preto → laranja; branco → transparente -->
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
+        </svg>
+      </a>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#inicio" class="nav__link">Início</a></li>
+        <li><a href="#servicos" class="nav__link">Serviços</a></li>
+        <li><a href="#marcas" class="nav__link">Marcas</a></li>
+        <li><a href="#orcamento" class="nav__link">Orçamento</a></li>
+        <li><a href="#sobre" class="nav__link">Sobre Nós</a></li>
+        <li><a href="#contacto" class="nav__link">Contacto</a></li>
+      </ul>
+      <a href="#contacto" class="btn btn--primary nav__cta">Contactar</a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <video class="hero__video" autoplay muted loop playsinline>
+      <source src="assets/bg-hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="hero__shapes">
+      <div class="shape shape--1"></div>
+      <div class="shape shape--2"></div>
+    </div>
+    <div class="container hero__content">
+      <div class="hero__badge">✦ Venda · Instalação · Assistência Técnica</div>
+      <h1 class="hero__title">
+        Climatização que<br>
+        <span class="text-accent">Faz a Diferença</span>
+      </h1>
+      <p class="hero__desc">
+        Especialistas em ar condicionado e painéis solares AQS. Representamos Daikin,
+        Bosch e Daitsu em climatização e Bosch e Ariston em sistemas solares.
+        Orçamento gratuito e sem compromisso.
+      </p>
+      <div class="hero__actions">
+        <a href="#orcamento" class="btn btn--primary btn--lg">
+          Calcular Orçamento Grátis →
+        </a>
+        <a href="tel:964501776" class="btn btn--outline btn--lg">
+          📞 Ligar Agora
+        </a>
+      </div>
+      <div class="hero__stats">
+        <!-- EDITAR estes valores conforme a realidade da empresa -->
+        <div class="stat">
+          <span class="stat__num">500<span class="stat__plus">+</span></span>
+          <span class="stat__label">Clientes</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">10<span class="stat__plus">+</span></span>
+          <span class="stat__label">Anos de Experiência</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num">100<span class="stat__plus">%</span></span>
+          <span class="stat__label">Satisfação</span>
+        </div>
+      </div>
+    </div>
+    <a href="#servicos" class="hero__scroll" aria-label="Rolar para baixo">
+      <span class="scroll-arrow">↓</span>
+    </a>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services section" id="servicos">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">O que fazemos</span>
+        <h2 class="section__title">Os Nossos Serviços</h2>
+        <p class="section__desc">Soluções completas de climatização e energia solar para habitações e empresas.</p>
+      </div>
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h3>Instalação de Ar Condicionado</h3>
+          <p>Instalação profissional de raiz ou em substituição de equipamento existente. Trabalhamos com Daikin, Bosch e Daitsu, aproveitando a infraestrutura sempre que possível.</p>
+          <a href="#orcamento" class="service-card__link">Pedir orçamento →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3>Substituição de Equipamento</h3>
+          <p>Removemos o equipamento antigo e instalamos um novo modelo mais eficiente. Assessoria personalizada para escolher a melhor solução para o seu espaço.</p>
+          <a href="#orcamento" class="service-card__link">Pedir orçamento →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Assistência Técnica</h3>
+          <p>Manutenção preventiva e corretiva para garantir a máxima eficiência e longevidade do seu equipamento de ar condicionado ou sistema solar.</p>
+          <a href="#contacto" class="service-card__link">Agendar →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M12 3v1m0 16v1M4.22 4.22l.707.707M19.07 19.07l.707.707M1 12h2m18 0h2M4.22 19.78l.707-.707M19.07 4.93l.707-.707"/><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+          </div>
+          <h3>Painéis Solares AQS</h3>
+          <p>Instalação e manutenção de painéis solares para Águas Quentes Sanitárias. Representamos Bosch e Ariston para soluções de energia solar eficientes e duradouras.</p>
+          <a href="#contacto" class="service-card__link">Saber mais →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARCAS ===== -->
+  <section class="brands section" id="marcas">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Parceiros Oficiais</span>
+        <h2 class="section__title">Marcas que Representamos</h2>
+        <p class="section__desc">Revendedores autorizados das melhores marcas do mercado em climatização e energia solar.</p>
+      </div>
+      <div class="brands__group">
+        <p class="brands__label">Ar Condicionado</p>
+        <div class="brands__row">
+          <div class="brand-card">
+            <img src="assets/logo-daikin.png" alt="Daikin" class="brand-card__logo">
+          </div>
+          <div class="brand-card">
+            <img src="assets/logo-bosch.png" alt="Bosch" class="brand-card__logo">
+          </div>
+          <div class="brand-card">
+            <img src="assets/logo-daitsu.png" alt="Daitsu" class="brand-card__logo">
+          </div>
+        </div>
+      </div>
+      <div class="brands__divider"></div>
+      <div class="brands__group">
+        <p class="brands__label">Painéis Solares AQS</p>
+        <div class="brands__row brands__row--center">
+          <div class="brand-card">
+            <img src="assets/logo-bosch.png" alt="Bosch" class="brand-card__logo">
+          </div>
+          <div class="brand-card">
+            <img src="assets/logo-ariston.png" alt="Ariston" class="brand-card__logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUOTE CALCULATOR ===== -->
+  <section class="quote section section--dark" id="orcamento">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag section__tag--orange">Orçamento Instantâneo</span>
+        <h2 class="section__title section__title--white">Calcule o Seu Orçamento</h2>
+        <p class="section__desc section__desc--light">
+          Responda a 3 perguntas simples e receba uma estimativa imediata.
+        </p>
+      </div>
+
+      <div class="quiz-wrapper">
+        <!-- Progress Bar -->
+        <div class="quiz-progress" id="quizProgress">
+          <div class="progress-step active" id="prog-1">
+            <div class="progress-dot">1</div>
+            <span class="progress-label">Situação</span>
+          </div>
+          <div class="progress-line" id="line-1"></div>
+          <div class="progress-step" id="prog-2">
+            <div class="progress-dot">2</div>
+            <span class="progress-label">Potência</span>
+          </div>
+          <div class="progress-line" id="line-2"></div>
+          <div class="progress-step" id="prog-3">
+            <div class="progress-dot">3</div>
+            <span class="progress-label">Distância</span>
+          </div>
+          <div class="progress-line" id="line-3"></div>
+          <div class="progress-step" id="prog-4">
+            <div class="progress-dot">✓</div>
+            <span class="progress-label">Resultado</span>
+          </div>
+        </div>
+
+        <!-- STEP 1: Situation -->
+        <div class="quiz-step active" id="quiz-step-1">
+          <h3 class="quiz-step__title">Qual é a sua situação?</h3>
+          <div class="option-grid option-grid--3">
+            <button class="option-card" data-step="1" data-value="preinstall">
+              <div class="option-card__emoji">🏠</div>
+              <h4>Tenho Pré-Instalação</h4>
+              <p>Já tenho tubagens e cablagem preparadas para o aparelho</p>
+            </button>
+            <button class="option-card" data-step="1" data-value="replacement">
+              <div class="option-card__emoji">🔄</div>
+              <h4>Substituição de Aparelho</h4>
+              <p>Tenho aparelho antigo para remover e instalar novo no mesmo local</p>
+            </button>
+            <button class="option-card" data-step="1" data-value="new">
+              <div class="option-card__emoji">🔨</div>
+              <h4>Instalação de Raiz</h4>
+              <p>Não tenho pré-instalação nem aparelho. Instalação completa de tudo.</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Power -->
+        <div class="quiz-step" id="quiz-step-2">
+          <h3 class="quiz-step__title">Qual a potência do ar condicionado?</h3>
+          <p class="quiz-step__hint">Selecione com base na área a climatizar</p>
+          <div class="option-grid option-grid--4">
+            <button class="option-card" data-step="2" data-value="9000">
+              <div class="option-card__emoji">🌡️</div>
+              <h4>9.000 BTU</h4>
+              <p>Ideal para quartos<br><strong>até ~20m²</strong></p>
+            </button>
+            <button class="option-card" data-step="2" data-value="12000">
+              <div class="option-card__emoji">🌡️</div>
+              <h4>12.000 BTU</h4>
+              <p>Quartos médios<br><strong>~20 a 30m²</strong></p>
+            </button>
+            <button class="option-card" data-step="2" data-value="18000">
+              <div class="option-card__emoji">🌡️</div>
+              <h4>18.000 BTU</h4>
+              <p>Salas médias<br><strong>~30 a 50m²</strong></p>
+            </button>
+            <button class="option-card" data-step="2" data-value="24000">
+              <div class="option-card__emoji">🌡️</div>
+              <h4>24.000 BTU</h4>
+              <p>Salas grandes<br><strong>~50 a 70m²</strong></p>
+            </button>
+          </div>
+          <button class="btn btn--ghost" id="back-2">← Voltar</button>
+        </div>
+
+        <!-- STEP 3: Distance -->
+        <div class="quiz-step" id="quiz-step-3">
+          <h3 class="quiz-step__title">Distância entre unidade interior e exterior?</h3>
+          <p class="quiz-step__hint">Distância aproximada pelo percurso das tubagens</p>
+          <div class="option-grid option-grid--4">
+            <button class="option-card" data-step="3" data-value="short">
+              <div class="option-card__emoji">📏</div>
+              <h4>Até 3 metros</h4>
+              <p>Parede geminada ou varanda próxima</p>
+            </button>
+            <button class="option-card" data-step="3" data-value="medium">
+              <div class="option-card__emoji">📏</div>
+              <h4>3 a 6 metros</h4>
+              <p>Distância moderada</p>
+            </button>
+            <button class="option-card" data-step="3" data-value="long">
+              <div class="option-card__emoji">📏</div>
+              <h4>6 a 10 metros</h4>
+              <p>Distância considerável</p>
+            </button>
+            <button class="option-card" data-step="3" data-value="vlong">
+              <div class="option-card__emoji">📏</div>
+              <h4>Mais de 10 metros</h4>
+              <p>Percurso longo de tubagens</p>
+            </button>
+          </div>
+          <button class="btn btn--ghost" id="back-3">← Voltar</button>
+        </div>
+
+        <!-- STEP 4: Result -->
+        <div class="quiz-step" id="quiz-step-4">
+          <div class="result-box">
+            <div class="result-box__check">✅</div>
+            <h3>O Seu Orçamento Estimado</h3>
+            <div class="result-summary" id="resultSummary"></div>
+            <div class="result-price">
+              <span class="result-price__label">Estimativa:</span>
+              <span class="result-price__value" id="resultPrice">---</span>
+            </div>
+            <p class="result-note">
+              ⚠️ Valor indicativo. O orçamento final é confirmado após visita técnica gratuita ao local.
+            </p>
+            <div class="result-actions">
+              <a href="#" class="btn btn--whatsapp btn--lg" id="whatsappResultBtn">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Enviar por WhatsApp
+              </a>
+              <a href="tel:964501776" class="btn btn--outline btn--lg">
+                📞 Falar por Telefone
+              </a>
+            </div>
+            <button class="btn btn--ghost quiz-restart" id="restartBtn">↺ Novo orçamento</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY US ===== -->
+  <section class="whyus section" id="porqueNos">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Porquê nós</span>
+        <h2 class="section__title">A Nossa Diferença</h2>
+      </div>
+      <div class="whyus__grid">
+        <div class="why-card">
+          <div class="why-card__icon">⚡</div>
+          <h4>Resposta Rápida</h4>
+          <p>Orçamento e agendamento no próprio dia. Sem esperas desnecessárias.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">🏆</div>
+          <h4>Marcas de Referência</h4>
+          <p>Revendedores autorizados Daikin, Bosch e Daitsu em climatização, e Bosch e Ariston em painéis solares AQS.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">🔐</div>
+          <h4>Instalação Garantida</h4>
+          <p>Garantia na instalação com técnicos especializados e materiais de qualidade.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">📋</div>
+          <h4>Empresa Certificada</h4>
+          <p>Empresa registada e técnicos certificados para total segurança e conformidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="sobre">
+    <div class="container">
+      <div class="about__grid">
+
+        <div class="about__content">
+          <span class="section__tag">Sobre Nós</span>
+          <h2 class="about__title">Onde o Conforto<br><span class="text-accent">Ganha Vida</span></h2>
+          <p class="about__text">Na Ártico Climatização, não vendemos apenas soluções térmicas — entregamos experiências de conforto absoluto. Somos uma empresa jovem, mas com uma alma experiente: a nossa equipa é composta por técnicos altamente qualificados e certificados, com anos de prática e paixão no setor da climatização.</p>
+          <p class="about__text">Cada projeto é tratado com rigor, dedicação e um compromisso inabalável com a excelência.</p>
+          <div class="about__cert">
+            <div class="about__cert-badge">🏅</div>
+            <div>
+              <p class="about__cert-title">Certificação EIC</p>
+              <p class="about__cert-num">Certif. nº GF-0879</p>
+            </div>
+          </div>
+          <blockquote class="about__mission">
+            "A nossa missão? Ir ao encontro das necessidades de cada cliente com o máximo brio, profissionalismo e atenção ao detalhe."
+          </blockquote>
+        </div>
+
+        <div class="about__features">
+          <h3 class="about__features-title">O que nos torna especiais</h3>
+          <ul class="about__list">
+            <li class="about__item">
+              <span class="about__check">✓</span>
+              <span>Soluções personalizadas para cada cliente</span>
+            </li>
+            <li class="about__item">
+              <span class="about__check">✓</span>
+              <span>Equipamentos de última geração e eficiência energética</span>
+            </li>
+            <li class="about__item">
+              <span class="about__check">✓</span>
+              <span>Atendimento rápido, transparente e profissional</span>
+            </li>
+            <li class="about__item">
+              <span class="about__check">✓</span>
+              <span>Técnicos certificados e apaixonados pelo que fazem</span>
+            </li>
+            <li class="about__item">
+              <span class="about__check">✓</span>
+              <span>Garantia de conforto em todas as estações do ano</span>
+            </li>
+          </ul>
+          <a href="#contacto" class="btn btn--primary">Fale Connosco →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section section--dark" id="contacto">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag section__tag--orange">Contacto</span>
+        <h2 class="section__title section__title--white">Fale Connosco</h2>
+        <p class="section__desc section__desc--light">
+          Estamos disponíveis para responder a todas as suas dúvidas.
+        </p>
+      </div>
+      <div class="contact__grid">
+        <div class="contact-card">
+          <div class="contact-card__icon">📞</div>
+          <h4>Telefone</h4>
+          <a href="tel:964501776" class="contact-card__link">964 501 776</a>
+          <a href="tel:963712752" class="contact-card__link">963 712 752</a>
+        </div>
+        <div class="contact-card contact-card--featured">
+          <div class="contact-card__icon">💬</div>
+          <h4>WhatsApp</h4>
+          <p>Envie-nos uma mensagem diretamente</p>
+          <a href="https://wa.me/351964501776" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Iniciar Conversa
+          </a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card__icon">🕐</div>
+          <h4>Horário</h4>
+          <!-- EDITAR horário conforme a realidade -->
+          <p>Segunda a Sexta: <strong>8h – 19h</strong></p>
+          <p>Sábado: <strong>9h – 13h</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#inicio" class="nav__logo footer__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="38" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-footer" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-footer)"/>
+        </svg>
+      </a>
+      <div class="footer__links">
+        <a href="#servicos">Serviços</a>
+        <a href="#orcamento">Orçamento</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <p class="footer__copy">© 2025 ARTICOCLIMA · Todos os direitos reservados</p>
+      <div class="footer__legal">
+        <a href="politica-privacidade.html">Política de Privacidade</a>
+        <span>·</span>
+        <a href="politica-cookies.html">Política de Cookies</a>
+        <span>·</span>
+        <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclamações</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/351964501776" class="whatsapp-float" target="_blank" rel="noopener" title="WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
