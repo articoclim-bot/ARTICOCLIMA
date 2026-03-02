@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Legislação sobre gases fluorados em Portugal — Regulamento (UE) 2024/573, certificação de técnicos, obrigações dos operadores e calendário de proibições." />
+  <title>Legislação — Gases Fluorados | ARTICOCLIMA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Base da página ── */
+    body { background: var(--white); }
+
+    .leg-page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .leg-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: 40px;
+      transition: opacity .2s;
+      text-decoration: none;
+    }
+    .leg-back:hover { opacity: .75; }
+
+    .leg-tag {
+      display: inline-block;
+      background: rgba(249,115,22,.1);
+      color: var(--primary);
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .leg-page h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -.5px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .leg-intro {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 12px;
+      max-width: 720px;
+    }
+
+    .leg-update {
+      font-size: .82rem;
+      color: var(--gray);
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    /* ── Secções ── */
+    .leg-section {
+      margin-bottom: 56px;
+    }
+
+    .leg-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .leg-section h2 span.ico { font-size: 1.3rem; }
+
+    .leg-section p {
+      color: var(--gray);
+      font-size: .97rem;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .leg-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .leg-section ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--gray);
+      font-size: .97rem;
+      line-height: 1.7;
+    }
+    .leg-section ul li::before {
+      content: '–';
+      color: var(--primary);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .leg-divider {
+      border: none;
+      border-top: 1px solid var(--gray-light);
+      margin: 52px 0;
+    }
+
+    /* ── Cards de legislação ── */
+    .leg-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .leg-card {
+      background: #f9f9fb;
+      border: 1px solid #e8e8ef;
+      border-radius: 12px;
+      padding: 22px 20px;
+    }
+    .leg-card__label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .leg-card__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .leg-card p {
+      font-size: .84rem !important;
+      margin-bottom: 0 !important;
+      color: var(--gray) !important;
+      line-height: 1.6 !important;
+    }
+    .leg-card a {
+      color: var(--primary);
+      font-size: .82rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+    }
+    .leg-card a:hover { text-decoration: underline; }
+
+    /* ── Timeline phase-down ── */
+    .phasedown-timeline {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 8px;
+    }
+    .phasedown-timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), #e5e5ea);
+    }
+    .phasedown-step {
+      position: relative;
+      margin-bottom: 28px;
+    }
+    .phasedown-step::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .phasedown-step__year {
+      font-family: 'Poppins', sans-serif;
+      font-size: .95rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .phasedown-step__desc {
+      font-size: .9rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    .phasedown-step__badge {
+      display: inline-block;
+      background: rgba(249,115,22,.1);
+      color: var(--primary);
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 100px;
+      margin-bottom: 6px;
+    }
+
+    /* ── Callout de datas ── */
+    .date-callout {
+      border-left: 4px solid var(--primary);
+      background: rgba(249,115,22,.05);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+    .date-callout__year {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .date-callout p {
+      font-size: .9rem !important;
+      margin-bottom: 0 !important;
+      color: var(--gray) !important;
+      line-height: 1.65 !important;
+    }
+
+    /* ── Cards de certificação ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .cert-card {
+      border: 1px solid #e8e8ef;
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .cert-card__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      margin: 0 auto 12px;
+    }
+    .cert-card__name {
+      font-family: 'Poppins', sans-serif;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .cert-card p {
+      font-size: .82rem !important;
+      color: var(--gray) !important;
+      line-height: 1.55 !important;
+      margin: 0 !important;
+    }
+
+    /* ── Alerta / nota ── */
+    .leg-alert {
+      background: #fffbf5;
+      border: 1px solid rgba(249,115,22,.25);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .leg-alert__icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .leg-alert p {
+      font-size: .9rem !important;
+      color: var(--gray) !important;
+      margin: 0 !important;
+      line-height: 1.65 !important;
+    }
+    .leg-alert strong { color: var(--dark); }
+
+    /* ── Links externos ── */
+    .ext-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ext-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #f9f9fb;
+      border: 1px solid #e8e8ef;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .ext-link:hover {
+      border-color: var(--primary);
+      background: rgba(249,115,22,.04);
+    }
+    .ext-link__info { flex: 1; }
+    .ext-link__title {
+      font-weight: 700;
+      font-size: .92rem;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+    .ext-link__desc {
+      font-size: .8rem;
+      color: var(--gray);
+    }
+    .ext-link__arrow {
+      color: var(--primary);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── CTA final ── */
+    .leg-cta {
+      background: var(--dark);
+      border-radius: 16px;
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 56px;
+    }
+    .leg-cta h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .leg-cta p {
+      color: rgba(255,255,255,.6);
+      font-size: .92rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .leg-cta__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .leg-page { padding: 100px 18px 60px; }
+      .cert-grid { grid-template-columns: 1fr 1fr; }
+      .leg-cta { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header scrolled" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="80" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-nav" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
+        </svg>
+      </a>
+      <a href="index.html" class="btn btn--primary nav__cta">← Voltar ao Site</a>
+    </nav>
+  </header>
+
+  <!-- ===== CONTENT ===== -->
+  <main class="leg-page">
+
+    <a href="index.html" class="leg-back">← Voltar ao início</a>
+
+    <span class="leg-tag">Informação Legal</span>
+    <h1>Legislação sobre<br>Gases Fluorados</h1>
+    <p class="leg-intro">
+      Os gases fluorados com efeito de estufa (F-gases) estão sujeitos a regulamentação europeia e nacional cada vez mais restritiva. Esta página resume as principais obrigações legais que se aplicam à instalação e manutenção de equipamentos de ar condicionado em Portugal.
+    </p>
+    <p class="leg-update">Atualizado em março de 2026 · Informação baseada no Regulamento (UE) 2024/573 e Decreto-Lei n.º 145/2017</p>
+
+    <!-- ── 1. Enquadramento legal ── -->
+    <section class="leg-section">
+      <h2><span class="ico">📜</span> Enquadramento Legal</h2>
+      <p>A utilização de gases fluorados em equipamentos de refrigeração e ar condicionado é regulada por legislação europeia de aplicação direta, complementada por legislação nacional de execução.</p>
+
+      <div class="leg-cards">
+        <div class="leg-card">
+          <div class="leg-card__label">UE — Em vigor desde mar. 2024</div>
+          <div class="leg-card__title">Regulamento (UE) 2024/573</div>
+          <p>Regulamento principal sobre gases fluorados com efeito de estufa. Revoga o Regulamento (UE) 517/2014 e introduz regras mais restritivas sobre colocação no mercado, utilização, recuperação e certificação.</p>
+          <a href="https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=OJ:L_202400573" target="_blank" rel="noopener">Ver em EUR-Lex →</a>
+        </div>
+        <div class="leg-card">
+          <div class="leg-card__label">UE — Certificação</div>
+          <div class="leg-card__title">Regulamento de Execução (UE) 2024/2215</div>
+          <p>Define os requisitos mínimos de qualificação para emissão de certificados a técnicos de equipamentos fixos de refrigeração, ar condicionado e bombas de calor. Revoga o Regulamento 2015/2067.</p>
+        </div>
+        <div class="leg-card">
+          <div class="leg-card__label">Portugal — Nacional</div>
+          <div class="leg-card__title">Decreto-Lei n.º 145/2017</div>
+          <p>Assegura a execução do Regulamento (UE) 517/2014 na ordem jurídica nacional. Regula a certificação de técnicos e empresas, define as entidades competentes e os regimes sancionatórios.</p>
+        </div>
+        <div class="leg-card">
+          <div class="leg-card__label">Portugal — Entidade competente</div>
+          <div class="leg-card__title">Agência para o Clima (ApC)</div>
+          <p>A Agência para o Clima (anteriormente APA) é responsável pela implementação e acompanhamento da regulamentação de gases fluorados em Portugal, incluindo a supervisão da certificação.</p>
+          <a href="https://apambiente.pt/clima/gases-fluorados-0" target="_blank" rel="noopener">Ver no site da ApC →</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="leg-divider">
+
+    <!-- ── 2. Phase-down dos HFC ── -->
+    <section class="leg-section">
+      <h2><span class="ico">📉</span> Redução Progressiva dos HFC (Phase-Down)</h2>
+      <p>O Regulamento (UE) 2024/573 estabelece um calendário de redução gradual da quantidade de hidrofluorocarbonetos (HFC) que podem ser colocados no mercado europeu, tendo como referência a linha de base de 2015 (≈ 176 milhões t CO₂eq).</p>
+
+      <div class="phasedown-timeline">
+        <div class="phasedown-step">
+          <div class="phasedown-step__badge">2025–2026</div>
+          <div class="phasedown-step__year">24,3% da linha de base</div>
+          <div class="phasedown-step__desc">≈ 43 milhões de toneladas CO₂eq disponíveis no mercado UE — redução de 48% face a 2023.</div>
+        </div>
+        <div class="phasedown-step">
+          <div class="phasedown-step__badge">2027–2029</div>
+          <div class="phasedown-step__year">12,3% da linha de base</div>
+          <div class="phasedown-step__desc">≈ 21,7 milhões de toneladas CO₂eq — redução de cerca de 50% face ao período anterior.</div>
+        </div>
+        <div class="phasedown-step">
+          <div class="phasedown-step__badge">2030–2032</div>
+          <div class="phasedown-step__year">Redução para ≈ 9 milhões t CO₂eq</div>
+          <div class="phasedown-step__desc">A disponibilidade de HFC no mercado continua a decrescer acentuadamente, pressionando a transição para refrigerantes alternativos (R-32, R-290, R-744, NH₃).</div>
+        </div>
+        <div class="phasedown-step">
+          <div class="phasedown-step__badge">2050</div>
+          <div class="phasedown-step__year">Eliminação total dos HFC</div>
+          <div class="phasedown-step__desc">Objetivo final do regulamento — eliminação progressiva completa dos hidrofluorocarbonetos no mercado europeu.</div>
+        </div>
+      </div>
+
+      <div class="leg-alert">
+        <span class="leg-alert__icon">⚠️</span>
+        <p>A redução das quotas de HFC já está a fazer subir o preço dos refrigerantes mais comuns (R-410A, R-32). Equipamentos que utilizam refrigerantes com elevado GWP ficarão progressivamente mais caros de manter.</p>
+      </div>
+    </section>
+
+    <hr class="leg-divider">
+
+    <!-- ── 3. Proibições por data ── -->
+    <section class="leg-section">
+      <h2><span class="ico">🚫</span> Proibições e Limites por Data</h2>
+      <p>O regulamento estabelece proibições graduais para a colocação no mercado e utilização de gases com elevado potencial de aquecimento global (GWP). Estas são as datas mais relevantes para o setor do ar condicionado e refrigeração:</p>
+
+      <div class="date-callout">
+        <div class="date-callout__year">A partir de 1 de janeiro de 2025</div>
+        <p>Proibição de utilização de <strong>HFC virgens com GWP igual ou superior a 2.500</strong> na reparação e manutenção de equipamentos de refrigeração existentes (exceto gases reclamados ou reciclados, cuja derrogação se mantém até 2030). Os refrigerantes comerciais mais afetados: R-404A (GWP 3.922) e R-507A (GWP 3.985).</p>
+      </div>
+
+      <div class="date-callout">
+        <div class="date-callout__year">A partir de 2026</div>
+        <p>Proibição alargada a equipamentos de <strong>ar condicionado e bombas de calor</strong> — restrição à utilização de gases virgens com GWP ≥ 2.500 na manutenção e assistência técnica (derrogação para gases reclamados/reciclados até 2032). Além disso, novos frigoríficos domésticos e unidades de refrigeração autónomas com F-gases ficam proibidos.</p>
+      </div>
+
+      <div class="date-callout">
+        <div class="date-callout__year">A partir de 2030</div>
+        <p>Limite máximo de <strong>GWP = 150</strong> para novos equipamentos de ar condicionado estacionários (exceto chillers). Esta restrição impulsiona a adoção massiva de refrigerantes como R-32 (GWP 675), R-290 (propano, GWP 3) e R-744 (CO₂, GWP 1). O R-410A (GWP 2.088) deixará de ser utilizável em novos equipamentos.</p>
+      </div>
+
+      <div class="date-callout">
+        <div class="date-callout__year">A partir de 2050</div>
+        <p>Eliminação total dos HFC no mercado europeu — proibição geral de colocação no mercado de equipamentos contendo hidrofluorocarbonetos.</p>
+      </div>
+    </section>
+
+    <hr class="leg-divider">
+
+    <!-- ── 4. Certificação de técnicos ── -->
+    <section class="leg-section">
+      <h2><span class="ico">🪪</span> Certificação de Técnicos</h2>
+      <p>É <strong>obrigatória a certificação individual</strong> para qualquer técnico que realize atividades de instalação, reparação, manutenção, assistência técnica, desativação ou verificação de fugas em equipamentos que contenham gases fluorados ou substâncias alternativas (CO₂, NH₃, hidrocarbonetos). Existem quatro categorias:</p>
+
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-card__badge">A1</div>
+          <div class="cert-card__name">Certificado A1</div>
+          <p>Todas as atividades — instalação, reparação, manutenção, desativação e recuperação, sem limite de carga de refrigerante.</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-card__badge">A2</div>
+          <div class="cert-card__name">Certificado A2</div>
+          <p>Mesmas atividades, mas apenas em equipamentos com carga inferior a 3 kg (ou 6 kg se hermeticamente fechados).</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-card__badge">D</div>
+          <div class="cert-card__name">Certificado D</div>
+          <p>Apenas atividades de <strong>recuperação</strong> de gases em equipamentos com carga inferior a 3 kg (ou 6 kg se hermeticamente fechados).</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-card__badge">E</div>
+          <div class="cert-card__name">Certificado E</div>
+          <p>Apenas <strong>deteção de fugas</strong> que não implique intervenção no circuito frigorífico.</p>
+        </div>
+      </div>
+
+      <p>Os certificados emitidos ao abrigo do Regulamento anterior (UE) 517/2014 mantêm-se válidos nas condições em que foram emitidos.</p>
+
+      <div class="leg-alert">
+        <span class="leg-alert__icon">ℹ️</span>
+        <p><strong>Organismos de certificação em Portugal:</strong> <a href="https://www.centerm.pt/cer_fluorados.html" target="_blank" rel="noopener">CENTERM</a> (acreditado pelo IPAC para categorias A1, A2, D e E) e <a href="https://aipor.pt/index.php?oid=2651&op=all" target="_blank" rel="noopener">AIPOR</a> — Associação dos Instaladores de Portugal.</p>
+      </div>
+    </section>
+
+    <hr class="leg-divider">
+
+    <!-- ── 5. Certificação de empresas ── -->
+    <section class="leg-section">
+      <h2><span class="ico">🏢</span> Certificação de Empresas</h2>
+      <p>As empresas que prestam serviços a terceiros nas atividades de instalação, reparação, manutenção, assistência técnica, desativação ou recuperação em equipamentos com gases fluorados são obrigadas a obter <strong>certificação empresarial</strong>, nos termos do artigo 13.º do Decreto-Lei n.º 145/2017.</p>
+      <ul>
+        <li>A certificação é obrigatória exclusivamente quando há <strong>prestação de serviços para terceiros</strong>.</li>
+        <li>A empresa deve garantir que os seus técnicos detêm os certificados individuais adequados.</li>
+        <li>O âmbito de certificação foi alargado para incluir equipamentos que contenham substâncias alternativas aos F-gases (CO₂, NH₃, hidrocarbonetos).</li>
+        <li>O organismo <strong><a href="https://www.certif.pt/gases_fluorados.asp" target="_blank" rel="noopener">CERTIF</a></strong> foi o primeiro a obter acreditação do IPAC para a certificação de empresas ao abrigo da nova regulamentação.</li>
+      </ul>
+    </section>
+
+    <hr class="leg-divider">
+
+    <!-- ── 6. Obrigações dos operadores ── -->
+    <section class="leg-section">
+      <h2><span class="ico">✅</span> Obrigações dos Operadores (Proprietários de Equipamentos)</h2>
+      <p>Quem possui equipamentos de ar condicionado ou refrigeração com gases fluorados tem obrigações específicas a cumprir:</p>
+      <ul>
+        <li><strong>Verificação periódica de fugas</strong> — a frequência depende da carga de refrigerante do equipamento (equipamentos com carga superior a 5 t CO₂eq requerem verificação anual; carga superior a 50 t CO₂eq requerem verificação semestral).</li>
+        <li><strong>Manutenção de registo</strong> — obrigação de guardar um registo com todas as intervenções realizadas no equipamento, incluindo quantidade de gás adicionado ou recuperado, identificação do técnico certificado e data de cada intervenção.</li>
+        <li><strong>Recuperação obrigatória</strong> — os gases fluorados devem ser recuperados por um técnico certificado antes da desativação, desmantelamento ou serviço que implique abertura do circuito frigorífico. É proibida a libertação intencional de gases para a atmosfera.</li>
+        <li><strong>Utilização de técnicos certificados</strong> — todas as intervenções em equipamentos com gases fluorados devem ser realizadas exclusivamente por técnicos detentores de certificado válido.</li>
+        <li><strong>Rotulagem</strong> — os equipamentos devem estar devidamente etiquetados com a identificação do refrigerante e a indicação de que contêm gases fluorados.</li>
+      </ul>
+
+      <div class="leg-alert">
+        <span class="leg-alert__icon">⚠️</span>
+        <p><strong>Atenção:</strong> A libertação intencional de gases fluorados para a atmosfera é proibida e constitui infração punível com coima. A ARTICOCLIMA cumpre integralmente toda a regulamentação aplicável — todos os nossos técnicos são certificados e as intervenções são devidamente registadas.</p>
+      </div>
+    </section>
+
+    <hr class="leg-divider">
+
+    <!-- ── 7. Refrigerantes atuais ── -->
+    <section class="leg-section">
+      <h2><span class="ico">🌡️</span> Refrigerantes e Impacto Regulatório</h2>
+      <p>Com o phase-down em curso, é importante conhecer o GWP dos refrigerantes mais utilizados em ar condicionado doméstico e comercial:</p>
+
+      <div class="leg-cards">
+        <div class="leg-card">
+          <div class="leg-card__label">GWP: 675 — Permitido até 2030+</div>
+          <div class="leg-card__title">R-32</div>
+          <p>Refrigerante mais comum nos equipamentos modernos (Daikin, Bosch, Daitsu). Abaixo do limite de 2.500 e também abaixo do futuro limite de 750. Continuará a ser utilizável após 2026.</p>
+        </div>
+        <div class="leg-card">
+          <div class="leg-card__label">GWP: 2.088 — Restrições a partir de 2026</div>
+          <div class="leg-card__title">R-410A</div>
+          <p>Ainda utilizado em equipamentos mais antigos. Com GWP de 2.088, abaixo do limite de 2.500, mas acima do futuro limite de 150 para 2030. Equipamentos novos com R-410A serão proibidos após 2030.</p>
+        </div>
+        <div class="leg-card">
+          <div class="leg-card__label">GWP: 3.922 — Proibido desde 2025</div>
+          <div class="leg-card__title">R-404A / R-507A</div>
+          <p>Muito utilizados em refrigeração comercial. Com GWP acima de 2.500, o uso de gases virgens para manutenção está proibido desde 1 de janeiro de 2025. Apenas gases reclamados ou reciclados até 2030.</p>
+        </div>
+        <div class="leg-card">
+          <div class="leg-card__label">GWP: 1–3 — Futuro</div>
+          <div class="leg-card__title">R-290 / R-744 / NH₃</div>
+          <p>Alternativas naturais de GWP mínimo (propano, CO₂, amoníaco). São os refrigerantes do futuro, já utilizados em equipamentos de nova geração para cumprir o limite de 150 a partir de 2030.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="leg-divider">
+
+    <!-- ── 8. Links úteis ── -->
+    <section class="leg-section">
+      <h2><span class="ico">🔗</span> Fontes e Links Úteis</h2>
+      <p>Para consultar os diplomas legais completos e obter informação oficial sobre certificação:</p>
+
+      <div class="ext-links">
+        <a href="https://apambiente.pt/clima/gases-fluorados-0" target="_blank" rel="noopener" class="ext-link">
+          <div class="ext-link__info">
+            <div class="ext-link__title">Agência para o Clima (ApC) — Gases Fluorados</div>
+            <div class="ext-link__desc">Página oficial com legislação, certificação e registos obrigatórios em Portugal</div>
+          </div>
+          <span class="ext-link__arrow">↗</span>
+        </a>
+        <a href="https://eur-lex.europa.eu/legal-content/PT/TXT/?uri=OJ:L_202400573" target="_blank" rel="noopener" class="ext-link">
+          <div class="ext-link__info">
+            <div class="ext-link__title">Regulamento (UE) 2024/573 — EUR-Lex</div>
+            <div class="ext-link__desc">Texto integral do regulamento europeu em vigor desde 11 de março de 2024</div>
+          </div>
+          <span class="ext-link__arrow">↗</span>
+        </a>
+        <a href="https://www.centerm.pt/cer_fluorados.html" target="_blank" rel="noopener" class="ext-link">
+          <div class="ext-link__info">
+            <div class="ext-link__title">CENTERM — Certificação de Técnicos</div>
+            <div class="ext-link__desc">Organismo acreditado pelo IPAC para certificação de técnicos nas categorias A1, A2, D e E</div>
+          </div>
+          <span class="ext-link__arrow">↗</span>
+        </a>
+        <a href="https://aipor.pt/index.php?oid=2651&op=all" target="_blank" rel="noopener" class="ext-link">
+          <div class="ext-link__info">
+            <div class="ext-link__title">AIPOR — Certificação de Técnicos</div>
+            <div class="ext-link__desc">Associação dos Instaladores de Portugal — organismo de certificação reconhecido</div>
+          </div>
+          <span class="ext-link__arrow">↗</span>
+        </a>
+        <a href="https://www.certif.pt/gases_fluorados.asp" target="_blank" rel="noopener" class="ext-link">
+          <div class="ext-link__info">
+            <div class="ext-link__title">CERTIF — Certificação de Empresas</div>
+            <div class="ext-link__desc">Organismo para certificação empresarial ao abrigo do novo regulamento</div>
+          </div>
+          <span class="ext-link__arrow">↗</span>
+        </a>
+        <a href="https://dre.pt/dre/detalhe/decreto-lei/145-2017-114279415" target="_blank" rel="noopener" class="ext-link">
+          <div class="ext-link__info">
+            <div class="ext-link__title">Decreto-Lei n.º 145/2017 — DRE</div>
+            <div class="ext-link__desc">Lei portuguesa de execução da regulamentação europeia de gases fluorados</div>
+          </div>
+          <span class="ext-link__arrow">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <div class="leg-cta">
+      <h3>Tem dúvidas sobre o seu equipamento?</h3>
+      <p>A nossa equipa é certificada e está ao corrente de toda a legislação em vigor. Contacte-nos para esclarecimentos ou para agendar uma visita técnica.</p>
+      <div class="leg-cta__actions">
+        <a href="https://wa.me/351964501776" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:artico.clim@gmail.com" class="btn btn--outline btn--lg">
+          ✉️ artico.clim@gmail.com
+        </a>
+        <a href="tel:964501776" class="btn btn--outline btn--lg">
+          📞 964 501 776
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="index.html#inicio" class="nav__logo footer__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="64" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-footer" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-footer)"/>
+        </svg>
+      </a>
+      <div class="footer__links">
+        <a href="index.html#servicos">Serviços</a>
+        <a href="index.html#orcamento">Orçamento</a>
+        <a href="index.html#contacto">Contacto</a>
+      </div>
+      <p class="footer__copy">© 2025 ARTICOCLIMA · Todos os direitos reservados</p>
+      <div class="footer__legal">
+        <a href="politica-privacidade.html">Política de Privacidade</a>
+        <a href="politica-cookies.html">Política de Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
