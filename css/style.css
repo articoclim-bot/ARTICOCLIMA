@@ -1013,6 +1013,30 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .about__features { padding: 36px 28px; }
 }
 
+.about__fleet {
+  margin: 56px 0 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,.35);
+}
+
+.about__fleet img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.about__fleet figcaption {
+  background: rgba(255,255,255,.06);
+  border-top: 2px solid var(--primary);
+  color: rgba(255,255,255,.65);
+  font-size: .85rem;
+  text-align: center;
+  padding: 12px 20px;
+  letter-spacing: .02em;
+}
+
 /* =============================================
    CONTACT
    ============================================= */
