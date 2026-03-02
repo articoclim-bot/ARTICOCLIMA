@@ -520,11 +520,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 64px;
   object-fit: contain;
   object-position: center;
-  filter: grayscale(100%) opacity(0.7);
-  transition: filter var(--transition);
+  transition: transform var(--transition);
 }
 .brand-card:hover .brand-card__logo {
-  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
 }
 
 .brand-card--link {
@@ -534,20 +533,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   cursor: pointer;
 }
 
-.brand-card__cta {
-  font-size: .78rem;
-  font-weight: 600;
-  color: var(--primary);
-  letter-spacing: .04em;
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity var(--transition), transform var(--transition);
-}
-
-.brand-card--link:hover .brand-card__cta {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 @media (max-width: 720px) {
   .brands__row { gap: 16px; }
