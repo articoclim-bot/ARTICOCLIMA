@@ -1018,7 +1018,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================= */
 .contact__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
