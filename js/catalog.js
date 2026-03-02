@@ -404,7 +404,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 649,   // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.jpg',
+    image: 'assets/products/daitsu-cool-pro.webp',
   },
   {
     id: 'daitsu-cool-pro-12',
@@ -424,7 +424,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 799,   // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.jpg',
+    image: 'assets/products/daitsu-cool-pro.webp',
   },
   {
     id: 'daitsu-cool-pro-18',
@@ -444,7 +444,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1099,  // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.jpg',
+    image: 'assets/products/daitsu-cool-pro.webp',
   },
   {
     id: 'daitsu-cool-pro-24',
@@ -464,7 +464,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1349,  // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.jpg',
+    image: 'assets/products/daitsu-cool-pro.webp',
   },
 ];
 
