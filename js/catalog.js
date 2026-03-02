@@ -312,7 +312,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 799,   // preço a confirmar
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: 'assets/products/daitsu-artic-plus.png',
   },
   {
     id: 'daitsu-artic-plus-12',
@@ -334,7 +334,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 999,   // preço a confirmar
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: 'assets/products/daitsu-artic-plus.png',
   },
   {
     id: 'daitsu-artic-plus-18',
@@ -356,7 +356,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1299,  // preço a confirmar
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: 'assets/products/daitsu-artic-plus.png',
   },
   {
     id: 'daitsu-artic-plus-24',
@@ -378,7 +378,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1599,  // preço a confirmar
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: 'assets/products/daitsu-artic-plus.png',
   },
 
   /* ===================================================
