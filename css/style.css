@@ -527,6 +527,28 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   filter: grayscale(0%) opacity(1);
 }
 
+.brand-card--link {
+  text-decoration: none;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.brand-card__cta {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: .04em;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.brand-card--link:hover .brand-card__cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 720px) {
   .brands__row { gap: 16px; }
   .brand-card { min-width: 140px; padding: 20px 24px; }

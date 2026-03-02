@@ -766,6 +766,18 @@ function modalHTML(p) {
     render();
   });
 
+  /* ---- Auto-filter from URL param (?brand=daikin#catalogo) ---- */
+  const urlBrand = new URLSearchParams(location.search).get('brand');
+  if (urlBrand) {
+    const tab = [...brandTabs].find(t => t.dataset.brand === urlBrand);
+    if (tab) {
+      brandTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeBrand = urlBrand;
+      render();
+    }
+  }
+
   /* ---- Modal ---- */
   function openModal(id) {
     const p = PRODUCTS.find(x => x.id === id);
