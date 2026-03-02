@@ -11,31 +11,20 @@
 
 const PRICING = {
 
-  /* ---- PREÇO BASE por potência ----
-     Inclui: equipamento + instalação base
-     (ajuste conforme as suas margens e mercado) */
-  base: {
-    9000:  { label: '9.000 BTU',  price: 650  },   // ← EDITAR
-    12000: { label: '12.000 BTU', price: 750  },   // ← EDITAR
-    18000: { label: '18.000 BTU', price: 950  },   // ← EDITAR
-    24000: { label: '24.000 BTU', price: 1150 },   // ← EDITAR
-  },
-
-  /* ---- ACRÉSCIMO por cenário ----
-     Valor extra a somar ao preço base */
+  /* ---- ACRÉSCIMO por cenário de instalação ----
+     Valor extra a somar ao PVP do equipamento */
   scenario: {
-    preinstall:  { label: 'Com pré-instalação',    extra: 0   },  // ← EDITAR
-    replacement: { label: 'Substituição de aparelho', extra: 80  },  // ← EDITAR (remoção do antigo)
-    new:         { label: 'Instalação de raiz',    extra: 180 },  // ← EDITAR (canalização completa)
+    preinstall:  { label: 'Com pré-instalação',       extra: 0   },
+    replacement: { label: 'Substituição de aparelho', extra: 80  },
+    new:         { label: 'Instalação de raiz',       extra: 180 },
   },
 
-  /* ---- ACRÉSCIMO por distância ----
-     Custo extra de material (tubagens/cablagem) */
+  /* ---- ACRÉSCIMO por distância de tubagens ---- */
   distance: {
-    short:  { label: 'Até 3 metros',      extra: 0   },  // ← EDITAR
-    medium: { label: '3 a 6 metros',      extra: 50  },  // ← EDITAR
-    long:   { label: '6 a 10 metros',     extra: 100 },  // ← EDITAR
-    vlong:  { label: 'Mais de 10 metros', extra: 180 },  // ← EDITAR
+    short:  { label: 'Até 3 metros',      extra: 0   },
+    medium: { label: '3 a 6 metros',      extra: 50  },
+    long:   { label: '6 a 10 metros',     extra: 100 },
+    vlong:  { label: 'Mais de 10 metros', extra: 180 },
   },
 
 };
@@ -47,11 +36,16 @@ const WHATSAPP_NUMBER = '351964501776';
    STATE
    ============================================= */
 const state = {
-  step: 1,
+  step:     1,
   scenario: null,
-  power: null,
+  brand:    null,
+  series:   null,
+  btu:      null,
   distance: null,
 };
+
+const BRAND_LABELS = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' };
+const BTU_AREAS   = { 7000:'~15m²', 9000:'~20m²', 12000:'~30m²', 15000:'~40m²', 18000:'~50m²', 24000:'~70m²', 28000:'~90m²' };
 
 /* =============================================
    HELPERS
@@ -111,17 +105,15 @@ function $q(sel) { return document.querySelector(sel); }
    ============================================= */
 (function initQuiz() {
 
-  /* -- Progress update -- */
+  /* -- Progress update (6 steps) -- */
   function updateProgress(step) {
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 6; i++) {
       const dot  = $('prog-' + i);
       const line = $('line-' + i);
       if (!dot) continue;
-
       dot.classList.remove('active', 'done');
-      if (i < step)       dot.classList.add('done');
+      if (i < step)        dot.classList.add('done');
       else if (i === step) dot.classList.add('active');
-
       if (line) line.classList.toggle('done', i < step);
     }
   }
@@ -133,88 +125,168 @@ function $q(sel) { return document.querySelector(sel); }
     if (next) next.classList.add('active');
     updateProgress(n);
     state.step = n;
-    // scroll quiz into view smoothly
     $('orcamento').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  /* -- Option card selection -- */
-  document.querySelectorAll('.option-card').forEach(card => {
+  /* -- Static option cards (steps 1 e 5) -- */
+  document.querySelectorAll('.option-card[data-step]').forEach(card => {
     card.addEventListener('click', () => {
       const step  = parseInt(card.dataset.step, 10);
       const value = card.dataset.value;
 
-      // Deselect siblings
-      card.closest('.option-grid').querySelectorAll('.option-card').forEach(c => {
-        c.classList.remove('selected');
-      });
+      card.closest('.option-grid').querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
 
-      // Store value
-      if (step === 1) state.scenario = value;
-      if (step === 2) state.power    = value;
-      if (step === 3) state.distance = value;
-
-      // Advance after short delay (visual feedback)
-      setTimeout(() => {
-        if (step < 3) {
-          showStep(step + 1);
-        } else {
-          showResult();
-        }
-      }, 220);
+      if (step === 1) {
+        state.scenario = value;
+        setTimeout(() => showStep(2), 220);
+      } else if (step === 2) {
+        state.brand = value;
+        buildSeriesGrid(value);
+        setTimeout(() => showStep(3), 220);
+      } else if (step === 5) {
+        state.distance = value;
+        setTimeout(() => showResult(), 220);
+      }
     });
   });
 
-  /* -- Back buttons -- */
-  $('back-2').addEventListener('click', () => showStep(1));
-  $('back-3').addEventListener('click', () => showStep(2));
+  /* -- Back buttons (delegação) -- */
+  document.querySelector('.quiz-wrapper').addEventListener('click', e => {
+    const btn = e.target.closest('.quiz-back');
+    if (!btn) return;
+    showStep(parseInt(btn.dataset.target, 10));
+  });
 
   /* -- Restart -- */
   $('restartBtn').addEventListener('click', () => {
     state.scenario = null;
-    state.power    = null;
+    state.brand    = null;
+    state.series   = null;
+    state.btu      = null;
     state.distance = null;
     document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
     showStep(1);
   });
 
+  /* -- Build series grid (step 3) -- */
+  function buildSeriesGrid(brand) {
+    const seriesNames = [...new Set(
+      PRODUCTS.filter(p => p.brand === brand).map(p => p.series)
+    )];
+    const grid = $('seriesGrid');
+    grid.innerHTML = '';
+    const cols = seriesNames.length <= 3 ? seriesNames.length : 3;
+    grid.className = 'option-grid option-grid--' + cols;
+
+    seriesNames.forEach(seriesName => {
+      const models   = PRODUCTS.filter(p => p.brand === brand && p.series === seriesName);
+      const minPrice = Math.min(...models.map(p => p.pvp));
+      const energyCl = models[0].energyCool;
+
+      const btn = document.createElement('button');
+      btn.className = 'option-card option-card--series';
+      btn.innerHTML = `
+        <div class="series-badge">${energyCl}</div>
+        <h4>${seriesName}</h4>
+        <p>A partir de<br><strong>${minPrice.toLocaleString('pt-PT')} €</strong></p>
+      `;
+      btn.addEventListener('click', () => {
+        grid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.series = seriesName;
+        buildPowerGrid(brand, seriesName);
+        setTimeout(() => showStep(4), 220);
+      });
+      grid.appendChild(btn);
+    });
+  }
+
+  /* -- Build power/BTU grid (step 4) -- */
+  function buildPowerGrid(brand, series) {
+    const products = PRODUCTS
+      .filter(p => p.brand === brand && p.series === series)
+      .sort((a, b) => a.btu - b.btu);
+    const grid = $('powerGrid');
+    grid.innerHTML = '';
+    const cols = Math.min(products.length, 4);
+    grid.className = 'option-grid option-grid--' + cols;
+
+    products.forEach(product => {
+      const kbtu = Math.round(product.btu / 1000);
+      const area = BTU_AREAS[product.btu] || '';
+      const btn  = document.createElement('button');
+      btn.className = 'option-card';
+      btn.innerHTML = `
+        <div class="option-card__emoji">🌡️</div>
+        <h4>${kbtu}.000 BTU</h4>
+        <p>Área ${area}<br><strong>${product.pvp.toLocaleString('pt-PT')} €</strong></p>
+      `;
+      btn.addEventListener('click', () => {
+        grid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.btu = product.btu;
+        setTimeout(() => showStep(5), 220);
+      });
+      grid.appendChild(btn);
+    });
+  }
+
   /* -- Calculate & Show Result -- */
   function showResult() {
-    const sc  = PRICING.scenario[state.scenario];
-    const pw  = PRICING.base[state.power];
-    const di  = PRICING.distance[state.distance];
+    const product = PRODUCTS.find(p =>
+      p.brand  === state.brand  &&
+      p.series === state.series &&
+      p.btu    === state.btu
+    );
+    const sc = PRICING.scenario[state.scenario];
+    const di = PRICING.distance[state.distance];
+    if (!product || !sc || !di) { console.warn('Estado incompleto'); return; }
 
-    if (!sc || !pw || !di) {
-      console.warn('Valores em falta no estado do quiz');
-      return;
-    }
-
-    const total = pw.price + sc.extra + di.extra;
+    const equipPrice  = product.pvp;
+    const installCost = sc.extra + di.extra;
+    const total       = equipPrice + installCost;
+    const kbtu        = Math.round(state.btu / 1000);
+    const brandLabel  = BRAND_LABELS[state.brand];
 
     /* Summary tags */
-    const summaryEl = $('resultSummary');
-    summaryEl.innerHTML = [
+    $('resultSummary').innerHTML = [
       { icon: '🏠', text: sc.label },
-      { icon: '🌡️', text: pw.label },
+      { icon: '🏷️', text: `${brandLabel} ${state.series}` },
+      { icon: '🌡️', text: `${kbtu}.000 BTU` },
       { icon: '📏', text: di.label },
     ].map(t => `<span class="summary-tag">${t.icon} ${t.text}</span>`).join('');
 
-    /* Price */
-    $('resultPrice').textContent = '€ ' + total.toLocaleString('pt-PT');
+    /* Breakdown */
+    $('resultBreakdown').innerHTML = `
+      <div class="result-breakdown__row">
+        <span>Equipamento — ${brandLabel} ${state.series} ${kbtu}k BTU</span>
+        <strong>${equipPrice.toLocaleString('pt-PT')} €</strong>
+      </div>
+      <div class="result-breakdown__row">
+        <span>Instalação — ${sc.label}${installCost > 0 ? ', ' + di.label : ''}</span>
+        <strong>+ ${installCost.toLocaleString('pt-PT')} €</strong>
+      </div>
+    `;
 
-    /* WhatsApp message */
+    /* Total */
+    $('resultPrice').textContent = total.toLocaleString('pt-PT') + ' €';
+
+    /* WhatsApp */
     const msg = encodeURIComponent(
       `Olá ARTICOCLIMA! 👋\n\n` +
-      `Fiz o orçamento no site e obtive esta estimativa:\n` +
+      `Fiz o orçamento no site:\n` +
       `📌 Situação: ${sc.label}\n` +
-      `🌡️ Potência: ${pw.label}\n` +
+      `🏷️ Equipamento: ${brandLabel} ${state.series} — ${kbtu}.000 BTU\n` +
       `📏 Distância: ${di.label}\n` +
-      `💰 Estimativa: €${total.toLocaleString('pt-PT')}\n\n` +
+      `🔧 Equipamento: ${equipPrice.toLocaleString('pt-PT')} €\n` +
+      `🔩 Instalação: +${installCost.toLocaleString('pt-PT')} €\n` +
+      `💰 Total estimado: ${total.toLocaleString('pt-PT')} €\n\n` +
       `Gostaria de agendar uma visita técnica gratuita. Podem confirmar disponibilidade?`
     );
     $('whatsappResultBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
 
-    showStep(4);
+    showStep(6);
   }
 
   /* Init */

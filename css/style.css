@@ -764,6 +764,94 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0 auto;
 }
 
+/* Brand option cards */
+.option-card--brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 16px;
+}
+.option-card__brand-logo {
+  max-height: 44px;
+  max-width: 140px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .75;
+  transition: opacity var(--transition);
+}
+.option-card--brand:hover .option-card__brand-logo,
+.option-card--brand.selected .option-card__brand-logo { opacity: 1; }
+
+/* Series option cards */
+.option-card--series {
+  position: relative;
+  padding: 28px 18px 22px;
+}
+.series-badge {
+  display: inline-block;
+  background: rgba(249,115,22,.15);
+  color: var(--primary);
+  border: 1px solid rgba(249,115,22,.35);
+  border-radius: 100px;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  letter-spacing: .5px;
+}
+
+/* Result breakdown */
+.result-breakdown {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.result-breakdown__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  font-size: .88rem;
+  color: rgba(255,255,255,.65);
+}
+.result-breakdown__row + .result-breakdown__row {
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.result-breakdown__row strong {
+  color: var(--white);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Contact note for special configs */
+.result-contact-note {
+  background: rgba(249,115,22,.06);
+  border: 1px solid rgba(249,115,22,.18);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+.result-contact-note p {
+  font-size: .84rem;
+  color: rgba(255,255,255,.55);
+  line-height: 1.6;
+  margin: 0;
+}
+.result-contact-note strong { color: rgba(255,255,255,.8); }
+.result-contact-link {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.result-contact-link:hover { color: #fb923c; }
+
 /* =============================================
    WHY US
    ============================================= */
