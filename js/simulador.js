@@ -34,6 +34,7 @@ const DAIKIN_MONO = {
     prices:  { 7000:972,  9000:1033, 12000:1169, 15000:1396, 18000:1863, 24000:2319, 28000:2774 },
     models:  { 7000:'FTXF20', 9000:'FTXF25', 12000:'FTXF35', 15000:'FTXF42', 18000:'FTXF50', 24000:'FTXF60', 28000:'FTXF71' },
     features: ['Inverter', 'R-32', 'Filtro básico', 'Auto-restart'],
+    image: 'assets/products/daikin-sensira-ftxf20.jpg',
   },
   Confora: {
     label: 'Confora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
@@ -43,6 +44,7 @@ const DAIKIN_MONO = {
     // Sem modelo 15k — usa 18k
     models:  { 7000:'FTXP20', 9000:'FTXP25', 12000:'FTXP35', 18000:'FTXP50', 24000:'FTXP60', 28000:'FTXP71' },
     features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi opcional'],
+    image: 'assets/products/daikin-confora-ftxp20.jpg',
   },
   Perfera: {
     label: 'Perfera', tier: 'premium', badge: '🏆 Topo de Gama',
@@ -51,6 +53,7 @@ const DAIKIN_MONO = {
     prices:  { 7000:1451, 9000:1538, 12000:1771, 15000:2251, 18000:2897, 24000:3506, 28000:4041 },
     models:  { 7000:'FTXM20', 9000:'FTXM25', 12000:'FTXM35', 15000:'FTXM42', 18000:'FTXM50', 24000:'FTXM60', 28000:'FTXM71' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', 'App Daikin Online'],
+    image: 'assets/products/daikin-perfera-ftxm20.jpg',
   },
   Stylish: {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
@@ -61,6 +64,7 @@ const DAIKIN_MONO = {
     models:  { 7000:'FTXA20', 9000:'FTXA25', 12000:'FTXA35', 15000:'FTXA42', 18000:'FTXA50' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '3 cores disponíveis'],
     maxBTU: 18000,
+    image: 'assets/products/daikin-stylish-ftxa20-branco.jpg',
   },
   Emura: {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
@@ -71,6 +75,7 @@ const DAIKIN_MONO = {
     models:  { 7000:'FTXJ20', 9000:'FTXJ25', 12000:'FTXJ35', 15000:'FTXJ42', 18000:'FTXJ50' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', '3 cores disponíveis'],
     maxBTU: 18000,
+    image: 'assets/products/daikin-emura-ftxj20-branco.jpg',
   },
 };
 
@@ -110,6 +115,7 @@ const BOSCH_MONO = {
     prices: { 9000:699, 12000:799, 18000:1099, 24000:1399 },
     models: { 9000:'CL3000i-Set 26WE', 12000:'CL3000i-Set 35WE', 18000:'CL3000i-Set 53WE', 24000:'CL3000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
+    image: 'assets/products/bosch-climate3000i-rac26.jpg',
   },
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
@@ -118,6 +124,7 @@ const BOSCH_MONO = {
     prices: { 9000:999, 12000:1149, 18000:1449, 24000:1749 },
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Ionizador', 'Sensor de presença'],
+    image: 'assets/products/bosch-climate6000i-rac26.jpg',
   },
   '7000i': {
     label: 'Climate 7000i', tier: 'topo', badge: '🏆 Topo de Gama',
@@ -127,6 +134,7 @@ const BOSCH_MONO = {
     models: { 9000:'CL7000i-Set 26E', 12000:'CL7000i-Set 35E', 18000:'CL7000i-Set 53E' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Modo Silent 19 dB', 'iF Design Award 2025'],
     maxBTU: 18000,
+    image: 'assets/products/bosch-climate7000i-rac26.jpg',
   },
 };
 
@@ -140,6 +148,7 @@ const DAITSU_MONO = {
     models: { 9000:'DS-9KTP-4', 12000:'DS-12KTP-4', 18000:'DS-18KTP-4', 24000:'DS-24KTP-4' },
     features: ['Inverter', 'R-32', 'WiFi incluído', 'Auto-restart', 'Classe A++'],
     maxBTU: 24000,
+    image: 'assets/products/daitsu-artic.jpg',
   },
   'ARTIC Plus': {
     label: 'ARTIC Plus', tier: 'premium', badge: '🏆 Alta Eficiência',
@@ -149,6 +158,7 @@ const DAITSU_MONO = {
     models: { 9000:'DS-9KTP-6', 12000:'DS-12KTP-6', 18000:'DS-18KTP-6', 24000:'DS-24KTP-6' },
     features: ['Inverter', 'R-32', 'WiFi incluído', 'Classe A+++', 'Alta qualidade de ar'],
     maxBTU: 24000,
+    image: 'assets/products/daitsu-artic-plus.jpg',
   },
 };
 
@@ -159,8 +169,9 @@ const state = {
   step: 1,
   numRooms: 0,
   selectedBrand: 'daikin',
-  rooms: [],     // array de objetos room
-  results: null, // resultados calculados
+  rooms: [],       // array de objetos room
+  results: null,   // resultados calculados
+  compareSet: new Set(), // nomes de séries selecionadas para comparação
 };
 
 // Template de uma divisão
@@ -274,7 +285,8 @@ function calcMonoTotal(brand, roomsWithBTU) {
     if (viable) {
       results.push({ series: series.label, badge: series.badge, desc: series.desc,
         tier: series.tier, rooms, total, features: series.features,
-        energyCool: series.energyCool, energyHeat: series.energyHeat });
+        energyCool: series.energyCool, energyHeat: series.energyHeat,
+        image: series.image || '' });
     }
   }
 
@@ -321,6 +333,8 @@ function calcDaikinMulti(roomsWithBTU) {
 // 7. CALCULAR RESULTADOS
 // ============================================================
 function calcResults() {
+  state.compareSet.clear(); // reset comparação ao recalcular
+
   // Calcular BTU para cada divisão
   const roomsWithBTU = state.rooms.map(room => {
     const raw = calcBTU(room);
@@ -592,14 +606,27 @@ function buildResultsHTML() {
     </div>`;
 
   if (mono && mono.length) {
+    // Painel de comparação (aparece acima das tier cards quando ≥ 2 selecionadas)
+    const cmpItems = mono.filter(o => state.compareSet.has(o.series));
+    if (cmpItems.length >= 2) {
+      html += buildCompareHTML(cmpItems, brandLabel);
+    }
+
     html += `<div class="res-tiers">`;
     for (const option of mono) {
+      const inCompare = state.compareSet.has(option.series);
+      const imgHtml = option.image
+        ? `<div class="res-tier-img-wrap"><img class="res-tier-img" src="${option.image}" alt="${option.series}" onerror="this.parentElement.style.display='none'"></div>`
+        : '';
       html += `
-      <div class="res-tier-card">
+      <div class="res-tier-card" data-series="${option.series}">
         <div class="res-tier-header">
-          <span class="res-tier-badge">${option.badge}</span>
-          <h3 class="res-tier-name">${brandLabel} ${option.series}</h3>
-          <p class="res-tier-desc">${option.desc}</p>
+          <div class="res-tier-hdr-text">
+            <span class="res-tier-badge">${option.badge}</span>
+            <h3 class="res-tier-name">${brandLabel} ${option.series}</h3>
+            <p class="res-tier-desc">${option.desc}</p>
+          </div>
+          ${imgHtml}
         </div>
         <div class="res-tier-rooms">
           ${option.rooms.map(({ room, product }) => `
@@ -612,12 +639,21 @@ function buildResultsHTML() {
           `).join('')}
         </div>
         <div class="res-tier-total">
-          <span>Total equipamento</span>
+          <div>
+            <div class="res-desde-label">💰 Desde</div>
+            <div class="res-install-note">equipamento c/ IVA</div>
+          </div>
           <span class="res-total-price">${fmtPrice(option.total)}</span>
         </div>
         <div class="res-tier-note">
-          ✓ c/ IVA &nbsp;·&nbsp; ${option.rooms.length} unidade(s) exterior(es)
-          &nbsp;·&nbsp; Classe ${option.energyCool} arrefecimento
+          ${option.rooms.length} unid. exterior(es) &nbsp;·&nbsp; Classe ${option.energyCool}
+          &nbsp;·&nbsp; Instalação orçamentada após visita técnica
+        </div>
+        <div class="res-tier-actions">
+          <button class="res-detail-btn" data-series="${option.series}">🔍 Ver detalhes</button>
+          <button class="res-compare-btn${inCompare ? ' active' : ''}" data-series="${option.series}">
+            ${inCompare ? '✓ A comparar' : '⊕ Comparar'}
+          </button>
         </div>
       </div>`;
     }
@@ -665,7 +701,10 @@ function buildResultsHTML() {
         </div>
 
         <div class="res-tier-total">
-          <span>Total equipamento</span>
+          <div>
+            <div class="res-desde-label">💰 Desde</div>
+            <div class="res-install-note">equipamento c/ IVA</div>
+          </div>
           <span class="res-total-price">${fmtPrice(multi.total)}</span>
         </div>
 
@@ -673,7 +712,7 @@ function buildResultsHTML() {
           <div class="res-multi-note res-multi-note--pro">✅ Apenas 1 unidade exterior — menor impacto visual</div>
           <div class="res-multi-note res-multi-note--pro">✅ Controlo individual por divisão</div>
           <div class="res-multi-note res-multi-note--info">ℹ️ Custo de equipamento geralmente superior ao monosplit</div>
-          <div class="res-multi-note res-multi-note--info">ℹ️ c/ IVA · preços de equipamento sem instalação</div>
+          <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
         </div>
       </div>`;
 
@@ -721,6 +760,127 @@ function buildResultsHTML() {
   </div>`;
 
   return html;
+}
+
+// ============================================================
+// 10b. PAINEL DE COMPARAÇÃO
+// ============================================================
+function buildCompareHTML(items, brandLabel) {
+  let html = `
+  <div class="res-compare-section">
+    <div class="res-compare-header">
+      <h3>📊 Comparação de Modelos</h3>
+      <button class="res-compare-clear" id="clearCompare">Limpar seleção</button>
+    </div>
+    <div class="res-compare-grid">`;
+
+  for (const item of items) {
+    const imgHtml = item.image
+      ? `<img class="res-cmp-img" src="${item.image}" alt="${item.series}" onerror="this.style.display='none'">`
+      : '';
+    html += `
+      <div class="res-cmp-card">
+        ${imgHtml}
+        <div class="res-cmp-name">${brandLabel} ${item.series}</div>
+        <div class="res-cmp-badge">${item.badge}</div>
+        <div class="res-cmp-price">${fmtPrice(item.total)}</div>
+        <div class="res-cmp-since">💰 Desde · equipamento c/ IVA</div>
+        <ul class="res-cmp-features">
+          ${item.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <div class="res-cmp-energy">
+          ❄️ Arref: <strong>${item.energyCool}</strong> &nbsp;·&nbsp; 🔥 Aquec: <strong>${item.energyHeat}</strong>
+        </div>
+      </div>`;
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+// ============================================================
+// 10c. MODAL DE DETALHE
+// ============================================================
+function simShowDetail(seriesName) {
+  const { mono, brand } = state.results;
+  const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[brand];
+  const option = mono.find(o => o.series === seriesName);
+  if (!option) return;
+
+  const modal = document.getElementById('simDetailModal');
+
+  const imgHtml = option.image
+    ? `<img class="sdm-img" src="${option.image}" alt="${option.series}" onerror="this.parentElement.style.display='none'">`
+    : '';
+
+  modal.innerHTML = `
+  <div class="sdm-box">
+    <div class="sdm-top">
+      <div class="sdm-img-wrap">${imgHtml}</div>
+      <div class="sdm-header-text">
+        <span class="sdm-badge">${option.badge}</span>
+        <div class="sdm-name">${brandLabel} ${option.series}</div>
+        <div class="sdm-desc">${option.desc}</div>
+      </div>
+      <button class="sdm-close" id="sdmClose" aria-label="Fechar">✕</button>
+    </div>
+    <div class="sdm-body">
+      <div class="sdm-price-row">
+        <span class="sdm-desde">Desde</span>
+        <span class="sdm-price">${fmtPrice(option.total)}</span>
+        <span class="sdm-iva">c/ IVA</span>
+      </div>
+      <div class="sdm-install-note">💡 Instalação e materiais orçamentados após visita técnica</div>
+
+      <div class="sdm-section-title">Modelos por divisão</div>
+      <table class="sdm-rooms-table">
+        <thead><tr>
+          <th>Divisão</th><th>Modelo</th><th>BTU</th><th>Preço</th>
+        </tr></thead>
+        <tbody>
+          ${option.rooms.map(({ room, product }) => `
+            <tr>
+              <td>${room.name || roomDefaultName(room.id)}</td>
+              <td>${product.model}</td>
+              <td>${btuLabel(product.btu)}</td>
+              <td class="sdm-td-price">${fmtPrice(product.pvp)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+
+      <div class="sdm-section-title">Classe energética</div>
+      <div class="sdm-energy-row">
+        <div class="sdm-energy-badge">
+          <span class="sdm-energy-label">❄️ Arrefecimento</span>
+          <span class="sdm-energy-val">${option.energyCool}</span>
+        </div>
+        <div class="sdm-energy-badge">
+          <span class="sdm-energy-label">🔥 Aquecimento</span>
+          <span class="sdm-energy-val">${option.energyHeat}</span>
+        </div>
+      </div>
+
+      <div class="sdm-section-title">Características</div>
+      <div class="sdm-features">
+        ${option.features.map(f => `<span class="sdm-feature-tag">✓ ${f}</span>`).join('')}
+      </div>
+
+      <a href="index.html#contacto" class="sdm-cta">📞 Pedir Orçamento Completo</a>
+    </div>
+  </div>`;
+
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  document.getElementById('sdmClose').addEventListener('click', closeDetailModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeDetailModal(); });
+}
+
+function closeDetailModal() {
+  const modal = document.getElementById('simDetailModal');
+  if (modal) { modal.style.display = 'none'; }
+  document.body.style.overflow = '';
 }
 
 function roomIcon(type) {
@@ -811,15 +971,56 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Step 3 — trocar marca (delegado)
+  // Step 3 — todas as acções delegadas em #simResults
   document.getElementById('simResults').addEventListener('click', e => {
-    const btn = e.target.closest('.sim-switch-brand');
-    if (btn) {
-      state.selectedBrand = btn.dataset.brand;
-      calcResults();
+
+    // Trocar marca
+    const switchBtn = e.target.closest('.sim-switch-brand');
+    if (switchBtn) {
+      state.selectedBrand = switchBtn.dataset.brand;
+      calcResults(); // já faz compareSet.clear()
       renderStep3();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
+
+    // Ver detalhes — abre modal
+    const detailBtn = e.target.closest('.res-detail-btn');
+    if (detailBtn) {
+      simShowDetail(detailBtn.dataset.series);
+      return;
+    }
+
+    // Comparar — toggle
+    const cmpBtn = e.target.closest('.res-compare-btn');
+    if (cmpBtn) {
+      const series = cmpBtn.dataset.series;
+      if (state.compareSet.has(series)) {
+        state.compareSet.delete(series);
+      } else {
+        state.compareSet.add(series);
+      }
+      // Re-render mantendo posição de scroll
+      const scrollY = window.scrollY;
+      document.getElementById('simResults').innerHTML = buildResultsHTML();
+      window.scrollTo({ top: scrollY });
+      return;
+    }
+
+    // Limpar comparação
+    const clearBtn = e.target.closest('#clearCompare');
+    if (clearBtn) {
+      state.compareSet.clear();
+      const scrollY = window.scrollY;
+      document.getElementById('simResults').innerHTML = buildResultsHTML();
+      window.scrollTo({ top: scrollY });
+      return;
+    }
+  });
+
+  // Fechar modal com tecla ESC
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeDetailModal();
   });
 
   // Progresso clicável (só passos já completados)
