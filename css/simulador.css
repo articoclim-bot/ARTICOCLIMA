@@ -8,9 +8,14 @@
   background: var(--dark);
   padding: 64px 0 52px;
   text-align: center;
-  margin-top: 84px; /* altura do header */
+  margin-top: 100px; /* altura do header */
 }
-.sim-hero .section__tag { color: rgba(255,255,255,.55); border-color: rgba(255,255,255,.2); }
+.sim-hero .section__tag {
+  /* manter estilo laranja padrão — legível em fundo escuro */
+  color: var(--primary);
+  border-color: rgba(249,115,22,.4);
+  background: rgba(249,115,22,.12);
+}
 .sim-hero h1 {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(1.9rem, 4vw, 2.8rem);
@@ -36,7 +41,7 @@
   border-bottom: 1px solid var(--gray-light);
   padding: 0 24px;
   position: sticky;
-  top: 84px;
+  top: 100px;
   z-index: 90;
   box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }

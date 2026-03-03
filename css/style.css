@@ -141,7 +141,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .nav {
   display: flex;
   align-items: center;
-  height: 84px;
+  height: 100px;
   gap: 32px;
 }
 
@@ -154,6 +154,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-shrink: 0;
 }
 .nav__logo span { color: var(--primary); }
+.nav__logo svg {
+  filter: drop-shadow(0 0 10px rgba(249,115,22,.40));
+  transition: filter .3s ease;
+}
+.nav__logo:hover svg {
+  filter: drop-shadow(0 0 18px rgba(249,115,22,.70));
+}
 
 .nav__menu {
   display: flex;
