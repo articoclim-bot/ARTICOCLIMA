@@ -130,23 +130,25 @@ const BOSCH_MONO = {
   },
 };
 
-// --- DAITSU — Monosplit (conjuntos, c/ IVA, preços a confirmar) ---
+// --- DAITSU — Monosplit (conjuntos, c/ IVA — Tabela 2025) ---
 const DAITSU_MONO = {
-  'Cool Pro': {
-    label: 'Cool Pro', tier: 'entrada', badge: '💰 Melhor Preço',
+  'ARTIC': {
+    label: 'ARTIC', tier: 'entrada', badge: '💰 Melhor Preço',
     energyCool: 'A++', energyHeat: 'A+',
-    desc: 'Gama entrada — WiFi ConnectLife incluído · Filtro de pó',
-    prices: { 9000:649, 12000:799, 18000:1099, 24000:1349 },
-    models: { 9000:'DS09KKD', 12000:'DS12KKD', 18000:'DS18KKD', 24000:'DS24KKD' },
-    features: ['Inverter', 'R-32', 'WiFi ConnectLife', 'Filtro de pó', 'Sensor I-Feel'],
+    desc: 'Gama entrada — WiFi incluído · Inverter · R-32 · Classe A++',
+    prices: { 9000:590, 12000:630, 18000:1050, 24000:1410 },
+    models: { 9000:'DS-9KTP-4', 12000:'DS-12KTP-4', 18000:'DS-18KTP-4', 24000:'DS-24KTP-4' },
+    features: ['Inverter', 'R-32', 'WiFi incluído', 'Auto-restart', 'Classe A++'],
+    maxBTU: 24000,
   },
   'ARTIC Plus': {
     label: 'ARTIC Plus', tier: 'premium', badge: '🏆 Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'Gama premium — A+++ · 5 filtros · Auto-limpeza do evaporador',
-    prices: { 9000:799, 12000:999, 18000:1299, 24000:1599 },
-    models: { 9000:'DS09KTP6', 12000:'DS12KTP6', 18000:'DS18KTP6', 24000:'DS24KTP6' },
-    features: ['Inverter', 'R-32', 'WiFi SmartLife', '5 filtros', 'Auto-limpeza do evaporador'],
+    desc: 'Gama premium — A+++ · WiFi incluído · Alta qualidade de ar',
+    prices: { 9000:745, 12000:760, 18000:1230, 24000:1555 },
+    models: { 9000:'DS-9KTP-6', 12000:'DS-12KTP-6', 18000:'DS-18KTP-6', 24000:'DS-24KTP-6' },
+    features: ['Inverter', 'R-32', 'WiFi incluído', 'Classe A+++', 'Alta qualidade de ar'],
+    maxBTU: 24000,
   },
 };
 

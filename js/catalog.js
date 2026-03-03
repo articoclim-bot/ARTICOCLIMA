@@ -288,20 +288,20 @@ const PRODUCTS = [
     image:'assets/products/bosch-climate7000i.webp' },
 
   /* ===================================================
-     DAITSU — Série ARTIC PLUS (DS-KTP6)
-     Classe A+++ arref. / A++ aquec. | WiFi SmartLife
-     Preços a confirmar com fornecedor
+     DAITSU — Série ARTIC PLUS (DS-KTP-6)
+     Classe A+++ arref. / A++ aquec. | WiFi incluído
+     Preços Tabela 2025 c/ IVA
      =================================================== */
   {
     id: 'daitsu-artic-plus-9',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS09KTP6',
+    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-9KTP-6',
     btu: 9000, kw: 2.6,
     energyCool: 'A+++', energyHeat: 'A++',
     noiseIn: 37, noiseOut: 52,
-    tech: ['Inverter', 'R-32', 'WiFi SmartLife', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
       'Classe A+++ arrefecimento / A++ aquecimento',
-      'WiFi incluído — app SmartLife',
+      'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -311,19 +311,19 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 799,   // preço a confirmar
+    pvp: 745,
     image: 'assets/products/daitsu-artic-plus.jpg',
   },
   {
     id: 'daitsu-artic-plus-12',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS12KTP6',
+    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-12KTP-6',
     btu: 12000, kw: 3.5,
     energyCool: 'A+++', energyHeat: 'A++',
     noiseIn: 37, noiseOut: 53,
-    tech: ['Inverter', 'R-32', 'WiFi SmartLife', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
       'Classe A+++ arrefecimento / A++ aquecimento',
-      'WiFi incluído — app SmartLife',
+      'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -333,19 +333,19 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 999,   // preço a confirmar
+    pvp: 760,
     image: 'assets/products/daitsu-artic-plus.jpg',
   },
   {
     id: 'daitsu-artic-plus-18',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS18KTP6',
+    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-18KTP-6',
     btu: 18000, kw: 5.2,
     energyCool: 'A+++', energyHeat: 'A++',
     noiseIn: 40, noiseOut: 55,
-    tech: ['Inverter', 'R-32', 'WiFi SmartLife', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
       'Classe A+++ arrefecimento / A++ aquecimento',
-      'WiFi incluído — app SmartLife',
+      'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -355,19 +355,19 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1299,  // preço a confirmar
+    pvp: 1230,
     image: 'assets/products/daitsu-artic-plus.jpg',
   },
   {
     id: 'daitsu-artic-plus-24',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS24KTP6',
+    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-24KTP-6',
     btu: 24000, kw: 6.9,
     energyCool: 'A+++', energyHeat: 'A++',
     noiseIn: 40, noiseOut: 58,
-    tech: ['Inverter', 'R-32', 'WiFi SmartLife', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
       'Classe A+++ arrefecimento / A++ aquecimento',
-      'WiFi incluído — app SmartLife',
+      'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -377,94 +377,94 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1599,  // preço a confirmar
+    pvp: 1555,
     image: 'assets/products/daitsu-artic-plus.jpg',
   },
 
   /* ===================================================
-     DAITSU — Série COOL PRO (DS-KKD)
-     Classe A++ arref. / A+ aquec. | WiFi ConnectLife
-     Preços a confirmar com fornecedor
+     DAITSU — Série ARTIC (DS-KTP-4)
+     Classe A++ arref. / A+ aquec. | WiFi incluído
+     Preços Tabela 2025 c/ IVA
      =================================================== */
   {
-    id: 'daitsu-cool-pro-9',
-    brand: 'daitsu', series: 'Cool Pro', model: 'DS09KKD',
+    id: 'daitsu-artic-9',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-9KTP-4',
     btu: 9000, kw: 2.6,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 34, noiseOut: 51,
-    tech: ['Inverter', 'R-32', 'WiFi ConnectLife'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
       'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído — app ConnectLife',
+      'WiFi incluído',
       'Filtro de pó',
+      'Auto-restart',
       'Sensor I Feel no telecomando',
       'Swing lama vertical',
       'Contacto seco ON/OFF',
-      'Indicador luminoso de temperatura e modo no painel',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 649,   // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.webp',
+    pvp: 590,
+    image: 'assets/products/daitsu-artic.jpg',
   },
   {
-    id: 'daitsu-cool-pro-12',
-    brand: 'daitsu', series: 'Cool Pro', model: 'DS12KKD',
+    id: 'daitsu-artic-12',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-12KTP-4',
     btu: 12000, kw: 3.4,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 34, noiseOut: 52,
-    tech: ['Inverter', 'R-32', 'WiFi ConnectLife'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
       'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído — app ConnectLife',
+      'WiFi incluído',
       'Filtro de pó',
+      'Auto-restart',
       'Sensor I Feel no telecomando',
       'Swing lama vertical',
       'Contacto seco ON/OFF',
-      'Indicador luminoso de temperatura e modo no painel',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 799,   // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.webp',
+    pvp: 630,
+    image: 'assets/products/daitsu-artic.jpg',
   },
   {
-    id: 'daitsu-cool-pro-18',
-    brand: 'daitsu', series: 'Cool Pro', model: 'DS18KKD',
+    id: 'daitsu-artic-18',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-18KTP-4',
     btu: 18000, kw: 5.0,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 40, noiseOut: 55,
-    tech: ['Inverter', 'R-32', 'WiFi ConnectLife'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
       'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído — app ConnectLife',
+      'WiFi incluído',
       'Filtro de pó',
+      'Auto-restart',
       'Sensor I Feel no telecomando',
       'Swing lama vertical',
       'Contacto seco ON/OFF',
-      'Indicador luminoso de temperatura e modo no painel',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1099,  // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.webp',
+    pvp: 1050,
+    image: 'assets/products/daitsu-artic.jpg',
   },
   {
-    id: 'daitsu-cool-pro-24',
-    brand: 'daitsu', series: 'Cool Pro', model: 'DS24KKD',
+    id: 'daitsu-artic-24',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-24KTP-4',
     btu: 24000, kw: 6.5,
     energyCool: 'A++', energyHeat: 'A+',
     noiseIn: 40, noiseOut: 56,
-    tech: ['Inverter', 'R-32', 'WiFi ConnectLife'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
       'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído — app ConnectLife',
+      'WiFi incluído',
       'Filtro de pó',
+      'Auto-restart',
       'Sensor I Feel no telecomando',
       'Swing lama vertical',
       'Contacto seco ON/OFF',
-      'Indicador luminoso de temperatura e modo no painel',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1349,  // preço a confirmar
-    image: 'assets/products/daitsu-cool-pro.webp',
+    pvp: 1410,
+    image: 'assets/products/daitsu-artic.jpg',
   },
 ];
 
