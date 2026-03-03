@@ -1,0 +1,500 @@
+/* ===================================================================
+   ARTICOCLIMA — Simulador de Instalação
+   Estilos dedicados ao simulador.html
+   =================================================================== */
+
+/* ─── Hero ─────────────────────────────────────────────── */
+.sim-hero {
+  background: var(--dark);
+  padding: 64px 0 52px;
+  text-align: center;
+  margin-top: 84px; /* altura do header */
+}
+.sim-hero .section__tag { color: rgba(255,255,255,.55); border-color: rgba(255,255,255,.2); }
+.sim-hero h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -.5px;
+  margin: 14px 0 10px;
+}
+.sim-hero p {
+  color: rgba(255,255,255,.6);
+  font-size: 1rem;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ─── Progress Bar ──────────────────────────────────────── */
+.sim-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-light);
+  padding: 0 24px;
+  position: sticky;
+  top: 84px;
+  z-index: 90;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.sim-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 32px;
+  cursor: pointer;
+  position: relative;
+  transition: background .2s;
+}
+.sim-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 1px; height: 28px;
+  background: var(--gray-light);
+}
+.sim-step__number {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .9rem;
+  background: var(--gray-light);
+  color: var(--gray);
+  transition: background .25s, color .25s;
+}
+.sim-step__label {
+  font-size: .78rem;
+  color: var(--gray);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.sim-step.active .sim-step__number {
+  background: var(--primary);
+  color: var(--white);
+}
+.sim-step.active .sim-step__label { color: var(--primary); font-weight: 600; }
+.sim-step.done .sim-step__number {
+  background: var(--dark);
+  color: var(--white);
+}
+.sim-step.done .sim-step__label { color: var(--dark); }
+
+/* ─── Secções ──────────────────────────────────────────── */
+.sim-section {
+  padding: 56px 0 80px;
+  min-height: 50vh;
+  background: var(--off-white, #F5F5F7);
+}
+.sim-section .container { max-width: 780px; }
+
+/* ─── Step 1 — Escolher nº divisões ────────────────────── */
+.sim-step1-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.sim-step1-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.sim-step1-header p { color: var(--gray); max-width: 480px; margin: 0 auto; }
+
+.sim-room-count {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+.sim-count-btn {
+  width: 88px; height: 88px;
+  border-radius: 20px;
+  border: 2.5px solid var(--gray-light);
+  background: var(--white);
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.sim-count-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(249,115,22,.18);
+}
+.sim-count-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(249,115,22,.35);
+}
+
+/* ─── Step 2 — Detalhes das divisões ───────────────────── */
+.sim-step2-header {
+  margin-bottom: 28px;
+}
+.sim-step2-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem; font-weight: 800;
+  color: var(--dark); margin-bottom: 6px;
+}
+.sim-step2-header p { color: var(--gray); }
+
+/* Selecção de marca */
+.sim-brand-block {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+}
+.sim-brand-block h3 { font-size: 1rem; font-weight: 600; color: var(--dark); margin-bottom: 14px; }
+.sim-brand-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.sim-brand-btn {
+  padding: 9px 22px;
+  border-radius: 8px;
+  border: 2px solid var(--gray-light);
+  background: var(--white);
+  font-weight: 600; font-size: .9rem;
+  color: var(--dark); cursor: pointer;
+  transition: all .2s;
+}
+.sim-brand-btn:hover { border-color: var(--primary); color: var(--primary); }
+.sim-brand-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+/* Cards de divisão */
+.sim-room-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  border: 1.5px solid var(--gray-light);
+}
+.sim-room-header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 24px;
+  background: var(--dark);
+}
+.sim-room-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 800; font-size: .95rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sim-room-title { color: var(--white); font-weight: 700; font-size: 1.05rem; }
+.sim-room-body { padding: 24px; }
+
+/* Campos */
+.sim-field { margin-bottom: 20px; }
+.sim-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.sim-label {
+  display: block; font-size: .85rem; font-weight: 600;
+  color: var(--dark); margin-bottom: 7px;
+}
+.sim-label--info { color: #5a3e00; }
+.sim-input, .sim-select {
+  width: 100%; padding: 10px 14px;
+  border: 1.5px solid var(--gray-light);
+  border-radius: 8px; font-size: .95rem;
+  color: var(--dark); background: var(--white);
+  transition: border-color .2s;
+  font-family: 'Inter', sans-serif;
+}
+.sim-input:focus, .sim-select:focus {
+  outline: none; border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(249,115,22,.12);
+}
+.sim-input-unit { position: relative; }
+.sim-input-unit .sim-input { padding-right: 44px; }
+.sim-unit {
+  position: absolute; right: 13px; top: 50%;
+  transform: translateY(-50%);
+  font-size: .85rem; color: var(--gray); pointer-events: none;
+}
+
+/* Botões de tipo */
+.sim-type-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.sim-type-btn {
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1.5px solid var(--gray-light);
+  background: var(--white);
+  font-size: .85rem; font-weight: 600;
+  color: var(--gray); cursor: pointer;
+  transition: all .15s;
+}
+.sim-type-btn:hover { border-color: var(--primary); color: var(--primary); }
+.sim-type-btn.active {
+  background: var(--primary); border-color: var(--primary); color: var(--white);
+}
+
+/* Toggle */
+.sim-toggle-row { display: flex; align-items: center; gap: 12px; }
+.sim-toggle { position: relative; display: inline-block; width: 44px; height: 24px; }
+.sim-toggle input { opacity: 0; width: 0; height: 0; }
+.sim-toggle-slider {
+  position: absolute; inset: 0; cursor: pointer;
+  background: var(--gray-light); border-radius: 24px;
+  transition: background .2s;
+}
+.sim-toggle-slider::before {
+  content: '';
+  position: absolute; left: 3px; top: 3px;
+  width: 18px; height: 18px;
+  background: var(--white); border-radius: 50%;
+  transition: transform .2s;
+}
+.sim-toggle input:checked + .sim-toggle-slider { background: var(--primary); }
+.sim-toggle input:checked + .sim-toggle-slider::before { transform: translateX(20px); }
+.sim-toggle-label { font-size: .85rem; color: var(--gray); }
+
+/* Highlight (open-space) */
+.sim-field--highlight {
+  background: #FFF7ED; border-radius: 10px;
+  padding: 14px 16px; border: 1px solid #FED7AA;
+}
+
+/* Tooltip */
+.sim-tooltip {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 17px; height: 17px;
+  border-radius: 50%; background: var(--gray-light);
+  font-size: .7rem; color: var(--gray);
+  cursor: help; margin-left: 5px;
+  font-style: normal;
+}
+
+/* Navegação Step 2 */
+.sim-nav-btns {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 32px; gap: 16px;
+}
+.sim-nav-btns .btn--primary { padding: 14px 32px; font-size: 1rem; }
+
+/* Erros */
+.sim-error {
+  background: #FEF2F2; border: 1.5px solid #FECACA;
+  border-radius: 10px; padding: 14px 18px;
+  color: #991B1B; font-size: .9rem;
+  margin-bottom: 20px;
+}
+
+/* ─── Step 3 — Resultados ───────────────────────────────── */
+.sim-section#step3 { background: var(--off-white); }
+.sim-section#step3 .container { max-width: 860px; }
+
+.res-section { margin-bottom: 48px; }
+.res-main-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem; font-weight: 800; color: var(--dark);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.res-brand-tag {
+  font-size: .8rem; font-weight: 700;
+  background: var(--primary); color: var(--white);
+  border-radius: 20px; padding: 4px 14px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Rooms summary */
+.res-rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.res-room-card {
+  background: var(--white); border-radius: 14px;
+  padding: 16px 18px; display: flex; gap: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  border: 1.5px solid var(--gray-light);
+}
+.res-room-icon { font-size: 1.8rem; flex-shrink: 0; }
+.res-room-info h4 { font-size: .95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.res-room-info p { font-size: .8rem; color: var(--gray); margin: 1px 0; }
+.res-note { color: #92400E !important; }
+.res-room-btu {
+  margin-left: auto; text-align: right; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 2px;
+}
+.res-btu-raw { font-size: .73rem; color: var(--gray); }
+.res-btu-tier {
+  font-size: .85rem; font-weight: 700; color: var(--primary);
+}
+.res-btu-kw { font-size: .77rem; color: var(--gray); }
+
+/* Section header */
+.res-section-header { margin-bottom: 20px; }
+.res-option-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem; font-weight: 800; color: var(--dark); margin-bottom: 6px;
+}
+.res-option-desc { color: var(--gray); font-size: .9rem; }
+
+/* Tier cards (monosplit) */
+.res-tiers { display: grid; gap: 20px; }
+@media (min-width: 640px) {
+  .res-tiers { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+}
+.res-tier-card {
+  background: var(--white); border-radius: 16px;
+  border: 1.5px solid var(--gray-light);
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  overflow: hidden;
+}
+.res-tier-header {
+  background: var(--dark); padding: 18px 20px;
+}
+.res-tier-badge {
+  display: inline-block; background: var(--primary); color: var(--white);
+  font-size: .73rem; font-weight: 700;
+  border-radius: 20px; padding: 3px 12px; margin-bottom: 8px;
+}
+.res-tier-name {
+  font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 4px;
+}
+.res-tier-desc { font-size: .8rem; color: rgba(255,255,255,.6); }
+
+.res-tier-rooms { padding: 16px 20px; border-bottom: 1px solid var(--gray-light); }
+.res-tier-row {
+  display: grid; grid-template-columns: 1fr auto auto auto;
+  gap: 8px 12px; align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid #F0F0F0;
+  font-size: .84rem;
+}
+.res-tier-row:last-child { border-bottom: none; }
+.res-tier-room-name { font-weight: 600; color: var(--dark); }
+.res-tier-model { color: var(--gray); font-size: .79rem; }
+.res-tier-btu { color: var(--gray); font-size: .79rem; }
+.res-tier-price { font-weight: 700; color: var(--dark); white-space: nowrap; }
+
+.res-tier-total {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 20px;
+  background: #F5F5F7;
+  font-weight: 700; font-size: .9rem; color: var(--dark);
+}
+.res-total-price { font-size: 1.1rem; color: var(--primary); }
+
+.res-tier-note {
+  padding: 10px 20px;
+  font-size: .76rem; color: var(--gray);
+  border-top: 1px solid var(--gray-light);
+}
+
+/* Multisplit card */
+.res-multi-card {
+  background: var(--white); border-radius: 16px;
+  border: 1.5px solid var(--gray-light);
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  overflow: hidden;
+}
+.res-multi-header {
+  background: linear-gradient(135deg, #1C1C1E, #2C2C2E);
+  padding: 18px 24px;
+}
+.res-multi-badge {
+  display: inline-block; background: var(--primary); color: var(--white);
+  font-size: .73rem; font-weight: 700;
+  border-radius: 20px; padding: 3px 12px; margin-bottom: 8px;
+}
+.res-multi-desc { font-size: .82rem; color: rgba(255,255,255,.6); }
+
+.res-multi-outdoor,
+.res-multi-indoor { padding: 16px 24px; border-bottom: 1px solid var(--gray-light); }
+.res-multi-label {
+  font-size: .76rem; font-weight: 700; color: var(--gray);
+  text-transform: uppercase; letter-spacing: .5px;
+  margin-bottom: 10px;
+}
+.res-multi-row {
+  display: grid; grid-template-columns: 1fr auto auto;
+  gap: 8px 16px; align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #F5F5F5;
+  font-size: .84rem;
+}
+.res-multi-row:last-child { border-bottom: none; }
+.res-multi-model { font-weight: 600; color: var(--dark); }
+.res-multi-spec { color: var(--gray); font-size: .79rem; }
+.res-multi-price { font-weight: 700; color: var(--dark); white-space: nowrap; }
+
+.res-multi-notes { padding: 14px 24px; display: flex; flex-direction: column; gap: 6px; }
+.res-multi-note {
+  font-size: .83rem; padding: 7px 12px; border-radius: 8px;
+}
+.res-multi-note--pro { background: #F0FDF4; color: #166534; }
+.res-multi-note--info { background: #EFF6FF; color: #1E40AF; }
+
+/* Avisos */
+.res-warn, .res-warn-box, .res-coming-box {
+  background: var(--white); border-radius: 12px;
+  padding: 20px 24px; font-size: .9rem;
+}
+.res-warn-box { border-left: 4px solid #F59E0B; color: #92400E; }
+.res-coming-box { border-left: 4px solid #6B7280; color: var(--gray); }
+
+/* Disclaimer */
+.res-disclaimer {
+  background: #EFF6FF; border-radius: 12px;
+  padding: 16px 20px; font-size: .84rem;
+  color: #1E40AF; border: 1px solid #BFDBFE;
+  margin-bottom: 32px;
+}
+
+/* Acções finais */
+.res-actions {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 24px; text-align: center;
+}
+.res-switch-brand p { font-size: .88rem; color: var(--gray); margin-bottom: 10px; }
+.res-brand-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* Override btn--outline para fundo claro nos botões de troca de marca */
+.res-brand-btns .btn--outline {
+  color: var(--dark);
+  border-color: var(--dark);
+  background: var(--white);
+}
+.res-brand-btns .btn--outline:hover {
+  background: var(--dark);
+  color: var(--white);
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+  .sim-step { padding: 12px 18px; }
+  .sim-step__label { display: none; }
+  .sim-field-row { grid-template-columns: 1fr; }
+  .res-tier-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+  .res-tier-row .res-tier-model,
+  .res-tier-row .res-tier-btu { grid-column: 1; font-size: .77rem; }
+  .res-tier-row .res-tier-price { grid-column: 2; grid-row: 1; }
+  .res-multi-row { grid-template-columns: 1fr auto; }
+  .res-multi-spec { grid-column: 1; }
+  .res-nav-btns { flex-direction: column; }
+  .sim-count-btn { width: 72px; height: 72px; font-size: 1.7rem; }
+}

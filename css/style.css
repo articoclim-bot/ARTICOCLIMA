@@ -1726,6 +1726,124 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .footer__legal { justify-content: center; }
 }
 
+/* =============================================
+   NAV DROPDOWN (Catálogos / Simulador)
+   ============================================= */
+.nav__item--has-sub { position: relative; }
+
+.nav__submenu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 180px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.14);
+  border: 1px solid var(--gray-light);
+  padding: 8px 0;
+  z-index: 200;
+  list-style: none;
+}
+.nav__submenu::before {
+  content: '';
+  position: absolute;
+  bottom: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-bottom-color: var(--white);
+}
+.nav__submenu li a {
+  display: block;
+  padding: 10px 20px;
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--dark);
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.nav__submenu li a:hover,
+.nav__submenu li a.active {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+/* Desktop: show on hover / focus-within */
+@media (min-width: 901px) {
+  .nav__item--has-sub:hover .nav__submenu,
+  .nav__item--has-sub:focus-within .nav__submenu { display: block; }
+}
+/* Mobile: show when .open */
+@media (max-width: 900px) {
+  .nav__submenu {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid var(--gray-light);
+    border-radius: 0;
+    padding: 4px 0 4px 20px;
+    display: none;
+  }
+  .nav__item--has-sub.open .nav__submenu { display: block; }
+  .nav__submenu::before { display: none; }
+}
+
+/* =============================================
+   CATALOGS CTA (index.html)
+   ============================================= */
+.catalogs-cta { background: var(--white); }
+.catalogs-cta__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.catalogs-cta__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--off-white);
+  border: 1.5px solid var(--gray-light);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: transform .22s, box-shadow .22s, border-color .22s;
+  color: var(--dark);
+}
+.catalogs-cta__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.10);
+  border-color: var(--primary);
+}
+.catalogs-cta__card--highlight {
+  background: var(--primary-light);
+  border-color: #FED7AA;
+}
+.catalogs-cta__card--highlight:hover { border-color: var(--primary); }
+.catalogs-cta__icon {
+  font-size: 2.4rem;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+.catalogs-cta__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.catalogs-cta__desc {
+  font-size: .88rem;
+  color: var(--gray);
+  flex: 1;
+  margin-bottom: 22px;
+  line-height: 1.55;
+}
+.catalogs-cta__card .btn {
+  align-self: flex-start;
+  pointer-events: none; /* clique no card, não no botão */
+}
+
 @media (max-width: 480px) {
   .whyus__grid { grid-template-columns: 1fr; }
   .option-grid--4 { grid-template-columns: 1fr 1fr; }

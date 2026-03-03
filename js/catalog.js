@@ -479,7 +479,7 @@ const ENERGY_META = {
   'A':    { cls: 'energy--a',    label: 'A' },
 };
 
-const BRAND_LABEL = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' };
+const BRAND_LABEL = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu', ariston: 'Ariston' };
 
 const AC_ICON = `<svg viewBox="0 0 96 44" width="96" height="44" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
   <rect x="2" y="6" width="92" height="28" rx="5"/>
@@ -814,5 +814,311 @@ function modalHTML(p) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   /* ---- Init ---- */
+  render();
+})();
+
+/* =============================================
+   SOLAR AQS — PRODUCTS
+   ============================================= */
+const SOLAR_ICON = `<svg viewBox="0 0 96 96" width="48" height="48" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="4" stroke-linecap="round">
+  <circle cx="48" cy="48" r="16"/>
+  <line x1="48" y1="8"  x2="48" y2="22"/>
+  <line x1="48" y1="74" x2="48" y2="88"/>
+  <line x1="8"  y1="48" x2="22" y2="48"/>
+  <line x1="74" y1="48" x2="88" y2="48"/>
+  <line x1="22" y1="22" x2="31" y2="31"/>
+  <line x1="65" y1="65" x2="74" y2="74"/>
+  <line x1="74" y1="22" x2="65" y2="31"/>
+  <line x1="31" y1="65" x2="22" y2="74"/>
+</svg>`;
+
+const SOLAR_PRODUCTS = [
+  /* ---- BOSCH ---- */
+  {
+    id: 'bosch-solar-fcc-200',
+    brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 200L',
+    capacity: 200, energyClass: 'A++', pvp: 1890,
+    image: 'assets/products/bosch-solar-fcc.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Coletor plano · Termossifão',
+    features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 200 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
+    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Coletores', val: '2 painéis planos' }, { label: 'Área captação', val: '3,84 m²' }, { label: 'Pressão máx.', val: '6 bar' }],
+  },
+  {
+    id: 'bosch-solar-fcc-300',
+    brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 300L',
+    capacity: 300, energyClass: 'A++', pvp: 2490,
+    image: 'assets/products/bosch-solar-fcc.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Coletor plano · Termossifão',
+    features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 300 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
+    specs: [{ label: 'Volume', val: '300 L' }, { label: 'Coletores', val: '3 painéis planos' }, { label: 'Área captação', val: '5,76 m²' }, { label: 'Pressão máx.', val: '6 bar' }],
+  },
+  {
+    id: 'bosch-compress-190',
+    brand: 'bosch', series: 'Compress 3000 AWBS', model: 'AWBS 8-190 P',
+    capacity: 190, energyClass: 'A+', pvp: 1690,
+    image: 'assets/products/bosch-compress.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor · AQS',
+    features: ['Bomba de calor integrada', 'COP 3,5', 'Compatível com modo solar', 'Painel de controlo LCD'],
+    specs: [{ label: 'Volume', val: '190 L' }, { label: 'COP', val: '3,5' }, { label: 'Temp. máx.', val: '62°C' }, { label: 'Pressão máx.', val: '8,7 bar' }],
+  },
+  {
+    id: 'bosch-compress-290',
+    brand: 'bosch', series: 'Compress 3000 AWBS', model: 'AWBS 8-290 P',
+    capacity: 290, energyClass: 'A+', pvp: 2190,
+    image: 'assets/products/bosch-compress.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor · AQS',
+    features: ['Bomba de calor integrada', 'COP 3,5', 'Compatível com modo solar', 'Painel de controlo LCD'],
+    specs: [{ label: 'Volume', val: '290 L' }, { label: 'COP', val: '3,5' }, { label: 'Temp. máx.', val: '62°C' }, { label: 'Pressão máx.', val: '8,7 bar' }],
+  },
+  /* ---- ARISTON ---- */
+  {
+    id: 'ariston-kairos-200',
+    brand: 'ariston', series: 'Kairos FS', model: 'Kairos FS 200L',
+    capacity: 200, energyClass: 'A++', pvp: 1590,
+    image: 'assets/products/ariston-solar.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Coletor plano · Pressurizado',
+    features: ['Sistema pressurizado', 'Serpentina dupla', 'Resistência elétrica de apoio', 'Proteção antigeada'],
+    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Coletores', val: '2 painéis planos' }, { label: 'Área captação', val: '4,0 m²' }, { label: 'Pressão máx.', val: '8 bar' }],
+  },
+  {
+    id: 'ariston-kairos-300',
+    brand: 'ariston', series: 'Kairos FS', model: 'Kairos FS 300L',
+    capacity: 300, energyClass: 'A++', pvp: 2090,
+    image: 'assets/products/ariston-solar.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Coletor plano · Pressurizado',
+    features: ['Sistema pressurizado', 'Serpentina dupla', 'Resistência elétrica de apoio', 'Proteção antigeada'],
+    specs: [{ label: 'Volume', val: '300 L' }, { label: 'Coletores', val: '3 painéis planos' }, { label: 'Área captação', val: '6,0 m²' }, { label: 'Pressão máx.', val: '8 bar' }],
+  },
+  {
+    id: 'ariston-lydos-100',
+    brand: 'ariston', series: 'Lydos Hybrid', model: 'Lydos Hybrid 100 EU',
+    capacity: 100, energyClass: 'A+', pvp: 1090,
+    image: 'assets/products/ariston-lydos.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor · AQS',
+    features: ['Bomba de calor integrada', 'COP 3,2', 'Modo híbrido inteligente', 'Wi-Fi opcional'],
+    specs: [{ label: 'Volume', val: '100 L' }, { label: 'COP', val: '3,2' }, { label: 'Temp. máx.', val: '65°C' }, { label: 'Pressão máx.', val: '8 bar' }],
+  },
+  {
+    id: 'ariston-lydos-150',
+    brand: 'ariston', series: 'Lydos Hybrid', model: 'Lydos Hybrid 150 EU',
+    capacity: 150, energyClass: 'A+', pvp: 1390,
+    image: 'assets/products/ariston-lydos.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor · AQS',
+    features: ['Bomba de calor integrada', 'COP 3,2', 'Modo híbrido inteligente', 'Wi-Fi opcional'],
+    specs: [{ label: 'Volume', val: '150 L' }, { label: 'COP', val: '3,2' }, { label: 'Temp. máx.', val: '65°C' }, { label: 'Pressão máx.', val: '8 bar' }],
+  },
+];
+
+/* =============================================
+   SOLAR — GROUP BY SERIES
+   ============================================= */
+function groupBySolarSeries(products) {
+  const map = new Map();
+  products.forEach(p => {
+    const key = p.brand + '::' + p.series;
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(p);
+  });
+  map.forEach(arr => arr.sort((a, b) => a.capacity - b.capacity));
+  return [...map.values()];
+}
+
+function solarSeriesKey(p) {
+  return p.brand + '--' + p.series.toLowerCase().replace(/[\s/]+/g, '-');
+}
+
+/* =============================================
+   SOLAR — CARD TEMPLATE
+   ============================================= */
+function solarSeriesCardHTML(group) {
+  const first = group[0];
+  const sk = solarSeriesKey(first);
+
+  const capPills = group.map((p, i) =>
+    `<button class="btu-pill${i === 0 ? ' active' : ''}" data-sk="${sk}" data-idx="${i}">${p.capacity}L</button>`
+  ).join('');
+
+  return `
+    <article class="series-card" data-brand="${first.brand}" data-sk="${sk}">
+      <div class="series-card__img">
+        <img src="${first.image}" alt="${BRAND_LABEL[first.brand]} ${first.series}" class="series-card__photo" onerror="this.style.display='none'">
+        <div class="series-card__fallback">${SOLAR_ICON}</div>
+      </div>
+      <div class="series-card__body">
+        <div class="series-card__header-row">
+          <span class="series-card__brand">${BRAND_LABEL[first.brand]}</span>
+          <span id="sc-energy-${sk}">${energyBadge(first.energyClass)}</span>
+        </div>
+        <h3 class="series-card__name">${first.series}</h3>
+        <p class="series-card__tagline">${first.tagline}</p>
+        <div class="series-card__btu-section">
+          <span class="series-card__btu-label">Volume disponível</span>
+          <div class="btu-pills">${capPills}</div>
+        </div>
+        <div class="series-card__footer">
+          <div>
+            <span class="price-from">A partir de</span>
+            <span class="price-val" id="sc-price-${sk}">${first.pvp.toLocaleString('pt-PT')} €</span>
+          </div>
+          <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
+        </div>
+      </div>
+    </article>`;
+}
+
+/* =============================================
+   SOLAR — MODAL TEMPLATE
+   ============================================= */
+function solarModalHTML(p) {
+  const featureList = p.features.map(f => `<li>${f}</li>`).join('');
+  const specRows = p.specs.map(s => `
+    <div class="spec-row">
+      <span class="spec-row__label">${s.label}</span>
+      <span class="spec-row__val">${s.val}</span>
+    </div>`).join('');
+
+  const waMsg = encodeURIComponent(
+    `Olá ARTICOCLIMA! 👋\n` +
+    `Tenho interesse no sistema solar ${BRAND_LABEL[p.brand]} ${p.series} — ${p.model} (${p.capacity}L).\n` +
+    `Podiam dar-me mais informações e disponibilidade?`
+  );
+
+  return `
+    <div class="modal__layout">
+      <div class="modal__img-col">
+        <div class="modal__img-wrap brand-bg--${p.brand}" id="modalImgWrap">
+          <img src="${p.image}" alt="${BRAND_LABEL[p.brand]} ${p.series}" id="modalImg" onerror="this.style.display='none'">
+          <div class="product-card__fallback modal__fallback">${SOLAR_ICON}</div>
+        </div>
+      </div>
+      <div class="modal__info-col">
+        <p class="modal__brand-name">${BRAND_LABEL[p.brand]}</p>
+        <p class="modal__series-name">${p.series}</p>
+        <h2 class="modal__model-name">${p.model}</h2>
+        <div class="modal__energy-row">
+          <div class="modal__energy-item">
+            ${energyBadge(p.energyClass)}
+            <span>Eficiência</span>
+          </div>
+          <div class="modal__energy-item">
+            <span class="energy-badge energy--a" style="min-width:44px;justify-content:center">${p.capacity}L</span>
+            <span>Volume</span>
+          </div>
+        </div>
+        <div class="modal__specs">${specRows}</div>
+        <div class="modal__features">
+          <p class="modal__features-label">Características</p>
+          <ul>${featureList}</ul>
+        </div>
+        <div class="modal__cta">
+          <div class="modal__price-block">
+            <span class="modal__price-label">PVP a partir de</span>
+            <span class="modal__price-val">${p.pvp.toLocaleString('pt-PT')}€</span>
+            <span class="modal__price-note">* Preço indicativo. Sujeito a confirmação.</span>
+          </div>
+          <div class="modal__btn-row">
+            <a href="index.html#orcamento" class="btn btn--primary modal-close-trigger">Pedir Orçamento →</a>
+            <a href="https://wa.me/351964501776?text=${waMsg}" target="_blank" rel="noopener" class="btn btn--whatsapp">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* =============================================
+   SOLAR CATALOG INIT
+   ============================================= */
+(function initSolarCatalog() {
+  const grid      = document.getElementById('solarGrid');
+  const modal     = document.getElementById('catalogModal');
+  const modalBody = document.getElementById('modalBody');
+  const closeBtn  = document.getElementById('modalClose');
+  const brandTabs = document.querySelectorAll('.ctab');
+
+  if (!grid) return;
+
+  const allGroups = groupBySolarSeries(SOLAR_PRODUCTS);
+  let activeBrand = 'all';
+
+  function render() {
+    const filtered = allGroups.filter(g =>
+      activeBrand === 'all' || g[0].brand === activeBrand
+    );
+    if (filtered.length === 0) {
+      grid.innerHTML = `<p class="catalog__empty">Nenhum modelo encontrado.</p>`;
+      return;
+    }
+    grid.innerHTML = filtered.map(solarSeriesCardHTML).join('');
+  }
+
+  grid.addEventListener('click', e => {
+    const pill = e.target.closest('.btu-pill');
+    if (pill) {
+      const sk = pill.dataset.sk;
+      const idx = parseInt(pill.dataset.idx, 10);
+      const group = allGroups.find(g => solarSeriesKey(g[0]) === sk);
+      if (group) {
+        grid.querySelectorAll(`.btu-pill[data-sk="${sk}"]`).forEach(b => b.classList.remove('active'));
+        pill.classList.add('active');
+        const p = group[idx];
+        const priceEl = document.getElementById('sc-price-' + sk);
+        if (priceEl) priceEl.textContent = p.pvp.toLocaleString('pt-PT') + ' €';
+      }
+      return;
+    }
+    const card = e.target.closest('.series-card');
+    if (card) {
+      const sk = card.dataset.sk;
+      const activePill = card.querySelector('.btu-pill.active');
+      const idx = activePill ? parseInt(activePill.dataset.idx, 10) : 0;
+      const group = allGroups.find(g => solarSeriesKey(g[0]) === sk);
+      if (group) openSolarModal(group[idx].id);
+    }
+  });
+
+  brandTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      brandTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeBrand = tab.dataset.brand;
+      render();
+    });
+  });
+
+  function openSolarModal(id) {
+    const p = SOLAR_PRODUCTS.find(x => x.id === id);
+    if (!p) return;
+    modalBody.innerHTML = solarModalHTML(p);
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    modalBody.querySelector('.modal-close-trigger')?.addEventListener('click', closeSolarModal);
+  }
+
+  function closeSolarModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeSolarModal);
+  modal.querySelector('.modal__overlay').addEventListener('click', closeSolarModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSolarModal(); });
+
+  const urlBrand = new URLSearchParams(location.search).get('brand');
+  if (urlBrand) {
+    const tab = [...brandTabs].find(t => t.dataset.brand === urlBrand);
+    if (tab) { brandTabs.forEach(t => t.classList.remove('active')); tab.classList.add('active'); activeBrand = urlBrand; }
+  }
+
   render();
 })();

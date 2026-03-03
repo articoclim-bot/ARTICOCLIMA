@@ -3,44 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Catálogo AC ARTICOCLIMA — Daikin, Bosch e Daitsu. Consulte especificações, classificação energética, ruído e preços." />
-  <title>Catálogo AC – ARTICOCLIMA</title>
+  <meta name="description" content="Simulador de instalação de ar condicionado ARTICOCLIMA — descubra a potência certa e compare soluções mono e multisplit Daikin, Bosch e Daitsu." />
+  <title>Simulador de Instalação – ARTICOCLIMA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .catalog-page {
-      padding-top: 100px; /* altura do header */
-    }
-    .catalog-page .section__header {
-      margin-bottom: 36px;
-    }
-    .catalog-page-hero {
-      background: var(--dark);
-      padding: 56px 0 48px;
-      text-align: center;
-    }
-    .catalog-page-hero .section__tag { color: rgba(255,255,255,.55); border-color: rgba(255,255,255,.2); }
-    .catalog-page-hero h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -.5px;
-      margin: 12px 0 10px;
-    }
-    .catalog-page-hero p {
-      color: rgba(255,255,255,.6);
-      font-size: .97rem;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-    .catalog-main {
-      padding: 48px 0 80px;
-      background: var(--off-white);
-      min-height: 60vh;
-    }
-  </style>
+  <link rel="stylesheet" href="css/simulador.css" />
 </head>
 <body>
 
@@ -65,13 +33,13 @@
         <li><a href="index.html#servicos"  class="nav__link">Serviços</a></li>
         <li><a href="index.html#marcas"    class="nav__link">Marcas</a></li>
         <li class="nav__item--has-sub">
-          <a href="#" class="nav__link nav__link--parent active">Catálogos</a>
+          <a href="#" class="nav__link nav__link--parent">Catálogos</a>
           <ul class="nav__submenu">
-            <li><a href="catalogo.html" class="active">Catálogo AC</a></li>
+            <li><a href="catalogo.html">Catálogo AC</a></li>
             <li><a href="catalogo-solar.html">Solar AQS</a></li>
           </ul>
         </li>
-        <li><a href="simulador.html" class="nav__link">Simulador</a></li>
+        <li><a href="simulador.html" class="nav__link active">Simulador</a></li>
         <li><a href="index.html#sobre"     class="nav__link">Sobre Nós</a></li>
         <li><a href="index.html#contacto"  class="nav__link">Contacto</a></li>
       </ul>
@@ -82,53 +50,94 @@
     </nav>
   </header>
 
-  <!-- ===== HERO STRIP ===== -->
-  <div class="catalog-page-hero catalog-page">
+  <!-- ===== HERO ===== -->
+  <div class="sim-hero">
     <div class="container">
-      <span class="section__tag">Ar Condicionado</span>
-      <h1>Catálogo AC</h1>
-      <p>Todos os modelos de ar condicionado disponíveis — Daikin, Bosch e Daitsu. Compare especificações, eficiência e preços.</p>
+      <span class="section__tag">Ferramenta Online</span>
+      <h1>Simulador de Instalação</h1>
+      <p>Diga-nos como são as suas divisões e calculamos a potência certa. Compare soluções mono e multisplit das marcas que representamos.</p>
     </div>
   </div>
 
-  <!-- ===== CATALOG ===== -->
-  <main class="catalog-main">
+  <!-- ===== PROGRESS ===== -->
+  <div class="sim-progress" id="simProgress">
+    <div class="sim-step" data-step="1">
+      <span class="sim-step__number">1</span>
+      <span class="sim-step__label">Divisões</span>
+    </div>
+    <div class="sim-step" data-step="2">
+      <span class="sim-step__number">2</span>
+      <span class="sim-step__label">Detalhes</span>
+    </div>
+    <div class="sim-step" data-step="3">
+      <span class="sim-step__number">3</span>
+      <span class="sim-step__label">Sugestão</span>
+    </div>
+  </div>
+
+  <!-- ===== STEP 1 — Nº de divisões ===== -->
+  <section class="sim-section" id="step1">
+    <div class="container">
+      <div class="sim-step1-header">
+        <h2>Quantas divisões pretende climatizar?</h2>
+        <p>Selecione o número de divisões da sua habitação onde quer instalar ar condicionado.</p>
+      </div>
+      <div class="sim-room-count">
+        <button class="sim-count-btn" data-rooms="1" aria-label="1 divisão">1</button>
+        <button class="sim-count-btn" data-rooms="2" aria-label="2 divisões">2</button>
+        <button class="sim-count-btn" data-rooms="3" aria-label="3 divisões">3</button>
+        <button class="sim-count-btn" data-rooms="4" aria-label="4 divisões">4</button>
+        <button class="sim-count-btn" data-rooms="5" aria-label="5 divisões">5</button>
+      </div>
+      <p style="text-align:center;margin-top:36px;font-size:.85rem;color:var(--gray)">
+        Clique no número para avançar automaticamente.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== STEP 2 — Detalhes das divisões ===== -->
+  <section class="sim-section" id="step2" style="display:none">
     <div class="container">
 
-      <!-- Filters -->
-      <div class="catalog__bar">
-        <div class="catalog__brand-tabs">
-          <button class="ctab active" data-brand="all">Todos</button>
-          <button class="ctab" data-brand="daikin"><img src="assets/logo-daikin.png" alt="Daikin"></button>
-          <button class="ctab" data-brand="bosch"><img src="assets/logo-bosch.png" alt="Bosch"></button>
-          <button class="ctab" data-brand="daitsu"><img src="assets/logo-daitsu.png" alt="Daitsu"></button>
-        </div>
-        <select class="catalog__btu-select" id="btuFilter">
-          <option value="all">Todas as potências</option>
-          <option value="7000">7.000 BTU (~15m²)</option>
-          <option value="9000">9.000 BTU (~20m²)</option>
-          <option value="12000">12.000 BTU (~30m²)</option>
-          <option value="15000">15.000 BTU (~40m²)</option>
-          <option value="18000">18.000 BTU (~50m²)</option>
-          <option value="24000">24.000 BTU (~70m²)</option>
-          <option value="28000">28.000 BTU (~90m²)</option>
-        </select>
+      <div class="sim-step2-header">
+        <h2>Detalhe cada divisão</h2>
+        <p>Preencha as dimensões e as condições de cada divisão para calcularmos a potência necessária.</p>
       </div>
 
-      <!-- Grid (rendered by catalog.js) -->
-      <div class="catalog__grid" id="catalogGrid"></div>
+      <!-- Selecção de marca -->
+      <div class="sim-brand-block">
+        <h3>🏷️ Marca preferida <span style="font-weight:400;color:var(--gray)">(pode mudar na sugestão final)</span></h3>
+        <div class="sim-brand-btns">
+          <button class="sim-brand-btn active" data-brand="daikin">Daikin</button>
+          <button class="sim-brand-btn" data-brand="bosch">Bosch</button>
+          <button class="sim-brand-btn" data-brand="daitsu">Daitsu</button>
+        </div>
+      </div>
+
+      <!-- Divisões (geradas dinamicamente) -->
+      <div id="simRoomsContainer"></div>
+
+      <!-- Navegação -->
+      <div class="sim-nav-btns">
+        <button class="btn btn--outline" id="backToStep1">← Voltar</button>
+        <button class="btn btn--primary" id="calcResults">Ver Sugestão →</button>
+      </div>
 
     </div>
-  </main>
+  </section>
 
-  <!-- ===== CATALOG MODAL ===== -->
-  <div class="catalog-modal" id="catalogModal" role="dialog" aria-modal="true" aria-label="Detalhe do produto">
-    <div class="modal__overlay"></div>
-    <div class="catalog-modal__box" id="modalBox">
-      <button class="modal__close" id="modalClose" aria-label="Fechar">✕</button>
-      <div id="modalBody"></div>
+  <!-- ===== STEP 3 — Resultados ===== -->
+  <section class="sim-section" id="step3" style="display:none">
+    <div class="container">
+
+      <div id="simResults"></div>
+
+      <div class="sim-nav-btns">
+        <button class="btn btn--outline" id="backToStep2">← Rever detalhes</button>
+      </div>
+
     </div>
-  </div>
+  </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -148,7 +157,8 @@
       </a>
       <div class="footer__links">
         <a href="index.html#servicos">Serviços</a>
-        <a href="index.html#orcamento">Orçamento</a>
+        <a href="catalogo.html">Catálogo AC</a>
+        <a href="catalogo-solar.html">Solar AQS</a>
         <a href="index.html#contacto">Contacto</a>
       </div>
       <p class="footer__copy">© 2025 ARTICOCLIMA · Todos os direitos reservados</p>
@@ -157,35 +167,31 @@
         <span>·</span>
         <a href="politica-cookies.html">Política de Cookies</a>
         <span>·</span>
+        <a href="legislacao-gases-fluorados.html">Legislação F-Gas</a>
+        <span>·</span>
         <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank" rel="noopener">Livro de Reclamações</a>
       </div>
     </div>
   </footer>
-
-  <!-- Floating Home Button -->
-  <a href="index.html" class="home-float" title="Página Inicial">
-    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
-  </a>
 
   <!-- Floating WhatsApp Button -->
   <a href="https://wa.me/351964501776" class="whatsapp-float" target="_blank" rel="noopener" title="WhatsApp">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
 
+  <script src="js/simulador.js"></script>
+
+  <!-- Mobile nav toggle -->
   <script>
-    // Sticky header shadow
-    window.addEventListener('scroll', () => {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-
-    // Mobile nav toggle
-    document.getElementById('navToggle').addEventListener('click', () => {
-      const menu = document.getElementById('navMenu');
-      const isOpen = menu.classList.toggle('open');
-      document.getElementById('navToggle').classList.toggle('open', isOpen);
-    });
-
-    // Dropdown toggle (mobile)
+    const toggle = document.getElementById('navToggle');
+    const menu   = document.getElementById('navMenu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        toggle.classList.toggle('open');
+      });
+    }
+    // Dropdown mobile
     document.querySelectorAll('.nav__link--parent').forEach(a => {
       a.addEventListener('click', e => {
         if (window.innerWidth <= 900) {
@@ -195,6 +201,6 @@
       });
     });
   </script>
-  <script src="js/catalog.js"></script>
+
 </body>
 </html>

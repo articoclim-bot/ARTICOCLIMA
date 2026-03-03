@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Catálogo AC ARTICOCLIMA — Daikin, Bosch e Daitsu. Consulte especificações, classificação energética, ruído e preços." />
-  <title>Catálogo AC – ARTICOCLIMA</title>
+  <meta name="description" content="Catálogo Solar AQS ARTICOCLIMA — Bosch e Ariston. Painéis solares, bombas de calor e sistemas de águas quentes sanitárias." />
+  <title>Catálogo Solar AQS – ARTICOCLIMA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
     .catalog-page {
-      padding-top: 100px; /* altura do header */
+      padding-top: 100px;
     }
     .catalog-page .section__header {
       margin-bottom: 36px;
@@ -67,8 +67,8 @@
         <li class="nav__item--has-sub">
           <a href="#" class="nav__link nav__link--parent active">Catálogos</a>
           <ul class="nav__submenu">
-            <li><a href="catalogo.html" class="active">Catálogo AC</a></li>
-            <li><a href="catalogo-solar.html">Solar AQS</a></li>
+            <li><a href="catalogo.html">Catálogo AC</a></li>
+            <li><a href="catalogo-solar.html" class="active">Solar AQS</a></li>
           </ul>
         </li>
         <li><a href="simulador.html" class="nav__link">Simulador</a></li>
@@ -85,13 +85,13 @@
   <!-- ===== HERO STRIP ===== -->
   <div class="catalog-page-hero catalog-page">
     <div class="container">
-      <span class="section__tag">Ar Condicionado</span>
-      <h1>Catálogo AC</h1>
-      <p>Todos os modelos de ar condicionado disponíveis — Daikin, Bosch e Daitsu. Compare especificações, eficiência e preços.</p>
+      <span class="section__tag">Painéis Solares AQS</span>
+      <h1>Catálogo Solar AQS</h1>
+      <p>Sistemas solares para Águas Quentes Sanitárias — Bosch e Ariston. Colectores planos e bombas de calor para máxima eficiência.</p>
     </div>
   </div>
 
-  <!-- ===== CATALOG ===== -->
+  <!-- ===== SOLAR CATALOG ===== -->
   <main class="catalog-main">
     <div class="container">
 
@@ -99,24 +99,13 @@
       <div class="catalog__bar">
         <div class="catalog__brand-tabs">
           <button class="ctab active" data-brand="all">Todos</button>
-          <button class="ctab" data-brand="daikin"><img src="assets/logo-daikin.png" alt="Daikin"></button>
           <button class="ctab" data-brand="bosch"><img src="assets/logo-bosch.png" alt="Bosch"></button>
-          <button class="ctab" data-brand="daitsu"><img src="assets/logo-daitsu.png" alt="Daitsu"></button>
+          <button class="ctab" data-brand="ariston"><img src="assets/logo-ariston.png" alt="Ariston"></button>
         </div>
-        <select class="catalog__btu-select" id="btuFilter">
-          <option value="all">Todas as potências</option>
-          <option value="7000">7.000 BTU (~15m²)</option>
-          <option value="9000">9.000 BTU (~20m²)</option>
-          <option value="12000">12.000 BTU (~30m²)</option>
-          <option value="15000">15.000 BTU (~40m²)</option>
-          <option value="18000">18.000 BTU (~50m²)</option>
-          <option value="24000">24.000 BTU (~70m²)</option>
-          <option value="28000">28.000 BTU (~90m²)</option>
-        </select>
       </div>
 
-      <!-- Grid (rendered by catalog.js) -->
-      <div class="catalog__grid" id="catalogGrid"></div>
+      <!-- Grid (rendered by catalog.js → initSolarCatalog) -->
+      <div class="catalog__grid" id="solarGrid"></div>
 
     </div>
   </main>
@@ -173,19 +162,16 @@
   </a>
 
   <script>
-    // Sticky header shadow
     window.addEventListener('scroll', () => {
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
-    // Mobile nav toggle
     document.getElementById('navToggle').addEventListener('click', () => {
       const menu = document.getElementById('navMenu');
       const isOpen = menu.classList.toggle('open');
       document.getElementById('navToggle').classList.toggle('open', isOpen);
     });
 
-    // Dropdown toggle (mobile)
     document.querySelectorAll('.nav__link--parent').forEach(a => {
       a.addEventListener('click', e => {
         if (window.innerWidth <= 900) {
