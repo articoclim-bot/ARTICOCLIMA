@@ -7,6 +7,26 @@
    e atualize o campo "image" de cada produto.
    ============================================= */
 
+/* imagens partilhadas por série (3 fotos reais por modelo) */
+const IMG = {
+  sensira:         ['assets/products/daikin-sensira-1.webp','assets/products/daikin-sensira-2.webp','assets/products/daikin-sensira-3.webp'],
+  confora:         ['assets/products/daikin-confora-1.webp','assets/products/daikin-confora-2.webp','assets/products/daikin-confora-3.webp'],
+  perfera:         ['assets/products/daikin-perfera-1.webp','assets/products/daikin-perfera-2.webp','assets/products/daikin-perfera-3.webp'],
+  stylishBranco:   ['assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp'],
+  stylishSilver:   ['assets/products/daikin-stylish-silver-1.webp','assets/products/daikin-stylish-silver-2.webp','assets/products/daikin-stylish-silver-3.webp'],
+  stylishBlack:    ['assets/products/daikin-stylish-black-1.webp','assets/products/daikin-stylish-black-2.webp','assets/products/daikin-stylish-black-3.webp'],
+  emuraBranco:     ['assets/products/daikin-emura-branco-1.webp','assets/products/daikin-emura-branco-2.webp','assets/products/daikin-emura-branco-3.webp'],
+  emuraSilver:     ['assets/products/daikin-emura-silver-1.webp','assets/products/daikin-emura-silver-2.webp','assets/products/daikin-emura-silver-3.webp'],
+  emuraBlack:      ['assets/products/daikin-emura-black-1.webp','assets/products/daikin-emura-black-2.webp','assets/products/daikin-emura-black-3.webp'],
+  bosch3000i:      ['assets/products/bosch-3000i-1.webp','assets/products/bosch-3000i-2.webp'],
+  bosch6000i:      ['assets/products/bosch-6000i-1.webp','assets/products/bosch-6000i-2.webp','assets/products/bosch-6000i-3.webp','assets/products/bosch-6000i-4.webp'],
+  bosch7000iBranco:['assets/products/bosch-7000i-branco-1.webp','assets/products/bosch-7000i-branco-2.webp','assets/products/bosch-7000i-branco-3.webp'],
+  bosch7000iSilver:['assets/products/bosch-7000i-silver-1.webp','assets/products/bosch-7000i-silver-2.webp','assets/products/bosch-7000i-silver-3.webp'],
+  bosch7000iBlack: ['assets/products/bosch-7000i-black-1.webp','assets/products/bosch-7000i-black-2.webp','assets/products/bosch-7000i-black-3.webp'],
+  articPlus:       ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp','assets/products/daitsu-artic-plus-4.jpg'],
+  artic:           ['assets/products/daitsu-artic-1.webp','assets/products/daitsu-artic-2.webp','assets/products/daitsu-artic-3.webp','assets/products/daitsu-artic-4.jpg'],
+};
+
 const PRODUCTS = [
 
   /* ===================================================
@@ -16,37 +36,37 @@ const PRODUCTS = [
     btu:7000,  kw:2.0, energyCool:'A++', energyHeat:'A+', noiseIn:21, noiseOut:46,
     tech:['Inverter','R-32'], features:['Modo seco','Timer','Auto-restart','Filtro básico'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:972,
-    image:'assets/products/daikin-sensira-ftxf20.jpg' },
+    image:IMG.sensira[0], images:IMG.sensira },
   { id:'daikin-sensira-ftxf25', brand:'daikin', series:'Sensira', model:'FTXF25',
     btu:9000,  kw:2.5, energyCool:'A++', energyHeat:'A+', noiseIn:22, noiseOut:47,
     tech:['Inverter','R-32'], features:['Modo seco','Timer','Auto-restart','Filtro básico'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1033,
-    image:'assets/products/daikin-sensira-ftxf25.jpg' },
+    image:IMG.sensira[0], images:IMG.sensira },
   { id:'daikin-sensira-ftxf35', brand:'daikin', series:'Sensira', model:'FTXF35',
     btu:12000, kw:3.5, energyCool:'A++', energyHeat:'A+', noiseIn:25, noiseOut:49,
     tech:['Inverter','R-32'], features:['Modo seco','Timer','Auto-restart','Filtro básico'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1169,
-    image:'assets/products/daikin-sensira-ftxf35.jpg' },
+    image:IMG.sensira[0], images:IMG.sensira },
   { id:'daikin-sensira-ftxf42', brand:'daikin', series:'Sensira', model:'FTXF42',
     btu:15000, kw:4.2, energyCool:'A++', energyHeat:'A+', noiseIn:28, noiseOut:51,
     tech:['Inverter','R-32'], features:['Modo seco','Timer','Auto-restart','Filtro básico'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1396,
-    image:'assets/products/daikin-sensira-ftxf42.jpg' },
+    image:IMG.sensira[0], images:IMG.sensira },
   { id:'daikin-sensira-ftxf50', brand:'daikin', series:'Sensira', model:'FTXF50',
     btu:18000, kw:5.0, energyCool:'A+', energyHeat:'A', noiseIn:30, noiseOut:52,
     tech:['Inverter','R-32'], features:['Modo seco','Timer','Auto-restart','Filtro básico'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1863,
-    image:'assets/products/daikin-sensira-ftxf50.jpg' },
+    image:IMG.sensira[0], images:IMG.sensira },
   { id:'daikin-sensira-ftxf60', brand:'daikin', series:'Sensira', model:'FTXF60',
     btu:24000, kw:7.0, energyCool:'A+', energyHeat:'A', noiseIn:35, noiseOut:57,
     tech:['Inverter','R-32'], features:['Modo seco','Timer','Auto-restart','Filtro básico'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:2319,
-    image:'assets/products/daikin-sensira-ftxf60.jpg' },
+    image:IMG.sensira[0], images:IMG.sensira },
   { id:'daikin-sensira-ftxf71', brand:'daikin', series:'Sensira', model:'FTXF71',
     btu:28000, kw:8.2, energyCool:'A+', energyHeat:'A', noiseIn:39, noiseOut:60,
     tech:['Inverter','R-32'], features:['Modo seco','Timer','Auto-restart','Filtro básico'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:2774,
-    image:'assets/products/daikin-sensira-ftxf71.jpg' },
+    image:IMG.sensira[0], images:IMG.sensira },
 
   /* ===================================================
      DAIKIN — Confora (gama intermédia)
@@ -55,32 +75,32 @@ const PRODUCTS = [
     btu:7000,  kw:2.0, energyCool:'A+++', energyHeat:'A++', noiseIn:20, noiseOut:46,
     tech:['Inverter','R-32','WiFi opcional'], features:['Modo I-Feel','Coanda','Filtro PM2.5','Timer semanal'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1224,
-    image:'assets/products/daikin-confora-ftxp20.jpg' },
+    image:IMG.confora[0], images:IMG.confora },
   { id:'daikin-confora-ftxp25', brand:'daikin', series:'Confora', model:'FTXP25',
     btu:9000,  kw:2.5, energyCool:'A+++', energyHeat:'A++', noiseIn:21, noiseOut:47,
     tech:['Inverter','R-32','WiFi opcional'], features:['Modo I-Feel','Coanda','Filtro PM2.5','Timer semanal'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1316,
-    image:'assets/products/daikin-confora-ftxp25.jpg' },
+    image:IMG.confora[0], images:IMG.confora },
   { id:'daikin-confora-ftxp35', brand:'daikin', series:'Confora', model:'FTXP35',
     btu:12000, kw:3.5, energyCool:'A+++', energyHeat:'A++', noiseIn:23, noiseOut:49,
     tech:['Inverter','R-32','WiFi opcional'], features:['Modo I-Feel','Coanda','Filtro PM2.5','Timer semanal'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1482,
-    image:'assets/products/daikin-confora-ftxp35.jpg' },
+    image:IMG.confora[0], images:IMG.confora },
   { id:'daikin-confora-ftxp50', brand:'daikin', series:'Confora', model:'FTXP50',
     btu:18000, kw:5.0, energyCool:'A+++', energyHeat:'A++', noiseIn:31, noiseOut:54,
     tech:['Inverter','R-32','WiFi opcional'], features:['Modo I-Feel','Coanda','Filtro PM2.5','Timer semanal'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:2343,
-    image:'assets/products/daikin-confora-ftxp50.jpg' },
+    image:IMG.confora[0], images:IMG.confora },
   { id:'daikin-confora-ftxp60', brand:'daikin', series:'Confora', model:'FTXP60',
     btu:24000, kw:7.0, energyCool:'A+++', energyHeat:'A++', noiseIn:35, noiseOut:58,
     tech:['Inverter','R-32','WiFi opcional'], features:['Modo I-Feel','Coanda','Filtro PM2.5','Timer semanal'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:2927,
-    image:'assets/products/daikin-confora-ftxp60.jpg' },
+    image:IMG.confora[0], images:IMG.confora },
   { id:'daikin-confora-ftxp71', brand:'daikin', series:'Confora', model:'FTXP71',
     btu:28000, kw:8.2, energyCool:'A+++', energyHeat:'A++', noiseIn:40, noiseOut:61,
     tech:['Inverter','R-32','WiFi opcional'], features:['Modo I-Feel','Coanda','Filtro PM2.5','Timer semanal'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:3383,
-    image:'assets/products/daikin-confora-ftxp71.jpg' },
+    image:IMG.confora[0], images:IMG.confora },
 
   /* ===================================================
      DAIKIN — Perfera (gama premium)
@@ -89,37 +109,37 @@ const PRODUCTS = [
     btu:7000,  kw:2.0, energyCool:'A+++', energyHeat:'A++', noiseIn:19, noiseOut:44,
     tech:['Inverter','R-32','WiFi integrado'], features:['I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1451,
-    image:'assets/products/daikin-perfera-ftxm20.jpg' },
+    image:IMG.perfera[0], images:IMG.perfera },
   { id:'daikin-perfera-ftxm25', brand:'daikin', series:'Perfera', model:'FTXM25',
     btu:9000,  kw:2.5, energyCool:'A+++', energyHeat:'A++', noiseIn:20, noiseOut:46,
     tech:['Inverter','R-32','WiFi integrado'], features:['I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1538,
-    image:'assets/products/daikin-perfera-ftxm25.jpg' },
+    image:IMG.perfera[0], images:IMG.perfera },
   { id:'daikin-perfera-ftxm35', brand:'daikin', series:'Perfera', model:'FTXM35',
     btu:12000, kw:3.5, energyCool:'A+++', energyHeat:'A++', noiseIn:22, noiseOut:48,
     tech:['Inverter','R-32','WiFi integrado'], features:['I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1771,
-    image:'assets/products/daikin-perfera-ftxm35.jpg' },
+    image:IMG.perfera[0], images:IMG.perfera },
   { id:'daikin-perfera-ftxm42', brand:'daikin', series:'Perfera', model:'FTXM42',
     btu:15000, kw:4.2, energyCool:'A+++', energyHeat:'A++', noiseIn:26, noiseOut:50,
     tech:['Inverter','R-32','WiFi integrado'], features:['I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:2251,
-    image:'assets/products/daikin-perfera-ftxm42.jpg' },
+    image:IMG.perfera[0], images:IMG.perfera },
   { id:'daikin-perfera-ftxm50', brand:'daikin', series:'Perfera', model:'FTXM50',
     btu:18000, kw:5.0, energyCool:'A+++', energyHeat:'A++', noiseIn:28, noiseOut:52,
     tech:['Inverter','R-32','WiFi integrado'], features:['I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:2897,
-    image:'assets/products/daikin-perfera-ftxm50.jpg' },
+    image:IMG.perfera[0], images:IMG.perfera },
   { id:'daikin-perfera-ftxm60', brand:'daikin', series:'Perfera', model:'FTXM60',
     btu:24000, kw:7.0, energyCool:'A+++', energyHeat:'A++', noiseIn:33, noiseOut:56,
     tech:['Inverter','R-32','WiFi integrado'], features:['I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:3506,
-    image:'assets/products/daikin-perfera-ftxm60.jpg' },
+    image:IMG.perfera[0], images:IMG.perfera },
   { id:'daikin-perfera-ftxm71', brand:'daikin', series:'Perfera', model:'FTXM71',
     btu:28000, kw:8.2, energyCool:'A+++', energyHeat:'A++', noiseIn:38, noiseOut:59,
     tech:['Inverter','R-32','WiFi integrado'], features:['I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:4041,
-    image:'assets/products/daikin-perfera-ftxm71.jpg' },
+    image:IMG.perfera[0], images:IMG.perfera },
 
   /* ===================================================
      DAIKIN — Stylish (design, 3 cores)
@@ -130,40 +150,40 @@ const PRODUCTS = [
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:1728,
-    image:'assets/products/daikin-stylish-ftxa20-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-stylish-ftxa20-branco.jpg','Prateado':'assets/products/daikin-stylish-ftxa20-prateado.jpg','Preto':'assets/products/daikin-stylish-ftxa20-preto.jpg'} },
+    image:IMG.stylishBranco[0], images:IMG.stylishBranco,
+    colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack} },
   { id:'daikin-stylish-ftxa25', brand:'daikin', series:'Stylish', model:'FTXA25',
     btu:9000,  kw:2.5, energyCool:'A+++', energyHeat:'A++', noiseIn:21, noiseOut:47,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:1851,
-    image:'assets/products/daikin-stylish-ftxa25-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-stylish-ftxa25-branco.jpg','Prateado':'assets/products/daikin-stylish-ftxa25-prateado.jpg','Preto':'assets/products/daikin-stylish-ftxa25-preto.jpg'} },
+    image:IMG.stylishBranco[0], images:IMG.stylishBranco,
+    colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack} },
   { id:'daikin-stylish-ftxa35', brand:'daikin', series:'Stylish', model:'FTXA35',
     btu:12000, kw:3.5, energyCool:'A+++', energyHeat:'A++', noiseIn:23, noiseOut:49,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:2146,
-    image:'assets/products/daikin-stylish-ftxa35-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-stylish-ftxa35-branco.jpg','Prateado':'assets/products/daikin-stylish-ftxa35-prateado.jpg','Preto':'assets/products/daikin-stylish-ftxa35-preto.jpg'} },
+    image:IMG.stylishBranco[0], images:IMG.stylishBranco,
+    colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack} },
   { id:'daikin-stylish-ftxa42', brand:'daikin', series:'Stylish', model:'FTXA42',
     btu:15000, kw:4.2, energyCool:'A+++', energyHeat:'A++', noiseIn:26, noiseOut:51,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:2712,
-    image:'assets/products/daikin-stylish-ftxa42-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-stylish-ftxa42-branco.jpg','Prateado':'assets/products/daikin-stylish-ftxa42-prateado.jpg','Preto':'assets/products/daikin-stylish-ftxa42-preto.jpg'} },
+    image:IMG.stylishBranco[0], images:IMG.stylishBranco,
+    colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack} },
   { id:'daikin-stylish-ftxa50', brand:'daikin', series:'Stylish', model:'FTXA50',
     btu:18000, kw:5.0, energyCool:'A+++', energyHeat:'A++', noiseIn:29, noiseOut:54,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:3229,
-    image:'assets/products/daikin-stylish-ftxa50-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-stylish-ftxa50-branco.jpg','Prateado':'assets/products/daikin-stylish-ftxa50-prateado.jpg','Preto':'assets/products/daikin-stylish-ftxa50-preto.jpg'} },
+    image:IMG.stylishBranco[0], images:IMG.stylishBranco,
+    colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack} },
 
   /* ===================================================
      DAIKIN — Emura (design icónico, 3 cores)
@@ -174,40 +194,40 @@ const PRODUCTS = [
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:1919,
-    image:'assets/products/daikin-emura-ftxj20-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-emura-ftxj20-branco.jpg','Prateado':'assets/products/daikin-emura-ftxj20-prateado.jpg','Preto':'assets/products/daikin-emura-ftxj20-preto.jpg'} },
+    image:IMG.emuraBranco[0], images:IMG.emuraBranco,
+    colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack} },
   { id:'daikin-emura-ftxj25', brand:'daikin', series:'Emura', model:'FTXJ25',
     btu:9000,  kw:2.5, energyCool:'A+++', energyHeat:'A++', noiseIn:20, noiseOut:47,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:2005,
-    image:'assets/products/daikin-emura-ftxj25-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-emura-ftxj25-branco.jpg','Prateado':'assets/products/daikin-emura-ftxj25-prateado.jpg','Preto':'assets/products/daikin-emura-ftxj25-preto.jpg'} },
+    image:IMG.emuraBranco[0], images:IMG.emuraBranco,
+    colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack} },
   { id:'daikin-emura-ftxj35', brand:'daikin', series:'Emura', model:'FTXJ35',
     btu:12000, kw:3.5, energyCool:'A+++', energyHeat:'A++', noiseIn:22, noiseOut:49,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:2300,
-    image:'assets/products/daikin-emura-ftxj35-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-emura-ftxj35-branco.jpg','Prateado':'assets/products/daikin-emura-ftxj35-prateado.jpg','Preto':'assets/products/daikin-emura-ftxj35-preto.jpg'} },
+    image:IMG.emuraBranco[0], images:IMG.emuraBranco,
+    colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack} },
   { id:'daikin-emura-ftxj42', brand:'daikin', series:'Emura', model:'FTXJ42',
     btu:15000, kw:4.2, energyCool:'A+++', energyHeat:'A++', noiseIn:25, noiseOut:52,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:2946,
-    image:'assets/products/daikin-emura-ftxj42-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-emura-ftxj42-branco.jpg','Prateado':'assets/products/daikin-emura-ftxj42-prateado.jpg','Preto':'assets/products/daikin-emura-ftxj42-preto.jpg'} },
+    image:IMG.emuraBranco[0], images:IMG.emuraBranco,
+    colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack} },
   { id:'daikin-emura-ftxj50', brand:'daikin', series:'Emura', model:'FTXJ50',
     btu:18000, kw:5.0, energyCool:'A+++', energyHeat:'A++', noiseIn:28, noiseOut:54,
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
     pvp:3419,
-    image:'assets/products/daikin-emura-ftxj50-branco.jpg',
-    colorImages:{'Branco':'assets/products/daikin-emura-ftxj50-branco.jpg','Prateado':'assets/products/daikin-emura-ftxj50-prateado.jpg','Preto':'assets/products/daikin-emura-ftxj50-preto.jpg'} },
+    image:IMG.emuraBranco[0], images:IMG.emuraBranco,
+    colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack} },
 
   /* ===================================================
      BOSCH — Climate 3000i (gama entrada, A++)
@@ -217,25 +237,25 @@ const PRODUCTS = [
     tech:['Inverter','R-32','Matter'],
     features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:699,
-    image:'assets/products/bosch-climate3000i.webp' },
+    image:IMG.bosch3000i[0], images:IMG.bosch3000i },
   { id:'bosch-3000i-35', brand:'bosch', series:'Climate 3000i', model:'CL3000i-Set 35 WE',
     btu:12000, kw:3.5, energyCool:'A++', energyHeat:'A+', noiseIn:27, noiseOut:53,
     tech:['Inverter','R-32','Matter'],
     features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:799,
-    image:'assets/products/bosch-climate3000i.webp' },
+    image:IMG.bosch3000i[0], images:IMG.bosch3000i },
   { id:'bosch-3000i-53', brand:'bosch', series:'Climate 3000i', model:'CL3000i-Set 53 WE',
     btu:18000, kw:5.3, energyCool:'A++', energyHeat:'A+', noiseIn:33, noiseOut:57,
     tech:['Inverter','R-32','Matter'],
     features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1099,
-    image:'assets/products/bosch-climate3000i.webp' },
+    image:IMG.bosch3000i[0], images:IMG.bosch3000i },
   { id:'bosch-3000i-70', brand:'bosch', series:'Climate 3000i', model:'CL3000i-Set 70 WE',
     btu:24000, kw:7.0, energyCool:'A++', energyHeat:'A+', noiseIn:38, noiseOut:60,
     tech:['Inverter','R-32','Matter'],
     features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1399,
-    image:'assets/products/bosch-climate3000i.webp' },
+    image:IMG.bosch3000i[0], images:IMG.bosch3000i },
 
   /* ===================================================
      BOSCH — Climate 6000i (gama intermédia, A+++)
@@ -245,47 +265,47 @@ const PRODUCTS = [
     tech:['Inverter','R-32','WiFi integrado','Matter'],
     features:['Ionizador integrado','Sensor de presença','Controlo de humidade','Filtro avançado','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:999,
-    image:'assets/products/bosch-climate6000i.webp' },
+    image:IMG.bosch6000i[0], images:IMG.bosch6000i },
   { id:'bosch-6000i-35', brand:'bosch', series:'Climate 6000i', model:'CL6000i-Set 35 WE',
     btu:12000, kw:3.5, energyCool:'A+++', energyHeat:'A++', noiseIn:24, noiseOut:50,
     tech:['Inverter','R-32','WiFi integrado','Matter'],
     features:['Ionizador integrado','Sensor de presença','Controlo de humidade','Filtro avançado','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1149,
-    image:'assets/products/bosch-climate6000i.webp' },
+    image:IMG.bosch6000i[0], images:IMG.bosch6000i },
   { id:'bosch-6000i-53', brand:'bosch', series:'Climate 6000i', model:'CL6000i-Set 53 WE',
     btu:18000, kw:5.3, energyCool:'A+++', energyHeat:'A++', noiseIn:30, noiseOut:55,
     tech:['Inverter','R-32','WiFi integrado','Matter'],
     features:['Ionizador integrado','Sensor de presença','Controlo de humidade','Filtro avançado','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1449,
-    image:'assets/products/bosch-climate6000i.webp' },
+    image:IMG.bosch6000i[0], images:IMG.bosch6000i },
   { id:'bosch-6000i-70', brand:'bosch', series:'Climate 6000i', model:'CL6000i-Set 70 WE',
     btu:24000, kw:7.0, energyCool:'A+++', energyHeat:'A++', noiseIn:36, noiseOut:58,
     tech:['Inverter','R-32','WiFi integrado','Matter'],
     features:['Ionizador integrado','Sensor de presença','Controlo de humidade','Filtro avançado','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1749,
-    image:'assets/products/bosch-climate6000i.webp' },
+    image:IMG.bosch6000i[0], images:IMG.bosch6000i },
 
   /* ===================================================
-     BOSCH — Climate 7000i (gama premium, A+++ / A+++)
+     BOSCH — Climate 7000i (gama premium, A+++ / A+++ — 3 cores)
      =================================================== */
   { id:'bosch-7000i-26', brand:'bosch', series:'Climate 7000i', model:'CL7000i-Set 26 E',
     btu:9000,  kw:2.5, energyCool:'A+++', energyHeat:'A+++', noiseIn:19, noiseOut:46,
     tech:['Inverter','R-32','WiFi integrado','Matter'],
     features:['Ionizador avançado','Modo Silent (19 dB)','Monitorização de energia','Sensor de presença','iF Design Award 2025','Alexa / Google Home / Siri'],
-    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1399,
-    image:'assets/products/bosch-climate7000i.webp' },
+    colors:[{name:'Branco',hex:'#F0F0F0'}], pvp:1399,
+    image:IMG.bosch7000iBranco[0], images:IMG.bosch7000iBranco },
   { id:'bosch-7000i-35', brand:'bosch', series:'Climate 7000i', model:'CL7000i-Set 35 E',
     btu:12000, kw:3.5, energyCool:'A+++', energyHeat:'A+++', noiseIn:21, noiseOut:48,
     tech:['Inverter','R-32','WiFi integrado','Matter'],
     features:['Ionizador avançado','Modo Silent (19 dB)','Monitorização de energia','Sensor de presença','iF Design Award 2025','Alexa / Google Home / Siri'],
-    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1599,
-    image:'assets/products/bosch-climate7000i.webp' },
+    colors:[{name:'Branco',hex:'#F0F0F0'}], pvp:1599,
+    image:IMG.bosch7000iBranco[0], images:IMG.bosch7000iBranco },
   { id:'bosch-7000i-53', brand:'bosch', series:'Climate 7000i', model:'CL7000i-Set 53 E',
     btu:18000, kw:5.0, energyCool:'A+++', energyHeat:'A+++', noiseIn:26, noiseOut:52,
     tech:['Inverter','R-32','WiFi integrado','Matter'],
     features:['Ionizador avançado','Modo Silent (19 dB)','Monitorização de energia','Sensor de presença','iF Design Award 2025','Alexa / Google Home / Siri'],
-    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1899,
-    image:'assets/products/bosch-climate7000i.webp' },
+    colors:[{name:'Branco',hex:'#F0F0F0'}], pvp:1899,
+    image:IMG.bosch7000iBranco[0], images:IMG.bosch7000iBranco },
 
   /* ===================================================
      DAITSU — Série ARTIC PLUS (DS-KTP-6)
@@ -312,7 +332,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 745,
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: IMG.articPlus[0], images: IMG.articPlus,
   },
   {
     id: 'daitsu-artic-plus-12',
@@ -334,7 +354,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 760,
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: IMG.articPlus[0], images: IMG.articPlus,
   },
   {
     id: 'daitsu-artic-plus-18',
@@ -356,7 +376,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1230,
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: IMG.articPlus[0], images: IMG.articPlus,
   },
   {
     id: 'daitsu-artic-plus-24',
@@ -378,7 +398,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1555,
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: IMG.articPlus[0], images: IMG.articPlus,
   },
 
   /* ===================================================
@@ -404,7 +424,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 590,
-    image: 'assets/products/daitsu-artic.jpg',
+    image: IMG.artic[0], images: IMG.artic,
   },
   {
     id: 'daitsu-artic-12',
@@ -424,7 +444,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 630,
-    image: 'assets/products/daitsu-artic.jpg',
+    image: IMG.artic[0], images: IMG.artic,
   },
   {
     id: 'daitsu-artic-18',
@@ -444,7 +464,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1050,
-    image: 'assets/products/daitsu-artic.jpg',
+    image: IMG.artic[0], images: IMG.artic,
   },
   {
     id: 'daitsu-artic-24',
@@ -464,7 +484,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1410,
-    image: 'assets/products/daitsu-artic.jpg',
+    image: IMG.artic[0], images: IMG.artic,
   },
 ];
 
@@ -583,12 +603,21 @@ function seriesCardHTML(group) {
    MODAL TEMPLATE
    ============================================= */
 function modalHTML(p) {
+  /* gallery: use colorGallery[first color] or images or fallback to single image */
+  const initGallery = (p.colorGallery && p.colors[0])
+    ? (p.colorGallery[p.colors[0].name] || p.images || [p.image])
+    : (p.images || [p.image]);
+
   const colorSwatches = p.colors.map((c, i) => `
     <button class="cswatch ${i === 0 ? 'active' : ''}"
       style="background:${c.hex}"
       title="${c.name}"
-      data-color="${c.name}"
-      data-img="${p.colorImages ? (p.colorImages[c.name] || p.image) : p.image}">
+      data-color="${c.name}">
+    </button>`).join('');
+
+  const thumbsHTML = initGallery.map((src, i) => `
+    <button class="modal__thumb${i === 0 ? ' active' : ''}" data-idx="${i}" aria-label="Foto ${i + 1}">
+      <img src="${src}" alt="Foto ${i + 1}" loading="lazy">
     </button>`).join('');
 
   const featureList = p.features.map(f => `<li>${f}</li>`).join('');
@@ -604,9 +633,14 @@ function modalHTML(p) {
     <div class="modal__layout">
       <div class="modal__img-col">
         <div class="modal__img-wrap brand-bg--${p.brand}" id="modalImgWrap">
-          <img src="${p.image}" alt="${BRAND_LABEL[p.brand]} ${p.series} ${p.model}" id="modalImg" onerror="this.style.display='none'">
+          <img src="${initGallery[0]}" alt="${BRAND_LABEL[p.brand]} ${p.series} ${p.model}" id="modalImg" onerror="this.style.display='none'" style="cursor:zoom-in">
           <div class="product-card__fallback modal__fallback">${AC_ICON}</div>
+          <button class="modal__zoom-btn" id="modalZoomBtn" aria-label="Ampliar imagem">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
         </div>
+        ${initGallery.length > 1 ? `
+        <div class="modal__thumbs" id="modalThumbs">${thumbsHTML}</div>` : ''}
         ${p.colors.length > 1 ? `
         <div class="modal__color-section">
           <p class="modal__color-label">Cores disponíveis</p>
@@ -787,14 +821,105 @@ function modalHTML(p) {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
 
+    /* gallery state */
+    let currentGallery = (p.colorGallery && p.colors[0])
+      ? (p.colorGallery[p.colors[0].name] || p.images || [p.image])
+      : (p.images || [p.image]);
+    let currentIdx = 0;
+
+    const modalImg   = document.getElementById('modalImg');
+    const modalThumbs = document.getElementById('modalThumbs');
+
+    /* switch to photo by index */
+    function switchToIdx(idx) {
+      currentIdx = idx;
+      modalImg.src = currentGallery[idx];
+      modalImg.style.display = '';
+      if (modalThumbs) {
+        modalThumbs.querySelectorAll('.modal__thumb').forEach((t, i) => {
+          t.classList.toggle('active', i === idx);
+        });
+      }
+    }
+
+    /* rebuild thumbnails when color changes */
+    function rebuildThumbs(gallery) {
+      currentGallery = gallery;
+      currentIdx = 0;
+      modalImg.src = gallery[0];
+      modalImg.style.display = '';
+      if (modalThumbs) {
+        modalThumbs.innerHTML = gallery.map((src, i) => `
+          <button class="modal__thumb${i === 0 ? ' active' : ''}" data-idx="${i}" aria-label="Foto ${i + 1}">
+            <img src="${src}" alt="Foto ${i + 1}" loading="lazy">
+          </button>`).join('');
+        bindThumbClicks();
+      }
+    }
+
+    function bindThumbClicks() {
+      if (!modalThumbs) return;
+      modalThumbs.querySelectorAll('.modal__thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => switchToIdx(parseInt(thumb.dataset.idx, 10)));
+      });
+    }
+    bindThumbClicks();
+
+    /* lightbox */
+    function openLightbox(startIdx) {
+      let lbIdx = startIdx;
+      const lb = document.createElement('div');
+      lb.className = 'gal-lb-overlay';
+      lb.innerHTML = `
+        <button class="gal-lb-close" aria-label="Fechar">✕</button>
+        <button class="gal-lb-prev" aria-label="Anterior">&#8249;</button>
+        <img class="gal-lb-img" src="${currentGallery[lbIdx]}" alt="">
+        <button class="gal-lb-next" aria-label="Seguinte">&#8250;</button>
+        <span class="gal-lb-counter">${lbIdx + 1} / ${currentGallery.length}</span>`;
+      document.body.appendChild(lb);
+
+      const lbImg    = lb.querySelector('.gal-lb-img');
+      const counter  = lb.querySelector('.gal-lb-counter');
+
+      function goTo(idx) {
+        lbIdx = (idx + currentGallery.length) % currentGallery.length;
+        lbImg.src = currentGallery[lbIdx];
+        counter.textContent = `${lbIdx + 1} / ${currentGallery.length}`;
+      }
+
+      if (currentGallery.length <= 1) {
+        lb.querySelector('.gal-lb-prev').style.display = 'none';
+        lb.querySelector('.gal-lb-next').style.display = 'none';
+        lb.querySelector('.gal-lb-counter').style.display = 'none';
+      }
+
+      lb.querySelector('.gal-lb-close').addEventListener('click', () => lb.remove());
+      lb.querySelector('.gal-lb-prev').addEventListener('click', e => { e.stopPropagation(); goTo(lbIdx - 1); });
+      lb.querySelector('.gal-lb-next').addEventListener('click', e => { e.stopPropagation(); goTo(lbIdx + 1); });
+      lb.addEventListener('click', e => { if (e.target === lb) lb.remove(); });
+
+      function lbKey(e) {
+        if (!document.body.contains(lb)) { document.removeEventListener('keydown', lbKey); return; }
+        if (e.key === 'ArrowLeft')  goTo(lbIdx - 1);
+        else if (e.key === 'ArrowRight') goTo(lbIdx + 1);
+        else if (e.key === 'Escape') { lb.remove(); document.removeEventListener('keydown', lbKey); }
+      }
+      document.addEventListener('keydown', lbKey);
+    }
+
+    /* zoom button + main image click → lightbox */
+    const zoomBtn = document.getElementById('modalZoomBtn');
+    if (zoomBtn) zoomBtn.addEventListener('click', () => openLightbox(currentIdx));
+    if (modalImg) modalImg.addEventListener('click', () => openLightbox(currentIdx));
+
+    /* color swatches → switch gallery */
     modalBody.querySelectorAll('.cswatch').forEach(sw => {
       sw.addEventListener('click', () => {
         modalBody.querySelectorAll('.cswatch').forEach(s => s.classList.remove('active'));
         sw.classList.add('active');
-        const img = document.getElementById('modalImg');
-        if (img && sw.dataset.img) {
-          img.src = sw.dataset.img;
-          img.style.display = '';
+        const colorName = sw.dataset.color;
+        if (p.colorGallery && p.colorGallery[colorName]) {
+          rebuildThumbs(p.colorGallery[colorName]);
         }
       });
     });
