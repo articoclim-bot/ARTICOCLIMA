@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Perguntas Frequentes — ARTICOCLIMA. Tudo o que precisa de saber sobre manutenção de ar condicionado, painéis solares, serviços e garantias." />
+  <title>Perguntas Frequentes (FAQ) – ARTICOCLIMA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Layout base ── */
+    .faq-page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 120px 24px 100px;
+    }
+    .faq-page__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: 40px;
+      transition: opacity .2s;
+    }
+    .faq-page__back:hover { opacity: .75; }
+
+    /* ── Cabeçalho ── */
+    .faq-hero {
+      margin-bottom: 56px;
+    }
+    .faq-hero__tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .faq-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -.5px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .faq-hero h1 span { color: var(--primary); }
+    .faq-hero__desc {
+      color: var(--gray);
+      font-size: .97rem;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* ── Categoria ── */
+    .faq-category {
+      margin-bottom: 56px;
+    }
+    .faq-category__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--gray-light);
+    }
+    .faq-category__icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .faq-category__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    /* ── Accordion ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .faq-item {
+      background: var(--white);
+      border: 1.5px solid var(--gray-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .faq-item:has(.faq-item__body.open),
+    .faq-item.is-open {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(249,115,22,.12);
+    }
+    .faq-item__btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      width: 100%;
+      padding: 18px 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+    .faq-item__btn:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+    .faq-item__question {
+      font-size: .97rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.5;
+    }
+    .faq-item__chevron {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      background: var(--gray-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+      font-size: .8rem;
+      transition: transform .25s, background .2s, color .2s;
+    }
+    .faq-item.is-open .faq-item__chevron {
+      transform: rotate(180deg);
+      background: var(--primary);
+      color: #fff;
+    }
+    .faq-item__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .32s ease;
+    }
+    .faq-item__body.open {
+      max-height: 600px;
+    }
+    .faq-item__answer {
+      padding: 0 20px 20px;
+      color: var(--gray);
+      font-size: .93rem;
+      line-height: 1.85;
+      border-top: 1px solid var(--gray-light);
+      padding-top: 16px;
+    }
+    .faq-item__answer strong { color: var(--dark); }
+    .faq-item__answer .faq-highlight {
+      background: var(--primary-light);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: .88rem;
+      color: var(--dark);
+    }
+
+    /* ── Divider ── */
+    .faq-divider {
+      border: none;
+      border-top: 1px solid var(--gray-light);
+      margin: 56px 0;
+    }
+
+    /* ── CTA final ── */
+    .faq-cta {
+      background: var(--primary-light);
+      border: 1.5px solid #FCD3A0;
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+    }
+    .faq-cta h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .faq-cta p {
+      color: var(--gray);
+      font-size: .93rem;
+      margin-bottom: 20px;
+    }
+    .faq-cta__btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .faq-cta__btns .btn { min-width: 160px; }
+
+    @media (max-width: 560px) {
+      .faq-page { padding: 100px 16px 80px; }
+      .faq-item__btn { padding: 14px 16px; }
+      .faq-item__answer { padding: 0 16px 16px; padding-top: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="80" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-nav" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
+        </svg>
+      </a>
+      <button id="langToggle" class="lang-toggle" title="Switch to English">EN</button>
+      <a href="index.html" class="btn btn--primary nav__cta">← Voltar ao Site</a>
+    </nav>
+  </header>
+
+  <!-- ===== CONTEÚDO ===== -->
+  <main class="faq-page">
+    <a href="index.html" class="faq-page__back">← Voltar ao início</a>
+
+    <div class="faq-hero">
+      <span class="faq-hero__tag">Tire as suas dúvidas</span>
+      <h1>Perguntas <span>Frequentes</span></h1>
+      <p class="faq-hero__desc">Respostas claras e práticas sobre manutenção, uso e serviços da Ártico Climatização em Tavira.</p>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         CATEGORIA 1 — MANUTENÇÃO E USO
+         ══════════════════════════════════════ -->
+    <div class="faq-category" id="manutencao">
+      <div class="faq-category__header">
+        <div class="faq-category__icon">🔧</div>
+        <h2 class="faq-category__title">Manutenção e Uso</h2>
+      </div>
+
+      <div class="faq-list">
+
+        <!-- Q1 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">Com que frequência devo limpar os filtros do meu ar condicionado?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Para um uso doméstico normal, recomendamos a limpeza dos filtros a cada <strong>3 a 6 meses</strong>. Em ambientes comerciais ou com muita poeira, deve ser feita mensalmente. Filtros limpos garantem a qualidade do ar e evitam que a máquina consuma mais energia.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">Qual é a temperatura ideal para configurar o aparelho?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              No verão, a temperatura recomendada para conforto e poupança energética situa-se entre os <strong>23°C e os 25°C</strong>. No inverno, o ideal é entre <strong>20°C e 22°C</strong>. Cada grau de diferença pode representar um aumento de até 7% no consumo de eletricidade.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">O que é a tecnologia Inverter?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              É um sistema que regula a velocidade do compressor. Em vez de ligar e desligar constantemente (o que consome muita energia), a tecnologia <strong>Inverter</strong> ajusta a potência para manter a temperatura constante, sendo muito mais eficiente e silenciosa.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">Como funciona um sistema Solar AQS (Águas Quentes Sanitárias)?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              O sistema utiliza coletores solares instalados no telhado para captar a energia do sol e aquecer a água armazenada num depósito (termosifão ou circulação forçada). É uma das formas mais <strong>ecológicas e económicas</strong> de ter água quente em casa.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">O meu ar condicionado deita água para a rua. É normal?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Sim, é o resultado da condensação. No modo de arrefecimento (verão), a unidade interior retira a humidade do ar e escoa-a pelo tubo de dreno. No modo de aquecimento (inverno), é a <strong>unidade exterior</strong> que pode libertar água.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">De quanto em quanto tempo tenho de fazer manutenção ao meu painel solar com termossifão?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Para garantir o rendimento máximo e a longevidade do sistema, recomendamos uma manutenção preventiva <strong>anual ou, no máximo, de 2 em 2 anos</strong>. Nesta revisão, os nossos técnicos verificam:
+              <ul style="margin:10px 0 0 20px; display:block; list-style:disc">
+                <li style="display:list-item; padding:2px 0">O estado do <strong>ânodo de magnésio</strong> (que protege o depósito contra a corrosão)</li>
+                <li style="display:list-item; padding:2px 0">O nível e densidade do <strong>fluido térmico</strong> (anticongelante)</li>
+                <li style="display:list-item; padding:2px 0">O estado das <strong>válvulas de segurança</strong></li>
+              </ul>
+              <div class="faq-highlight">
+                💡 <strong>Sabia que?</strong> Um ânodo de magnésio gasto é a principal causa de furos nos depósitos solares. A substituição preventiva desta peça barata pode poupar-lhe o custo de um depósito novo.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /faq-list -->
+    </div><!-- /categoria 1 -->
+
+    <hr class="faq-divider">
+
+    <!-- ══════════════════════════════════════
+         CATEGORIA 2 — SERVIÇOS E GARANTIAS
+         ══════════════════════════════════════ -->
+    <div class="faq-category" id="servicos">
+      <div class="faq-category__header">
+        <div class="faq-category__icon">🏆</div>
+        <h2 class="faq-category__title">Serviços e Garantias</h2>
+      </div>
+
+      <div class="faq-list">
+
+        <!-- Q7 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">Qual é o prazo médio entre o pedido de orçamento e a instalação?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Na Ártico Climatização, primamos pela rapidez. Após a adjudicação do orçamento, o prazo médio de instalação varia entre <strong>2 a 14 dias úteis</strong>, dependendo da disponibilidade de stock dos equipamentos selecionados (Daikin, Bosch ou Daitsu).
+            </div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">Dão assistência a equipamentos que não foram instalados por vós?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Sim. Realizamos <strong>manutenção preventiva e corretiva</strong> em diversos sistemas de climatização. No entanto, em caso de avarias que exijam peças específicas, a disponibilidade dependerá da marca do equipamento.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">Qual é a garantia do serviço?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Além da <strong>garantia oficial de fabricante</strong> das marcas que representamos (como a Bosch e a Daikin), a Ártico Climatização oferece uma <strong>garantia total sobre a mão de obra</strong> da instalação, assegurando que o sistema fica a funcionar com a máxima eficiência e segurança.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">Fazem orçamentos gratuitos em Tavira?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Sim. Sendo uma empresa sediada em Tavira, realizamos <strong>visitas técnicas e orçamentos sem compromisso</strong> na nossa zona e arredores, ajudando-o a escolher a solução de climatização ou energia solar mais adequada ao seu espaço.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="faq-item">
+          <button class="faq-item__btn" aria-expanded="false">
+            <span class="faq-item__question">A instalação é feita por técnicos certificados?</span>
+            <span class="faq-item__chevron" aria-hidden="true">▼</span>
+          </button>
+          <div class="faq-item__body" role="region">
+            <div class="faq-item__answer">
+              Sem dúvida. A nossa empresa está devidamente registada e todos os nossos técnicos são <strong>certificados para o manuseamento de gases fluorados</strong> (Certificação EIC nº GF-0879), garantindo o cumprimento de todas as normas legais e ambientais.
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /faq-list -->
+    </div><!-- /categoria 2 -->
+
+    <hr class="faq-divider">
+
+    <!-- ══════════════════════════════════════
+         CTA FINAL
+         ══════════════════════════════════════ -->
+    <div class="faq-cta">
+      <h3>Não encontrou a resposta que procurava?</h3>
+      <p>A nossa equipa está disponível para responder a qualquer dúvida rapidamente.</p>
+      <div class="faq-cta__btns">
+        <a href="https://wa.me/351964501776" target="_blank" rel="noopener" class="btn btn--primary">💬 WhatsApp</a>
+        <a href="index.html#contacto" class="btn btn--outline">📞 Fale Connosco</a>
+      </div>
+    </div>
+
+    <p style="font-size:.82rem; color: var(--gray); text-align:center; margin-top:48px;">© 2025 ARTICOCLIMA · Todos os direitos reservados</p>
+  </main>
+
+  <!-- Floating Home Button -->
+  <a href="index.html" class="home-float" title="Página Inicial">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><polyline points="9 21 9 12 15 12 15 21"/></svg>
+  </a>
+
+  <script>
+    // Sticky header shadow
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Accordion — event delegation no container principal
+    document.querySelector('.faq-page').addEventListener('click', function(e) {
+      const btn = e.target.closest('.faq-item__btn');
+      if (!btn) return;
+      const item = btn.closest('.faq-item');
+      const body = item.querySelector('.faq-item__body');
+      const isOpen = item.classList.contains('is-open');
+
+      // Fechar todos os outros
+      document.querySelectorAll('.faq-item.is-open').forEach(function(openItem) {
+        if (openItem !== item) {
+          openItem.classList.remove('is-open');
+          openItem.querySelector('.faq-item__body').classList.remove('open');
+          openItem.querySelector('.faq-item__btn').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle o atual
+      item.classList.toggle('is-open', !isOpen);
+      body.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  </script>
+  <script src="js/i18n.js"></script>
+</body>
+</html>

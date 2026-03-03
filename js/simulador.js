@@ -576,6 +576,10 @@ function renderStep3() {
   document.getElementById('step3').style.display = 'block';
   setStepActive(3);
 
+  // Limpar seleções anteriores
+  _selectedQuote.clear();
+  updateQuoteBar();
+
   const el = document.getElementById('simResults');
   el.innerHTML = buildResultsHTML();
 }
@@ -667,6 +671,9 @@ function buildResultsHTML() {
             ${inCompare ? '✓ A comparar' : '⊕ Comparar'}
           </button>
         </div>
+        <button class="res-select-btn" data-key="mono:${brand}:${option.series}" data-label="${brandLabel} ${option.series}" data-price="${option.total}">
+          ☐ Selecionar para orçamento
+        </button>
       </div>`;
     }
     html += `</div>`;
@@ -726,6 +733,9 @@ function buildResultsHTML() {
           <div class="res-multi-note res-multi-note--info">ℹ️ Custo de equipamento geralmente superior ao monosplit</div>
           <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
         </div>
+        <button class="res-select-btn" data-key="multi:daikin:perfera" data-label="Daikin Perfera Multisplit" data-price="${multi.total}">
+          ☐ Selecionar para orçamento
+        </button>
       </div>`;
 
     } else if (brand === 'daikin' && !multi) {
@@ -815,6 +825,7 @@ function buildCompareHTML(items) {
 // ============================================================
 let _carouselTimer = null;
 let _carouselIdx   = 0;
+let _selectedQuote = new Map(); // key → { label, price }
 
 function simShowDetail(seriesName) {
   const { mono, brand } = state.results;
@@ -1103,11 +1114,32 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: scrollY });
       return;
     }
+
+    // Selecionar para orçamento
+    const selectBtn = e.target.closest('.res-select-btn');
+    if (selectBtn) {
+      const key   = selectBtn.dataset.key;
+      const label = selectBtn.dataset.label;
+      const price = parseFloat(selectBtn.dataset.price);
+      if (_selectedQuote.has(key)) {
+        _selectedQuote.delete(key);
+        selectBtn.classList.remove('selected');
+        selectBtn.textContent = '☐ Selecionar para orçamento';
+      } else {
+        _selectedQuote.set(key, { label, price });
+        selectBtn.classList.add('selected');
+        selectBtn.textContent = '✔ Selecionado — incluído no pedido';
+      }
+      updateQuoteBar();
+      return;
+    }
   });
 
-  // Fechar modal / zoom com tecla ESC
+  // Fechar modal / zoom / quote modal com tecla ESC
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
+      const qm = document.getElementById('simQuoteModal');
+      if (qm && qm.style.display !== 'none') { closeQuoteModal(); return; }
       if (document.getElementById('sdmZoomOverlay')) sdmZoomClose();
       else closeDetailModal();
     }
@@ -1121,6 +1153,19 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (n === 2 && state.numRooms > 0) renderStep2();
     });
   });
+
+  // Quote bar → abrir modal
+  document.getElementById('simQuoteBarBtn')?.addEventListener('click', openQuoteModal);
+
+  // Quote modal — fechar ao clicar no X ou no overlay
+  document.getElementById('simQMClose')?.addEventListener('click', closeQuoteModal);
+  document.getElementById('simQuoteModal')?.addEventListener('click', e => {
+    if (e.target === document.getElementById('simQuoteModal')) closeQuoteModal();
+  });
+
+  // Quote modal — enviar
+  document.getElementById('simQMWA')?.addEventListener('click', sendViaWhatsApp);
+  document.getElementById('simQMEmail')?.addEventListener('click', sendViaEmail);
 
   // Iniciar no step 1
   renderStep1();
@@ -1136,4 +1181,92 @@ function showError(msg) {
   document.getElementById('step2').querySelector('.container').prepend(div);
   div.scrollIntoView({ behavior: 'smooth', block: 'center' });
   setTimeout(() => div.remove(), 6000);
+}
+
+// ============================================================
+// QUOTE BAR + CONTACT MODAL
+// ============================================================
+function updateQuoteBar() {
+  const bar = document.getElementById('simQuoteBar');
+  if (!bar) return;
+  const n = _selectedQuote.size;
+  bar.style.display = n > 0 ? 'flex' : 'none';
+  const countEl = document.getElementById('simQuoteCount');
+  if (countEl) countEl.textContent = n === 1 ? '1 opção selecionada' : `${n} opções selecionadas`;
+}
+
+function openQuoteModal() {
+  const modal = document.getElementById('simQuoteModal');
+  if (!modal) return;
+  // Preencher itens selecionados
+  const sel = document.getElementById('simQMSelected');
+  if (sel) {
+    let h = '';
+    _selectedQuote.forEach(item => {
+      h += `<div class="sim-qm-item">
+        <span class="sim-qm-check">✓</span>
+        <div class="sim-qm-item-info">
+          <strong>${item.label}</strong>
+          <span>Equipamento a partir de ${fmtPrice(item.price)}</span>
+        </div>
+      </div>`;
+    });
+    sel.innerHTML = h;
+  }
+  document.getElementById('simQMName').value = '';
+  document.getElementById('simQMContact').value = '';
+  document.getElementById('simQMError').textContent = '';
+  modal.style.display = 'flex';
+  setTimeout(() => document.getElementById('simQMName').focus(), 80);
+}
+
+function closeQuoteModal() {
+  const modal = document.getElementById('simQuoteModal');
+  if (modal) modal.style.display = 'none';
+}
+
+function buildQuoteMessage(name, contact) {
+  let msg = 'Olá Ártico Climatização! 👋\n\n';
+  msg += 'Fiz a simulação no vosso website e tenho interesse nas seguintes soluções:\n\n';
+  _selectedQuote.forEach(item => {
+    msg += `• ${item.label} — equipamento a partir de ${fmtPrice(item.price)}\n`;
+  });
+  msg += `\nNome: ${name}`;
+  msg += `\nContacto: ${contact}`;
+  msg += '\n\nPodem contactar-me para orçamento completo (equipamento + instalação)?\nObrigado!';
+  return msg;
+}
+
+function validateQuoteForm() {
+  const name    = (document.getElementById('simQMName')?.value    || '').trim();
+  const contact = (document.getElementById('simQMContact')?.value || '').trim();
+  const errEl   = document.getElementById('simQMError');
+  if (!name) {
+    if (errEl) errEl.textContent = 'Por favor indique o seu nome.';
+    document.getElementById('simQMName').focus();
+    return null;
+  }
+  if (!contact) {
+    if (errEl) errEl.textContent = 'Por favor indique o seu telemóvel ou email.';
+    document.getElementById('simQMContact').focus();
+    return null;
+  }
+  if (errEl) errEl.textContent = '';
+  return { name, contact };
+}
+
+function sendViaWhatsApp() {
+  const data = validateQuoteForm();
+  if (!data) return;
+  const msg = buildQuoteMessage(data.name, data.contact);
+  window.open('https://wa.me/351964501776?text=' + encodeURIComponent(msg), '_blank');
+  closeQuoteModal();
+}
+
+function sendViaEmail() {
+  const data = validateQuoteForm();
+  if (!data) return;
+  const msg     = buildQuoteMessage(data.name, data.contact);
+  const subject = encodeURIComponent('Pedido de Orçamento — Simulador Ártico Climatização');
+  window.location.href = `mailto:artico.clim@gmail.com?subject=${subject}&body=${encodeURIComponent(msg)}`;
 }
