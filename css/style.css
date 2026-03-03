@@ -2048,3 +2048,213 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: rgba(28,28,30,.07);
   border-color: var(--dark);
 }
+
+/* ══════════════════════════════════════════
+   REVIEWS / TESTEMUNHOS
+   ══════════════════════════════════════════ */
+.reviews { background: var(--off-white); }
+
+/* Header row: text + google badge side by side */
+.reviews__intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+.reviews__section-header { margin-bottom: 0 !important; text-align: left; }
+.reviews__section-header .section__tag { justify-content: flex-start; }
+
+/* Google Reviews Badge */
+.g-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-light);
+  border-radius: var(--radius);
+  padding: 16px 22px;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), transform var(--transition);
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.g-badge:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.g-badge__logo { display: flex; align-items: center; }
+.g-badge__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.g-badge__rating {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.g-badge__score {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1;
+}
+.g-badge__stars {
+  font-size: 1.1rem;
+  color: #FBBC05;
+  letter-spacing: 1px;
+}
+.g-badge__label {
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--gray);
+  letter-spacing: .3px;
+  text-transform: uppercase;
+}
+.g-badge__cta {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--primary);
+  border-left: 1.5px solid var(--gray-light);
+  padding-left: 16px;
+  margin-left: 4px;
+}
+
+/* Review Cards Grid */
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+/* Single Review Card */
+.rv-card {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.rv-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.rv-card__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rv-card__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: .9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.rv-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rv-card__name {
+  font-weight: 700;
+  font-size: .95rem;
+  color: var(--dark);
+}
+.rv-card__stars {
+  font-size: .95rem;
+  color: #FBBC05;
+  letter-spacing: 1px;
+}
+.rv-card__google { flex-shrink: 0; opacity: .85; }
+.rv-card__text {
+  font-size: .93rem;
+  line-height: 1.75;
+  color: var(--gray);
+  font-style: normal;
+  flex: 1;
+  quotes: none;
+}
+.rv-card__text::before,
+.rv-card__text::after { content: none; }
+
+/* "Ver Todas" CTA */
+.reviews__more {
+  display: flex;
+  justify-content: center;
+}
+.reviews__more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 2px solid var(--gray-light);
+  color: var(--dark);
+  font-family: 'Inter', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  box-shadow: var(--shadow);
+}
+.reviews__more-btn:hover {
+  border-color: #4285F4;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  color: #4285F4;
+}
+
+/* ── Footer Social ── */
+.footer__social {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.footer__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray);
+  font-size: .85rem;
+  font-weight: 600;
+  transition: color var(--transition);
+  padding: 6px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--gray-light);
+  background: rgba(255,255,255,.06);
+}
+.footer__social-link:hover {
+  color: var(--white);
+  border-color: rgba(255,255,255,.25);
+  background: rgba(255,255,255,.12);
+}
+
+/* ── Reviews responsive ── */
+@media (max-width: 860px) {
+  .reviews__grid { grid-template-columns: 1fr; }
+  .reviews__intro { flex-direction: column; align-items: stretch; }
+  .g-badge { justify-content: center; }
+}
+@media (max-width: 560px) {
+  .g-badge { flex-wrap: wrap; gap: 12px; }
+  .g-badge__cta { border-left: none; padding-left: 0; }
+  .rv-card { padding: 20px; }
+}
