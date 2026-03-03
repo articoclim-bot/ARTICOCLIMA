@@ -24,7 +24,6 @@ const IMG = {
   bosch7000iSilver:['assets/products/bosch-7000i-silver-1.webp','assets/products/bosch-7000i-silver-2.webp','assets/products/bosch-7000i-silver-3.webp'],
   bosch7000iBlack: ['assets/products/bosch-7000i-black-1.webp','assets/products/bosch-7000i-black-2.webp','assets/products/bosch-7000i-black-3.webp'],
   articPlus:       ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp','assets/products/daitsu-artic-plus-4.jpg'],
-  artic:           ['assets/products/daitsu-artic-1.webp','assets/products/daitsu-artic-2.webp','assets/products/daitsu-artic-3.webp','assets/products/daitsu-artic-4.jpg'],
 };
 
 const PRODUCTS = [
@@ -401,91 +400,6 @@ const PRODUCTS = [
     image: IMG.articPlus[0], images: IMG.articPlus,
   },
 
-  /* ===================================================
-     DAITSU — Série ARTIC (DS-KTP-4)
-     Classe A++ arref. / A+ aquec. | WiFi incluído
-     Preços Tabela 2025 c/ IVA
-     =================================================== */
-  {
-    id: 'daitsu-artic-9',
-    brand: 'daitsu', series: 'ARTIC', model: 'DS-9KTP-4',
-    btu: 9000, kw: 2.6,
-    energyCool: 'A++', energyHeat: 'A+',
-    noiseIn: 34, noiseOut: 51,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
-    features: [
-      'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído',
-      'Filtro de pó',
-      'Auto-restart',
-      'Sensor I Feel no telecomando',
-      'Swing lama vertical',
-      'Contacto seco ON/OFF',
-    ],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 590,
-    image: IMG.artic[0], images: IMG.artic,
-  },
-  {
-    id: 'daitsu-artic-12',
-    brand: 'daitsu', series: 'ARTIC', model: 'DS-12KTP-4',
-    btu: 12000, kw: 3.4,
-    energyCool: 'A++', energyHeat: 'A+',
-    noiseIn: 34, noiseOut: 52,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
-    features: [
-      'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído',
-      'Filtro de pó',
-      'Auto-restart',
-      'Sensor I Feel no telecomando',
-      'Swing lama vertical',
-      'Contacto seco ON/OFF',
-    ],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 630,
-    image: IMG.artic[0], images: IMG.artic,
-  },
-  {
-    id: 'daitsu-artic-18',
-    brand: 'daitsu', series: 'ARTIC', model: 'DS-18KTP-4',
-    btu: 18000, kw: 5.0,
-    energyCool: 'A++', energyHeat: 'A+',
-    noiseIn: 40, noiseOut: 55,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
-    features: [
-      'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído',
-      'Filtro de pó',
-      'Auto-restart',
-      'Sensor I Feel no telecomando',
-      'Swing lama vertical',
-      'Contacto seco ON/OFF',
-    ],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1050,
-    image: IMG.artic[0], images: IMG.artic,
-  },
-  {
-    id: 'daitsu-artic-24',
-    brand: 'daitsu', series: 'ARTIC', model: 'DS-24KTP-4',
-    btu: 24000, kw: 6.5,
-    energyCool: 'A++', energyHeat: 'A+',
-    noiseIn: 40, noiseOut: 56,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
-    features: [
-      'Classe A++ arrefecimento / A+ aquecimento',
-      'WiFi incluído',
-      'Filtro de pó',
-      'Auto-restart',
-      'Sensor I Feel no telecomando',
-      'Swing lama vertical',
-      'Contacto seco ON/OFF',
-    ],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1410,
-    image: IMG.artic[0], images: IMG.artic,
-  },
 ];
 
 /* =============================================
@@ -499,7 +413,7 @@ const ENERGY_META = {
   'A':    { cls: 'energy--a',    label: 'A' },
 };
 
-const BRAND_LABEL = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu', ariston: 'Ariston' };
+const BRAND_LABEL = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' };
 
 const AC_ICON = `<svg viewBox="0 0 96 44" width="96" height="44" fill="none" stroke="rgba(0,0,0,0.22)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
   <rect x="2" y="6" width="92" height="28" rx="5"/>
@@ -998,47 +912,6 @@ const SOLAR_PRODUCTS = [
     tagline: 'Bomba de calor · AQS',
     features: ['Bomba de calor integrada', 'COP 3,5', 'Compatível com modo solar', 'Painel de controlo LCD'],
     specs: [{ label: 'Volume', val: '290 L' }, { label: 'COP', val: '3,5' }, { label: 'Temp. máx.', val: '62°C' }, { label: 'Pressão máx.', val: '8,7 bar' }],
-  },
-  /* ---- ARISTON ---- */
-  {
-    id: 'ariston-kairos-200',
-    brand: 'ariston', series: 'Kairos FS', model: 'Kairos FS 200L',
-    capacity: 200, energyClass: 'A++', pvp: 1590,
-    image: 'assets/products/ariston-solar.jpg',
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Coletor plano · Pressurizado',
-    features: ['Sistema pressurizado', 'Serpentina dupla', 'Resistência elétrica de apoio', 'Proteção antigeada'],
-    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Coletores', val: '2 painéis planos' }, { label: 'Área captação', val: '4,0 m²' }, { label: 'Pressão máx.', val: '8 bar' }],
-  },
-  {
-    id: 'ariston-kairos-300',
-    brand: 'ariston', series: 'Kairos FS', model: 'Kairos FS 300L',
-    capacity: 300, energyClass: 'A++', pvp: 2090,
-    image: 'assets/products/ariston-solar.jpg',
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Coletor plano · Pressurizado',
-    features: ['Sistema pressurizado', 'Serpentina dupla', 'Resistência elétrica de apoio', 'Proteção antigeada'],
-    specs: [{ label: 'Volume', val: '300 L' }, { label: 'Coletores', val: '3 painéis planos' }, { label: 'Área captação', val: '6,0 m²' }, { label: 'Pressão máx.', val: '8 bar' }],
-  },
-  {
-    id: 'ariston-lydos-100',
-    brand: 'ariston', series: 'Lydos Hybrid', model: 'Lydos Hybrid 100 EU',
-    capacity: 100, energyClass: 'A+', pvp: 1090,
-    image: 'assets/products/ariston-lydos.jpg',
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Bomba de calor · AQS',
-    features: ['Bomba de calor integrada', 'COP 3,2', 'Modo híbrido inteligente', 'Wi-Fi opcional'],
-    specs: [{ label: 'Volume', val: '100 L' }, { label: 'COP', val: '3,2' }, { label: 'Temp. máx.', val: '65°C' }, { label: 'Pressão máx.', val: '8 bar' }],
-  },
-  {
-    id: 'ariston-lydos-150',
-    brand: 'ariston', series: 'Lydos Hybrid', model: 'Lydos Hybrid 150 EU',
-    capacity: 150, energyClass: 'A+', pvp: 1390,
-    image: 'assets/products/ariston-lydos.jpg',
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Bomba de calor · AQS',
-    features: ['Bomba de calor integrada', 'COP 3,2', 'Modo híbrido inteligente', 'Wi-Fi opcional'],
-    specs: [{ label: 'Volume', val: '150 L' }, { label: 'COP', val: '3,2' }, { label: 'Temp. máx.', val: '65°C' }, { label: 'Pressão máx.', val: '8 bar' }],
   },
 ];
 

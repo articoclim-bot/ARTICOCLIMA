@@ -346,6 +346,44 @@
       flex-shrink: 0;
     }
 
+    /* ── Badges de credibilidade ── */
+    .leg-badges {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding: 18px 22px;
+      background: #f9f9fb;
+      border: 1px solid #e8e8ef;
+      border-radius: 12px;
+    }
+    .leg-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .leg-apa-logo {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+    .leg-eic-badge {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+    .leg-badge-label {
+      font-size: .82rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    .leg-badges .leg-badge-item + .leg-badge-item {
+      border-left: 1px solid #e8e8ef;
+      padding-left: 24px;
+    }
+
     /* ── CTA final ── */
     .leg-cta {
       background: var(--dark);
@@ -399,6 +437,7 @@
           <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
         </svg>
       </a>
+      <button id="langToggle" class="lang-toggle" title="Switch to English">EN</button>
       <a href="index.html" class="btn btn--primary nav__cta">← Voltar ao Site</a>
     </nav>
   </header>
@@ -414,6 +453,18 @@
       Os gases fluorados com efeito de estufa (F-gases) estão sujeitos a regulamentação europeia e nacional cada vez mais restritiva. Esta página resume as principais obrigações legais que se aplicam à instalação e manutenção de equipamentos de ar condicionado em Portugal.
     </p>
     <p class="leg-update">Atualizado em março de 2026 · Informação baseada no Regulamento (UE) 2024/573 e Decreto-Lei n.º 145/2017</p>
+
+    <!-- ── Badges de credibilidade ── -->
+    <div class="leg-badges">
+      <div class="leg-badge-item">
+        <img src="https://apambiente.pt/themes/custom/apa_theme/images/logo-apa.png" alt="Agência Portuguesa do Ambiente" class="leg-apa-logo">
+        <span class="leg-badge-label">Fonte oficial: ApC / APA</span>
+      </div>
+      <div class="leg-badge-item">
+        <img src="assets/eic-badge.jpg" alt="Certificação EIC" class="leg-eic-badge">
+        <span class="leg-badge-label">ARTICOCLIMA · Certif. EIC nº GF-0879</span>
+      </div>
+    </div>
 
     <!-- ── 1. Enquadramento legal ── -->
     <section class="leg-section">
@@ -685,6 +736,13 @@
     </div>
 
   </main>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  </script>
+  <script src="js/i18n.js"></script>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">

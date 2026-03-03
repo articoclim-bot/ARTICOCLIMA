@@ -43,6 +43,7 @@
         <li><a href="index.html#sobre"     class="nav__link">Sobre Nós</a></li>
         <li><a href="index.html#contacto"  class="nav__link">Contacto</a></li>
       </ul>
+      <button id="langToggle" class="lang-toggle" title="Switch to English">EN</button>
       <a href="index.html#contacto" class="btn btn--primary nav__cta">Contactar</a>
       <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
         <span></span><span></span><span></span>
@@ -132,8 +133,9 @@
 
       <div id="simResults"></div>
 
-      <div class="sim-nav-btns">
+      <div class="sim-nav-btns sim-nav-btns--results">
         <button class="btn btn--outline" id="backToStep2">← Rever detalhes</button>
+        <button class="btn btn--primary" id="downloadPdf" onclick="window.print()">📄 Guardar PDF</button>
       </div>
 
     </div>
@@ -178,6 +180,7 @@
   <div id="simDetailModal" class="sdm-overlay" style="display:none" aria-modal="true" role="dialog"></div>
 
   <script src="js/simulador.js"></script>
+  <script src="js/i18n.js"></script>
 
   <!-- Mobile nav toggle -->
   <script>

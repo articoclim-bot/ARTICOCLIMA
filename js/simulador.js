@@ -34,7 +34,7 @@ const DAIKIN_MONO = {
     prices:  { 7000:972,  9000:1033, 12000:1169, 15000:1396, 18000:1863, 24000:2319, 28000:2774 },
     models:  { 7000:'FTXF20', 9000:'FTXF25', 12000:'FTXF35', 15000:'FTXF42', 18000:'FTXF50', 24000:'FTXF60', 28000:'FTXF71' },
     features: ['Inverter', 'R-32', 'Filtro básico', 'Auto-restart'],
-    image: 'assets/products/daikin-sensira-ftxf20.jpg',
+    image: 'assets/products/daikin-sensira-1.webp',
   },
   Confora: {
     label: 'Confora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
@@ -44,7 +44,7 @@ const DAIKIN_MONO = {
     // Sem modelo 15k — usa 18k
     models:  { 7000:'FTXP20', 9000:'FTXP25', 12000:'FTXP35', 18000:'FTXP50', 24000:'FTXP60', 28000:'FTXP71' },
     features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi opcional'],
-    image: 'assets/products/daikin-confora-ftxp20.jpg',
+    image: 'assets/products/daikin-confora-1.webp',
   },
   Perfera: {
     label: 'Perfera', tier: 'premium', badge: '🏆 Topo de Gama',
@@ -53,7 +53,7 @@ const DAIKIN_MONO = {
     prices:  { 7000:1451, 9000:1538, 12000:1771, 15000:2251, 18000:2897, 24000:3506, 28000:4041 },
     models:  { 7000:'FTXM20', 9000:'FTXM25', 12000:'FTXM35', 15000:'FTXM42', 18000:'FTXM50', 24000:'FTXM60', 28000:'FTXM71' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', 'App Daikin Online'],
-    image: 'assets/products/daikin-perfera-ftxm20.jpg',
+    image: 'assets/products/daikin-perfera-1.webp',
   },
   Stylish: {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
@@ -64,7 +64,7 @@ const DAIKIN_MONO = {
     models:  { 7000:'FTXA20', 9000:'FTXA25', 12000:'FTXA35', 15000:'FTXA42', 18000:'FTXA50' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '3 cores disponíveis'],
     maxBTU: 18000,
-    image: 'assets/products/daikin-stylish-ftxa20-branco.jpg',
+    image: 'assets/products/daikin-stylish-branco-1.webp',
   },
   Emura: {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
@@ -75,7 +75,7 @@ const DAIKIN_MONO = {
     models:  { 7000:'FTXJ20', 9000:'FTXJ25', 12000:'FTXJ35', 15000:'FTXJ42', 18000:'FTXJ50' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', '3 cores disponíveis'],
     maxBTU: 18000,
-    image: 'assets/products/daikin-emura-ftxj20-branco.jpg',
+    image: 'assets/products/daikin-emura-branco-1.webp',
   },
 };
 
@@ -115,7 +115,7 @@ const BOSCH_MONO = {
     prices: { 9000:699, 12000:799, 18000:1099, 24000:1399 },
     models: { 9000:'CL3000i-Set 26WE', 12000:'CL3000i-Set 35WE', 18000:'CL3000i-Set 53WE', 24000:'CL3000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
-    image: 'assets/products/bosch-climate3000i-rac26.jpg',
+    image: 'assets/products/bosch-3000i-1.webp',
   },
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
@@ -124,7 +124,7 @@ const BOSCH_MONO = {
     prices: { 9000:999, 12000:1149, 18000:1449, 24000:1749 },
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Ionizador', 'Sensor de presença'],
-    image: 'assets/products/bosch-climate6000i-rac26.jpg',
+    image: 'assets/products/bosch-6000i-1.webp',
   },
   '7000i': {
     label: 'Climate 7000i', tier: 'topo', badge: '🏆 Topo de Gama',
@@ -134,22 +134,12 @@ const BOSCH_MONO = {
     models: { 9000:'CL7000i-Set 26E', 12000:'CL7000i-Set 35E', 18000:'CL7000i-Set 53E' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Modo Silent 19 dB', 'iF Design Award 2025'],
     maxBTU: 18000,
-    image: 'assets/products/bosch-climate7000i-rac26.jpg',
+    image: 'assets/products/bosch-7000i-branco-1.webp',
   },
 };
 
 // --- DAITSU — Monosplit (conjuntos, c/ IVA — Tabela 2025) ---
 const DAITSU_MONO = {
-  'ARTIC': {
-    label: 'ARTIC', tier: 'entrada', badge: '💰 Melhor Preço',
-    energyCool: 'A++', energyHeat: 'A+',
-    desc: 'Gama entrada — WiFi incluído · Inverter · R-32 · Classe A++',
-    prices: { 9000:590, 12000:630, 18000:1050, 24000:1410 },
-    models: { 9000:'DS-9KTP-4', 12000:'DS-12KTP-4', 18000:'DS-18KTP-4', 24000:'DS-24KTP-4' },
-    features: ['Inverter', 'R-32', 'WiFi incluído', 'Auto-restart', 'Classe A++'],
-    maxBTU: 24000,
-    image: 'assets/products/daitsu-artic.jpg',
-  },
   'ARTIC Plus': {
     label: 'ARTIC Plus', tier: 'premium', badge: '🏆 Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++',
@@ -158,7 +148,7 @@ const DAITSU_MONO = {
     models: { 9000:'DS-9KTP-6', 12000:'DS-12KTP-6', 18000:'DS-18KTP-6', 24000:'DS-24KTP-6' },
     features: ['Inverter', 'R-32', 'WiFi incluído', 'Classe A+++', 'Alta qualidade de ar'],
     maxBTU: 24000,
-    image: 'assets/products/daitsu-artic-plus.jpg',
+    image: 'assets/products/daitsu-artic-plus-1.webp',
   },
 };
 
@@ -171,7 +161,7 @@ const state = {
   selectedBrand: 'daikin',
   rooms: [],       // array de objetos room
   results: null,   // resultados calculados
-  compareSet: new Set(), // nomes de séries selecionadas para comparação
+  compareMap: new Map(), // key="brand:series" → item data com brandLabel (comparação cross-brand)
 };
 
 // Template de uma divisão
@@ -332,8 +322,8 @@ function calcDaikinMulti(roomsWithBTU) {
 // ============================================================
 // 7. CALCULAR RESULTADOS
 // ============================================================
-function calcResults() {
-  state.compareSet.clear(); // reset comparação ao recalcular
+function calcResults(clearCompare = true) {
+  if (clearCompare) state.compareMap.clear(); // reset comparação ao recalcular
 
   // Calcular BTU para cada divisão
   const roomsWithBTU = state.rooms.map(room => {
@@ -598,6 +588,12 @@ function buildResultsHTML() {
     </div>
   </div>`;
 
+  // ─── Painel de comparação cross-brand (standalone, se ≥ 2 selecionados) ───
+  const cmpAllItems = Array.from(state.compareMap.values());
+  if (cmpAllItems.length >= 2) {
+    html += buildCompareHTML(cmpAllItems);
+  }
+
   // ─── Sugestão A — Monosplit ───
   html += `<div class="res-section">
     <div class="res-section-header">
@@ -606,15 +602,9 @@ function buildResultsHTML() {
     </div>`;
 
   if (mono && mono.length) {
-    // Painel de comparação (aparece acima das tier cards quando ≥ 2 selecionadas)
-    const cmpItems = mono.filter(o => state.compareSet.has(o.series));
-    if (cmpItems.length >= 2) {
-      html += buildCompareHTML(cmpItems, brandLabel);
-    }
-
     html += `<div class="res-tiers">`;
     for (const option of mono) {
-      const inCompare = state.compareSet.has(option.series);
+      const inCompare = state.compareMap.has(brand + ':' + option.series);
       const imgHtml = option.image
         ? `<div class="res-tier-img-wrap"><img class="res-tier-img" src="${option.image}" alt="${option.series}" onerror="this.parentElement.style.display='none'"></div>`
         : '';
@@ -651,7 +641,7 @@ function buildResultsHTML() {
         </div>
         <div class="res-tier-actions">
           <button class="res-detail-btn" data-series="${option.series}">🔍 Ver detalhes</button>
-          <button class="res-compare-btn${inCompare ? ' active' : ''}" data-series="${option.series}">
+          <button class="res-compare-btn${inCompare ? ' active' : ''}" data-brand="${brand}" data-series="${option.series}">
             ${inCompare ? '✓ A comparar' : '⊕ Comparar'}
           </button>
         </div>
@@ -765,7 +755,7 @@ function buildResultsHTML() {
 // ============================================================
 // 10b. PAINEL DE COMPARAÇÃO
 // ============================================================
-function buildCompareHTML(items, brandLabel) {
+function buildCompareHTML(items) {
   let html = `
   <div class="res-compare-section">
     <div class="res-compare-header">
@@ -781,7 +771,7 @@ function buildCompareHTML(items, brandLabel) {
     html += `
       <div class="res-cmp-card">
         ${imgHtml}
-        <div class="res-cmp-name">${brandLabel} ${item.series}</div>
+        <div class="res-cmp-name">${item.brandLabel} ${item.series}</div>
         <div class="res-cmp-badge">${item.badge}</div>
         <div class="res-cmp-price">${fmtPrice(item.total)}</div>
         <div class="res-cmp-since">💰 Desde · equipamento c/ IVA</div>
@@ -978,7 +968,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const switchBtn = e.target.closest('.sim-switch-brand');
     if (switchBtn) {
       state.selectedBrand = switchBtn.dataset.brand;
-      calcResults(); // já faz compareSet.clear()
+      calcResults(false); // preserva comparação cross-brand ao trocar de marca
       renderStep3();
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
@@ -991,14 +981,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Comparar — toggle
+    // Comparar — toggle (suporta cross-brand)
     const cmpBtn = e.target.closest('.res-compare-btn');
     if (cmpBtn) {
       const series = cmpBtn.dataset.series;
-      if (state.compareSet.has(series)) {
-        state.compareSet.delete(series);
+      const cBrand = cmpBtn.dataset.brand;
+      const key = cBrand + ':' + series;
+      if (state.compareMap.has(key)) {
+        state.compareMap.delete(key);
       } else {
-        state.compareSet.add(series);
+        // Guardar item completo com brandLabel para comparação cross-brand
+        const { mono } = state.results;
+        const item = mono && mono.find(o => o.series === series);
+        if (item) {
+          const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[cBrand] || cBrand;
+          state.compareMap.set(key, { ...item, brandLabel });
+        }
       }
       // Re-render mantendo posição de scroll
       const scrollY = window.scrollY;
@@ -1010,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Limpar comparação
     const clearBtn = e.target.closest('#clearCompare');
     if (clearBtn) {
-      state.compareSet.clear();
+      state.compareMap.clear();
       const scrollY = window.scrollY;
       document.getElementById('simResults').innerHTML = buildResultsHTML();
       window.scrollTo({ top: scrollY });
