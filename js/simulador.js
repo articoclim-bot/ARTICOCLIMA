@@ -35,6 +35,7 @@ const DAIKIN_MONO = {
     models:  { 7000:'FTXF20', 9000:'FTXF25', 12000:'FTXF35', 15000:'FTXF42', 18000:'FTXF50', 24000:'FTXF60', 28000:'FTXF71' },
     features: ['Inverter', 'R-32', 'Filtro básico', 'Auto-restart'],
     image: 'assets/products/daikin-sensira-1.webp',
+    images: ['assets/products/daikin-sensira-1.webp','assets/products/daikin-sensira-2.webp','assets/products/daikin-sensira-3.webp'],
   },
   Confora: {
     label: 'Confora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
@@ -45,6 +46,7 @@ const DAIKIN_MONO = {
     models:  { 7000:'FTXP20', 9000:'FTXP25', 12000:'FTXP35', 18000:'FTXP50', 24000:'FTXP60', 28000:'FTXP71' },
     features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi opcional'],
     image: 'assets/products/daikin-confora-1.webp',
+    images: ['assets/products/daikin-confora-1.webp','assets/products/daikin-confora-2.webp','assets/products/daikin-confora-3.webp'],
   },
   Perfera: {
     label: 'Perfera', tier: 'premium', badge: '🏆 Topo de Gama',
@@ -54,6 +56,7 @@ const DAIKIN_MONO = {
     models:  { 7000:'FTXM20', 9000:'FTXM25', 12000:'FTXM35', 15000:'FTXM42', 18000:'FTXM50', 24000:'FTXM60', 28000:'FTXM71' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', 'App Daikin Online'],
     image: 'assets/products/daikin-perfera-1.webp',
+    images: ['assets/products/daikin-perfera-1.webp','assets/products/daikin-perfera-2.webp','assets/products/daikin-perfera-3.webp'],
   },
   Stylish: {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
@@ -65,6 +68,11 @@ const DAIKIN_MONO = {
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '3 cores disponíveis'],
     maxBTU: 18000,
     image: 'assets/products/daikin-stylish-branco-1.webp',
+    images: [
+      'assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp',
+      'assets/products/daikin-stylish-silver-1.webp','assets/products/daikin-stylish-silver-2.webp','assets/products/daikin-stylish-silver-3.webp',
+      'assets/products/daikin-stylish-black-1.webp','assets/products/daikin-stylish-black-2.webp','assets/products/daikin-stylish-black-3.webp',
+    ],
   },
   Emura: {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
@@ -76,6 +84,11 @@ const DAIKIN_MONO = {
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', '3 cores disponíveis'],
     maxBTU: 18000,
     image: 'assets/products/daikin-emura-branco-1.webp',
+    images: [
+      'assets/products/daikin-emura-branco-1.webp','assets/products/daikin-emura-branco-2.webp','assets/products/daikin-emura-branco-3.webp',
+      'assets/products/daikin-emura-silver-1.webp','assets/products/daikin-emura-silver-2.webp','assets/products/daikin-emura-silver-3.webp',
+      'assets/products/daikin-emura-black-1.webp','assets/products/daikin-emura-black-2.webp','assets/products/daikin-emura-black-3.webp',
+    ],
   },
 };
 
@@ -116,6 +129,7 @@ const BOSCH_MONO = {
     models: { 9000:'CL3000i-Set 26WE', 12000:'CL3000i-Set 35WE', 18000:'CL3000i-Set 53WE', 24000:'CL3000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
     image: 'assets/products/bosch-3000i-1.webp',
+    images: ['assets/products/bosch-3000i-1.webp','assets/products/bosch-3000i-2.webp'],
   },
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
@@ -125,6 +139,7 @@ const BOSCH_MONO = {
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Ionizador', 'Sensor de presença'],
     image: 'assets/products/bosch-6000i-1.webp',
+    images: ['assets/products/bosch-6000i-1.webp','assets/products/bosch-6000i-2.webp','assets/products/bosch-6000i-3.webp','assets/products/bosch-6000i-4.webp'],
   },
   '7000i': {
     label: 'Climate 7000i', tier: 'topo', badge: '🏆 Topo de Gama',
@@ -135,6 +150,11 @@ const BOSCH_MONO = {
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Modo Silent 19 dB', 'iF Design Award 2025'],
     maxBTU: 18000,
     image: 'assets/products/bosch-7000i-branco-1.webp',
+    images: [
+      'assets/products/bosch-7000i-branco-1.webp','assets/products/bosch-7000i-branco-2.webp','assets/products/bosch-7000i-branco-3.webp',
+      'assets/products/bosch-7000i-silver-1.webp','assets/products/bosch-7000i-silver-2.webp','assets/products/bosch-7000i-silver-3.webp',
+      'assets/products/bosch-7000i-black-1.webp','assets/products/bosch-7000i-black-2.webp','assets/products/bosch-7000i-black-3.webp',
+    ],
   },
 };
 
@@ -149,6 +169,7 @@ const DAITSU_MONO = {
     features: ['Inverter', 'R-32', 'WiFi incluído', 'Classe A+++', 'Alta qualidade de ar'],
     maxBTU: 24000,
     image: 'assets/products/daitsu-artic-plus-1.webp',
+    images: ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp'],
   },
 };
 
@@ -276,7 +297,8 @@ function calcMonoTotal(brand, roomsWithBTU) {
       results.push({ series: series.label, badge: series.badge, desc: series.desc,
         tier: series.tier, rooms, total, features: series.features,
         energyCool: series.energyCool, energyHeat: series.energyHeat,
-        image: series.image || '' });
+        image: series.image || '',
+        images: series.images || [] });
     }
   }
 
@@ -789,8 +811,11 @@ function buildCompareHTML(items) {
 }
 
 // ============================================================
-// 10c. MODAL DE DETALHE
+// 10c. MODAL DE DETALHE — com Carousel + Zoom
 // ============================================================
+let _carouselTimer = null;
+let _carouselIdx   = 0;
+
 function simShowDetail(seriesName) {
   const { mono, brand } = state.results;
   const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[brand];
@@ -798,15 +823,31 @@ function simShowDetail(seriesName) {
   if (!option) return;
 
   const modal = document.getElementById('simDetailModal');
+  const imgs = (option.images && option.images.length) ? option.images
+             : (option.image ? [option.image] : []);
+  _carouselIdx = 0;
 
-  const imgHtml = option.image
-    ? `<img class="sdm-img" src="${option.image}" alt="${option.series}" onerror="this.parentElement.style.display='none'">`
-    : '';
+  const carouselHTML = imgs.length ? `
+  <div class="sdm-carousel" id="sdmCarousel">
+    <div class="sdm-carousel-track">
+      ${imgs.map((src, i) => `
+        <img class="sdm-carousel-img${i === 0 ? ' active' : ''}"
+             src="${src}" alt="${option.series} — imagem ${i+1}"
+             title="Clique para ampliar" data-idx="${i}"
+             onerror="this.style.display='none'" />
+      `).join('')}
+    </div>
+    ${imgs.length > 1 ? `
+    <button class="sdm-car-btn sdm-car-prev" id="sdmPrev" aria-label="Anterior">&#8249;</button>
+    <button class="sdm-car-btn sdm-car-next" id="sdmNext" aria-label="Próxima">&#8250;</button>
+    <div class="sdm-car-dots" id="sdmDots">
+      ${imgs.map((_, i) => `<span class="sdm-dot${i===0?' active':''}" data-idx="${i}"></span>`).join('')}
+    </div>` : ''}
+  </div>` : '';
 
   modal.innerHTML = `
   <div class="sdm-box">
-    <div class="sdm-top">
-      <div class="sdm-img-wrap">${imgHtml}</div>
+    <div class="sdm-top sdm-top--no-img">
       <div class="sdm-header-text">
         <span class="sdm-badge">${option.badge}</span>
         <div class="sdm-name">${brandLabel} ${option.series}</div>
@@ -814,6 +855,7 @@ function simShowDetail(seriesName) {
       </div>
       <button class="sdm-close" id="sdmClose" aria-label="Fechar">✕</button>
     </div>
+    ${carouselHTML}
     <div class="sdm-body">
       <div class="sdm-price-row">
         <span class="sdm-desde">Desde</span>
@@ -865,12 +907,59 @@ function simShowDetail(seriesName) {
 
   document.getElementById('sdmClose').addEventListener('click', closeDetailModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeDetailModal(); });
+
+  // ── Carousel logic ──
+  if (imgs.length > 1) {
+    const gotoSlide = (idx) => {
+      const n = imgs.length;
+      _carouselIdx = ((idx % n) + n) % n;
+      document.querySelectorAll('.sdm-carousel-img')
+        .forEach((img, i) => img.classList.toggle('active', i === _carouselIdx));
+      document.querySelectorAll('.sdm-dot')
+        .forEach((dot, i) => dot.classList.toggle('active', i === _carouselIdx));
+    };
+    const restartTimer = () => {
+      if (_carouselTimer) clearInterval(_carouselTimer);
+      _carouselTimer = setInterval(() => gotoSlide(_carouselIdx + 1), 5000);
+    };
+    document.getElementById('sdmPrev').addEventListener('click', () => { gotoSlide(_carouselIdx - 1); restartTimer(); });
+    document.getElementById('sdmNext').addEventListener('click', () => { gotoSlide(_carouselIdx + 1); restartTimer(); });
+    document.querySelectorAll('.sdm-dot').forEach(dot => {
+      dot.addEventListener('click', () => { gotoSlide(parseInt(dot.dataset.idx)); restartTimer(); });
+    });
+    restartTimer();
+  }
+
+  // ── Zoom on click ──
+  document.querySelectorAll('.sdm-carousel-img').forEach(img => {
+    img.addEventListener('click', () => sdmZoomOpen(img.src));
+  });
 }
 
 function closeDetailModal() {
   const modal = document.getElementById('simDetailModal');
   if (modal) { modal.style.display = 'none'; }
   document.body.style.overflow = '';
+  if (_carouselTimer) { clearInterval(_carouselTimer); _carouselTimer = null; }
+  sdmZoomClose();
+}
+
+function sdmZoomOpen(src) {
+  sdmZoomClose();
+  const overlay = document.createElement('div');
+  overlay.id = 'sdmZoomOverlay';
+  overlay.className = 'sdm-zoom-overlay';
+  overlay.innerHTML = `
+    <button class="sdm-zoom-close" id="sdmZoomClose" aria-label="Fechar zoom">✕</button>
+    <img class="sdm-zoom-img" src="${src}" alt="Zoom" />`;
+  document.body.appendChild(overlay);
+  document.getElementById('sdmZoomClose').addEventListener('click', sdmZoomClose);
+  overlay.addEventListener('click', e => { if (e.target === overlay) sdmZoomClose(); });
+}
+
+function sdmZoomClose() {
+  const el = document.getElementById('sdmZoomOverlay');
+  if (el) el.remove();
 }
 
 function roomIcon(type) {
@@ -1016,9 +1105,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Fechar modal com tecla ESC
+  // Fechar modal / zoom com tecla ESC
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDetailModal();
+    if (e.key === 'Escape') {
+      if (document.getElementById('sdmZoomOverlay')) sdmZoomClose();
+      else closeDetailModal();
+    }
   });
 
   // Progresso clicável (só passos já completados)

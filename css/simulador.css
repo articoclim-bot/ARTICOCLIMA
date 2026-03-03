@@ -524,8 +524,8 @@
 }
 .sdm-box {
   background: var(--white); border-radius: 20px;
-  max-width: 520px; width: 100%;
-  max-height: 90vh; overflow-y: auto;
+  max-width: 560px; width: 100%;
+  max-height: 92vh; overflow-y: auto;
   box-shadow: 0 24px 80px rgba(0,0,0,.4);
 }
 .sdm-top {
@@ -534,6 +534,7 @@
   display: flex; align-items: flex-start; gap: 16px;
   position: sticky; top: 0; z-index: 1;
 }
+.sdm-top--no-img { /* header sem thumbnail — só texto + fechar */ }
 .sdm-close {
   margin-left: auto; flex-shrink: 0;
   background: rgba(255,255,255,.12); border: none; color: var(--white);
@@ -551,6 +552,86 @@
 }
 .sdm-img { width: 100%; height: 100%; object-fit: cover; }
 .sdm-header-text { flex: 1; min-width: 0; }
+
+/* ── Carousel de imagens ── */
+.sdm-carousel {
+  position: relative;
+  background: #F0F0F2;
+  height: 280px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.sdm-carousel-track {
+  position: relative; width: 100%; height: 100%;
+}
+.sdm-carousel-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 16px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity .45s ease;
+  cursor: zoom-in;
+  user-select: none;
+}
+.sdm-carousel-img.active { opacity: 1; }
+
+/* Prev / Next */
+.sdm-car-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,.45); border: none; color: #fff;
+  width: 38px; height: 38px; border-radius: 50%;
+  font-size: 1.5rem; line-height: 1;
+  cursor: pointer; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+  font-family: 'Inter', sans-serif;
+}
+.sdm-car-btn:hover { background: rgba(0,0,0,.72); }
+.sdm-car-prev { left: 12px; }
+.sdm-car-next { right: 12px; }
+
+/* Dots */
+.sdm-car-dots {
+  position: absolute; bottom: 10px; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 7px; z-index: 5;
+}
+.sdm-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(0,0,0,.28); cursor: pointer;
+  transition: background .2s, transform .2s;
+  flex-shrink: 0;
+}
+.sdm-dot.active { background: var(--primary); transform: scale(1.35); }
+.sdm-dot:hover:not(.active) { background: rgba(0,0,0,.55); }
+
+/* ── Zoom lightbox ── */
+.sdm-zoom-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.92);
+  z-index: 2000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+}
+.sdm-zoom-img {
+  max-width: 100%; max-height: 90vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.5);
+  cursor: default;
+}
+.sdm-zoom-close {
+  position: fixed; top: 20px; right: 20px;
+  background: rgba(255,255,255,.18); border: none; color: #fff;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 1.15rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s; z-index: 2001;
+  font-family: 'Inter', sans-serif;
+}
+.sdm-zoom-close:hover { background: rgba(255,255,255,.35); }
 .sdm-badge {
   display: inline-block; background: var(--primary); color: var(--white);
   font-size: .72rem; font-weight: 700;
@@ -712,6 +793,8 @@
   .sdm-top { border-radius: 14px 14px 0 0; }
   .sdm-img-wrap { width: 72px; height: 72px; }
   .sdm-energy-row { flex-direction: column; }
+  .sdm-carousel { height: 220px; }
+  .sdm-car-btn { width: 32px; height: 32px; font-size: 1.3rem; }
 }
 
 /* =============================================
