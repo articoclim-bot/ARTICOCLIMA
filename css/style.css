@@ -1369,7 +1369,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   object-fit: contain;
   padding: 20px;
   z-index: 1;
-  mix-blend-mode: multiply;
 }
 .series-card__fallback {
   display: flex;
