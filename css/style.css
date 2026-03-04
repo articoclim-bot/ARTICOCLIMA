@@ -1248,6 +1248,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .brand-bg--bosch   { background: linear-gradient(145deg, #B00020 0%, #E2001A 100%); }
 .brand-bg--daitsu  { background: linear-gradient(145deg, #1B3A6B 0%, #2E64B2 100%); }
 .brand-bg--solar   { background: #fff; border: 1px solid var(--gray-light); }
+.brand-bg--white   { background: #fff; border: 1px solid var(--gray-light); }
 
 /* --- Filter Bar --- */
 .catalog__bar {
@@ -1353,7 +1354,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .series-card__img {
   position: relative;
   height: 210px;
-  background: #F7F7F8;
+  background: #fff;
+  border-bottom: 1px solid var(--gray-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1367,6 +1369,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   object-fit: contain;
   padding: 20px;
   z-index: 1;
+  mix-blend-mode: multiply;
 }
 .series-card__fallback {
   display: flex;

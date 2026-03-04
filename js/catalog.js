@@ -531,7 +531,7 @@ function modalHTML(p) {
   return `
     <div class="modal__layout">
       <div class="modal__img-col">
-        <div class="modal__img-wrap brand-bg--${p.brand}" id="modalImgWrap">
+        <div class="modal__img-wrap brand-bg--white" id="modalImgWrap">
           <img src="${initGallery[0]}" alt="${BRAND_LABEL[p.brand]} ${p.series} ${p.model}" id="modalImg" onerror="this.style.display='none'" style="cursor:zoom-in">
           <div class="product-card__fallback modal__fallback">${AC_ICON}</div>
           <button class="modal__zoom-btn" id="modalZoomBtn" aria-label="Ampliar imagem">
@@ -931,7 +931,7 @@ function solarSeriesCardHTML(group) {
   return `
     <article class="series-card" data-brand="${first.brand}" data-sk="${sk}">
       <div class="series-card__img">
-        <img src="${first.image}" alt="${BRAND_LABEL[first.brand]} ${first.series}" class="series-card__photo" onerror="this.style.display='none'">
+        <img src="${first.image}" alt="${BRAND_LABEL[first.brand]} ${first.series}" class="series-card__photo" id="sc-img-${sk}" onerror="this.style.display='none'">
         <div class="series-card__fallback">${SOLAR_ICON}</div>
       </div>
       <div class="series-card__body">
@@ -1059,6 +1059,15 @@ function solarModalHTML(p) {
         const p = group[idx];
         const priceEl = document.getElementById('sc-price-' + sk);
         if (priceEl) priceEl.textContent = p.pvp.toLocaleString('pt-PT') + ' €';
+        /* update card image */
+        const imgEl = document.getElementById('sc-img-' + sk);
+        if (imgEl) { imgEl.src = p.image; imgEl.style.display = ''; }
+        /* update energy badge */
+        const energyEl = document.getElementById('sc-energy-' + sk);
+        if (energyEl) energyEl.innerHTML = energyBadge(p.energyClass);
+        /* sync detail button idx */
+        const detailBtn = grid.querySelector(`.sc-detail-btn[data-sk="${sk}"]`);
+        if (detailBtn) detailBtn.dataset.idx = idx;
       }
       return;
     }

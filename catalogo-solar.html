@@ -40,6 +40,16 @@
       background: var(--off-white);
       min-height: 60vh;
     }
+    .solar-video-section {
+      background: #000;
+      line-height: 0;
+    }
+    .solar-video__player {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -91,6 +101,13 @@
       <p>Sistemas solares para Águas Quentes Sanitárias — Bosch. Colectores planos e bombas de calor para máxima eficiência.</p>
     </div>
   </div>
+
+  <!-- ===== VIDEO SECTION ===== -->
+  <section class="solar-video-section">
+    <video autoplay muted loop playsinline preload="metadata" class="solar-video__player">
+      <source src="assets/pub02.mp4" type="video/mp4">
+    </video>
+  </section>
 
   <!-- ===== SOLAR CATALOG ===== -->
   <main class="catalog-main">
