@@ -1247,6 +1247,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .brand-bg--daikin  { background: linear-gradient(145deg, #00337B 0%, #0055B3 100%); }
 .brand-bg--bosch   { background: linear-gradient(145deg, #B00020 0%, #E2001A 100%); }
 .brand-bg--daitsu  { background: linear-gradient(145deg, #1B3A6B 0%, #2E64B2 100%); }
+.brand-bg--solar   { background: #fff; border: 1px solid var(--gray-light); }
 
 /* --- Filter Bar --- */
 .catalog__bar {
