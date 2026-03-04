@@ -849,18 +849,28 @@
 
   .res-compare-section { break-inside: avoid; }
 
-  /* Cabeçalho de impressão com logo + data */
-  #step3::before {
-    content: 'ARTICOCLIMA — Simulação de Instalação';
-    display: block;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #1C1C1E;
-    margin-bottom: 4px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #F97316;
-  }
+  .print-header { display: flex !important; }
+}
+
+/* Cabeçalho de impressão — escondido no ecrã, visível no PDF */
+.print-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #F97316;
+  gap: 16px;
+}
+.print-header__logo { flex-shrink: 0; }
+.print-header__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  font-size: .85rem;
+  color: #1C1C1E;
+  font-family: 'Inter', sans-serif;
 }
 
 /* ══════════════════════════════════════════

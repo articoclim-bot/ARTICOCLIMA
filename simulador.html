@@ -131,6 +131,27 @@
   <section class="sim-section" id="step3" style="display:none">
     <div class="container">
 
+      <!-- Cabeçalho visível só no PDF -->
+      <div class="print-header">
+        <div class="print-header__logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="52" aria-label="Artico Climatização">
+            <defs>
+              <filter id="logo-print" color-interpolation-filters="sRGB">
+                <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                     0 0 0 0 0.451
+                                                     0 0 0 0 0.086
+                                                    -1 0 0 0 1"/>
+              </filter>
+            </defs>
+            <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-print)"/>
+          </svg>
+        </div>
+        <div class="print-header__contacts">
+          <span>📞 +351 964 501 776 &nbsp;|&nbsp; +351 963 712 752</span>
+          <span>✉ artico.clim@gmail.com</span>
+        </div>
+      </div>
+
       <div id="simResults"></div>
 
       <div class="sim-nav-btns sim-nav-btns--results">
