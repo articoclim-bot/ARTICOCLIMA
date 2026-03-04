@@ -62,9 +62,14 @@ const DAIKIN_MONO = {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
     energyCool: 'A+++', energyHeat: 'A++',
     desc: 'Design premiado — disponível em Branco, Prateado e Preto (máx. 18k BTU)',
-    prices:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },
+    prices:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 }, // Branco
     // max 18k
     models:  { 7000:'FTXA20', 9000:'FTXA25', 12000:'FTXA35', 15000:'FTXA42', 18000:'FTXA50' },
+    colorPrices: {
+      white:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },  // FTXA-AW
+      silver: { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },  // FTXA-CS
+      black:  { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },  // FTXA-CB
+    },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '3 cores disponíveis'],
     maxBTU: 18000,
     image: 'assets/products/daikin-stylish-branco-1.webp',
@@ -78,9 +83,14 @@ const DAIKIN_MONO = {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
     energyCool: 'A+++', energyHeat: 'A++',
     desc: 'Design ícónico europeu — purificador de ar e controlo por app (máx. 18k BTU)',
-    prices:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },
+    prices:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 }, // Branco
     // max 18k
     models:  { 7000:'FTXJ20', 9000:'FTXJ25', 12000:'FTXJ35', 15000:'FTXJ42', 18000:'FTXJ50' },
+    colorPrices: {
+      white:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },  // FTXJ-AW
+      silver: { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },  // FTXJ-S
+      black:  { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },  // FTXJ-AB
+    },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', '3 cores disponíveis'],
     maxBTU: 18000,
     image: 'assets/products/daikin-emura-branco-1.webp',
@@ -119,13 +129,32 @@ const DAIKIN_MULTI_OUTDOOR = [
   { model:'5MXM90A9', zones:5, kw:9.0, pvp:Math.round(3100*1.23), maxZoneKW:8.2 },
 ];
 
+// --- BOSCH — Multisplit Interior (Climate 3000i Mural, c/ IVA — Tabela Junho 2024) ---
+const BOSCH_MULTI_INDOOR = [
+  { btu: 9000,  kw: 2.6, model: 'CL3000i 26E', pvp: 258 },
+  { btu: 12000, kw: 3.5, model: 'CL3000i 35E', pvp: 295 },
+  { btu: 18000, kw: 5.3, model: 'CL3000i 53E', pvp: 369 },
+  { btu: 24000, kw: 7.0, model: 'CL3000i 70E', pvp: 504 },
+];
+
+// --- BOSCH — Multisplit Exterior (Climate 5000 M, c/ IVA — Tabela Junho 2024) ---
+const BOSCH_MULTI_OUTDOOR = [
+  { model: 'Climate 5000 M 41/2',  zones: 2, kw: 4.1,  pvp: 1132 },
+  { model: 'Climate 5000 M 53/2',  zones: 2, kw: 5.3,  pvp: 1285 },
+  { model: 'Climate 5000 M 62/3',  zones: 3, kw: 6.2,  pvp: 1642 },
+  { model: 'Climate 5000 M 79/3',  zones: 3, kw: 7.9,  pvp: 1907 },
+  { model: 'Climate 5000 M 82/4',  zones: 4, kw: 8.2,  pvp: 2073 },
+  { model: 'Climate 5000 M 105/4', zones: 4, kw: 10.5, pvp: 2546 },
+  { model: 'Climate 5000 M 125/5', zones: 5, kw: 12.5, pvp: 2829 },
+];
+
 // --- BOSCH — Monosplit (conjuntos, c/ IVA) ---
 const BOSCH_MONO = {
   '3000i': {
     label: 'Climate 3000i', tier: 'entrada', badge: '💰 Melhor Preço',
     energyCool: 'A++', energyHeat: 'A+',
     desc: 'Gama entrada — WiFi Matter · Auto-limpeza iClean · Alexa/Google/Siri',
-    prices: { 9000:699, 12000:799, 18000:1099, 24000:1399 },
+    prices: { 9000:898, 12000:978, 18000:1439, 24000:1747 },
     models: { 9000:'CL3000i-Set 26WE', 12000:'CL3000i-Set 35WE', 18000:'CL3000i-Set 53WE', 24000:'CL3000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
     image: 'assets/products/bosch-3000i-1.webp',
@@ -135,26 +164,11 @@ const BOSCH_MONO = {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++',
     desc: 'Gama premium — Ionizador · Sensor presença · A+++ · WiFi integrado',
-    prices: { 9000:999, 12000:1149, 18000:1449, 24000:1749 },
+    prices: { 9000:1082, 12000:1193, 18000:1784, 24000:2177 },
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Ionizador', 'Sensor de presença'],
     image: 'assets/products/bosch-6000i-1.webp',
     images: ['assets/products/bosch-6000i-1.webp','assets/products/bosch-6000i-2.webp','assets/products/bosch-6000i-3.webp','assets/products/bosch-6000i-4.webp'],
-  },
-  '7000i': {
-    label: 'Climate 7000i', tier: 'topo', badge: '🏆 Topo de Gama',
-    energyCool: 'A+++', energyHeat: 'A+++',
-    desc: 'Topo de gama — A+++/A+++ · Modo Silent 19 dB · iF Design Award 2025 (máx. 18k BTU)',
-    prices: { 9000:1399, 12000:1599, 18000:1899 },
-    models: { 9000:'CL7000i-Set 26E', 12000:'CL7000i-Set 35E', 18000:'CL7000i-Set 53E' },
-    features: ['Inverter', 'R-32', 'WiFi integrado', 'Modo Silent 19 dB', 'iF Design Award 2025'],
-    maxBTU: 18000,
-    image: 'assets/products/bosch-7000i-branco-1.webp',
-    images: [
-      'assets/products/bosch-7000i-branco-1.webp','assets/products/bosch-7000i-branco-2.webp','assets/products/bosch-7000i-branco-3.webp',
-      'assets/products/bosch-7000i-silver-1.webp','assets/products/bosch-7000i-silver-2.webp','assets/products/bosch-7000i-silver-3.webp',
-      'assets/products/bosch-7000i-black-1.webp','assets/products/bosch-7000i-black-2.webp','assets/products/bosch-7000i-black-3.webp',
-    ],
   },
 };
 
@@ -163,15 +177,37 @@ const DAITSU_MONO = {
   'ARTIC Plus': {
     label: 'ARTIC Plus', tier: 'premium', badge: '🏆 Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'Gama premium — A+++ · WiFi incluído · Alta qualidade de ar',
+    desc: 'Gama premium — A+++ · WiFi incluído · I Feel · Gentle Air · 5 filtros de qualidade do ar',
     prices: { 9000:745, 12000:760, 18000:1230, 24000:1555 },
     models: { 9000:'DS-9KTP-6', 12000:'DS-12KTP-6', 18000:'DS-18KTP-6', 24000:'DS-24KTP-6' },
-    features: ['Inverter', 'R-32', 'WiFi incluído', 'Classe A+++', 'Alta qualidade de ar'],
+    features: [
+      'Inverter', 'R-32', 'WiFi incluído', 'Classe A+++',
+      'Desumidificação', 'I Feel (sensor de temperatura)', 'Controlo por voz',
+      'Limpeza automática do filtro', 'Self-diagnosis', 'Programação horária 24h',
+      'Turbo', 'Gentle Air (micro-orifícios)', '5 filtros de qualidade do ar',
+    ],
     maxBTU: 24000,
     image: 'assets/products/daitsu-artic-plus-1.webp',
     images: ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp'],
   },
 };
+
+// --- DAITSU — Multisplit Interior (ARTIC Plus, c/ IVA — Tabela 2025) ---
+const DAITSU_MULTI_INDOOR = [
+  { btu: 9000,  kw: 2.5, model: 'DS-9KTP-6',  pvp: 260 },
+  { btu: 12000, kw: 3.5, model: 'DS-12KTP-6', pvp: 265 },
+  { btu: 18000, kw: 5.0, model: 'DS-18KTP-6', pvp: 430 },
+];
+
+// --- DAITSU — Multisplit Exterior (FREE-MAX, c/ IVA — Tabela 2025) ---
+const DAITSU_MULTI_OUTDOOR = [
+  { model: 'DOSM-14KDT',   zones: 2, kw: 4.1,  pvp: 930  },
+  { model: 'DOSM-18KDT-3', zones: 2, kw: 5.1,  pvp: 1145 },
+  { model: 'DOSM-21KDT',   zones: 3, kw: 6.2,  pvp: 1320 },
+  { model: 'DOSM-27KDT-3', zones: 3, kw: 7.9,  pvp: 1475 },
+  { model: 'DOSM-32KDT',   zones: 4, kw: 9.4,  pvp: 2230 },
+  { model: 'DOSM-42KDT',   zones: 5, kw: 12.2, pvp: 2490 },
+];
 
 // ============================================================
 // 3. ESTADO DA APLICAÇÃO
@@ -298,7 +334,8 @@ function calcMonoTotal(brand, roomsWithBTU) {
         tier: series.tier, rooms, total, features: series.features,
         energyCool: series.energyCool, energyHeat: series.energyHeat,
         image: series.image || '',
-        images: series.images || [] });
+        images: series.images || [],
+        colorPrices: series.colorPrices || null });
     }
   }
 
@@ -342,6 +379,62 @@ function calcDaikinMulti(roomsWithBTU) {
 }
 
 // ============================================================
+// 6b. SELEÇÃO DE PRODUTO — Multisplit Bosch
+// ============================================================
+function calcBoschMulti(roomsWithBTU) {
+  const n = roomsWithBTU.length;
+  if (n < 2 || n > 5) return null;
+
+  const indoorUnits = roomsWithBTU.map(r => {
+    const unit = BOSCH_MULTI_INDOOR.find(u => u.btu >= r.btu)
+              || BOSCH_MULTI_INDOOR[BOSCH_MULTI_INDOOR.length - 1];
+    return { room: r, unit };
+  });
+
+  const totalKW   = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
+
+  const candidates = BOSCH_MULTI_OUTDOOR.filter(ou => {
+    if (ou.zones < n) return false;
+    if (totalKW > ou.kw * 1.30) return false;
+    return true;
+  });
+
+  if (!candidates.length) return null;
+
+  const outdoor     = candidates.sort((a, b) => a.pvp - b.pvp)[0];
+  const indoorTotal = indoorUnits.reduce((s, { unit }) => s + unit.pvp, 0);
+  return { outdoor, indoorUnits, indoorTotal, total: outdoor.pvp + indoorTotal, totalKW };
+}
+
+// ============================================================
+// 6c. SELEÇÃO DE PRODUTO — Multisplit Daitsu
+// ============================================================
+function calcDaitsuMulti(roomsWithBTU) {
+  const n = roomsWithBTU.length;
+  if (n < 2 || n > 5) return null;
+
+  const indoorUnits = roomsWithBTU.map(r => {
+    const unit = DAITSU_MULTI_INDOOR.find(u => u.btu >= r.btu)
+              || DAITSU_MULTI_INDOOR[DAITSU_MULTI_INDOOR.length - 1];
+    return { room: r, unit };
+  });
+
+  const totalKW   = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
+
+  const candidates = DAITSU_MULTI_OUTDOOR.filter(ou => {
+    if (ou.zones < n) return false;
+    if (totalKW > ou.kw * 1.30) return false;
+    return true;
+  });
+
+  if (!candidates.length) return null;
+
+  const outdoor     = candidates.sort((a, b) => a.pvp - b.pvp)[0];
+  const indoorTotal = indoorUnits.reduce((s, { unit }) => s + unit.pvp, 0);
+  return { outdoor, indoorUnits, indoorTotal, total: outdoor.pvp + indoorTotal, totalKW };
+}
+
+// ============================================================
 // 7. CALCULAR RESULTADOS
 // ============================================================
 function calcResults(clearCompare = true) {
@@ -357,8 +450,11 @@ function calcResults(clearCompare = true) {
   const brand = state.selectedBrand;
 
   const mono = calcMonoTotal(brand, roomsWithBTU);
-  const multi = (brand === 'daikin' && roomsWithBTU.length >= 2)
-    ? calcDaikinMulti(roomsWithBTU)
+  const multi = roomsWithBTU.length >= 2
+    ? (brand === 'daikin'  ? calcDaikinMulti(roomsWithBTU)
+     : brand === 'bosch'  ? calcBoschMulti(roomsWithBTU)
+     : brand === 'daitsu' ? calcDaitsuMulti(roomsWithBTU)
+     : null)
     : null;
 
   state.results = { roomsWithBTU, mono, multi, brand };
@@ -744,11 +840,13 @@ function buildResultsHTML() {
         <p>⚠️ A combinação de divisões introduzida excede a capacidade máxima dos sistemas multisplit Daikin disponíveis.</p>
         <p>Recomendamos a opção monosplit ou contacte-nos para uma análise personalizada.</p>
       </div>`;
-    } else {
+    } else if ((brand === 'bosch' || brand === 'daitsu') && multi) {
+      html += buildBrandMultiHTML(brand, brandLabel, multi);
+    } else if ((brand === 'bosch' || brand === 'daitsu') && !multi) {
       html += `
-      <div class="res-coming-box">
-        <p>🔧 O sistema multisplit ${brandLabel} está em preparação neste simulador.</p>
-        <p>Contacte-nos para um orçamento multisplit com esta marca.</p>
+      <div class="res-warn-box">
+        <p>⚠️ A combinação de divisões introduzida excede a capacidade máxima dos sistemas multisplit ${brandLabel} disponíveis.</p>
+        <p>Recomendamos a opção monosplit ou contacte-nos para uma análise personalizada.</p>
       </div>`;
     }
 
@@ -782,6 +880,64 @@ function buildResultsHTML() {
   </div>`;
 
   return html;
+}
+
+// ============================================================
+// 10a. MULTISPLIT GENÉRICO (Bosch / Daitsu)
+// ============================================================
+function buildBrandMultiHTML(brand, brandLabel, multi) {
+  const indoorSeries = brand === 'bosch'
+    ? 'Climate 3000i Mural'
+    : 'ARTIC Plus';
+  const outdoorSeries = brand === 'bosch'
+    ? 'Climate 5000 M'
+    : 'FREE-MAX';
+
+  return `
+  <div class="res-multi-card">
+    <div class="res-multi-header">
+      <span class="res-multi-badge">🏅 ${brandLabel} Multisplit</span>
+      <p class="res-multi-desc">Unidade exterior ${outdoorSeries} · Unidades interiores ${indoorSeries}</p>
+    </div>
+
+    <div class="res-multi-outdoor">
+      <div class="res-multi-label">🔲 Unidade Exterior</div>
+      <div class="res-multi-row">
+        <span class="res-multi-model">${multi.outdoor.model}</span>
+        <span class="res-multi-spec">${multi.outdoor.zones} zonas · ${multi.outdoor.kw} kW</span>
+        <span class="res-multi-price">${fmtPrice(multi.outdoor.pvp)}</span>
+      </div>
+    </div>
+
+    <div class="res-multi-indoor">
+      <div class="res-multi-label">❄️ Unidades Interiores</div>
+      ${multi.indoorUnits.map(({ room, unit }) => `
+        <div class="res-multi-row">
+          <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
+          <span class="res-multi-spec">${brandLabel} ${unit.model} · ${btuLabel(unit.btu)} BTU</span>
+          <span class="res-multi-price">${fmtPrice(unit.pvp)}</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="res-tier-total">
+      <div>
+        <div class="res-desde-label">💰 Desde</div>
+        <div class="res-install-note">equipamento c/ IVA</div>
+      </div>
+      <span class="res-total-price">${fmtPrice(multi.total)}</span>
+    </div>
+
+    <div class="res-multi-notes">
+      <div class="res-multi-note res-multi-note--pro">✅ Apenas 1 unidade exterior — menor impacto visual</div>
+      <div class="res-multi-note res-multi-note--pro">✅ Controlo individual por divisão</div>
+      <div class="res-multi-note res-multi-note--info">ℹ️ Custo de equipamento geralmente superior ao monosplit</div>
+      <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
+    </div>
+    <button class="res-select-btn" data-key="multi:${brand}:split" data-label="${brandLabel} Multisplit" data-price="${multi.total}">
+      ☐ Selecionar para orçamento
+    </button>
+  </div>`;
 }
 
 // ============================================================
@@ -823,6 +979,15 @@ function buildCompareHTML(items) {
 // ============================================================
 // 10c. MODAL DE DETALHE — com Carousel + Zoom
 // ============================================================
+
+// Calcula total por cor para Stylish / Emura
+function calcColorTotal(option, colorKey) {
+  if (!option.colorPrices) return option.total;
+  const colorP = option.colorPrices[colorKey];
+  if (!colorP) return option.total;
+  return option.rooms.reduce((sum, { product }) => sum + (colorP[product.btu] ?? product.pvp), 0);
+}
+
 let _carouselTimer = null;
 let _carouselIdx   = 0;
 let _selectedQuote = new Map(); // key → { label, price }
@@ -875,6 +1040,14 @@ function simShowDetail(seriesName) {
       </div>
       <div class="sdm-install-note">💡 Instalação e materiais orçamentados após visita técnica</div>
 
+      ${option.colorPrices ? `
+      <div class="sdm-section-title">Cor do equipamento</div>
+      <div class="sdm-color-picker" id="sdmColorPicker">
+        <button class="sdm-color-btn active" data-color="white">⬜ Branco</button>
+        <button class="sdm-color-btn" data-color="silver">🩶 Prateado</button>
+        <button class="sdm-color-btn" data-color="black">🖤 Preto</button>
+      </div>` : ''}
+
       <div class="sdm-section-title">Modelos por divisão</div>
       <table class="sdm-rooms-table">
         <thead><tr>
@@ -918,6 +1091,19 @@ function simShowDetail(seriesName) {
 
   document.getElementById('sdmClose').addEventListener('click', closeDetailModal);
   modal.addEventListener('click', e => { if (e.target === modal) closeDetailModal(); });
+
+  // ── Color picker (Stylish / Emura) ──
+  if (option.colorPrices) {
+    document.querySelectorAll('.sdm-color-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sdm-color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const newTotal = calcColorTotal(option, btn.dataset.color);
+        const priceEl  = modal.querySelector('.sdm-price');
+        if (priceEl) priceEl.textContent = fmtPrice(newTotal);
+      });
+    });
+  }
 
   // ── Carousel logic ──
   if (imgs.length > 1) {

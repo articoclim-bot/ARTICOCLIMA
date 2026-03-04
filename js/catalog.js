@@ -874,6 +874,16 @@ const SOLAR_ICON = `<svg viewBox="0 0 96 96" width="48" height="48" fill="none" 
 const SOLAR_PRODUCTS = [
   /* ---- BOSCH ---- */
   {
+    id: 'bosch-solar-fcc-150',
+    brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 150L',
+    capacity: 150, energyClass: 'A++', pvp: 1490,
+    image: 'assets/products/bosch-solar-fcc.jpg',
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Coletor plano · Termossifão',
+    features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 150 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
+    specs: [{ label: 'Volume', val: '150 L' }, { label: 'Coletores', val: '1 painel plano' }, { label: 'Área captação', val: '2,02 m²' }, { label: 'Pressão máx.', val: '6 bar' }],
+  },
+  {
     id: 'bosch-solar-fcc-200',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 200L',
     capacity: 200, energyClass: 'A++', pvp: 1890,

@@ -8,6 +8,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HVACBusiness",
+    "name": "ARTICOCLIMA",
+    "alternateName": "Ártico Climatização",
+    "url": "https://articoclima.pt",
+    "telephone": "+351964501776",
+    "email": "artico.clim@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Tavira",
+      "addressLocality": "Tavira",
+      "addressRegion": "Faro",
+      "postalCode": "8800",
+      "addressCountry": "PT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 37.1265,
+      "longitude": -7.6508
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "priceRange": "€€",
+    "description": "ARTICOCLIMA — Instalação, substituição e manutenção de ar condicionado em Tavira e no Algarve. Revendedores autorizados Daikin, Bosch e Daitsu. Painéis solares Bosch AQS.",
+    "logo": "https://articoclima.pt/assets/logo.png",
+    "image": "https://articoclima.pt/assets/carrinha.jpg",
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 37.1265, "longitude": -7.6508 },
+      "geoRadius": "60000"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -134,7 +175,41 @@
           </div>
           <h3>Assistência Técnica</h3>
           <p>Manutenção preventiva e corretiva para garantir a máxima eficiência e longevidade do seu equipamento de ar condicionado ou sistema solar.</p>
-          <a href="#contacto" class="service-card__link">Agendar →</a>
+          <button type="button" class="service-card__link service-card__book-toggle" id="bookToggle">Agendar →</button>
+          <!-- Formulário de agendamento -->
+          <form class="service-booking-form" id="serviceBookingForm" style="display:none" novalidate>
+            <div class="sbf-field">
+              <label class="sbf-label" for="sbfName">Nome</label>
+              <input type="text" id="sbfName" class="sbf-input" placeholder="O seu nome" required>
+            </div>
+            <div class="sbf-field">
+              <label class="sbf-label" for="sbfContact">Contacto (telemóvel ou e-mail)</label>
+              <input type="text" id="sbfContact" class="sbf-input" placeholder="+351 9xx xxx xxx" required>
+            </div>
+            <div class="sbf-field">
+              <label class="sbf-label" for="sbfBrand">Marca do equipamento</label>
+              <select id="sbfBrand" class="sbf-select">
+                <option value="">Selecione...</option>
+                <option>Daikin</option>
+                <option>Bosch</option>
+                <option>Daitsu</option>
+                <option>Outra</option>
+              </select>
+            </div>
+            <div class="sbf-field">
+              <label class="sbf-label">Tipo de sistema</label>
+              <div class="sbf-radios">
+                <label class="sbf-radio-label"><input type="radio" name="sbfType" value="Monosplit" checked> Monosplit</label>
+                <label class="sbf-radio-label"><input type="radio" name="sbfType" value="Multisplit"> Multisplit</label>
+              </div>
+            </div>
+            <div class="sbf-field">
+              <label class="sbf-label" for="sbfDesc">Descrição da anomalia / tipo de manutenção</label>
+              <textarea id="sbfDesc" class="sbf-textarea" rows="3" placeholder="Descreva o problema ou o tipo de manutenção necessária..." required></textarea>
+            </div>
+            <div id="sbfSuccess" class="sbf-success" style="display:none">✅ Pedido enviado! Entraremos em contacto brevemente.</div>
+            <button type="submit" class="btn btn--primary sbf-submit">Enviar Pedido →</button>
+          </form>
         </div>
         <div class="service-card">
           <div class="service-card__icon">
@@ -166,7 +241,7 @@
             <img src="assets/logo-bosch.png" alt="Bosch" class="brand-card__logo">
           </a>
           <a href="catalogo.html?brand=daitsu" class="brand-card brand-card--link">
-            <img src="assets/logo-daitsu.png" alt="Daitsu" class="brand-card__logo">
+            <img src="assets/logo-daitsu.png" alt="Daitsu" class="brand-card__logo brand-card__logo--daitsu">
           </a>
         </div>
       </div>
@@ -178,6 +253,72 @@
             <img src="assets/logo-bosch.png" alt="Bosch" class="brand-card__logo">
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AJUDE-ME A ESCOLHER ===== -->
+  <section class="choose-guide section" id="guia">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">Qual é a certa para si?</span>
+        <h2 class="section__title">Ajude-me a Escolher</h2>
+        <p class="section__desc">Cada marca tem o seu perfil. Descubra qual se adapta melhor ao seu projeto e ao seu orçamento.</p>
+      </div>
+      <div class="choose-guide__grid">
+
+        <!-- Daikin -->
+        <div class="guide-card">
+          <div class="guide-card__brand">
+            <img src="assets/logo-daikin.png" alt="Daikin" class="guide-card__logo">
+          </div>
+          <h3 class="guide-card__title">Eficiência e Silêncio</h3>
+          <p class="guide-card__desc">A Daikin é líder mundial em climatização, reconhecida pela elevada eficiência energética, funcionamento silencioso e fiabilidade a longo prazo. Para quem quer o melhor, sem compromissos.</p>
+          <ul class="guide-card__bullets">
+            <li>✓ Eficiência A+++ em arrefecimento e aquecimento</li>
+            <li>✓ WiFi integrado (Perfera, Stylish, Emura)</li>
+            <li>✓ Gama mais completa: 7 a 28.000 BTU</li>
+            <li>✓ Design premiado — Stylish e Emura</li>
+          </ul>
+          <span class="guide-card__for">Ideal para: lar familiar, escritórios, quem valoriza qualidade e design a longo prazo</span>
+        </div>
+
+        <!-- Bosch -->
+        <div class="guide-card">
+          <div class="guide-card__brand">
+            <img src="assets/logo-bosch.png" alt="Bosch" class="guide-card__logo">
+          </div>
+          <h3 class="guide-card__title">Robustez e Tecnologia</h3>
+          <p class="guide-card__desc">A Bosch alia a robustez alemã à tecnologia de ponta, com WiFi Matter, auto-limpeza iClean e integração nativa com Alexa, Google e Siri. Durabilidade comprovada em condições exigentes.</p>
+          <ul class="guide-card__bullets">
+            <li>✓ WiFi Matter — Alexa, Google e Siri</li>
+            <li>✓ Auto-limpeza iClean (Climate 3000i)</li>
+            <li>✓ Ionizador e sensor de presença (Climate 6000i)</li>
+            <li>✓ Marca alemã de confiança</li>
+          </ul>
+          <span class="guide-card__for">Ideal para: habitações modernas, utilizadores de assistentes de voz e domótica</span>
+        </div>
+
+        <!-- Daitsu -->
+        <div class="guide-card">
+          <div class="guide-card__brand">
+            <img src="assets/logo-daitsu.png" alt="Daitsu" class="guide-card__logo guide-card__logo--square">
+          </div>
+          <h3 class="guide-card__title">Relação Qualidade-Preço</h3>
+          <p class="guide-card__desc">A Daitsu oferece equipamentos de alto desempenho a preços acessíveis, com WiFi incluído de série, I Feel, Gentle Air e filtros de qualidade do ar em 5 camadas. Tecnologia premium sem pagar mais.</p>
+          <ul class="guide-card__bullets">
+            <li>✓ WiFi incluído de série</li>
+            <li>✓ I Feel — sensor de temperatura no comando</li>
+            <li>✓ Gentle Air — distribuição suave do ar</li>
+            <li>✓ 5 filtros de qualidade do ar</li>
+          </ul>
+          <span class="guide-card__for">Ideal para: quem quer tecnologia avançada com excelente relação custo-benefício</span>
+        </div>
+
+      </div>
+      <div class="choose-guide__cta">
+        <p>Ainda tem dúvidas? O nosso simulador calcula a potência certa e sugere o equipamento ideal para a sua casa.</p>
+        <a href="simulador.html" class="btn btn--primary btn--lg">🔍 Vamos Simular! →</a>
       </div>
     </div>
   </section>
@@ -528,5 +669,43 @@
   <script src="js/catalog.js"></script>
   <script src="js/script.js"></script>
   <script src="js/i18n.js"></script>
+  <script>
+    /* ── Booking form — Assistência Técnica ── */
+    (function () {
+      const toggle = document.getElementById('bookToggle');
+      const form   = document.getElementById('serviceBookingForm');
+      if (!toggle || !form) return;
+
+      toggle.addEventListener('click', () => {
+        const isOpen = form.style.display !== 'none';
+        form.style.display = isOpen ? 'none' : 'block';
+        toggle.textContent  = isOpen ? 'Agendar →' : 'Fechar ✕';
+      });
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const name    = document.getElementById('sbfName').value.trim();
+        const contact = document.getElementById('sbfContact').value.trim();
+        const brand   = document.getElementById('sbfBrand').value;
+        const type    = document.querySelector('input[name="sbfType"]:checked')?.value || 'Monosplit';
+        const desc    = document.getElementById('sbfDesc').value.trim();
+
+        if (!name || !contact || !desc) {
+          alert('Por favor preencha o nome, contacto e descrição da anomalia.');
+          return;
+        }
+
+        const subject = encodeURIComponent('Pedido de Assistência Técnica — ARTICOCLIMA');
+        const body    = encodeURIComponent(
+          `Nome: ${name}\nContacto: ${contact}\nMarca: ${brand || 'Não indicada'}\nTipo: ${type}\n\nDescrição:\n${desc}`
+        );
+        window.location.href = `mailto:artico.clim@gmail.com?subject=${subject}&body=${body}`;
+
+        document.getElementById('sbfSuccess').style.display = 'block';
+        form.querySelectorAll('input, select, textarea').forEach(el => { el.value = ''; });
+        document.querySelector('input[name="sbfType"][value="Monosplit"]').checked = true;
+      });
+    })();
+  </script>
 </body>
 </html>

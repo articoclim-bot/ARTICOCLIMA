@@ -556,7 +556,7 @@
 /* ── Carousel de imagens ── */
 .sdm-carousel {
   position: relative;
-  background: #F0F0F2;
+  background: #fff;
   height: 280px;
   overflow: hidden;
   flex-shrink: 0;
@@ -688,6 +688,20 @@
   transition: background .2s;
 }
 .sdm-cta:hover { background: #EA6B0A; }
+
+/* ── Seletor de cor (Stylish / Emura) ── */
+.sdm-color-picker { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+.sdm-color-btn {
+  padding: 7px 16px; border-radius: 8px;
+  border: 1.5px solid var(--gray-light);
+  background: var(--white); font-size: .85rem; font-weight: 600;
+  color: var(--dark); cursor: pointer; transition: all .15s;
+  font-family: 'Inter', sans-serif;
+}
+.sdm-color-btn:hover { border-color: var(--primary); color: var(--primary); }
+.sdm-color-btn.active {
+  background: var(--primary); border-color: var(--primary); color: var(--white);
+}
 
 /* Multisplit card */
 .res-multi-card {
