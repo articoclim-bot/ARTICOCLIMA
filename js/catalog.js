@@ -877,7 +877,8 @@ const SOLAR_PRODUCTS = [
     id: 'bosch-solar-fcc-150',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 150L',
     capacity: 150, energyClass: 'A++', pvp: 1490,
-    image: 'assets/products/bosch-solar-fcc.jpg',
+    image: 'assets/products/bosch-solar-fcc-150.webp',
+    images: ['assets/products/bosch-solar-fcc-150.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     tagline: 'Coletor plano · Termossifão',
     features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 150 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
@@ -887,7 +888,8 @@ const SOLAR_PRODUCTS = [
     id: 'bosch-solar-fcc-200',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 200L',
     capacity: 200, energyClass: 'A++', pvp: 1890,
-    image: 'assets/products/bosch-solar-fcc.jpg',
+    image: 'assets/products/bosch-solar-fcc-200.webp',
+    images: ['assets/products/bosch-solar-fcc-200.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     tagline: 'Coletor plano · Termossifão',
     features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 200 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
@@ -897,7 +899,8 @@ const SOLAR_PRODUCTS = [
     id: 'bosch-solar-fcc-300',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 300L',
     capacity: 300, energyClass: 'A++', pvp: 2490,
-    image: 'assets/products/bosch-solar-fcc.jpg',
+    image: 'assets/products/bosch-solar-fcc-300.webp',
+    images: ['assets/products/bosch-solar-fcc-300.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     tagline: 'Coletor plano · Termossifão',
     features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 300 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
@@ -983,8 +986,11 @@ function solarModalHTML(p) {
     <div class="modal__layout">
       <div class="modal__img-col">
         <div class="modal__img-wrap brand-bg--${p.brand}" id="modalImgWrap">
-          <img src="${p.image}" alt="${BRAND_LABEL[p.brand]} ${p.series}" id="modalImg" onerror="this.style.display='none'">
+          <img src="${p.image}" alt="${BRAND_LABEL[p.brand]} ${p.series}" id="modalImg" onerror="this.style.display='none'" style="cursor:zoom-in">
           <div class="product-card__fallback modal__fallback">${SOLAR_ICON}</div>
+          <button class="modal__zoom-btn" id="modalZoomBtn" aria-label="Ampliar imagem">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
         </div>
       </div>
       <div class="modal__info-col">
@@ -1091,6 +1097,31 @@ function solarModalHTML(p) {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
     modalBody.querySelector('.modal-close-trigger')?.addEventListener('click', closeSolarModal);
+
+    /* lightbox */
+    const gallery = (p.images && p.images.length) ? p.images : [p.image];
+    function openLightbox() {
+      const lb = document.createElement('div');
+      lb.className = 'gal-lb-overlay';
+      lb.innerHTML = `
+        <button class="gal-lb-close" aria-label="Fechar">✕</button>
+        <button class="gal-lb-prev" style="display:none"></button>
+        <img class="gal-lb-img" src="${gallery[0]}" alt="">
+        <button class="gal-lb-next" style="display:none"></button>
+        <span class="gal-lb-counter" style="display:none"></span>`;
+      document.body.appendChild(lb);
+      lb.querySelector('.gal-lb-close').addEventListener('click', () => lb.remove());
+      lb.addEventListener('click', e => { if (e.target === lb) lb.remove(); });
+      function lbKey(e) {
+        if (!document.body.contains(lb)) { document.removeEventListener('keydown', lbKey); return; }
+        if (e.key === 'Escape') { lb.remove(); document.removeEventListener('keydown', lbKey); }
+      }
+      document.addEventListener('keydown', lbKey);
+    }
+    const zoomBtn  = document.getElementById('modalZoomBtn');
+    const modalImg = document.getElementById('modalImg');
+    if (zoomBtn)  zoomBtn.addEventListener('click', openLightbox);
+    if (modalImg) modalImg.addEventListener('click', openLightbox);
   }
 
   function closeSolarModal() {
