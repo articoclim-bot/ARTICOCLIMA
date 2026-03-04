@@ -2271,7 +2271,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* =============================================
    AJUDE-ME A ESCOLHER
    ============================================= */
-.choose-guide { background: var(--off-white); }
+.choose-guide {
+  background: linear-gradient(rgba(20,20,22,.68), rgba(20,20,22,.68)),
+              url('../assets/hero-escolher.jpg') center/cover no-repeat;
+}
+.choose-guide .section__tag {
+  background: rgba(249,115,22,.2);
+  color: #fff;
+  border-color: rgba(249,115,22,.4);
+}
+.choose-guide .section__title { color: #fff; }
+.choose-guide .section__desc { color: rgba(255,255,255,.75); }
+.choose-guide__cta p { color: rgba(255,255,255,.75); }
 .choose-guide__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
