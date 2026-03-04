@@ -435,6 +435,96 @@ function calcDaitsuMulti(roomsWithBTU) {
 }
 
 // ============================================================
+// 6d. SOLUÇÃO HÍBRIDA (monosplit grande + multisplit restantes)
+// ============================================================
+// Potência máxima que cada marca suporta em unidade interior multisplit
+const MAX_INDOOR_BTU = { daikin: 28000, bosch: 24000, daitsu: 18000 };
+
+function calcHybrid(brand, roomsWithBTU) {
+  const n = roomsWithBTU.length;
+  if (n < 3) return null; // precisa de ≥1 isolada + ≥2 para multisplit
+
+  const maxBTU = MAX_INDOOR_BTU[brand];
+
+  // Divisões que EXCEDEM o máximo indoor da marca → forçadas a monosplit
+  let bigRooms    = roomsWithBTU.filter(r => r.btu > maxBTU);
+  let normalRooms = roomsWithBTU.filter(r => r.btu <= maxBTU);
+
+  // Se não há divisão forçada, aplicar heurística:
+  // isolar a maior divisão se for ≥18k BTU E ≥50% maior que a mediana das restantes
+  if (!bigRooms.length) {
+    const sorted = [...roomsWithBTU].sort((a, b) => b.btu - a.btu);
+    const largest = sorted[0];
+    if (largest.btu >= 18000) {
+      const others = sorted.slice(1);
+      const medBTU = others[Math.floor(others.length / 2)].btu;
+      if (largest.btu >= medBTU * 1.5) {
+        bigRooms    = [largest];
+        normalRooms = others;
+      }
+    }
+  }
+
+  if (!bigRooms.length || normalRooms.length < 2) return null;
+
+  // Monosplit para divisões grandes (série mais barata)
+  const monoOptions = calcMonoTotal(brand, bigRooms);
+  if (!monoOptions || !monoOptions.length) return null;
+  const monoOption = monoOptions[0]; // mais barata
+
+  // Multisplit para divisões normais
+  const calcMulti = brand === 'daikin' ? calcDaikinMulti
+    : brand === 'bosch' ? calcBoschMulti : calcDaitsuMulti;
+  const multiResult = calcMulti(normalRooms);
+  if (!multiResult) return null;
+
+  const total = monoOption.total + multiResult.total;
+  return { bigRooms, monoOption, normalRooms, multiResult, total };
+}
+
+// ============================================================
+// 6e. DUPLO MULTISPLIT (2 grupos independentes)
+// ============================================================
+function combinations(arr, k) {
+  if (k === 0) return [[]];
+  if (!arr.length) return [];
+  const [head, ...tail] = arr;
+  return [
+    ...combinations(tail, k - 1).map(c => [head, ...c]),
+    ...combinations(tail, k),
+  ];
+}
+
+function calcDoubleMulti(brand, roomsWithBTU) {
+  const n = roomsWithBTU.length;
+  if (n < 4) return null; // mínimo 2+2
+
+  const calcMulti = brand === 'daikin' ? calcDaikinMulti
+    : brand === 'bosch' ? calcBoschMulti : calcDaitsuMulti;
+
+  let best = null;
+
+  // Tentar todas as partições em 2 grupos (cada um com 2-5 divisões)
+  for (let k = 2; k <= n - 2; k++) {
+    for (const group1 of combinations(roomsWithBTU, k)) {
+      const ids1 = new Set(group1.map(r => r.id));
+      const group2 = roomsWithBTU.filter(r => !ids1.has(r.id));
+      if (group2.length < 2) continue;
+
+      const m1 = calcMulti(group1);
+      const m2 = calcMulti(group2);
+      if (!m1 || !m2) continue;
+
+      const total = m1.total + m2.total;
+      if (!best || total < best.total) {
+        best = { group1, multi1: m1, group2, multi2: m2, total };
+      }
+    }
+  }
+  return best;
+}
+
+// ============================================================
 // 7. CALCULAR RESULTADOS
 // ============================================================
 function calcResults(clearCompare = true) {
@@ -457,7 +547,10 @@ function calcResults(clearCompare = true) {
      : null)
     : null;
 
-  state.results = { roomsWithBTU, mono, multi, brand };
+  const hybrid      = roomsWithBTU.length >= 3 ? calcHybrid(brand, roomsWithBTU) : null;
+  const doubleMulti = roomsWithBTU.length >= 4 ? calcDoubleMulti(brand, roomsWithBTU) : null;
+
+  state.results = { roomsWithBTU, mono, multi, hybrid, doubleMulti, brand };
 }
 
 // ============================================================
@@ -681,7 +774,7 @@ function renderStep3() {
 }
 
 function buildResultsHTML() {
-  const { roomsWithBTU, mono, multi, brand } = state.results;
+  const { roomsWithBTU, mono, multi, hybrid, doubleMulti, brand } = state.results;
   const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[brand];
 
   let html = '';
@@ -693,17 +786,19 @@ function buildResultsHTML() {
     <div class="res-rooms-grid">
       ${roomsWithBTU.map(r => `
         <div class="res-room-card">
-          <div class="res-room-icon">${roomIcon(r.type)}</div>
-          <div class="res-room-info">
-            <h4>${r.name || ['Quarto Principal','Sala','Quarto 2','Escritório','Quarto 3'][r.id] || 'Divisão'}</h4>
+          <div class="res-room-card__top">
+            <span class="res-room-icon">${roomIcon(r.type)}</span>
+            <h4 class="res-room-name">${r.name || ['Quarto Principal','Sala','Quarto 2','Escritório','Quarto 3'][r.id] || 'Divisão'}</h4>
+            <div class="res-room-btu">
+              <span class="res-btu-tier">${btuLabel(r.btu)} BTU</span>
+              <span class="res-btu-kw">${KW_LABELS[r.btu]}</span>
+            </div>
+          </div>
+          <div class="res-room-card__details">
+            <span class="res-btu-raw">~${Math.round(r.rawBTU/100)*100} BTU calculados</span>
             <p>${r.areaM2} m² · ${String(r.heightM).replace('.',',')} m altura</p>
             ${r.openToKitchen ? '<p class="res-note">🍳 Open-space com cozinha</p>' : ''}
             ${r.hasWindows ? `<p class="res-note">🪟 Janelas ${orientLabel(r.windowOrientation)} (${r.windowAreaM2} m²)</p>` : ''}
-          </div>
-          <div class="res-room-btu">
-            <span class="res-btu-raw">~${Math.round(r.rawBTU/100)*100} BTU calculados</span>
-            <span class="res-btu-tier">${btuLabel(r.btu)} BTU</span>
-            <span class="res-btu-kw">${KW_LABELS[r.btu]}</span>
           </div>
         </div>
       `).join('')}
@@ -851,6 +946,118 @@ function buildResultsHTML() {
     }
 
     html += `</div>`; // /res-section multisplit
+  }
+
+  // ─── Opção C — Solução Mista (Híbrido) ───
+  if (hybrid) {
+    const { bigRooms, monoOption, normalRooms, multiResult } = hybrid;
+    const indoorSeriesLabel = brand === 'bosch' ? 'Climate 3000i' : brand === 'daitsu' ? 'ARTIC Plus' : 'FTXM-A';
+    const outdoorSeriesLabel = brand === 'bosch' ? 'Climate 5000 M' : brand === 'daitsu' ? 'FREE-MAX' : multiResult.outdoor.model;
+
+    html += `<div class="res-section">
+      <div class="res-section-header">
+        <h2 class="res-option-title">💡 Opção C — Solução Mista</h2>
+        <p class="res-option-desc">Divisão mais potente com unidade exterior própria (monosplit) + restantes em multisplit partilhado. Menos máquinas no exterior, respeitando as potências necessárias.</p>
+      </div>
+      <div class="res-multi-card">
+
+        <div class="res-hybrid-block">
+          <div class="res-hybrid-label">🏠 Divisão isolada — Monosplit ${brandLabel} ${monoOption.series}</div>
+          ${monoOption.rooms.map(({ room, product }) => `
+            <div class="res-multi-row">
+              <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
+              <span class="res-multi-spec">${brandLabel} ${product.model} · ${btuLabel(product.btu)} BTU</span>
+              <span class="res-multi-price">${fmtPrice(product.pvp)}</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="res-hybrid-divider"></div>
+
+        <div class="res-hybrid-block">
+          <div class="res-hybrid-label">🔗 Restantes — Multisplit (${outdoorSeriesLabel} + ${indoorSeriesLabel})</div>
+          <div class="res-multi-row">
+            <span class="res-multi-model">Unidade Exterior</span>
+            <span class="res-multi-spec">${brand === 'daikin' ? 'Daikin ' : ''}${multiResult.outdoor.model} · ${multiResult.outdoor.zones} zonas · ${multiResult.outdoor.kw} kW</span>
+            <span class="res-multi-price">${fmtPrice(multiResult.outdoor.pvp)}</span>
+          </div>
+          ${multiResult.indoorUnits.map(({ room, unit }) => `
+            <div class="res-multi-row">
+              <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
+              <span class="res-multi-spec">${brandLabel} ${unit.model} · ${btuLabel(unit.btu)} BTU</span>
+              <span class="res-multi-price">${fmtPrice(unit.pvp)}</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="res-tier-total">
+          <div>
+            <div class="res-desde-label">💰 Desde</div>
+            <div class="res-install-note">equipamento c/ IVA</div>
+          </div>
+          <span class="res-total-price">${fmtPrice(hybrid.total)}</span>
+        </div>
+        <div class="res-multi-notes">
+          <div class="res-multi-note res-multi-note--pro">✅ Respeita as potências máximas dos interiores multisplit</div>
+          <div class="res-multi-note res-multi-note--pro">✅ Mínimo de máquinas no exterior</div>
+          <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
+        </div>
+        <button class="res-select-btn" data-key="hybrid:${brand}:${monoOption.series}" data-label="${brandLabel} Solução Mista (${monoOption.series} + Multisplit)" data-price="${hybrid.total}">
+          ☐ Selecionar para orçamento
+        </button>
+      </div>
+    </div>`;
+  }
+
+  // ─── Opção D — Duplo Multisplit ───
+  if (doubleMulti) {
+    const { group1, multi1, group2, multi2 } = doubleMulti;
+    const indoorLabel = brand === 'bosch' ? 'Climate 3000i' : brand === 'daitsu' ? 'ARTIC Plus' : 'FTXM-A';
+
+    const renderMultiGroup = (label, rooms, m) => `
+      <div class="res-hybrid-block">
+        <div class="res-hybrid-label">${label} — ${brand === 'daikin' ? 'Daikin ' : ''}${m.outdoor.model} (${m.outdoor.zones} zonas · ${m.outdoor.kw} kW)</div>
+        <div class="res-multi-row">
+          <span class="res-multi-model">Unidade Exterior</span>
+          <span class="res-multi-spec">${brand === 'daikin' ? 'Daikin ' : ''}${m.outdoor.model}</span>
+          <span class="res-multi-price">${fmtPrice(m.outdoor.pvp)}</span>
+        </div>
+        ${m.indoorUnits.map(({ room, unit }) => `
+          <div class="res-multi-row">
+            <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
+            <span class="res-multi-spec">${brandLabel} ${unit.model} · ${btuLabel(unit.btu)} BTU</span>
+            <span class="res-multi-price">${fmtPrice(unit.pvp)}</span>
+          </div>
+        `).join('')}
+      </div>`;
+
+    html += `<div class="res-section">
+      <div class="res-section-header">
+        <h2 class="res-option-title">💡 Opção D — Duplo Multisplit</h2>
+        <p class="res-option-desc">Dois sistemas multisplit independentes — ideal quando as divisões estão em zonas distintas da casa ou quando a carga total beneficia de duas unidades exteriores.</p>
+      </div>
+      <div class="res-multi-card">
+        ${renderMultiGroup('🔵 Sistema 1', group1, multi1)}
+        <div class="res-hybrid-divider"></div>
+        ${renderMultiGroup('🟠 Sistema 2', group2, multi2)}
+
+        <div class="res-tier-total">
+          <div>
+            <div class="res-desde-label">💰 Desde</div>
+            <div class="res-install-note">equipamento c/ IVA</div>
+          </div>
+          <span class="res-total-price">${fmtPrice(doubleMulti.total)}</span>
+        </div>
+        <div class="res-multi-notes">
+          <div class="res-multi-note res-multi-note--pro">✅ Apenas 2 unidades exteriores para ${roomsWithBTU.length} divisões</div>
+          <div class="res-multi-note res-multi-note--pro">✅ Cada sistema otimizado para a sua zona</div>
+          <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
+        </div>
+        <button class="res-select-btn" data-key="double-multi:${brand}" data-label="${brandLabel} Duplo Multisplit" data-price="${doubleMulti.total}">
+          ☐ Selecionar para orçamento
+        </button>
+      </div>
+    </div>`;
   }
 
   // ─── Aviso geral ───

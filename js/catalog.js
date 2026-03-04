@@ -903,26 +903,6 @@ const SOLAR_PRODUCTS = [
     features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 300 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
     specs: [{ label: 'Volume', val: '300 L' }, { label: 'Coletores', val: '3 painéis planos' }, { label: 'Área captação', val: '5,76 m²' }, { label: 'Pressão máx.', val: '6 bar' }],
   },
-  {
-    id: 'bosch-compress-190',
-    brand: 'bosch', series: 'Compress 3000 AWBS', model: 'AWBS 8-190 P',
-    capacity: 190, energyClass: 'A+', pvp: 1690,
-    image: 'assets/products/bosch-compress.jpg',
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Bomba de calor · AQS',
-    features: ['Bomba de calor integrada', 'COP 3,5', 'Compatível com modo solar', 'Painel de controlo LCD'],
-    specs: [{ label: 'Volume', val: '190 L' }, { label: 'COP', val: '3,5' }, { label: 'Temp. máx.', val: '62°C' }, { label: 'Pressão máx.', val: '8,7 bar' }],
-  },
-  {
-    id: 'bosch-compress-290',
-    brand: 'bosch', series: 'Compress 3000 AWBS', model: 'AWBS 8-290 P',
-    capacity: 290, energyClass: 'A+', pvp: 2190,
-    image: 'assets/products/bosch-compress.jpg',
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Bomba de calor · AQS',
-    features: ['Bomba de calor integrada', 'COP 3,5', 'Compatível com modo solar', 'Painel de controlo LCD'],
-    specs: [{ label: 'Volume', val: '290 L' }, { label: 'COP', val: '3,5' }, { label: 'Temp. máx.', val: '62°C' }, { label: 'Pressão máx.', val: '8,7 bar' }],
-  },
 ];
 
 /* =============================================
