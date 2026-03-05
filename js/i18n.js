@@ -106,6 +106,73 @@ const TRANSLATIONS_EN = {
   'Livro de Reclamações': 'Complaints Book',
   'Certif. EIC nº GF-0879': 'EIC Certif. No. GF-0879',
 
+  // ── HERO (texto dividido por <br> e spans) ──
+  'O conforto térmico da': 'The thermal comfort of',
+  'sua casa em Tavira,': 'your home in Tavira,',
+  'em boas mãos.': 'in good hands.',
+  'Venda, instalação e assistência especializada': 'Professional sales, installation and support',
+  'em climatização em Tavira e em todo o Algarve.': 'in air conditioning in Tavira and throughout the Algarve.',
+
+  // ── NAV (fix: "Simulador AC" em vez de "Simulador") ──
+  'Simulador AC': 'AC Simulator',
+
+  // ── AJUDE-ME A ESCOLHER ──
+  'Qual é a certa para si?': 'Which one is right for you?',
+  'Ajude-me a Escolher': 'Help Me Choose',
+  'Cada marca tem o seu perfil. Descubra qual se adapta melhor ao seu projeto e ao seu orçamento.': 'Each brand has its profile. Find out which best suits your project and budget.',
+  'Eficiência e Silêncio': 'Efficiency and Silence',
+  'A Daikin é líder mundial em climatização, reconhecida pela elevada eficiência energética, funcionamento silencioso e fiabilidade a longo prazo. Para quem quer o melhor, sem compromissos.': 'Daikin is the world leader in air conditioning, recognised for high energy efficiency, quiet operation and long-term reliability. For those who want the best, without compromise.',
+  '✓ Eficiência A+++ em arrefecimento e aquecimento': '✓ A+++ efficiency in cooling and heating',
+  '✓ WiFi integrado (Perfera, Stylish, Emura)': '✓ Built-in WiFi (Perfera, Stylish, Emura)',
+  '✓ Gama mais completa: 7 a 28.000 BTU': '✓ Most complete range: 7 to 28,000 BTU',
+  '✓ Design premiado — Stylish e Emura': '✓ Award-winning design — Stylish and Emura',
+  'Ideal para: lar familiar, escritórios, quem valoriza qualidade e design a longo prazo': 'Ideal for: family homes, offices, those who value long-term quality and design',
+  'Robustez e Tecnologia': 'Robustness and Technology',
+  'A Bosch alia a robustez alemã à tecnologia de ponta, com WiFi Matter, auto-limpeza iClean e integração nativa com Alexa, Google e Siri. Durabilidade comprovada em condições exigentes.': 'Bosch combines German robustness with cutting-edge technology, featuring WiFi Matter, iClean auto-cleaning and native integration with Alexa, Google and Siri. Proven durability in demanding conditions.',
+  '✓ WiFi Matter — Alexa, Google e Siri': '✓ WiFi Matter — Alexa, Google and Siri',
+  '✓ Auto-limpeza iClean (Climate 3000i)': '✓ iClean auto-cleaning (Climate 3000i)',
+  '✓ Ionizador e sensor de presença (Climate 6000i)': '✓ Ioniser and presence sensor (Climate 6000i)',
+  '✓ Marca alemã de confiança': '✓ Trusted German brand',
+  'Ideal para: habitações modernas, utilizadores de assistentes de voz e domótica': 'Ideal for: modern homes, users of voice assistants and home automation',
+  'Relação Qualidade-Preço': 'Quality-Price Ratio',
+  'A Daitsu oferece equipamentos de alto desempenho a preços acessíveis, com WiFi incluído de série, I Feel, Gentle Air e filtros de qualidade do ar em 5 camadas. Tecnologia premium sem pagar mais.': 'Daitsu offers high-performance equipment at affordable prices, with built-in WiFi, I Feel, Gentle Air and 5-layer air quality filters. Premium technology without paying more.',
+  '✓ WiFi incluído de série': '✓ Built-in WiFi as standard',
+  '✓ I Feel — sensor de temperatura no comando': '✓ I Feel — temperature sensor in the remote',
+  '✓ Gentle Air — distribuição suave do ar': '✓ Gentle Air — gentle air distribution',
+  '✓ 5 filtros de qualidade do ar': '✓ 5 air quality filters',
+  'Ideal para: quem quer tecnologia avançada com excelente relação custo-benefício': 'Ideal for: those who want advanced technology with an excellent cost-benefit ratio',
+  'Ainda tem dúvidas? O nosso simulador calcula a potência certa e sugere o equipamento ideal para a sua casa.': 'Still have questions? Our simulator calculates the right capacity and suggests the ideal equipment for your home.',
+  '🔍 Vamos Simular! →': '🔍 Let\'s Simulate! →',
+
+  // ── REVIEWS ──
+  'Clientes reais, palavras reais': 'Real clients, real words',
+  'O Que Dizem de Nós': 'What They Say About Us',
+  'Avaliações verificadas no Google Business Profile.': 'Verified reviews on Google Business Profile.',
+  'Deixar Review →': 'Leave a Review →',
+  'Ver Todas as Reviews no Google': 'View All Reviews on Google',
+
+  // ── ABOUT (textos longos) ──
+  'Na Ártico Climatização, não vendemos apenas soluções térmicas — entregamos experiências de conforto absoluto. Somos uma empresa recente, mas com uma alma profundamente experiente: a nossa equipa acumula mais de': 'At Ártico Climatização, we don\'t just sell thermal solutions — we deliver absolute comfort experiences. We are a young company, but with a deeply experienced soul: our team has accumulated more than',
+  '20 anos de prática': '20 years of hands-on experience',
+  'no setor da climatização, com técnicos altamente qualificados e certificados.': 'in the air conditioning sector, with highly qualified and certified technicians.',
+  'Começámos com o propósito de fazer melhor — mais próximos, mais honestos e mais eficientes. Cada projeto é tratado com rigor, dedicação e um compromisso inabalável com a excelência.': 'We started with the purpose of doing better — closer, more honest and more efficient. Every project is handled with rigour, dedication and an unwavering commitment to excellence.',
+  '"A nossa missão? Ir ao encontro das necessidades de cada cliente com o máximo brio, profissionalismo e atenção ao detalhe."': '"Our mission? To meet the needs of each client with the utmost pride, professionalism and attention to detail."',
+
+  // ── FOOTER (fix: texto completo do copyright) ──
+  '© 2025 ARTICOCLIMA · Todos os direitos reservados': '© 2025 ARTICOCLIMA · All rights reserved',
+  'Perguntas Frequentes': 'Frequently Asked Questions',
+
+  // ── FORMULÁRIO AGENDAMENTO ──
+  'Nome': 'Name',
+  'Contacto (telemóvel ou e-mail)': 'Contact (mobile or e-mail)',
+  'Marca do equipamento': 'Equipment brand',
+  'Tipo de sistema': 'System type',
+  'Descrição da anomalia / tipo de manutenção': 'Description of fault / maintenance type',
+  'Selecione...': 'Select...',
+  'Outra': 'Other',
+  'Enviar Pedido →': 'Send Request →',
+  '✅ Pedido enviado! Entraremos em contacto brevemente.': '✅ Request sent! We will be in touch shortly.',
+
   // ── SIMULATOR ──
   'Ferramenta Online': 'Online Tool',
   'Simulador de Instalação': 'Installation Simulator',
