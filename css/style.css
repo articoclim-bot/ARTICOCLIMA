@@ -1907,6 +1907,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    NAV DROPDOWN (Catálogos / Simulador)
    ============================================= */
 .nav__item--has-sub { position: relative; }
+/* invisible bridge that fills the gap so hover doesn't break */
+.nav__item--has-sub::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
 
 .nav__submenu {
   display: none;

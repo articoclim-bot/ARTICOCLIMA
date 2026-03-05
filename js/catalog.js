@@ -867,7 +867,7 @@ const SOLAR_PRODUCTS = [
   {
     id: 'bosch-solar-fcc-150',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 150L',
-    capacity: 150, energyClass: 'A++', pvp: 1490,
+    capacity: 150, energyClass: 'A++', pvp: 1859,
     image: 'assets/products/bosch-solar-fcc-150.webp',
     images: ['assets/products/bosch-solar-fcc-150.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
@@ -878,7 +878,7 @@ const SOLAR_PRODUCTS = [
   {
     id: 'bosch-solar-fcc-200',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 200L',
-    capacity: 200, energyClass: 'A++', pvp: 1890,
+    capacity: 200, energyClass: 'A++', pvp: 2019,
     image: 'assets/products/bosch-solar-fcc-200.webp',
     images: ['assets/products/bosch-solar-fcc-200.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
@@ -889,7 +889,7 @@ const SOLAR_PRODUCTS = [
   {
     id: 'bosch-solar-fcc-300',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 300L',
-    capacity: 300, energyClass: 'A++', pvp: 2490,
+    capacity: 300, energyClass: 'A++', pvp: 2649,
     image: 'assets/products/bosch-solar-fcc-300.webp',
     images: ['assets/products/bosch-solar-fcc-300.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
@@ -1007,7 +1007,7 @@ function solarModalHTML(p) {
           <div class="modal__price-block">
             <span class="modal__price-label">PVP a partir de</span>
             <span class="modal__price-val">${p.pvp.toLocaleString('pt-PT')}€</span>
-            <span class="modal__price-note">* Preço c/ IVA. Sujeito a confirmação.</span>
+            <span class="modal__price-note">* Preço c/ IVA. Instalação não incluída.</span>
           </div>
           <div class="modal__btn-row">
             <a href="index.html#contacto" class="btn btn--primary modal-close-trigger">Pedir Orçamento →</a>
