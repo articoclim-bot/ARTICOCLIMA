@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 assets/pub02.mp4 filter=lfs diff=lfs merge=lfs -text
+assets/artico1.mp4 filter=lfs diff=lfs merge=lfs -text
