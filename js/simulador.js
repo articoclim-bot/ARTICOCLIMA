@@ -154,7 +154,7 @@ const BOSCH_MONO = {
     label: 'Climate 3000i', tier: 'entrada', badge: '💰 Melhor Preço',
     energyCool: 'A++', energyHeat: 'A+',
     desc: 'Gama entrada — WiFi Matter · Auto-limpeza iClean · Alexa/Google/Siri',
-    prices: { 9000:898, 12000:978, 18000:1439, 24000:1747 },
+    prices: { 9000:800, 12000:900, 18000:1350, 24000:1600 },
     models: { 9000:'CL3000i-Set 26WE', 12000:'CL3000i-Set 35WE', 18000:'CL3000i-Set 53WE', 24000:'CL3000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
     image: 'assets/products/bosch-3000i-1.webp',
