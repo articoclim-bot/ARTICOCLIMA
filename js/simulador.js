@@ -1620,14 +1620,103 @@ function closeQuoteModal() {
 }
 
 function buildQuoteMessage(name, contact) {
+  const { roomsWithBTU, mono, multi, hybrid, doubleMulti, brand } = state.results || {};
+  const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[brand] || (brand || '');
+  const roomIcon   = { quarto: '🛏️', sala: '🛋️', escritorio: '💼', outro: '📦' };
+  const sep        = '─────────────────────\n';
+
   let msg = 'Olá Ártico Climatização! 👋\n\n';
-  msg += 'Fiz a simulação no vosso website e tenho interesse nas seguintes soluções:\n\n';
-  _selectedQuote.forEach(item => {
-    msg += `• ${item.label} — equipamento a partir de ${fmtPrice(item.price)}\n`;
+  msg += 'Fiz a simulação no vosso website e gostava de receber orçamento completo.\n\n';
+
+  // ── Divisões ─────────────────────────────────────────────
+  if (roomsWithBTU && roomsWithBTU.length) {
+    msg += sep;
+    msg += `📋 ${roomsWithBTU.length} DIVISÃO(ÕES) A CLIMATIZAR\n`;
+    msg += sep;
+    roomsWithBTU.forEach(r => {
+      const icon    = roomIcon[r.type] || '🏠';
+      const rName   = (r.name && r.name.trim()) ? r.name.trim() : roomDefaultName(r.id);
+      const details = [
+        r.areaM2   ? `${r.areaM2} m²`             : '',
+        r.heightM  ? `pé-direito ${r.heightM} m`  : '',
+        `~${btuLabel(r.btu)} BTU`,
+        r.hasWindows ? `janelas a ${r.windowOrientation}` : '',
+      ].filter(Boolean).join(' · ');
+      msg += `${icon} ${rName} — ${details}\n`;
+    });
+    msg += '\n';
+  }
+
+  // ── Soluções selecionadas ────────────────────────────────
+  msg += sep;
+  msg += '✅ SOLUÇÃO(ÕES) SELECIONADA(S)\n';
+  msg += sep;
+  if (brandLabel) msg += `Marca preferida: ${brandLabel}\n\n`;
+
+  _selectedQuote.forEach((item, key) => {
+    const parts = key.split(':');
+    const type  = parts[0];
+
+    if (type === 'mono' && mono) {
+      const opt = mono.find(o => o.series === parts[2]);
+      if (opt) {
+        msg += `📦 MONOSPLIT — ${brandLabel} ${opt.series}\n`;
+        msg += `   ${opt.rooms.length} unidade(s) exterior independente(s)\n`;
+        opt.rooms.forEach(({ room, product }) => {
+          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
+          msg += `   • ${rn}: ${product.model} — ${btuLabel(product.btu)} BTU — ${fmtPrice(product.pvp)}\n`;
+        });
+        msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
+      }
+
+    } else if (type === 'multi' && multi) {
+      msg += `📦 MULTISPLIT — ${brandLabel}\n`;
+      msg += `   1 unidade exterior partilhada para todas as divisões\n`;
+      if (multi.outdoor)
+        msg += `   Exterior: ${multi.outdoor.model} — ${multi.outdoor.kw} kW — ${fmtPrice(multi.outdoor.pvp)}\n`;
+      if (multi.indoorUnits) {
+        multi.indoorUnits.forEach(({ room, unit }) => {
+          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
+          msg += `   • ${rn}: ${unit.model} — ${btuLabel(unit.btu)} BTU — ${fmtPrice(unit.pvp)}\n`;
+        });
+      }
+      msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
+
+    } else if (type === 'hybrid' && hybrid) {
+      msg += `📦 SOLUÇÃO MISTA (Mono + Multi) — ${brandLabel}\n`;
+      if (hybrid.monoRooms && hybrid.monoRooms.length) {
+        msg += `   Monosplit independente:\n`;
+        hybrid.monoRooms.forEach(({ room, product }) => {
+          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
+          msg += `     • ${rn}: ${product.model} — ${btuLabel(product.btu)} BTU\n`;
+        });
+      }
+      if (hybrid.multiOutdoor)
+        msg += `   Multisplit exterior: ${hybrid.multiOutdoor.model} (${hybrid.multiOutdoor.kw} kW)\n`;
+      if (hybrid.multiRooms && hybrid.multiRooms.length) {
+        hybrid.multiRooms.forEach(({ room, unit }) => {
+          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
+          msg += `     • ${rn}: ${unit.model} — ${btuLabel(unit.btu)} BTU\n`;
+        });
+      }
+      msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
+
+    } else if (type === 'double-multi' && doubleMulti) {
+      msg += `📦 DUPLO MULTISPLIT — ${brandLabel}\n`;
+      msg += `   2 unidades exteriores partilhadas\n`;
+      msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
+
+    } else {
+      msg += `📦 ${item.label} — ${fmtPrice(item.price)}\n\n`;
+    }
   });
-  msg += `\nNome: ${name}`;
-  msg += `\nContacto: ${contact}`;
-  msg += '\n\nPodem contactar-me para orçamento completo (equipamento + instalação)?\nObrigado!';
+
+  // ── Contacto ─────────────────────────────────────────────
+  msg += sep;
+  msg += `👤 Nome: ${name}\n`;
+  msg += `📱 Contacto: ${contact}\n\n`;
+  msg += 'Podem dar-me orçamento completo (equipamento + mão de obra + instalação)?\nObrigado!';
+
   return msg;
 }
 
