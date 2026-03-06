@@ -816,6 +816,7 @@ function buildResultsHTML() {
     <div class="res-section-header">
       <h2 class="res-option-title">💡 Opção A — Monosplit</h2>
       <p class="res-option-desc">Uma unidade exterior por divisão — instalação mais simples, menor custo de equipamento para 1–2 divisões.</p>
+      <p class="res-tiers-hint">As séries estão ordenadas do <strong>mais acessível</strong> ao <strong>mais premium</strong>. A diferença está nas funcionalidades: eficiência energética, WiFi, filtros e design.</p>
     </div>`;
 
   if (mono && mono.length) {
@@ -823,17 +824,17 @@ function buildResultsHTML() {
     for (const option of mono) {
       const inCompare = state.compareMap.has(brand + ':' + option.series);
       const imgHtml = option.image
-        ? `<div class="res-tier-img-wrap"><img class="res-tier-img" src="${option.image}" alt="${option.series}" onerror="this.parentElement.style.display='none'"></div>`
-        : '';
+        ? `<div class="res-tier-img-wrap"><img class="res-tier-img" src="${option.image}" alt="${option.series}" onerror="this.style.display='none';this.parentElement.classList.add('res-tier-img-placeholder')"></div>`
+        : `<div class="res-tier-img-wrap res-tier-img-placeholder"></div>`;
       html += `
       <div class="res-tier-card" data-series="${option.series}">
+        ${imgHtml}
         <div class="res-tier-header">
           <div class="res-tier-hdr-text">
             <span class="res-tier-badge">${option.badge}</span>
             <h3 class="res-tier-name">${brandLabel} ${option.series}</h3>
             <p class="res-tier-desc">${option.desc}</p>
           </div>
-          ${imgHtml}
         </div>
         <div class="res-tier-rooms">
           ${option.rooms.map(({ room, product }) => `
