@@ -82,6 +82,16 @@ function $q(sel) { return document.querySelector(sel); }
     });
   });
 
+  /* Mobile: toggle submenu on parent click */
+  document.querySelectorAll('.nav__link--parent').forEach(parent => {
+    parent.addEventListener('click', e => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault();
+        parent.closest('.nav__item--has-sub').classList.toggle('open');
+      }
+    });
+  });
+
   /* Active nav link on scroll */
   const sections = document.querySelectorAll('section[id]');
   const observer = new IntersectionObserver(entries => {

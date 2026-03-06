@@ -826,9 +826,11 @@
   .res-nav-btns { flex-direction: column; }
   .sim-count-btn { width: 72px; height: 72px; font-size: 1.7rem; }
   .res-tier-img-wrap { width: 100%; height: 130px; }
-  .res-compare-grid { grid-template-columns: 1fr; }
-  .res-cmp-card { border-right: none; border-bottom: 1px solid var(--gray-light); }
-  .res-cmp-card:last-child { border-bottom: none; }
+  /* Comparação: scroll horizontal em vez de empilhamento */
+  .res-compare-section { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+  .res-compare-grid { display: flex; flex-wrap: nowrap; width: max-content; }
+  .res-cmp-card { min-width: 200px; border-right: 1px solid var(--gray-light); border-bottom: none; }
+  .res-cmp-card:last-child { border-right: none; }
   .res-tier-actions { flex-direction: column; gap: 6px; }
   .sdm-box { border-radius: 14px; }
   .sdm-top { border-radius: 14px 14px 0 0; }
