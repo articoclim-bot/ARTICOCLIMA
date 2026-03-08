@@ -436,7 +436,17 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
     });
   }
 
-  if (!candidates.length) return null;
+  if (!candidates.length) {
+    // Fallback: sem exterior que caiba dentro do rácio 130% →
+    // usar o exterior mais potente com zonas suficientes (melhor mostrar algo num simulador).
+    const fallbackList = brand === 'daikin'
+      ? outdoorList.filter(ou => ou.zones >= n && maxZoneKW <= ou.maxZoneKW)
+      : outdoorList.filter(ou => ou.zones >= n);
+    if (!fallbackList.length) return null;
+    const outdoor     = fallbackList.sort((a, b) => b.kw - a.kw)[0]; // mais potente disponível
+    const indoorTotal = indoorUnits.reduce((s, { unit }) => s + unit.pvp, 0);
+    return { outdoor, indoorUnits, indoorTotal, total: outdoor.pvp + indoorTotal };
+  }
 
   const outdoor     = candidates.sort((a, b) => a.pvp - b.pvp)[0];
   const indoorTotal = indoorUnits.reduce((s, { unit }) => s + unit.pvp, 0);
@@ -444,10 +454,21 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
   return { outdoor, indoorUnits, indoorTotal, total: outdoor.pvp + indoorTotal };
 }
 
+// Verifica se o sistema Sensira (CTXF+MXF) é viável para estas divisões.
+// Condições: 2-3 zonas, todas ≤12k BTU, E existe exterior MXF para o kW total.
+function isSensiraPossible(multiRooms) {
+  const n = multiRooms.length;
+  if (n < 2 || n > 3) return false;
+  const tiers = multiRooms.map(r => btuToTier(calcBTU(r)));
+  if (!tiers.every(t => t <= 12000)) return false;
+  const totalKW = tiers.reduce((s, t) => s + (BTU_TO_KW[t] || 0), 0);
+  return DAIKIN_MXF_OUTDOOR.some(ou => ou.zones >= n && totalKW <= ou.kw * 1.30);
+}
+
 // Determina o tipo de multisplit óptimo para um quarto, tendo em conta todos os quartos multi.
 // Se explicitamente definido pelo utilizador via picker → respeitar.
 // Auto (por ordem de preferência económica):
-//   1. Sensira (CTXF+MXF)  — todos ≤12k BTU E ≤3 zonas
+//   1. Sensira (CTXF+MXF)  — todos ≤12k BTU, ≤3 zonas E exterior MXF existe para o kW total
 //   2. Confora (FTXP+MXM)  — esta divisão ≤12k BTU (mais barata que Perfera)
 //   3. Standard/Perfera (FTXM+MXM) — >12k BTU ou sem alternativa
 function getEffectiveMultiType(room, allRooms) {
@@ -462,13 +483,13 @@ function getEffectiveMultiType(room, allRooms) {
   const tiers   = multiRooms.map(r => btuToTier(calcBTU(r)));
   const allLE12k = tiers.every(t => t <= 12000);
 
-  // Sensira: todas ≤12k E ≤3 zonas (MXF só suporta 2-3 zonas)
-  if (allLE12k && multiRooms.length <= 3) return 'sensira';
+  // Sensira: todas ≤12k, ≤3 zonas E exterior MXF tem capacidade para o total de kW
+  if (allLE12k && multiRooms.length <= 3 && isSensiraPossible(multiRooms)) return 'sensira';
 
   // Confora: esta divisão ≤12k (mais barata que Perfera para interiores MXM)
   if (tier <= 12000 && DAIKIN_CONFORA_MULTI_INDOOR.some(u => u.btu >= tier)) return 'confora';
 
-  // Perfera: divisões >12k ou sem opção Confora
+  // Perfera: divisões >12k ou sem exterior MXF disponível
   return 'standard';
 }
 
