@@ -533,11 +533,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .brand-card:hover .brand-card__logo {
   transform: scale(1.05);
 }
-/* Daitsu logo é quadrado — ajustar para mesma altura dos outros */
-.brand-card__logo--daitsu {
-  width: auto;
-  height: 64px;
-}
 
 .brand-card--link {
   text-decoration: none;
@@ -1286,13 +1281,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
   object-fit: contain;
 }
-/* Logo Daitsu tem whitespace — escalar para texto ficar à escala dos outros */
-.ctab[data-brand="daitsu"] { min-width: 180px; overflow: hidden; padding: 0; }
-.ctab[data-brand="daitsu"] img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-}
+
 
 .ctab:hover {
   border-color: var(--primary);
