@@ -1217,16 +1217,60 @@ function renderResults() {
     return;
   }
 
-  // Calcular sugestão multisplit (sempre, para 2+ divisões com alguma individual)
+  // Calcular sugestões multisplit (sempre, para 2+ divisões com alguma individual)
   const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
   const hasIndividual = config.monoRooms.length > 0 && validRooms.length >= 2;
-  const multiSuggestion = hasIndividual ? calcBestForcedMulti(state.brand, state.rooms) : null;
+  const multiSuggestions = [];
 
-  contentEl.innerHTML = buildResultsHTML(config, multiSuggestion);
+  if (hasIndividual) {
+    const roomsWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard' }));
+
+    // Opção 1: Sensira CTXF + MXF (Daikin, ≤ 12k BTU, 2-3 divisões)
+    if (state.brand === 'daikin' && roomsWT.length >= 2 && roomsWT.length <= 3 &&
+        roomsWT.every(r => r.tier <= 12000)) {
+      const sr = calcSensiraMulti(roomsWT);
+      if (sr) multiSuggestions.push({ ...sr, multiSystemType: 'sensira' });
+    }
+
+    // Opção 2: Standard FTXM + MXM (ou Bosch / Daitsu padrão)
+    const std = calcBrandMulti(state.brand, roomsWT);
+    if (std) multiSuggestions.push({ ...std, multiSystemType: 'standard' });
+  }
+
+  contentEl.innerHTML = buildResultsHTML(config, multiSuggestions);
   if (altEl) altEl.innerHTML = buildAltBrandsHTML();
 }
 
-function buildResultsHTML(config, multiSuggestion) {
+function buildMultiSuggestBox(ms) {
+  const isSensira = ms.multiSystemType === 'sensira';
+  const msLabel = isSensira
+    ? 'Sensira Budget · CTXF interior + MXF exterior'
+    : 'Padrão · FTXM interior + MXM exterior';
+  const msTag = isSensira ? '💸 Budget' : '⭐ Padrão';
+  let msRows = '';
+  (ms.indoorUnits || []).forEach(({ room, unit }) => {
+    msRows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
+  });
+  if (ms.outdoor) {
+    const ou = ms.outdoor;
+    msRows += `<div class="sim-ms-row"><span>Exterior partilhado — ${ou.model} (${ou.zones} zonas · ${ou.kw} kW)</span><span>${fmtPrice(ou.pvp)}</span></div>`;
+  }
+  return `
+<div class="sim-multi-suggest${isSensira ? '' : ' standard'}">
+  <div class="sim-multi-suggest__header">
+    <span class="sim-multi-suggest__icon">💡</span>
+    <div>
+      <div class="sim-multi-suggest__title">Alternativa Multisplit <span class="sim-ms-tag">${msTag}</span></div>
+      <div class="sim-multi-suggest__sub">Mesmo com modelos diferentes, pode instalar uma unidade exterior partilhada · ${msLabel}</div>
+    </div>
+    <div class="sim-multi-suggest__total">${fmtPrice(ms.total)}</div>
+  </div>
+  <div class="sim-multi-suggest__rows">${msRows}</div>
+  <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Peça-nos orçamento para confirmar compatibilidade</div>
+</div>`;
+}
+
+function buildResultsHTML(config, multiSuggestions) {
   const brandName = capFirst(state.brand);
   const brandImg = `assets/logo-${state.brand}.png`;
 
@@ -1294,33 +1338,10 @@ function buildResultsHTML(config, multiSuggestion) {
     ? `${numRooms} divisões · Sistema multisplit`
     : `${numRooms} divisão${numRooms > 1 ? 's' : ''} · Monosplit`;
 
-  // Bloco de sugestão multisplit (quando há divisões individuais)
-  let multiSuggestHtml = '';
-  if (multiSuggestion) {
-    const isSensira = multiSuggestion.multiSystemType === 'sensira';
-    const msLabel = isSensira ? 'Sensira Multisplit (CTXF + MXF)' : 'Multisplit Padrão (FTXM + MXM)';
-    let msRows = '';
-    (multiSuggestion.indoorUnits || []).forEach(({ room, unit }) => {
-      msRows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
-    });
-    if (multiSuggestion.outdoor) {
-      const ou = multiSuggestion.outdoor;
-      msRows += `<div class="sim-ms-row"><span>Exterior partilhado — ${ou.model} (${ou.zones} zonas)</span><span>${fmtPrice(ou.pvp)}</span></div>`;
-    }
-    multiSuggestHtml = `
-<div class="sim-multi-suggest">
-  <div class="sim-multi-suggest__header">
-    <span class="sim-multi-suggest__icon">💡</span>
-    <div>
-      <div class="sim-multi-suggest__title">Alternativa: Sistema Multisplit</div>
-      <div class="sim-multi-suggest__sub">Mesmo com modelos diferentes, é possível instalar uma unidade exterior partilhada · ${msLabel}</div>
-    </div>
-    <div class="sim-multi-suggest__total">${fmtPrice(multiSuggestion.total)}</div>
-  </div>
-  <div class="sim-multi-suggest__rows">${msRows}</div>
-  <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Peça-nos orçamento para confirmar compatibilidade</div>
-</div>`;
-  }
+  // Blocos de sugestão multisplit (quando há divisões individuais)
+  const multiSuggestHtml = (multiSuggestions && multiSuggestions.length)
+    ? multiSuggestions.map(buildMultiSuggestBox).join('')
+    : '';
 
   return `
 <div class="sim-res-card">

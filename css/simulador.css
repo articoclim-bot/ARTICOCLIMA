@@ -674,6 +674,33 @@
   color: #166534;
   opacity: .7;
 }
+/* Variante padrão (FTXM + MXM) — azul suave */
+.sim-multi-suggest.standard {
+  background: #eff6ff;
+  border-color: #93c5fd;
+}
+.sim-multi-suggest.standard .sim-multi-suggest__title,
+.sim-multi-suggest.standard .sim-multi-suggest__total { color: #1d4ed8; }
+.sim-multi-suggest.standard .sim-multi-suggest__sub,
+.sim-multi-suggest.standard .sim-ms-row,
+.sim-multi-suggest.standard .sim-multi-suggest__note { color: #1e3a8a; }
+.sim-multi-suggest.standard .sim-multi-suggest__rows { border-top-color: #bfdbfe; }
+/* Tag de tipo dentro do título */
+.sim-ms-tag {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 20px;
+  background: #dcfce7;
+  color: #15803d;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.sim-multi-suggest.standard .sim-ms-tag {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
 
 /* ── Alternative Brands Banners ─────────────────────────────────── */
 .sim-alt {
