@@ -27,6 +27,8 @@ const DAIKIN_MONO = {
     prices:  { 7000:972,  9000:1033, 12000:1169, 15000:1396, 18000:1863, 24000:2319, 28000:2774 },
     models:  { 7000:'FTXF20', 9000:'FTXF25', 12000:'FTXF35', 15000:'FTXF42', 18000:'FTXF50', 24000:'FTXF60', 28000:'FTXF71' },
     features: ['Inverter', 'R-32', 'Filtro básico', 'Auto-restart'],
+    // REGRA 3: FTXF é EXCLUSIVAMENTE monosplit (c/ exterior RXF). Nunca multisplit.
+    monoOnly: true,
     image: 'assets/products/daikin-sensira-1.webp',
     images: ['assets/products/daikin-sensira-1.webp','assets/products/daikin-sensira-2.webp','assets/products/daikin-sensira-3.webp'],
   },
@@ -37,6 +39,8 @@ const DAIKIN_MONO = {
     prices:  { 7000:1224, 9000:1316, 12000:1482, 18000:2343, 24000:2927, 28000:3383 },
     models:  { 7000:'FTXP20', 9000:'FTXP25', 12000:'FTXP35', 18000:'FTXP50', 24000:'FTXP60', 28000:'FTXP71' },
     features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi opcional'],
+    // REGRA 1+2: FTXP20/25/35 (≤12k) compatíveis multisplit MXM. FTXP50/60/71 (≥18k) monosplit c/ RXP.
+    multisplitMaxBTU: 12000,
     image: 'assets/products/daikin-confora-1.webp',
     images: ['assets/products/daikin-confora-1.webp','assets/products/daikin-confora-2.webp','assets/products/daikin-confora-3.webp'],
   },
@@ -47,6 +51,7 @@ const DAIKIN_MONO = {
     prices:  { 7000:1451, 9000:1538, 12000:1771, 15000:2251, 18000:2897, 24000:3506, 28000:4041 },
     models:  { 7000:'FTXM20', 9000:'FTXM25', 12000:'FTXM35', 15000:'FTXM42', 18000:'FTXM50', 24000:'FTXM60', 28000:'FTXM71' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', 'App Daikin Online'],
+    // REGRA 1: FTXM compatível multisplit MXM em todos os BTUs disponíveis
     image: 'assets/products/daikin-perfera-1.webp',
     images: ['assets/products/daikin-perfera-1.webp','assets/products/daikin-perfera-2.webp','assets/products/daikin-perfera-3.webp'],
   },
@@ -56,6 +61,7 @@ const DAIKIN_MONO = {
     desc: 'Design premiado — Branco, Prateado e Preto (máx. 18k BTU)',
     prices:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },
     models:  { 7000:'FTXA20', 9000:'FTXA25', 12000:'FTXA35', 15000:'FTXA42', 18000:'FTXA50' },
+    // REGRA 1: FTXA compatível multisplit MXM até 18k BTU
     colorPrices: {
       white:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },
       silver: { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },
@@ -76,6 +82,7 @@ const DAIKIN_MONO = {
     desc: 'Design icónico europeu — purificador de ar e app (máx. 18k BTU)',
     prices:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },
     models:  { 7000:'FTXJ20', 9000:'FTXJ25', 12000:'FTXJ35', 15000:'FTXJ42', 18000:'FTXJ50' },
+    // REGRA 1: FTXJ compatível multisplit MXM em todos os BTUs disponíveis
     colorPrices: {
       white:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },
       silver: { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },
@@ -1090,6 +1097,18 @@ function buildPickerCards(room, tier) {
     const diff = price - anchorPrice;
     const colorPicker = series.colorPrices ? buildColorPickerInCard(room.id, key, pickerColor) : '';
 
+    // Nota de compatibilidade multisplit (Daikin, contexto multi)
+    let compatNote = '';
+    if (isMultiContext && state.brand === 'daikin') {
+      if (series.monoOnly) {
+        compatNote = '🚫 Apenas individual (FTXF + RXF)';
+      } else if (series.multisplitMaxBTU && tier > series.multisplitMaxBTU) {
+        compatNote = '🚫 Apenas individual neste BTU (RXP)';
+      } else {
+        compatNote = '✓ Compatível multisplit MXM';
+      }
+    }
+
     html += pickerCard({
       id: room.id, type: 'mono', seriesKey: key,
       badge: isMultiContext ? 'INDIVIDUAL' : null,
@@ -1098,7 +1117,7 @@ function buildPickerCards(room, tier) {
       specs: `${btuLabel(tier)} · ${BTU_TO_KW[tier]} kW · ${series.energyCool || 'A++'} arref.`,
       price, priceNote: 'Kit completo (inclui exterior)',
       diff, isSelected, color: pickerColor,
-      colorPicker,
+      colorPicker, compatNote,
       features: series.features ? series.features.slice(0, 3) : [],
     });
   });
@@ -1106,7 +1125,7 @@ function buildPickerCards(room, tier) {
   return html;
 }
 
-function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker, features }) {
+function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker, features, compatNote }) {
   let diffText;
   if (diff === 0) {
     diffText = `<div class="smp-card__diff base"><span class="smp-diff-tag base">★ Mais económico</span></div>`;
@@ -1117,6 +1136,10 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
   const badgeHtml = badge ? `<div class="smp-card__badge ${badgeClass || ''}">${badge}</div>` : '';
   const checkHtml = isSelected ? `<div class="smp-card__check">✓</div>` : '';
   const featHtml  = features && features.length ? `<div class="smp-card__specs" style="margin-top:4px">${features.join(' · ')}</div>` : '';
+  const isIncompat = compatNote && compatNote.startsWith('🚫');
+  const compatHtml = compatNote
+    ? `<div class="smp-card__compat${isIncompat ? ' incompat' : ' compat'}">${compatNote}</div>`
+    : '';
 
   // onclick — color is read from state.pickerColors inside selectModel
   let onClick;
@@ -1134,6 +1157,7 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
     ${featHtml}
     <div class="smp-card__price">${fmtPrice(price)}</div>
     <div class="smp-card__price-note">${priceNote}</div>
+    ${compatHtml}
     ${diffText}
   </div>
   ${colorPicker}
