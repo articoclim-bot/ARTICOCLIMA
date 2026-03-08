@@ -1097,18 +1097,6 @@ function buildPickerCards(room, tier) {
     const diff = price - anchorPrice;
     const colorPicker = series.colorPrices ? buildColorPickerInCard(room.id, key, pickerColor) : '';
 
-    // Nota de compatibilidade multisplit (Daikin, contexto multi)
-    let compatNote = '';
-    if (isMultiContext && state.brand === 'daikin') {
-      if (series.monoOnly) {
-        compatNote = '🚫 Apenas individual (FTXF + RXF)';
-      } else if (series.multisplitMaxBTU && tier > series.multisplitMaxBTU) {
-        compatNote = '🚫 Apenas individual neste BTU (RXP)';
-      } else {
-        compatNote = '✓ Compatível multisplit MXM';
-      }
-    }
-
     html += pickerCard({
       id: room.id, type: 'mono', seriesKey: key,
       badge: isMultiContext ? 'INDIVIDUAL' : null,
@@ -1117,7 +1105,7 @@ function buildPickerCards(room, tier) {
       specs: `${btuLabel(tier)} · ${BTU_TO_KW[tier]} kW · ${series.energyCool || 'A++'} arref.`,
       price, priceNote: 'Kit completo (inclui exterior)',
       diff, isSelected, color: pickerColor,
-      colorPicker, compatNote,
+      colorPicker,
       features: series.features ? series.features.slice(0, 3) : [],
     });
   });
@@ -1125,7 +1113,7 @@ function buildPickerCards(room, tier) {
   return html;
 }
 
-function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker, features, compatNote }) {
+function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker = '', features }) {
   let diffText;
   if (diff === 0) {
     diffText = `<div class="smp-card__diff base"><span class="smp-diff-tag base">★ Mais económico</span></div>`;
@@ -1136,10 +1124,6 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
   const badgeHtml = badge ? `<div class="smp-card__badge ${badgeClass || ''}">${badge}</div>` : '';
   const checkHtml = isSelected ? `<div class="smp-card__check">✓</div>` : '';
   const featHtml  = features && features.length ? `<div class="smp-card__specs" style="margin-top:4px">${features.join(' · ')}</div>` : '';
-  const isIncompat = compatNote && compatNote.startsWith('🚫');
-  const compatHtml = compatNote
-    ? `<div class="smp-card__compat${isIncompat ? ' incompat' : ' compat'}">${compatNote}</div>`
-    : '';
 
   // onclick — color is read from state.pickerColors inside selectModel
   let onClick;
@@ -1157,7 +1141,6 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
     ${featHtml}
     <div class="smp-card__price">${fmtPrice(price)}</div>
     <div class="smp-card__price-note">${priceNote}</div>
-    ${compatHtml}
     ${diffText}
   </div>
   ${colorPicker}

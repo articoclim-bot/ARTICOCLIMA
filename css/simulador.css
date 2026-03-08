@@ -1058,24 +1058,6 @@ body { padding-bottom: 80px; }
 .smp-card__badge.sensira {
   background: #065f46;
 }
-/* Compatibility note inside mono picker card */
-.smp-card__compat {
-  font-size: .70rem;
-  font-weight: 600;
-  margin-top: 5px;
-  padding: 2px 7px;
-  border-radius: 4px;
-  display: inline-block;
-}
-.smp-card__compat.compat {
-  background: #dcfce7;
-  color: #15803d;
-}
-.smp-card__compat.incompat {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
 /* Color picker inside SMP card */
 .smp-card__colors {
   display: flex;
