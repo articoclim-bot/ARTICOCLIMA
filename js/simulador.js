@@ -362,13 +362,23 @@ function getMultiIndoorForRoom(room, tier) {
   return DAIKIN_MULTI_INDOOR.find(u => u.btu >= tier) || null; // standard FTXM
 }
 
+// Devolve o tier efectivo a usar para uma série: o tier exacto se existir,
+// ou o tamanho imediatamente acima (ex: 7k Bosch → 9k, o mais pequeno disponível).
+function getEffectiveTier(series, tier) {
+  if (series.prices[tier] !== undefined) return tier;
+  const available = Object.keys(series.prices).map(Number).sort((a, b) => a - b);
+  return available.find(t => t >= tier) || null;
+}
+
 function getCheapestMonoSeries(brand, tier) {
   const catalog = getBrandCatalog(brand);
   let cheapestKey = null;
   let cheapestPrice = Infinity;
   for (const [key, series] of Object.entries(catalog)) {
     if (series.maxBTU && tier > series.maxBTU) continue;
-    const price = series.prices[tier];
+    const eTier = getEffectiveTier(series, tier);
+    if (eTier === null) continue;
+    const price = series.prices[eTier];
     if (price !== undefined && price < cheapestPrice) {
       cheapestPrice = price;
       cheapestKey = key;
@@ -381,11 +391,12 @@ function getMonoPrice(brand, seriesKey, tier, color) {
   const catalog = getBrandCatalog(brand);
   const series = catalog[seriesKey];
   if (!series) return 0;
+  const eTier = getEffectiveTier(series, tier) || tier;
   if (series.colorPrices) {
     const col = color || 'white';
-    return (series.colorPrices[col] && series.colorPrices[col][tier]) || series.prices[tier] || 0;
+    return (series.colorPrices[col] && series.colorPrices[col][eTier]) || series.prices[eTier] || 0;
   }
-  return series.prices[tier] || 0;
+  return series.prices[eTier] || 0;
 }
 
 function getSeriesImage(brand, seriesKey, color) {
