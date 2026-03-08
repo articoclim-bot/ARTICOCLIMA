@@ -1512,43 +1512,14 @@ function renderResults() {
     return;
   }
 
-  // 2+ divisões → MULTISPLIT como resultado primário, MONOSPLIT como alternativa azul
-  const roomsWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard' }));
-
-  // Calcular melhor multisplit (Sensira primeiro se elegível, depois Standard)
-  let primaryMulti = null;
-  if (state.brand === 'daikin' && roomsWT.length >= 2 && roomsWT.length <= 3 &&
-      roomsWT.every(r => r.tier <= 12000)) {
-    const sr = calcSensiraMulti(roomsWT);
-    if (sr) primaryMulti = { ...sr, multiSystemType: 'sensira' };
-  }
-  if (!primaryMulti) {
-    const std = calcBrandMulti(state.brand, roomsWT);
-    if (std) primaryMulti = { ...std, multiSystemType: 'standard' };
-  }
-
-  if (!primaryMulti) {
-    // Fallback: sem multisplit disponível → mostrar mono como primário
-    const config = calcSystemConfig(state.brand, state.rooms);
-    if (!config || !config.total) { contentEl.innerHTML = ''; if (altEl) altEl.innerHTML = ''; return; }
-    contentEl.innerHTML = buildResultsHTML(config, null);
-    if (altEl) altEl.innerHTML = buildAltBrandsHTML();
-    return;
-  }
-
-  // Construir config object para buildResultsHTML (estrutura multisplit)
-  const multiConfig = {
-    monoRooms: [],
-    multiRooms: primaryMulti.indoorUnits,
-    outdoor: primaryMulti.outdoor,
-    total: primaryMulti.total,
-    multiSystemType: primaryMulti.multiSystemType,
-  };
+  // 2+ divisões → usar a configuração actual do utilizador (respeita as escolhas do picker)
+  const config = calcSystemConfig(state.brand, state.rooms);
+  if (!config || !config.total) { contentEl.innerHTML = ''; if (altEl) altEl.innerHTML = ''; return; }
 
   // Calcular alternativa monosplit (mais barato por divisão)
   const monoAlt = calcCheapestMonoAlt(state.brand, validRooms);
 
-  contentEl.innerHTML = buildResultsHTML(multiConfig, monoAlt);
+  contentEl.innerHTML = buildResultsHTML(config, monoAlt);
   if (altEl) altEl.innerHTML = buildAltBrandsHTML();
 }
 
@@ -1676,13 +1647,23 @@ function buildResultsHTML(config, monoAlt) {
 
   // Multi indoor rooms
   config.multiRooms.forEach(({ room, unit }) => {
-    const img = isSensiraConfig
-      ? 'assets/products/daikin-sensira-1.webp'
-      : state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp'
-      : state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp'
-      :                            'assets/products/daitsu-artic-plus-1.webp';
-    const multiBadge = isSensiraConfig ? 'Sensira Budget' : 'Multisplit padrão';
     const seriesLabel = getMultiSeriesLabel(state.brand, unit.model);
+    // Imagem por série e cor (para Stylish/Emura)
+    let img = '';
+    if (state.brand === 'daikin') {
+      const color = room.color || 'white';
+      const colorSlug = color === 'white' ? 'branco' : color;
+      if (unit.model.startsWith('FTXJ'))      img = `assets/products/daikin-emura-${colorSlug}-1.webp`;
+      else if (unit.model.startsWith('FTXA')) img = `assets/products/daikin-stylish-${colorSlug}-1.webp`;
+      else if (unit.model.startsWith('FTXP')) img = 'assets/products/daikin-confora-1.webp';
+      else if (unit.model.startsWith('CTXF')) img = 'assets/products/daikin-sensira-1.webp';
+      else                                    img = 'assets/products/daikin-perfera-1.webp';
+    } else if (state.brand === 'bosch') {
+      img = 'assets/products/bosch-3000i-1.webp';
+    } else {
+      img = 'assets/products/daitsu-artic-plus-1.webp';
+    }
+    const multiBadge = unit.model.startsWith('CTXF') ? 'Multisplit Budget' : 'Multisplit';
     rowsHtml += `
 <div class="sim-res-row">
   <img src="${img}" alt="${seriesLabel}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
