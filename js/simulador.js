@@ -1281,39 +1281,103 @@ function updateResultsVisibility() {
 
 function renderResults() {
   updateResultsVisibility();
-  const config = calcSystemConfig(state.brand, state.rooms);
+  const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
   const contentEl = document.getElementById('sim-results-content');
   const altEl = document.getElementById('sim-alt-brands');
   if (!contentEl) return;
 
-  if (!config || !config.total) {
+  if (!validRooms.length) {
     contentEl.innerHTML = '';
     if (altEl) altEl.innerHTML = '';
     return;
   }
 
-  // Calcular sugestões multisplit (sempre, para 2+ divisões com alguma individual)
-  const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
-  const hasIndividual = config.monoRooms.length > 0 && validRooms.length >= 2;
-  const multiSuggestions = [];
-
-  if (hasIndividual) {
-    const roomsWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard' }));
-
-    // Opção 1: Sensira CTXF + MXF (Daikin, ≤ 12k BTU, 2-3 divisões)
-    if (state.brand === 'daikin' && roomsWT.length >= 2 && roomsWT.length <= 3 &&
-        roomsWT.every(r => r.tier <= 12000)) {
-      const sr = calcSensiraMulti(roomsWT);
-      if (sr) multiSuggestions.push({ ...sr, multiSystemType: 'sensira' });
-    }
-
-    // Opção 2: Standard FTXM + MXM (ou Bosch / Daitsu padrão)
-    const std = calcBrandMulti(state.brand, roomsWT);
-    if (std) multiSuggestions.push({ ...std, multiSystemType: 'standard' });
+  if (validRooms.length === 1) {
+    // 1 divisão → sempre monosplit como primário, sem alternativa
+    const config = calcSystemConfig(state.brand, state.rooms);
+    if (!config || !config.total) { contentEl.innerHTML = ''; if (altEl) altEl.innerHTML = ''; return; }
+    contentEl.innerHTML = buildResultsHTML(config, null);
+    if (altEl) altEl.innerHTML = buildAltBrandsHTML();
+    return;
   }
 
-  contentEl.innerHTML = buildResultsHTML(config, multiSuggestions);
+  // 2+ divisões → MULTISPLIT como resultado primário, MONOSPLIT como alternativa azul
+  const roomsWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard' }));
+
+  // Calcular melhor multisplit (Sensira primeiro se elegível, depois Standard)
+  let primaryMulti = null;
+  if (state.brand === 'daikin' && roomsWT.length >= 2 && roomsWT.length <= 3 &&
+      roomsWT.every(r => r.tier <= 12000)) {
+    const sr = calcSensiraMulti(roomsWT);
+    if (sr) primaryMulti = { ...sr, multiSystemType: 'sensira' };
+  }
+  if (!primaryMulti) {
+    const std = calcBrandMulti(state.brand, roomsWT);
+    if (std) primaryMulti = { ...std, multiSystemType: 'standard' };
+  }
+
+  if (!primaryMulti) {
+    // Fallback: sem multisplit disponível → mostrar mono como primário
+    const config = calcSystemConfig(state.brand, state.rooms);
+    if (!config || !config.total) { contentEl.innerHTML = ''; if (altEl) altEl.innerHTML = ''; return; }
+    contentEl.innerHTML = buildResultsHTML(config, null);
+    if (altEl) altEl.innerHTML = buildAltBrandsHTML();
+    return;
+  }
+
+  // Construir config object para buildResultsHTML (estrutura multisplit)
+  const multiConfig = {
+    monoRooms: [],
+    multiRooms: primaryMulti.indoorUnits,
+    outdoor: primaryMulti.outdoor,
+    total: primaryMulti.total,
+    multiSystemType: primaryMulti.multiSystemType,
+  };
+
+  // Calcular alternativa monosplit (mais barato por divisão)
+  const monoAlt = calcCheapestMonoAlt(state.brand, validRooms);
+
+  contentEl.innerHTML = buildResultsHTML(multiConfig, monoAlt);
   if (altEl) altEl.innerHTML = buildAltBrandsHTML();
+}
+
+// Calcula a alternativa monosplit mais barata — uma unidade exterior por divisão
+function calcCheapestMonoAlt(brand, rooms) {
+  const catalog = getBrandCatalog(brand);
+  const roomResults = [];
+  let total = 0;
+  rooms.forEach(r => {
+    const tier = btuToTier(calcBTU(r));
+    const seriesKey = getCheapestMonoSeries(brand, tier);
+    const price = getMonoPrice(brand, seriesKey, tier, 'white');
+    const series = seriesKey ? catalog[seriesKey] : null;
+    const model = series ? (series.models[tier] || '') : '';
+    const label = series ? series.label : '';
+    roomResults.push({ room: r, seriesKey, tier, price, model, label });
+    total += price || 0;
+  });
+  return { rooms: roomResults, total };
+}
+
+// Caixa de alternativa monosplit (estilo "azul" — igual ao standard suggestion anterior)
+function buildMonoAltBox(monoAlt) {
+  let rows = '';
+  monoAlt.rooms.forEach(({ room, label, model, price }) => {
+    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${escHtml(label)}${model ? ' · ' + model : ''}</span><span>${fmtPrice(price)}</span></div>`;
+  });
+  return `
+<div class="sim-multi-suggest standard">
+  <div class="sim-multi-suggest__header">
+    <span class="sim-multi-suggest__icon">💡</span>
+    <div>
+      <div class="sim-multi-suggest__title">Alternativa Monosplit <span class="sim-ms-tag">🔧 Individual</span></div>
+      <div class="sim-multi-suggest__sub">Uma unidade exterior por cada interior — total independência por divisão</div>
+    </div>
+    <div class="sim-multi-suggest__total">${fmtPrice(monoAlt.total)}</div>
+  </div>
+  <div class="sim-multi-suggest__rows">${rows}</div>
+  <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Gama de entrada por divisão</div>
+</div>`;
 }
 
 function buildMultiSuggestBox(ms) {
@@ -1345,9 +1409,10 @@ function buildMultiSuggestBox(ms) {
 </div>`;
 }
 
-function buildResultsHTML(config, multiSuggestions) {
+function buildResultsHTML(config, monoAlt) {
   const brandName = capFirst(state.brand);
   const brandImg = `assets/logo-${state.brand}.png`;
+  const isSensiraConfig = config.multiSystemType === 'sensira';
 
   let rowsHtml = '';
 
@@ -1376,9 +1441,12 @@ function buildResultsHTML(config, multiSuggestions) {
 
   // Multi indoor rooms
   config.multiRooms.forEach(({ room, unit }) => {
-    const img = state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp' :
-                state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
-                                           'assets/products/daitsu-artic-plus-1.webp';
+    const img = isSensiraConfig
+      ? 'assets/products/daikin-sensira-1.webp'
+      : state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp'
+      : state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp'
+      :                            'assets/products/daitsu-artic-plus-1.webp';
+    const multiBadge = isSensiraConfig ? 'Sensira Budget' : 'Multisplit padrão';
     rowsHtml += `
 <div class="sim-res-row">
   <img src="${img}" alt="${unit.model}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
@@ -1386,7 +1454,7 @@ function buildResultsHTML(config, multiSuggestions) {
     <div class="sim-res-row__label">${escHtml(room.name)}</div>
     <div class="sim-res-row__model">${unit.model}</div>
     <div class="sim-res-row__specs">${btuLabel(unit.btu)} · ${unit.kw} kW</div>
-    <span class="sim-res-row__badge">Multisplit padrão</span>
+    <span class="sim-res-row__badge">${multiBadge}</span>
   </div>
   <div class="sim-res-row__price">${fmtPrice(unit.pvp)}</div>
 </div>`;
@@ -1410,13 +1478,12 @@ function buildResultsHTML(config, multiSuggestions) {
 
   const numRooms = config.monoRooms.length + config.multiRooms.length;
   const systemDesc = config.outdoor
-    ? `${numRooms} divisões · Sistema multisplit`
+    ? (isSensiraConfig
+        ? `${numRooms} divisões · Multisplit Budget Sensira`
+        : `${numRooms} divisões · Sistema multisplit`)
     : `${numRooms} divisão${numRooms > 1 ? 's' : ''} · Monosplit`;
 
-  // Blocos de sugestão multisplit (quando há divisões individuais)
-  const multiSuggestHtml = (multiSuggestions && multiSuggestions.length)
-    ? multiSuggestions.map(buildMultiSuggestBox).join('')
-    : '';
+  const monoAltHtml = monoAlt ? buildMonoAltBox(monoAlt) : '';
 
   return `
 <div class="sim-res-card">
@@ -1434,7 +1501,7 @@ function buildResultsHTML(config, multiSuggestions) {
   </div>
 </div>
 <p class="sim-res-disclaimer">IVA incluído · Exclui instalação, suportes e materiais</p>
-${multiSuggestHtml}`;
+${monoAltHtml}`;
 }
 
 function buildAltBrandsHTML() {
