@@ -1181,6 +1181,12 @@ function setPickerColor(roomId, seriesKey, color, btnEl) {
       imgEl.src = series.images[color]?.[0] || series.image || '';
     }
   }
+  // Atualizar painel de resultados (preço e cor mudam na alternativa monosplit)
+  if (!room.useMulti) {
+    updateRoomHeader(roomId);
+    updateLiveTotal();
+    renderResults();
+  }
 }
 
 function selectModel(roomId, type, seriesKey) {
@@ -1324,29 +1330,39 @@ function renderResults() {
   if (altEl) altEl.innerHTML = buildAltBrandsHTML();
 }
 
-// Calcula a alternativa monosplit mais barata — uma unidade exterior por divisão
+// Calcula a alternativa monosplit — respeita a série escolhida pelo utilizador;
+// se não há selecção individual explícita, usa a mais barata
 function calcCheapestMonoAlt(brand, rooms) {
   const catalog = getBrandCatalog(brand);
   const roomResults = [];
   let total = 0;
   rooms.forEach(r => {
     const tier = btuToTier(calcBTU(r));
-    const seriesKey = getCheapestMonoSeries(brand, tier);
-    const price = getMonoPrice(brand, seriesKey, tier, 'white');
+    // Usar série do utilizador se ele escolheu individual no picker; senão a mais barata
+    const userKey = (!r.useMulti && r.series && catalog[r.series]) ? r.series : null;
+    const seriesKey = userKey || getCheapestMonoSeries(brand, tier);
+    const color = state.pickerColors[r.id] || 'white';
+    const price = getMonoPrice(brand, seriesKey, tier, color);
     const series = seriesKey ? catalog[seriesKey] : null;
-    const model = series ? (series.models[tier] || '') : '';
     const label = series ? series.label : '';
-    roomResults.push({ room: r, seriesKey, tier, price, model, label });
+    roomResults.push({ room: r, seriesKey, tier, price, label, color });
     total += price || 0;
   });
   return { rooms: roomResults, total };
 }
 
+const COLOR_LABELS = { white: 'Branco', silver: 'Prateado', black: 'Preto' };
+
 // Caixa de alternativa monosplit (estilo "azul" — igual ao standard suggestion anterior)
 function buildMonoAltBox(monoAlt) {
+  const catalog = getBrandCatalog(state.brand);
   let rows = '';
-  monoAlt.rooms.forEach(({ room, label, model, price }) => {
-    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${escHtml(label)}${model ? ' · ' + model : ''}</span><span>${fmtPrice(price)}</span></div>`;
+  monoAlt.rooms.forEach(({ room, label, price, color, seriesKey }) => {
+    const series = seriesKey ? catalog[seriesKey] : null;
+    const colorLabel = (series && series.colorPrices && color && color !== 'white')
+      ? (COLOR_LABELS[color] || '') : '';
+    const displayName = colorLabel ? `${label} ${colorLabel}` : label;
+    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${escHtml(displayName)}</span><span>${fmtPrice(price)}</span></div>`;
   });
   return `
 <div class="sim-multi-suggest standard">
@@ -1392,6 +1408,14 @@ function buildMultiSuggestBox(ms) {
 </div>`;
 }
 
+// Derivar nome da série a partir do modelo de interior multisplit
+function getMultiSeriesLabel(brand, model) {
+  if (brand === 'daikin') return model.startsWith('CTXF') ? 'Sensira' : 'Perfera';
+  if (brand === 'bosch')  return 'Climate 3000i';
+  if (brand === 'daitsu') return 'ARTIC Plus';
+  return model;
+}
+
 function buildResultsHTML(config, monoAlt) {
   const brandName = capFirst(state.brand);
   const brandImg = `assets/logo-${state.brand}.png`;
@@ -1414,8 +1438,8 @@ function buildResultsHTML(config, monoAlt) {
   <img src="${img}" alt="${escHtml(label)}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
   <div class="sim-res-row__info">
     <div class="sim-res-row__label">${escHtml(room.name)}</div>
-    <div class="sim-res-row__model">${escHtml(label)}${modelNum ? ' · ' + modelNum : ''}</div>
-    <div class="sim-res-row__specs">${btuLabel(tier)} · ${kwLabel(tier)}</div>
+    <div class="sim-res-row__model">${escHtml(label)}</div>
+    <div class="sim-res-row__specs">${btuLabel(tier)} · ${kwLabel(tier)}${modelNum ? ' · ' + modelNum : ''}</div>
     <span class="sim-res-row__badge ${badgeClass}">${badgeText}</span>
   </div>
   <div class="sim-res-row__price">${fmtPrice(price)}</div>
@@ -1430,13 +1454,14 @@ function buildResultsHTML(config, monoAlt) {
       : state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp'
       :                            'assets/products/daitsu-artic-plus-1.webp';
     const multiBadge = isSensiraConfig ? 'Sensira Budget' : 'Multisplit padrão';
+    const seriesLabel = getMultiSeriesLabel(state.brand, unit.model);
     rowsHtml += `
 <div class="sim-res-row">
-  <img src="${img}" alt="${unit.model}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
+  <img src="${img}" alt="${seriesLabel}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
   <div class="sim-res-row__info">
     <div class="sim-res-row__label">${escHtml(room.name)}</div>
-    <div class="sim-res-row__model">${unit.model}</div>
-    <div class="sim-res-row__specs">${btuLabel(unit.btu)} · ${unit.kw} kW</div>
+    <div class="sim-res-row__model">${seriesLabel}</div>
+    <div class="sim-res-row__specs">${btuLabel(unit.btu)} · ${unit.kw} kW · ${unit.model}</div>
     <span class="sim-res-row__badge">${multiBadge}</span>
   </div>
   <div class="sim-res-row__price">${fmtPrice(unit.pvp)}</div>
