@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Simulador de instalação de ar condicionado ARTICOCLIMA — descubra a potência certa e compare soluções mono e multisplit Daikin, Bosch e Daitsu." />
+  <meta name="description" content="Simulador de instalação de ar condicionado ARTICOCLIMA — configure as suas divisões e descubra o sistema ideal em tempo real. Daikin, Bosch e Daitsu." />
   <title>Simulador de Instalação – ARTICOCLIMA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
@@ -67,115 +67,136 @@
   </header>
 
   <!-- ===== HERO ===== -->
-  <div class="sim-hero">
+  <section class="sim-hero">
     <div class="container">
       <span class="section__tag">Ferramenta Online</span>
-      <h1>Simulador de Instalação</h1>
-      <p>Diga-nos como são as suas divisões e calculamos a potência certa. Compare soluções mono e multisplit das marcas que representamos.</p>
+      <h1>Descubra o sistema ideal<br>para a sua casa</h1>
+      <p>Configure as suas divisões, escolha a marca e veja o investimento em tempo real.</p>
+    </div>
+  </section>
+
+  <!-- ===== BRAND BAR ===== -->
+  <div class="sim-brand-bar" id="sim-brand-bar">
+    <div class="container sim-brand-bar__inner">
+      <span class="sim-brand-bar__label">Marca:</span>
+      <div class="sim-brand-options">
+        <button class="sim-brand-btn active" data-brand="daikin" onclick="changeBrand('daikin')">
+          <img src="assets/logo-daikin.png" alt="Daikin" class="sim-brand-img">
+          <span>Daikin</span>
+        </button>
+        <button class="sim-brand-btn" data-brand="bosch" onclick="changeBrand('bosch')">
+          <img src="assets/logo-bosch.png" alt="Bosch" class="sim-brand-img">
+          <span>Bosch</span>
+        </button>
+        <button class="sim-brand-btn" data-brand="daitsu" onclick="changeBrand('daitsu')">
+          <img src="assets/logo-daitsu.png" alt="Daitsu" class="sim-brand-img">
+          <span>Daitsu</span>
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- ===== PROGRESS ===== -->
-  <div class="sim-progress" id="simProgress">
-    <div class="sim-step" data-step="1">
-      <span class="sim-step__number">1</span>
-      <span class="sim-step__label">Divisões</span>
+  <!-- ===== DIVISÕES (accordion) ===== -->
+  <main class="sim-main">
+    <div class="container">
+      <div id="sim-rooms-list"></div>
+      <button class="sim-add-btn" id="sim-add-btn" onclick="addRoom()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Adicionar divisão
+      </button>
     </div>
-    <div class="sim-step" data-step="2">
-      <span class="sim-step__number">2</span>
-      <span class="sim-step__label">Detalhes</span>
+  </main>
+
+  <!-- ===== RESULTADOS ===== -->
+  <section class="sim-results" id="sim-results" style="display:none">
+    <div class="container">
+      <div id="sim-results-content"></div>
+      <div id="sim-alt-brands"></div>
     </div>
-    <div class="sim-step" data-step="3">
-      <span class="sim-step__number">3</span>
-      <span class="sim-step__label">Sugestão</span>
+  </section>
+
+  <!-- ===== ACÇÕES ===== -->
+  <div class="sim-actions" id="sim-actions" style="display:none">
+    <div class="container sim-actions__inner">
+      <button class="btn btn--outline btn--lg sim-actions__pdf" onclick="generatePDF()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        Guardar em PDF
+      </button>
+      <button class="btn btn--primary btn--lg" onclick="openQuoteModal()">
+        Solicitar Orçamento →
+      </button>
     </div>
   </div>
 
-  <!-- ===== STEP 1 — Nº de divisões ===== -->
-  <section class="sim-section" id="step1">
-    <div class="container">
-      <div class="sim-step1-header">
-        <h2>Quantas divisões pretende climatizar?</h2>
-        <p>Selecione o número de divisões da sua habitação onde quer instalar ar condicionado.</p>
+  <!-- ===== BARRA STICKY ===== -->
+  <div class="sim-sticky" id="sim-sticky">
+    <div class="sim-sticky__inner">
+      <div class="sim-sticky__left">
+        <div class="sim-sticky__total" id="sim-sticky-total">€ —</div>
+        <div class="sim-sticky__note">Incl. unidades interiores e uma unidade exterior · IVA inc. · Excl. instalação e materiais</div>
       </div>
-      <div class="sim-room-count">
-        <button class="sim-count-btn" data-rooms="1" aria-label="1 divisão">1</button>
-        <button class="sim-count-btn" data-rooms="2" aria-label="2 divisões">2</button>
-        <button class="sim-count-btn" data-rooms="3" aria-label="3 divisões">3</button>
-        <button class="sim-count-btn" data-rooms="4" aria-label="4 divisões">4</button>
-        <button class="sim-count-btn" data-rooms="5" aria-label="5 divisões">5</button>
-      </div>
-      <p style="text-align:center;margin-top:36px;font-size:.85rem;color:var(--gray)">
-        Clique no número para avançar automaticamente.
-      </p>
+      <button class="sim-sticky__cta" onclick="openQuoteModal()">Solicitar orçamento →</button>
     </div>
-  </section>
+  </div>
 
-  <!-- ===== STEP 2 — Detalhes das divisões ===== -->
-  <section class="sim-section" id="step2" style="display:none">
-    <div class="container">
-
-      <div class="sim-step2-header">
-        <h2>Detalhe cada divisão</h2>
-        <p>Preencha as dimensões e as condições de cada divisão para calcularmos a potência necessária.</p>
-      </div>
-
-      <!-- Selecção de marca -->
-      <div class="sim-brand-block">
-        <h3>🏷️ Marca preferida <span style="font-weight:400;color:var(--gray)">(pode mudar na sugestão final)</span></h3>
-        <div class="sim-brand-btns">
-          <button class="sim-brand-btn active" data-brand="daikin">Daikin</button>
-          <button class="sim-brand-btn" data-brand="bosch">Bosch</button>
-          <button class="sim-brand-btn" data-brand="daitsu">Daitsu</button>
+  <!-- ===== MODEL PICKER MODAL ===== -->
+  <div class="smp-overlay" id="smp-overlay" style="display:none" onclick="closeMPIfOuter(event)">
+    <div class="smp-box">
+      <div class="smp-header">
+        <div class="smp-header__text">
+          <h3 class="smp-title" id="smp-title">Escolha o modelo</h3>
+          <p class="smp-sub" id="smp-sub"></p>
         </div>
+        <button class="smp-close" onclick="closeModelPicker()" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
-
-      <!-- Divisões (geradas dinamicamente) -->
-      <div id="simRoomsContainer"></div>
-
-      <!-- Navegação -->
-      <div class="sim-nav-btns">
-        <button class="btn btn--outline" id="backToStep1">← Voltar</button>
-        <button class="btn btn--primary" id="calcResults">Ver Sugestão →</button>
-      </div>
-
+      <div class="smp-content" id="smp-grid"></div>
     </div>
-  </section>
+  </div>
 
-  <!-- ===== STEP 3 — Resultados ===== -->
-  <section class="sim-section" id="step3" style="display:none">
-    <div class="container">
-
-      <!-- Cabeçalho visível só no PDF -->
-      <div class="print-header">
-        <div class="print-header__logo">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="52" aria-label="Artico Climatização">
-            <defs>
-              <filter id="logo-print" color-interpolation-filters="sRGB">
-                <feColorMatrix type="matrix" values="0 0 0 0 0.976
-                                                     0 0 0 0 0.451
-                                                     0 0 0 0 0.086
-                                                    -1 0 0 0 1"/>
-              </filter>
-            </defs>
-            <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-print)"/>
-          </svg>
+  <!-- ===== QUOTE MODAL ===== -->
+  <div class="qm-overlay" id="qm-overlay" style="display:none" onclick="closeQMIfOuter(event)">
+    <div class="qm-box">
+      <button class="qm-close" onclick="closeQuoteModal()" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2 class="qm-title">Solicitar Orçamento</h2>
+      <p class="qm-sub">Envie-nos o resumo da sua simulação. Respondemos brevemente.</p>
+      <div class="qm-form">
+        <div class="qm-field">
+          <label for="qm-name">Nome</label>
+          <input type="text" id="qm-name" placeholder="O seu nome" autocomplete="name">
         </div>
-        <div class="print-header__contacts">
-          <span>📞 +351 964 501 776 &nbsp;|&nbsp; +351 963 712 752</span>
-          <span>✉ artico.clim@gmail.com</span>
+        <div class="qm-field">
+          <label for="qm-contact">Telemóvel ou Email</label>
+          <input type="text" id="qm-contact" placeholder="+351 9XX XXX XXX" autocomplete="tel">
         </div>
+        <p class="qm-error" id="qm-error"></p>
       </div>
-
-      <div id="simResults"></div>
-
-      <div class="sim-nav-btns sim-nav-btns--results">
-        <button class="btn btn--outline" id="backToStep2">← Rever detalhes</button>
-        <button class="btn btn--primary" id="downloadPdf" onclick="window.print()">📄 Guardar PDF</button>
+      <div class="qm-actions">
+        <button class="qm-wa" onclick="sendQuoteWhatsApp()">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Enviar pelo WhatsApp
+        </button>
+        <button class="qm-email" onclick="sendQuoteEmail()">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Enviar por Email
+        </button>
       </div>
-
+      <p class="qm-privacy">🔒 Os seus dados são usados exclusivamente para responder ao seu pedido. <a href="politica-privacidade.html">Política de Privacidade</a></p>
     </div>
-  </section>
+  </div>
+
+  <!-- ===== CONFIRM BANNER ===== -->
+  <div class="sim-confirm" id="sim-confirm" style="display:none">
+    <div class="sim-confirm__box">
+      <div class="sim-confirm__icon">✓</div>
+      <h3>Pedido enviado!</h3>
+      <p>Entraremos em contacto brevemente.<br>Obrigado pela sua confiança.</p>
+      <button class="btn btn--outline" onclick="dismissConfirmBanner()">Fechar</button>
+    </div>
+  </div>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -212,64 +233,7 @@
     </div>
   </footer>
 
-  <!-- Modal de detalhe do produto (preenchido dinamicamente pelo JS) -->
-  <div id="simDetailModal" class="sdm-overlay" style="display:none" aria-modal="true" role="dialog"></div>
-
-  <!-- ===== QUOTE BAR (seleção de produtos) ===== -->
-  <div id="simQuoteBar" class="sim-quote-bar" style="display:none" role="status" aria-live="polite">
-    <div class="sim-quote-bar__inner">
-      <div class="sim-quote-bar__left">
-        <span class="sim-quote-bar__icon">📋</span>
-        <div>
-          <strong id="simQuoteCount">0 opções selecionadas</strong>
-          <span class="sim-quote-bar__hint">Clique para enviar o pedido</span>
-        </div>
-      </div>
-      <button class="sim-quote-bar__btn" id="simQuoteBarBtn">
-        Pedir Orçamento →
-      </button>
-    </div>
-  </div>
-
-  <!-- ===== QUOTE MODAL (formulário de contacto) ===== -->
-  <div id="simQuoteModal" class="sim-qm-overlay" style="display:none" role="dialog" aria-modal="true" aria-labelledby="simQMTitle">
-    <div class="sim-qm-box">
-      <button class="sim-qm-close" id="simQMClose" aria-label="Fechar">✕</button>
-
-      <h2 class="sim-qm-title" id="simQMTitle">📋 Pedido de Orçamento</h2>
-      <p class="sim-qm-sub">Envie-nos as soluções que lhe interessam. Respondemos rapidamente.</p>
-
-      <!-- Itens selecionados -->
-      <div class="sim-qm-selected" id="simQMSelected"></div>
-
-      <!-- Formulário -->
-      <div class="sim-qm-form">
-        <div class="sim-qm-field">
-          <label for="simQMName">Nome <span class="sim-qm-req">*</span></label>
-          <input type="text" id="simQMName" placeholder="O seu nome" autocomplete="name" />
-        </div>
-        <div class="sim-qm-field">
-          <label for="simQMContact">Telemóvel ou Email <span class="sim-qm-req">*</span></label>
-          <input type="text" id="simQMContact" placeholder="+351 9XX XXX XXX  ou  email@exemplo.com" autocomplete="tel" />
-        </div>
-        <p class="sim-qm-error" id="simQMError"></p>
-      </div>
-
-      <!-- Botões de envio -->
-      <div class="sim-qm-actions">
-        <button class="sim-qm-wa" id="simQMWA">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-          Enviar pelo WhatsApp
-        </button>
-        <button class="sim-qm-email" id="simQMEmail">
-          ✉️ Enviar por Email
-        </button>
-      </div>
-
-      <p class="sim-qm-privacy">🔒 Os seus dados são usados exclusivamente para responder ao seu pedido. <a href="politica-privacidade.html">Política de Privacidade</a></p>
-    </div>
-  </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="js/simulador.js"></script>
   <script src="js/i18n.js"></script>
 
@@ -283,7 +247,6 @@
         toggle.classList.toggle('open');
       });
     }
-    // Dropdown mobile
     document.querySelectorAll('.nav__link--parent').forEach(a => {
       a.addEventListener('click', e => {
         if (window.innerWidth <= 900) {

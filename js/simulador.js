@@ -1,9 +1,7 @@
 /* ===================================================================
-   ARTICOCLIMA — Simulador de Instalação v1.0
-   Cálculo de BTU + Sugestão Mono/Multisplit
-   Daikin (completo), Bosch e Daitsu (monosplit)
+   ARTICOCLIMA — Simulador de Instalação v2.0
+   Accordion por divisão · Marca global · Total em tempo real
    =================================================================== */
-
 'use strict';
 
 // ============================================================
@@ -14,11 +12,6 @@ const BTU_TIERS = [7000, 9000, 12000, 15000, 18000, 24000, 28000];
 const BTU_TO_KW = {
   7000: 2.0, 9000: 2.5, 12000: 3.5,
   15000: 4.2, 18000: 5.0, 24000: 7.0, 28000: 8.2
-};
-
-const KW_LABELS = {
-  7000: '2,0 kW', 9000: '2,5 kW', 12000: '3,5 kW',
-  15000: '4,2 kW', 18000: '5,0 kW', 24000: '7,0 kW', 28000: '8,2 kW'
 };
 
 // ============================================================
@@ -42,7 +35,6 @@ const DAIKIN_MONO = {
     energyCool: 'A+++', energyHeat: 'A++',
     desc: 'Gama intermédia — A+++ com WiFi opcional e filtro PM2.5',
     prices:  { 7000:1224, 9000:1316, 12000:1482, 18000:2343, 24000:2927, 28000:3383 },
-    // Sem modelo 15k — usa 18k
     models:  { 7000:'FTXP20', 9000:'FTXP25', 12000:'FTXP35', 18000:'FTXP50', 24000:'FTXP60', 28000:'FTXP71' },
     features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi opcional'],
     image: 'assets/products/daikin-confora-1.webp',
@@ -61,49 +53,46 @@ const DAIKIN_MONO = {
   Stylish: {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
     energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'Design premiado — disponível em Branco, Prateado e Preto (máx. 18k BTU)',
-    prices:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 }, // Branco
-    // max 18k
+    desc: 'Design premiado — Branco, Prateado e Preto (máx. 18k BTU)',
+    prices:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },
     models:  { 7000:'FTXA20', 9000:'FTXA25', 12000:'FTXA35', 15000:'FTXA42', 18000:'FTXA50' },
     colorPrices: {
-      white:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },  // FTXA-AW
-      silver: { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },  // FTXA-CS
-      black:  { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },  // FTXA-CB
+      white:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },
+      silver: { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },
+      black:  { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },
     },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '3 cores disponíveis'],
     maxBTU: 18000,
     image: 'assets/products/daikin-stylish-branco-1.webp',
-    images: [
-      'assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp',
-      'assets/products/daikin-stylish-silver-1.webp','assets/products/daikin-stylish-silver-2.webp','assets/products/daikin-stylish-silver-3.webp',
-      'assets/products/daikin-stylish-black-1.webp','assets/products/daikin-stylish-black-2.webp','assets/products/daikin-stylish-black-3.webp',
-    ],
+    images: {
+      white:  ['assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp'],
+      silver: ['assets/products/daikin-stylish-silver-1.webp','assets/products/daikin-stylish-silver-2.webp','assets/products/daikin-stylish-silver-3.webp'],
+      black:  ['assets/products/daikin-stylish-black-1.webp','assets/products/daikin-stylish-black-2.webp','assets/products/daikin-stylish-black-3.webp'],
+    },
   },
   Emura: {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
     energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'Design ícónico europeu — purificador de ar e controlo por app (máx. 18k BTU)',
-    prices:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 }, // Branco
-    // max 18k
+    desc: 'Design icónico europeu — purificador de ar e app (máx. 18k BTU)',
+    prices:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },
     models:  { 7000:'FTXJ20', 9000:'FTXJ25', 12000:'FTXJ35', 15000:'FTXJ42', 18000:'FTXJ50' },
     colorPrices: {
-      white:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },  // FTXJ-AW
-      silver: { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },  // FTXJ-S
-      black:  { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },  // FTXJ-AB
+      white:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },
+      silver: { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },
+      black:  { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },
     },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', '3 cores disponíveis'],
     maxBTU: 18000,
     image: 'assets/products/daikin-emura-branco-1.webp',
-    images: [
-      'assets/products/daikin-emura-branco-1.webp','assets/products/daikin-emura-branco-2.webp','assets/products/daikin-emura-branco-3.webp',
-      'assets/products/daikin-emura-silver-1.webp','assets/products/daikin-emura-silver-2.webp','assets/products/daikin-emura-silver-3.webp',
-      'assets/products/daikin-emura-black-1.webp','assets/products/daikin-emura-black-2.webp','assets/products/daikin-emura-black-3.webp',
-    ],
+    images: {
+      white:  ['assets/products/daikin-emura-branco-1.webp','assets/products/daikin-emura-branco-2.webp','assets/products/daikin-emura-branco-3.webp'],
+      silver: ['assets/products/daikin-emura-silver-1.webp','assets/products/daikin-emura-silver-2.webp','assets/products/daikin-emura-silver-3.webp'],
+      black:  ['assets/products/daikin-emura-black-1.webp','assets/products/daikin-emura-black-2.webp','assets/products/daikin-emura-black-3.webp'],
+    },
   },
 };
 
 // --- DAIKIN — Multisplit Interior (FTXM-A, c/ IVA) ---
-// Preços da Tabela Daikin 2025 (s/IVA × 1,23)
 const DAIKIN_MULTI_INDOOR = [
   { btu:7000,  kw:2.0, model:'FTXM20A', pvp: Math.round(435 * 1.23) },
   { btu:9000,  kw:2.5, model:'FTXM25A', pvp: Math.round(475 * 1.23) },
@@ -115,8 +104,6 @@ const DAIKIN_MULTI_INDOOR = [
 ];
 
 // --- DAIKIN — Multisplit Exterior (MXM-A9, c/ IVA) ---
-// Tabela Daikin 2025: preços s/IVA × 1,23
-// maxZoneKW: potência máxima de uma unidade interior compatível
 const DAIKIN_MULTI_OUTDOOR = [
   { model:'2MXM40A9', zones:2, kw:4.0, pvp:Math.round(1315*1.23), maxZoneKW:3.5 },
   { model:'2MXM50A9', zones:2, kw:5.0, pvp:Math.round(1425*1.23), maxZoneKW:5.0 },
@@ -127,25 +114,6 @@ const DAIKIN_MULTI_OUTDOOR = [
   { model:'4MXM68A9', zones:4, kw:6.8, pvp:Math.round(2440*1.23), maxZoneKW:7.0 },
   { model:'4MXM80A9', zones:4, kw:8.0, pvp:Math.round(2980*1.23), maxZoneKW:8.2 },
   { model:'5MXM90A9', zones:5, kw:9.0, pvp:Math.round(3100*1.23), maxZoneKW:8.2 },
-];
-
-// --- BOSCH — Multisplit Interior (Climate 3000i Mural, c/ IVA — Tabela Junho 2024) ---
-const BOSCH_MULTI_INDOOR = [
-  { btu: 9000,  kw: 2.6, model: 'CL3000i 26E', pvp: 258 },
-  { btu: 12000, kw: 3.5, model: 'CL3000i 35E', pvp: 295 },
-  { btu: 18000, kw: 5.3, model: 'CL3000i 53E', pvp: 369 },
-  { btu: 24000, kw: 7.0, model: 'CL3000i 70E', pvp: 504 },
-];
-
-// --- BOSCH — Multisplit Exterior (Climate 5000 M, c/ IVA — Tabela Junho 2024) ---
-const BOSCH_MULTI_OUTDOOR = [
-  { model: 'Climate 5000 M 41/2',  zones: 2, kw: 4.1,  pvp: 1132 },
-  { model: 'Climate 5000 M 53/2',  zones: 2, kw: 5.3,  pvp: 1285 },
-  { model: 'Climate 5000 M 62/3',  zones: 3, kw: 6.2,  pvp: 1642 },
-  { model: 'Climate 5000 M 79/3',  zones: 3, kw: 7.9,  pvp: 1907 },
-  { model: 'Climate 5000 M 82/4',  zones: 4, kw: 8.2,  pvp: 2073 },
-  { model: 'Climate 5000 M 105/4', zones: 4, kw: 10.5, pvp: 2546 },
-  { model: 'Climate 5000 M 125/5', zones: 5, kw: 12.5, pvp: 2829 },
 ];
 
 // --- BOSCH — Monosplit (conjuntos, c/ IVA) ---
@@ -172,34 +140,48 @@ const BOSCH_MONO = {
   },
 };
 
-// --- DAITSU — Monosplit (conjuntos, c/ IVA — Tabela 2025) ---
+// --- BOSCH — Multisplit Interior (Climate 3000i Mural, c/ IVA) ---
+const BOSCH_MULTI_INDOOR = [
+  { btu: 9000,  kw: 2.6, model: 'CL3000i 26E', pvp: 258 },
+  { btu: 12000, kw: 3.5, model: 'CL3000i 35E', pvp: 295 },
+  { btu: 18000, kw: 5.3, model: 'CL3000i 53E', pvp: 369 },
+  { btu: 24000, kw: 7.0, model: 'CL3000i 70E', pvp: 504 },
+];
+
+// --- BOSCH — Multisplit Exterior (Climate 5000 M, c/ IVA) ---
+const BOSCH_MULTI_OUTDOOR = [
+  { model: 'Climate 5000 M 41/2',  zones: 2, kw: 4.1,  pvp: 1132 },
+  { model: 'Climate 5000 M 53/2',  zones: 2, kw: 5.3,  pvp: 1285 },
+  { model: 'Climate 5000 M 62/3',  zones: 3, kw: 6.2,  pvp: 1642 },
+  { model: 'Climate 5000 M 79/3',  zones: 3, kw: 7.9,  pvp: 1907 },
+  { model: 'Climate 5000 M 82/4',  zones: 4, kw: 8.2,  pvp: 2073 },
+  { model: 'Climate 5000 M 105/4', zones: 4, kw: 10.5, pvp: 2546 },
+  { model: 'Climate 5000 M 125/5', zones: 5, kw: 12.5, pvp: 2829 },
+];
+
+// --- DAITSU — Monosplit (conjuntos, c/ IVA) ---
 const DAITSU_MONO = {
   'ARTIC Plus': {
     label: 'ARTIC Plus', tier: 'premium', badge: '🏆 Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'Gama premium — A+++ · WiFi incluído · I Feel · Gentle Air · 5 filtros de qualidade do ar',
+    desc: 'A+++ · WiFi incluído · I Feel · Gentle Air · 5 filtros de qualidade do ar',
     prices: { 9000:700, 12000:760, 18000:1090, 24000:1290 },
     models: { 9000:'DS-9KTP-6', 12000:'DS-12KTP-6', 18000:'DS-18KTP-6', 24000:'DS-24KTP-6' },
-    features: [
-      'Inverter', 'R-32', 'WiFi incluído', 'Classe A+++',
-      'Desumidificação', 'I Feel (sensor de temperatura)', 'Controlo por voz',
-      'Limpeza automática do filtro', 'Self-diagnosis', 'Programação horária 24h',
-      'Turbo', 'Gentle Air (micro-orifícios)', '5 filtros de qualidade do ar',
-    ],
+    features: ['Inverter', 'R-32', 'WiFi incluído', 'A+++', 'I Feel', 'Gentle Air', '5 filtros'],
     maxBTU: 24000,
     image: 'assets/products/daitsu-artic-plus-1.webp',
     images: ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp'],
   },
 };
 
-// --- DAITSU — Multisplit Interior (ARTIC Plus, c/ IVA — Tabela 2025) ---
+// --- DAITSU — Multisplit Interior (ARTIC Plus, c/ IVA) ---
 const DAITSU_MULTI_INDOOR = [
   { btu: 9000,  kw: 2.5, model: 'DS-9KTP-6',  pvp: 260 },
   { btu: 12000, kw: 3.5, model: 'DS-12KTP-6', pvp: 265 },
   { btu: 18000, kw: 5.0, model: 'DS-18KTP-6', pvp: 430 },
 ];
 
-// --- DAITSU — Multisplit Exterior (FREE-MAX, c/ IVA — Tabela 2025) ---
+// --- DAITSU — Multisplit Exterior (FREE-MAX, c/ IVA) ---
 const DAITSU_MULTI_OUTDOOR = [
   { model: 'DOSM-14KDT',   zones: 2, kw: 4.1,  pvp: 930  },
   { model: 'DOSM-18KDT-3', zones: 2, kw: 5.1,  pvp: 1145 },
@@ -210,29 +192,30 @@ const DAITSU_MULTI_OUTDOOR = [
 ];
 
 // ============================================================
-// 3. ESTADO DA APLICAÇÃO
+// 3. ESTADO
 // ============================================================
 const state = {
-  step: 1,
-  numRooms: 0,
-  selectedBrand: 'daikin',
-  rooms: [],       // array de objetos room
-  results: null,   // resultados calculados
-  compareMap: new Map(), // key="brand:series" → item data com brandLabel (comparação cross-brand)
+  brand: 'daikin',
+  rooms: [],
+  nextRoomId: 1,
+  modelPickerRoomId: null,
+  pickerColors: {}, // roomId → color (for Stylish/Emura in picker before confirm)
 };
 
-// Template de uma divisão
-function newRoom(index) {
+function newRoom(id) {
   return {
-    id: index,
-    name: '',
-    type: 'quarto',       // quarto | sala | escritorio | outro
-    openToKitchen: false,
+    id,
+    name: `Divisão ${id}`,
+    type: 'quarto',
     areaM2: '',
-    heightM: 2.5,
-    hasWindows: false,
-    windowAreaM2: '',
-    windowOrientation: 'sul',
+    heightM: 2.7,
+    windows: 0,
+    orientation: 'sul',
+    openToKitchen: false,
+    useMulti: true,   // true = use multisplit (default for 2+ rooms)
+    series: null,     // null = auto (cheapest). key from catalog e.g. 'Sensira', '3000i'
+    color: 'white',
+    expanded: true,
   };
 }
 
@@ -240,1516 +223,1270 @@ function newRoom(index) {
 // 4. CÁLCULO BTU
 // ============================================================
 function calcBTU(room) {
-  const area = parseFloat(room.areaM2) || 0;
-  const height = parseFloat(room.heightM) || 2.5;
-
+  const area   = parseFloat(room.areaM2) || 0;
+  const height = parseFloat(room.heightM) || 2.7;
   if (area <= 0) return 0;
 
-  // Base: volume × 160 BTU/h/m³ (padrão HVAC para clima mediterrânico)
   let btu = area * height * 160;
 
-  // Ajuste por tipo de divisão
   if (room.type === 'sala' && room.openToKitchen) btu += 3000;
   if (room.type === 'cozinha') btu += 4000;
 
-  // Ganho solar por janelas expostas
-  if (room.hasWindows && parseFloat(room.windowAreaM2) > 0) {
-    const winArea = parseFloat(room.windowAreaM2);
+  const numWindows = parseInt(room.windows) || 0;
+  if (numWindows > 0) {
+    const winArea = numWindows * 1.5;
     const gainMap = { sul: 450, este: 250, oeste: 250, norte: 100 };
-    btu += winArea * (gainMap[room.windowOrientation] || 300);
+    btu += winArea * (gainMap[room.orientation] || 300);
   }
 
   return Math.round(btu);
 }
 
 function btuToTier(calculatedBTU) {
-  // Arredonda para o escalão standard acima
   return BTU_TIERS.find(t => t >= calculatedBTU) || 28000;
 }
 
 function btuLabel(btu) {
-  const map = {
-    7000:'7.000', 9000:'9.000', 12000:'12.000',
-    15000:'15.000', 18000:'18.000', 24000:'24.000', 28000:'28.000'
-  };
-  return map[btu] || btu.toLocaleString('pt-PT');
+  const map = { 7000:'7.000', 9000:'9.000', 12000:'12.000', 15000:'15.000', 18000:'18.000', 24000:'24.000', 28000:'28.000' };
+  return (map[btu] || btu.toLocaleString('pt-PT')) + ' BTU';
+}
+
+function kwLabel(btu) {
+  return (BTU_TO_KW[btu] || '?') + ' kW';
 }
 
 function fmtPrice(n) {
+  if (!n && n !== 0) return '—';
   return n.toLocaleString('pt-PT') + ' €';
 }
 
 // ============================================================
-// 5. SELEÇÃO DE PRODUTO — Monosplit
+// 5. CATÁLOGO HELPERS
 // ============================================================
-function getBestMono(seriesData, neededBTU) {
-  const maxBTU = seriesData.maxBTU || 28000;
-  if (neededBTU > maxBTU) return null; // série não suporta esta potência
-
-  const available = Object.keys(seriesData.prices)
-    .map(Number).sort((a, b) => a - b);
-
-  // Encontra o modelo com BTU >= necessário
-  const tier = available.find(t => t >= neededBTU) || available[available.length - 1];
-
-  return {
-    model: seriesData.models[tier],
-    series: seriesData.label,
-    btu: tier,
-    pvp: seriesData.prices[tier],
-    tier: seriesData.tier,
-    badge: seriesData.badge,
-    desc: seriesData.desc,
-    features: seriesData.features,
-    energyCool: seriesData.energyCool,
-    energyHeat: seriesData.energyHeat,
-  };
+function getBrandCatalog(brand) {
+  if (brand === 'daikin') return DAIKIN_MONO;
+  if (brand === 'bosch')  return BOSCH_MONO;
+  if (brand === 'daitsu') return DAITSU_MONO;
+  return {};
 }
 
-function calcMonoTotal(brand, roomsWithBTU) {
-  // Para cada divisão, selecionar o monosplit mais adequado por série
-  let brandData;
-  if (brand === 'daikin') brandData = DAIKIN_MONO;
-  else if (brand === 'bosch') brandData = BOSCH_MONO;
-  else if (brand === 'daitsu') brandData = DAITSU_MONO;
-  else return null;
+function getMultiIndoorList(brand) {
+  if (brand === 'daikin') return DAIKIN_MULTI_INDOOR;
+  if (brand === 'bosch')  return BOSCH_MULTI_INDOOR;
+  if (brand === 'daitsu') return DAITSU_MULTI_INDOOR;
+  return [];
+}
 
-  const seriesList = Object.values(brandData);
-  const results = [];
+function getMultiOutdoorList(brand) {
+  if (brand === 'daikin') return DAIKIN_MULTI_OUTDOOR;
+  if (brand === 'bosch')  return BOSCH_MULTI_OUTDOOR;
+  if (brand === 'daitsu') return DAITSU_MULTI_OUTDOOR;
+  return [];
+}
 
-  for (const series of seriesList) {
-    let viable = true;
-    const rooms = [];
-    let total = 0;
+function getMultiIndoorUnit(brand, tier) {
+  const list = getMultiIndoorList(brand);
+  return list.find(u => u.btu >= tier) || list[list.length - 1] || null;
+}
 
-    for (const r of roomsWithBTU) {
-      const product = getBestMono(series, r.btu);
-      if (!product) { viable = false; break; }
-      rooms.push({ room: r, product });
-      total += product.pvp;
-    }
-
-    if (viable) {
-      results.push({ series: series.label, badge: series.badge, desc: series.desc,
-        tier: series.tier, rooms, total, features: series.features,
-        energyCool: series.energyCool, energyHeat: series.energyHeat,
-        image: series.image || '',
-        images: series.images || [],
-        colorPrices: series.colorPrices || null });
+function getCheapestMonoSeries(brand, tier) {
+  const catalog = getBrandCatalog(brand);
+  let cheapestKey = null;
+  let cheapestPrice = Infinity;
+  for (const [key, series] of Object.entries(catalog)) {
+    if (series.maxBTU && tier > series.maxBTU) continue;
+    const price = series.prices[tier];
+    if (price !== undefined && price < cheapestPrice) {
+      cheapestPrice = price;
+      cheapestKey = key;
     }
   }
-
-  return results.length ? results : null;
+  return cheapestKey;
 }
 
-// ============================================================
-// 6. SELEÇÃO DE PRODUTO — Multisplit Daikin
-// ============================================================
-function calcDaikinMulti(roomsWithBTU) {
-  const n = roomsWithBTU.length;
+function getMonoPrice(brand, seriesKey, tier, color) {
+  const catalog = getBrandCatalog(brand);
+  const series = catalog[seriesKey];
+  if (!series) return 0;
+  if (series.colorPrices) {
+    const col = color || 'white';
+    return (series.colorPrices[col] && series.colorPrices[col][tier]) || series.prices[tier] || 0;
+  }
+  return series.prices[tier] || 0;
+}
+
+function getSeriesImage(brand, seriesKey, color) {
+  const catalog = getBrandCatalog(brand);
+  const series = catalog[seriesKey];
+  if (!series) return '';
+  if (series.images && typeof series.images === 'object' && !Array.isArray(series.images)) {
+    return series.images[color || 'white']?.[0] || series.image || '';
+  }
+  return series.image || '';
+}
+
+// Calcular multisplit outdoor: mesmo algoritmo das versões anteriores
+function calcBrandMulti(brand, multiRoomsWithTier) {
+  const n = multiRoomsWithTier.length;
   if (n < 2 || n > 5) return null;
 
-  // Selecionar unidade interior para cada divisão
-  const indoorUnits = roomsWithBTU.map(r => {
-    const unit = DAIKIN_MULTI_INDOOR.find(u => u.btu >= r.btu)
-              || DAIKIN_MULTI_INDOOR[DAIKIN_MULTI_INDOOR.length - 1];
+  const indoorList = getMultiIndoorList(brand);
+  const outdoorList = getMultiOutdoorList(brand);
+
+  const indoorUnits = multiRoomsWithTier.map(r => {
+    const unit = indoorList.find(u => u.btu >= r.tier) || indoorList[indoorList.length - 1];
     return { room: r, unit };
   });
 
-  const totalKW = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
+  const totalKW  = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
   const maxZoneKW = Math.max(...indoorUnits.map(({ unit }) => unit.kw));
 
-  // Filtrar unidades exteriores compatíveis
-  const candidates = DAIKIN_MULTI_OUTDOOR.filter(ou => {
-    if (ou.zones < n) return false;
-    if (maxZoneKW > ou.maxZoneKW) return false;
-    // Regra Daikin: carga total 50%–130% da capacidade nominal exterior
-    if (totalKW > ou.kw * 1.30) return false;
-    return true;
-  });
-
-  if (!candidates.length) return null;
-
-  // Escolher a mais barata (menor exterior)
-  const outdoor = candidates.sort((a, b) => a.pvp - b.pvp)[0];
-  const indoorTotal = indoorUnits.reduce((s, { unit }) => s + unit.pvp, 0);
-  const total = outdoor.pvp + indoorTotal;
-
-  return { outdoor, indoorUnits, indoorTotal, total, totalKW };
-}
-
-// ============================================================
-// 6b. SELEÇÃO DE PRODUTO — Multisplit Bosch
-// ============================================================
-function calcBoschMulti(roomsWithBTU) {
-  const n = roomsWithBTU.length;
-  if (n < 2 || n > 5) return null;
-
-  const indoorUnits = roomsWithBTU.map(r => {
-    const unit = BOSCH_MULTI_INDOOR.find(u => u.btu >= r.btu)
-              || BOSCH_MULTI_INDOOR[BOSCH_MULTI_INDOOR.length - 1];
-    return { room: r, unit };
-  });
-
-  const totalKW   = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
-
-  const candidates = BOSCH_MULTI_OUTDOOR.filter(ou => {
-    if (ou.zones < n) return false;
-    if (totalKW > ou.kw * 1.30) return false;
-    return true;
-  });
+  let candidates;
+  if (brand === 'daikin') {
+    candidates = outdoorList.filter(ou => {
+      if (ou.zones < n) return false;
+      if (maxZoneKW > ou.maxZoneKW) return false;
+      if (totalKW > ou.kw * 1.30) return false;
+      return true;
+    });
+  } else {
+    candidates = outdoorList.filter(ou => {
+      if (ou.zones < n) return false;
+      if (totalKW > ou.kw * 1.30) return false;
+      return true;
+    });
+  }
 
   if (!candidates.length) return null;
 
   const outdoor     = candidates.sort((a, b) => a.pvp - b.pvp)[0];
   const indoorTotal = indoorUnits.reduce((s, { unit }) => s + unit.pvp, 0);
-  return { outdoor, indoorUnits, indoorTotal, total: outdoor.pvp + indoorTotal, totalKW };
+
+  return { outdoor, indoorUnits, indoorTotal, total: outdoor.pvp + indoorTotal };
 }
 
 // ============================================================
-// 6c. SELEÇÃO DE PRODUTO — Multisplit Daitsu
+// 6. CÁLCULO DO SISTEMA TOTAL
 // ============================================================
-function calcDaitsuMulti(roomsWithBTU) {
-  const n = roomsWithBTU.length;
-  if (n < 2 || n > 5) return null;
+function calcSystemConfig(brand, rooms) {
+  const validRooms = rooms.filter(r => parseFloat(r.areaM2) > 0);
+  if (!validRooms.length) return null;
 
-  const indoorUnits = roomsWithBTU.map(r => {
-    const unit = DAITSU_MULTI_INDOOR.find(u => u.btu >= r.btu)
-              || DAITSU_MULTI_INDOOR[DAITSU_MULTI_INDOOR.length - 1];
-    return { room: r, unit };
+  const roomsWithTier = validRooms.map(r => ({
+    ...r, tier: btuToTier(calcBTU(r))
+  }));
+
+  const result = {
+    total: 0,
+    monoRooms: [],  // { room, seriesKey, tier, price, model }
+    multiRooms: [], // { room, unit } — just indoor
+    outdoor: null,
+  };
+
+  if (rooms.length === 1) {
+    // Single room → always monosplit
+    const room = roomsWithTier[0];
+    const seriesKey = room.series || getCheapestMonoSeries(brand, room.tier);
+    const price = getMonoPrice(brand, seriesKey, room.tier, room.color);
+    const catalog = getBrandCatalog(brand);
+    const model = seriesKey && catalog[seriesKey] ? (catalog[seriesKey].models[room.tier] || '') : '';
+    result.monoRooms.push({ room, seriesKey, tier: room.tier, price, model });
+    result.total = price;
+    return result;
+  }
+
+  // Multiple rooms
+  const multiRoomsWT = roomsWithTier.filter(r => r.useMulti);
+  const monoRoomsWT  = roomsWithTier.filter(r => !r.useMulti);
+
+  // Process mono rooms
+  monoRoomsWT.forEach(room => {
+    const seriesKey = room.series || getCheapestMonoSeries(brand, room.tier);
+    const price = getMonoPrice(brand, seriesKey, room.tier, room.color);
+    const catalog = getBrandCatalog(brand);
+    const model = seriesKey && catalog[seriesKey] ? (catalog[seriesKey].models[room.tier] || '') : '';
+    result.monoRooms.push({ room, seriesKey, tier: room.tier, price, model });
+    result.total += price || 0;
   });
 
-  const totalKW   = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
-
-  const candidates = DAITSU_MULTI_OUTDOOR.filter(ou => {
-    if (ou.zones < n) return false;
-    if (totalKW > ou.kw * 1.30) return false;
-    return true;
-  });
-
-  if (!candidates.length) return null;
-
-  const outdoor     = candidates.sort((a, b) => a.pvp - b.pvp)[0];
-  const indoorTotal = indoorUnits.reduce((s, { unit }) => s + unit.pvp, 0);
-  return { outdoor, indoorUnits, indoorTotal, total: outdoor.pvp + indoorTotal, totalKW };
-}
-
-// ============================================================
-// 6d. SOLUÇÃO HÍBRIDA (monosplit grande + multisplit restantes)
-// ============================================================
-// Potência máxima que cada marca suporta em unidade interior multisplit
-const MAX_INDOOR_BTU = { daikin: 28000, bosch: 24000, daitsu: 18000 };
-
-function calcHybrid(brand, roomsWithBTU) {
-  const n = roomsWithBTU.length;
-  if (n < 3) return null; // precisa de ≥1 isolada + ≥2 para multisplit
-
-  const maxBTU = MAX_INDOOR_BTU[brand];
-
-  // Divisões que EXCEDEM o máximo indoor da marca → forçadas a monosplit
-  let bigRooms    = roomsWithBTU.filter(r => r.btu > maxBTU);
-  let normalRooms = roomsWithBTU.filter(r => r.btu <= maxBTU);
-
-  // Se não há divisão forçada, aplicar heurística:
-  // isolar a maior divisão se for ≥18k BTU E ≥50% maior que a mediana das restantes
-  if (!bigRooms.length) {
-    const sorted = [...roomsWithBTU].sort((a, b) => b.btu - a.btu);
-    const largest = sorted[0];
-    if (largest.btu >= 18000) {
-      const others = sorted.slice(1);
-      const medBTU = others[Math.floor(others.length / 2)].btu;
-      if (largest.btu >= medBTU * 1.5) {
-        bigRooms    = [largest];
-        normalRooms = others;
-      }
+  // Process multi rooms
+  if (multiRoomsWT.length >= 2) {
+    const multiResult = calcBrandMulti(brand, multiRoomsWT);
+    if (multiResult) {
+      result.multiRooms = multiResult.indoorUnits;
+      result.outdoor = multiResult.outdoor;
+      result.total += multiResult.total;
     }
+  } else if (multiRoomsWT.length === 1) {
+    // Only 1 multi room → treat as mono
+    const room = multiRoomsWT[0];
+    const seriesKey = getCheapestMonoSeries(brand, room.tier);
+    const price = getMonoPrice(brand, seriesKey, room.tier, 'white');
+    const catalog = getBrandCatalog(brand);
+    const model = seriesKey && catalog[seriesKey] ? (catalog[seriesKey].models[room.tier] || '') : '';
+    result.monoRooms.push({ room, seriesKey, tier: room.tier, price, model, wasMulti: true });
+    result.total += price || 0;
   }
 
-  if (!bigRooms.length || normalRooms.length < 2) return null;
-
-  // Monosplit para divisões grandes (série mais barata)
-  const monoOptions = calcMonoTotal(brand, bigRooms);
-  if (!monoOptions || !monoOptions.length) return null;
-  const monoOption = monoOptions[0]; // mais barata
-
-  // Multisplit para divisões normais
-  const calcMulti = brand === 'daikin' ? calcDaikinMulti
-    : brand === 'bosch' ? calcBoschMulti : calcDaitsuMulti;
-  const multiResult = calcMulti(normalRooms);
-  if (!multiResult) return null;
-
-  const total = monoOption.total + multiResult.total;
-  return { bigRooms, monoOption, normalRooms, multiResult, total };
+  return result;
 }
 
-// ============================================================
-// 6e. DUPLO MULTISPLIT (2 grupos independentes)
-// ============================================================
-function combinations(arr, k) {
-  if (k === 0) return [[]];
-  if (!arr.length) return [];
-  const [head, ...tail] = arr;
-  return [
-    ...combinations(tail, k - 1).map(c => [head, ...c]),
-    ...combinations(tail, k),
-  ];
-}
+function calcAltBrandConfig(brand, rooms) {
+  // Use cheapest possible for this brand (always multi if 2+ rooms)
+  const validRooms = rooms.filter(r => parseFloat(r.areaM2) > 0);
+  if (!validRooms.length) return null;
 
-function calcDoubleMulti(brand, roomsWithBTU) {
-  const n = roomsWithBTU.length;
-  if (n < 4) return null; // mínimo 2+2
+  const roomsWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true }));
 
-  const calcMulti = brand === 'daikin' ? calcDaikinMulti
-    : brand === 'bosch' ? calcBoschMulti : calcDaitsuMulti;
-
-  let best = null;
-
-  // Tentar todas as partições em 2 grupos (cada um com 2-5 divisões)
-  for (let k = 2; k <= n - 2; k++) {
-    for (const group1 of combinations(roomsWithBTU, k)) {
-      const ids1 = new Set(group1.map(r => r.id));
-      const group2 = roomsWithBTU.filter(r => !ids1.has(r.id));
-      if (group2.length < 2) continue;
-
-      const m1 = calcMulti(group1);
-      const m2 = calcMulti(group2);
-      if (!m1 || !m2) continue;
-
-      const total = m1.total + m2.total;
-      if (!best || total < best.total) {
-        best = { group1, multi1: m1, group2, multi2: m2, total };
-      }
-    }
+  if (roomsWT.length === 1) {
+    const room = roomsWT[0];
+    const seriesKey = getCheapestMonoSeries(brand, room.tier);
+    if (!seriesKey) return null;
+    const price = getMonoPrice(brand, seriesKey, room.tier, 'white');
+    const catalog = getBrandCatalog(brand);
+    const seriesLabel = catalog[seriesKey] ? catalog[seriesKey].label : seriesKey;
+    return { total: price, system: 'mono', seriesLabel, rooms: [{ room, seriesKey, tier: room.tier, price }] };
   }
-  return best;
-}
 
-// ============================================================
-// 7. CALCULAR RESULTADOS
-// ============================================================
-function calcResults(clearCompare = true) {
-  if (clearCompare) state.compareMap.clear(); // reset comparação ao recalcular
-
-  // Calcular BTU para cada divisão
-  const roomsWithBTU = state.rooms.map(room => {
-    const raw = calcBTU(room);
-    const btu = btuToTier(raw);
-    return { ...room, rawBTU: raw, btu };
-  });
-
-  const brand = state.selectedBrand;
-
-  const mono = calcMonoTotal(brand, roomsWithBTU);
-  const multi = roomsWithBTU.length >= 2
-    ? (brand === 'daikin'  ? calcDaikinMulti(roomsWithBTU)
-     : brand === 'bosch'  ? calcBoschMulti(roomsWithBTU)
-     : brand === 'daitsu' ? calcDaitsuMulti(roomsWithBTU)
-     : null)
-    : null;
-
-  const hybrid      = roomsWithBTU.length >= 3 ? calcHybrid(brand, roomsWithBTU) : null;
-  const doubleMulti = roomsWithBTU.length >= 4 ? calcDoubleMulti(brand, roomsWithBTU) : null;
-
-  state.results = { roomsWithBTU, mono, multi, hybrid, doubleMulti, brand };
-}
-
-// ============================================================
-// 8. RENDER — Step 1
-// ============================================================
-function renderStep1() {
-  document.getElementById('step1').style.display = 'block';
-  document.getElementById('step2').style.display = 'none';
-  document.getElementById('step3').style.display = 'none';
-  setStepActive(1);
-}
-
-// ============================================================
-// 9. RENDER — Step 2
-// ============================================================
-function renderStep2() {
-  document.getElementById('step1').style.display = 'none';
-  document.getElementById('step2').style.display = 'block';
-  document.getElementById('step3').style.display = 'none';
-  setStepActive(2);
-
-  // Garantir que temos as divisões iniciadas
-  while (state.rooms.length < state.numRooms) {
-    state.rooms.push(newRoom(state.rooms.length));
+  const multiResult = calcBrandMulti(brand, roomsWT);
+  if (multiResult) {
+    const seriesLabel = brand === 'daikin' ? 'FTXM-A' : (brand === 'bosch' ? 'CL3000i Mural' : 'ARTIC Plus');
+    return {
+      total: multiResult.total,
+      system: 'multi',
+      seriesLabel,
+      indoorUnits: multiResult.indoorUnits,
+      outdoor: multiResult.outdoor,
+      indoorTotal: multiResult.indoorTotal,
+    };
   }
-  state.rooms = state.rooms.slice(0, state.numRooms);
 
-  renderBrandBtns();
+  // Fallback: mono each room
+  let total = 0;
+  const rows = [];
+  for (const room of roomsWT) {
+    const seriesKey = getCheapestMonoSeries(brand, room.tier);
+    if (!seriesKey) return null;
+    const price = getMonoPrice(brand, seriesKey, room.tier, 'white');
+    total += price;
+    rows.push({ room, seriesKey, tier: room.tier, price });
+  }
+  const seriesLabel = getCheapestMonoSeries(brand, roomsWT[0].tier) ?
+    getBrandCatalog(brand)[getCheapestMonoSeries(brand, roomsWT[0].tier)]?.label : '';
+  return { total, system: 'mono-each', seriesLabel, rooms: rows };
+}
+
+// ============================================================
+// 7. GESTÃO DE DIVISÕES
+// ============================================================
+function addRoom() {
+  if (state.rooms.length >= 5) return;
+  // Collapse all existing rooms
+  state.rooms.forEach(r => { r.expanded = false; });
+  const room = newRoom(state.nextRoomId++);
+  state.rooms.push(room);
   renderRooms();
+  updateLiveTotal();
+  updateResultsVisibility();
+  // Scroll to new room
+  setTimeout(() => {
+    const el = document.getElementById('room-' + room.id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
 }
 
-function renderBrandBtns() {
+function removeRoom(id, event) {
+  if (event) event.stopPropagation();
+  if (state.rooms.length <= 1) return;
+  state.rooms = state.rooms.filter(r => r.id !== id);
+  // Reset useMulti for remaining rooms
+  if (state.rooms.length === 1) state.rooms[0].useMulti = false;
+  renderRooms();
+  updateLiveTotal();
+  renderResults();
+}
+
+function toggleRoom(id) {
+  const room = state.rooms.find(r => r.id === id);
+  if (!room) return;
+  room.expanded = !room.expanded;
+  const el = document.getElementById('room-' + id);
+  if (el) el.classList.toggle('expanded', room.expanded);
+  const chevron = el && el.querySelector('.sim-room__chevron');
+  if (chevron) chevron.style.transform = room.expanded ? 'rotate(180deg)' : '';
+}
+
+function changeBrand(brand) {
+  state.brand = brand;
+  // Reset series selection for all rooms (they may not be available)
+  state.rooms.forEach(r => { r.series = null; r.color = 'white'; });
+  // Update brand buttons
   document.querySelectorAll('.sim-brand-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.brand === state.selectedBrand);
+    btn.classList.toggle('active', btn.dataset.brand === brand);
   });
+  // Re-render model sections
+  state.rooms.forEach(r => renderRoomModelSection(r.id));
+  updateLiveTotal();
+  renderResults();
 }
 
+// ============================================================
+// 8. FIELD UPDATES (called on input)
+// ============================================================
+function updateRoomField(id, field, value) {
+  const room = state.rooms.find(r => r.id === id);
+  if (!room) return;
+
+  if (field === 'areaM2' || field === 'heightM') {
+    room[field] = parseFloat(value) || 0;
+  } else if (field === 'windows') {
+    room.windows = parseInt(value) || 0;
+    // Show/hide orientation select
+    const orientRow = document.getElementById('orient-row-' + id);
+    if (orientRow) orientRow.style.display = room.windows > 0 ? '' : 'none';
+  } else if (field === 'openToKitchen') {
+    room.openToKitchen = !!value;
+  } else {
+    room[field] = value;
+  }
+
+  updateRoomHeader(id);
+  renderRoomModelSection(id);
+  updateLiveTotal();
+  renderResults();
+}
+
+function setRoomType(id, type, btnEl) {
+  const room = state.rooms.find(r => r.id === id);
+  if (!room) return;
+  room.type = type;
+  // Toggle active on buttons
+  const body = document.getElementById('room-body-' + id);
+  if (body) {
+    body.querySelectorAll('.sim-rf-type').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    // Show/hide open-space toggle for sala
+    const openSpace = document.getElementById('openspace-' + id);
+    if (openSpace) openSpace.style.display = type === 'sala' ? '' : 'none';
+  }
+  updateRoomHeader(id);
+  renderRoomModelSection(id);
+  updateLiveTotal();
+  renderResults();
+}
+
+function setRoomColor(id, color) {
+  const room = state.rooms.find(r => r.id === id);
+  if (!room) return;
+  room.color = color;
+  // Update color buttons in the room card
+  const container = document.getElementById('rm-colors-' + id);
+  if (container) {
+    container.querySelectorAll('.sim-color-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.color === color);
+    });
+  }
+  // Update price display in room card
+  renderRoomModelSection(id);
+  updateLiveTotal();
+  renderResults();
+}
+
+// ============================================================
+// 9. RENDERING — ROOMS
+// ============================================================
 function renderRooms() {
-  const container = document.getElementById('simRoomsContainer');
-  container.innerHTML = state.rooms.map((room, i) => roomFormHTML(room, i)).join('');
-
-  // Bind events para cada divisão
-  state.rooms.forEach((_, i) => bindRoomEvents(i));
+  const list = document.getElementById('sim-rooms-list');
+  if (!list) return;
+  list.innerHTML = state.rooms.map(room => renderRoomHTML(room)).join('');
+  // Update add button
+  const addBtn = document.getElementById('sim-add-btn');
+  if (addBtn) addBtn.disabled = state.rooms.length >= 5;
 }
 
-function roomTypeLabel(type) {
-  return { quarto: 'Quarto', sala: 'Sala', escritorio: 'Escritório', outro: 'Outro' }[type] || type;
-}
+function renderRoomHTML(room) {
+  const tier = room.areaM2 ? btuToTier(calcBTU(room)) : 0;
+  const hasData = parseFloat(room.areaM2) > 0;
+  const isMulti = state.rooms.length > 1 && room.useMulti;
 
-function roomFormHTML(room, i) {
-  const typeOptions = ['quarto', 'sala', 'escritorio', 'outro'];
-  const heightOptions = [
-    { val: 2.2, label: '2,2 m' }, { val: 2.5, label: '2,5 m (standard)' },
-    { val: 2.7, label: '2,7 m' }, { val: 3.0, label: '3,0 m' },
-    { val: 3.3, label: '> 3,0 m' },
-  ];
-  const orientationOptions = [
-    { val: 'sul', label: '☀️ Sul (mais calor)' },
-    { val: 'este', label: '🌅 Este' },
-    { val: 'oeste', label: '🌇 Oeste' },
-    { val: 'norte', label: '🌫️ Norte (menos calor)' },
-  ];
+  // Build meta text
+  let metaText = 'Preencha os dados da divisão';
+  let hasMeta = false;
+  if (hasData && tier > 0) {
+    const seriesKey = isMulti ? null : (room.series || getCheapestMonoSeries(state.brand, tier));
+    let modelName = '';
+    if (isMulti) {
+      const unit = getMultiIndoorUnit(state.brand, tier);
+      modelName = unit ? unit.model : '';
+    } else if (seriesKey) {
+      const catalog = getBrandCatalog(state.brand);
+      modelName = catalog[seriesKey] ? catalog[seriesKey].label : seriesKey;
+    }
+    let price = 0;
+    if (isMulti) {
+      const unit = getMultiIndoorUnit(state.brand, tier);
+      price = unit ? unit.pvp : 0;
+    } else if (seriesKey) {
+      price = getMonoPrice(state.brand, seriesKey, tier, room.color);
+    }
+    metaText = `${room.areaM2}m² · ${btuLabel(tier)}${modelName ? ' · ' + modelName : ''}${price ? ' · ' + fmtPrice(price) : ''}`;
+    hasMeta = true;
+  }
 
-  const defaultName = ['Quarto Principal', 'Sala', 'Quarto 2', 'Escritório', 'Quarto 3'][i] || `Divisão ${i+1}`;
+  const expanded = room.expanded ? 'expanded' : '';
+  const chevronRotate = room.expanded ? 'style="transform:rotate(180deg)"' : '';
+  const canDelete = state.rooms.length > 1;
 
   return `
-  <div class="sim-room-card" id="roomCard${i}">
-    <div class="sim-room-header">
-      <span class="sim-room-num">${i + 1}</span>
-      <h3 class="sim-room-title">${room.name || defaultName}</h3>
+<div class="sim-room ${expanded}" id="room-${room.id}">
+  <div class="sim-room__header" onclick="toggleRoom(${room.id})">
+    <div class="sim-room__num ${hasData && tier > 0 ? 'complete' : ''}">${room.id}</div>
+    <div class="sim-room__summary">
+      <span class="sim-room__name" id="rname-${room.id}">${escHtml(room.name)}</span>
+      <span class="sim-room__meta${hasMeta ? ' has-data' : ''}" id="rmeta-${room.id}">${escHtml(metaText)}</span>
     </div>
-    <div class="sim-room-body">
+    <div class="sim-room__controls">
+      ${canDelete ? `<button class="sim-room__del" onclick="removeRoom(${room.id}, event)" title="Remover" aria-label="Remover divisão">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>` : ''}
+      <svg class="sim-room__chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" ${chevronRotate}><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+  <div class="sim-room__body" id="room-body-wrap-${room.id}">
+    <div class="sim-room__body-inner" id="room-body-${room.id}">
+      ${renderRoomForm(room)}
+      ${renderRoomModelCard(room)}
+    </div>
+  </div>
+</div>`;
+}
 
-      <!-- Nome -->
-      <div class="sim-field">
-        <label class="sim-label">Nome da divisão</label>
-        <input type="text" class="sim-input" data-field="name" data-room="${i}"
-          placeholder="${defaultName}" value="${room.name}" />
+function renderRoomForm(room) {
+  const types = ['quarto', 'sala', 'cozinha', 'outro'];
+  const typeLabels = { quarto: 'Quarto', sala: 'Sala', cozinha: 'Cozinha', outro: 'Outro' };
+  const showOrient = parseInt(room.windows) > 0;
+  const showOpenSpace = room.type === 'sala';
+
+  return `
+<div class="sim-rf">
+  <div class="sim-rf-row" style="margin-top:16px">
+    <label>Nome da divisão</label>
+    <input type="text" value="${escHtml(room.name)}"
+      oninput="updateRoomField(${room.id},'name',this.value);document.getElementById('rname-${room.id}').textContent=this.value">
+  </div>
+  <div class="sim-rf-row">
+    <label>Tipo de divisão</label>
+    <div class="sim-rf-types">
+      ${types.map(t => `<button class="sim-rf-type${room.type === t ? ' active' : ''}" onclick="setRoomType(${room.id},'${t}',this)">${typeLabels[t]}</button>`).join('')}
+    </div>
+  </div>
+  ${showOpenSpace ? `<div class="sim-rf-openspace" id="openspace-${room.id}">
+    <input type="checkbox" ${room.openToKitchen ? 'checked' : ''} onchange="updateRoomField(${room.id},'openToKitchen',this.checked)">
+    Sala aberta para cozinha (+3.000 BTU)
+  </div>` : `<div id="openspace-${room.id}" style="display:none"></div>`}
+  <div class="sim-rf-grid">
+    <div class="sim-rf-row">
+      <label>Área (m²)</label>
+      <input type="number" min="1" max="300" step="0.5" placeholder="ex: 15"
+        value="${room.areaM2 || ''}"
+        oninput="updateRoomField(${room.id},'areaM2',this.value)">
+    </div>
+    <div class="sim-rf-row">
+      <label>Altura (m)</label>
+      <input type="number" min="2" max="6" step="0.1" value="${room.heightM}"
+        oninput="updateRoomField(${room.id},'heightM',this.value)">
+    </div>
+    <div class="sim-rf-row">
+      <label>Janelas</label>
+      <select onchange="updateRoomField(${room.id},'windows',this.value)">
+        ${[0,1,2,3].map(n => `<option value="${n}" ${parseInt(room.windows)===n?'selected':''}>${n===3?'3+':n}</option>`).join('')}
+      </select>
+    </div>
+    <div class="sim-rf-row" id="orient-row-${room.id}" style="${showOrient ? '' : 'display:none'}">
+      <label>Exposição solar</label>
+      <select onchange="updateRoomField(${room.id},'orientation',this.value)">
+        ${['sul','norte','este','oeste'].map(o => `<option value="${o}" ${room.orientation===o?'selected':''}>${o.charAt(0).toUpperCase()+o.slice(1)}</option>`).join('')}
+      </select>
+    </div>
+  </div>
+</div>`;
+}
+
+function renderRoomModelCard(room) {
+  const tier = room.areaM2 ? btuToTier(calcBTU(room)) : 0;
+  const hasData = parseFloat(room.areaM2) > 0 && tier > 0;
+  const multiCount = state.rooms.filter(r => r.useMulti).length;
+  const isMulti = multiCount >= 2 && room.useMulti;
+
+  if (!hasData) {
+    return `<div class="sim-rm" id="rm-${room.id}">
+      <div class="sim-rm__label">Modelo sugerido</div>
+      <div class="sim-rm__empty">Preencha a área para ver o modelo sugerido</div>
+    </div>`;
+  }
+
+  let imgSrc = '', seriesName = '', modelNum = '', price = 0, badgeClass = 'multisplit', badgeText = 'Multisplit';
+
+  if (isMulti) {
+    const unit = getMultiIndoorUnit(state.brand, tier);
+    if (unit) {
+      price = unit.pvp;
+      modelNum = unit.model;
+      seriesName = unit.model;
+      badgeText = 'Multisplit Padrão';
+      badgeClass = 'multisplit';
+      // Generic multisplit image
+      imgSrc = state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp' :
+               state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
+                                          'assets/products/daitsu-artic-plus-1.webp';
+    }
+  } else {
+    const seriesKey = room.series || getCheapestMonoSeries(state.brand, tier);
+    const catalog = getBrandCatalog(state.brand);
+    const series = seriesKey && catalog[seriesKey];
+    if (series) {
+      price = getMonoPrice(state.brand, seriesKey, tier, room.color);
+      modelNum = series.models[tier] || '';
+      seriesName = series.label;
+      imgSrc = getSeriesImage(state.brand, seriesKey, room.color);
+      badgeText = 'Sistema Individual';
+      badgeClass = 'individual';
+    }
+  }
+
+  const hasColors = !isMulti && room.series && (() => {
+    const catalog = getBrandCatalog(state.brand);
+    return catalog[room.series] && !!catalog[room.series].colorPrices;
+  })();
+
+  return `<div class="sim-rm" id="rm-${room.id}">
+    <div class="sim-rm__label">Modelo sugerido · ${btuLabel(tier)}</div>
+    <div class="sim-rm__content">
+      <img src="${imgSrc}" alt="${escHtml(seriesName)}" class="sim-rm__img" onerror="this.style.visibility='hidden'">
+      <div class="sim-rm__info">
+        <div class="sim-rm__series">${escHtml(seriesName)}</div>
+        <div class="sim-rm__btu">${modelNum ? modelNum + ' · ' : ''}${kwLabel(tier)}</div>
+        <span class="sim-rm__type-badge ${badgeClass === 'individual' ? 'individual' : ''}">${badgeText}</span>
       </div>
-
-      <!-- Tipo -->
-      <div class="sim-field">
-        <label class="sim-label">Tipo de divisão</label>
-        <div class="sim-type-btns">
-          ${typeOptions.map(t => `
-            <button class="sim-type-btn${room.type === t ? ' active' : ''}"
-              data-type="${t}" data-room="${i}">${roomTypeLabel(t)}</button>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Open-space (só para sala) -->
-      ${room.type === 'sala' ? `
-      <div class="sim-field sim-field--highlight" id="openKitchen${i}">
-        <label class="sim-label sim-label--info">
-          🍳 Sala comunicante com cozinha (open-space)?
-          <span class="sim-tooltip" title="Se a cozinha e a sala partilham o mesmo espaço, é necessária mais potência para compensar o calor gerado pelos eletrodomésticos.">ⓘ</span>
-        </label>
-        <div class="sim-toggle-row">
-          <label class="sim-toggle">
-            <input type="checkbox" data-field="openToKitchen" data-room="${i}"
-              ${room.openToKitchen ? 'checked' : ''}>
-            <span class="sim-toggle-slider"></span>
-          </label>
-          <span class="sim-toggle-label">${room.openToKitchen ? 'Sim — adicionamos potência extra' : 'Não'}</span>
-        </div>
-      </div>
-      ` : ''}
-
-      <!-- Dimensões -->
-      <div class="sim-field-row">
-        <div class="sim-field">
-          <label class="sim-label">Área da divisão (m²)</label>
-          <div class="sim-input-unit">
-            <input type="number" class="sim-input" data-field="areaM2" data-room="${i}"
-              placeholder="Ex: 20" value="${room.areaM2}" min="4" max="200" step="0.5" />
-            <span class="sim-unit">m²</span>
-          </div>
-        </div>
-        <div class="sim-field">
-          <label class="sim-label">Altura do tecto</label>
-          <select class="sim-select" data-field="heightM" data-room="${i}">
-            ${heightOptions.map(h => `
-              <option value="${h.val}" ${parseFloat(room.heightM) === h.val ? 'selected' : ''}>${h.label}</option>
-            `).join('')}
-          </select>
-        </div>
-      </div>
-
-      <!-- Janelas -->
-      <div class="sim-field">
-        <label class="sim-label">
-          🪟 Tem janelas com exposição solar significativa?
-          <span class="sim-tooltip" title="Janelas a sul, este ou oeste que recebem sol direto aumentam a carga térmica da divisão.">ⓘ</span>
-        </label>
-        <div class="sim-toggle-row">
-          <label class="sim-toggle">
-            <input type="checkbox" data-field="hasWindows" data-room="${i}"
-              ${room.hasWindows ? 'checked' : ''}>
-            <span class="sim-toggle-slider"></span>
-          </label>
-          <span class="sim-toggle-label">${room.hasWindows ? 'Sim' : 'Não'}</span>
-        </div>
-      </div>
-
-      ${room.hasWindows ? `
-      <div class="sim-field-row" id="windowDetails${i}">
-        <div class="sim-field">
-          <label class="sim-label">Área total das janelas (m²)</label>
-          <div class="sim-input-unit">
-            <input type="number" class="sim-input" data-field="windowAreaM2" data-room="${i}"
-              placeholder="Ex: 4" value="${room.windowAreaM2}" min="0.5" max="50" step="0.5" />
-            <span class="sim-unit">m²</span>
-          </div>
-        </div>
-        <div class="sim-field">
-          <label class="sim-label">Orientação predominante</label>
-          <select class="sim-select" data-field="windowOrientation" data-room="${i}">
-            ${orientationOptions.map(o => `
-              <option value="${o.val}" ${room.windowOrientation === o.val ? 'selected' : ''}>${o.label}</option>
-            `).join('')}
-          </select>
-        </div>
-      </div>
-      ` : ''}
-
-    </div><!-- /sim-room-body -->
+      <div class="sim-rm__price">${fmtPrice(price)}</div>
+    </div>
+    ${hasColors ? `<div class="sim-rm__colors" id="rm-colors-${room.id}">
+      <span class="sim-rm__colors-label">Cor:</span>
+      ${['white','silver','black'].map(c => `<button class="sim-color-btn${room.color===c?' active':''}" data-color="${c}" onclick="setRoomColor(${room.id},'${c}')" title="${c==='white'?'Branco':c==='silver'?'Prateado':'Preto'}"></button>`).join('')}
+    </div>` : ''}
+    <div class="sim-rm__change">
+      <button class="sim-rm__change-btn" onclick="openModelPicker(${room.id})">Mudar modelo →</button>
+    </div>
   </div>`;
 }
 
-function bindRoomEvents(i) {
-  // Inputs de texto e número
-  document.querySelectorAll(`[data-room="${i}"][data-field]`).forEach(el => {
-    const field = el.dataset.field;
-    const eventType = el.type === 'checkbox' ? 'change' : 'input';
+function updateRoomHeader(id) {
+  const room = state.rooms.find(r => r.id === id);
+  if (!room) return;
+  const tier = room.areaM2 ? btuToTier(calcBTU(room)) : 0;
+  const hasData = parseFloat(room.areaM2) > 0 && tier > 0;
+  const isMulti = state.rooms.length > 1 && room.useMulti;
 
-    el.addEventListener(eventType, () => {
-      if (el.type === 'checkbox') {
-        state.rooms[i][field] = el.checked;
-      } else if (el.type === 'number' || el.tagName === 'SELECT') {
-        state.rooms[i][field] = el.value;
-      } else {
-        state.rooms[i][field] = el.value;
-        // Actualizar título do card ao vivo
-        const title = document.querySelector(`#roomCard${i} .sim-room-title`);
-        if (title) title.textContent = el.value || el.placeholder;
-      }
+  const numEl = document.querySelector(`#room-${id} .sim-room__num`);
+  if (numEl) numEl.classList.toggle('complete', hasData);
 
-      // Re-render o card apenas se mudou tipo ou hasWindows/openToKitchen
-      if (field === 'type' || field === 'hasWindows' || field === 'openToKitchen') {
-        renderRooms();
-      }
-    });
-  });
+  const metaEl = document.getElementById('rmeta-' + id);
+  if (!metaEl) return;
 
-  // Botões de tipo
-  document.querySelectorAll(`.sim-type-btn[data-room="${i}"]`).forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.rooms[i].type = btn.dataset.type;
-      if (btn.dataset.type !== 'sala') state.rooms[i].openToKitchen = false;
-      renderRooms();
-    });
-  });
+  if (!hasData) {
+    metaEl.textContent = 'Preencha os dados da divisão';
+    metaEl.classList.remove('has-data');
+    return;
+  }
+
+  const multiCountH = state.rooms.filter(r => r.useMulti).length;
+  const isMultiH = multiCountH >= 2 && room.useMulti;
+
+  let modelName = '';
+  let price = 0;
+  if (isMultiH) {
+    const unit = getMultiIndoorUnit(state.brand, tier);
+    if (unit) { modelName = unit.model; price = unit.pvp; }
+  } else {
+    const seriesKey = room.series || getCheapestMonoSeries(state.brand, tier);
+    const catalog = getBrandCatalog(state.brand);
+    if (seriesKey && catalog[seriesKey]) {
+      modelName = catalog[seriesKey].label;
+      price = getMonoPrice(state.brand, seriesKey, tier, room.color);
+    }
+  }
+
+  metaEl.textContent = `${room.areaM2}m² · ${btuLabel(tier)}${modelName ? ' · ' + modelName : ''}${price ? ' · ' + fmtPrice(price) : ''}`;
+  metaEl.classList.add('has-data');
+}
+
+function renderRoomModelSection(id) {
+  const room = state.rooms.find(r => r.id === id);
+  if (!room) return;
+  const el = document.getElementById('rm-' + id);
+  if (!el) return;
+  el.outerHTML = renderRoomModelCard(room);
+  updateRoomHeader(id);
 }
 
 // ============================================================
-// 10. RENDER — Step 3 (Resultados)
+// 10. MODEL PICKER
 // ============================================================
-function renderStep3() {
-  document.getElementById('step1').style.display = 'none';
-  document.getElementById('step2').style.display = 'none';
-  document.getElementById('step3').style.display = 'block';
-  setStepActive(3);
+function openModelPicker(roomId) {
+  const room = state.rooms.find(r => r.id === roomId);
+  if (!room) return;
+  state.modelPickerRoomId = roomId;
+  state.pickerColors = {};
+  state.pickerColors[roomId] = room.color || 'white';
 
-  // Limpar seleções anteriores
-  _selectedQuote.clear();
-  updateQuoteBar();
+  const tier = btuToTier(calcBTU(room));
+  const el = document.getElementById('smp-overlay');
+  const titleEl = document.getElementById('smp-title');
+  const subEl = document.getElementById('smp-sub');
+  const gridEl = document.getElementById('smp-grid');
 
-  const el = document.getElementById('simResults');
-  el.innerHTML = buildResultsHTML();
+  if (!el) return;
+  if (titleEl) titleEl.textContent = 'Escolha o modelo para ' + room.name;
+  if (subEl) subEl.textContent = `Potência necessária: ${btuLabel(tier)} (${kwLabel(tier)}) · Marca: ${capFirst(state.brand)}`;
+  if (gridEl) gridEl.innerHTML = buildPickerCards(room, tier);
+
+  el.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
-function buildResultsHTML() {
-  const { roomsWithBTU, mono, multi, hybrid, doubleMulti, brand } = state.results;
-  const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[brand];
-
+function buildPickerCards(room, tier) {
+  const isMultiContext = state.rooms.length > 1;
+  const catalog = getBrandCatalog(state.brand);
   let html = '';
 
-  // ─── Análise das divisões ───
-  html += `
-  <div class="res-section">
-    <h2 class="res-main-title">Análise das suas divisões <span class="res-brand-tag">${brandLabel}</span></h2>
-    <div class="res-rooms-grid">
-      ${roomsWithBTU.map(r => `
-        <div class="res-room-card">
-          <div class="res-room-card__top">
-            <span class="res-room-icon">${roomIcon(r.type)}</span>
-            <h4 class="res-room-name">${r.name || ['Quarto Principal','Sala','Quarto 2','Escritório','Quarto 3'][r.id] || 'Divisão'}</h4>
-            <div class="res-room-btu">
-              <span class="res-btu-tier">${btuLabel(r.btu)} BTU</span>
-              <span class="res-btu-kw">${KW_LABELS[r.btu]}</span>
-            </div>
-          </div>
-          <div class="res-room-card__details">
-            <span class="res-btu-raw">~${Math.round(r.rawBTU/100)*100} BTU calculados</span>
-            <p>${r.areaM2} m² · ${String(r.heightM).replace('.',',')} m altura</p>
-            ${r.openToKitchen ? '<p class="res-note">🍳 Open-space com cozinha</p>' : ''}
-            ${r.hasWindows ? `<p class="res-note">🪟 Janelas ${orientLabel(r.windowOrientation)} (${r.windowAreaM2} m²)</p>` : ''}
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  </div>`;
-
-  // ─── Painel de comparação cross-brand (standalone, se ≥ 2 selecionados) ───
-  const cmpAllItems = Array.from(state.compareMap.values());
-  if (cmpAllItems.length >= 2) {
-    html += buildCompareHTML(cmpAllItems);
-  }
-
-  // ─── Sugestão A — Monosplit ───
-  html += `<div class="res-section">
-    <div class="res-section-header">
-      <h2 class="res-option-title">💡 Opção A — Monosplit</h2>
-      <p class="res-option-desc">Uma unidade exterior por divisão — instalação mais simples, menor custo de equipamento para 1–2 divisões.</p>
-      <p class="res-tiers-hint">As séries estão ordenadas do <strong>mais acessível</strong> ao <strong>mais premium</strong>. A diferença está nas funcionalidades: eficiência energética, WiFi, filtros e design.</p>
-    </div>`;
-
-  if (mono && mono.length) {
-    html += `<div class="res-tiers">`;
-    for (const option of mono) {
-      const inCompare = state.compareMap.has(brand + ':' + option.series);
-      const imgHtml = option.image
-        ? `<div class="res-tier-img-wrap"><img class="res-tier-img" src="${option.image}" alt="${option.series}" onerror="this.style.display='none';this.parentElement.classList.add('res-tier-img-placeholder')"></div>`
-        : `<div class="res-tier-img-wrap res-tier-img-placeholder"></div>`;
-      html += `
-      <div class="res-tier-card" data-series="${option.series}">
-        ${imgHtml}
-        <div class="res-tier-header">
-          <div class="res-tier-hdr-text">
-            <span class="res-tier-badge">${option.badge}</span>
-            <h3 class="res-tier-name">${brandLabel} ${option.series}</h3>
-            <p class="res-tier-desc">${option.desc}</p>
-          </div>
-        </div>
-        <div class="res-tier-rooms">
-          ${option.rooms.map(({ room, product }) => `
-            <div class="res-tier-row">
-              <span class="res-tier-room-name">${room.name || roomDefaultName(room.id)}</span>
-              <span class="res-tier-model">${product.model}</span>
-              <span class="res-tier-btu">${btuLabel(product.btu)} BTU</span>
-              <span class="res-tier-price">${fmtPrice(product.pvp)}</span>
-            </div>
-          `).join('')}
-        </div>
-        <div class="res-tier-total">
-          <div>
-            <div class="res-desde-label">💰 Desde</div>
-            <div class="res-install-note">equipamento c/ IVA</div>
-          </div>
-          <span class="res-total-price">${fmtPrice(option.total)}</span>
-        </div>
-        <div class="res-tier-note">
-          ${option.rooms.length} unid. exterior(es) &nbsp;·&nbsp; Classe ${option.energyCool}
-          &nbsp;·&nbsp; Instalação orçamentada após visita técnica
-        </div>
-        <div class="res-tier-actions">
-          <button class="res-detail-btn" data-series="${option.series}">🔍 Ver detalhes</button>
-          <button class="res-compare-btn${inCompare ? ' active' : ''}" data-brand="${brand}" data-series="${option.series}">
-            ${inCompare ? '✓ A comparar' : '⊕ Comparar'}
-          </button>
-        </div>
-        <button class="res-select-btn" data-key="mono:${brand}:${option.series}" data-label="${brandLabel} ${option.series}" data-price="${option.total}">
-          ☐ Selecionar para orçamento
-        </button>
-      </div>`;
+  // Multi indoor option (only for 2+ rooms)
+  if (isMultiContext) {
+    const unit = getMultiIndoorUnit(state.brand, tier);
+    if (unit) {
+      const isSelected = room.useMulti;
+      const img = state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp' :
+                  state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
+                                             'assets/products/daitsu-artic-plus-1.webp';
+      html += pickerCard({
+        id: room.id, type: 'multi', seriesKey: '__multi__',
+        badge: 'PADRÃO', badgeClass: 'multi',
+        img, series: unit.model,
+        specs: `${btuLabel(unit.btu)} · ${unit.kw} kW`,
+        price: unit.pvp,
+        priceNote: 'Interior · exterior partilhado',
+        diff: 0, diffClass: 'base',
+        isSelected, color: 'white',
+      });
     }
-    html += `</div>`;
-  } else {
-    html += `<p class="res-warn">⚠️ Não foi possível encontrar uma solução monosplit ${brandLabel} para esta configuração. Contacte-nos para um orçamento personalizado.</p>`;
   }
 
-  html += `</div>`; // /res-section monosplit
+  // Mono series options
+  let anchorPrice = isMultiContext ? (getMultiIndoorUnit(state.brand, tier)?.pvp || Infinity) : Infinity;
+  const monoOpts = [];
 
-  // ─── Sugestão B — Multisplit ───
-  if (roomsWithBTU.length >= 2) {
-    html += `<div class="res-section">
-      <div class="res-section-header">
-        <h2 class="res-option-title">💡 Opção B — Multisplit</h2>
-        <p class="res-option-desc">Uma única unidade exterior para todas as divisões — menos impacto visual no exterior.</p>
-      </div>`;
+  for (const [key, series] of Object.entries(catalog)) {
+    if (series.maxBTU && tier > series.maxBTU) continue;
+    const basePrice = series.prices[tier];
+    if (basePrice === undefined) continue;
+    if (!isMultiContext && basePrice < anchorPrice) anchorPrice = basePrice;
+    monoOpts.push({ key, series, basePrice });
+  }
+  monoOpts.sort((a, b) => a.basePrice - b.basePrice);
 
-    if (brand === 'daikin' && multi) {
-      html += `
-      <div class="res-multi-card">
-        <div class="res-multi-header">
-          <span class="res-multi-badge">🏅 Daikin Perfera Multi</span>
-          <p class="res-multi-desc">Unidade exterior partilhada · Unidades interiores FTXM-A (série Perfera)</p>
-        </div>
+  monoOpts.forEach(({ key, series, basePrice }) => {
+    const isSelected = !room.useMulti && room.series === key;
+    const pickerColor = state.pickerColors[room.id] || 'white';
+    let price = basePrice;
+    let img = series.image || '';
 
-        <div class="res-multi-outdoor">
-          <div class="res-multi-label">🔲 Unidade Exterior</div>
-          <div class="res-multi-row">
-            <span class="res-multi-model">Daikin ${multi.outdoor.model}</span>
-            <span class="res-multi-spec">${multi.outdoor.zones} zonas · ${multi.outdoor.kw} kW</span>
-            <span class="res-multi-price">${fmtPrice(multi.outdoor.pvp)}</span>
-          </div>
-        </div>
-
-        <div class="res-multi-indoor">
-          <div class="res-multi-label">❄️ Unidades Interiores</div>
-          ${multi.indoorUnits.map(({ room, unit }) => `
-            <div class="res-multi-row">
-              <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
-              <span class="res-multi-spec">Daikin ${unit.model} · ${btuLabel(unit.btu)} BTU</span>
-              <span class="res-multi-price">${fmtPrice(unit.pvp)}</span>
-            </div>
-          `).join('')}
-        </div>
-
-        <div class="res-tier-total">
-          <div>
-            <div class="res-desde-label">💰 Desde</div>
-            <div class="res-install-note">equipamento c/ IVA</div>
-          </div>
-          <span class="res-total-price">${fmtPrice(multi.total)}</span>
-        </div>
-
-        <div class="res-multi-notes">
-          <div class="res-multi-note res-multi-note--pro">✅ Apenas 1 unidade exterior — menor impacto visual</div>
-          <div class="res-multi-note res-multi-note--pro">✅ Controlo individual por divisão</div>
-          <div class="res-multi-note res-multi-note--info">ℹ️ Custo de equipamento geralmente superior ao monosplit</div>
-          <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
-        </div>
-        <button class="res-select-btn" data-key="multi:daikin:perfera" data-label="Daikin Perfera Multisplit" data-price="${multi.total}">
-          ☐ Selecionar para orçamento
-        </button>
-      </div>`;
-
-    } else if (brand === 'daikin' && !multi) {
-      html += `
-      <div class="res-warn-box">
-        <p>⚠️ A combinação de divisões introduzida excede a capacidade máxima dos sistemas multisplit Daikin disponíveis.</p>
-        <p>Recomendamos a opção monosplit ou contacte-nos para uma análise personalizada.</p>
-      </div>`;
-    } else if ((brand === 'bosch' || brand === 'daitsu') && multi) {
-      html += buildBrandMultiHTML(brand, brandLabel, multi);
-    } else if ((brand === 'bosch' || brand === 'daitsu') && !multi) {
-      html += `
-      <div class="res-warn-box">
-        <p>⚠️ A combinação de divisões introduzida excede a capacidade máxima dos sistemas multisplit ${brandLabel} disponíveis.</p>
-        <p>Recomendamos a opção monosplit ou contacte-nos para uma análise personalizada.</p>
-      </div>`;
+    if (series.colorPrices) {
+      price = series.colorPrices[pickerColor]?.[tier] || basePrice;
+      if (series.images && !Array.isArray(series.images)) {
+        img = series.images[pickerColor]?.[0] || series.image || '';
+      }
     }
 
-    html += `</div>`; // /res-section multisplit
-  }
+    const diff = price - anchorPrice;
+    const colorPicker = series.colorPrices ? buildColorPickerInCard(room.id, key, pickerColor) : '';
 
-  // ─── Opção C — Solução Mista (Híbrido) ───
-  if (hybrid) {
-    const { bigRooms, monoOption, normalRooms, multiResult } = hybrid;
-    const indoorSeriesLabel = brand === 'bosch' ? 'Climate 3000i' : brand === 'daitsu' ? 'ARTIC Plus' : 'FTXM-A';
-    const outdoorSeriesLabel = brand === 'bosch' ? 'Climate 5000 M' : brand === 'daitsu' ? 'FREE-MAX' : multiResult.outdoor.model;
-
-    html += `<div class="res-section">
-      <div class="res-section-header">
-        <h2 class="res-option-title">💡 Opção C — Solução Mista</h2>
-        <p class="res-option-desc">Divisão mais potente com unidade exterior própria (monosplit) + restantes em multisplit partilhado. Menos máquinas no exterior, respeitando as potências necessárias.</p>
-      </div>
-      <div class="res-multi-card">
-
-        <div class="res-hybrid-block">
-          <div class="res-hybrid-label">🏠 Divisão isolada — Monosplit ${brandLabel} ${monoOption.series}</div>
-          ${monoOption.rooms.map(({ room, product }) => `
-            <div class="res-multi-row">
-              <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
-              <span class="res-multi-spec">${brandLabel} ${product.model} · ${btuLabel(product.btu)} BTU</span>
-              <span class="res-multi-price">${fmtPrice(product.pvp)}</span>
-            </div>
-          `).join('')}
-        </div>
-
-        <div class="res-hybrid-divider"></div>
-
-        <div class="res-hybrid-block">
-          <div class="res-hybrid-label">🔗 Restantes — Multisplit (${outdoorSeriesLabel} + ${indoorSeriesLabel})</div>
-          <div class="res-multi-row">
-            <span class="res-multi-model">Unidade Exterior</span>
-            <span class="res-multi-spec">${brand === 'daikin' ? 'Daikin ' : ''}${multiResult.outdoor.model} · ${multiResult.outdoor.zones} zonas · ${multiResult.outdoor.kw} kW</span>
-            <span class="res-multi-price">${fmtPrice(multiResult.outdoor.pvp)}</span>
-          </div>
-          ${multiResult.indoorUnits.map(({ room, unit }) => `
-            <div class="res-multi-row">
-              <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
-              <span class="res-multi-spec">${brandLabel} ${unit.model} · ${btuLabel(unit.btu)} BTU</span>
-              <span class="res-multi-price">${fmtPrice(unit.pvp)}</span>
-            </div>
-          `).join('')}
-        </div>
-
-        <div class="res-tier-total">
-          <div>
-            <div class="res-desde-label">💰 Desde</div>
-            <div class="res-install-note">equipamento c/ IVA</div>
-          </div>
-          <span class="res-total-price">${fmtPrice(hybrid.total)}</span>
-        </div>
-        <div class="res-multi-notes">
-          <div class="res-multi-note res-multi-note--pro">✅ Respeita as potências máximas dos interiores multisplit</div>
-          <div class="res-multi-note res-multi-note--pro">✅ Mínimo de máquinas no exterior</div>
-          <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
-        </div>
-        <button class="res-select-btn" data-key="hybrid:${brand}:${monoOption.series}" data-label="${brandLabel} Solução Mista (${monoOption.series} + Multisplit)" data-price="${hybrid.total}">
-          ☐ Selecionar para orçamento
-        </button>
-      </div>
-    </div>`;
-  }
-
-  // ─── Opção D — Duplo Multisplit ───
-  if (doubleMulti) {
-    const { group1, multi1, group2, multi2 } = doubleMulti;
-    const indoorLabel = brand === 'bosch' ? 'Climate 3000i' : brand === 'daitsu' ? 'ARTIC Plus' : 'FTXM-A';
-
-    const renderMultiGroup = (label, rooms, m) => `
-      <div class="res-hybrid-block">
-        <div class="res-hybrid-label">${label} — ${brand === 'daikin' ? 'Daikin ' : ''}${m.outdoor.model} (${m.outdoor.zones} zonas · ${m.outdoor.kw} kW)</div>
-        <div class="res-multi-row">
-          <span class="res-multi-model">Unidade Exterior</span>
-          <span class="res-multi-spec">${brand === 'daikin' ? 'Daikin ' : ''}${m.outdoor.model}</span>
-          <span class="res-multi-price">${fmtPrice(m.outdoor.pvp)}</span>
-        </div>
-        ${m.indoorUnits.map(({ room, unit }) => `
-          <div class="res-multi-row">
-            <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
-            <span class="res-multi-spec">${brandLabel} ${unit.model} · ${btuLabel(unit.btu)} BTU</span>
-            <span class="res-multi-price">${fmtPrice(unit.pvp)}</span>
-          </div>
-        `).join('')}
-      </div>`;
-
-    html += `<div class="res-section">
-      <div class="res-section-header">
-        <h2 class="res-option-title">💡 Opção D — Duplo Multisplit</h2>
-        <p class="res-option-desc">Dois sistemas multisplit independentes — ideal quando as divisões estão em zonas distintas da casa ou quando a carga total beneficia de duas unidades exteriores.</p>
-      </div>
-      <div class="res-multi-card">
-        ${renderMultiGroup('🔵 Sistema 1', group1, multi1)}
-        <div class="res-hybrid-divider"></div>
-        ${renderMultiGroup('🟠 Sistema 2', group2, multi2)}
-
-        <div class="res-tier-total">
-          <div>
-            <div class="res-desde-label">💰 Desde</div>
-            <div class="res-install-note">equipamento c/ IVA</div>
-          </div>
-          <span class="res-total-price">${fmtPrice(doubleMulti.total)}</span>
-        </div>
-        <div class="res-multi-notes">
-          <div class="res-multi-note res-multi-note--pro">✅ Apenas 2 unidades exteriores para ${roomsWithBTU.length} divisões</div>
-          <div class="res-multi-note res-multi-note--pro">✅ Cada sistema otimizado para a sua zona</div>
-          <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
-        </div>
-        <button class="res-select-btn" data-key="double-multi:${brand}" data-label="${brandLabel} Duplo Multisplit" data-price="${doubleMulti.total}">
-          ☐ Selecionar para orçamento
-        </button>
-      </div>
-    </div>`;
-  }
-
-  // ─── Aviso geral ───
-  html += `
-  <div class="res-disclaimer">
-    <p>📌 <strong>Nota:</strong> Estes valores são estimativas de equipamento <strong>com IVA</strong>, sem custo de instalação.
-    A potência foi calculada com base nas dimensões indicadas e nas condições climáticas do Algarve/Portugal.
-    Para um orçamento final completo (equipamento + mão-de-obra + acessórios), contacte-nos.</p>
-  </div>`;
-
-  // ─── Botões de ação ───
-  html += `
-  <div class="res-actions">
-    <div class="res-switch-brand">
-      <p>Ver sugestão com outra marca:</p>
-      <div class="res-brand-btns">
-        ${['daikin','bosch','daitsu'].filter(b => b !== brand).map(b => `
-          <button class="btn btn--outline sim-switch-brand" data-brand="${b}">
-            ${b.charAt(0).toUpperCase() + b.slice(1)}
-          </button>
-        `).join('')}
-      </div>
-    </div>
-    <a href="index.html#contacto" class="btn btn--primary btn--lg">
-      📞 Pedir Orçamento Completo
-    </a>
-  </div>`;
+    html += pickerCard({
+      id: room.id, type: 'mono', seriesKey: key,
+      badge: isMultiContext ? 'INDIVIDUAL' : null,
+      badgeClass: 'individual',
+      img, series: series.label,
+      specs: `${btuLabel(tier)} · ${BTU_TO_KW[tier]} kW · ${series.energyCool || 'A++'} arref.`,
+      price, priceNote: isMultiContext ? 'Kit completo (inclui exterior)' : 'Kit completo (inclui exterior)',
+      diff, diffClass: diff === 0 ? 'base' : '',
+      isSelected, color: pickerColor,
+      colorPicker,
+      features: series.features ? series.features.slice(0, 3) : [],
+    });
+  });
 
   return html;
 }
 
-// ============================================================
-// 10a. MULTISPLIT GENÉRICO (Bosch / Daitsu)
-// ============================================================
-function buildBrandMultiHTML(brand, brandLabel, multi) {
-  const indoorSeries = brand === 'bosch'
-    ? 'Climate 3000i Mural'
-    : 'ARTIC Plus';
-  const outdoorSeries = brand === 'bosch'
-    ? 'Climate 5000 M'
-    : 'FREE-MAX';
+function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, diffClass, isSelected, colorPicker, features }) {
+  const diffText = diff === 0
+    ? `<div class="smp-card__diff base">Mais económico ★</div>`
+    : `<div class="smp-card__diff">+${fmtPrice(diff)} vs. mais económico</div>`;
+
+  const badgeHtml = badge ? `<div class="smp-card__badge ${badgeClass || ''}">${badge}</div>` : '';
+  const checkHtml = isSelected ? `<div class="smp-card__check">✓</div>` : '';
+  const featHtml  = features && features.length ? `<div class="smp-card__specs" style="margin-top:4px">${features.join(' · ')}</div>` : '';
+
+  // onclick — color is read from state.pickerColors inside selectModel
+  const onClick = type === 'multi'
+    ? `selectModel(${id},'multi','')`
+    : `selectModel(${id},'mono','${seriesKey}')`;
 
   return `
-  <div class="res-multi-card">
-    <div class="res-multi-header">
-      <span class="res-multi-badge">🏅 ${brandLabel} Multisplit</span>
-      <p class="res-multi-desc">Unidade exterior ${outdoorSeries} · Unidades interiores ${indoorSeries}</p>
-    </div>
+<div class="smp-card${isSelected ? ' selected' : ''}" data-key="${seriesKey}" onclick="${onClick}">
+  ${badgeHtml}${checkHtml}
+  <img src="${img}" alt="${series}" class="smp-card__img" onerror="this.style.visibility='hidden'">
+  <div class="smp-card__body">
+    <div class="smp-card__series">${series}</div>
+    <div class="smp-card__specs">${specs}</div>
+    ${featHtml}
+    <div class="smp-card__price">${fmtPrice(price)}</div>
+    <div class="smp-card__price-note">${priceNote}</div>
+    ${diffText}
+  </div>
+  ${colorPicker}
+</div>`;
+}
 
-    <div class="res-multi-outdoor">
-      <div class="res-multi-label">🔲 Unidade Exterior</div>
-      <div class="res-multi-row">
-        <span class="res-multi-model">${multi.outdoor.model}</span>
-        <span class="res-multi-spec">${multi.outdoor.zones} zonas · ${multi.outdoor.kw} kW</span>
-        <span class="res-multi-price">${fmtPrice(multi.outdoor.pvp)}</span>
-      </div>
-    </div>
-
-    <div class="res-multi-indoor">
-      <div class="res-multi-label">❄️ Unidades Interiores</div>
-      ${multi.indoorUnits.map(({ room, unit }) => `
-        <div class="res-multi-row">
-          <span class="res-multi-model">${room.name || roomDefaultName(room.id)}</span>
-          <span class="res-multi-spec">${brandLabel} ${unit.model} · ${btuLabel(unit.btu)} BTU</span>
-          <span class="res-multi-price">${fmtPrice(unit.pvp)}</span>
-        </div>
-      `).join('')}
-    </div>
-
-    <div class="res-tier-total">
-      <div>
-        <div class="res-desde-label">💰 Desde</div>
-        <div class="res-install-note">equipamento c/ IVA</div>
-      </div>
-      <span class="res-total-price">${fmtPrice(multi.total)}</span>
-    </div>
-
-    <div class="res-multi-notes">
-      <div class="res-multi-note res-multi-note--pro">✅ Apenas 1 unidade exterior — menor impacto visual</div>
-      <div class="res-multi-note res-multi-note--pro">✅ Controlo individual por divisão</div>
-      <div class="res-multi-note res-multi-note--info">ℹ️ Custo de equipamento geralmente superior ao monosplit</div>
-      <div class="res-multi-note res-multi-note--info">ℹ️ Instalação e materiais orçamentados após visita técnica</div>
-    </div>
-    <button class="res-select-btn" data-key="multi:${brand}:split" data-label="${brandLabel} Multisplit" data-price="${multi.total}">
-      ☐ Selecionar para orçamento
-    </button>
+function buildColorPickerInCard(roomId, seriesKey, activeColor) {
+  const colors = ['white', 'silver', 'black'];
+  const labels = { white: 'Branco', silver: 'Prateado', black: 'Preto' };
+  return `<div class="smp-card__colors">
+    <span class="smp-card__color-label">Cor:</span>
+    ${colors.map(c => `<button class="sim-color-btn${c === activeColor ? ' active smp-card__color-active' : ''}" data-color="${c}"
+      onclick="event.stopPropagation();setPickerColor(${roomId},'${seriesKey}','${c}',this)" title="${labels[c]}"></button>`).join('')}
   </div>`;
 }
 
-// ============================================================
-// 10b. PAINEL DE COMPARAÇÃO
-// ============================================================
-function buildCompareHTML(items) {
-  let html = `
-  <div class="res-compare-section">
-    <div class="res-compare-header">
-      <h3>📊 Comparação de Modelos</h3>
-      <button class="res-compare-clear" id="clearCompare">Limpar seleção</button>
-    </div>
-    <div class="res-compare-grid">`;
-
-  for (const item of items) {
-    const imgHtml = item.image
-      ? `<img class="res-cmp-img" src="${item.image}" alt="${item.series}" onerror="this.style.display='none'">`
-      : '';
-    html += `
-      <div class="res-cmp-card">
-        ${imgHtml}
-        <div class="res-cmp-name">${item.brandLabel} ${item.series}</div>
-        <div class="res-cmp-badge">${item.badge}</div>
-        <div class="res-cmp-price">${fmtPrice(item.total)}</div>
-        <div class="res-cmp-since">💰 Desde · equipamento c/ IVA</div>
-        <ul class="res-cmp-features">
-          ${item.features.map(f => `<li>${f}</li>`).join('')}
-        </ul>
-        <div class="res-cmp-energy">
-          ❄️ Arref: <strong>${item.energyCool}</strong> &nbsp;·&nbsp; 🔥 Aquec: <strong>${item.energyHeat}</strong>
-        </div>
-      </div>`;
+function setPickerColor(roomId, seriesKey, color, btnEl) {
+  state.pickerColors[roomId] = color;
+  // Update color buttons in the card
+  const card = btnEl && btnEl.closest('.smp-card');
+  if (card) {
+    card.querySelectorAll('.sim-color-btn').forEach(b => b.classList.remove('active', 'smp-card__color-active'));
+    btnEl.classList.add('active', 'smp-card__color-active');
   }
-
-  html += `</div></div>`;
-  return html;
+  // Update price in card
+  const room = state.rooms.find(r => r.id === roomId);
+  if (!room) return;
+  const tier = btuToTier(calcBTU(room));
+  const catalog = getBrandCatalog(state.brand);
+  const series = catalog[seriesKey];
+  if (series && series.colorPrices && card) {
+    const price = series.colorPrices[color]?.[tier] || series.prices[tier] || 0;
+    const priceEl = card.querySelector('.smp-card__price');
+    if (priceEl) priceEl.textContent = fmtPrice(price);
+    // Update image
+    const imgEl = card.querySelector('.smp-card__img');
+    if (imgEl && series.images && !Array.isArray(series.images)) {
+      imgEl.src = series.images[color]?.[0] || series.image || '';
+    }
+  }
 }
 
-// ============================================================
-// 10c. MODAL DE DETALHE — com Carousel + Zoom
-// ============================================================
+function selectModel(roomId, type, seriesKey) {
+  const room = state.rooms.find(r => r.id === roomId);
+  if (!room) return;
 
-// Calcula total por cor para Stylish / Emura
-function calcColorTotal(option, colorKey) {
-  if (!option.colorPrices) return option.total;
-  const colorP = option.colorPrices[colorKey];
-  if (!colorP) return option.total;
-  return option.rooms.reduce((sum, { product }) => sum + (colorP[product.btu] ?? product.pvp), 0);
-}
+  const pickerColor = state.pickerColors[roomId] || 'white';
 
-let _carouselTimer = null;
-let _carouselIdx   = 0;
-let _selectedQuote = new Map(); // key → { label, price }
-
-function simShowDetail(seriesName) {
-  const { mono, brand } = state.results;
-  const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[brand];
-  const option = mono.find(o => o.series === seriesName);
-  if (!option) return;
-
-  const modal = document.getElementById('simDetailModal');
-  const imgs = (option.images && option.images.length) ? option.images
-             : (option.image ? [option.image] : []);
-  _carouselIdx = 0;
-
-  const carouselHTML = imgs.length ? `
-  <div class="sdm-carousel" id="sdmCarousel">
-    <div class="sdm-carousel-track">
-      ${imgs.map((src, i) => `
-        <img class="sdm-carousel-img${i === 0 ? ' active' : ''}"
-             src="${src}" alt="${option.series} — imagem ${i+1}"
-             title="Clique para ampliar" data-idx="${i}"
-             onerror="this.style.display='none'" />
-      `).join('')}
-    </div>
-    ${imgs.length > 1 ? `
-    <button class="sdm-car-btn sdm-car-prev" id="sdmPrev" aria-label="Anterior">&#8249;</button>
-    <button class="sdm-car-btn sdm-car-next" id="sdmNext" aria-label="Próxima">&#8250;</button>
-    <div class="sdm-car-dots" id="sdmDots">
-      ${imgs.map((_, i) => `<span class="sdm-dot${i===0?' active':''}" data-idx="${i}"></span>`).join('')}
-    </div>` : ''}
-  </div>` : '';
-
-  modal.innerHTML = `
-  <div class="sdm-box">
-    <div class="sdm-top sdm-top--no-img">
-      <div class="sdm-header-text">
-        <span class="sdm-badge">${option.badge}</span>
-        <div class="sdm-name">${brandLabel} ${option.series}</div>
-        <div class="sdm-desc">${option.desc}</div>
-      </div>
-      <button class="sdm-close" id="sdmClose" aria-label="Fechar">✕</button>
-    </div>
-    ${carouselHTML}
-    <div class="sdm-body">
-      <div class="sdm-price-row">
-        <span class="sdm-desde">Desde</span>
-        <span class="sdm-price">${fmtPrice(option.total)}</span>
-        <span class="sdm-iva">c/ IVA</span>
-      </div>
-      <div class="sdm-install-note">💡 Instalação e materiais orçamentados após visita técnica</div>
-
-      ${option.colorPrices ? `
-      <div class="sdm-section-title">Cor do equipamento</div>
-      <div class="sdm-color-picker" id="sdmColorPicker">
-        <button class="sdm-color-btn active" data-color="white">⬜ Branco</button>
-        <button class="sdm-color-btn" data-color="silver">🩶 Prateado</button>
-        <button class="sdm-color-btn" data-color="black">🖤 Preto</button>
-      </div>` : ''}
-
-      <div class="sdm-section-title">Modelos por divisão</div>
-      <table class="sdm-rooms-table">
-        <thead><tr>
-          <th>Divisão</th><th>Modelo</th><th>BTU</th><th>Preço</th>
-        </tr></thead>
-        <tbody>
-          ${option.rooms.map(({ room, product }) => `
-            <tr>
-              <td>${room.name || roomDefaultName(room.id)}</td>
-              <td>${product.model}</td>
-              <td>${btuLabel(product.btu)}</td>
-              <td class="sdm-td-price">${fmtPrice(product.pvp)}</td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-
-      <div class="sdm-section-title">Classe energética</div>
-      <div class="sdm-energy-row">
-        <div class="sdm-energy-badge">
-          <span class="sdm-energy-label">❄️ Arrefecimento</span>
-          <span class="sdm-energy-val">${option.energyCool}</span>
-        </div>
-        <div class="sdm-energy-badge">
-          <span class="sdm-energy-label">🔥 Aquecimento</span>
-          <span class="sdm-energy-val">${option.energyHeat}</span>
-        </div>
-      </div>
-
-      <div class="sdm-section-title">Características</div>
-      <div class="sdm-features">
-        ${option.features.map(f => `<span class="sdm-feature-tag">✓ ${f}</span>`).join('')}
-      </div>
-
-      <a href="index.html#contacto" class="sdm-cta">📞 Pedir Orçamento Completo</a>
-    </div>
-  </div>`;
-
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-
-  document.getElementById('sdmClose').addEventListener('click', closeDetailModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeDetailModal(); });
-
-  // ── Color picker (Stylish / Emura) ──
-  if (option.colorPrices) {
-    document.querySelectorAll('.sdm-color-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.sdm-color-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const newTotal = calcColorTotal(option, btn.dataset.color);
-        const priceEl  = modal.querySelector('.sdm-price');
-        if (priceEl) priceEl.textContent = fmtPrice(newTotal);
-      });
-    });
+  if (type === 'multi') {
+    room.useMulti = true;
+    room.series   = null;
+    room.color    = 'white';
+  } else {
+    room.useMulti = false;
+    room.series   = seriesKey || null;
+    room.color    = pickerColor;
   }
 
-  // ── Carousel logic ──
-  if (imgs.length > 1) {
-    const gotoSlide = (idx) => {
-      const n = imgs.length;
-      _carouselIdx = ((idx % n) + n) % n;
-      document.querySelectorAll('.sdm-carousel-img')
-        .forEach((img, i) => img.classList.toggle('active', i === _carouselIdx));
-      document.querySelectorAll('.sdm-dot')
-        .forEach((dot, i) => dot.classList.toggle('active', i === _carouselIdx));
-    };
-    const restartTimer = () => {
-      if (_carouselTimer) clearInterval(_carouselTimer);
-      _carouselTimer = setInterval(() => gotoSlide(_carouselIdx + 1), 5000);
-    };
-    document.getElementById('sdmPrev').addEventListener('click', () => { gotoSlide(_carouselIdx - 1); restartTimer(); });
-    document.getElementById('sdmNext').addEventListener('click', () => { gotoSlide(_carouselIdx + 1); restartTimer(); });
-    document.querySelectorAll('.sdm-dot').forEach(dot => {
-      dot.addEventListener('click', () => { gotoSlide(parseInt(dot.dataset.idx)); restartTimer(); });
-    });
-    restartTimer();
-  }
-
-  // ── Zoom on click ──
-  document.querySelectorAll('.sdm-carousel-img').forEach(img => {
-    img.addEventListener('click', () => sdmZoomOpen(img.src));
-  });
+  closeModelPicker();
+  renderRoomModelSection(room.id);
+  updateRoomHeader(room.id);
+  updateLiveTotal();
+  renderResults();
 }
 
-function closeDetailModal() {
-  const modal = document.getElementById('simDetailModal');
-  if (modal) { modal.style.display = 'none'; }
+function closeModelPicker() {
+  const el = document.getElementById('smp-overlay');
+  if (el) el.style.display = 'none';
   document.body.style.overflow = '';
-  if (_carouselTimer) { clearInterval(_carouselTimer); _carouselTimer = null; }
-  sdmZoomClose();
+  state.modelPickerRoomId = null;
 }
 
-function sdmZoomOpen(src) {
-  sdmZoomClose();
-  const overlay = document.createElement('div');
-  overlay.id = 'sdmZoomOverlay';
-  overlay.className = 'sdm-zoom-overlay';
-  overlay.innerHTML = `
-    <button class="sdm-zoom-close" id="sdmZoomClose" aria-label="Fechar zoom">✕</button>
-    <img class="sdm-zoom-img" src="${src}" alt="Zoom" />`;
-  document.body.appendChild(overlay);
-  document.getElementById('sdmZoomClose').addEventListener('click', sdmZoomClose);
-  overlay.addEventListener('click', e => { if (e.target === overlay) sdmZoomClose(); });
-}
-
-function sdmZoomClose() {
-  const el = document.getElementById('sdmZoomOverlay');
-  if (el) el.remove();
-}
-
-function roomIcon(type) {
-  return { quarto:'🛏️', sala:'🛋️', escritorio:'💼', cozinha:'🍳', outro:'🏠' }[type] || '🏠';
-}
-
-function orientLabel(o) {
-  return { sul:'a Sul', norte:'a Norte', este:'a Este', oeste:'a Oeste' }[o] || o;
-}
-
-function roomDefaultName(id) {
-  return ['Quarto Principal','Sala','Quarto 2','Escritório','Quarto 3'][id] || `Divisão ${id+1}`;
+function closeMPIfOuter(event) {
+  if (event.target === event.currentTarget) closeModelPicker();
 }
 
 // ============================================================
-// 11. STEP INDICATOR
+// 11. LIVE TOTAL (sticky bar)
 // ============================================================
-function setStepActive(n) {
-  document.querySelectorAll('.sim-step').forEach(el => {
-    const s = parseInt(el.dataset.step);
-    el.classList.toggle('active', s === n);
-    el.classList.toggle('done', s < n);
-  });
-}
+function updateLiveTotal() {
+  const el = document.getElementById('sim-sticky-total');
+  if (!el) return;
 
-// ============================================================
-// 12. VALIDAÇÃO
-// ============================================================
-function validateStep2() {
-  const errors = [];
-  state.rooms.forEach((room, i) => {
-    const area = parseFloat(room.areaM2);
-    const label = room.name || roomDefaultName(i);
-    if (!area || area < 4) errors.push(`"${label}": introduza a área (mín. 4 m²).`);
-    if (room.hasWindows) {
-      const wArea = parseFloat(room.windowAreaM2);
-      if (!wArea || wArea <= 0) errors.push(`"${label}": introduza a área das janelas.`);
-    }
-  });
-  return errors;
-}
-
-// ============================================================
-// 13. INIT E EVENTOS
-// ============================================================
-document.addEventListener('DOMContentLoaded', () => {
-
-  // Step 1 — escolher nº de divisões
-  document.querySelectorAll('.sim-count-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.numRooms = parseInt(btn.dataset.rooms);
-      document.querySelectorAll('.sim-count-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // Avançar automaticamente após 350ms
-      setTimeout(() => renderStep2(), 350);
-    });
-  });
-
-  // Step 2 — marca
-  document.querySelectorAll('.sim-brand-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      state.selectedBrand = btn.dataset.brand;
-      renderBrandBtns();
-    });
-  });
-
-  // Step 2 — voltar
-  document.getElementById('backToStep1').addEventListener('click', () => {
-    renderStep1();
-  });
-
-  // Step 2 — calcular
-  document.getElementById('calcResults').addEventListener('click', () => {
-    const errors = validateStep2();
-    if (errors.length) {
-      showError(errors.join('\n'));
-      return;
-    }
-    calcResults();
-    renderStep3();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // Step 3 — voltar
-  document.getElementById('backToStep2').addEventListener('click', () => {
-    renderStep2();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // Step 3 — todas as acções delegadas em #simResults
-  document.getElementById('simResults').addEventListener('click', e => {
-
-    // Trocar marca
-    const switchBtn = e.target.closest('.sim-switch-brand');
-    if (switchBtn) {
-      state.selectedBrand = switchBtn.dataset.brand;
-      calcResults(false); // preserva comparação cross-brand ao trocar de marca
-      renderStep3();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    // Ver detalhes — abre modal
-    const detailBtn = e.target.closest('.res-detail-btn');
-    if (detailBtn) {
-      simShowDetail(detailBtn.dataset.series);
-      return;
-    }
-
-    // Comparar — toggle (suporta cross-brand)
-    const cmpBtn = e.target.closest('.res-compare-btn');
-    if (cmpBtn) {
-      const series = cmpBtn.dataset.series;
-      const cBrand = cmpBtn.dataset.brand;
-      const key = cBrand + ':' + series;
-      if (state.compareMap.has(key)) {
-        state.compareMap.delete(key);
-      } else {
-        // Guardar item completo com brandLabel para comparação cross-brand
-        const { mono } = state.results;
-        const item = mono && mono.find(o => o.series === series);
-        if (item) {
-          const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[cBrand] || cBrand;
-          state.compareMap.set(key, { ...item, brandLabel });
-        }
-      }
-      // Re-render mantendo posição de scroll
-      const scrollY = window.scrollY;
-      document.getElementById('simResults').innerHTML = buildResultsHTML();
-      window.scrollTo({ top: scrollY });
-      return;
-    }
-
-    // Limpar comparação
-    const clearBtn = e.target.closest('#clearCompare');
-    if (clearBtn) {
-      state.compareMap.clear();
-      const scrollY = window.scrollY;
-      document.getElementById('simResults').innerHTML = buildResultsHTML();
-      window.scrollTo({ top: scrollY });
-      return;
-    }
-
-    // Selecionar para orçamento
-    const selectBtn = e.target.closest('.res-select-btn');
-    if (selectBtn) {
-      const key   = selectBtn.dataset.key;
-      const label = selectBtn.dataset.label;
-      const price = parseFloat(selectBtn.dataset.price);
-      if (_selectedQuote.has(key)) {
-        _selectedQuote.delete(key);
-        selectBtn.classList.remove('selected');
-        selectBtn.textContent = '☐ Selecionar para orçamento';
-      } else {
-        _selectedQuote.set(key, { label, price });
-        selectBtn.classList.add('selected');
-        selectBtn.textContent = '✔ Selecionado — incluído no pedido';
-      }
-      updateQuoteBar();
-      return;
-    }
-  });
-
-  // Fechar modal / zoom / quote modal com tecla ESC
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-      const qm = document.getElementById('simQuoteModal');
-      if (qm && qm.style.display !== 'none') { closeQuoteModal(); return; }
-      if (document.getElementById('sdmZoomOverlay')) sdmZoomClose();
-      else closeDetailModal();
-    }
-  });
-
-  // Progresso clicável (só passos já completados)
-  document.querySelectorAll('.sim-step').forEach(el => {
-    el.addEventListener('click', () => {
-      const n = parseInt(el.dataset.step);
-      if (n === 1) renderStep1();
-      else if (n === 2 && state.numRooms > 0) renderStep2();
-    });
-  });
-
-  // Quote bar → abrir modal
-  document.getElementById('simQuoteBarBtn')?.addEventListener('click', openQuoteModal);
-
-  // Quote modal — fechar ao clicar no X ou no overlay
-  document.getElementById('simQMClose')?.addEventListener('click', closeQuoteModal);
-  document.getElementById('simQuoteModal')?.addEventListener('click', e => {
-    if (e.target === document.getElementById('simQuoteModal')) closeQuoteModal();
-  });
-
-  // Quote modal — enviar
-  document.getElementById('simQMWA')?.addEventListener('click', sendViaWhatsApp);
-  document.getElementById('simQMEmail')?.addEventListener('click', sendViaEmail);
-
-  // Iniciar no step 1
-  renderStep1();
-});
-
-function showError(msg) {
-  const existing = document.getElementById('simError');
-  if (existing) existing.remove();
-  const div = document.createElement('div');
-  div.id = 'simError';
-  div.className = 'sim-error';
-  div.innerHTML = `<strong>⚠️ Por favor corrija:</strong><br>${msg.replace(/\n/g, '<br>')}`;
-  document.getElementById('step2').querySelector('.container').prepend(div);
-  div.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  setTimeout(() => div.remove(), 6000);
-}
-
-// ============================================================
-// QUOTE BAR + CONTACT MODAL
-// ============================================================
-function updateQuoteBar() {
-  const bar = document.getElementById('simQuoteBar');
-  if (!bar) return;
-  const n = _selectedQuote.size;
-  bar.style.display = n > 0 ? 'flex' : 'none';
-  const countEl = document.getElementById('simQuoteCount');
-  if (countEl) countEl.textContent = n === 1 ? '1 opção selecionada' : `${n} opções selecionadas`;
-}
-
-function openQuoteModal() {
-  const modal = document.getElementById('simQuoteModal');
-  if (!modal) return;
-  // Preencher itens selecionados
-  const sel = document.getElementById('simQMSelected');
-  if (sel) {
-    let h = '';
-    _selectedQuote.forEach(item => {
-      h += `<div class="sim-qm-item">
-        <span class="sim-qm-check">✓</span>
-        <div class="sim-qm-item-info">
-          <strong>${item.label}</strong>
-          <span>Equipamento a partir de ${fmtPrice(item.price)}</span>
-        </div>
-      </div>`;
-    });
-    sel.innerHTML = h;
+  const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
+  if (!validRooms.length) {
+    el.textContent = '€ —';
+    return;
   }
-  document.getElementById('simQMName').value = '';
-  document.getElementById('simQMContact').value = '';
-  document.getElementById('simQMError').textContent = '';
-  modal.style.display = 'flex';
-  setTimeout(() => document.getElementById('simQMName').focus(), 80);
+
+  const config = calcSystemConfig(state.brand, state.rooms);
+  if (!config || !config.total) {
+    el.textContent = '€ —';
+    return;
+  }
+  el.textContent = fmtPrice(config.total);
+}
+
+// ============================================================
+// 12. RESULTS
+// ============================================================
+function updateResultsVisibility() {
+  const valid = state.rooms.some(r => parseFloat(r.areaM2) > 0);
+  const resultsEl = document.getElementById('sim-results');
+  const actionsEl = document.getElementById('sim-actions');
+  if (resultsEl) resultsEl.style.display = valid ? '' : 'none';
+  if (actionsEl) actionsEl.style.display = valid ? '' : 'none';
+}
+
+function renderResults() {
+  updateResultsVisibility();
+  const config = calcSystemConfig(state.brand, state.rooms);
+  const contentEl = document.getElementById('sim-results-content');
+  const altEl = document.getElementById('sim-alt-brands');
+  if (!contentEl) return;
+
+  if (!config || !config.total) {
+    contentEl.innerHTML = '';
+    if (altEl) altEl.innerHTML = '';
+    return;
+  }
+
+  contentEl.innerHTML = buildResultsHTML(config);
+  if (altEl) altEl.innerHTML = buildAltBrandsHTML();
+}
+
+function buildResultsHTML(config) {
+  const brandName = capFirst(state.brand);
+  const brandImg = `assets/logo-${state.brand}.png`;
+
+  let rowsHtml = '';
+
+  // Mono rooms
+  config.monoRooms.forEach(({ room, seriesKey, tier, price, model }) => {
+    const catalog = getBrandCatalog(state.brand);
+    const series = seriesKey && catalog[seriesKey];
+    const img = series ? getSeriesImage(state.brand, seriesKey, room.color) : '';
+    const label = series ? series.label : '';
+    const modelNum = model || (series && series.models[tier]) || '';
+    const badgeClass = room.wasMulti ? '' : 'individual';
+    const badgeText = room.wasMulti ? 'Sistema individual' : 'Sistema individual';
+
+    rowsHtml += `
+<div class="sim-res-row">
+  <img src="${img}" alt="${escHtml(label)}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
+  <div class="sim-res-row__info">
+    <div class="sim-res-row__label">${escHtml(room.name)}</div>
+    <div class="sim-res-row__model">${escHtml(label)}${modelNum ? ' · ' + modelNum : ''}</div>
+    <div class="sim-res-row__specs">${btuLabel(tier)} · ${kwLabel(tier)}</div>
+    <span class="sim-res-row__badge ${badgeClass}">${badgeText}</span>
+  </div>
+  <div class="sim-res-row__price">${fmtPrice(price)}</div>
+</div>`;
+  });
+
+  // Multi indoor rooms
+  config.multiRooms.forEach(({ room, unit }) => {
+    const img = state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp' :
+                state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
+                                           'assets/products/daitsu-artic-plus-1.webp';
+    rowsHtml += `
+<div class="sim-res-row">
+  <img src="${img}" alt="${unit.model}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
+  <div class="sim-res-row__info">
+    <div class="sim-res-row__label">${escHtml(room.name)}</div>
+    <div class="sim-res-row__model">${unit.model}</div>
+    <div class="sim-res-row__specs">${btuLabel(unit.btu)} · ${unit.kw} kW</div>
+    <span class="sim-res-row__badge">Multisplit padrão</span>
+  </div>
+  <div class="sim-res-row__price">${fmtPrice(unit.pvp)}</div>
+</div>`;
+  });
+
+  // Outdoor unit
+  if (config.outdoor) {
+    const ou = config.outdoor;
+    const multiNames = config.multiRooms.map(({ room }) => room.name).join(', ');
+    rowsHtml += `
+<div class="sim-res-row sim-res-row--outdoor">
+  <div class="sim-res-row__img" style="display:flex;align-items:center;justify-content:center;font-size:2rem;background:#f3f4f6;border-radius:8px">🏠</div>
+  <div class="sim-res-row__info">
+    <div class="sim-res-row__label">Unidade exterior partilhada</div>
+    <div class="sim-res-row__model">${ou.model}</div>
+    <div class="sim-res-row__specs">${ou.zones} zonas · ${ou.kw} kW${multiNames ? ' · para: ' + multiNames : ''}</div>
+  </div>
+  <div class="sim-res-row__price">${fmtPrice(ou.pvp)}</div>
+</div>`;
+  }
+
+  const numRooms = config.monoRooms.length + config.multiRooms.length;
+  const systemDesc = config.outdoor
+    ? `${numRooms} divisões · Sistema multisplit`
+    : `${numRooms} divisão${numRooms > 1 ? 's' : ''} · Monosplit`;
+
+  return `
+<div class="sim-res-card">
+  <div class="sim-res-card__header">
+    <img src="${brandImg}" alt="${brandName}" class="sim-res-card__brand-img" onerror="this.style.display='none'">
+    <div>
+      <div class="sim-res-card__title">A sua configuração ${brandName}</div>
+      <div class="sim-res-card__subtitle">${systemDesc}</div>
+    </div>
+  </div>
+  ${rowsHtml}
+  <div class="sim-res-total">
+    <span class="sim-res-total__label">Total equipamentos</span>
+    <span class="sim-res-total__value">${fmtPrice(config.total)}</span>
+  </div>
+</div>
+<p class="sim-res-disclaimer">IVA incluído · Exclui instalação, suportes e materiais</p>`;
+}
+
+function buildAltBrandsHTML() {
+  const allBrands = ['daikin', 'bosch', 'daitsu'];
+  const altBrands = allBrands.filter(b => b !== state.brand);
+
+  return altBrands.map(brand => {
+    const cfg = calcAltBrandConfig(brand, state.rooms);
+    if (!cfg || !cfg.total) return '';
+    const brandName = capFirst(brand);
+    const brandImg = `assets/logo-${brand}.png`;
+    let systemDesc = '';
+    if (cfg.system === 'multi') systemDesc = `Sistema multisplit · ${cfg.seriesLabel}`;
+    else systemDesc = `Sistema individual · ${cfg.seriesLabel}`;
+
+    let detailRows = '';
+    if (cfg.system === 'multi' && cfg.indoorUnits) {
+      cfg.indoorUnits.forEach(({ room, unit }) => {
+        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
+      });
+      if (cfg.outdoor) {
+        detailRows += `<div class="sim-alt-detail-row"><span>Exterior: ${cfg.outdoor.model}</span><span>${fmtPrice(cfg.outdoor.pvp)}</span></div>`;
+      }
+    } else if (cfg.rooms) {
+      cfg.rooms.forEach(({ room, seriesKey, price }) => {
+        const catalog = getBrandCatalog(brand);
+        const label = catalog[seriesKey] ? catalog[seriesKey].label : seriesKey;
+        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${label}</span><span>${fmtPrice(price)}</span></div>`;
+      });
+    }
+    detailRows += `<div class="sim-alt-detail-total"><span>Total</span><span>${fmtPrice(cfg.total)}</span></div>`;
+
+    return `
+<div class="sim-alt-card" id="alt-${brand}">
+  <div class="sim-alt-card__header" onclick="toggleAltCard('${brand}')">
+    <div class="sim-alt-card__icon">💡</div>
+    <div class="sim-alt-card__info">
+      <div class="sim-alt-card__text">A <strong>${brandName}</strong> também resolve esta necessidade</div>
+      <div class="sim-alt-card__price">desde ${fmtPrice(cfg.total)}</div>
+    </div>
+    <button class="sim-alt-card__toggle">Ver detalhes ▾</button>
+  </div>
+  <div class="sim-alt-card__detail">
+    <div class="sim-alt-card__detail-inner">
+      <div class="sim-alt-card__detail-content">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <img src="${brandImg}" alt="${brandName}" style="height:20px;filter:grayscale(1)" onerror="this.style.display='none'">
+          <span style="font-size:.78rem;color:#6b7280">${systemDesc} · IVA inc. · Excl. instalação</span>
+        </div>
+        ${detailRows}
+      </div>
+    </div>
+  </div>
+</div>`;
+  }).join('');
+}
+
+function toggleAltCard(brand) {
+  const card = document.getElementById('alt-' + brand);
+  if (card) card.classList.toggle('expanded');
+}
+
+// ============================================================
+// 13. QUOTE MODAL
+// ============================================================
+function openQuoteModal() {
+  const valid = state.rooms.some(r => parseFloat(r.areaM2) > 0);
+  if (!valid) {
+    alert('Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.');
+    return;
+  }
+  const el = document.getElementById('qm-overlay');
+  if (el) {
+    el.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    const errEl = document.getElementById('qm-error');
+    if (errEl) errEl.textContent = '';
+  }
 }
 
 function closeQuoteModal() {
-  const modal = document.getElementById('simQuoteModal');
-  if (modal) modal.style.display = 'none';
+  const el = document.getElementById('qm-overlay');
+  if (el) el.style.display = 'none';
+  document.body.style.overflow = '';
 }
 
-function buildQuoteMessage(name, contact) {
-  const { roomsWithBTU, mono, multi, hybrid, doubleMulti, brand } = state.results || {};
-  const brandLabel = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' }[brand] || (brand || '');
-  const roomIcon   = { quarto: '🛏️', sala: '🛋️', escritorio: '💼', outro: '📦' };
-  const sep        = '─────────────────────\n';
-
-  let msg = 'Olá Ártico Climatização! 👋\n\n';
-  msg += 'Fiz a simulação no vosso website e gostava de receber orçamento completo.\n\n';
-
-  // ── Divisões ─────────────────────────────────────────────
-  if (roomsWithBTU && roomsWithBTU.length) {
-    msg += sep;
-    msg += `📋 ${roomsWithBTU.length} DIVISÃO(ÕES) A CLIMATIZAR\n`;
-    msg += sep;
-    roomsWithBTU.forEach(r => {
-      const icon    = roomIcon[r.type] || '🏠';
-      const rName   = (r.name && r.name.trim()) ? r.name.trim() : roomDefaultName(r.id);
-      const details = [
-        r.areaM2   ? `${r.areaM2} m²`             : '',
-        r.heightM  ? `pé-direito ${r.heightM} m`  : '',
-        `~${btuLabel(r.btu)} BTU`,
-        r.hasWindows ? `janelas a ${r.windowOrientation}` : '',
-      ].filter(Boolean).join(' · ');
-      msg += `${icon} ${rName} — ${details}\n`;
-    });
-    msg += '\n';
-  }
-
-  // ── Soluções selecionadas ────────────────────────────────
-  msg += sep;
-  msg += '✅ SOLUÇÃO(ÕES) SELECIONADA(S)\n';
-  msg += sep;
-  if (brandLabel) msg += `Marca preferida: ${brandLabel}\n\n`;
-
-  _selectedQuote.forEach((item, key) => {
-    const parts = key.split(':');
-    const type  = parts[0];
-
-    if (type === 'mono' && mono) {
-      const opt = mono.find(o => o.series === parts[2]);
-      if (opt) {
-        msg += `📦 MONOSPLIT — ${brandLabel} ${opt.series}\n`;
-        msg += `   ${opt.rooms.length} unidade(s) exterior independente(s)\n`;
-        opt.rooms.forEach(({ room, product }) => {
-          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
-          msg += `   • ${rn}: ${product.model} — ${btuLabel(product.btu)} BTU — ${fmtPrice(product.pvp)}\n`;
-        });
-        msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
-      }
-
-    } else if (type === 'multi' && multi) {
-      msg += `📦 MULTISPLIT — ${brandLabel}\n`;
-      msg += `   1 unidade exterior partilhada para todas as divisões\n`;
-      if (multi.outdoor)
-        msg += `   Exterior: ${multi.outdoor.model} — ${multi.outdoor.kw} kW — ${fmtPrice(multi.outdoor.pvp)}\n`;
-      if (multi.indoorUnits) {
-        multi.indoorUnits.forEach(({ room, unit }) => {
-          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
-          msg += `   • ${rn}: ${unit.model} — ${btuLabel(unit.btu)} BTU — ${fmtPrice(unit.pvp)}\n`;
-        });
-      }
-      msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
-
-    } else if (type === 'hybrid' && hybrid) {
-      msg += `📦 SOLUÇÃO MISTA (Mono + Multi) — ${brandLabel}\n`;
-      if (hybrid.monoRooms && hybrid.monoRooms.length) {
-        msg += `   Monosplit independente:\n`;
-        hybrid.monoRooms.forEach(({ room, product }) => {
-          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
-          msg += `     • ${rn}: ${product.model} — ${btuLabel(product.btu)} BTU\n`;
-        });
-      }
-      if (hybrid.multiOutdoor)
-        msg += `   Multisplit exterior: ${hybrid.multiOutdoor.model} (${hybrid.multiOutdoor.kw} kW)\n`;
-      if (hybrid.multiRooms && hybrid.multiRooms.length) {
-        hybrid.multiRooms.forEach(({ room, unit }) => {
-          const rn = (room.name && room.name.trim()) ? room.name.trim() : roomDefaultName(room.id);
-          msg += `     • ${rn}: ${unit.model} — ${btuLabel(unit.btu)} BTU\n`;
-        });
-      }
-      msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
-
-    } else if (type === 'double-multi' && doubleMulti) {
-      msg += `📦 DUPLO MULTISPLIT — ${brandLabel}\n`;
-      msg += `   2 unidades exteriores partilhadas\n`;
-      msg += `   💰 Total equip. c/ IVA: ${fmtPrice(item.price)}\n\n`;
-
-    } else {
-      msg += `📦 ${item.label} — ${fmtPrice(item.price)}\n\n`;
-    }
-  });
-
-  // ── Contacto ─────────────────────────────────────────────
-  msg += sep;
-  msg += `👤 Nome: ${name}\n`;
-  msg += `📱 Contacto: ${contact}\n\n`;
-  msg += 'Podem dar-me orçamento completo (equipamento + mão de obra + instalação)?\nObrigado!';
-
-  return msg;
+function closeQMIfOuter(event) {
+  if (event.target === event.currentTarget) closeQuoteModal();
 }
 
 function validateQuoteForm() {
-  const name    = (document.getElementById('simQMName')?.value    || '').trim();
-  const contact = (document.getElementById('simQMContact')?.value || '').trim();
-  const errEl   = document.getElementById('simQMError');
-  if (!name) {
-    if (errEl) errEl.textContent = 'Por favor indique o seu nome.';
-    document.getElementById('simQMName').focus();
-    return null;
-  }
-  if (!contact) {
-    if (errEl) errEl.textContent = 'Por favor indique o seu telemóvel ou email.';
-    document.getElementById('simQMContact').focus();
+  const name    = (document.getElementById('qm-name')?.value || '').trim();
+  const contact = (document.getElementById('qm-contact')?.value || '').trim();
+  const errEl   = document.getElementById('qm-error');
+  if (!name && !contact) {
+    if (errEl) errEl.textContent = 'Por favor indique o seu nome e contacto.';
     return null;
   }
   if (errEl) errEl.textContent = '';
-  return { name, contact };
+  return { name: name || 'Não indicado', contact: contact || 'Não indicado' };
 }
 
-function sendViaWhatsApp() {
+function buildQuoteText(data) {
+  const brand = capFirst(state.brand);
+  const config = calcSystemConfig(state.brand, state.rooms);
+  let lines = [];
+  lines.push(`🌡️ *Simulação ARTICOCLIMA — ${brand}*`);
+  lines.push('');
+  lines.push(`*Divisões configuradas:*`);
+
+  const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
+  validRooms.forEach(room => {
+    const tier = btuToTier(calcBTU(room));
+    const isMulti = state.rooms.length > 1 && room.useMulti;
+    let modelDesc = '';
+    if (isMulti) {
+      const unit = getMultiIndoorUnit(state.brand, tier);
+      modelDesc = unit ? `Multisplit — ${unit.model}` : 'Multisplit padrão';
+    } else {
+      const seriesKey = room.series || getCheapestMonoSeries(state.brand, tier);
+      const catalog = getBrandCatalog(state.brand);
+      const series = seriesKey && catalog[seriesKey];
+      modelDesc = series ? `Individual — ${series.label}${room.color !== 'white' ? ' (' + room.color + ')' : ''}` : 'Monosplit';
+    }
+    lines.push(`• ${room.name}: ${room.areaM2}m² · ${btuLabel(tier)} · ${modelDesc}`);
+  });
+
+  if (config && config.outdoor) {
+    lines.push(`• Exterior partilhado: ${config.outdoor.model}`);
+  }
+
+  lines.push('');
+  if (config) lines.push(`💰 *Total equipamentos: ${fmtPrice(config.total)}*`);
+  lines.push('_(IVA incluído · Excl. instalação e materiais)_');
+  lines.push('');
+  lines.push(`👤 Nome: ${data.name}`);
+  lines.push(`📞 Contacto: ${data.contact}`);
+
+  return lines.join('\n');
+}
+
+function sendQuoteWhatsApp() {
   const data = validateQuoteForm();
   if (!data) return;
-  const msg = buildQuoteMessage(data.name, data.contact);
+  const msg = buildQuoteText(data);
   window.open('https://wa.me/351964501776?text=' + encodeURIComponent(msg), '_blank');
   closeQuoteModal();
+  showConfirmBanner();
 }
 
-function sendViaEmail() {
+function sendQuoteEmail() {
   const data = validateQuoteForm();
   if (!data) return;
-  const msg     = buildQuoteMessage(data.name, data.contact);
-  const subject = encodeURIComponent('Pedido de Orçamento — Simulador Ártico Climatização');
-  window.location.href = `mailto:artico.clim@gmail.com?subject=${subject}&body=${encodeURIComponent(msg)}`;
+  const msg = buildQuoteText(data);
+  const subject = encodeURIComponent('Pedido de Orçamento — Simulação ARTICOCLIMA');
+  const body = encodeURIComponent(msg);
+  window.location.href = `mailto:artico.clim@gmail.com?subject=${subject}&body=${body}`;
+  closeQuoteModal();
+  showConfirmBanner();
 }
+
+function showConfirmBanner() {
+  const el = document.getElementById('sim-confirm');
+  if (el) el.style.display = 'flex';
+}
+
+function dismissConfirmBanner() {
+  const el = document.getElementById('sim-confirm');
+  if (el) el.style.display = 'none';
+}
+
+// ============================================================
+// 14. PDF (jsPDF)
+// ============================================================
+function generatePDF() {
+  const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
+  if (!validRooms.length) {
+    alert('Preencha os dados de pelo menos uma divisão antes de gerar o PDF.');
+    return;
+  }
+
+  if (!window.jspdf) {
+    // Fallback to browser print
+    window.print();
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc  = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+  const pageW = doc.internal.pageSize.getWidth();
+  const margin = 20;
+  let y = 20;
+
+  const addLine = () => {
+    doc.setDrawColor(220, 220, 220);
+    doc.line(margin, y, pageW - margin, y);
+    y += 6;
+  };
+
+  const checkPage = (needed) => {
+    if (y + needed > 275) { doc.addPage(); y = 20; }
+  };
+
+  // Header
+  doc.setFontSize(20);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(249, 115, 22);
+  doc.text('ARTICOCLIMA', margin, y);
+  y += 7;
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text('+351 964 501 776  |  +351 963 712 752  |  artico.clim@gmail.com', margin, y);
+  y += 5;
+  doc.text('Simulação gerada em ' + new Date().toLocaleDateString('pt-PT'), margin, y);
+  y += 8;
+  addLine();
+
+  // Title
+  doc.setFontSize(15);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(28, 28, 30);
+  doc.text(`Configuração ${capFirst(state.brand)}`, margin, y);
+  y += 10;
+
+  const config = calcSystemConfig(state.brand, state.rooms);
+
+  // Room rows
+  const allRoomEntries = [];
+  if (config) {
+    config.monoRooms.forEach(({ room, seriesKey, tier, price, model }) => {
+      const catalog = getBrandCatalog(state.brand);
+      const series = seriesKey && catalog[seriesKey];
+      const seriesLabel = series ? series.label : '';
+      allRoomEntries.push({ name: room.name, desc: `${seriesLabel}${model ? ' · ' + model : ''}`, btu: tier, price, badge: 'Individual' });
+    });
+    config.multiRooms.forEach(({ room, unit }) => {
+      allRoomEntries.push({ name: room.name, desc: unit.model, btu: unit.btu, price: unit.pvp, badge: 'Multisplit' });
+    });
+  }
+
+  allRoomEntries.forEach(entry => {
+    checkPage(22);
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(28, 28, 30);
+    doc.text(entry.name, margin, y);
+    y += 6;
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(80, 80, 80);
+    doc.text(`${entry.desc}  ·  ${btuLabel(entry.btu)}  ·  ${entry.badge}`, margin + 4, y);
+    y += 5;
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(249, 115, 22);
+    doc.text(fmtPrice(entry.price), pageW - margin, y - 5, { align: 'right' });
+    y += 4;
+  });
+
+  if (config && config.outdoor) {
+    checkPage(18);
+    const ou = config.outdoor;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(28, 28, 30);
+    doc.text('Unidade exterior (partilhada)', margin, y);
+    y += 6;
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(80, 80, 80);
+    doc.text(`${ou.model}  ·  ${ou.zones} zonas  ·  ${ou.kw} kW`, margin + 4, y);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(249, 115, 22);
+    doc.text(fmtPrice(ou.pvp), pageW - margin, y, { align: 'right' });
+    y += 8;
+  }
+
+  checkPage(20);
+  addLine();
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(28, 28, 30);
+  doc.text('Total equipamentos:', margin, y);
+  if (config) {
+    doc.setTextColor(249, 115, 22);
+    doc.text(fmtPrice(config.total), pageW - margin, y, { align: 'right' });
+  }
+  y += 7;
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'italic');
+  doc.setTextColor(130, 130, 130);
+  doc.text('IVA incluído · Exclui instalação, suportes e materiais', margin, y);
+  y += 12;
+
+  checkPage(16);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(28, 28, 30);
+  doc.text('Para formalizar este orçamento, contacte-nos:', margin, y);
+  y += 6;
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(249, 115, 22);
+  doc.text('+351 964 501 776  ·  +351 963 712 752  ·  artico.clim@gmail.com', margin, y);
+
+  doc.save(`ARTICOCLIMA-Simulacao-${new Date().toISOString().split('T')[0]}.pdf`);
+}
+
+// ============================================================
+// 15. UTILS
+// ============================================================
+function escHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function capFirst(str) {
+  if (!str) return '';
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// ============================================================
+// 16. INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  addRoom(); // Start with 1 room open
+  updateLiveTotal();
+});
