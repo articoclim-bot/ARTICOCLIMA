@@ -1516,25 +1516,42 @@ function renderResults() {
   const config = calcSystemConfig(state.brand, state.rooms);
   if (!config || !config.total) { contentEl.innerHTML = ''; if (altEl) altEl.innerHTML = ''; return; }
 
-  // Calcular alternativa monosplit (mais barato por divisão)
+  // Alternativa monosplit (respeita a série escolhida pelo user)
   const monoAlt = calcCheapestMonoAlt(state.brand, validRooms);
 
-  contentEl.innerHTML = buildResultsHTML(config, monoAlt);
+  // Alternativa multisplit mais económica (só relevante se a config actual usa séries premium)
+  const cheapMultiAlt = calcCheapestMultiAlt(state.brand, validRooms);
+
+  contentEl.innerHTML = buildResultsHTML(config, monoAlt, cheapMultiAlt);
   if (altEl) altEl.innerHTML = buildAltBrandsHTML();
 }
 
-// Calcula a alternativa monosplit — respeita a série escolhida pelo utilizador;
-// se não há selecção individual explícita, usa a mais barata
+// Calcula a alternativa monosplit — respeita a série escolhida pelo utilizador no picker
+// (mesmo estando em modo multi, usa a série equivalente em kit individual)
 function calcCheapestMonoAlt(brand, rooms) {
   const catalog = getBrandCatalog(brand);
+  // Mapeamento multiType → série mono equivalente (Daikin)
+  const MULTI_TO_MONO = { emura: 'Emura', stylish: 'Stylish', confora: 'Confora', standard: 'Perfera', sensira: 'Sensira' };
   const roomResults = [];
   let total = 0;
   rooms.forEach(r => {
     const tier = btuToTier(calcBTU(r));
-    // Usar série do utilizador se ele escolheu individual no picker; senão a mais barata
-    const userKey = (!r.useMulti && r.series && catalog[r.series]) ? r.series : null;
-    const seriesKey = userKey || getCheapestMonoSeries(brand, tier);
-    const color = state.pickerColors[r.id] || 'white';
+    let seriesKey = null;
+    // P1: user escolheu individual explicitamente
+    if (!r.useMulti && r.series && catalog[r.series]) {
+      seriesKey = r.series;
+    }
+    // P2: user escolheu série no picker multi → usar kit mono equivalente
+    if (!seriesKey && brand === 'daikin' && r.useMulti && r.multiTypeExplicit) {
+      const mapped = MULTI_TO_MONO[r.multiType];
+      if (mapped && catalog[mapped]) {
+        const s = catalog[mapped];
+        if (s.prices[tier] !== undefined && (!s.maxBTU || tier <= s.maxBTU)) seriesKey = mapped;
+      }
+    }
+    // P3: fallback mais barata disponível
+    if (!seriesKey) seriesKey = getCheapestMonoSeries(brand, tier);
+    const color = r.color || state.pickerColors[r.id] || 'white';
     const price = getMonoPrice(brand, seriesKey, tier, color);
     const series = seriesKey ? catalog[seriesKey] : null;
     const label = series ? series.label : '';
@@ -1542,6 +1559,27 @@ function calcCheapestMonoAlt(brand, rooms) {
     total += price || 0;
   });
   return { rooms: roomResults, total };
+}
+
+// Calcula o multisplit mais económico possível (Sensira se elegível, senão FTXM standard)
+// Usado para mostrar poupança vs. a escolha atual do utilizador
+function calcCheapestMultiAlt(brand, rooms) {
+  const validRooms = rooms.filter(r => parseFloat(r.areaM2) > 0);
+  if (validRooms.length < 2) return null;
+  const roomsWT = validRooms.map(r => ({
+    ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard', multiTypeExplicit: true,
+  }));
+  // Tentar Sensira primeiro (mais barato, Daikin 2-3 zonas iguais ≤12k)
+  if (brand === 'daikin' && roomsWT.length >= 2 && roomsWT.length <= 3) {
+    const tiers = roomsWT.map(r => r.tier);
+    if (tiers.every(t => t === tiers[0] && t <= 12000)) {
+      const sr = calcSensiraMulti(roomsWT);
+      if (sr) return { ...sr, multiSystemType: 'sensira' };
+    }
+  }
+  // Standard FTXM + MXM
+  const std = calcBrandMulti(brand, roomsWT);
+  return std ? { ...std, multiSystemType: 'standard' } : null;
 }
 
 const COLOR_LABELS = { white: 'Branco', silver: 'Prateado', black: 'Preto' };
@@ -1569,6 +1607,35 @@ function buildMonoAltBox(monoAlt) {
   </div>
   <div class="sim-multi-suggest__rows">${rows}</div>
   <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Gama de entrada por divisão</div>
+</div>`;
+}
+
+// Caixa verde "Multisplit mais económico" — só aparece quando há poupança vs. configuração atual
+function buildCheapMultiAltBox(cheapMulti, savings) {
+  const isSensira = cheapMulti.multiSystemType === 'sensira';
+  const seriesLabel = isSensira ? 'Sensira (CTXF + MXF)' : 'Perfera (FTXM + MXM)';
+  const savingsText = `−${fmtPrice(savings)} vs. a sua escolha`;
+  let rows = '';
+  (cheapMulti.indoorUnits || []).forEach(({ room, unit }) => {
+    const label = getMultiSeriesLabel(state.brand, unit.model);
+    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${label} · ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
+  });
+  if (cheapMulti.outdoor) {
+    const ou = cheapMulti.outdoor;
+    rows += `<div class="sim-ms-row"><span>Exterior partilhado — ${ou.model} (${ou.zones} zonas · ${ou.kw} kW)</span><span>${fmtPrice(ou.pvp)}</span></div>`;
+  }
+  return `
+<div class="sim-multi-suggest">
+  <div class="sim-multi-suggest__header">
+    <span class="sim-multi-suggest__icon">💸</span>
+    <div>
+      <div class="sim-multi-suggest__title">Multisplit mais económico <span class="sim-ms-tag">${savingsText}</span></div>
+      <div class="sim-multi-suggest__sub">Mesma unidade exterior partilhada — interiores mais económicos · ${seriesLabel}</div>
+    </div>
+    <div class="sim-multi-suggest__total">${fmtPrice(cheapMulti.total)}</div>
+  </div>
+  <div class="sim-multi-suggest__rows">${rows}</div>
+  <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Peça orçamento para confirmar compatibilidade</div>
 </div>`;
 }
 
@@ -1615,7 +1682,7 @@ function getMultiSeriesLabel(brand, model) {
   return model;
 }
 
-function buildResultsHTML(config, monoAlt) {
+function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
   const brandName = capFirst(state.brand);
   const brandImg = `assets/logo-${state.brand}.png`;
   const isSensiraConfig = config.multiSystemType === 'sensira';
@@ -1700,6 +1767,12 @@ function buildResultsHTML(config, monoAlt) {
         : `${numRooms} divisões · Sistema multisplit`)
     : `${numRooms} divisão${numRooms > 1 ? 's' : ''} · Monosplit`;
 
+  // Caixa verde só aparece se o multi mais barato for diferente da config actual E poupar dinheiro
+  let cheapMultiAltHtml = '';
+  if (cheapMultiAlt && config.outdoor && cheapMultiAlt.total < config.total) {
+    const savings = config.total - cheapMultiAlt.total;
+    cheapMultiAltHtml = buildCheapMultiAltBox(cheapMultiAlt, savings);
+  }
   const monoAltHtml = monoAlt ? buildMonoAltBox(monoAlt) : '';
 
   return `
@@ -1718,7 +1791,7 @@ function buildResultsHTML(config, monoAlt) {
   </div>
 </div>
 <p class="sim-res-disclaimer">IVA incluído · Exclui instalação, suportes e materiais</p>
-${monoAltHtml}`;
+${cheapMultiAltHtml}${monoAltHtml}`;
 }
 
 function buildAltBrandsHTML() {
