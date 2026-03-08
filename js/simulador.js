@@ -131,6 +131,31 @@ const DAIKIN_SENSIRA_MULTI_INDOOR = [
   { btu: 12000, kw: 3.5, model: 'CTXF35', pvp: Math.round(315 * 1.23) },
 ];
 
+// --- DAIKIN — Confora Multisplit Interior (FTXP, c/ IVA) — apenas ≤12k BTU ---
+const DAIKIN_CONFORA_MULTI_INDOOR = [
+  { btu: 7000,  kw: 2.0, model: 'FTXP20', pvp: Math.round(310 * 1.23) },
+  { btu: 9000,  kw: 2.5, model: 'FTXP25', pvp: Math.round(350 * 1.23) },
+  { btu: 12000, kw: 3.5, model: 'FTXP35', pvp: Math.round(420 * 1.23) },
+];
+
+// --- DAIKIN — Stylish Multisplit Interior (FTXA, c/ IVA) --- até 18k BTU ---
+const DAIKIN_STYLISH_MULTI_INDOOR = [
+  { btu: 7000,  kw: 2.0, model: 'FTXA20', pvp: { white: Math.round(605*1.23), silver: Math.round(655*1.23), black: Math.round(655*1.23) } },
+  { btu: 9000,  kw: 2.5, model: 'FTXA25', pvp: { white: Math.round(655*1.23), silver: Math.round(720*1.23), black: Math.round(720*1.23) } },
+  { btu: 12000, kw: 3.5, model: 'FTXA35', pvp: { white: Math.round(715*1.23), silver: Math.round(790*1.23), black: Math.round(790*1.23) } },
+  { btu: 15000, kw: 4.2, model: 'FTXA42', pvp: { white: Math.round(815*1.23), silver: Math.round(895*1.23), black: Math.round(895*1.23) } },
+  { btu: 18000, kw: 5.0, model: 'FTXA50', pvp: { white: Math.round(870*1.23), silver: Math.round(960*1.23), black: Math.round(960*1.23) } },
+];
+
+// --- DAIKIN — Emura Multisplit Interior (FTXJ, c/ IVA) --- até 18k BTU ---
+const DAIKIN_EMURA_MULTI_INDOOR = [
+  { btu: 7000,  kw: 2.0, model: 'FTXJ20', pvp: { white: Math.round(670*1.23), silver: Math.round(805*1.23), black: Math.round(805*1.23) } },
+  { btu: 9000,  kw: 2.5, model: 'FTXJ25', pvp: { white: Math.round(700*1.23), silver: Math.round(845*1.23), black: Math.round(845*1.23) } },
+  { btu: 12000, kw: 3.5, model: 'FTXJ35', pvp: { white: Math.round(860*1.23), silver: Math.round(1015*1.23), black: Math.round(1015*1.23) } },
+  { btu: 15000, kw: 4.2, model: 'FTXJ42', pvp: { white: Math.round(935*1.23), silver: Math.round(1030*1.23), black: Math.round(1030*1.23) } },
+  { btu: 18000, kw: 5.0, model: 'FTXJ50', pvp: { white: Math.round(1055*1.23), silver: Math.round(1185*1.23), black: Math.round(1185*1.23) } },
+];
+
 // --- DAIKIN — Exterior MXF (compatível com Sensira CTXF, c/ IVA) ---
 const DAIKIN_MXF_OUTDOOR = [
   { model: '2MXF40', zones: 2, kw: 4.0, pvp: Math.round(1145 * 1.23) },
@@ -315,6 +340,25 @@ function getMultiIndoorUnit(brand, tier) {
   return list.find(u => u.btu >= tier) || list[list.length - 1] || null;
 }
 
+// Devolve a unidade interior correcta para um room multi, respeitando o multiType e cor.
+// pvp já inclui ajuste de cor (para Stylish/Emura).
+function getMultiIndoorForRoom(room, tier) {
+  if (state.brand !== 'daikin') return getMultiIndoorUnit(state.brand, tier);
+  const mt    = room.multiType || 'standard';
+  const color = state.pickerColors[room.id] || room.color || 'white';
+  if (mt === 'sensira') return DAIKIN_SENSIRA_MULTI_INDOOR.find(u => u.btu >= tier) || null;
+  if (mt === 'confora') return DAIKIN_CONFORA_MULTI_INDOOR.find(u => u.btu >= tier) || null;
+  if (mt === 'stylish') {
+    const u = DAIKIN_STYLISH_MULTI_INDOOR.find(u => u.btu >= tier);
+    return u ? { ...u, pvp: u.pvp[color] || u.pvp.white } : null;
+  }
+  if (mt === 'emura') {
+    const u = DAIKIN_EMURA_MULTI_INDOOR.find(u => u.btu >= tier);
+    return u ? { ...u, pvp: u.pvp[color] || u.pvp.white } : null;
+  }
+  return DAIKIN_MULTI_INDOOR.find(u => u.btu >= tier) || null; // standard FTXM
+}
+
 function getCheapestMonoSeries(brand, tier) {
   const catalog = getBrandCatalog(brand);
   let cheapestKey = null;
@@ -356,13 +400,19 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
   const n = multiRoomsWithTier.length;
   if (n < 2 || n > 5) return null;
 
-  const indoorList = getMultiIndoorList(brand);
   const outdoorList = getMultiOutdoorList(brand);
 
   const indoorUnits = multiRoomsWithTier.map(r => {
-    const unit = indoorList.find(u => u.btu >= r.tier) || indoorList[indoorList.length - 1];
-    return { room: r, unit };
+    let unit;
+    if (brand === 'daikin') {
+      unit = getMultiIndoorForRoom(r, r.tier);
+    } else {
+      const indoorList = getMultiIndoorList(brand);
+      unit = indoorList.find(u => u.btu >= r.tier) || indoorList[indoorList.length - 1];
+    }
+    return unit ? { room: r, unit } : null;
   });
+  if (indoorUnits.some(iu => !iu)) return null;
 
   const totalKW  = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
   const maxZoneKW = Math.max(...indoorUnits.map(({ unit }) => unit.kw));
@@ -584,20 +634,16 @@ function addRoom() {
   if (state.rooms.length >= 5) return;
   // Collapse all existing rooms
   state.rooms.forEach(r => { r.expanded = false; });
-  const wasOne = state.rooms.length === 1;
   const room = newRoom(state.nextRoomId++);
   state.rooms.push(room);
-  // Transitioning from 1→2 rooms: reset rooms that weren't explicitly set to individual
-  // (a series picked in single-room context is just a preference, not an opt-out of multisplit)
-  if (wasOne) {
-    state.rooms.forEach(r => {
-      if (!r.forceIndividual) {
-        r.useMulti          = true;
-        r.series            = null;
-        r.multiTypeExplicit = false; // re-calcular automaticamente com base nos tiers reais
-      }
-    });
-  }
+  // Com 2+ divisões, TODAS passam para multisplit.
+  // O user escolhe qual unidade interior — nunca kits individuais.
+  state.rooms.forEach(r => {
+    r.useMulti          = true;
+    r.forceIndividual   = false;
+    r.multiTypeExplicit = false;
+    r.series            = null;
+  });
   renderRooms(); // re-renderiza todos os quartos (inclui re-cálculo do tipo multi)
   updateLiveTotal();
   updateResultsVisibility();
@@ -734,7 +780,8 @@ function renderRooms() {
 function renderRoomHTML(room) {
   const tier = room.areaM2 ? btuToTier(calcBTU(room)) : 0;
   const hasData = parseFloat(room.areaM2) > 0;
-  const isMulti = state.rooms.length > 1 && room.useMulti;
+  const multiCount = state.rooms.filter(r => r.useMulti).length;
+  const isMulti = multiCount >= 2 && room.useMulti;
 
   // Build meta text
   let metaText = 'Preencha os dados da divisão';
@@ -743,15 +790,15 @@ function renderRoomHTML(room) {
     const seriesKey = isMulti ? null : (room.series || getCheapestMonoSeries(state.brand, tier));
     let modelName = '';
     if (isMulti) {
-      const unit = getMultiIndoorUnit(state.brand, tier);
-      modelName = unit ? unit.model : '';
+      const unit = getMultiIndoorForRoom(room, tier);
+      modelName = unit ? getMultiSeriesLabel(state.brand, unit.model) : '';
     } else if (seriesKey) {
       const catalog = getBrandCatalog(state.brand);
       modelName = catalog[seriesKey] ? catalog[seriesKey].label : seriesKey;
     }
     let price = 0;
     if (isMulti) {
-      const unit = getMultiIndoorUnit(state.brand, tier);
+      const unit = getMultiIndoorForRoom(room, tier);
       price = unit ? unit.pvp : 0;
     } else if (seriesKey) {
       price = getMonoPrice(state.brand, seriesKey, tier, room.color);
@@ -855,33 +902,34 @@ function renderRoomModelCard(room) {
   let imgSrc = '', seriesName = '', modelNum = '', price = 0, badgeClass = 'multisplit', badgeText = 'Multisplit';
 
   if (isMulti) {
-    let unit = null;
     // Usar tipo efectivo (auto ou explícito via picker)
     const effectiveType = getEffectiveMultiType(room, state.rooms);
-    if (state.brand === 'daikin' && effectiveType === 'sensira' && tier <= 12000) {
-      unit = DAIKIN_SENSIRA_MULTI_INDOOR.find(u => u.btu >= tier) || null;
-      if (unit) {
-        price = unit.pvp;
-        modelNum = unit.model;
-        seriesName = 'Sensira ' + unit.model;
-        badgeText = 'Multisplit Budget';
-        badgeClass = 'multisplit';
-      }
-    }
-    if (!unit) {
-      unit = getMultiIndoorUnit(state.brand, tier);
-      if (unit) {
-        price = unit.pvp;
-        modelNum = unit.model;
-        seriesName = unit.model;
-        badgeText = 'Multisplit Padrão';
-        badgeClass = 'multisplit';
-      }
-    }
+    const unit = getMultiIndoorForRoom(room, tier);
     if (unit) {
-      imgSrc = state.brand === 'daikin' ? 'assets/products/daikin-sensira-1.webp' :
-               state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
-                                          'assets/products/daitsu-artic-plus-1.webp';
+      price = unit.pvp;
+      modelNum = unit.model;
+      seriesName = getMultiSeriesLabel(state.brand, unit.model);
+      badgeText = effectiveType === 'sensira' ? 'Multisplit Budget' : 'Multisplit';
+      badgeClass = 'multisplit';
+      // Imagem adequada à série escolhida
+      if (state.brand === 'daikin') {
+        const color = room.color || 'white';
+        if (effectiveType === 'emura') {
+          imgSrc = `assets/products/daikin-emura-${color === 'white' ? 'branco' : color}-1.webp`;
+        } else if (effectiveType === 'stylish') {
+          imgSrc = `assets/products/daikin-stylish-${color === 'white' ? 'branco' : color}-1.webp`;
+        } else if (effectiveType === 'confora') {
+          imgSrc = 'assets/products/daikin-confora-1.webp';
+        } else if (effectiveType === 'sensira') {
+          imgSrc = 'assets/products/daikin-sensira-1.webp';
+        } else {
+          imgSrc = 'assets/products/daikin-perfera-1.webp';
+        }
+      } else if (state.brand === 'bosch') {
+        imgSrc = 'assets/products/bosch-3000i-1.webp';
+      } else {
+        imgSrc = 'assets/products/daitsu-artic-plus-1.webp';
+      }
     }
   } else {
     const seriesKey = room.series || getCheapestMonoSeries(state.brand, tier);
@@ -948,8 +996,8 @@ function updateRoomHeader(id) {
   let modelName = '';
   let price = 0;
   if (isMultiH) {
-    const unit = getMultiIndoorUnit(state.brand, tier);
-    if (unit) { modelName = unit.model; price = unit.pvp; }
+    const unit = getMultiIndoorForRoom(room, tier);
+    if (unit) { modelName = getMultiSeriesLabel(state.brand, unit.model); price = unit.pvp; }
   } else {
     const seriesKey = room.series || getCheapestMonoSeries(state.brand, tier);
     const catalog = getBrandCatalog(state.brand);
@@ -997,118 +1045,256 @@ function openModelPicker(roomId) {
   document.body.style.overflow = 'hidden';
 }
 
+// Calcula o custo TOTAL do sistema se esta divisão usar esta opção.
+// Multi options: todas as divisões em multi (indoor + outdoor partilhado).
+// Mono option: kit desta divisão + sistema restante das outras divisões.
+function calcOptionSystemTotal(room, tier, optionType, seriesKey) {
+  const brand = state.brand;
+  const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
+  const otherRooms = validRooms.filter(r => r.id !== room.id);
+
+  if (optionType === 'sensira_multi' || optionType === 'multi') {
+    // Todas as divisões em multisplit com FTXM (standard) ou CTXF (sensira)
+    const allWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard', multiTypeExplicit: true }));
+    let result = null;
+    if (optionType === 'sensira_multi') result = calcSensiraMulti(allWT);
+    if (!result) result = calcBrandMulti(brand, allWT);
+    return result ? result.total : Infinity;
+  }
+
+  // Confora/Stylish/Emura multi: mesmo exterior que FTXM (mesmo kW por BTU tier)
+  // → delta = standard system + (nova série indoor) - (FTXM indoor)
+  if (['confora_multi', 'stylish_multi', 'emura_multi'].includes(optionType)) {
+    const baseTotal = calcOptionSystemTotal(room, tier, 'multi', '__multi__');
+    if (baseTotal === Infinity) return Infinity;
+    const stdUnit = getMultiIndoorUnit(brand, tier);
+    const stdPvp  = stdUnit ? stdUnit.pvp : 0;
+    const color   = state.pickerColors[room.id] || 'white';
+    let newPvp;
+    if (optionType === 'confora_multi') {
+      const u = DAIKIN_CONFORA_MULTI_INDOOR.find(u => u.btu >= tier);
+      newPvp = u ? u.pvp : Infinity;
+    } else if (optionType === 'stylish_multi') {
+      const u = DAIKIN_STYLISH_MULTI_INDOOR.find(u => u.btu >= tier);
+      newPvp = u ? (u.pvp[color] || u.pvp.white) : Infinity;
+    } else if (optionType === 'emura_multi') {
+      const u = DAIKIN_EMURA_MULTI_INDOOR.find(u => u.btu >= tier);
+      newPvp = u ? (u.pvp[color] || u.pvp.white) : Infinity;
+    }
+    return (!newPvp || newPvp === Infinity) ? Infinity : baseTotal - stdPvp + newPvp;
+  }
+
+  // Mono: kit desta divisão + custo das restantes com as suas selecções actuais
+  const color = state.pickerColors[room.id] || 'white';
+  const monoPrice = getMonoPrice(brand, seriesKey, tier, color);
+
+  // Outras divisões: separar as que estão em mono das que estão em multi
+  const otherMono = otherRooms.filter(r => !r.useMulti);
+  const otherMulti = otherRooms.filter(r => r.useMulti).map(r => ({ ...r, tier: btuToTier(calcBTU(r)) }));
+
+  let otherCost = 0;
+  otherMono.forEach(r => {
+    const t = btuToTier(calcBTU(r));
+    const sk = r.series || getCheapestMonoSeries(brand, t);
+    otherCost += getMonoPrice(brand, sk, t, state.pickerColors[r.id] || 'white');
+  });
+  if (otherMulti.length >= 2) {
+    const mr = calcBrandMulti(brand, otherMulti);
+    otherCost += mr ? mr.total : otherMulti.reduce((s, r) => s + getMonoPrice(brand, getCheapestMonoSeries(brand, r.tier), r.tier, 'white'), 0);
+  } else if (otherMulti.length === 1) {
+    const r = otherMulti[0];
+    const sk = r.series || getCheapestMonoSeries(brand, r.tier);
+    otherCost += getMonoPrice(brand, sk, r.tier, state.pickerColors[r.id] || 'white');
+  }
+
+  return monoPrice + otherCost;
+}
+
 function buildPickerCards(room, tier) {
   const isMultiContext = state.rooms.length > 1;
   const catalog = getBrandCatalog(state.brand);
-
-  // Recolher todos os preços para determinar âncora (mínimo global)
-  let anchorPrice = Infinity;
-
-  const allOptions = []; // { type, seriesKey, price, ... }
+  let html = '';
 
   if (isMultiContext) {
-    // Opção Sensira Multi (Daikin, ≤12k BTU, TODOS os quartos multi com MESMO tier)
+    // -------------------------------------------------------
+    // Contexto multi: APENAS opções de interior multisplit.
+    // O utilizador escolhe qual unidade interior quer para
+    // este sistema multisplit — nunca um kit individual.
+    // -------------------------------------------------------
+    const allOptions = [];
+
+    // Opção Sensira Budget (Daikin only, mesmo BTU em todas as div, ≤12k, ≤3 zonas)
     if (state.brand === 'daikin' && tier <= 12000) {
-      const otherMultiRooms = state.rooms.filter(r => r.id !== room.id && r.useMulti && parseFloat(r.areaM2) > 0);
+      const otherMultiRooms = state.rooms.filter(r => r.id !== room.id && parseFloat(r.areaM2) > 0);
       const otherTiers = otherMultiRooms.map(r => btuToTier(calcBTU(r)));
       const sensiraOk = otherTiers.length > 0 &&
         otherTiers.every(t => t === tier) &&
         (1 + otherTiers.length) <= 3;
       if (sensiraOk) {
         const su = DAIKIN_SENSIRA_MULTI_INDOOR.find(u => u.btu >= tier);
-        if (su) {
-          allOptions.push({ type: 'sensira_multi', key: '__sensira_multi__', price: su.pvp, unit: su });
-          anchorPrice = Math.min(anchorPrice, su.pvp);
-        }
+        if (su) allOptions.push({ type: 'sensira_multi', key: '__sensira_multi__', unit: su });
       }
     }
-    // Opção Standard Multi (FTXM / CL3000i / ARTIC Plus)
+
+    // Opção Confora (FTXP, Daikin only, ≤12k BTU)
+    if (state.brand === 'daikin' && tier <= 12000) {
+      const cu = DAIKIN_CONFORA_MULTI_INDOOR.find(u => u.btu >= tier);
+      if (cu) allOptions.push({ type: 'confora_multi', key: '__confora_multi__', unit: cu });
+    }
+
+    // Opção Padrão — Perfera (FTXM / Climate 3000i / ARTIC Plus)
     const stdu = getMultiIndoorUnit(state.brand, tier);
+    if (stdu) allOptions.push({ type: 'multi', key: '__multi__', unit: stdu });
 
-    if (stdu) {
-      allOptions.push({ type: 'multi', key: '__multi__', price: stdu.pvp, unit: stdu });
-      anchorPrice = Math.min(anchorPrice, stdu.pvp);
+    // Opção Stylish (FTXA, Daikin only, ≤18k BTU)
+    if (state.brand === 'daikin' && tier <= 18000) {
+      const su = DAIKIN_STYLISH_MULTI_INDOOR.find(u => u.btu >= tier);
+      if (su) allOptions.push({ type: 'stylish_multi', key: '__stylish_multi__', unit: su });
     }
-  }
 
-  // Opções mono (kit completo)
-  const monoOpts = [];
-  for (const [key, series] of Object.entries(catalog)) {
-    if (series.maxBTU && tier > series.maxBTU) continue;
-    const basePrice = series.prices[tier];
-    if (basePrice === undefined) continue;
-    anchorPrice = Math.min(anchorPrice, basePrice);
-    monoOpts.push({ key, series, basePrice });
-  }
-  monoOpts.sort((a, b) => a.basePrice - b.basePrice);
-
-  let html = '';
-
-  // --- Renderizar multi options ---
-  allOptions.forEach(opt => {
-    if (opt.type === 'sensira_multi') {
-      const su = opt.unit;
-      const isSelected = room.useMulti && getEffectiveMultiType(room, state.rooms) === 'sensira';
-      const img = 'assets/products/daikin-sensira-1.webp';
-      const diff = su.pvp - anchorPrice;
-      html += pickerCard({
-        id: room.id, type: 'sensira_multi', seriesKey: '__sensira_multi__',
-        badge: 'BUDGET', badgeClass: 'multi sensira',
-        img, series: 'Sensira Multisplit (CTXF)',
-        specs: `${btuLabel(su.btu)} · ${su.kw} kW · ${su.model}`,
-        price: su.pvp,
-        priceNote: 'Interior CTXF · exterior MXF partilhado',
-        diff, isSelected, color: 'white',
-        features: ['R-32', 'Inverter', 'Série económica'],
-      });
-    } else if (opt.type === 'multi') {
-      const stdu = opt.unit;
-      const isSelected = room.useMulti && getEffectiveMultiType(room, state.rooms) !== 'sensira';
-      const img = state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp' :
-                  state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
-                                             'assets/products/daitsu-artic-plus-1.webp';
-      const diff = stdu.pvp - anchorPrice;
-      html += pickerCard({
-        id: room.id, type: 'multi', seriesKey: '__multi__',
-        badge: 'PADRÃO', badgeClass: 'multi',
-        img, series: stdu.model,
-        specs: `${btuLabel(stdu.btu)} · ${stdu.kw} kW`,
-        price: stdu.pvp,
-        priceNote: 'Interior · exterior partilhado',
-        diff, isSelected, color: 'white',
-      });
+    // Opção Emura (FTXJ, Daikin only, ≤18k BTU)
+    if (state.brand === 'daikin' && tier <= 18000) {
+      const eu = DAIKIN_EMURA_MULTI_INDOOR.find(u => u.btu >= tier);
+      if (eu) allOptions.push({ type: 'emura_multi', key: '__emura_multi__', unit: eu });
     }
-  });
 
-  // --- Renderizar mono options ---
-  monoOpts.forEach(({ key, series, basePrice }) => {
-    const isSelected = !room.useMulti && room.series === key;
-    const pickerColor = state.pickerColors[room.id] || 'white';
-    let price = basePrice;
-    let img = series.image || '';
+    // Calcular custo total do sistema para cada opção (para diffs correctos)
+    const systemTotals = new Map();
+    allOptions.forEach(opt =>
+      systemTotals.set(opt.key, calcOptionSystemTotal(room, tier, opt.type, opt.key))
+    );
+    const anchorTotal = systemTotals.size ? Math.min(...systemTotals.values()) : 0;
 
-    if (series.colorPrices) {
-      price = series.colorPrices[pickerColor]?.[tier] || basePrice;
-      if (series.images && !Array.isArray(series.images)) {
-        img = series.images[pickerColor]?.[0] || series.image || '';
+    allOptions.forEach(opt => {
+      const sysTotal = systemTotals.get(opt.key);
+      const diff = sysTotal - anchorTotal;
+
+      if (opt.type === 'sensira_multi') {
+        const su = opt.unit;
+        const isSelected = room.useMulti && getEffectiveMultiType(room, state.rooms) === 'sensira';
+        html += pickerCard({
+          id: room.id, type: 'sensira_multi', seriesKey: '__sensira_multi__',
+          badge: 'BUDGET', badgeClass: 'multi sensira',
+          img: 'assets/products/daikin-sensira-1.webp',
+          series: 'Sensira (CTXF)',
+          specs: `${btuLabel(su.btu)} · ${su.kw} kW · ${su.model}`,
+          price: su.pvp,
+          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          diff, isSelected,
+          features: ['R-32', 'Inverter', 'Série económica'],
+        });
+      } else if (opt.type === 'confora_multi') {
+        const cu = opt.unit;
+        const isSelected = room.useMulti && getEffectiveMultiType(room, state.rooms) === 'confora';
+        html += pickerCard({
+          id: room.id, type: 'confora_multi', seriesKey: '__confora_multi__',
+          badge: 'MULTISPLIT', badgeClass: 'multi',
+          img: 'assets/products/daikin-confora-1.webp',
+          series: 'Confora',
+          specs: `${btuLabel(cu.btu)} · ${cu.kw} kW · ${cu.model}`,
+          price: cu.pvp,
+          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          diff, isSelected,
+          features: ['A+++', 'R-32', 'Filtro PM2.5'],
+        });
+      } else if (opt.type === 'multi') {
+        const stdu = opt.unit;
+        const mt = getEffectiveMultiType(room, state.rooms);
+        const isSelected = room.useMulti && (mt === 'standard' || mt === 'sensira' ? false : false) &&
+          mt !== 'sensira' && mt !== 'confora' && mt !== 'stylish' && mt !== 'emura';
+        const isStdSelected = room.useMulti && (mt === 'standard' || (!room.multiTypeExplicit));
+        const img = state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp' :
+                    state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
+                                               'assets/products/daitsu-artic-plus-1.webp';
+        html += pickerCard({
+          id: room.id, type: 'multi', seriesKey: '__multi__',
+          badge: 'MULTISPLIT', badgeClass: 'multi',
+          img, series: getMultiSeriesLabel(state.brand, stdu.model),
+          specs: `${btuLabel(stdu.btu)} · ${stdu.kw} kW · ${stdu.model}`,
+          price: stdu.pvp,
+          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          diff, isSelected: isStdSelected,
+        });
+      } else if (opt.type === 'stylish_multi') {
+        const su = opt.unit;
+        const pickerColor = state.pickerColors[room.id] || 'white';
+        const coloredPvp  = su.pvp[pickerColor] || su.pvp.white;
+        const isSelected  = room.useMulti && getEffectiveMultiType(room, state.rooms) === 'stylish';
+        const colorPicker = buildColorPickerInCard(room.id, '__stylish_multi__', pickerColor);
+        html += pickerCard({
+          id: room.id, type: 'stylish_multi', seriesKey: '__stylish_multi__',
+          badge: 'MULTISPLIT', badgeClass: 'multi',
+          img: 'assets/products/daikin-stylish-branco-1.webp',
+          series: 'Stylish',
+          specs: `${btuLabel(su.btu)} · ${su.kw} kW · ${su.model}`,
+          price: coloredPvp,
+          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          diff, isSelected, colorPicker,
+          features: ['A+++', 'Design icónico', '3 cores'],
+        });
+      } else if (opt.type === 'emura_multi') {
+        const eu = opt.unit;
+        const pickerColor = state.pickerColors[room.id] || 'white';
+        const coloredPvp  = eu.pvp[pickerColor] || eu.pvp.white;
+        const isSelected  = room.useMulti && getEffectiveMultiType(room, state.rooms) === 'emura';
+        const colorPicker = buildColorPickerInCard(room.id, '__emura_multi__', pickerColor);
+        html += pickerCard({
+          id: room.id, type: 'emura_multi', seriesKey: '__emura_multi__',
+          badge: 'MULTISPLIT', badgeClass: 'multi',
+          img: 'assets/products/daikin-emura-branco-1.webp',
+          series: 'Emura',
+          specs: `${btuLabel(eu.btu)} · ${eu.kw} kW · ${eu.model}`,
+          price: coloredPvp,
+          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          diff, isSelected, colorPicker,
+          features: ['A+++', 'Design ícone', '3 cores'],
+        });
       }
-    }
-
-    const diff = price - anchorPrice;
-    const colorPicker = series.colorPrices ? buildColorPickerInCard(room.id, key, pickerColor) : '';
-
-    html += pickerCard({
-      id: room.id, type: 'mono', seriesKey: key,
-      badge: isMultiContext ? 'INDIVIDUAL' : null,
-      badgeClass: 'individual',
-      img, series: series.label,
-      specs: `${btuLabel(tier)} · ${BTU_TO_KW[tier]} kW · ${series.energyCool || 'A++'} arref.`,
-      price, priceNote: 'Kit completo (inclui exterior)',
-      diff, isSelected, color: pickerColor,
-      colorPicker,
-      features: series.features ? series.features.slice(0, 3) : [],
     });
-  });
+
+  } else {
+    // -------------------------------------------------------
+    // Contexto individual (1 divisão): mostra todos os kits
+    // monosplit disponíveis para esta potência.
+    // -------------------------------------------------------
+    const monoOpts = [];
+    for (const [key, series] of Object.entries(catalog)) {
+      if (series.maxBTU && tier > series.maxBTU) continue;
+      if (series.prices[tier] === undefined) continue;
+      monoOpts.push({ key, series });
+    }
+    monoOpts.sort((a, b) => (a.series.prices[tier] || 0) - (b.series.prices[tier] || 0));
+
+    const prices = monoOpts.map(({ key, series }) => {
+      const c = state.pickerColors[room.id] || 'white';
+      return series.colorPrices ? (series.colorPrices[c]?.[tier] || series.prices[tier]) : series.prices[tier];
+    });
+    const anchorTotal = prices.length ? Math.min(...prices) : 0;
+
+    monoOpts.forEach(({ key, series }, i) => {
+      const isSelected = room.series === key;
+      const pickerColor = state.pickerColors[room.id] || 'white';
+      let price = series.prices[tier];
+      let img = series.image || '';
+      if (series.colorPrices) {
+        price = series.colorPrices[pickerColor]?.[tier] || price;
+        if (series.images && !Array.isArray(series.images))
+          img = series.images[pickerColor]?.[0] || series.image || '';
+      }
+      const diff = price - anchorTotal;
+      const colorPicker = series.colorPrices ? buildColorPickerInCard(room.id, key, pickerColor) : '';
+      html += pickerCard({
+        id: room.id, type: 'mono', seriesKey: key,
+        badge: null,
+        img, series: series.label,
+        specs: `${btuLabel(tier)} · ${BTU_TO_KW[tier]} kW · ${series.energyCool || 'A++'} arref.`,
+        price, priceNote: 'Kit completo (inclui exterior)',
+        diff, isSelected, color: pickerColor,
+        colorPicker,
+        features: series.features ? series.features.slice(0, 3) : [],
+      });
+    });
+  }
 
   return html;
 }
@@ -1127,9 +1313,12 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
 
   // onclick — color is read from state.pickerColors inside selectModel
   let onClick;
-  if (type === 'sensira_multi') onClick = `selectModel(${id},'sensira_multi','')`;
-  else if (type === 'multi')    onClick = `selectModel(${id},'multi','')`;
-  else                          onClick = `selectModel(${id},'mono','${seriesKey}')`;
+  if      (type === 'sensira_multi') onClick = `selectModel(${id},'sensira_multi','')`;
+  else if (type === 'confora_multi') onClick = `selectModel(${id},'confora_multi','')`;
+  else if (type === 'stylish_multi') onClick = `selectModel(${id},'stylish_multi','')`;
+  else if (type === 'emura_multi')   onClick = `selectModel(${id},'emura_multi','')`;
+  else if (type === 'multi')         onClick = `selectModel(${id},'multi','')`;
+  else                               onClick = `selectModel(${id},'mono','${seriesKey}')`;
 
   return `
 <div class="smp-card${isSelected ? ' selected' : ''}" data-key="${seriesKey}" onclick="${onClick}">
@@ -1159,7 +1348,17 @@ function buildColorPickerInCard(roomId, seriesKey, activeColor) {
 
 function setPickerColor(roomId, seriesKey, color, btnEl) {
   state.pickerColors[roomId] = color;
-  // Update color buttons in the card
+  // Em contexto multi, re-renderizar o picker inteiro (preços e diffs mudam com a cor)
+  if (state.rooms.length > 1) {
+    const room = state.rooms.find(r => r.id === roomId);
+    if (room) {
+      const tier = btuToTier(calcBTU(room));
+      const gridEl = document.getElementById('smp-grid');
+      if (gridEl) gridEl.innerHTML = buildPickerCards(room, tier);
+    }
+    return;
+  }
+  // Update color buttons in the card (contexto mono)
   const card = btnEl && btnEl.closest('.smp-card');
   if (card) {
     card.querySelectorAll('.sim-color-btn').forEach(b => b.classList.remove('active', 'smp-card__color-active'));
@@ -1205,9 +1404,30 @@ function selectModel(roomId, type, seriesKey) {
   } else if (type === 'multi') {
     room.useMulti            = true;
     room.multiType           = 'standard';
-    room.multiTypeExplicit   = true;  // utilizador escolheu explicitamente
+    room.multiTypeExplicit   = true;
     room.series              = null;
     room.color               = 'white';
+    room.forceIndividual     = false;
+  } else if (type === 'confora_multi') {
+    room.useMulti            = true;
+    room.multiType           = 'confora';
+    room.multiTypeExplicit   = true;
+    room.series              = null;
+    room.color               = 'white';
+    room.forceIndividual     = false;
+  } else if (type === 'stylish_multi') {
+    room.useMulti            = true;
+    room.multiType           = 'stylish';
+    room.multiTypeExplicit   = true;
+    room.series              = null;
+    room.color               = pickerColor;
+    room.forceIndividual     = false;
+  } else if (type === 'emura_multi') {
+    room.useMulti            = true;
+    room.multiType           = 'emura';
+    room.multiTypeExplicit   = true;
+    room.series              = null;
+    room.color               = pickerColor;
     room.forceIndividual     = false;
   } else {
     room.useMulti            = false;
@@ -1220,7 +1440,9 @@ function selectModel(roomId, type, seriesKey) {
 
   closeModelPicker();
   renderRoomModelSection(room.id);
-  updateRoomHeader(room.id);
+  // Atualizar headers de TODAS as divisões — o status multi/mono de uma divisão
+  // afeta o que as outras mostram (1 divisão sozinha em multi → passa a mono)
+  state.rooms.forEach(r => updateRoomHeader(r.id));
   updateLiveTotal();
   renderResults();
 }
@@ -1410,7 +1632,13 @@ function buildMultiSuggestBox(ms) {
 
 // Derivar nome da série a partir do modelo de interior multisplit
 function getMultiSeriesLabel(brand, model) {
-  if (brand === 'daikin') return model.startsWith('CTXF') ? 'Sensira' : 'Perfera';
+  if (brand === 'daikin') {
+    if (model.startsWith('CTXF')) return 'Sensira';
+    if (model.startsWith('FTXJ')) return 'Emura';
+    if (model.startsWith('FTXA')) return 'Stylish';
+    if (model.startsWith('FTXP')) return 'Confora';
+    return 'Perfera'; // FTXM default
+  }
   if (brand === 'bosch')  return 'Climate 3000i';
   if (brand === 'daitsu') return 'ARTIC Plus';
   return model;
