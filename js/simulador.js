@@ -443,7 +443,8 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
 
 // Determina o tipo de multisplit óptimo para um quarto, tendo em conta todos os quartos multi
 // Se explicitamente definido pelo utilizador via picker → respeitar
-// Se auto: Sensira CTXF só quando Daikin + todos os quartos multi têm MESMO tier ≤ 12k (2-3 zonas)
+// Se auto: Sensira CTXF quando Daikin + todos os quartos multi têm tier ≤ 12k (2-3 zonas)
+// Os modelos CTXF podem ser misturados (ex: CTXF25 + CTXF35) no mesmo sistema MXF
 function getEffectiveMultiType(room, allRooms) {
   if (!room.useMulti) return 'standard';
   if (room.multiTypeExplicit) return room.multiType;
@@ -454,21 +455,20 @@ function getEffectiveMultiType(room, allRooms) {
   if (multiRooms.length < 2 || multiRooms.length > 3) return 'standard';
 
   const tiers = multiRooms.map(r => btuToTier(calcBTU(r)));
-  const allSameTier = tiers.every(t => t === tiers[0]);
-  const allLE12k    = tiers.every(t => t <= 12000);
+  const allLE12k = tiers.every(t => t <= 12000);
 
-  return (allSameTier && allLE12k) ? 'sensira' : 'standard';
+  return allLE12k ? 'sensira' : 'standard';
 }
 
 // Calcula multisplit Sensira (CTXF interior + MXF exterior) — Daikin exclusivo ≤12k BTU
+// Os CTXF podem ser misturados: ex. CTXF25 + CTXF35 com 2MXF50
+// Única regra: todas as potências ≤12k BTU e 2-3 zonas
 function calcSensiraMulti(multiRoomsWithTier) {
   const n = multiRoomsWithTier.length;
   if (n < 2 || n > 3) return null; // MXF suporta 2-3 zonas
 
-  // REGRA: Sensira só funciona com o MESMO modelo em todas as zonas (mesmo BTU)
   const tiers = multiRoomsWithTier.map(r => r.tier);
-  if (!tiers.every(t => t === tiers[0])) return null;
-  if (tiers[0] > 12000) return null; // só até 12k BTU
+  if (!tiers.every(t => t <= 12000)) return null; // só até 12k BTU por zona
 
   const indoorUnits = multiRoomsWithTier.map(r => {
     const unit = DAIKIN_SENSIRA_MULTI_INDOOR.find(u => u.btu >= r.tier) || null;
@@ -1123,12 +1123,13 @@ function buildPickerCards(room, tier) {
     // -------------------------------------------------------
     const allOptions = [];
 
-    // Opção Sensira Budget (Daikin only, mesmo BTU em todas as div, ≤12k, ≤3 zonas)
+    // Opção Sensira Budget (Daikin only, todas as zonas ≤12k BTU, 2-3 zonas)
+    // CTXF podem ser misturados entre si (ex: CTXF25 + CTXF35)
     if (state.brand === 'daikin' && tier <= 12000) {
       const otherMultiRooms = state.rooms.filter(r => r.id !== room.id && parseFloat(r.areaM2) > 0);
       const otherTiers = otherMultiRooms.map(r => btuToTier(calcBTU(r)));
       const sensiraOk = otherTiers.length > 0 &&
-        otherTiers.every(t => t === tier) &&
+        otherTiers.every(t => t <= 12000) &&
         (1 + otherTiers.length) <= 3;
       if (sensiraOk) {
         const su = DAIKIN_SENSIRA_MULTI_INDOOR.find(u => u.btu >= tier);
@@ -1569,10 +1570,9 @@ function calcCheapestMultiAlt(brand, rooms) {
   const roomsWT = validRooms.map(r => ({
     ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard', multiTypeExplicit: true,
   }));
-  // Tentar Sensira primeiro (mais barato, Daikin 2-3 zonas iguais ≤12k)
+  // Tentar Sensira primeiro (mais barato, Daikin 2-3 zonas todas ≤12k)
   if (brand === 'daikin' && roomsWT.length >= 2 && roomsWT.length <= 3) {
-    const tiers = roomsWT.map(r => r.tier);
-    if (tiers.every(t => t === tiers[0] && t <= 12000)) {
+    if (roomsWT.every(r => r.tier <= 12000)) {
       const sr = calcSensiraMulti(roomsWT);
       if (sr) return { ...sr, multiSystemType: 'sensira' };
     }
