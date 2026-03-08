@@ -212,9 +212,10 @@ function newRoom(id) {
     windows: 0,
     orientation: 'sul',
     openToKitchen: false,
-    useMulti: true,   // true = use multisplit (default for 2+ rooms)
-    series: null,     // null = auto (cheapest). key from catalog e.g. 'Sensira', '3000i'
+    useMulti: true,        // true = multisplit (default for 2+ rooms)
+    series: null,          // null = auto (cheapest). key from catalog e.g. 'Sensira', '3000i'
     color: 'white',
+    forceIndividual: false, // true only when user explicitly chose individual in multi-room context
     expanded: true,
   };
 }
@@ -483,8 +484,16 @@ function addRoom() {
   if (state.rooms.length >= 5) return;
   // Collapse all existing rooms
   state.rooms.forEach(r => { r.expanded = false; });
+  const wasOne = state.rooms.length === 1;
   const room = newRoom(state.nextRoomId++);
   state.rooms.push(room);
+  // Transitioning from 1→2 rooms: reset rooms that weren't explicitly set to individual
+  // (a series picked in single-room context is just a preference, not an opt-out of multisplit)
+  if (wasOne) {
+    state.rooms.forEach(r => {
+      if (!r.forceIndividual) { r.useMulti = true; r.series = null; }
+    });
+  }
   renderRooms();
   updateLiveTotal();
   updateResultsVisibility();
@@ -499,8 +508,11 @@ function removeRoom(id, event) {
   if (event) event.stopPropagation();
   if (state.rooms.length <= 1) return;
   state.rooms = state.rooms.filter(r => r.id !== id);
-  // Reset useMulti for remaining rooms
-  if (state.rooms.length === 1) state.rooms[0].useMulti = false;
+  // Back to single room: mono only, clear forceIndividual so next add defaults to multi
+  if (state.rooms.length === 1) {
+    state.rooms[0].useMulti = false;
+    state.rooms[0].forceIndividual = false;
+  }
   renderRooms();
   updateLiveTotal();
   renderResults();
@@ -999,13 +1011,16 @@ function selectModel(roomId, type, seriesKey) {
   const pickerColor = state.pickerColors[roomId] || 'white';
 
   if (type === 'multi') {
-    room.useMulti = true;
-    room.series   = null;
-    room.color    = 'white';
+    room.useMulti        = true;
+    room.series          = null;
+    room.color           = 'white';
+    room.forceIndividual = false;
   } else {
-    room.useMulti = false;
-    room.series   = seriesKey || null;
-    room.color    = pickerColor;
+    room.useMulti        = false;
+    room.series          = seriesKey || null;
+    room.color           = pickerColor;
+    // Only mark as forced-individual if in a multi-room context (explicit opt-out of multisplit)
+    room.forceIndividual = state.rooms.length > 1;
   }
 
   closeModelPicker();
