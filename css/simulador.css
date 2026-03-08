@@ -611,6 +611,70 @@
   margin-bottom: 20px;
 }
 
+/* ── Multisplit Suggestion Box ───────────────────────────────────── */
+.sim-multi-suggest {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.sim-multi-suggest__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.sim-multi-suggest__icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.sim-multi-suggest__title {
+  font-weight: 700;
+  font-size: .95rem;
+  color: #15803d;
+}
+.sim-multi-suggest__sub {
+  font-size: .75rem;
+  color: #166534;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.sim-multi-suggest__total {
+  margin-left: auto;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #15803d;
+  white-space: nowrap;
+  padding-left: 12px;
+  flex-shrink: 0;
+}
+.sim-multi-suggest__rows {
+  margin-top: 12px;
+  border-top: 1px solid #bbf7d0;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.sim-ms-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: .8rem;
+  color: #166534;
+  gap: 8px;
+}
+.sim-ms-row span:last-child {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.sim-multi-suggest__note {
+  margin-top: 10px;
+  font-size: .68rem;
+  color: #166534;
+  opacity: .7;
+}
+
 /* ── Alternative Brands Banners ─────────────────────────────────── */
 .sim-alt {
   display: flex;
@@ -704,6 +768,13 @@
   gap: 8px;
   display: inline-flex;
   align-items: center;
+  /* Sobrepor btn--outline (branco) para ficar visível em fundo claro */
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.sim-actions__pdf:hover {
+  background: rgba(249,115,22,.08) !important;
+  transform: translateY(-2px);
 }
 
 /* ── Sticky Bottom Bar ──────────────────────────────────────────── */
@@ -930,12 +1001,36 @@ body { padding-bottom: 80px; }
   line-height: 1.3;
 }
 .smp-card__diff {
-  font-size: .7rem;
-  font-weight: 600;
-  color: var(--gray);
-  margin-top: 4px;
+  font-size: .72rem;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
 }
-.smp-card__diff.base { color: #059669; font-weight: 700; }
+.smp-diff-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: .72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.smp-diff-tag.base {
+  background: #dcfce7;
+  color: #15803d;
+}
+.smp-diff-tag.plus {
+  background: #fff3e0;
+  color: #c2410c;
+}
+.smp-diff-vs {
+  font-size: .65rem;
+  color: var(--gray);
+}
+.smp-card__badge.sensira {
+  background: #065f46;
+}
 
 /* Color picker inside SMP card */
 .smp-card__colors {
