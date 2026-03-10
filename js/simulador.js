@@ -196,6 +196,14 @@ const BOSCH_MULTI_INDOOR = [
   { btu: 24000, kw: 7.0, model: 'CL3000i 70E', pvp: 504 },
 ];
 
+// --- BOSCH — Multisplit Interior (Climate 6000i Mural, c/ IVA) ---
+const BOSCH_6000I_MULTI_INDOOR = [
+  { btu: 9000,  kw: 2.6, model: 'CL6000i 26E', pvp: Math.round(250 * 1.23) },
+  { btu: 12000, kw: 3.5, model: 'CL6000i 35E', pvp: Math.round(290 * 1.23) },
+  { btu: 18000, kw: 5.3, model: 'CL6000i 53E', pvp: Math.round(360 * 1.23) },
+  { btu: 24000, kw: 7.0, model: 'CL6000i 70E', pvp: Math.round(490 * 1.23) },
+];
+
 // --- BOSCH — Multisplit Exterior (Climate 5000 M, c/ IVA) ---
 const BOSCH_MULTI_OUTDOOR = [
   { model: 'Climate 5000 M 41/2',  zones: 2, kw: 4.1,  pvp: 1132 },
@@ -344,6 +352,9 @@ function getMultiIndoorUnit(brand, tier) {
 // Se a escolha não é explícita, usa getEffectiveMultiType para determinar o tipo óptimo.
 // pvp já inclui ajuste de cor (para Stylish/Emura).
 function getMultiIndoorForRoom(room, tier) {
+  if (state.brand === 'bosch' && room.multiType === '6000i' && room.multiTypeExplicit) {
+    return BOSCH_6000I_MULTI_INDOOR.find(u => u.btu >= tier) || BOSCH_6000I_MULTI_INDOOR[BOSCH_6000I_MULTI_INDOOR.length - 1] || null;
+  }
   if (state.brand !== 'daikin') return getMultiIndoorUnit(state.brand, tier);
   const mt = room.multiTypeExplicit
     ? (room.multiType || 'standard')
@@ -418,7 +429,7 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
 
   const indoorUnits = multiRoomsWithTier.map(r => {
     let unit;
-    if (brand === 'daikin') {
+    if (brand === 'daikin' || brand === 'bosch') {
       unit = getMultiIndoorForRoom(r, r.tier);
     } else {
       const indoorList = getMultiIndoorList(brand);
@@ -1108,6 +1119,16 @@ function calcOptionSystemTotal(room, tier, optionType, seriesKey) {
 
   // Confora/Stylish/Emura multi: mesmo exterior que FTXM (mesmo kW por BTU tier)
   // → delta = standard system + (nova série indoor) - (FTXM indoor)
+  if (optionType === 'bosch6000i_multi') {
+    const baseTotal = calcOptionSystemTotal(room, tier, 'multi', '__multi__');
+    if (baseTotal === Infinity) return Infinity;
+    const stdUnit = getMultiIndoorUnit(brand, tier);
+    const stdPvp  = stdUnit ? stdUnit.pvp : 0;
+    const u6 = BOSCH_6000I_MULTI_INDOOR.find(u => u.btu >= tier);
+    const newPvp = u6 ? u6.pvp : Infinity;
+    return (!newPvp || newPvp === Infinity) ? Infinity : baseTotal - stdPvp + newPvp;
+  }
+
   if (['confora_multi', 'stylish_multi', 'emura_multi'].includes(optionType)) {
     const baseTotal = calcOptionSystemTotal(room, tier, 'multi', '__multi__');
     if (baseTotal === Infinity) return Infinity;
@@ -1190,6 +1211,12 @@ function buildPickerCards(room, tier) {
     // Opção Padrão — Perfera (FTXM / Climate 3000i / ARTIC Plus)
     const stdu = getMultiIndoorUnit(state.brand, tier);
     if (stdu) allOptions.push({ type: 'multi', key: '__multi__', unit: stdu });
+
+    // Opção 6000i Premium (Bosch only)
+    if (state.brand === 'bosch') {
+      const u6 = BOSCH_6000I_MULTI_INDOOR.find(u => u.btu >= tier);
+      if (u6) allOptions.push({ type: 'bosch6000i_multi', key: '__bosch6000i__', unit: u6 });
+    }
 
     // Opção Stylish (FTXA, Daikin only, ≤18k BTU)
     if (state.brand === 'daikin' && tier <= 18000) {
@@ -1294,6 +1321,20 @@ function buildPickerCards(room, tier) {
           diff, isSelected, colorPicker,
           features: ['A+++', 'Design ícone', '3 cores'],
         });
+      } else if (opt.type === 'bosch6000i_multi') {
+        const u6 = opt.unit;
+        const isSelected = room.useMulti && room.multiType === '6000i' && room.multiTypeExplicit;
+        html += pickerCard({
+          id: room.id, type: 'bosch6000i_multi', seriesKey: '__bosch6000i__',
+          badge: 'MULTISPLIT', badgeClass: 'multi',
+          img: 'assets/products/bosch-6000i-1.webp',
+          series: 'Climate 6000i',
+          specs: `${btuLabel(u6.btu)} · ${u6.kw} kW · ${u6.model}`,
+          price: u6.pvp,
+          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          diff, isSelected,
+          features: ['A+++', 'WiFi integrado', 'Ionizador'],
+        });
       }
     });
 
@@ -1305,24 +1346,25 @@ function buildPickerCards(room, tier) {
     const monoOpts = [];
     for (const [key, series] of Object.entries(catalog)) {
       if (series.maxBTU && tier > series.maxBTU) continue;
-      if (series.prices[tier] === undefined) continue;
-      monoOpts.push({ key, series });
+      const eTier = getEffectiveTier(series, tier);
+      if (eTier === null) continue;
+      monoOpts.push({ key, series, eTier });
     }
-    monoOpts.sort((a, b) => (a.series.prices[tier] || 0) - (b.series.prices[tier] || 0));
+    monoOpts.sort((a, b) => (a.series.prices[a.eTier] || 0) - (b.series.prices[b.eTier] || 0));
 
-    const prices = monoOpts.map(({ key, series }) => {
+    const prices = monoOpts.map(({ series, eTier }) => {
       const c = state.pickerColors[room.id] || 'white';
-      return series.colorPrices ? (series.colorPrices[c]?.[tier] || series.prices[tier]) : series.prices[tier];
+      return series.colorPrices ? (series.colorPrices[c]?.[eTier] || series.prices[eTier]) : series.prices[eTier];
     });
     const anchorTotal = prices.length ? Math.min(...prices) : 0;
 
-    monoOpts.forEach(({ key, series }, i) => {
+    monoOpts.forEach(({ key, series, eTier }) => {
       const isSelected = room.series === key;
       const pickerColor = state.pickerColors[room.id] || 'white';
-      let price = series.prices[tier];
+      let price = series.prices[eTier];
       let img = series.image || '';
       if (series.colorPrices) {
-        price = series.colorPrices[pickerColor]?.[tier] || price;
+        price = series.colorPrices[pickerColor]?.[eTier] || price;
         if (series.images && !Array.isArray(series.images))
           img = series.images[pickerColor]?.[0] || series.image || '';
       }
@@ -1332,7 +1374,7 @@ function buildPickerCards(room, tier) {
         id: room.id, type: 'mono', seriesKey: key,
         badge: null,
         img, series: series.label,
-        specs: `${btuLabel(tier)} · ${BTU_TO_KW[tier]} kW · ${series.energyCool || 'A++'} arref.`,
+        specs: `${btuLabel(eTier)} · ${BTU_TO_KW[eTier]} kW · ${series.energyCool || 'A++'} arref.`,
         price, priceNote: 'Kit completo (inclui exterior)',
         diff, isSelected, color: pickerColor,
         colorPicker,
@@ -1361,9 +1403,10 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
   if      (type === 'sensira_multi') onClick = `selectModel(${id},'sensira_multi','')`;
   else if (type === 'confora_multi') onClick = `selectModel(${id},'confora_multi','')`;
   else if (type === 'stylish_multi') onClick = `selectModel(${id},'stylish_multi','')`;
-  else if (type === 'emura_multi')   onClick = `selectModel(${id},'emura_multi','')`;
-  else if (type === 'multi')         onClick = `selectModel(${id},'multi','')`;
-  else                               onClick = `selectModel(${id},'mono','${seriesKey}')`;
+  else if (type === 'emura_multi')       onClick = `selectModel(${id},'emura_multi','')`;
+  else if (type === 'bosch6000i_multi')  onClick = `selectModel(${id},'bosch6000i_multi','')`;
+  else if (type === 'multi')             onClick = `selectModel(${id},'multi','')`;
+  else                                   onClick = `selectModel(${id},'mono','${seriesKey}')`;
 
   return `
 <div class="smp-card${isSelected ? ' selected' : ''}" data-key="${seriesKey}" onclick="${onClick}">
@@ -1473,6 +1516,13 @@ function selectModel(roomId, type, seriesKey) {
     room.multiTypeExplicit   = true;
     room.series              = null;
     room.color               = pickerColor;
+    room.forceIndividual     = false;
+  } else if (type === 'bosch6000i_multi') {
+    room.useMulti            = true;
+    room.multiType           = '6000i';
+    room.multiTypeExplicit   = true;
+    room.series              = null;
+    room.color               = 'white';
     room.forceIndividual     = false;
   } else {
     room.useMulti            = false;
@@ -1721,7 +1771,7 @@ function getMultiSeriesLabel(brand, model) {
     if (model.startsWith('FTXP')) return 'Confora';
     return 'Perfera'; // FTXM default
   }
-  if (brand === 'bosch')  return 'Climate 3000i';
+  if (brand === 'bosch')  return model.startsWith('CL6000i') ? 'Climate 6000i' : 'Climate 3000i';
   if (brand === 'daitsu') return 'ARTIC Plus';
   return model;
 }
