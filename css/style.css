@@ -1429,10 +1429,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   object-fit: contain;
   padding: 24px;
   z-index: 1;
-  transition: transform 0.45s ease;
+  transition: padding 0.45s ease, transform 0.45s ease;
 }
 .series-card:hover .series-card__photo {
-  transform: scale(1.05);
+  padding: 6px;
+  transform: scale(1.0);
 }
 .series-card__fallback {
   display: flex;
