@@ -2110,14 +2110,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: rgba(255,255,255,.12);
   border-color: rgba(255,255,255,.7);
 }
-/* quando a nav está com fundo claro (scrolled) */
+/* scrolled — manter botão sempre visível (nav continua escura) */
 .header.scrolled .lang-toggle {
-  border-color: rgba(28,28,30,.25);
-  color: var(--dark);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 .header.scrolled .lang-toggle:hover {
-  background: rgba(28,28,30,.07);
-  border-color: var(--dark);
+  background: rgba(249,115,22,.15);
+  border-color: var(--primary);
 }
 
 /* ══════════════════════════════════════════
