@@ -1390,6 +1390,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
+  align-items: start;
 }
 
 /* --- Series Card --- */
@@ -1398,23 +1399,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 16px;
   overflow: hidden;
   border: 1.5px solid var(--gray-light);
-  transition: box-shadow var(--transition), border-color var(--transition);
-  position: relative;
+  transition: box-shadow var(--transition), border-color var(--transition), max-height 0.4s ease;
   cursor: pointer;
-  height: 300px;
+  max-height: 220px;
 }
 .series-card:hover {
   box-shadow: 0 10px 32px rgba(0,0,0,.13);
   border-color: rgba(249,115,22,.45);
+  max-height: 560px;
 }
 
-/* Image fills entire card */
+/* Image area — fixed height, always visible */
 .series-card__img {
-  position: absolute;
-  inset: 0;
-  height: 100%;
+  position: relative;
+  height: 220px;
+  flex-shrink: 0;
   background: #fff;
-  border-bottom: none;
+  border-bottom: 1px solid var(--gray-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1431,7 +1432,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: transform 0.45s ease;
 }
 .series-card:hover .series-card__photo {
-  transform: scale(1.07);
+  transform: scale(1.05);
 }
 .series-card__fallback {
   display: flex;
@@ -1440,58 +1441,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   opacity: 0.28;
 }
 
-/* Body slides up from bottom on hover */
+/* Body emerges below the image on hover */
 .series-card__body {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  padding: 14px 18px 16px;
+  padding: 14px 18px 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  background: rgba(255,255,255,.97);
-  backdrop-filter: blur(6px);
-  transform: translateY(100%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.series-card:hover .series-card__body {
-  transform: translateY(0);
-}
-
-/* Hide tagline, BTU and color sections in the compact overlay */
-.series-card .series-card__tagline,
-.series-card .series-card__btu-section,
-.series-card .series-card__color-row {
-  display: none;
-}
-
-/* Touch devices: always show body */
-@media (hover: none) {
-  .series-card {
-    height: auto;
-  }
-  .series-card__img {
-    position: relative;
-    height: 210px;
-    inset: unset;
-    border-bottom: 1px solid var(--gray-light);
-  }
-  .series-card__body {
-    position: relative;
-    transform: none;
-    background: var(--white);
-    backdrop-filter: none;
-  }
-  .series-card .series-card__tagline,
-  .series-card .series-card__btu-section,
-  .series-card .series-card__color-row {
-    display: flex;
-  }
-  .series-card .series-card__btu-section {
-    flex-direction: column;
-  }
+  gap: 10px;
+  background: var(--white);
 }
 .series-card__header-row {
   display: flex;
