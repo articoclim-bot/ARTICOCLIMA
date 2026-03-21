@@ -10,6 +10,10 @@
   padding: 0;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 :root {
   --primary:        #F97316;
   --primary-dark:   #EA6C0A;
