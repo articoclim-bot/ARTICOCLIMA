@@ -533,6 +533,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .brand-card:hover .brand-card__logo {
   transform: scale(1.05);
 }
+.brand-card__logo--daitsu {
+  width: 80px;
+  height: 64px;
+}
 
 .brand-card--link {
   text-decoration: none;
