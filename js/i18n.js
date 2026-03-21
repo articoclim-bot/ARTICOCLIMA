@@ -1057,12 +1057,14 @@ function applyLang(lang, isInitialLoad = false) {
   }
 
   // Update button label
+  var FLAGS = { pt: '🇵🇹', en: '🇬🇧', fr: '🇫🇷', es: '🇪🇸', de: '🇩🇪' };
   if (btn) {
-    const span = btn.querySelector('span');
+    var flag = FLAGS[lang] || '';
+    var span = btn.querySelector('span');
     if (span) {
-      span.textContent = lang.toUpperCase();
+      span.textContent = flag + ' ' + lang.toUpperCase();
     } else {
-      btn.textContent = lang.toUpperCase() + ' ▾';
+      btn.textContent = flag + ' ' + lang.toUpperCase() + ' ▾';
     }
   }
 
