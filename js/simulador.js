@@ -839,7 +839,7 @@ function renderRoomHTML(room) {
   const isMulti = multiCount >= 2 && room.useMulti;
 
   // Build meta text
-  let metaText = 'Preencha os dados da divisão';
+  let metaText = t('Preencha os dados da divisão');
   let hasMeta = false;
   if (hasData && tier > 0) {
     const seriesKey = isMulti ? null : (room.series || getCheapestMonoSeries(state.brand, tier));
@@ -875,7 +875,7 @@ function renderRoomHTML(room) {
       <span class="sim-room__meta${hasMeta ? ' has-data' : ''}" id="rmeta-${room.id}">${escHtml(metaText)}</span>
     </div>
     <div class="sim-room__controls">
-      ${canDelete ? `<button class="sim-room__del" onclick="removeRoom(${room.id}, event)" title="Remover" aria-label="Remover divisão">
+      ${canDelete ? `<button class="sim-room__del" onclick="removeRoom(${room.id}, event)" title="${t('Remover')}" aria-label="${t('Remover divisão')}">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>` : ''}
       <svg class="sim-room__chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" ${chevronRotate}><polyline points="6 9 12 15 18 9"/></svg>
@@ -892,49 +892,50 @@ function renderRoomHTML(room) {
 
 function renderRoomForm(room) {
   const types = ['quarto', 'sala', 'cozinha', 'outro'];
-  const typeLabels = { quarto: 'Quarto', sala: 'Sala', cozinha: 'Cozinha', outro: 'Outro' };
+  const typeLabels = { quarto: t('Quarto'), sala: t('Sala'), cozinha: t('Cozinha'), outro: t('Outro') };
+  const orientLabels = { sul: t('Sul'), norte: t('Norte'), este: t('Este'), oeste: t('Oeste') };
   const showOrient = parseInt(room.windows) > 0;
   const showOpenSpace = room.type === 'sala';
 
   return `
 <div class="sim-rf">
   <div class="sim-rf-row" style="margin-top:16px">
-    <label>Nome da divisão</label>
+    <label>${t('Nome da divisão')}</label>
     <input type="text" value="${escHtml(room.name)}"
       oninput="updateRoomField(${room.id},'name',this.value);document.getElementById('rname-${room.id}').textContent=this.value">
   </div>
   <div class="sim-rf-row">
-    <label>Tipo de divisão</label>
+    <label>${t('Tipo de divisão')}</label>
     <div class="sim-rf-types">
-      ${types.map(t => `<button class="sim-rf-type${room.type === t ? ' active' : ''}" onclick="setRoomType(${room.id},'${t}',this)">${typeLabels[t]}</button>`).join('')}
+      ${types.map(tp => `<button class="sim-rf-type${room.type === tp ? ' active' : ''}" onclick="setRoomType(${room.id},'${tp}',this)">${typeLabels[tp]}</button>`).join('')}
     </div>
   </div>
   ${showOpenSpace ? `<div class="sim-rf-openspace" id="openspace-${room.id}">
     <input type="checkbox" ${room.openToKitchen ? 'checked' : ''} onchange="updateRoomField(${room.id},'openToKitchen',this.checked)">
-    Sala aberta para cozinha (+3.000 BTU)
+    ${t('Sala aberta para cozinha (+3.000 BTU)')}
   </div>` : `<div id="openspace-${room.id}" style="display:none"></div>`}
   <div class="sim-rf-grid">
     <div class="sim-rf-row">
-      <label>Área (m²)</label>
+      <label>${t('Área (m²)')}</label>
       <input type="number" min="1" max="300" step="0.5" placeholder="ex: 15"
         value="${room.areaM2 || ''}"
         oninput="updateRoomField(${room.id},'areaM2',this.value)">
     </div>
     <div class="sim-rf-row">
-      <label>Altura (m)</label>
+      <label>${t('Altura (m)')}</label>
       <input type="number" min="2" max="6" step="0.1" value="${room.heightM}"
         oninput="updateRoomField(${room.id},'heightM',this.value)">
     </div>
     <div class="sim-rf-row">
-      <label>Janelas</label>
+      <label>${t('Janelas')}</label>
       <select onchange="updateRoomField(${room.id},'windows',this.value)">
         ${[0,1,2,3].map(n => `<option value="${n}" ${parseInt(room.windows)===n?'selected':''}>${n===3?'3+':n}</option>`).join('')}
       </select>
     </div>
     <div class="sim-rf-row" id="orient-row-${room.id}" style="${showOrient ? '' : 'display:none'}">
-      <label>Exposição solar</label>
+      <label>${t('Exposição solar')}</label>
       <select onchange="updateRoomField(${room.id},'orientation',this.value)">
-        ${['sul','norte','este','oeste'].map(o => `<option value="${o}" ${room.orientation===o?'selected':''}>${o.charAt(0).toUpperCase()+o.slice(1)}</option>`).join('')}
+        ${['sul','norte','este','oeste'].map(o => `<option value="${o}" ${room.orientation===o?'selected':''}>${orientLabels[o]}</option>`).join('')}
       </select>
     </div>
   </div>
@@ -949,8 +950,8 @@ function renderRoomModelCard(room) {
 
   if (!hasData) {
     return `<div class="sim-rm" id="rm-${room.id}">
-      <div class="sim-rm__label">Modelo sugerido</div>
-      <div class="sim-rm__empty">Preencha a área para ver o modelo sugerido</div>
+      <div class="sim-rm__label">${t('Modelo sugerido')}</div>
+      <div class="sim-rm__empty">${t('Preencha a área para ver o modelo sugerido')}</div>
     </div>`;
   }
 
@@ -964,7 +965,7 @@ function renderRoomModelCard(room) {
       price = unit.pvp;
       modelNum = unit.model;
       seriesName = getMultiSeriesLabel(state.brand, unit.model);
-      badgeText = effectiveType === 'sensira' ? 'Multisplit Budget' : 'Multisplit';
+      badgeText = effectiveType === 'sensira' ? t('Multisplit Budget') : t('Multisplit');
       badgeClass = 'multisplit';
       // Imagem adequada à série escolhida
       if (state.brand === 'daikin') {
@@ -995,7 +996,7 @@ function renderRoomModelCard(room) {
       modelNum = series.models[tier] || '';
       seriesName = series.label;
       imgSrc = getSeriesImage(state.brand, seriesKey, room.color);
-      badgeText = 'Sistema Individual';
+      badgeText = t('Sistema Individual');
       badgeClass = 'individual';
     }
   }
@@ -1006,7 +1007,7 @@ function renderRoomModelCard(room) {
   })();
 
   return `<div class="sim-rm" id="rm-${room.id}">
-    <div class="sim-rm__label">Modelo sugerido · ${btuLabel(tier)}</div>
+    <div class="sim-rm__label">${t('Modelo sugerido')} · ${btuLabel(tier)}</div>
     <div class="sim-rm__content">
       <img src="${imgSrc}" alt="${escHtml(seriesName)}" class="sim-rm__img" onerror="this.style.visibility='hidden'">
       <div class="sim-rm__info">
@@ -1017,11 +1018,11 @@ function renderRoomModelCard(room) {
       <div class="sim-rm__price">${fmtPrice(price)}</div>
     </div>
     ${hasColors ? `<div class="sim-rm__colors" id="rm-colors-${room.id}">
-      <span class="sim-rm__colors-label">Cor:</span>
-      ${['white','silver','black'].map(c => `<button class="sim-color-btn${room.color===c?' active':''}" data-color="${c}" onclick="setRoomColor(${room.id},'${c}')" title="${c==='white'?'Branco':c==='silver'?'Prateado':'Preto'}"></button>`).join('')}
+      <span class="sim-rm__colors-label">${t('Cor:')}</span>
+      ${['white','silver','black'].map(c => `<button class="sim-color-btn${room.color===c?' active':''}" data-color="${c}" onclick="setRoomColor(${room.id},'${c}')" title="${c==='white'?t('Branco'):c==='silver'?t('Prateado'):t('Preto')}"></button>`).join('')}
     </div>` : ''}
     <div class="sim-rm__change">
-      <button class="sim-rm__change-btn" onclick="openModelPicker(${room.id})">Mudar modelo →</button>
+      <button class="sim-rm__change-btn" onclick="openModelPicker(${room.id})">${t('Mudar modelo →')}</button>
     </div>
   </div>`;
 }
@@ -1040,7 +1041,7 @@ function updateRoomHeader(id) {
   if (!metaEl) return;
 
   if (!hasData) {
-    metaEl.textContent = 'Preencha os dados da divisão';
+    metaEl.textContent = t('Preencha os dados da divisão');
     metaEl.classList.remove('has-data');
     return;
   }
@@ -1092,8 +1093,8 @@ function openModelPicker(roomId) {
   const gridEl = document.getElementById('smp-grid');
 
   if (!el) return;
-  if (titleEl) titleEl.textContent = 'Escolha o modelo para ' + room.name;
-  if (subEl) subEl.textContent = `Potência necessária: ${btuLabel(tier)} (${kwLabel(tier)}) · Marca: ${capFirst(state.brand)}`;
+  if (titleEl) titleEl.textContent = t('Escolha o modelo para ') + room.name;
+  if (subEl) subEl.textContent = `${t('Potência necessária: ')}${btuLabel(tier)} (${kwLabel(tier)})${t(' · Marca: ')}${capFirst(state.brand)}`;
   if (gridEl) gridEl.innerHTML = buildPickerCards(room, tier);
 
   el.style.display = 'flex';
@@ -1251,9 +1252,9 @@ function buildPickerCards(room, tier) {
           series: 'Sensira (CTXF)',
           specs: `${btuLabel(su.btu)} · ${su.kw} kW · ${su.model}`,
           price: su.pvp,
-          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected,
-          features: ['R-32', 'Inverter', 'Série económica'],
+          features: ['R-32', 'Inverter', t('Série económica')],
         });
       } else if (opt.type === 'confora_multi') {
         const cu = opt.unit;
@@ -1265,9 +1266,9 @@ function buildPickerCards(room, tier) {
           series: 'Confora',
           specs: `${btuLabel(cu.btu)} · ${cu.kw} kW · ${cu.model}`,
           price: cu.pvp,
-          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected,
-          features: ['A+++', 'R-32', 'Filtro PM2.5'],
+          features: ['A+++', 'R-32', t('Filtro PM2.5')],
         });
       } else if (opt.type === 'multi') {
         const stdu = opt.unit;
@@ -1284,7 +1285,7 @@ function buildPickerCards(room, tier) {
           img, series: getMultiSeriesLabel(state.brand, stdu.model),
           specs: `${btuLabel(stdu.btu)} · ${stdu.kw} kW · ${stdu.model}`,
           price: stdu.pvp,
-          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected: isStdSelected,
         });
       } else if (opt.type === 'stylish_multi') {
@@ -1300,7 +1301,7 @@ function buildPickerCards(room, tier) {
           series: 'Stylish',
           specs: `${btuLabel(su.btu)} · ${su.kw} kW · ${su.model}`,
           price: coloredPvp,
-          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected, colorPicker,
           features: ['A+++', 'Design icónico', '3 cores'],
         });
@@ -1317,7 +1318,7 @@ function buildPickerCards(room, tier) {
           series: 'Emura',
           specs: `${btuLabel(eu.btu)} · ${eu.kw} kW · ${eu.model}`,
           price: coloredPvp,
-          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected, colorPicker,
           features: ['A+++', 'Design ícone', '3 cores'],
         });
@@ -1331,7 +1332,7 @@ function buildPickerCards(room, tier) {
           series: 'Climate 6000i',
           specs: `${btuLabel(u6.btu)} · ${u6.kw} kW · ${u6.model}`,
           price: u6.pvp,
-          priceNote: `Unidade interior · sistema total: ${fmtPrice(sysTotal)}`,
+          priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected,
           features: ['A+++', 'WiFi integrado', 'Ionizador'],
         });
@@ -1389,9 +1390,9 @@ function buildPickerCards(room, tier) {
 function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker = '', features }) {
   let diffText;
   if (diff === 0) {
-    diffText = `<div class="smp-card__diff base"><span class="smp-diff-tag base">★ Mais económico</span></div>`;
+    diffText = `<div class="smp-card__diff base"><span class="smp-diff-tag base">${t('★ Mais económico')}</span></div>`;
   } else {
-    diffText = `<div class="smp-card__diff"><span class="smp-diff-tag plus">+${fmtPrice(diff)}</span> <span class="smp-diff-vs">vs. opção base</span></div>`;
+    diffText = `<div class="smp-card__diff"><span class="smp-diff-tag plus">+${fmtPrice(diff)}</span> <span class="smp-diff-vs">${t('vs. opção base')}</span></div>`;
   }
 
   const badgeHtml = badge ? `<div class="smp-card__badge ${badgeClass || ''}">${badge}</div>` : '';
@@ -1426,9 +1427,9 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
 
 function buildColorPickerInCard(roomId, seriesKey, activeColor) {
   const colors = ['white', 'silver', 'black'];
-  const labels = { white: 'Branco', silver: 'Prateado', black: 'Preto' };
+  const labels = { white: t('Branco'), silver: t('Prateado'), black: t('Preto') };
   return `<div class="smp-card__colors">
-    <span class="smp-card__color-label">Cor:</span>
+    <span class="smp-card__color-label">${t('Cor:')}</span>
     ${colors.map(c => `<button class="sim-color-btn${c === activeColor ? ' active smp-card__color-active' : ''}" data-color="${c}"
       onclick="event.stopPropagation();setPickerColor(${roomId},'${seriesKey}','${c}',this)" title="${labels[c]}"></button>`).join('')}
   </div>`;
@@ -1676,7 +1677,7 @@ function calcCheapestMultiAlt(brand, rooms) {
   return std ? { ...std, multiSystemType: 'standard' } : null;
 }
 
-const COLOR_LABELS = { white: 'Branco', silver: 'Prateado', black: 'Preto' };
+const COLOR_LABELS = { white: 'Branco', silver: 'Prateado', black: 'Preto' }; // PT fixo — usado apenas para nome de cor no display PT
 
 // Caixa de alternativa monosplit (estilo "azul" — igual ao standard suggestion anterior)
 function buildMonoAltBox(monoAlt) {
@@ -1685,7 +1686,7 @@ function buildMonoAltBox(monoAlt) {
   monoAlt.rooms.forEach(({ room, label, price, color, seriesKey }) => {
     const series = seriesKey ? catalog[seriesKey] : null;
     const colorLabel = (series && series.colorPrices && color && color !== 'white')
-      ? (COLOR_LABELS[color] || '') : '';
+      ? (t(COLOR_LABELS[color]) || '') : '';
     const displayName = colorLabel ? `${label} ${colorLabel}` : label;
     rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${escHtml(displayName)}</span><span>${fmtPrice(price)}</span></div>`;
   });
@@ -1694,13 +1695,13 @@ function buildMonoAltBox(monoAlt) {
   <div class="sim-multi-suggest__header">
     <span class="sim-multi-suggest__icon">💡</span>
     <div>
-      <div class="sim-multi-suggest__title">Alternativa Monosplit <span class="sim-ms-tag">🔧 Individual</span></div>
-      <div class="sim-multi-suggest__sub">Uma unidade exterior por cada interior — total independência por divisão</div>
+      <div class="sim-multi-suggest__title">${t('Alternativa Monosplit')} <span class="sim-ms-tag">🔧 Individual</span></div>
+      <div class="sim-multi-suggest__sub">${t('Uma unidade exterior por cada interior — total independência por divisão')}</div>
     </div>
     <div class="sim-multi-suggest__total">${fmtPrice(monoAlt.total)}</div>
   </div>
   <div class="sim-multi-suggest__rows">${rows}</div>
-  <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Gama de entrada por divisão</div>
+  <div class="sim-multi-suggest__note">${t('IVA incluído · Excl. instalação · Gama de entrada por divisão')}</div>
 </div>`;
 }
 
@@ -1716,28 +1717,28 @@ function buildCheapMultiAltBox(cheapMulti, savings) {
   });
   if (cheapMulti.outdoor) {
     const ou = cheapMulti.outdoor;
-    rows += `<div class="sim-ms-row"><span>Exterior partilhado — ${ou.model} (${ou.zones} zonas · ${ou.kw} kW)</span><span>${fmtPrice(ou.pvp)}</span></div>`;
+    rows += `<div class="sim-ms-row"><span>${t('Exterior partilhado — ')}${ou.model} (${ou.zones} ${t('zonas')} · ${ou.kw} kW)</span><span>${fmtPrice(ou.pvp)}</span></div>`;
   }
   return `
 <div class="sim-multi-suggest">
   <div class="sim-multi-suggest__header">
     <span class="sim-multi-suggest__icon">💸</span>
     <div>
-      <div class="sim-multi-suggest__title">Multisplit mais económico <span class="sim-ms-tag">${savingsText}</span></div>
-      <div class="sim-multi-suggest__sub">Mesma unidade exterior partilhada — interiores mais económicos · ${seriesLabel}</div>
+      <div class="sim-multi-suggest__title">${t('Multisplit mais económico')} <span class="sim-ms-tag">${savingsText}</span></div>
+      <div class="sim-multi-suggest__sub">${t('Mesma unidade exterior partilhada — interiores mais económicos · ')}${seriesLabel}</div>
     </div>
     <div class="sim-multi-suggest__total">${fmtPrice(cheapMulti.total)}</div>
   </div>
   <div class="sim-multi-suggest__rows">${rows}</div>
-  <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Peça orçamento para confirmar compatibilidade</div>
+  <div class="sim-multi-suggest__note">${t('IVA incluído · Excl. instalação · Peça orçamento para confirmar compatibilidade')}</div>
 </div>`;
 }
 
 function buildMultiSuggestBox(ms) {
   const isSensira = ms.multiSystemType === 'sensira';
   const msLabel = isSensira
-    ? 'Sensira Budget · CTXF interior + MXF exterior'
-    : 'Padrão · FTXM interior + MXM exterior';
+    ? t('Sensira Budget · CTXF interior + MXF exterior')
+    : t('Padrão · FTXM interior + MXM exterior');
   const msTag = isSensira ? '💸 Budget' : '⭐ Padrão';
   let msRows = '';
   (ms.indoorUnits || []).forEach(({ room, unit }) => {
@@ -1752,13 +1753,13 @@ function buildMultiSuggestBox(ms) {
   <div class="sim-multi-suggest__header">
     <span class="sim-multi-suggest__icon">💡</span>
     <div>
-      <div class="sim-multi-suggest__title">Alternativa Multisplit <span class="sim-ms-tag">${msTag}</span></div>
-      <div class="sim-multi-suggest__sub">Mesmo com modelos diferentes, pode instalar uma unidade exterior partilhada · ${msLabel}</div>
+      <div class="sim-multi-suggest__title">${t('Alternativa Multisplit')} <span class="sim-ms-tag">${msTag}</span></div>
+      <div class="sim-multi-suggest__sub">${t('Mesmo com modelos diferentes, pode instalar uma unidade exterior partilhada · ')}${msLabel}</div>
     </div>
     <div class="sim-multi-suggest__total">${fmtPrice(ms.total)}</div>
   </div>
   <div class="sim-multi-suggest__rows">${msRows}</div>
-  <div class="sim-multi-suggest__note">IVA incluído · Excl. instalação · Peça-nos orçamento para confirmar compatibilidade</div>
+  <div class="sim-multi-suggest__note">${t('IVA incluído · Excl. instalação · Peça-nos orçamento para confirmar compatibilidade')}</div>
 </div>`;
 }
 
@@ -1791,7 +1792,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     const label = series ? series.label : '';
     const modelNum = model || (series && series.models[tier]) || '';
     const badgeClass = room.wasMulti ? '' : 'individual';
-    const badgeText = room.wasMulti ? 'Sistema individual' : 'Sistema individual';
+    const badgeText = room.wasMulti ? t('Sistema individual') : t('Sistema individual');
 
     rowsHtml += `
 <div class="sim-res-row">
@@ -1824,7 +1825,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     } else {
       img = 'assets/products/daitsu-artic-plus-1.webp';
     }
-    const multiBadge = unit.model.startsWith('CTXF') ? 'Multisplit Budget' : 'Multisplit';
+    const multiBadge = unit.model.startsWith('CTXF') ? t('Multisplit Budget') : t('Multisplit');
     rowsHtml += `
 <div class="sim-res-row">
   <img src="${img}" alt="${seriesLabel}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
@@ -1846,9 +1847,9 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
 <div class="sim-res-row sim-res-row--outdoor">
   <div class="sim-res-row__img" style="display:flex;align-items:center;justify-content:center;font-size:2rem;background:#f3f4f6;border-radius:8px">🏠</div>
   <div class="sim-res-row__info">
-    <div class="sim-res-row__label">Unidade exterior partilhada</div>
+    <div class="sim-res-row__label">${t('Unidade exterior partilhada')}</div>
     <div class="sim-res-row__model">${ou.model}</div>
-    <div class="sim-res-row__specs">${ou.zones} zonas · ${ou.kw} kW${multiNames ? ' · para: ' + multiNames : ''}</div>
+    <div class="sim-res-row__specs">${ou.zones} ${t('zonas')} · ${ou.kw} kW${multiNames ? ` · ${t('para: ')}` + multiNames : ''}</div>
   </div>
   <div class="sim-res-row__price">${fmtPrice(ou.pvp)}</div>
 </div>`;
@@ -1857,9 +1858,9 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
   const numRooms = config.monoRooms.length + config.multiRooms.length;
   const systemDesc = config.outdoor
     ? (isSensiraConfig
-        ? `${numRooms} divisões · Multisplit Budget Sensira`
-        : `${numRooms} divisões · Sistema multisplit`)
-    : `${numRooms} divisão${numRooms > 1 ? 's' : ''} · Monosplit`;
+        ? `${numRooms} ${t('divisões')} · ${t('Multisplit Budget Sensira')}`
+        : `${numRooms} ${t('divisões')} · ${t('Sistema multisplit')}`)
+    : `${numRooms} ${numRooms > 1 ? t('divisões') : t('divisão')} · ${t('Monosplit')}`;
 
   // Caixa verde só aparece se o multi mais barato for diferente da config actual E poupar dinheiro
   let cheapMultiAltHtml = '';
@@ -1874,17 +1875,17 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
   <div class="sim-res-card__header">
     <img src="${brandImg}" alt="${brandName}" class="sim-res-card__brand-img" onerror="this.style.display='none'">
     <div>
-      <div class="sim-res-card__title">A sua configuração ${brandName}</div>
+      <div class="sim-res-card__title">${t('A sua configuração ')}${brandName}</div>
       <div class="sim-res-card__subtitle">${systemDesc}</div>
     </div>
   </div>
   ${rowsHtml}
   <div class="sim-res-total">
-    <span class="sim-res-total__label">Total equipamentos</span>
+    <span class="sim-res-total__label">${t('Total equipamentos')}</span>
     <span class="sim-res-total__value">${fmtPrice(config.total)}</span>
   </div>
 </div>
-<p class="sim-res-disclaimer">IVA incluído · Exclui instalação, suportes e materiais</p>
+<p class="sim-res-disclaimer">${t('IVA incluído · Exclui instalação, suportes e materiais')}</p>
 ${cheapMultiAltHtml}${monoAltHtml}`;
 }
 
@@ -1898,8 +1899,8 @@ function buildAltBrandsHTML() {
     const brandName = capFirst(brand);
     const brandImg = `assets/logo-${brand}.png`;
     let systemDesc = '';
-    if (cfg.system === 'multi') systemDesc = `Sistema multisplit · ${cfg.seriesLabel}`;
-    else systemDesc = `Sistema individual · ${cfg.seriesLabel}`;
+    if (cfg.system === 'multi') systemDesc = `${t('Sistema multisplit')} · ${cfg.seriesLabel}`;
+    else systemDesc = `${t('Sistema individual')} · ${cfg.seriesLabel}`;
 
     let detailRows = '';
     if (cfg.system === 'multi' && cfg.indoorUnits) {
@@ -1907,7 +1908,7 @@ function buildAltBrandsHTML() {
         detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
       });
       if (cfg.outdoor) {
-        detailRows += `<div class="sim-alt-detail-row"><span>Exterior: ${cfg.outdoor.model}</span><span>${fmtPrice(cfg.outdoor.pvp)}</span></div>`;
+        detailRows += `<div class="sim-alt-detail-row"><span>${t('Exterior: ')}${cfg.outdoor.model}</span><span>${fmtPrice(cfg.outdoor.pvp)}</span></div>`;
       }
     } else if (cfg.rooms) {
       cfg.rooms.forEach(({ room, seriesKey, price }) => {
@@ -1916,24 +1917,24 @@ function buildAltBrandsHTML() {
         detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${label}</span><span>${fmtPrice(price)}</span></div>`;
       });
     }
-    detailRows += `<div class="sim-alt-detail-total"><span>Total</span><span>${fmtPrice(cfg.total)}</span></div>`;
+    detailRows += `<div class="sim-alt-detail-total"><span>${t('Total equipamentos')}</span><span>${fmtPrice(cfg.total)}</span></div>`;
 
     return `
 <div class="sim-alt-card" id="alt-${brand}">
   <div class="sim-alt-card__header" onclick="toggleAltCard('${brand}')">
     <div class="sim-alt-card__icon">💡</div>
     <div class="sim-alt-card__info">
-      <div class="sim-alt-card__text">A <strong>${brandName}</strong> também resolve esta necessidade</div>
-      <div class="sim-alt-card__price">desde ${fmtPrice(cfg.total)}</div>
+      <div class="sim-alt-card__text">A <strong>${brandName}</strong>${t(' também resolve esta necessidade')}</div>
+      <div class="sim-alt-card__price">${t('desde ')}${fmtPrice(cfg.total)}</div>
     </div>
-    <button class="sim-alt-card__toggle">Ver detalhes ▾</button>
+    <button class="sim-alt-card__toggle">${t('Ver detalhes ▾')}</button>
   </div>
   <div class="sim-alt-card__detail">
     <div class="sim-alt-card__detail-inner">
       <div class="sim-alt-card__detail-content">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
           <img src="${brandImg}" alt="${brandName}" style="height:20px;filter:grayscale(1)" onerror="this.style.display='none'">
-          <span style="font-size:.78rem;color:#6b7280">${systemDesc} · IVA inc. · Excl. instalação</span>
+          <span style="font-size:.78rem;color:#6b7280">${systemDesc} ${t('· IVA inc. · Excl. instalação')}</span>
         </div>
         ${detailRows}
       </div>
@@ -1954,7 +1955,7 @@ function toggleAltCard(brand) {
 function openQuoteModal() {
   const valid = state.rooms.some(r => parseFloat(r.areaM2) > 0);
   if (!valid) {
-    alert('Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.');
+    alert(t('Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.'));
     return;
   }
   const el = document.getElementById('qm-overlay');
@@ -1981,7 +1982,7 @@ function validateQuoteForm() {
   const contact = (document.getElementById('qm-contact')?.value || '').trim();
   const errEl   = document.getElementById('qm-error');
   if (!name && !contact) {
-    if (errEl) errEl.textContent = 'Por favor indique o seu nome e contacto.';
+    if (errEl) errEl.textContent = t('Por favor indique o seu nome e contacto.');
     return null;
   }
   if (errEl) errEl.textContent = '';
@@ -2216,4 +2217,15 @@ function capFirst(str) {
 document.addEventListener('DOMContentLoaded', () => {
   addRoom(); // Start with 1 room open
   updateLiveTotal();
+});
+
+// Re-renderizar conteúdo dinâmico quando a língua muda
+document.addEventListener('langchange', () => {
+  renderRooms();
+  renderResults();
+  // Actualizar picker se estiver aberto
+  const pickerOverlay = document.getElementById('smp-overlay');
+  if (pickerOverlay && pickerOverlay.style.display === 'flex' && state.modelPickerRoomId) {
+    openModelPicker(state.modelPickerRoomId);
+  }
 });

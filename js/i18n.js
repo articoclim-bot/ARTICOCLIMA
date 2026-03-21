@@ -191,7 +191,93 @@ const TRANSLATIONS_EN = {
   'Ver Sugestão →': 'See Suggestion →',
   '← Rever detalhes': '← Review details',
   '📄 Guardar PDF': '📄 Save PDF',
+
+  // ── SIMULATOR JS (dynamic content) ──
+  // Room form
+  'Preencha os dados da divisão': 'Fill in the room details',
+  'Nome da divisão': 'Room name',
+  'Tipo de divisão': 'Room type',
+  'Quarto': 'Bedroom',
+  'Sala': 'Living room',
+  'Cozinha': 'Kitchen',
+  'Outro': 'Other',
+  'Sala aberta para cozinha (+3.000 BTU)': 'Open plan to kitchen (+3,000 BTU)',
+  'Área (m²)': 'Area (m²)',
+  'Altura (m)': 'Height (m)',
+  'Janelas': 'Windows',
+  'Exposição solar': 'Sun exposure',
+  'Sul': 'South',
+  'Norte': 'North',
+  'Este': 'East',
+  'Oeste': 'West',
+  'Remover': 'Remove',
+  'Remover divisão': 'Remove room',
+  // Room model card
+  'Modelo sugerido': 'Suggested model',
+  'Preencha a área para ver o modelo sugerido': 'Fill in the area to see the suggested model',
+  'Sistema Individual': 'Individual System',
+  'Multisplit': 'Multisplit',
+  'Multisplit Budget': 'Budget Multisplit',
+  'Cor:': 'Colour:',
+  'Branco': 'White',
+  'Prateado': 'Silver',
+  'Preto': 'Black',
+  'Mudar modelo →': 'Change model →',
+  // Model picker
+  'Escolha o modelo para ': 'Choose model for ',
+  'Potência necessária: ': 'Required capacity: ',
+  ' · Marca: ': ' · Brand: ',
+  // Picker cards
+  'Unidade interior · sistema total: ': 'Indoor unit · system total: ',
+  'Série económica': 'Economy range',
+  'Filtro PM2.5': 'PM2.5 filter',
+  '★ Mais económico': '★ Best price',
+  'vs. opção base': 'vs. base option',
+  // Results
+  'Sistema individual': 'Individual system',
+  'Unidade exterior partilhada': 'Shared outdoor unit',
+  'zonas': 'zones',
+  'para: ': 'for: ',
+  'divisão': 'room',
+  'divisões': 'rooms',
+  'Monosplit': 'Monosplit',
+  'Sistema multisplit': 'Multisplit system',
+  'Multisplit Budget Sensira': 'Budget Multisplit Sensira',
+  'A sua configuração ': 'Your ',
+  ' configuração': ' configuration',
+  'Total equipamentos': 'Equipment total',
+  'IVA incluído · Exclui instalação, suportes e materiais': 'VAT included · Excl. installation, brackets and materials',
+  // Alt brands
+  ' também resolve esta necessidade': ' also covers this need',
+  'desde ': 'from ',
+  'Ver detalhes ▾': 'View details ▾',
+  '· IVA inc. · Excl. instalação': '· VAT inc. · Excl. installation',
+  'Exterior: ': 'Outdoor: ',
+  // Alt boxes
+  'Exterior partilhado — ': 'Shared outdoor — ',
+  'Multisplit mais económico': 'Most affordable multisplit',
+  'Mesma unidade exterior partilhada — interiores mais económicos · ': 'Same shared outdoor unit — more affordable indoor units · ',
+  'IVA incluído · Excl. instalação · Peça orçamento para confirmar compatibilidade': 'VAT included · Excl. installation · Request quote to confirm compatibility',
+  'Alternativa Multisplit': 'Multisplit Alternative',
+  'Mesmo com modelos diferentes, pode instalar uma unidade exterior partilhada · ': 'Even with different models, you can install a shared outdoor unit · ',
+  'IVA incluído · Excl. instalação · Peça-nos orçamento para confirmar compatibilidade': 'VAT included · Excl. installation · Ask us for a quote to confirm compatibility',
+  'Sensira Budget · CTXF interior + MXF exterior': 'Sensira Budget · CTXF indoor + MXF outdoor',
+  'Padrão · FTXM interior + MXM exterior': 'Standard · FTXM indoor + MXM outdoor',
+  'Alternativa Monosplit': 'Monosplit Alternative',
+  'Uma unidade exterior por cada interior — total independência por divisão': 'One outdoor unit per indoor — full independence per room',
+  'IVA incluído · Excl. instalação · Gama de entrada por divisão': 'VAT included · Excl. installation · Entry-level range per room',
+  // Alerts / errors
+  'Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.': 'Fill in the details for at least one room before requesting a quote.',
+  'Por favor indique o seu nome e contacto.': 'Please enter your name and contact details.',
 };
+
+// ─── t() — helper para conteúdo gerado dinamicamente por JS ───
+function t(str) {
+  if (typeof currentLang !== 'undefined' && currentLang === 'en') {
+    return TRANSLATIONS_EN[str] !== undefined ? TRANSLATIONS_EN[str] : str;
+  }
+  return str;
+}
 
 // ─── Armazenar textos originais (PT) para poder voltar atrás ───
 const originalTexts = new Map(); // node → original text
@@ -240,6 +326,8 @@ function applyLang(lang, isInitialLoad = false) {
     if (btn) { btn.textContent = 'EN'; btn.title = 'Switch to English'; }
     document.documentElement.lang = 'pt';
   }
+  // Notificar páginas com conteúdo dinâmico (ex: simulador)
+  document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
 }
 
 // ─── Init ───
