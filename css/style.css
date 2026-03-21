@@ -147,6 +147,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   height: 100px;
   gap: 32px;
+  position: relative;
 }
 
 .nav__logo {
@@ -169,7 +170,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .nav__menu {
   display: flex;
   gap: 4px;
-  margin-left: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav__link {
@@ -1215,6 +1218,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px 24px;
+  position: relative;
 }
 
 .footer__logo { font-size: 1.1rem; }
@@ -1227,6 +1231,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer__links {
   display: flex;
   gap: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .footer__links a {
   font-size: .82rem;
@@ -2173,8 +2180,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ── Seletor de língua (dropdown) ── */
 .lang-select {
   position: relative;
-  order: 3;
   flex-shrink: 0;
+  margin-left: auto;
 }
 .lang-toggle {
   background: transparent;
