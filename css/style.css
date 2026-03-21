@@ -2090,7 +2090,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .stat__divider { display: none; }
 }
 
-/* ── Botão PT / EN ── */
+/* ── Seletor de língua (dropdown) ── */
+.lang-select {
+  position: relative;
+  order: 3;
+  flex-shrink: 0;
+}
 .lang-toggle {
   background: transparent;
   border: 1.5px solid rgba(255,255,255,.35);
@@ -2103,8 +2108,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 100px;
   cursor: pointer;
   transition: background .2s, border-color .2s, color .2s;
-  order: 3;
-  flex-shrink: 0;
 }
 .lang-toggle:hover {
   background: rgba(255,255,255,.12);
@@ -2118,6 +2121,43 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .header.scrolled .lang-toggle:hover {
   background: rgba(249,115,22,.15);
   border-color: var(--primary);
+}
+/* Dropdown panel */
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: var(--dark);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 64px;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.lang-dropdown.open { display: block; }
+.lang-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,.75);
+  font-family: 'Inter', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background .15s, color .15s;
+}
+.lang-dropdown button:hover {
+  background: rgba(255,255,255,.08);
+  color: var(--white);
+}
+.lang-dropdown button.active {
+  color: var(--primary);
 }
 
 /* ══════════════════════════════════════════
