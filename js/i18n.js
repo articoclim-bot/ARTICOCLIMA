@@ -1057,15 +1057,10 @@ function applyLang(lang, isInitialLoad = false) {
   }
 
   // Update button label
-  var FLAGS = { pt: '🇵🇹', en: '🇬🇧', fr: '🇫🇷', es: '🇪🇸', de: '🇩🇪' };
+  var FLAG_CODES = { pt: 'pt', en: 'gb', fr: 'fr', es: 'es', de: 'de' };
   if (btn) {
-    var flag = FLAGS[lang] || '';
-    var span = btn.querySelector('span');
-    if (span) {
-      span.textContent = flag + ' ' + lang.toUpperCase();
-    } else {
-      btn.textContent = flag + ' ' + lang.toUpperCase() + ' ▾';
-    }
+    var fc = FLAG_CODES[lang] || lang;
+    btn.innerHTML = '<span class="fi fi-' + fc + '"></span> ' + lang.toUpperCase() + ' ▾';
   }
 
   // Mark active lang in dropdown
