@@ -329,18 +329,18 @@ const PRODUCTS = [
 
   /* ===================================================
      DAITSU — Série ARTIC PLUS (DS-KTP-6)
-     Classe A+++ arref. / A++ aquec. | WiFi incluído
+     Classe A++ arref. / A++ aquec. | WiFi incluído
      Preços Tabela 2025 c/ IVA
      =================================================== */
   {
     id: 'daitsu-artic-plus-9',
     brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-9KTP-6',
     btu: 9000, kw: 2.6,
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A++', energyHeat: 'A++',
     noiseIn: 37, noiseOut: 52,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
-      'Classe A+++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A++ aquecimento',
       'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
@@ -358,11 +358,11 @@ const PRODUCTS = [
     id: 'daitsu-artic-plus-12',
     brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-12KTP-6',
     btu: 12000, kw: 3.5,
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A++', energyHeat: 'A++',
     noiseIn: 37, noiseOut: 53,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
-      'Classe A+++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A++ aquecimento',
       'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
@@ -380,11 +380,11 @@ const PRODUCTS = [
     id: 'daitsu-artic-plus-18',
     brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-18KTP-6',
     btu: 18000, kw: 5.2,
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A++', energyHeat: 'A++',
     noiseIn: 40, noiseOut: 55,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
-      'Classe A+++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A++ aquecimento',
       'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
@@ -402,11 +402,11 @@ const PRODUCTS = [
     id: 'daitsu-artic-plus-24',
     brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-24KTP-6',
     btu: 24000, kw: 6.9,
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A++', energyHeat: 'A++',
     noiseIn: 40, noiseOut: 58,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
     features: [
-      'Classe A+++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A++ aquecimento',
       'WiFi incluído',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',

@@ -229,11 +229,11 @@ const BOSCH_MULTI_OUTDOOR = [
 const DAITSU_MONO = {
   'ARTIC Plus': {
     label: 'ARTIC Plus', tier: 'premium', badge: '🏆 Alta Eficiência',
-    energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'A+++ · WiFi incluído · I Feel · Gentle Air · 5 filtros de qualidade do ar',
+    energyCool: 'A++', energyHeat: 'A++',
+    desc: 'A++ · WiFi incluído · I Feel · Gentle Air · 5 filtros de qualidade do ar',
     prices: { 9000:700, 12000:760, 18000:1090, 24000:1290 },
     models: { 9000:'DS-9KTP-6', 12000:'DS-12KTP-6', 18000:'DS-18KTP-6', 24000:'DS-24KTP-6' },
-    features: ['Inverter', 'R-32', 'WiFi incluído', 'A+++', 'I Feel', 'Gentle Air', '5 filtros'],
+    features: ['Inverter', 'R-32', 'WiFi incluído', 'A++', 'I Feel', 'Gentle Air', '5 filtros'],
     maxBTU: 24000,
     image: 'assets/products/daitsu-artic-plus-1.webp',
     images: ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp'],
