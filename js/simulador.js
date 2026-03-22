@@ -176,6 +176,16 @@ const BOSCH_MONO = {
     image: 'assets/products/bosch-3000i-1.webp',
     images: ['assets/products/bosch-3000i-1.webp','assets/products/bosch-3000i-2.webp'],
   },
+  '3200i': {
+    label: 'Climate 3200i', tier: 'entrada', badge: '🆕 Novo Modelo',
+    energyCool: 'A++', energyHeat: 'A+',
+    desc: 'Novo design — WiFi Matter · Auto-limpeza iClean · Alexa/Google/Siri',
+    prices: { 9000:933, 12000:1013, 18000:1474, 24000:1782 },
+    models: { 9000:'CL3200i-Set 26WE', 12000:'CL3200i-Set 35WE', 18000:'CL3200i-Set 53WE', 24000:'CL3200i-Set 70WE' },
+    features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
+    image: 'assets/products/bosch-3200i-1.jpg',
+    images: ['assets/products/bosch-3200i-1.jpg','assets/products/bosch-3200i-2.jpg'],
+  },
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++',
