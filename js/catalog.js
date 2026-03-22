@@ -272,7 +272,14 @@ const PRODUCTS = [
     tech:['Inverter','R-32','Matter'],
     features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
     colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:933, isNew:true,
-    image:IMG.bosch3200i[0], images:IMG.bosch3200i },
+    image:IMG.bosch3200i[0], images:IMG.bosch3200i,
+    compareWith: { title:'Climate 3000i', rows:[
+      ['Wi-Fi Integrado','Requer acessório extra','Integrado de série ✓'],
+      ['App de Controlo','HomeCom Easy','HomeCom Easy (ligação mais rápida)'],
+      ['Gestão energética','SEER até 7.0 (A++)','Melhor eficiência em carga parcial'],
+      ['Nível sonoro exterior','~51 dB(A)','Fluxo de ar otimizado para menor ruído'],
+      ['Normas ecodesign','Conforme normas anteriores','Cumpre normas europeias mais recentes'],
+    ]}},
   { id:'bosch-3200i-35', brand:'bosch', series:'Climate 3200i', model:'CL3200i-Set 35 WE',
     btu:12000, kw:3.5, energyCool:'A++', energyHeat:'A+', noiseIn:27, noiseOut:53,
     tech:['Inverter','R-32','Matter'],
@@ -497,7 +504,11 @@ function seriesCardHTML(group) {
   return `
     <article class="series-card" data-brand="${first.brand}" data-btus="${group.map(p => p.btu).join(',')}" data-sk="${sk}">
       <div class="series-card__img">
-        ${first.isNew ? '<span class="badge-new">Novo Modelo</span>' : ''}
+        ${first.isNew ? `
+          <div class="badge-new-row">
+            <span class="badge-new">Novo Modelo</span>
+            ${first.compareWith ? `<button class="badge-whats-new" data-compare="${sk}">O que tem de novo?</button>` : ''}
+          </div>` : ''}
         <img src="${first.image}" alt="${BRAND_LABEL[first.brand]} ${first.series}" class="series-card__photo" onerror="this.style.display='none'">
         <div class="series-card__fallback">${AC_ICON}</div>
       </div>
@@ -692,6 +703,16 @@ function modalHTML(p) {
       return;
     }
 
+    /* "O que tem de novo?" button */
+    const whatsNewBtn = e.target.closest('.badge-whats-new');
+    if (whatsNewBtn) {
+      e.stopPropagation();
+      const sk = whatsNewBtn.dataset.compare;
+      const group = allGroups.find(g => seriesKey(g[0]) === sk);
+      if (group) openCompareModal(group[0]);
+      return;
+    }
+
     /* Detail button */
     const detailBtn = e.target.closest('.sc-detail-btn');
     if (detailBtn) {
@@ -871,7 +892,26 @@ function modalHTML(p) {
   }
 
   closeBtn.addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeCompareModal(); } });
+
+  /* ---- Compare Modal ---- */
+  const compareModal = document.getElementById('compareModal');
+  function openCompareModal(first) {
+    const cw = first.compareWith;
+    if (!cw) return;
+    compareModal.querySelector('.cmp-title').textContent = `${first.series} vs ${cw.title}`;
+    compareModal.querySelector('.cmp-tbody').innerHTML = cw.rows.map(r =>
+      `<tr><td>${r[0]}</td><td>${r[1]}</td><td class="cmp-highlight">${r[2]}</td></tr>`
+    ).join('');
+    compareModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCompareModal() {
+    compareModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  compareModal.querySelector('.cmp-overlay').addEventListener('click', closeCompareModal);
+  compareModal.querySelector('.cmp-close').addEventListener('click', closeCompareModal);
 
   /* ---- Init ---- */
   render();
