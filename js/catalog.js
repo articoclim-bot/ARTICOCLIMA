@@ -19,6 +19,7 @@ const IMG = {
   emuraSilver:     ['assets/products/daikin-emura-silver-1.webp','assets/products/daikin-emura-silver-2.webp','assets/products/daikin-emura-silver-3.webp'],
   emuraBlack:      ['assets/products/daikin-emura-black-1.webp','assets/products/daikin-emura-black-2.webp','assets/products/daikin-emura-black-3.webp'],
   bosch3000i:      ['assets/products/bosch-3000i-1.webp','assets/products/bosch-3000i-2.webp'],
+  bosch3200i:      ['assets/products/bosch-3200i-1.jpg','assets/products/bosch-3200i-2.jpg'],
   bosch6000i:      ['assets/products/bosch-6000i-1.webp','assets/products/bosch-6000i-2.webp','assets/products/bosch-6000i-3.webp','assets/products/bosch-6000i-4.webp'],
   articPlus:       ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp','assets/products/daitsu-artic-plus-4.jpg'],
 };
@@ -264,6 +265,34 @@ const PRODUCTS = [
     image:IMG.bosch3000i[0], images:IMG.bosch3000i },
 
   /* ===================================================
+     BOSCH — Climate 3200i (novo design, A++)
+     =================================================== */
+  { id:'bosch-3200i-26', brand:'bosch', series:'Climate 3200i', model:'CL3200i-Set 26 WE',
+    btu:9000,  kw:2.6, energyCool:'A++', energyHeat:'A+', noiseIn:25, noiseOut:51,
+    tech:['Inverter','R-32','Matter'],
+    features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
+    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:898, isNew:true,
+    image:IMG.bosch3200i[0], images:IMG.bosch3200i },
+  { id:'bosch-3200i-35', brand:'bosch', series:'Climate 3200i', model:'CL3200i-Set 35 WE',
+    btu:12000, kw:3.5, energyCool:'A++', energyHeat:'A+', noiseIn:27, noiseOut:53,
+    tech:['Inverter','R-32','Matter'],
+    features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
+    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:978, isNew:true,
+    image:IMG.bosch3200i[0], images:IMG.bosch3200i },
+  { id:'bosch-3200i-53', brand:'bosch', series:'Climate 3200i', model:'CL3200i-Set 53 WE',
+    btu:18000, kw:5.3, energyCool:'A++', energyHeat:'A+', noiseIn:33, noiseOut:57,
+    tech:['Inverter','R-32','Matter'],
+    features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
+    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1439, isNew:true,
+    image:IMG.bosch3200i[0], images:IMG.bosch3200i },
+  { id:'bosch-3200i-70', brand:'bosch', series:'Climate 3200i', model:'CL3200i-Set 70 WE',
+    btu:24000, kw:7.0, energyCool:'A++', energyHeat:'A+', noiseIn:38, noiseOut:60,
+    tech:['Inverter','R-32','Matter'],
+    features:['Função iClean (56°C)','Follow-Me','Filtro anti-bactérias','Alexa / Google Home / Siri'],
+    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:1747, isNew:true,
+    image:IMG.bosch3200i[0], images:IMG.bosch3200i },
+
+  /* ===================================================
      BOSCH — Climate 6000i (gama intermédia, A+++)
      =================================================== */
   { id:'bosch-6000i-26', brand:'bosch', series:'Climate 6000i', model:'CL6000i-Set 26 WE',
@@ -468,6 +497,7 @@ function seriesCardHTML(group) {
   return `
     <article class="series-card" data-brand="${first.brand}" data-btus="${group.map(p => p.btu).join(',')}" data-sk="${sk}">
       <div class="series-card__img">
+        ${first.isNew ? '<span class="badge-new">Novo Modelo</span>' : ''}
         <img src="${first.image}" alt="${BRAND_LABEL[first.brand]} ${first.series}" class="series-card__photo" onerror="this.style.display='none'">
         <div class="series-card__fallback">${AC_ICON}</div>
       </div>
