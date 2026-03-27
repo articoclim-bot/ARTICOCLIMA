@@ -2050,6 +2050,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .section { padding: 72px 0; }
 
   /* Nav Mobile */
+  .nav__logo svg { height: 48px; }
+
   .nav__menu {
     position: fixed;
     top: 68px;
