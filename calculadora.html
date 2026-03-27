@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calculadora de poupança energética — descubra quanto pode poupar por ano ao trocar o seu ar condicionado antigo por um modelo eficiente A+++. Grátis, sem registo." />
+  <title>Calculadora de Poupança Energética – ARTICOCLIMA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">
+  <style>
+    .calc-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 24px 100px;
+    }
+    .calc-page__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: 40px;
+      transition: opacity .2s;
+    }
+    .calc-page__back:hover { opacity: .75; }
+
+    .calc-hero { margin-bottom: 48px; }
+    .calc-hero__tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .calc-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -.5px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .calc-hero h1 span { color: var(--primary); }
+    .calc-hero__desc {
+      color: var(--gray);
+      font-size: .97rem;
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07);
+      border: 1px solid var(--gray-light);
+    }
+    .calc-card__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 0 0 28px;
+    }
+
+    .calc-field { margin-bottom: 26px; }
+    .calc-field:last-child { margin-bottom: 0; }
+    .calc-field > label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .age-options { display: flex; flex-direction: column; gap: 8px; }
+    .age-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      font-size: .875rem;
+      color: var(--dark);
+      user-select: none;
+    }
+    .age-option input { display: none; }
+    .age-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .calc-slider-val {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 6px;
+      margin-left: 8px;
+    }
+    input[type="range"].calc-slider {
+      width: 100%;
+      accent-color: var(--primary);
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    .calc-slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: .75rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .calc-tariff-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .calc-tariff-wrap input {
+      border: none;
+      outline: none;
+      font-size: .95rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      width: 70px;
+      background: transparent;
+    }
+    .calc-tariff-wrap span { color: var(--gray); font-size: .875rem; }
+
+    /* Results panel */
+    .calc-results {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 32px;
+      color: #fff;
+      position: sticky;
+      top: 100px;
+    }
+    .calc-results__title {
+      font-size: .75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.45);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin: 0 0 24px;
+    }
+
+    .result-row {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .result-row:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .result-row__label {
+      font-size: .78rem;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 4px;
+    }
+    .result-row__value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .result-row__value.accent { color: var(--primary); }
+    .result-row__sub {
+      font-size: .78rem;
+      color: rgba(255,255,255,.35);
+      margin-top: 3px;
+    }
+
+    .payback-badge {
+      background: rgba(249,115,22,.12);
+      border: 1px solid rgba(249,115,22,.25);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 20px 0 24px;
+      font-size: .85rem;
+      color: #ffd0a8;
+      line-height: 1.55;
+    }
+    .payback-badge strong { color: #fb923c; }
+
+    .calc-results .btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      display: block;
+    }
+
+    .calc-disclaimer {
+      margin-top: 32px;
+      font-size: .8rem;
+      color: var(--gray);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    @media (max-width: 660px) {
+      .calc-grid { grid-template-columns: 1fr; }
+      .calc-results { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="80" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-nav" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
+        </svg>
+      </a>
+      <div class="lang-select" id="langSelect">
+        <button class="lang-toggle" id="langToggle"><span class="fi fi-pt"></span> PT ▾</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button data-lang="pt"><span class="fi fi-pt"></span> PT</button>
+          <button data-lang="en"><span class="fi fi-gb"></span> EN</button>
+          <button data-lang="fr"><span class="fi fi-fr"></span> FR</button>
+          <button data-lang="es"><span class="fi fi-es"></span> ES</button>
+          <button data-lang="de"><span class="fi fi-de"></span> DE</button>
+        </div>
+      </div>
+      <a href="index.html" class="btn btn--primary nav__cta">← Voltar ao Site</a>
+    </nav>
+  </header>
+
+  <!-- ===== CONTEÚDO ===== -->
+  <main class="calc-page">
+    <a href="index.html" class="calc-page__back">← Voltar ao início</a>
+
+    <div class="calc-hero">
+      <span class="calc-hero__tag">Energia &amp; Poupança</span>
+      <h1>Quanto pode <span>poupar</span><br>com um AC novo?</h1>
+      <p class="calc-hero__desc">Descubra a diferença no consumo e na fatura entre o seu equipamento atual e um ar condicionado moderno de classe A+++.</p>
+    </div>
+
+    <div class="calc-grid">
+
+      <!-- INPUTS -->
+      <div class="calc-card">
+        <p class="calc-card__title">O seu equipamento atual</p>
+
+        <div class="calc-field">
+          <label>Idade do ar condicionado</label>
+          <div class="age-options" id="ageOptions">
+            <label class="age-option selected">
+              <input type="radio" name="age" value="old" checked>
+              🕰 Antes de 2010
+            </label>
+            <label class="age-option">
+              <input type="radio" name="age" value="mid">
+              📅 Entre 2010 e 2018
+            </label>
+            <label class="age-option">
+              <input type="radio" name="age" value="recent">
+              ✅ Depois de 2018
+            </label>
+          </div>
+        </div>
+
+        <div class="calc-field">
+          <label>Potência <span id="kwLabel" class="calc-slider-val">3,5 kW</span></label>
+          <input type="range" class="calc-slider" id="kwSlider" min="1.5" max="9.0" step="0.5" value="3.5">
+          <div class="calc-slider-labels"><span>1,5 kW</span><span>9,0 kW</span></div>
+        </div>
+
+        <div class="calc-field">
+          <label>Horas de uso por dia <span id="hoursLabel" class="calc-slider-val">8 h</span></label>
+          <input type="range" class="calc-slider" id="hoursSlider" min="1" max="16" step="1" value="8">
+          <div class="calc-slider-labels"><span>1 h</span><span>16 h</span></div>
+        </div>
+
+        <div class="calc-field">
+          <label>Meses de uso por ano <span id="monthsLabel" class="calc-slider-val">6 meses</span></label>
+          <input type="range" class="calc-slider" id="monthsSlider" min="1" max="12" step="1" value="6">
+          <div class="calc-slider-labels"><span>1 mês</span><span>12 meses</span></div>
+        </div>
+
+        <div class="calc-field">
+          <label>Tarifa de eletricidade</label>
+          <div class="calc-tariff-wrap">
+            <input type="number" id="tariffInput" value="0.22" min="0.10" max="0.50" step="0.01">
+            <span>€ / kWh</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="calc-results">
+        <p class="calc-results__title">Estimativa de poupança</p>
+
+        <div class="result-row">
+          <div class="result-row__label">Custo anual estimado (equipamento atual)</div>
+          <div class="result-row__value" id="costCurrent">–</div>
+          <div class="result-row__sub" id="kwCurrent"></div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-row__label">Custo anual com AC novo A+++</div>
+          <div class="result-row__value" id="costNew">–</div>
+          <div class="result-row__sub" id="kwNew"></div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-row__label">Poupança anual estimada</div>
+          <div class="result-row__value accent" id="savingsYear">–</div>
+          <div class="result-row__sub" id="savingsMonth"></div>
+        </div>
+
+        <div class="payback-badge" id="paybackBadge"></div>
+
+        <a href="catalogo.html" class="btn btn--primary">Ver equipamentos A+++ →</a>
+      </div>
+    </div>
+
+    <p class="calc-disclaimer">* Valores estimados com base em perfis de eficiência típicos por geração de equipamento (EER médio: pré-2010 ≈ 2,3 · 2010–2018 ≈ 3,8 · pós-2018 ≈ 5,2 · A+++ ≈ 7,5). O consumo real pode variar consoante as condições de uso, o isolamento do espaço e as configurações do equipamento. Para uma análise personalizada, <a href="index.html#contacto" style="color:var(--primary)">contacte-nos</a>.</p>
+  </main>
+
+  <script>
+    var EER = { old: 2.3, mid: 3.8, recent: 5.2 };
+    var EER_NEW = 7.5;
+
+    function calculate() {
+      var age    = document.querySelector('input[name="age"]:checked').value;
+      var kw     = parseFloat(document.getElementById('kwSlider').value);
+      var hours  = parseInt(document.getElementById('hoursSlider').value);
+      var months = parseInt(document.getElementById('monthsSlider').value);
+      var tariff = parseFloat(document.getElementById('tariffInput').value) || 0.22;
+
+      var totalHours  = hours * Math.round(months * 30.4);
+      var kwCurrent   = kw / EER[age]  * totalHours;
+      var kwNew       = kw / EER_NEW   * totalHours;
+      var costCurrent = kwCurrent * tariff;
+      var costNew     = kwNew * tariff;
+      var savings     = costCurrent - costNew;
+      var pct         = Math.round((savings / costCurrent) * 100);
+
+      document.getElementById('costCurrent').textContent = fmt(costCurrent) + ' €/ano';
+      document.getElementById('kwCurrent').textContent   = fmt(kwCurrent) + ' kWh/ano consumidos';
+      document.getElementById('costNew').textContent     = fmt(costNew) + ' €/ano';
+      document.getElementById('kwNew').textContent       = fmt(kwNew) + ' kWh/ano consumidos';
+      document.getElementById('savingsYear').textContent = fmt(savings) + ' €/ano';
+      document.getElementById('savingsMonth').textContent = '≈ ' + fmt(savings / 12) + ' € por mês';
+      document.getElementById('paybackBadge').innerHTML  =
+        'Ao trocar para um AC A+++, pode reduzir o consumo energético em <strong>' + pct + '%</strong>. Em 10 anos, a poupança acumulada pode ultrapassar <strong>' + fmt(savings * 10) + ' €</strong>.';
+    }
+
+    function fmt(n) {
+      return Math.round(n).toLocaleString('pt-PT');
+    }
+
+    document.getElementById('ageOptions').addEventListener('click', function(e) {
+      var opt = e.target.closest('.age-option');
+      if (!opt) return;
+      document.querySelectorAll('.age-option').forEach(function(o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      opt.querySelector('input').checked = true;
+      calculate();
+    });
+
+    document.getElementById('kwSlider').addEventListener('input', function() {
+      document.getElementById('kwLabel').textContent = parseFloat(this.value).toFixed(1).replace('.', ',') + ' kW';
+      calculate();
+    });
+    document.getElementById('hoursSlider').addEventListener('input', function() {
+      document.getElementById('hoursLabel').textContent = this.value + ' h';
+      calculate();
+    });
+    document.getElementById('monthsSlider').addEventListener('input', function() {
+      var v = parseInt(this.value);
+      document.getElementById('monthsLabel').textContent = v + (v === 1 ? ' mês' : ' meses');
+      calculate();
+    });
+    document.getElementById('tariffInput').addEventListener('input', calculate);
+
+    calculate();
+  </script>
+  <script src="js/i18n.js"></script>
+</body>
+</html>

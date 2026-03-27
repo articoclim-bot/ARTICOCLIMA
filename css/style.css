@@ -2096,7 +2096,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .result-actions .btn { width: 100%; justify-content: center; }
 
   .footer__inner { flex-direction: column; text-align: center; }
-  .footer__links { justify-content: center; }
+  .footer__links { position: static; transform: none; justify-content: center; flex-wrap: wrap; gap: 12px 16px; }
   .footer__legal { justify-content: center; }
 }
 
