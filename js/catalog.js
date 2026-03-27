@@ -933,7 +933,61 @@ const SOLAR_ICON = `<svg viewBox="0 0 96 96" width="48" height="48" fill="none" 
 </svg>`;
 
 const SOLAR_PRODUCTS = [
-  /* ---- BOSCH ---- */
+  /* ---- BOSCH Solar FCC 220 Circuito Forçado ---- */
+  {
+    id: 'bosch-solar-fcc-forcado-300',
+    brand: 'bosch', series: 'Solar FCC 220 Forçado', model: 'FCC 220 Kit Forçado 300L',
+    capacity: 300, energyClass: 'A++', pvp: 5298,
+    image: 'assets/products/bosch-solar-fcc-300.webp',
+    images: ['assets/products/bosch-solar-fcc-300.webp'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Coletor plano · Circuito forçado',
+    features: [
+      '2× Coletor plano FCC 220-2V CTE (4,04 m² captação)',
+      'Depósito inox W 300 EP C com serpentina',
+      'Controlador solar B-SOL100-2',
+      'Bomba de circulação forçada integrada',
+      'Resistência elétrica de apoio 2000W',
+      'Vasos de expansão solar e sanitário incluídos',
+      'Líquido solar e acessórios de ligação incluídos',
+    ],
+    specs: [
+      { label: 'Volume', val: '300 L' },
+      { label: 'Coletores', val: '2 painéis planos FCC 220-2V' },
+      { label: 'Área captação', val: '4,04 m²' },
+      { label: 'Controlador', val: 'B-SOL100-2' },
+      { label: 'Apoio elétrico', val: '2000 W' },
+      { label: 'Circulação', val: 'Forçada (bomba)' },
+    ],
+  },
+  {
+    id: 'bosch-solar-fcc-forcado-500',
+    brand: 'bosch', series: 'Solar FCC 220 Forçado', model: 'FCC 220 Kit Forçado 500L',
+    capacity: 500, energyClass: 'A++', pvp: 7145,
+    image: 'assets/products/bosch-solar-fcc-300.webp',
+    images: ['assets/products/bosch-solar-fcc-300.webp'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Coletor plano · Circuito forçado',
+    features: [
+      '3× Coletor plano FCC 220-2V CTE (6,06 m² captação)',
+      'Depósito inox W 500 EP C com serpentina',
+      'Controlador solar B-SOL100-2',
+      'Bomba de circulação forçada integrada',
+      'Resistência elétrica de apoio 2000W',
+      'Vasos de expansão solar (50L) e sanitário (50L) incluídos',
+      'Líquido solar e acessórios de ligação incluídos',
+    ],
+    specs: [
+      { label: 'Volume', val: '500 L' },
+      { label: 'Coletores', val: '3 painéis planos FCC 220-2V' },
+      { label: 'Área captação', val: '6,06 m²' },
+      { label: 'Controlador', val: 'B-SOL100-2' },
+      { label: 'Apoio elétrico', val: '2000 W' },
+      { label: 'Circulação', val: 'Forçada (bomba)' },
+    ],
+  },
+
+  /* ---- BOSCH Solar FCC 220 Termossifão ---- */
   {
     id: 'bosch-solar-fcc-150',
     brand: 'bosch', series: 'Solar FCC 220', model: 'FCC 220 Kit 150L',
