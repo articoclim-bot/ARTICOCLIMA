@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calculadora de poupança solar AQS — descubra quanto pode poupar por ano ao instalar painéis solares para águas quentes sanitárias no Algarve. Grátis, sem registo." />
+  <title>Calculadora Solar AQS — ARTICOCLIMA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">
+  <style>
+    .calc-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 120px 24px 100px;
+    }
+    .calc-page__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: 40px;
+      transition: opacity .2s;
+    }
+    .calc-page__back:hover { opacity: .75; }
+
+    .calc-hero { margin-bottom: 48px; }
+    .calc-hero__tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .calc-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -.5px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .calc-hero h1 span { color: var(--primary); }
+    .calc-hero__desc {
+      color: var(--gray);
+      font-size: .97rem;
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .calc-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07);
+      border: 1px solid var(--gray-light);
+    }
+    .calc-card__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 0 0 28px;
+    }
+
+    .calc-field { margin-bottom: 26px; }
+    .calc-field:last-child { margin-bottom: 0; }
+    .calc-field > label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .fuel-options { display: flex; flex-direction: column; gap: 8px; }
+    .fuel-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      font-size: .875rem;
+      color: var(--dark);
+      user-select: none;
+    }
+    .fuel-option input { display: none; }
+    .fuel-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .calc-slider-val {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 6px;
+      margin-left: 8px;
+    }
+    input[type="range"].calc-slider {
+      width: 100%;
+      accent-color: var(--primary);
+      margin-top: 8px;
+      cursor: pointer;
+    }
+    .calc-slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: .75rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .calc-tariff-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .calc-tariff-wrap input {
+      border: none;
+      outline: none;
+      font-size: .95rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      width: 70px;
+      background: transparent;
+    }
+    .calc-tariff-wrap span { color: var(--gray); font-size: .875rem; }
+
+    .tariff-field {
+      overflow: hidden;
+      transition: max-height .25s ease, opacity .25s ease, margin-bottom .25s ease;
+      max-height: 100px;
+      opacity: 1;
+    }
+    .tariff-field.hidden {
+      max-height: 0;
+      opacity: 0;
+      margin-bottom: 0 !important;
+    }
+
+    /* Results panel */
+    .calc-results {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 32px;
+      color: #fff;
+      position: sticky;
+      top: 100px;
+    }
+    .calc-results__title {
+      font-size: .75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.45);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin: 0 0 24px;
+    }
+
+    .result-row {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .result-row:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .result-row__label {
+      font-size: .78rem;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 4px;
+    }
+    .result-row__value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .result-row__value.accent { color: var(--primary); }
+    .result-row__sub {
+      font-size: .78rem;
+      color: rgba(255,255,255,.35);
+      margin-top: 3px;
+    }
+
+    .system-badge {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.5;
+    }
+    .system-badge strong {
+      display: block;
+      color: #fff;
+      font-size: .9rem;
+      margin-bottom: 2px;
+    }
+
+    .payback-badge {
+      background: rgba(249,115,22,.12);
+      border: 1px solid rgba(249,115,22,.25);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 20px 0 24px;
+      font-size: .85rem;
+      color: #ffd0a8;
+      line-height: 1.55;
+    }
+    .payback-badge strong { color: #fb923c; }
+
+    .calc-results .btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      display: block;
+    }
+
+    .calc-disclaimer {
+      margin-top: 32px;
+      font-size: .8rem;
+      color: var(--gray);
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    @media (max-width: 660px) {
+      .calc-grid { grid-template-columns: 1fr; }
+      .calc-results { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="nav__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="80" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-nav" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
+        </svg>
+      </a>
+      <div class="lang-select" id="langSelect">
+        <button class="lang-toggle" id="langToggle"><span class="fi fi-pt"></span> PT ▾</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button data-lang="pt"><span class="fi fi-pt"></span> PT</button>
+          <button data-lang="en"><span class="fi fi-gb"></span> EN</button>
+          <button data-lang="fr"><span class="fi fi-fr"></span> FR</button>
+          <button data-lang="es"><span class="fi fi-es"></span> ES</button>
+          <button data-lang="de"><span class="fi fi-de"></span> DE</button>
+        </div>
+      </div>
+      <a href="index.html" class="btn btn--primary nav__cta">← Voltar ao Site</a>
+    </nav>
+  </header>
+
+  <!-- ===== CONTEÚDO ===== -->
+  <main class="calc-page">
+    <a href="index.html" class="calc-page__back">← Voltar ao início</a>
+
+    <div class="calc-hero">
+      <span class="calc-hero__tag">Energia Solar · AQS</span>
+      <h1>Quanto pode <span>poupar</span><br>com painéis solares?</h1>
+      <p class="calc-hero__desc">Descubra o retorno do seu investimento em energia solar para águas quentes sanitárias no Algarve.</p>
+    </div>
+
+    <div class="calc-grid">
+
+      <!-- INPUTS -->
+      <div class="calc-card">
+        <p class="calc-card__title">O seu consumo atual</p>
+
+        <div class="calc-field">
+          <label>Pessoas no agregado familiar <span id="personsLabel" class="calc-slider-val">3 pessoas</span></label>
+          <input type="range" class="calc-slider" id="personsSlider" min="1" max="8" step="1" value="3">
+          <div class="calc-slider-labels"><span>1</span><span>8</span></div>
+        </div>
+
+        <div class="calc-field">
+          <label>Sistema de aquecimento atual</label>
+          <div class="fuel-options" id="fuelOptions">
+            <label class="fuel-option">
+              <input type="radio" name="fuel" value="electric" checked>
+              ⚡ Termoacumulador elétrico
+            </label>
+            <label class="fuel-option">
+              <input type="radio" name="fuel" value="gas">
+              🔥 Esquentador gás natural
+            </label>
+            <label class="fuel-option">
+              <input type="radio" name="fuel" value="propane">
+              🫙 Propano ou Butano
+            </label>
+          </div>
+        </div>
+
+        <div class="calc-field tariff-field" id="tariffField">
+          <label>Tarifa de eletricidade</label>
+          <div class="calc-tariff-wrap">
+            <input type="number" id="tariffInput" value="0.22" min="0.10" max="0.50" step="0.01">
+            <span>€ / kWh</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="calc-results">
+        <p class="calc-results__title">Estimativa de poupança</p>
+
+        <div class="result-row">
+          <div class="result-row__label">Custo anual atual estimado</div>
+          <div class="result-row__value" id="costCurrent">–</div>
+          <div class="result-row__sub" id="costCurrentSub"></div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-row__label">Custo anual com solar (25% restante)</div>
+          <div class="result-row__value" id="costSolar">–</div>
+          <div class="result-row__sub">Solar cobre 75% das necessidades no Algarve</div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-row__label">Poupança anual estimada</div>
+          <div class="result-row__value accent" id="savingsYear">–</div>
+          <div class="result-row__sub" id="savingsMonth"></div>
+        </div>
+
+        <div class="result-row">
+          <div class="result-row__label">Dedução IRS estimada</div>
+          <div class="result-row__value" id="irsDeduction">–</div>
+          <div class="result-row__sub">30% do sistema recomendado, máx. 700 €</div>
+        </div>
+
+        <div class="system-badge" id="systemBadge"></div>
+
+        <div class="payback-badge" id="paybackBadge"></div>
+
+        <a href="catalogo-solar.html" class="btn btn--primary">Ver sistemas solares →</a>
+      </div>
+    </div>
+
+    <p class="calc-disclaimer">* Valores estimados com base em 1,8 kWh/dia por pessoa e uma cobertura solar de 75% no Algarve (LNEG). Eficiências consideradas: termoacumulador elétrico 92%, esquentador gás natural 85% (0,09 €/kWh), propano/butano 85% (0,14 €/kWh). A dedução IRS de 30% aplica-se ao Benefício Fiscal para Eficiência Energética (art.º 78.º-E CIRS), sujeito a confirmação com contabilista. O payback real pode variar com condições de uso, evolução das tarifas e outros fatores. Para uma análise personalizada, <a href="index.html#contacto" style="color:var(--primary)">contacte-nos</a>.</p>
+  </main>
+
+  <script>
+    // ── Dados dos sistemas ──────────────────────────────────────────────────
+    var SYSTEMS = [
+      { name: 'Bosch FCC 220 Kit 150L',       price: 1859, minPersons: 1, maxPersons: 3, type: 'solar' },
+      { name: 'Bosch FCC 220 Kit 200L',       price: 2019, minPersons: 2, maxPersons: 4, type: 'solar' },
+      { name: 'Bosch FCC 220 Kit 300L',       price: 2649, minPersons: 3, maxPersons: 6, type: 'solar' },
+      { name: 'Bomba de Calor AWBS 8-190P',   price: 1690, minPersons: 1, maxPersons: 3, type: 'heatpump' },
+      { name: 'Bomba de Calor AWBS 8-290P',   price: 2190, minPersons: 2, maxPersons: 4, type: 'heatpump' }
+    ];
+
+    var SOLAR_COVERAGE = 0.75;
+
+    var FUEL_CONFIG = {
+      electric: { efficiency: 0.92, unitLabel: 'kWh',  pricePerKwh: null,  unitName: 'elétricidade' },
+      gas:      { efficiency: 0.85, unitLabel: 'kWh',  pricePerKwh: 0.09,  unitName: 'gás natural'  },
+      propane:  { efficiency: 0.85, unitLabel: 'kWh',  pricePerKwh: 0.14,  unitName: 'propano'      }
+    };
+
+    // ── Helpers ─────────────────────────────────────────────────────────────
+    function fmt(n) {
+      return Math.round(n).toLocaleString('pt-PT');
+    }
+
+    function fmtDec(n, dec) {
+      return n.toLocaleString('pt-PT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    }
+
+    function suggestSystem(persons) {
+      // Prefere painéis solares (FCC); cai para bomba de calor se fora de gama
+      var candidates = SYSTEMS.filter(function(s) {
+        return s.type === 'solar' && persons >= s.minPersons && persons <= s.maxPersons;
+      });
+      if (!candidates.length) {
+        // Mais de 6 pessoas → kit 300L (o maior disponível)
+        candidates = SYSTEMS.filter(function(s) { return s.type === 'solar'; });
+        return candidates[candidates.length - 1];
+      }
+      // Prefere o menor adequado
+      return candidates[0];
+    }
+
+    // ── Cálculo principal ───────────────────────────────────────────────────
+    function calculate() {
+      var persons = parseInt(document.getElementById('personsSlider').value);
+      var fuel    = document.querySelector('input[name="fuel"]:checked').value;
+      var tariff  = parseFloat(document.getElementById('tariffInput').value) || 0.22;
+
+      var cfg = FUEL_CONFIG[fuel];
+      var priceKwh = (fuel === 'electric') ? tariff : cfg.pricePerKwh;
+
+      // Necessidade energética bruta (antes de eficiência)
+      var dailyNeeds    = persons * 1.8;          // kWh/dia de calor útil necessário
+      var annualNeeds   = dailyNeeds * 365;        // kWh/ano de calor útil
+      var annualGross   = annualNeeds / cfg.efficiency; // energia primária consumida
+      var costCurrent   = annualGross * priceKwh;
+
+      // Com solar: 75% coberto, paga só 25%
+      var costSolar     = costCurrent * (1 - SOLAR_COVERAGE);
+      var savingsYear   = costCurrent - costSolar;
+      var savingsMonth  = savingsYear / 12;
+
+      // Sistema sugerido
+      var system = suggestSystem(persons);
+      var irs    = Math.min(system.price * 0.30, 700);
+      var netCost = system.price - irs;
+      var payback = netCost / savingsYear;
+      var savings25 = savingsYear * 25;
+
+      // Unidade de sub-texto
+      var subLabel = fuel === 'electric'
+        ? fmt(annualGross) + ' kWh/ano consumidos'
+        : fmtDec(annualGross, 0) + ' kWh/ano de ' + cfg.unitName;
+
+      // Atualizar DOM
+      document.getElementById('costCurrent').textContent   = fmt(costCurrent) + ' €/ano';
+      document.getElementById('costCurrentSub').textContent = subLabel;
+      document.getElementById('costSolar').textContent     = fmt(costSolar) + ' €/ano';
+      document.getElementById('savingsYear').textContent   = fmt(savingsYear) + ' €/ano';
+      document.getElementById('savingsMonth').textContent  = '≈ ' + fmt(savingsMonth) + ' € por mês';
+      document.getElementById('irsDeduction').textContent  = fmt(irs) + ' €';
+
+      document.getElementById('systemBadge').innerHTML =
+        '<strong>Sistema recomendado</strong>' +
+        system.name + ' — ' + fmt(system.price) + ' €' +
+        (persons > 6 ? ' <span style="font-size:.75rem;opacity:.65">(dimensionamento para 6+)</span>' : '');
+
+      document.getElementById('paybackBadge').innerHTML =
+        'Custo líquido após IRS: <strong>' + fmt(netCost) + ' €</strong>. ' +
+        'Payback estimado: <strong>' + fmtDec(payback, 1) + ' anos</strong>.<br>' +
+        'Em 25 anos (vida útil), poupança acumulada: <strong>' + fmt(savings25) + ' €</strong>.';
+    }
+
+    // ── Mostrar/esconder campo de tarifa ────────────────────────────────────
+    function toggleTariff() {
+      var fuel = document.querySelector('input[name="fuel"]:checked').value;
+      var field = document.getElementById('tariffField');
+      if (fuel === 'electric') {
+        field.classList.remove('hidden');
+      } else {
+        field.classList.add('hidden');
+      }
+    }
+
+    // ── Eventos ─────────────────────────────────────────────────────────────
+    document.getElementById('personsSlider').addEventListener('input', function() {
+      var v = parseInt(this.value);
+      document.getElementById('personsLabel').textContent = v + (v === 1 ? ' pessoa' : ' pessoas');
+      calculate();
+    });
+
+    document.getElementById('fuelOptions').addEventListener('click', function(e) {
+      var opt = e.target.closest('.fuel-option');
+      if (!opt) return;
+      document.querySelectorAll('.fuel-option').forEach(function(o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      opt.querySelector('input').checked = true;
+      toggleTariff();
+      calculate();
+    });
+
+    document.getElementById('tariffInput').addEventListener('input', calculate);
+
+    // ── Selecionar opção inicial (elétrico) ─────────────────────────────────
+    document.querySelector('.fuel-option').classList.add('selected');
+
+    // ── Arranque ────────────────────────────────────────────────────────────
+    calculate();
+  </script>
+  <script src="js/i18n.js"></script>
+</body>
+</html>
