@@ -967,6 +967,54 @@ const SOLAR_PRODUCTS = [
     features: ['Coletor plano FCC 220-2V de alta eficiência', 'Depósito 300 L', 'Kit completo de instalação', 'Proteção antibacteriana (55°C)'],
     specs: [{ label: 'Volume', val: '300 L' }, { label: 'Coletores', val: '3 painéis planos' }, { label: 'Área captação', val: '5,76 m²' }, { label: 'Pressão máx.', val: '6 bar' }],
   },
+
+  /* ---- BOSCH Compress 5000 DW — Bomba de Calor AQS (chão, sem serpentina) ---- */
+  {
+    id: 'bosch-compress5001-200',
+    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5001DW 200',
+    capacity: 200, energyClass: 'A+', pvp: 3260,
+    image: 'assets/products/bosch-compress5000.webp',
+    images: ['assets/products/bosch-compress5000.webp'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor AQS · Chão',
+    features: ['Bomba de calor aerotérmica', 'Instalação de chão', 'COP 3,5 (A+++ a 20°C)', 'R513A — baixo impacto ambiental', 'Inclui válvula de segurança e retenção'],
+    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,5' }, { label: 'Serpentina solar', val: 'Não' }, { label: 'Dimensões (Ax⌀)', val: '1720 × 630 mm' }],
+  },
+  {
+    id: 'bosch-compress5001-260',
+    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5001DW 260',
+    capacity: 260, energyClass: 'A+', pvp: 3629,
+    image: 'assets/products/bosch-compress5000.webp',
+    images: ['assets/products/bosch-compress5000.webp'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor AQS · Chão',
+    features: ['Bomba de calor aerotérmica', 'Instalação de chão', 'COP 3,6 (A+++ a 20°C)', 'R513A — baixo impacto ambiental', 'Inclui válvula de segurança e retenção'],
+    specs: [{ label: 'Volume', val: '260 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,6' }, { label: 'Serpentina solar', val: 'Não' }, { label: 'Dimensões (Ax⌀)', val: '2010 × 630 mm' }],
+  },
+
+  /* ---- BOSCH Compress 5000 DW Solar — Bomba de Calor AQS (chão, com serpentina solar) ---- */
+  {
+    id: 'bosch-compress5001-200c',
+    brand: 'bosch', series: 'Compress 5000 DW Solar', model: 'CS5001DW 200C',
+    capacity: 200, energyClass: 'A+', pvp: 3506,
+    image: 'assets/products/bosch-compress5000.webp',
+    images: ['assets/products/bosch-compress5000.webp'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor AQS · Com serpentina solar',
+    features: ['Bomba de calor aerotérmica', 'Serpentina solar integrada', 'COP 3,5 (A+++ a 20°C)', 'Compatível com painel solar térmico', 'Inclui válvula de segurança e retenção'],
+    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,5' }, { label: 'Serpentina solar', val: 'Sim' }, { label: 'Dimensões (Ax⌀)', val: '1720 × 630 mm' }],
+  },
+  {
+    id: 'bosch-compress5001-260c',
+    brand: 'bosch', series: 'Compress 5000 DW Solar', model: 'CS5001DW 260C',
+    capacity: 260, energyClass: 'A+', pvp: 3876,
+    image: 'assets/products/bosch-compress5000.webp',
+    images: ['assets/products/bosch-compress5000.webp'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor AQS · Com serpentina solar',
+    features: ['Bomba de calor aerotérmica', 'Serpentina solar integrada', 'COP 3,6 (A+++ a 20°C)', 'Compatível com painel solar térmico', 'Inclui válvula de segurança e retenção'],
+    specs: [{ label: 'Volume', val: '260 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,6' }, { label: 'Serpentina solar', val: 'Sim' }, { label: 'Dimensões (Ax⌀)', val: '2010 × 630 mm' }],
+  },
 ];
 
 /* =============================================
@@ -1039,7 +1087,7 @@ function solarModalHTML(p) {
 
   const waMsg = encodeURIComponent(
     `Olá ARTICOCLIMA! 👋\n` +
-    `Tenho interesse no sistema solar ${BRAND_LABEL[p.brand]} ${p.series} — ${p.model} (${p.capacity}L).\n` +
+    `Tenho interesse no ${BRAND_LABEL[p.brand]} ${p.series} — ${p.model} (${p.capacity}L).\n` +
     `Podiam dar-me mais informações e disponibilidade?`
   );
 
