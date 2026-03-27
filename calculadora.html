@@ -297,9 +297,18 @@
         </div>
 
         <div class="calc-field">
-          <label>Potência <span id="kwLabel" class="calc-slider-val">3,5 kW</span></label>
-          <input type="range" class="calc-slider" id="kwSlider" min="1.5" max="9.0" step="0.5" value="3.5">
-          <div class="calc-slider-labels"><span>1,5 kW</span><span>9,0 kW</span></div>
+          <label>Potência do equipamento</label>
+          <div class="calc-tariff-wrap">
+            <select id="btuSelect" style="border:none; outline:none; font-size:.95rem; font-family:'Inter',sans-serif; color:var(--dark); background:transparent; width:100%; cursor:pointer;">
+              <option value="7000">7.000 BTU — quarto pequeno</option>
+              <option value="9000">9.000 BTU — quarto médio</option>
+              <option value="12000" selected>12.000 BTU — sala / quarto grande</option>
+              <option value="15000">15.000 BTU — sala média</option>
+              <option value="18000">18.000 BTU — sala grande</option>
+              <option value="24000">24.000 BTU — espaço amplo</option>
+              <option value="28000">28.000 BTU — área comercial</option>
+            </select>
+          </div>
         </div>
 
         <div class="calc-field">
@@ -360,7 +369,8 @@
 
     function calculate() {
       var age    = document.querySelector('input[name="age"]:checked').value;
-      var kw     = parseFloat(document.getElementById('kwSlider').value);
+      var btu    = parseInt(document.getElementById('btuSelect').value);
+      var kw     = btu / 3412;
       var hours  = parseInt(document.getElementById('hoursSlider').value);
       var months = parseInt(document.getElementById('monthsSlider').value);
       var tariff = parseFloat(document.getElementById('tariffInput').value) || 0.22;
@@ -396,10 +406,7 @@
       calculate();
     });
 
-    document.getElementById('kwSlider').addEventListener('input', function() {
-      document.getElementById('kwLabel').textContent = parseFloat(this.value).toFixed(1).replace('.', ',') + ' kW';
-      calculate();
-    });
+    document.getElementById('btuSelect').addEventListener('change', calculate);
     document.getElementById('hoursSlider').addEventListener('input', function() {
       document.getElementById('hoursLabel').textContent = this.value + ' h';
       calculate();
