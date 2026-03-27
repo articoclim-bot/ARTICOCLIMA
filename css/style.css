@@ -478,6 +478,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: gap var(--transition);
 }
 .service-card__link:hover { text-decoration: underline; }
+.service-card__link--secondary {
+  color: var(--gray);
+  font-weight: 500;
+  margin-top: 6px;
+  display: block;
+}
 
 /* =============================================
    BRANDS / MARCAS
@@ -2623,6 +2629,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   max-width: 140px;
   object-fit: contain;
   object-position: left;
+}
+.guide-card__logo--daikin {
+  max-height: 44px;
+  max-width: 210px;
+}
+.guide-card__logo--bosch {
+  max-height: 44px;
+  max-width: 205px;
 }
 .guide-card__logo--square {
   max-height: 60px;

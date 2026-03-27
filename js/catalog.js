@@ -938,8 +938,8 @@ const SOLAR_PRODUCTS = [
     id: 'bosch-solar-fcc-forcado-300',
     brand: 'bosch', series: 'Solar FCC 220 Forçado', model: 'FCC 220 Kit Forçado 300L',
     capacity: 300, energyClass: 'A++', pvp: 5298,
-    image: 'assets/products/bosch-solar-fcc-300.webp',
-    images: ['assets/products/bosch-solar-fcc-300.webp'],
+    image: 'assets/products/bosch-solar-fcc-forcado.jpg',
+    images: ['assets/products/bosch-solar-fcc-forcado.jpg'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     tagline: 'Coletor plano · Circuito forçado',
     features: [
@@ -964,8 +964,8 @@ const SOLAR_PRODUCTS = [
     id: 'bosch-solar-fcc-forcado-500',
     brand: 'bosch', series: 'Solar FCC 220 Forçado', model: 'FCC 220 Kit Forçado 500L',
     capacity: 500, energyClass: 'A++', pvp: 7145,
-    image: 'assets/products/bosch-solar-fcc-300.webp',
-    images: ['assets/products/bosch-solar-fcc-300.webp'],
+    image: 'assets/products/bosch-solar-fcc-forcado.jpg',
+    images: ['assets/products/bosch-solar-fcc-forcado.jpg'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     tagline: 'Coletor plano · Circuito forçado',
     features: [
@@ -1046,29 +1046,6 @@ const SOLAR_PRODUCTS = [
     specs: [{ label: 'Volume', val: '260 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,6' }, { label: 'Serpentina solar', val: 'Não' }, { label: 'Dimensões (Ax⌀)', val: '2010 × 630 mm' }],
   },
 
-  /* ---- BOSCH Compress 5000 DW Solar — Bomba de Calor AQS (chão, com serpentina solar) ---- */
-  {
-    id: 'bosch-compress5001-200c',
-    brand: 'bosch', series: 'Compress 5000 DW Solar', model: 'CS5001DW 200C',
-    capacity: 200, energyClass: 'A+', pvp: 3506,
-    image: 'assets/products/bosch-compress5000.webp',
-    images: ['assets/products/bosch-compress5000.webp'],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Bomba de calor AQS · Com serpentina solar',
-    features: ['Bomba de calor aerotérmica', 'Serpentina solar integrada', 'COP 3,5 (A+++ a 20°C)', 'Compatível com painel solar térmico', 'Inclui válvula de segurança e retenção'],
-    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,5' }, { label: 'Serpentina solar', val: 'Sim' }, { label: 'Dimensões (Ax⌀)', val: '1720 × 630 mm' }],
-  },
-  {
-    id: 'bosch-compress5001-260c',
-    brand: 'bosch', series: 'Compress 5000 DW Solar', model: 'CS5001DW 260C',
-    capacity: 260, energyClass: 'A+', pvp: 3876,
-    image: 'assets/products/bosch-compress5000.webp',
-    images: ['assets/products/bosch-compress5000.webp'],
-    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    tagline: 'Bomba de calor AQS · Com serpentina solar',
-    features: ['Bomba de calor aerotérmica', 'Serpentina solar integrada', 'COP 3,6 (A+++ a 20°C)', 'Compatível com painel solar térmico', 'Inclui válvula de segurança e retenção'],
-    specs: [{ label: 'Volume', val: '260 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,6' }, { label: 'Serpentina solar', val: 'Sim' }, { label: 'Dimensões (Ax⌀)', val: '2010 × 630 mm' }],
-  },
 ];
 
 /* =============================================
