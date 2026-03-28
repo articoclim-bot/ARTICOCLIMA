@@ -1253,9 +1253,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer__legal {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 8px 12px;
   padding-top: 12px;
   border-top: 1px solid rgba(0,0,0,.07);
 }
