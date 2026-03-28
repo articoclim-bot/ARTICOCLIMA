@@ -2066,11 +2066,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .section { padding: 72px 0; }
 
   /* Nav Mobile */
-  .nav__logo svg { height: 48px; }
+  .nav { height: 72px; }
+  .nav__logo svg { height: 58px; }
 
   .nav__menu {
     position: fixed;
-    top: 68px;
+    top: 72px;
     left: 0;
     right: 0;
     background: rgba(255,252,249,.98);
