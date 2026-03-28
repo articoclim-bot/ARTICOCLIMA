@@ -3,265 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Calculadora de poupança solar AQS — descubra quanto pode poupar por ano ao instalar painéis solares para águas quentes sanitárias no Algarve. Grátis, sem registo." />
-  <title>Calculadora Solar AQS — ARTICOCLIMA</title>
+  <meta name="description" content="Ver Retorno Solar — descubra quanto pode poupar por ano ao instalar painéis solares AQS no Algarve." />
+  <title>Ver Retorno Solar – ARTICOCLIMA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css">
   <style>
-    .calc-page {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 120px 24px 100px;
-    }
-    .calc-page__back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: .9rem;
-      margin-bottom: 40px;
-      transition: opacity .2s;
-    }
-    .calc-page__back:hover { opacity: .75; }
-
-    .calc-hero { margin-bottom: 48px; }
-    .calc-hero__tag {
-      display: inline-block;
-      background: var(--primary-light);
-      color: var(--primary);
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 16px;
-    }
-    .calc-hero h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 800;
-      color: var(--dark);
-      letter-spacing: -.5px;
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-    .calc-hero h1 span { color: var(--primary); }
-    .calc-hero__desc {
-      color: var(--gray);
-      font-size: .97rem;
-      line-height: 1.75;
-      max-width: 580px;
-    }
-
-    .calc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .calc-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 4px 24px rgba(0,0,0,.07);
-      border: 1px solid var(--gray-light);
-    }
-    .calc-card__title {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin: 0 0 28px;
-    }
-
-    .calc-field { margin-bottom: 26px; }
-    .calc-field:last-child { margin-bottom: 0; }
-    .calc-field > label {
-      display: block;
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 10px;
-    }
-
-    .fuel-options { display: flex; flex-direction: column; gap: 8px; }
-    .fuel-option {
+    .chat-page {
+      min-height: 100vh;
+      padding: 88px 16px 56px;
+      background: var(--off-white);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border: 1.5px solid var(--gray-light);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: border-color .15s, background .15s;
-      font-size: .875rem;
-      color: var(--dark);
-      user-select: none;
     }
-    .fuel-option input { display: none; }
-    .fuel-option.selected {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 600;
+    .chat-page__back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--primary); font-weight: 600; font-size: .9rem;
+      margin-bottom: 20px; transition: opacity .2s;
+      align-self: flex-start; width: 100%; max-width: 580px;
+    }
+    .chat-page__back:hover { opacity: .75; }
+    .chat-intro {
+      text-align: center; max-width: 540px; width: 100%; margin-bottom: 16px;
+    }
+    .chat-intro__tag {
+      display: inline-block; background: rgba(249,115,22,.1); color: var(--primary);
+      font-size: .75rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 10px;
+    }
+    .chat-intro h1 {
+      font-family: 'Poppins', sans-serif; font-size: clamp(1.45rem,3.5vw,2rem);
+      font-weight: 800; color: var(--dark); line-height: 1.2; margin-bottom: 6px;
+    }
+    .chat-intro h1 span { color: var(--primary); }
+    .chat-intro p { color: var(--gray); font-size: .88rem; }
+
+    .chat-window {
+      width: 100%; max-width: 580px; background: #fff;
+      border-radius: 20px; box-shadow: 0 4px 32px rgba(0,0,0,.09);
+      border: 1px solid var(--gray-light); overflow: hidden;
+    }
+    .chat-topbar {
+      background: var(--dark); padding: 12px 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .chat-topbar__av {
+      width: 34px; height: 34px; background: var(--primary); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .chat-topbar__name { color: #fff; font-weight: 600; font-size: .88rem; }
+    .chat-topbar__status { color: rgba(255,255,255,.4); font-size: .72rem; }
+
+    .chat-body {
+      padding: 20px 14px; display: flex; flex-direction: column; gap: 10px;
+      max-height: 62vh; min-height: 180px; overflow-y: auto;
     }
 
-    .calc-slider-val {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      font-size: .78rem;
-      font-weight: 700;
-      padding: 2px 9px;
-      border-radius: 6px;
-      margin-left: 8px;
+    .msg { display: flex; gap: 8px; align-items: flex-end; animation: msgIn .25s ease; }
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    input[type="range"].calc-slider {
-      width: 100%;
-      accent-color: var(--primary);
-      margin-top: 8px;
-      cursor: pointer;
+    .msg--bot  { flex-direction: row; }
+    .msg--user { flex-direction: row-reverse; }
+
+    .msg__av {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0; background: var(--primary);
     }
-    .calc-slider-labels {
-      display: flex;
-      justify-content: space-between;
-      font-size: .75rem;
-      color: var(--gray);
-      margin-top: 4px;
+    .msg--user .msg__av { background: #3a3a3c; }
+
+    .msg__bbl { padding: 10px 13px; font-size: .875rem; line-height: 1.5; }
+    .msg--bot  .msg__bbl {
+      flex: 1; background: #f2f2f2; color: var(--dark);
+      border-radius: 4px 14px 14px 14px;
+    }
+    .msg--user .msg__bbl {
+      max-width: 70%; background: var(--primary); color: #fff;
+      border-radius: 14px 4px 14px 14px;
     }
 
-    .calc-tariff-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border: 1.5px solid var(--gray-light);
-      border-radius: 10px;
-      padding: 10px 14px;
+    .msg__opts { margin-top: 8px; display: flex; flex-direction: column; gap: 5px; }
+    .msg__opt {
+      background: #fff; border: 1.5px solid #dedede; border-radius: 9px;
+      padding: 7px 11px; font-size: .82rem; color: var(--dark); cursor: pointer;
+      text-align: left; font-family: 'Inter', sans-serif; font-weight: 500;
+      line-height: 1.3; transition: border-color .15s, background .15s;
     }
-    .calc-tariff-wrap input {
-      border: none;
-      outline: none;
-      font-size: .95rem;
-      font-family: 'Inter', sans-serif;
-      color: var(--dark);
-      width: 70px;
-      background: transparent;
-    }
-    .calc-tariff-wrap span { color: var(--gray); font-size: .875rem; }
+    .msg__opt:hover { border-color: var(--primary); background: #fff8f3; }
 
-    .tariff-field {
-      overflow: hidden;
-      transition: max-height .25s ease, opacity .25s ease, margin-bottom .25s ease;
-      max-height: 100px;
-      opacity: 1;
-    }
-    .tariff-field.hidden {
-      max-height: 0;
-      opacity: 0;
-      margin-bottom: 0 !important;
-    }
+    .msg--done .msg__opts        { pointer-events: none; opacity: .35; }
+    .msg--done .msg__slider-wrap { pointer-events: none; opacity: .35; }
+    .msg--done .msg__num-wrap    { pointer-events: none; opacity: .35; }
+    .msg--done .msg__confirm     { display: none; }
 
-    /* Results panel */
-    .calc-results {
-      background: var(--dark);
-      border-radius: 20px;
-      padding: 32px;
-      color: #fff;
-      position: sticky;
-      top: 100px;
+    .msg__slider-wrap { margin-top: 8px; }
+    .msg__disp {
+      font-family: 'Poppins', sans-serif; font-size: 1.5rem;
+      font-weight: 800; color: var(--primary); display: block; margin-bottom: 4px;
     }
-    .calc-results__title {
-      font-size: .75rem;
-      font-weight: 700;
-      color: rgba(255,255,255,.45);
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      margin: 0 0 24px;
-    }
+    input[type="range"].msg__range { width: 100%; accent-color: var(--primary); cursor: pointer; }
+    .msg__range-lbl { display: flex; justify-content: space-between; font-size: .7rem; color: var(--gray); margin-top: 2px; }
 
-    .result-row {
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    .msg__num-wrap {
+      margin-top: 8px; display: flex; align-items: center; gap: 8px;
+      background: #fff; border: 1.5px solid #dedede; border-radius: 9px; padding: 8px 12px;
     }
-    .result-row:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .result-row__label {
-      font-size: .78rem;
-      color: rgba(255,255,255,.45);
-      margin-bottom: 4px;
+    .msg__num-wrap input {
+      border: none; outline: none; font-size: 1rem;
+      font-family: 'Inter', sans-serif; color: var(--dark); background: transparent; width: 80px;
     }
-    .result-row__value {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1.55rem;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.1;
+    .msg__num-wrap span { color: var(--gray); font-size: .85rem; }
+
+    .msg__confirm {
+      margin-top: 8px; background: var(--primary); color: #fff;
+      border: none; border-radius: 9px; padding: 8px 18px;
+      font-size: .82rem; font-weight: 600; cursor: pointer;
+      font-family: 'Inter', sans-serif; display: inline-block;
     }
-    .result-row__value.accent { color: var(--primary); }
-    .result-row__sub {
-      font-size: .78rem;
-      color: rgba(255,255,255,.35);
-      margin-top: 3px;
+    .msg__confirm:hover { opacity: .9; }
+
+    .typing-msg { display: flex; gap: 8px; align-items: flex-end; animation: msgIn .25s ease; }
+    .typing-bbl {
+      background: #f2f2f2; border-radius: 4px 14px 14px 14px;
+      padding: 12px 14px; display: flex; gap: 4px; align-items: center;
+    }
+    .t-dot { width: 6px; height: 6px; border-radius: 50%; background: #b0b0b0; animation: tdot .8s infinite; }
+    .t-dot:nth-child(2) { animation-delay: .16s; }
+    .t-dot:nth-child(3) { animation-delay: .32s; }
+    @keyframes tdot {
+      0%,100% { opacity: .3; transform: translateY(0); }
+      50%      { opacity: 1; transform: translateY(-3px); }
     }
 
-    .system-badge {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-      font-size: .82rem;
-      color: rgba(255,255,255,.7);
-      line-height: 1.5;
+    .r-card { background: var(--dark); border-radius: 12px; padding: 16px; margin-top: 8px; color: #fff; }
+    .r-row  { margin-bottom: 10px; }
+    .r-lbl  { font-size: .7rem; color: rgba(255,255,255,.4); margin-bottom: 1px; }
+    .r-val  { font-family: 'Poppins', sans-serif; font-size: 1.2rem; font-weight: 800; line-height: 1.1; }
+    .r-val--accent { color: var(--primary); }
+    .r-sub  { font-size: .7rem; color: rgba(255,255,255,.3); margin-top: 2px; }
+    .r-div  { border: none; border-top: 1px solid rgba(255,255,255,.08); margin: 10px 0; }
+    .r-sys  {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 9px; padding: 8px 10px; font-size: .78rem;
+      color: rgba(255,255,255,.7); line-height: 1.5; margin-bottom: 10px;
     }
-    .system-badge strong {
-      display: block;
-      color: #fff;
-      font-size: .9rem;
-      margin-bottom: 2px;
+    .r-sys strong { display: block; color: #fff; font-size: .85rem; margin-bottom: 2px; }
+    .r-badge {
+      background: rgba(249,115,22,.12); border: 1px solid rgba(249,115,22,.25);
+      border-radius: 9px; padding: 8px 10px; font-size: .76rem;
+      color: #ffd0a8; line-height: 1.5; margin-bottom: 10px;
     }
+    .r-badge strong { color: #fb923c; }
+    .r-card .btn { display: block; width: 100%; text-align: center; justify-content: center; }
 
-    .payback-badge {
-      background: rgba(249,115,22,.12);
-      border: 1px solid rgba(249,115,22,.25);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin: 20px 0 24px;
-      font-size: .85rem;
-      color: #ffd0a8;
-      line-height: 1.55;
+    .chat-restart {
+      text-align: center; padding: 10px; border-top: 1px solid var(--gray-light);
     }
-    .payback-badge strong { color: #fb923c; }
-
-    .calc-results .btn {
-      width: 100%;
-      text-align: center;
-      justify-content: center;
-      display: block;
+    .chat-restart button {
+      background: none; border: none; color: var(--gray); font-size: .8rem;
+      cursor: pointer; font-family: 'Inter', sans-serif;
     }
+    .chat-restart button:hover { color: var(--primary); text-decoration: underline; }
 
-    .calc-disclaimer {
-      margin-top: 32px;
-      font-size: .8rem;
-      color: var(--gray);
-      line-height: 1.65;
-      text-align: center;
-    }
-
-    @media (max-width: 660px) {
-      .calc-grid { grid-template-columns: 1fr; }
-      .calc-results { position: static; }
+    .calc-disc {
+      max-width: 580px; margin-top: 20px; font-size: .76rem;
+      color: var(--gray); line-height: 1.65; text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== HEADER ===== -->
   <header class="header" id="header">
     <nav class="nav container">
       <a href="index.html" class="nav__logo">
@@ -291,222 +207,267 @@
     </nav>
   </header>
 
-  <!-- ===== CONTEÚDO ===== -->
-  <main class="calc-page">
-    <a href="index.html" class="calc-page__back">← Voltar ao início</a>
+  <main class="chat-page">
+    <a href="index.html" class="chat-page__back">← Voltar ao início</a>
 
-    <div class="calc-hero">
-      <span class="calc-hero__tag">Energia Solar · AQS</span>
-      <h1>Quanto pode <span>poupar</span><br>com painéis solares?</h1>
-      <p class="calc-hero__desc">Descubra o retorno do seu investimento em energia solar para águas quentes sanitárias no Algarve.</p>
+    <div class="chat-intro">
+      <span class="chat-intro__tag">☀️ Energia Solar · AQS</span>
+      <h1>Qual o <span>retorno</span> dos painéis solares?</h1>
+      <p>Responda a 2 ou 3 perguntas rápidas e veja a estimativa personalizada.</p>
     </div>
 
-    <div class="calc-grid">
-
-      <!-- INPUTS -->
-      <div class="calc-card">
-        <p class="calc-card__title">O seu consumo atual</p>
-
-        <div class="calc-field">
-          <label>Pessoas no agregado familiar <span id="personsLabel" class="calc-slider-val">3 pessoas</span></label>
-          <input type="range" class="calc-slider" id="personsSlider" min="1" max="8" step="1" value="3">
-          <div class="calc-slider-labels"><span>1</span><span>8</span></div>
+    <div class="chat-window">
+      <div class="chat-topbar">
+        <div class="chat-topbar__av">☀️</div>
+        <div>
+          <div class="chat-topbar__name">Assistente Artico</div>
+          <div class="chat-topbar__status">Online agora</div>
         </div>
-
-        <div class="calc-field">
-          <label>Sistema de aquecimento atual</label>
-          <div class="fuel-options" id="fuelOptions">
-            <label class="fuel-option">
-              <input type="radio" name="fuel" value="electric" checked>
-              ⚡ Termoacumulador elétrico
-            </label>
-            <label class="fuel-option">
-              <input type="radio" name="fuel" value="gas">
-              🔥 Esquentador gás natural
-            </label>
-            <label class="fuel-option">
-              <input type="radio" name="fuel" value="propane">
-              🫙 Propano ou Butano
-            </label>
-          </div>
-        </div>
-
-        <div class="calc-field tariff-field" id="tariffField">
-          <label>Tarifa de eletricidade</label>
-          <div class="calc-tariff-wrap">
-            <input type="number" id="tariffInput" value="0.22" min="0.10" max="0.50" step="0.01">
-            <span>€ / kWh</span>
-          </div>
-        </div>
-
       </div>
-
-      <!-- RESULTADOS -->
-      <div class="calc-results">
-        <p class="calc-results__title">Estimativa de poupança</p>
-
-        <div class="result-row">
-          <div class="result-row__label">Custo anual atual estimado</div>
-          <div class="result-row__value" id="costCurrent">–</div>
-          <div class="result-row__sub" id="costCurrentSub"></div>
-        </div>
-
-        <div class="result-row">
-          <div class="result-row__label">Custo anual com solar (25% restante)</div>
-          <div class="result-row__value" id="costSolar">–</div>
-          <div class="result-row__sub">Solar cobre 75% das necessidades no Algarve</div>
-        </div>
-
-        <div class="result-row">
-          <div class="result-row__label">Poupança anual estimada</div>
-          <div class="result-row__value accent" id="savingsYear">–</div>
-          <div class="result-row__sub" id="savingsMonth"></div>
-        </div>
-
-        <div class="result-row">
-          <div class="result-row__label">Dedução IRS estimada</div>
-          <div class="result-row__value" id="irsDeduction">–</div>
-          <div class="result-row__sub">30% do sistema recomendado, máx. 700 €</div>
-        </div>
-
-        <div class="system-badge" id="systemBadge"></div>
-
-        <div class="payback-badge" id="paybackBadge"></div>
-
-        <a href="catalogo-solar.html" class="btn btn--primary">Ver sistemas solares →</a>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-restart" id="chatRestart" style="display:none">
+        <button onclick="restartChat()">↩ Recomeçar do início</button>
       </div>
     </div>
 
-    <p class="calc-disclaimer">* Valores estimados com base em 1,8 kWh/dia por pessoa e uma cobertura solar de 75% no Algarve (LNEG). Eficiências consideradas: termoacumulador elétrico 92%, esquentador gás natural 85% (0,09 €/kWh), propano/butano 85% (0,14 €/kWh). A dedução IRS de 30% aplica-se ao Benefício Fiscal para Eficiência Energética (art.º 78.º-E CIRS), sujeito a confirmação com contabilista. O payback real pode variar com condições de uso, evolução das tarifas e outros fatores. Para uma análise personalizada, <a href="index.html#contacto" style="color:var(--primary)">contacte-nos</a>.</p>
+    <p class="calc-disc">* Valores estimados com base em 1,8 kWh/dia por pessoa e cobertura solar de 75% no Algarve (LNEG). Eficiências: termoacumulador 92%, gás natural 85% (0,09 €/kWh), propano 85% (0,14 €/kWh). Dedução IRS de 30% sujeita a confirmação contabilística. Para uma análise personalizada, <a href="index.html#contacto" style="color:var(--primary)">contacte-nos</a>.</p>
   </main>
 
   <script>
-    // ── Dados dos sistemas ──────────────────────────────────────────────────
+    var SOLAR_COVERAGE = 0.75;
+    var FUEL_CONFIG = {
+      electric: { efficiency: 0.92, pricePerKwh: null },
+      gas:      { efficiency: 0.85, pricePerKwh: 0.09 },
+      propane:  { efficiency: 0.85, pricePerKwh: 0.14 }
+    };
     var SYSTEMS = [
-      { name: 'Bosch FCC 220 Kit 150L',       price: 1859, minPersons: 1, maxPersons: 3, type: 'solar' },
-      { name: 'Bosch FCC 220 Kit 200L',       price: 2019, minPersons: 2, maxPersons: 4, type: 'solar' },
-      { name: 'Bosch FCC 220 Kit 300L',       price: 2649, minPersons: 3, maxPersons: 6, type: 'solar' },
-      { name: 'Bomba de Calor AWBS 8-190P',   price: 1690, minPersons: 1, maxPersons: 3, type: 'heatpump' },
-      { name: 'Bomba de Calor AWBS 8-290P',   price: 2190, minPersons: 2, maxPersons: 4, type: 'heatpump' }
+      { name: 'Bosch FCC 220 Kit 150L', price: 1859, min: 1, max: 3 },
+      { name: 'Bosch FCC 220 Kit 200L', price: 2019, min: 2, max: 4 },
+      { name: 'Bosch FCC 220 Kit 300L', price: 2649, min: 3, max: 99 }
     ];
 
-    var SOLAR_COVERAGE = 0.75;
+    var answers = {};
 
-    var FUEL_CONFIG = {
-      electric: { efficiency: 0.92, unitLabel: 'kWh',  pricePerKwh: null,  unitName: 'elétricidade' },
-      gas:      { efficiency: 0.85, unitLabel: 'kWh',  pricePerKwh: 0.09,  unitName: 'gás natural'  },
-      propane:  { efficiency: 0.85, unitLabel: 'kWh',  pricePerKwh: 0.14,  unitName: 'propano'      }
-    };
-
-    // ── Helpers ─────────────────────────────────────────────────────────────
-    function fmt(n) {
-      return Math.round(n).toLocaleString('pt-PT');
-    }
-
-    function fmtDec(n, dec) {
-      return n.toLocaleString('pt-PT', { minimumFractionDigits: dec, maximumFractionDigits: dec });
-    }
-
-    function suggestSystem(persons) {
-      // Prefere painéis solares (FCC); cai para bomba de calor se fora de gama
-      var candidates = SYSTEMS.filter(function(s) {
-        return s.type === 'solar' && persons >= s.minPersons && persons <= s.maxPersons;
-      });
-      if (!candidates.length) {
-        // Mais de 6 pessoas → kit 300L (o maior disponível)
-        candidates = SYSTEMS.filter(function(s) { return s.type === 'solar'; });
-        return candidates[candidates.length - 1];
+    var STEPS = [
+      {
+        q: 'Olá! ☀️ Vou ajudá-lo a calcular o retorno dos painéis solares AQS. Quantas pessoas vivem em casa?',
+        type: 'slider',
+        key: 'persons',
+        min: 1, max: 8, def: 3, step: 1,
+        fmt: function(v) { return v + (v == 1 ? ' pessoa' : ' pessoas'); }
+      },
+      {
+        q: 'Como aquece a água atualmente?',
+        type: 'options',
+        key: 'fuel',
+        opts: [
+          { label: '⚡ Termoacumulador elétrico', value: 'electric' },
+          { label: '🔥 Esquentador gás natural',  value: 'gas' },
+          { label: '🫙 Propano ou Butano',         value: 'propane' }
+        ],
+        display: function(v) {
+          return { electric: '⚡ Termoacumulador elétrico', gas: '🔥 Gás natural', propane: '🫙 Propano / Butano' }[v];
+        }
+      },
+      {
+        q: 'Qual é a sua tarifa de eletricidade? O valor típico é 0,22 €/kWh.',
+        type: 'number',
+        key: 'tariff',
+        def: '0.22', min: '0.10', max: '0.50', step: '0.01',
+        suffix: '€/kWh',
+        onlyIf: function() { return answers.fuel === 'electric'; },
+        display: function(v) {
+          return parseFloat(v).toLocaleString('pt-PT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €/kWh';
+        }
       }
-      // Prefere o menor adequado
-      return candidates[0];
+    ];
+
+    function fmt(n)    { return Math.round(n).toLocaleString('pt-PT'); }
+    function fmtD(n,d) { return n.toLocaleString('pt-PT', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+
+    function scrollDown() {
+      var el = document.getElementById('chatBody');
+      el.scrollTop = el.scrollHeight;
     }
 
-    // ── Cálculo principal ───────────────────────────────────────────────────
-    function calculate() {
-      var persons = parseInt(document.getElementById('personsSlider').value);
-      var fuel    = document.querySelector('input[name="fuel"]:checked').value;
-      var tariff  = parseFloat(document.getElementById('tariffInput').value) || 0.22;
+    function addMsg(html, isUser) {
+      var body = document.getElementById('chatBody');
+      var msg  = document.createElement('div');
+      msg.className = 'msg msg--' + (isUser ? 'user' : 'bot');
 
-      var cfg = FUEL_CONFIG[fuel];
-      var priceKwh = (fuel === 'electric') ? tariff : cfg.pricePerKwh;
+      var av = document.createElement('div');
+      av.className = 'msg__av';
+      av.textContent = isUser ? '👤' : '☀️';
 
-      // Necessidade energética bruta (antes de eficiência)
-      var dailyNeeds    = persons * 1.8;          // kWh/dia de calor útil necessário
-      var annualNeeds   = dailyNeeds * 365;        // kWh/ano de calor útil
-      var annualGross   = annualNeeds / cfg.efficiency; // energia primária consumida
-      var costCurrent   = annualGross * priceKwh;
+      var bbl = document.createElement('div');
+      bbl.className = 'msg__bbl';
+      bbl.innerHTML = html;
 
-      // Com solar: 75% coberto, paga só 25%
-      var costSolar     = costCurrent * (1 - SOLAR_COVERAGE);
-      var savingsYear   = costCurrent - costSolar;
-      var savingsMonth  = savingsYear / 12;
+      msg.appendChild(av);
+      msg.appendChild(bbl);
+      body.appendChild(msg);
+      setTimeout(scrollDown, 40);
+      return msg;
+    }
 
-      // Sistema sugerido
-      var system = suggestSystem(persons);
-      var irs    = Math.min(system.price * 0.30, 700);
+    function showTyping(cb) {
+      var body = document.getElementById('chatBody');
+      var t = document.createElement('div');
+      t.className = 'typing-msg';
+      t.innerHTML =
+        '<div class="msg__av" style="background:var(--primary)">☀️</div>' +
+        '<div class="typing-bbl">' +
+        '<span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>' +
+        '</div>';
+      body.appendChild(t);
+      setTimeout(scrollDown, 40);
+      setTimeout(function() { if (t.parentNode) t.parentNode.removeChild(t); cb(); }, 700);
+    }
+
+    function disableLast() {
+      var msgs = document.querySelectorAll('#chatBody .msg--bot');
+      if (msgs.length) msgs[msgs.length - 1].classList.add('msg--done');
+    }
+
+    function proceedFrom(i) {
+      var target = i + 1;
+      while (target < STEPS.length && STEPS[target].onlyIf && !STEPS[target].onlyIf()) {
+        target++;
+      }
+      if (target < STEPS.length) {
+        showTyping(function() { showStep(target); });
+      } else {
+        showTyping(showResults);
+      }
+    }
+
+    function showStep(i) {
+      var s = STEPS[i];
+      var html = s.q;
+
+      if (s.type === 'options') {
+        html += '<div class="msg__opts">';
+        s.opts.forEach(function(o) {
+          html += '<button class="msg__opt" data-v="' + o.value + '">' + o.label + '</button>';
+        });
+        html += '</div>';
+      } else if (s.type === 'slider') {
+        html +=
+          '<div class="msg__slider-wrap">' +
+          '<span class="msg__disp" id="disp' + i + '">' + s.fmt(s.def) + '</span>' +
+          '<input type="range" class="msg__range" id="rng' + i + '" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '" value="' + s.def + '">' +
+          '<div class="msg__range-lbl"><span>' + s.min + '</span><span>' + s.max + '</span></div>' +
+          '</div>' +
+          '<button class="msg__confirm" id="cnf' + i + '">Confirmar →</button>';
+      } else if (s.type === 'number') {
+        html +=
+          '<div class="msg__num-wrap">' +
+          '<input type="number" id="num' + i + '" value="' + s.def + '" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '">' +
+          '<span>' + s.suffix + '</span>' +
+          '</div>' +
+          '<button class="msg__confirm" id="cnf' + i + '">Confirmar →</button>';
+      }
+
+      var msg = addMsg(html, false);
+
+      if (s.type === 'options') {
+        msg.querySelector('.msg__opts').addEventListener('click', function(e) {
+          var btn = e.target.closest('.msg__opt');
+          if (!btn) return;
+          var v = btn.dataset.v;
+          answers[s.key] = v;
+          disableLast();
+          addMsg(s.display(v), true);
+          proceedFrom(i);
+        });
+      } else if (s.type === 'slider') {
+        var rng  = document.getElementById('rng' + i);
+        var disp = document.getElementById('disp' + i);
+        rng.addEventListener('input', function() {
+          disp.textContent = s.fmt(parseInt(this.value));
+          scrollDown();
+        });
+        document.getElementById('cnf' + i).addEventListener('click', function() {
+          var v = parseInt(rng.value);
+          answers[s.key] = v;
+          disableLast();
+          addMsg(s.fmt(v), true);
+          proceedFrom(i);
+        });
+      } else if (s.type === 'number') {
+        var numEl = document.getElementById('num' + i);
+        numEl.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') document.getElementById('cnf' + i).click();
+        });
+        document.getElementById('cnf' + i).addEventListener('click', function() {
+          var v = parseFloat(numEl.value) || 0.22;
+          answers[s.key] = v;
+          disableLast();
+          addMsg(s.display(v), true);
+          proceedFrom(i);
+        });
+      }
+    }
+
+    function showResults() {
+      var persons = answers.persons;
+      var fuel    = answers.fuel;
+      var cfg     = FUEL_CONFIG[fuel];
+      var tariff  = (fuel === 'electric') ? (answers.tariff || 0.22) : cfg.pricePerKwh;
+
+      var annualNeeds  = persons * 1.8 * 365;
+      var annualGross  = annualNeeds / cfg.efficiency;
+      var costCurrent  = annualGross * tariff;
+      var costSolar    = costCurrent * (1 - SOLAR_COVERAGE);
+      var savingsYear  = costCurrent - costSolar;
+
+      var system  = SYSTEMS.filter(function(s) { return persons <= s.max; })[0] || SYSTEMS[SYSTEMS.length - 1];
+      var irs     = Math.min(system.price * 0.30, 700);
       var netCost = system.price - irs;
       var payback = netCost / savingsYear;
-      var savings25 = savingsYear * 25;
 
-      // Unidade de sub-texto
-      var subLabel = fuel === 'electric'
-        ? fmt(annualGross) + ' kWh/ano consumidos'
-        : fmtDec(annualGross, 0) + ' kWh/ano de ' + cfg.unitName;
+      var html =
+        'Aqui estão os seus resultados! 🎉' +
+        '<div class="r-card">' +
+          '<div class="r-row">' +
+            '<div class="r-lbl">Custo anual atual estimado</div>' +
+            '<div class="r-val">' + fmt(costCurrent) + ' €/ano</div>' +
+          '</div>' +
+          '<div class="r-row">' +
+            '<div class="r-lbl">Custo anual com solar (25% residual)</div>' +
+            '<div class="r-val">' + fmt(costSolar) + ' €/ano</div>' +
+          '</div>' +
+          '<hr class="r-div">' +
+          '<div class="r-row">' +
+            '<div class="r-lbl">Poupança anual estimada</div>' +
+            '<div class="r-val r-val--accent">' + fmt(savingsYear) + ' €/ano</div>' +
+            '<div class="r-sub">≈ ' + fmt(savingsYear / 12) + ' € por mês</div>' +
+          '</div>' +
+          '<div class="r-row">' +
+            '<div class="r-lbl">Dedução IRS estimada</div>' +
+            '<div class="r-val">' + fmt(irs) + ' €</div>' +
+            '<div class="r-sub">30% do equipamento, máx. 700 €</div>' +
+          '</div>' +
+          '<div class="r-sys">' +
+            '<strong>Sistema recomendado</strong>' +
+            system.name + ' — ' + fmt(system.price) + ' €' +
+          '</div>' +
+          '<div class="r-badge">Custo líquido após IRS: <strong>' + fmt(netCost) + ' €</strong>. Payback estimado: <strong>' + fmtD(payback, 1) + ' anos</strong>.<br>Em 25 anos (vida útil), poupança acumulada: <strong>' + fmt(savingsYear * 25) + ' €</strong>.</div>' +
+          '<a href="catalogo-solar.html" class="btn btn--primary">Ver sistemas solares →</a>' +
+        '</div>';
 
-      // Atualizar DOM
-      document.getElementById('costCurrent').textContent   = fmt(costCurrent) + ' €/ano';
-      document.getElementById('costCurrentSub').textContent = subLabel;
-      document.getElementById('costSolar').textContent     = fmt(costSolar) + ' €/ano';
-      document.getElementById('savingsYear').textContent   = fmt(savingsYear) + ' €/ano';
-      document.getElementById('savingsMonth').textContent  = '≈ ' + fmt(savingsMonth) + ' € por mês';
-      document.getElementById('irsDeduction').textContent  = fmt(irs) + ' €';
-
-      document.getElementById('systemBadge').innerHTML =
-        '<strong>Sistema recomendado</strong>' +
-        system.name + ' — ' + fmt(system.price) + ' €' +
-        (persons > 6 ? ' <span style="font-size:.75rem;opacity:.65">(dimensionamento para 6+)</span>' : '');
-
-      document.getElementById('paybackBadge').innerHTML =
-        'Custo líquido após IRS: <strong>' + fmt(netCost) + ' €</strong>. ' +
-        'Payback estimado: <strong>' + fmtDec(payback, 1) + ' anos</strong>.<br>' +
-        'Em 25 anos (vida útil), poupança acumulada: <strong>' + fmt(savings25) + ' €</strong>.';
+      addMsg(html, false);
+      document.getElementById('chatRestart').style.display = 'block';
     }
 
-    // ── Mostrar/esconder campo de tarifa ────────────────────────────────────
-    function toggleTariff() {
-      var fuel = document.querySelector('input[name="fuel"]:checked').value;
-      var field = document.getElementById('tariffField');
-      if (fuel === 'electric') {
-        field.classList.remove('hidden');
-      } else {
-        field.classList.add('hidden');
-      }
+    function restartChat() {
+      answers = {};
+      document.getElementById('chatBody').innerHTML = '';
+      document.getElementById('chatRestart').style.display = 'none';
+      showTyping(function() { showStep(0); });
     }
 
-    // ── Eventos ─────────────────────────────────────────────────────────────
-    document.getElementById('personsSlider').addEventListener('input', function() {
-      var v = parseInt(this.value);
-      document.getElementById('personsLabel').textContent = v + (v === 1 ? ' pessoa' : ' pessoas');
-      calculate();
-    });
-
-    document.getElementById('fuelOptions').addEventListener('click', function(e) {
-      var opt = e.target.closest('.fuel-option');
-      if (!opt) return;
-      document.querySelectorAll('.fuel-option').forEach(function(o) { o.classList.remove('selected'); });
-      opt.classList.add('selected');
-      opt.querySelector('input').checked = true;
-      toggleTariff();
-      calculate();
-    });
-
-    document.getElementById('tariffInput').addEventListener('input', calculate);
-
-    // ── Selecionar opção inicial (elétrico) ─────────────────────────────────
-    document.querySelector('.fuel-option').classList.add('selected');
-
-    // ── Arranque ────────────────────────────────────────────────────────────
-    calculate();
+    showTyping(function() { showStep(0); });
   </script>
   <script src="js/i18n.js"></script>
 </body>
