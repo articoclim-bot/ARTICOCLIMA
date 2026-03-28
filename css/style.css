@@ -1215,9 +1215,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    FOOTER
    ============================================= */
 .footer {
-  background: #111113;
+  background: var(--off-white);
   padding: 32px 0;
-  border-top: 1px solid var(--dark-3);
+  border-top: 1px solid rgba(0,0,0,.07);
 }
 
 .footer__inner {
@@ -1233,7 +1233,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .footer__copy {
   font-size: .82rem;
-  color: rgba(255,255,255,.3);
+  color: rgba(28,28,30,.45);
 }
 
 .footer__links {
@@ -1245,7 +1245,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .footer__links a {
   font-size: .82rem;
-  color: rgba(255,255,255,.35);
+  color: rgba(28,28,30,.55);
   transition: color var(--transition);
 }
 .footer__links a:hover { color: var(--primary); }
@@ -1257,15 +1257,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   justify-content: center;
   gap: 12px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,.06);
+  border-top: 1px solid rgba(0,0,0,.07);
 }
 .footer__legal span {
-  color: rgba(255,255,255,.2);
+  color: rgba(28,28,30,.3);
   font-size: .82rem;
 }
 .footer__legal a {
   font-size: .82rem;
-  color: rgba(255,255,255,.35);
+  color: rgba(28,28,30,.55);
   transition: color var(--transition);
 }
 .footer__legal a:hover { color: var(--primary); }
@@ -1283,7 +1283,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .footer__eic-label {
   font-size: .78rem;
-  color: rgba(255,255,255,.45);
+  color: rgba(28,28,30,.55);
   white-space: nowrap;
 }
 
@@ -2558,19 +2558,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--gray);
+  color: rgba(28,28,30,.6);
   font-size: .85rem;
   font-weight: 600;
   transition: color var(--transition);
   padding: 6px 12px;
   border-radius: 100px;
-  border: 1px solid var(--gray-light);
-  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(0,0,0,.10);
+  background: transparent;
 }
 .footer__social-link:hover {
-  color: var(--white);
-  border-color: rgba(255,255,255,.25);
-  background: rgba(255,255,255,.12);
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(249,115,22,.07);
 }
 
 /* ── Reviews responsive ── */
