@@ -12,6 +12,7 @@
 
 html {
   scrollbar-gutter: stable;
+  overflow-x: hidden;
 }
 
 :root {
@@ -45,6 +46,7 @@ body {
   background: var(--white);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; }
@@ -244,7 +246,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
 }
 
-.hero__shapes { position: absolute; inset: 0; pointer-events: none; }
+.hero__shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 
 .shape {
   position: absolute;
