@@ -469,16 +469,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: rgba(249,115,22,.25);
   color: #fff;
 }
-.service-card--bg-img h3 { color: #fff; }
-.service-card--bg-img p  { color: rgba(255,255,255,.85); }
-.service-card--bg-img .service-card__link {
-  color: #fff;
+.service-card.service-card--bg-img h3 { color: #fff; }
+.service-card.service-card--bg-img p  { color: rgba(255,255,255,.85); }
+.service-card.service-card--bg-img .service-card__link,
+.service-card.service-card--bg-img .service-card__link--secondary {
+  color: rgba(255,255,255,.85);
   border-color: rgba(255,255,255,.4);
 }
-.service-card--bg-img .service-card__link:hover {
+.service-card.service-card--bg-img .service-card__link:hover,
+.service-card.service-card--bg-img .service-card__link--secondary:hover {
   background: rgba(255,255,255,.12);
   border-color: #fff;
   color: #fff;
+  text-decoration: none;
 }
 .service-card--bg-img:hover { border-color: var(--primary); }
 
