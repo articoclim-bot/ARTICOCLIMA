@@ -466,8 +466,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .service-card--bg-img > * { position: relative; z-index: 1; }
 .service-card--bg-img .service-card__icon {
-  background: rgba(249,115,22,.25);
+  background: var(--primary);
   color: #fff;
+  box-shadow: 0 4px 18px rgba(249,115,22,.65);
 }
 .service-card.service-card--bg-img h3 { color: #fff; }
 .service-card.service-card--bg-img p  { color: rgba(255,255,255,.85); }
