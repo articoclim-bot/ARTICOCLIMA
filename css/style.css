@@ -1229,19 +1229,25 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
 }
 
-.footer__logo { font-size: 1.1rem; }
+.footer__logo { font-size: 1.1rem; order: 1; }
+.footer__eic  { order: 1; }
+.footer__social { order: 1; }
 
 .footer__copy {
   font-size: .82rem;
   color: rgba(28,28,30,.45);
+  order: 3;
+  width: 100%;
+  text-align: center;
 }
 
 .footer__links {
   display: flex;
   gap: 20px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  order: 2;
 }
 .footer__links a {
   font-size: .82rem;
@@ -1257,6 +1263,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   justify-content: center;
   gap: 8px 12px;
+  order: 4;
   padding-top: 12px;
   border-top: 1px solid rgba(0,0,0,.07);
 }
@@ -2105,7 +2112,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .result-actions .btn { width: 100%; justify-content: center; }
 
   .footer__inner { flex-direction: column; text-align: center; }
-  .footer__links { position: static; transform: none; justify-content: center; flex-wrap: wrap; gap: 12px 16px; }
+  .footer__links { justify-content: center; gap: 12px 16px; }
   .footer__legal { justify-content: center; }
 }
 
