@@ -2236,11 +2236,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .nav__submenu::after { display: none; }
   .nav__mega-item { padding: 9px 10px; gap: 10px; }
   .nav__mega-icon { width: 32px; height: 32px; font-size: 1rem; }
-  .nav__mega-title { color: rgba(255,255,255,.9); font-size: .85rem; }
-  .nav__mega-desc  { color: rgba(255,255,255,.45); }
-  .nav__mega-sep   { background: rgba(255,255,255,.1); }
+  .nav__mega-title { color: var(--dark); font-size: .85rem; }
+  .nav__mega-desc  { color: var(--gray); }
+  .nav__mega-sep   { background: var(--gray-light); }
   .nav__mega-item:hover,
-  .nav__mega-item.active { background: rgba(255,255,255,.06); }
+  .nav__mega-item.active { background: rgba(249,115,22,.06); }
 }
 
 /* =============================================
