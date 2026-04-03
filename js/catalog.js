@@ -152,7 +152,7 @@ const PRODUCTS = [
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app','8 cores'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'},{name:'Madeira Clara',hex:'#C8B888'},{name:'Madeira Escura',hex:'#A07838'},{name:'Cinzento',hex:'#909098'},{name:'Azul',hex:'#5BAFBC'},{name:'Castanho',hex:'#5C2E18'}],
     pvp:1759, notice:'5 novas cores',
-    awards:['assets/products/daikin-stylish-awards.jpg'],
+    awards:['assets/products/award-epa-2022.jpg','assets/products/award-epa-2021.jpg','assets/products/award-if-2018.jpg','assets/products/award-reddot-gooddesign.jpg'],
     image:IMG.stylishBranco[0], images:IMG.stylishBranco,
     colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack,'Madeira Clara':IMG.stylishChampagne,'Madeira Escura':IMG.stylishCaramel,'Cinzento':IMG.stylishJade,'Azul':IMG.stylishSkyblue,'Castanho':IMG.stylishWalnut},
     colorPrices:{'Branco':1759,'Prateado':1827,'Preto':1827,'Madeira Clara':2103,'Madeira Escura':2103,'Cinzento':2103,'Azul':2103,'Castanho':2103} },
@@ -162,7 +162,7 @@ const PRODUCTS = [
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app','8 cores'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'},{name:'Madeira Clara',hex:'#C8B888'},{name:'Madeira Escura',hex:'#A07838'},{name:'Cinzento',hex:'#909098'},{name:'Azul',hex:'#5BAFBC'},{name:'Castanho',hex:'#5C2E18'}],
     pvp:1888,
-    awards:['assets/products/daikin-stylish-awards.jpg'],
+    awards:['assets/products/award-epa-2022.jpg','assets/products/award-epa-2021.jpg','assets/products/award-if-2018.jpg','assets/products/award-reddot-gooddesign.jpg'],
     image:IMG.stylishBranco[0], images:IMG.stylishBranco,
     colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack,'Madeira Clara':IMG.stylishChampagne,'Madeira Escura':IMG.stylishCaramel,'Cinzento':IMG.stylishJade,'Azul':IMG.stylishSkyblue,'Castanho':IMG.stylishWalnut},
     colorPrices:{'Branco':1888,'Prateado':1968,'Preto':1968,'Madeira Clara':2202,'Madeira Escura':2202,'Cinzento':2202,'Azul':2202,'Castanho':2202} },
@@ -172,7 +172,7 @@ const PRODUCTS = [
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app','8 cores'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'},{name:'Madeira Clara',hex:'#C8B888'},{name:'Madeira Escura',hex:'#A07838'},{name:'Cinzento',hex:'#909098'},{name:'Azul',hex:'#5BAFBC'},{name:'Castanho',hex:'#5C2E18'}],
     pvp:2189,
-    awards:['assets/products/daikin-stylish-awards.jpg'],
+    awards:['assets/products/award-epa-2022.jpg','assets/products/award-epa-2021.jpg','assets/products/award-if-2018.jpg','assets/products/award-reddot-gooddesign.jpg'],
     image:IMG.stylishBranco[0], images:IMG.stylishBranco,
     colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack,'Madeira Clara':IMG.stylishChampagne,'Madeira Escura':IMG.stylishCaramel,'Cinzento':IMG.stylishJade,'Azul':IMG.stylishSkyblue,'Castanho':IMG.stylishWalnut},
     colorPrices:{'Branco':2189,'Prateado':2282,'Preto':2282,'Madeira Clara':2515,'Madeira Escura':2515,'Cinzento':2515,'Azul':2515,'Castanho':2515} },
@@ -182,7 +182,7 @@ const PRODUCTS = [
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app','8 cores'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'},{name:'Madeira Clara',hex:'#C8B888'},{name:'Madeira Escura',hex:'#A07838'},{name:'Cinzento',hex:'#909098'},{name:'Azul',hex:'#5BAFBC'},{name:'Castanho',hex:'#5C2E18'}],
     pvp:2768,
-    awards:['assets/products/daikin-stylish-awards.jpg'],
+    awards:['assets/products/award-epa-2022.jpg','assets/products/award-epa-2021.jpg','assets/products/award-if-2018.jpg','assets/products/award-reddot-gooddesign.jpg'],
     image:IMG.stylishBranco[0], images:IMG.stylishBranco,
     colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack,'Madeira Clara':IMG.stylishChampagne,'Madeira Escura':IMG.stylishCaramel,'Cinzento':IMG.stylishJade,'Azul':IMG.stylishSkyblue,'Castanho':IMG.stylishWalnut},
     colorPrices:{'Branco':2768,'Prateado':2872,'Preto':2872,'Madeira Clara':3100,'Madeira Escura':3100,'Cinzento':3100,'Azul':3100,'Castanho':3100} },
@@ -192,7 +192,7 @@ const PRODUCTS = [
     features:['Design premium','I-Feel','Coanda','Filtro PM2.5','Controlo por app','8 cores'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'},{name:'Madeira Clara',hex:'#C8B888'},{name:'Madeira Escura',hex:'#A07838'},{name:'Cinzento',hex:'#909098'},{name:'Azul',hex:'#5BAFBC'},{name:'Castanho',hex:'#5C2E18'}],
     pvp:3290,
-    awards:['assets/products/daikin-stylish-awards.jpg'],
+    awards:['assets/products/award-epa-2022.jpg','assets/products/award-epa-2021.jpg','assets/products/award-if-2018.jpg','assets/products/award-reddot-gooddesign.jpg'],
     image:IMG.stylishBranco[0], images:IMG.stylishBranco,
     colorGallery:{'Branco':IMG.stylishBranco,'Prateado':IMG.stylishSilver,'Preto':IMG.stylishBlack,'Madeira Clara':IMG.stylishChampagne,'Madeira Escura':IMG.stylishCaramel,'Cinzento':IMG.stylishJade,'Azul':IMG.stylishSkyblue,'Castanho':IMG.stylishWalnut},
     colorPrices:{'Branco':3290,'Prateado':3407,'Preto':3407,'Madeira Clara':3622,'Madeira Escura':3622,'Cinzento':3622,'Azul':3622,'Castanho':3622} },
@@ -205,7 +205,7 @@ const PRODUCTS = [
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
-    pvp:1962,
+    pvp:1962, awards:['assets/products/award-emura-if-2022.jpg','assets/products/award-emura-reddot-2022.jpg'],
     image:IMG.emuraBranco[0], images:IMG.emuraBranco,
     colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack},
     colorPrices:{'Branco':1962,'Prateado':2128,'Preto':2128} },
@@ -214,7 +214,7 @@ const PRODUCTS = [
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
-    pvp:2048,
+    pvp:2048, awards:['assets/products/award-emura-if-2022.jpg','assets/products/award-emura-reddot-2022.jpg'],
     image:IMG.emuraBranco[0], images:IMG.emuraBranco,
     colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack},
     colorPrices:{'Branco':2048,'Prateado':2226,'Preto':2226} },
@@ -223,7 +223,7 @@ const PRODUCTS = [
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
-    pvp:2343,
+    pvp:2343, awards:['assets/products/award-emura-if-2022.jpg','assets/products/award-emura-reddot-2022.jpg'],
     image:IMG.emuraBranco[0], images:IMG.emuraBranco,
     colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack},
     colorPrices:{'Branco':2343,'Prateado':2540,'Preto':2540} },
@@ -232,7 +232,7 @@ const PRODUCTS = [
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
-    pvp:3007,
+    pvp:3007, awards:['assets/products/award-emura-if-2022.jpg','assets/products/award-emura-reddot-2022.jpg'],
     image:IMG.emuraBranco[0], images:IMG.emuraBranco,
     colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack},
     colorPrices:{'Branco':3007,'Prateado':3124,'Preto':3124} },
@@ -241,7 +241,7 @@ const PRODUCTS = [
     tech:['Inverter','R-32','WiFi integrado'],
     features:['Design icónico','I-Feel','Coanda','Filtro PM2.5','Purificador de ar','Controlo por app'],
     colors:[{name:'Branco',hex:'#F0F0F0'},{name:'Prateado',hex:'#B8B8C0'},{name:'Preto',hex:'#2C2C2E'}],
-    pvp:3487,
+    pvp:3487, awards:['assets/products/award-emura-if-2022.jpg','assets/products/award-emura-reddot-2022.jpg'],
     image:IMG.emuraBranco[0], images:IMG.emuraBranco,
     colorGallery:{'Branco':IMG.emuraBranco,'Prateado':IMG.emuraSilver,'Preto':IMG.emuraBlack},
     colorPrices:{'Branco':3487,'Prateado':3653,'Preto':3653} },
@@ -641,10 +641,7 @@ function modalHTML(p) {
           ${p.awards ? `
           <div class="modal__awards">
             <div class="modal__awards-grid">
-              <img src="assets/products/award-epa-2022.jpg" alt="Eleito Produto do Ano 2022" class="award-img">
-              <img src="assets/products/award-epa-2021.jpg" alt="Eleito Produto do Ano 2021" class="award-img">
-              <img src="assets/products/award-if-2018.jpg" alt="iF Design Award 2018" class="award-img">
-              <img src="assets/products/award-reddot-gooddesign.jpg" alt="Red Dot 2018 + Good Design 2017" class="award-img award-img--wide">
+              ${p.awards.map((src, i, arr) => `<img src="${src}" alt="Prémio" class="award-img${(arr.length % 2 !== 0 && i === arr.length - 1) ? ' award-img--wide' : ''}">`).join('')}
             </div>
           </div>` : ''}
         </div>
