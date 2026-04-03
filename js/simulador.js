@@ -62,18 +62,29 @@ const DAIKIN_MONO = {
     prices:  { 7000:1759, 9000:1888, 12000:2189, 15000:2768, 18000:3290 },
     models:  { 7000:'FTXA20CW', 9000:'FTXA25CW', 12000:'FTXA35CW', 15000:'FTXA42CW', 18000:'FTXA50CW' },
     // REGRA 1: FTXA compatível multisplit MXM até 18k BTU
+    colorKeys: ['white','silver','black','champagne','caramel','jade','skyblue','walnut'],
     colorPrices: {
-      white:  { 7000:1759, 9000:1888, 12000:2189, 15000:2768, 18000:3290 },
-      silver: { 7000:1827, 9000:1968, 12000:2282, 15000:2872, 18000:3407 },
-      black:  { 7000:1827, 9000:1968, 12000:2282, 15000:2872, 18000:3407 },
+      white:     { 7000:1759, 9000:1888, 12000:2189, 15000:2768, 18000:3290 },
+      silver:    { 7000:1827, 9000:1968, 12000:2282, 15000:2872, 18000:3407 },
+      black:     { 7000:1827, 9000:1968, 12000:2282, 15000:2872, 18000:3407 },
+      champagne: { 7000:2103, 9000:2202, 12000:2515, 15000:3100, 18000:3622 },
+      caramel:   { 7000:2103, 9000:2202, 12000:2515, 15000:3100, 18000:3622 },
+      jade:      { 7000:2103, 9000:2202, 12000:2515, 15000:3100, 18000:3622 },
+      skyblue:   { 7000:2103, 9000:2202, 12000:2515, 15000:3100, 18000:3622 },
+      walnut:    { 7000:2103, 9000:2202, 12000:2515, 15000:3100, 18000:3622 },
     },
-    features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '3 cores disponíveis'],
+    features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '8 cores disponíveis'],
     maxBTU: 18000,
     image: 'assets/products/daikin-stylish-branco-1.webp',
     images: {
-      white:  ['assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp'],
-      silver: ['assets/products/daikin-stylish-silver-1.webp','assets/products/daikin-stylish-silver-2.webp','assets/products/daikin-stylish-silver-3.webp'],
-      black:  ['assets/products/daikin-stylish-black-1.webp','assets/products/daikin-stylish-black-2.webp','assets/products/daikin-stylish-black-3.webp'],
+      white:     ['assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp'],
+      silver:    ['assets/products/daikin-stylish-silver-1.webp','assets/products/daikin-stylish-silver-2.webp','assets/products/daikin-stylish-silver-3.webp'],
+      black:     ['assets/products/daikin-stylish-black-1.webp','assets/products/daikin-stylish-black-2.webp','assets/products/daikin-stylish-black-3.webp'],
+      champagne: ['assets/products/soon.svg'],
+      caramel:   ['assets/products/soon.svg'],
+      jade:      ['assets/products/soon.svg'],
+      skyblue:   ['assets/products/soon.svg'],
+      walnut:    ['assets/products/soon.svg'],
     },
   },
   Emura: {
@@ -140,11 +151,11 @@ const DAIKIN_CONFORA_MULTI_INDOOR = [
 
 // --- DAIKIN — Stylish Multisplit Interior (FTXA, c/ IVA) --- até 18k BTU ---
 const DAIKIN_STYLISH_MULTI_INDOOR = [
-  { btu: 7000,  kw: 2.0, model: 'FTXA20CW', pvp: { white: Math.round(615*1.23), silver: Math.round(670*1.23), black: Math.round(670*1.23) } },
-  { btu: 9000,  kw: 2.5, model: 'FTXA25CW', pvp: { white: Math.round(670*1.23), silver: Math.round(735*1.23), black: Math.round(735*1.23) } },
-  { btu: 12000, kw: 3.5, model: 'FTXA35CW', pvp: { white: Math.round(730*1.23), silver: Math.round(805*1.23), black: Math.round(805*1.23) } },
-  { btu: 15000, kw: 4.2, model: 'FTXA42CW', pvp: { white: Math.round(830*1.23), silver: Math.round(915*1.23), black: Math.round(915*1.23) } },
-  { btu: 18000, kw: 5.0, model: 'FTXA50CW', pvp: { white: Math.round(885*1.23), silver: Math.round(980*1.23), black: Math.round(980*1.23) } },
+  { btu: 7000,  kw: 2.0, model: 'FTXA20CW', pvp: { white: Math.round(615*1.23), silver: Math.round(670*1.23), black: Math.round(670*1.23), champagne: Math.round(895*1.23), caramel: Math.round(895*1.23), jade: Math.round(895*1.23), skyblue: Math.round(895*1.23), walnut: Math.round(895*1.23) } },
+  { btu: 9000,  kw: 2.5, model: 'FTXA25CW', pvp: { white: Math.round(670*1.23), silver: Math.round(735*1.23), black: Math.round(735*1.23), champagne: Math.round(925*1.23), caramel: Math.round(925*1.23), jade: Math.round(925*1.23), skyblue: Math.round(925*1.23), walnut: Math.round(925*1.23) } },
+  { btu: 12000, kw: 3.5, model: 'FTXA35CW', pvp: { white: Math.round(730*1.23), silver: Math.round(805*1.23), black: Math.round(805*1.23), champagne: Math.round(995*1.23), caramel: Math.round(995*1.23), jade: Math.round(995*1.23), skyblue: Math.round(995*1.23), walnut: Math.round(995*1.23) } },
+  { btu: 15000, kw: 4.2, model: 'FTXA42CW', pvp: { white: Math.round(830*1.23), silver: Math.round(915*1.23), black: Math.round(915*1.23), champagne: Math.round(1100*1.23), caramel: Math.round(1100*1.23), jade: Math.round(1100*1.23), skyblue: Math.round(1100*1.23), walnut: Math.round(1100*1.23) } },
+  { btu: 18000, kw: 5.0, model: 'FTXA50CW', pvp: { white: Math.round(885*1.23), silver: Math.round(980*1.23), black: Math.round(980*1.23), champagne: Math.round(1155*1.23), caramel: Math.round(1155*1.23), jade: Math.round(1155*1.23), skyblue: Math.round(1155*1.23), walnut: Math.round(1155*1.23) } },
 ];
 
 // --- DAIKIN — Emura Multisplit Interior (FTXJ, c/ IVA) --- até 18k BTU ---

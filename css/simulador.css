@@ -434,6 +434,11 @@
 .sim-color-btn[data-color="white"] { background: #f8fafc; border-color: #cbd5e1; }
 .sim-color-btn[data-color="silver"] { background: linear-gradient(135deg, #9ca3af, #d1d5db); }
 .sim-color-btn[data-color="black"] { background: #1c1c1e; }
+.sim-color-btn[data-color="champagne"] { background: linear-gradient(135deg, #D4C4A0, #BEA880); } /* Madeira Clara */
+.sim-color-btn[data-color="caramel"]   { background: linear-gradient(135deg, #A87840, #8B5E28); } /* Madeira Escura */
+.sim-color-btn[data-color="jade"]      { background: linear-gradient(135deg, #9098A4, #7A8290); } /* Cinzento */
+.sim-color-btn[data-color="skyblue"]   { background: linear-gradient(135deg, #5BAFBC, #3E95A4); } /* Azul */
+.sim-color-btn[data-color="walnut"]    { background: linear-gradient(135deg, #5C2E18, #3E1E0E); } /* Castanho */
 
 /* Empty model state */
 .sim-rm__empty {

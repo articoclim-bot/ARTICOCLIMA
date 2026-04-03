@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <rect width="400" height="300" fill="#F5F0EB"/>
+  <rect x="1" y="1" width="398" height="298" fill="none" stroke="#E0D8D0" stroke-width="2" stroke-dasharray="8 4"/>
+  <!-- Camera icon -->
+  <g transform="translate(200,118)" fill="#C4B8AC">
+    <path d="M-28-18 L-20-18 L-16-26 L16-26 L20-18 L28-18 Q32-18 32-14 L32 14 Q32 18 28 18 L-28 18 Q-32 18 -32 14 L-32-14 Q-32-18 -28-18Z"/>
+    <circle cx="0" cy="0" r="9" fill="#F5F0EB"/>
+    <circle cx="0" cy="0" r="6" fill="#C4B8AC"/>
+    <rect x="-14" y="-22" width="6" height="4" rx="1" fill="#F5F0EB"/>
+  </g>
+  <!-- Main text -->
+  <text x="200" y="168" font-family="'Helvetica Neue', Arial, sans-serif" font-size="15" font-weight="600" fill="#8A7E72" text-anchor="middle" letter-spacing="0.3">Foto disponível brevemente</text>
+  <!-- Sub text -->
+  <text x="200" y="192" font-family="'Helvetica Neue', Arial, sans-serif" font-size="12" fill="#B0A598" text-anchor="middle">A Daikin irá disponibilizar imagens em breve</text>
+</svg>
