@@ -1579,7 +1579,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   vertical-align: middle;
 }
 
-.badge-new {
+.badge-new,
+.badge-notice {
   background: var(--primary);
   color: #fff;
   font-size: .72rem;
@@ -1590,7 +1591,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 20px;
   pointer-events: none;
 }
-
 /* Image area — fixed height, always visible */
 .series-card__img {
   position: relative;
