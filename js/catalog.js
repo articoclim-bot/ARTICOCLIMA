@@ -22,7 +22,7 @@ const IMG = {
   stylishWalnut:    ['assets/products/daikin-stylish-castanho-1.jpg','assets/products/daikin-stylish-novas-cores.jpg'],
   emuraBranco:     ['assets/products/daikin-emura-branco-1.webp','assets/products/daikin-emura-branco-2.webp','assets/products/daikin-emura-branco-3.webp','assets/products/daikin-emura-branco-4.webp','assets/products/daikin-emura-branco-5.webp','assets/products/daikin-emura-branco-6.webp','assets/products/daikin-emura-branco-7.webp'],
   emuraSilver:     ['assets/products/daikin-emura-silver-1.webp','assets/products/daikin-emura-silver-2.webp','assets/products/daikin-emura-silver-3.webp','assets/products/daikin-emura-silver-4.webp','assets/products/daikin-emura-silver-5.webp','assets/products/daikin-emura-silver-6.webp','assets/products/daikin-emura-silver-7.webp'],
-  emuraBlack:      ['assets/products/daikin-emura-black-1.webp','assets/products/daikin-emura-black-2.webp','assets/products/daikin-emura-black-3.webp'],
+  emuraBlack:      ['assets/products/daikin-emura-black-1.webp','assets/products/daikin-emura-black-2.webp','assets/products/daikin-emura-black-3.webp','assets/products/daikin-emura-black-4.webp','assets/products/daikin-emura-black-5.webp'],
   bosch3000i:      ['assets/products/bosch-3000i-1.webp','assets/products/bosch-3000i-2.webp'],
   bosch3200i:      ['assets/products/bosch-3200i-1.jpg','assets/products/bosch-3200i-2.jpg'],
   bosch6000i:      ['assets/products/bosch-6000i-1.webp','assets/products/bosch-6000i-2.webp','assets/products/bosch-6000i-3.webp','assets/products/bosch-6000i-4.webp'],
