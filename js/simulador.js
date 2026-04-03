@@ -25,7 +25,7 @@ const DAIKIN_MONO = {
     energyCool: 'A++', energyHeat: 'A+',
     desc: 'Gama de entrada — conforto essencial, Inverter R-32',
     prices:  { 7000:972,  9000:1033, 12000:1169, 15000:1396, 18000:1863, 24000:2319, 28000:2774 },
-    models:  { 7000:'FTXF20', 9000:'FTXF25', 12000:'FTXF35', 15000:'FTXF42', 18000:'FTXF50', 24000:'FTXF60', 28000:'FTXF71' },
+    models:  { 7000:'FTXF20F', 9000:'FTXF25F', 12000:'FTXF35F', 15000:'FTXF42F', 18000:'FTXF50F', 24000:'FTXF60F', 28000:'FTXF71F' },
     features: ['Inverter', 'R-32', 'Filtro básico', 'Auto-restart'],
     // REGRA 3: FTXF é EXCLUSIVAMENTE monosplit (c/ exterior RXF). Nunca multisplit.
     monoOnly: true,
@@ -33,11 +33,11 @@ const DAIKIN_MONO = {
     images: ['assets/products/daikin-sensira-1.webp','assets/products/daikin-sensira-2.webp','assets/products/daikin-sensira-3.webp'],
   },
   Confora: {
-    label: 'Confora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
-    energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'Gama intermédia — A+++ com WiFi opcional e filtro PM2.5',
-    prices:  { 7000:1224, 9000:1316, 12000:1482, 18000:2343, 24000:2927, 28000:3383 },
-    models:  { 7000:'FTXP20', 9000:'FTXP25', 12000:'FTXP35', 18000:'FTXP50', 24000:'FTXP60', 28000:'FTXP71' },
+    label: 'Comfora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
+    energyCool: 'A++', energyHeat: 'A++',
+    desc: 'Gama intermédia — A++ com WiFi opcional e filtro PM2.5',
+    prices:  { 7000:1248, 9000:1341, 12000:1513, 18000:2392, 24000:2983, 28000:3450 },
+    models:  { 7000:'FTXP20N9', 9000:'FTXP25N9', 12000:'FTXP35N9', 18000:'FTXP50N9', 24000:'FTXP60N', 28000:'FTXP71N' },
     features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi opcional'],
     // REGRA 1+2: FTXP20/25/35 (≤12k) compatíveis multisplit MXM. FTXP50/60/71 (≥18k) monosplit c/ RXP.
     multisplitMaxBTU: 12000,
@@ -48,8 +48,8 @@ const DAIKIN_MONO = {
     label: 'Perfera', tier: 'premium', badge: '🏆 Topo de Gama',
     energyCool: 'A+++', energyHeat: 'A++',
     desc: 'Gama premium — WiFi integrado, purificador de ar e controlo por app',
-    prices:  { 7000:1451, 9000:1538, 12000:1771, 15000:2251, 18000:2897, 24000:3506, 28000:4041 },
-    models:  { 7000:'FTXM20', 9000:'FTXM25', 12000:'FTXM35', 15000:'FTXM42', 18000:'FTXM50', 24000:'FTXM60', 28000:'FTXM71' },
+    prices:  { 7000:1482, 9000:1568, 12000:1802, 15000:2300, 18000:2952, 24000:3346, 28000:4121 },
+    models:  { 7000:'FTXM20A', 9000:'FTXM25A', 12000:'FTXM35A', 15000:'FTXM42A', 18000:'FTXM50A', 24000:'FTXM60A', 28000:'FTXM71A' },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', 'App Daikin Online'],
     // REGRA 1: FTXM compatível multisplit MXM em todos os BTUs disponíveis
     image: 'assets/products/daikin-perfera-1.webp',
@@ -59,13 +59,13 @@ const DAIKIN_MONO = {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
     energyCool: 'A+++', energyHeat: 'A++',
     desc: 'Design premiado — Branco, Prateado e Preto (máx. 18k BTU)',
-    prices:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },
-    models:  { 7000:'FTXA20', 9000:'FTXA25', 12000:'FTXA35', 15000:'FTXA42', 18000:'FTXA50' },
+    prices:  { 7000:1759, 9000:1888, 12000:2189, 15000:2768, 18000:3290 },
+    models:  { 7000:'FTXA20CW', 9000:'FTXA25CW', 12000:'FTXA35CW', 15000:'FTXA42CW', 18000:'FTXA50CW' },
     // REGRA 1: FTXA compatível multisplit MXM até 18k BTU
     colorPrices: {
-      white:  { 7000:1728, 9000:1851, 12000:2146, 15000:2712, 18000:3229 },
-      silver: { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },
-      black:  { 7000:1790, 9000:1931, 12000:2239, 15000:2811, 18000:3339 },
+      white:  { 7000:1759, 9000:1888, 12000:2189, 15000:2768, 18000:3290 },
+      silver: { 7000:1827, 9000:1968, 12000:2282, 15000:2872, 18000:3407 },
+      black:  { 7000:1827, 9000:1968, 12000:2282, 15000:2872, 18000:3407 },
     },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Design icónico', '3 cores disponíveis'],
     maxBTU: 18000,
@@ -80,13 +80,13 @@ const DAIKIN_MONO = {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
     energyCool: 'A+++', energyHeat: 'A++',
     desc: 'Design icónico europeu — purificador de ar e app (máx. 18k BTU)',
-    prices:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },
-    models:  { 7000:'FTXJ20', 9000:'FTXJ25', 12000:'FTXJ35', 15000:'FTXJ42', 18000:'FTXJ50' },
+    prices:  { 7000:1962, 9000:2048, 12000:2343, 15000:3007, 18000:3487 },
+    models:  { 7000:'FTXJ20AW', 9000:'FTXJ25AW', 12000:'FTXJ35AW', 15000:'FTXJ42AW', 18000:'FTXJ50AW' },
     // REGRA 1: FTXJ compatível multisplit MXM em todos os BTUs disponíveis
     colorPrices: {
-      white:  { 7000:1919, 9000:2005, 12000:2300, 15000:2946, 18000:3419 },
-      silver: { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },
-      black:  { 7000:2085, 9000:2183, 12000:2491, 15000:3063, 18000:3579 },
+      white:  { 7000:1962, 9000:2048, 12000:2343, 15000:3007, 18000:3487 },
+      silver: { 7000:2128, 9000:2226, 12000:2540, 15000:3124, 18000:3653 },
+      black:  { 7000:2128, 9000:2226, 12000:2540, 15000:3124, 18000:3653 },
     },
     features: ['Inverter', 'R-32', 'WiFi integrado', 'Purificador de ar', '3 cores disponíveis'],
     maxBTU: 18000,
@@ -101,26 +101,26 @@ const DAIKIN_MONO = {
 
 // --- DAIKIN — Multisplit Interior (FTXM-A, c/ IVA) ---
 const DAIKIN_MULTI_INDOOR = [
-  { btu:7000,  kw:2.0, model:'FTXM20A', pvp: Math.round(435 * 1.23) },
-  { btu:9000,  kw:2.5, model:'FTXM25A', pvp: Math.round(475 * 1.23) },
-  { btu:12000, kw:3.5, model:'FTXM35A', pvp: Math.round(615 * 1.23) },
-  { btu:15000, kw:4.2, model:'FTXM42A', pvp: Math.round(705 * 1.23) },
-  { btu:18000, kw:5.0, model:'FTXM50A', pvp: Math.round(760 * 1.23) },
-  { btu:24000, kw:7.0, model:'FTXM60R', pvp: Math.round(825 * 1.23) },
-  { btu:28000, kw:8.2, model:'FTXM71R', pvp: Math.round(1045 * 1.23) },
+  { btu:7000,  kw:2.0, model:'FTXM20A', pvp: Math.round(445 * 1.23) },
+  { btu:9000,  kw:2.5, model:'FTXM25A', pvp: Math.round(485 * 1.23) },
+  { btu:12000, kw:3.5, model:'FTXM35A', pvp: Math.round(625 * 1.23) },
+  { btu:15000, kw:4.2, model:'FTXM42A', pvp: Math.round(720 * 1.23) },
+  { btu:18000, kw:5.0, model:'FTXM50A', pvp: Math.round(775 * 1.23) },
+  { btu:24000, kw:7.0, model:'FTXM60A', pvp: Math.round(840 * 1.23) },
+  { btu:28000, kw:8.2, model:'FTXM71A', pvp: Math.round(1065 * 1.23) },
 ];
 
 // --- DAIKIN — Multisplit Exterior (MXM-A9, c/ IVA) ---
 const DAIKIN_MULTI_OUTDOOR = [
-  { model:'2MXM40A9', zones:2, kw:4.0, pvp:Math.round(1315*1.23), maxZoneKW:3.5 },
-  { model:'2MXM50A9', zones:2, kw:5.0, pvp:Math.round(1425*1.23), maxZoneKW:5.0 },
-  { model:'2MXM68A9', zones:2, kw:6.8, pvp:Math.round(1845*1.23), maxZoneKW:5.0 },
-  { model:'3MXM40A9', zones:3, kw:4.0, pvp:Math.round(1475*1.23), maxZoneKW:3.5 },
-  { model:'3MXM52A9', zones:3, kw:5.2, pvp:Math.round(1635*1.23), maxZoneKW:5.0 },
-  { model:'3MXM68A9', zones:3, kw:6.8, pvp:Math.round(2065*1.23), maxZoneKW:7.0 },
-  { model:'4MXM68A9', zones:4, kw:6.8, pvp:Math.round(2440*1.23), maxZoneKW:7.0 },
-  { model:'4MXM80A9', zones:4, kw:8.0, pvp:Math.round(2980*1.23), maxZoneKW:8.2 },
-  { model:'5MXM90A9', zones:5, kw:9.0, pvp:Math.round(3100*1.23), maxZoneKW:8.2 },
+  { model:'2MXM40A9', zones:2, kw:4.0, pvp:Math.round(1365*1.23), maxZoneKW:3.5 },
+  { model:'2MXM50A8', zones:2, kw:5.0, pvp:Math.round(1480*1.23), maxZoneKW:5.0 },
+  { model:'2MXM68A8', zones:2, kw:6.8, pvp:Math.round(1915*1.23), maxZoneKW:5.0 },
+  { model:'3MXM40A8', zones:3, kw:4.0, pvp:Math.round(1530*1.23), maxZoneKW:3.5 },
+  { model:'3MXM52A8', zones:3, kw:5.2, pvp:Math.round(1700*1.23), maxZoneKW:5.0 },
+  { model:'3MXM68A8', zones:3, kw:6.8, pvp:Math.round(2145*1.23), maxZoneKW:7.0 },
+  { model:'4MXM68A8', zones:4, kw:6.8, pvp:Math.round(2535*1.23), maxZoneKW:7.0 },
+  { model:'4MXM80A8', zones:4, kw:8.0, pvp:Math.round(3095*1.23), maxZoneKW:8.2 },
+  { model:'5MXM90A8', zones:5, kw:9.0, pvp:Math.round(3220*1.23), maxZoneKW:8.2 },
 ];
 
 // --- DAIKIN — Sensira Multisplit Interior (CTXF, c/ IVA) ---
@@ -133,27 +133,27 @@ const DAIKIN_SENSIRA_MULTI_INDOOR = [
 
 // --- DAIKIN — Confora Multisplit Interior (FTXP, c/ IVA) — apenas ≤12k BTU ---
 const DAIKIN_CONFORA_MULTI_INDOOR = [
-  { btu: 7000,  kw: 2.0, model: 'FTXP20', pvp: Math.round(310 * 1.23) },
-  { btu: 9000,  kw: 2.5, model: 'FTXP25', pvp: Math.round(350 * 1.23) },
-  { btu: 12000, kw: 3.5, model: 'FTXP35', pvp: Math.round(420 * 1.23) },
+  { btu: 7000,  kw: 2.0, model: 'FTXP20N9', pvp: Math.round(315 * 1.23) },
+  { btu: 9000,  kw: 2.5, model: 'FTXP25N9', pvp: Math.round(355 * 1.23) },
+  { btu: 12000, kw: 3.5, model: 'FTXP35N9', pvp: Math.round(430 * 1.23) },
 ];
 
 // --- DAIKIN — Stylish Multisplit Interior (FTXA, c/ IVA) --- até 18k BTU ---
 const DAIKIN_STYLISH_MULTI_INDOOR = [
-  { btu: 7000,  kw: 2.0, model: 'FTXA20', pvp: { white: Math.round(605*1.23), silver: Math.round(655*1.23), black: Math.round(655*1.23) } },
-  { btu: 9000,  kw: 2.5, model: 'FTXA25', pvp: { white: Math.round(655*1.23), silver: Math.round(720*1.23), black: Math.round(720*1.23) } },
-  { btu: 12000, kw: 3.5, model: 'FTXA35', pvp: { white: Math.round(715*1.23), silver: Math.round(790*1.23), black: Math.round(790*1.23) } },
-  { btu: 15000, kw: 4.2, model: 'FTXA42', pvp: { white: Math.round(815*1.23), silver: Math.round(895*1.23), black: Math.round(895*1.23) } },
-  { btu: 18000, kw: 5.0, model: 'FTXA50', pvp: { white: Math.round(870*1.23), silver: Math.round(960*1.23), black: Math.round(960*1.23) } },
+  { btu: 7000,  kw: 2.0, model: 'FTXA20CW', pvp: { white: Math.round(615*1.23), silver: Math.round(670*1.23), black: Math.round(670*1.23) } },
+  { btu: 9000,  kw: 2.5, model: 'FTXA25CW', pvp: { white: Math.round(670*1.23), silver: Math.round(735*1.23), black: Math.round(735*1.23) } },
+  { btu: 12000, kw: 3.5, model: 'FTXA35CW', pvp: { white: Math.round(730*1.23), silver: Math.round(805*1.23), black: Math.round(805*1.23) } },
+  { btu: 15000, kw: 4.2, model: 'FTXA42CW', pvp: { white: Math.round(830*1.23), silver: Math.round(915*1.23), black: Math.round(915*1.23) } },
+  { btu: 18000, kw: 5.0, model: 'FTXA50CW', pvp: { white: Math.round(885*1.23), silver: Math.round(980*1.23), black: Math.round(980*1.23) } },
 ];
 
 // --- DAIKIN — Emura Multisplit Interior (FTXJ, c/ IVA) --- até 18k BTU ---
 const DAIKIN_EMURA_MULTI_INDOOR = [
-  { btu: 7000,  kw: 2.0, model: 'FTXJ20', pvp: { white: Math.round(670*1.23), silver: Math.round(805*1.23), black: Math.round(805*1.23) } },
-  { btu: 9000,  kw: 2.5, model: 'FTXJ25', pvp: { white: Math.round(700*1.23), silver: Math.round(845*1.23), black: Math.round(845*1.23) } },
-  { btu: 12000, kw: 3.5, model: 'FTXJ35', pvp: { white: Math.round(860*1.23), silver: Math.round(1015*1.23), black: Math.round(1015*1.23) } },
-  { btu: 15000, kw: 4.2, model: 'FTXJ42', pvp: { white: Math.round(935*1.23), silver: Math.round(1030*1.23), black: Math.round(1030*1.23) } },
-  { btu: 18000, kw: 5.0, model: 'FTXJ50', pvp: { white: Math.round(1055*1.23), silver: Math.round(1185*1.23), black: Math.round(1185*1.23) } },
+  { btu: 7000,  kw: 2.0, model: 'FTXJ20AW9', pvp: { white: Math.round(685*1.23), silver: Math.round(820*1.23), black: Math.round(820*1.23) } },
+  { btu: 9000,  kw: 2.5, model: 'FTXJ25AW9', pvp: { white: Math.round(715*1.23), silver: Math.round(860*1.23), black: Math.round(860*1.23) } },
+  { btu: 12000, kw: 3.5, model: 'FTXJ35AW9', pvp: { white: Math.round(875*1.23), silver: Math.round(1035*1.23), black: Math.round(1035*1.23) } },
+  { btu: 15000, kw: 4.2, model: 'FTXJ42AW9', pvp: { white: Math.round(955*1.23), silver: Math.round(1050*1.23), black: Math.round(1050*1.23) } },
+  { btu: 18000, kw: 5.0, model: 'FTXJ50AW9', pvp: { white: Math.round(1075*1.23), silver: Math.round(1210*1.23), black: Math.round(1210*1.23) } },
 ];
 
 // --- DAIKIN — Exterior MXF (compatível com Sensira CTXF, c/ IVA) ---
