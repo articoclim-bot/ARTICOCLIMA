@@ -2013,7 +2013,10 @@ function buildQuoteText(data) {
     const isMulti = state.rooms.length > 1 && room.useMulti;
     let modelDesc = '';
     if (isMulti) {
-      const unit = getMultiIndoorUnit(state.brand, tier);
+      // Usar o config.multiRooms (cálculo real) para obter o modelo correto,
+      // evitando mostrar FTXM quando o sistema é Sensira (CTXF)
+      const configUnit = config && config.multiRooms && config.multiRooms.find(iu => iu.room.id === room.id);
+      const unit = configUnit ? configUnit.unit : getMultiIndoorUnit(state.brand, tier);
       modelDesc = unit ? `Multisplit — ${unit.model}` : 'Multisplit padrão';
     } else {
       const seriesKey = room.series || getCheapestMonoSeries(state.brand, tier);
