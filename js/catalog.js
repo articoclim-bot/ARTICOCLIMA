@@ -12,7 +12,7 @@ const IMG = {
   sensira:         ['assets/products/daikin-sensira-1.webp','assets/products/daikin-sensira-2.webp','assets/products/daikin-sensira-3.webp'],
   confora:         ['assets/products/daikin-confora-1.webp','assets/products/daikin-confora-2.webp','assets/products/daikin-confora-3.webp'],
   perfera:         ['assets/products/daikin-perfera-1.webp','assets/products/daikin-perfera-2.webp','assets/products/daikin-perfera-3.webp'],
-  stylishBranco:    ['assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-novas-cores.jpg','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp'],
+  stylishBranco:    ['assets/products/daikin-stylish-branco-1.webp','assets/products/daikin-stylish-novas-cores.jpg','assets/products/daikin-stylish-branco-2.webp','assets/products/daikin-stylish-branco-3.webp','assets/products/daikin-stylish-branco-4.webp','assets/products/daikin-stylish-branco-5.webp','assets/products/daikin-stylish-branco-6.webp'],
   stylishSilver:    ['assets/products/daikin-stylish-silver-1.webp','assets/products/daikin-stylish-novas-cores.jpg','assets/products/daikin-stylish-silver-2.webp','assets/products/daikin-stylish-silver-3.webp'],
   stylishBlack:     ['assets/products/daikin-stylish-black-1.webp','assets/products/daikin-stylish-novas-cores.jpg','assets/products/daikin-stylish-black-2.webp','assets/products/daikin-stylish-black-3.webp'],
   stylishChampagne: ['assets/products/daikin-stylish-madeira-clara-1.jpg','assets/products/daikin-stylish-novas-cores.jpg'],
