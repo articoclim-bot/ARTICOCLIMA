@@ -1591,6 +1591,42 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 20px;
   pointer-events: none;
 }
+/* Features + Awards side by side */
+.modal__features-awards-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 4px;
+}
+.modal__features-awards-row .modal__features {
+  flex: 1 1 auto;
+}
+.modal__awards {
+  flex: 0 0 auto;
+}
+.modal__awards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 2px;
+}
+.award-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #ece8e2;
+  padding: 4px;
+}
+.award-img--wide {
+  grid-column: 1 / -1;
+  width: 100%;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+}
+
 /* Image area — fixed height, always visible */
 .series-card__img {
   position: relative;
