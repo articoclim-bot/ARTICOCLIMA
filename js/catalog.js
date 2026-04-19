@@ -39,7 +39,7 @@ const PRODUCTS = [
   { id:'daikin-sensira-ftxf20', brand:'daikin', series:'Sensira', model:'FTXF20',
     btu:7000,  kw:2.0, energyCool:'A++', energyHeat:'A+', noiseIn:21, noiseOut:46,
     tech:['Inverter','R-32','WiFi integrado'], features:['WiFi integrado','Modo seco','Timer','Auto-restart','Filtro básico'],
-    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:972, notice:'WiFi de série',
+    colors:[{name:'Branco',hex:'#EFEFEF'}], pvp:972,
     image:IMG.sensira[0], images:IMG.sensira },
   { id:'daikin-sensira-ftxf25', brand:'daikin', series:'Sensira', model:'FTXF25',
     btu:9000,  kw:2.5, energyCool:'A++', energyHeat:'A+', noiseIn:22, noiseOut:47,
