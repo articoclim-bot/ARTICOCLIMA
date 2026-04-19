@@ -66,7 +66,7 @@
   gap: 8px;
   padding: 9px 18px;
   border: 2px solid var(--gray-light);
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--white);
   cursor: pointer;
   font-family: 'Inter', sans-serif;
@@ -109,7 +109,7 @@
 /* ── Room Accordion ─────────────────────────────────────────────── */
 .sim-room {
   background: var(--white);
-  border-radius: 14px;
+  border-radius: 0;
   box-shadow: 0 1px 6px rgba(0,0,0,.07);
   margin-bottom: 12px;
   overflow: hidden;
@@ -183,7 +183,7 @@
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0;
   color: var(--gray);
   display: flex;
   align-items: center;
@@ -239,7 +239,7 @@
   width: 100%;
   padding: 9px 12px;
   border: 1.5px solid #d1d5db;
-  border-radius: 8px;
+  border-radius: 0;
   font-family: 'Inter', sans-serif;
   font-size: .9rem;
   color: var(--dark);
@@ -270,7 +270,7 @@
 .sim-rf-type {
   padding: 7px 14px;
   border: 1.5px solid #d1d5db;
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--white);
   font-family: 'Inter', sans-serif;
   font-size: .83rem;
@@ -297,7 +297,7 @@
   padding: 10px 12px;
   background: #fff7ed;
   border: 1px solid #fed7aa;
-  border-radius: 8px;
+  border-radius: 0;
   margin-bottom: 14px;
   font-size: .85rem;
   color: #92400e;
@@ -316,7 +316,7 @@
 .sim-rm {
   margin: 0 20px 20px;
   border: 1.5px solid var(--gray-light);
-  border-radius: 10px;
+  border-radius: 0;
   overflow: hidden;
 }
 .sim-rm__label {
@@ -339,7 +339,7 @@
   width: 72px;
   height: 72px;
   object-fit: contain;
-  border-radius: 6px;
+  border-radius: 0;
   background: #f9fafb;
   flex-shrink: 0;
 }
@@ -362,7 +362,7 @@
   font-size: .7rem;
   font-weight: 700;
   padding: 2px 8px;
-  border-radius: 20px;
+  border-radius: 0;
   margin-top: 4px;
   background: #f0fdf4;
   color: #15803d;
@@ -391,7 +391,7 @@
   background: none;
   border: 1.5px solid var(--primary);
   color: var(--primary);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 6px 14px;
   font-family: 'Inter', sans-serif;
   font-size: .82rem;
@@ -457,7 +457,7 @@
   width: 100%;
   padding: 14px;
   border: 2px dashed #d1d5db;
-  border-radius: 14px;
+  border-radius: 0;
   background: transparent;
   color: var(--gray);
   font-family: 'Inter', sans-serif;
@@ -491,7 +491,7 @@
 /* Config summary card */
 .sim-res-card {
   background: var(--white);
-  border-radius: 14px;
+  border-radius: 0;
   box-shadow: 0 2px 12px rgba(0,0,0,.08);
   overflow: hidden;
   margin-bottom: 20px;
@@ -534,7 +534,7 @@
   width: 64px;
   height: 64px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 0;
   background: #f9fafb;
   flex-shrink: 0;
 }
@@ -565,7 +565,7 @@
   font-size: .68rem;
   font-weight: 700;
   padding: 2px 8px;
-  border-radius: 20px;
+  border-radius: 0;
   margin-top: 4px;
   background: #f0fdf4;
   color: #15803d;
@@ -612,7 +612,7 @@
   text-align: right;
   padding: 6px 24px 14px;
   background: #fff7ed;
-  border-radius: 0 0 14px 14px;
+  border-radius: 0;
   margin-bottom: 20px;
 }
 
@@ -620,7 +620,7 @@
 .sim-multi-suggest {
   background: #f0fdf4;
   border: 1.5px solid #86efac;
-  border-radius: 14px;
+  border-radius: 0;
   padding: 16px 20px;
   margin-bottom: 16px;
 }
@@ -696,7 +696,7 @@
   font-size: .65rem;
   font-weight: 700;
   padding: 1px 7px;
-  border-radius: 20px;
+  border-radius: 0;
   background: #dcfce7;
   color: #15803d;
   vertical-align: middle;
@@ -716,7 +716,7 @@
 }
 .sim-alt-card {
   background: var(--white);
-  border-radius: 12px;
+  border-radius: 0;
   border: 1.5px solid var(--gray-light);
   overflow: hidden;
 }
@@ -846,7 +846,7 @@
   background: var(--primary);
   color: var(--white);
   border: none;
-  border-radius: 10px;
+  border-radius: 0;
   padding: 12px 22px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
@@ -880,7 +880,7 @@ body { padding-bottom: 80px; }
 }
 .smp-box {
   background: var(--white);
-  border-radius: 20px 20px 0 0;
+  border-radius: 0;
   width: 100%;
   max-width: 720px;
   max-height: 90vh;
@@ -889,7 +889,7 @@ body { padding-bottom: 80px; }
   overflow: hidden;
 }
 @media (min-width: 600px) {
-  .smp-box { border-radius: 20px; max-height: 88vh; }
+  .smp-box { border-radius: 0; max-height: 88vh; }
 }
 .smp-header {
   display: flex;
@@ -915,7 +915,7 @@ body { padding-bottom: 80px; }
 .smp-close {
   background: #f3f4f6;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   width: 36px;
   height: 36px;
   display: flex;
@@ -944,7 +944,7 @@ body { padding-bottom: 80px; }
 /* Model picker card */
 .smp-card {
   border: 2px solid var(--gray-light);
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
   cursor: pointer;
   transition: border-color .2s, box-shadow .2s;
@@ -970,7 +970,7 @@ body { padding-bottom: 80px; }
   text-transform: uppercase;
   letter-spacing: .06em;
   padding: 3px 7px;
-  border-radius: 20px;
+  border-radius: 0;
   background: #1c1c1e;
   color: white;
   pointer-events: none;
@@ -1043,7 +1043,7 @@ body { padding-bottom: 80px; }
 .smp-diff-tag {
   display: inline-block;
   padding: 2px 8px;
-  border-radius: 20px;
+  border-radius: 0;
   font-size: .72rem;
   font-weight: 700;
   white-space: nowrap;
@@ -1092,7 +1092,7 @@ body { padding-bottom: 80px; }
 }
 .qm-box {
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 0;
   width: 100%;
   max-width: 460px;
   padding: 32px;
@@ -1105,7 +1105,7 @@ body { padding-bottom: 80px; }
   right: 18px;
   background: #f3f4f6;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   width: 36px;
   height: 36px;
   display: flex;
@@ -1139,7 +1139,7 @@ body { padding-bottom: 80px; }
   width: 100%;
   padding: 10px 14px;
   border: 1.5px solid #d1d5db;
-  border-radius: 8px;
+  border-radius: 0;
   font-family: 'Inter', sans-serif;
   font-size: .9rem;
   color: var(--dark);
@@ -1159,7 +1159,7 @@ body { padding-bottom: 80px; }
   background: #22c55e;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: .95rem;
@@ -1176,7 +1176,7 @@ body { padding-bottom: 80px; }
   background: var(--dark);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 0;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: .95rem;
@@ -1201,7 +1201,7 @@ body { padding-bottom: 80px; }
 }
 .sim-confirm__box {
   background: var(--white);
-  border-radius: 20px;
+  border-radius: 0;
   padding: 48px 40px;
   max-width: 380px;
   width: 100%;
