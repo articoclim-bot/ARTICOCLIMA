@@ -74,9 +74,10 @@ function $q(sel) { return document.querySelector(sel); }
     navToggle.setAttribute('aria-expanded', isOpen);
   });
 
-  /* Close menu on link click */
+  /* Close menu on link click (skip parent items on mobile — they open submenus) */
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
+      if (window.innerWidth <= 1200 && link.classList.contains('nav__link--parent')) return;
       navMenu.classList.remove('open');
       navToggle.classList.remove('open');
     });
