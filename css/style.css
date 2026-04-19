@@ -164,7 +164,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
 }
 
-.nav__logo {
+.nav .nav__logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
