@@ -789,7 +789,7 @@
 
   <!-- ===== MODAL RECRUTAMENTO ===== -->
   <div id="recruit-modal" style="display:none; position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,.6); align-items:center; justify-content:center; padding:1rem;">
-    <div style="background:#FFFCF9; border-radius:16px; max-width:600px; width:100%; max-height:88vh; overflow-y:auto; padding:2rem 2rem 1.75rem; box-shadow:0 20px 60px rgba(0,0,0,.35); position:relative;">
+    <div style="background:#FFFCF9; border-radius:0; max-width:600px; width:100%; max-height:88vh; overflow-y:auto; padding:2rem 2rem 1.75rem; box-shadow:0 20px 60px rgba(0,0,0,.35); position:relative;">
 
       <button onclick="closeRecruitModal()" style="position:absolute; top:1rem; right:1rem; background:none; border:none; cursor:pointer; font-size:1.4rem; color:#8A8784; line-height:1;" aria-label="Fechar">&#x2715;</button>
 
@@ -799,14 +799,14 @@
         <p style="margin:0 0 1.5rem; font-size:.9rem; color:#8A8784;">Fazemos parte de uma equipa dedicada, com foco na qualidade e no cliente. Se partilhas desses valores, queremos conhecer-te.</p>
 
         <!-- Vaga: Técnico de Climatização -->
-        <div style="border:1.5px solid #E8E3DE; border-radius:12px; padding:1.25rem; margin-bottom:1rem;">
+        <div style="border:1.5px solid #E8E3DE; border-radius:0; padding:1.25rem; margin-bottom:1rem;">
           <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <div>
-              <span style="display:inline-block; background:#FFF0E6; color:#F97316; font-size:.75rem; font-weight:600; padding:.2rem .6rem; border-radius:20px; margin-bottom:.5rem;">Vaga aberta</span>
+              <span style="display:inline-block; background:#FFF0E6; color:#F97316; font-size:.75rem; font-weight:600; padding:.2rem .6rem; border-radius:0; margin-bottom:.5rem;">Vaga aberta</span>
               <h3 style="margin:0 0 .3rem; font-size:1rem; color:#1C1C1E; font-family:'Poppins',sans-serif;">Técnico de Climatização</h3>
               <p style="margin:0; font-size:.85rem; color:#8A8784;">Tavira · Tempo inteiro · Presencial</p>
             </div>
-            <button onclick="showApplyForm('Técnico de Climatização')" style="background:#F97316; color:#fff; border:none; border-radius:8px; padding:.6rem 1.1rem; font-size:.875rem; font-weight:600; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0;">Candidatar</button>
+            <button onclick="showApplyForm('Técnico de Climatização')" style="background:#F97316; color:#fff; border:none; border-radius:0; padding:.6rem 1.1rem; font-size:.875rem; font-weight:600; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0;">Candidatar</button>
           </div>
           <ul style="margin:.75rem 0 0; padding-left:1.1rem; font-size:.875rem; color:#3a3a3c; line-height:1.8;">
             <li>Experiência em instalação e manutenção de ar condicionado</li>
@@ -817,14 +817,14 @@
         </div>
 
         <!-- Vaga: Ajudante -->
-        <div style="border:1.5px solid #E8E3DE; border-radius:12px; padding:1.25rem; margin-bottom:1rem;">
+        <div style="border:1.5px solid #E8E3DE; border-radius:0; padding:1.25rem; margin-bottom:1rem;">
           <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <div>
-              <span style="display:inline-block; background:#FFF0E6; color:#F97316; font-size:.75rem; font-weight:600; padding:.2rem .6rem; border-radius:20px; margin-bottom:.5rem;">Vaga aberta</span>
+              <span style="display:inline-block; background:#FFF0E6; color:#F97316; font-size:.75rem; font-weight:600; padding:.2rem .6rem; border-radius:0; margin-bottom:.5rem;">Vaga aberta</span>
               <h3 style="margin:0 0 .3rem; font-size:1rem; color:#1C1C1E; font-family:'Poppins',sans-serif;">Ajudante de Instalação</h3>
               <p style="margin:0; font-size:.85rem; color:#8A8784;">Tavira · Tempo inteiro · Presencial</p>
             </div>
-            <button onclick="showApplyForm('Ajudante de Instalação')" style="background:#F97316; color:#fff; border:none; border-radius:8px; padding:.6rem 1.1rem; font-size:.875rem; font-weight:600; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0;">Candidatar</button>
+            <button onclick="showApplyForm('Ajudante de Instalação')" style="background:#F97316; color:#fff; border:none; border-radius:0; padding:.6rem 1.1rem; font-size:.875rem; font-weight:600; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0;">Candidatar</button>
           </div>
           <ul style="margin:.75rem 0 0; padding-left:1.1rem; font-size:.875rem; color:#3a3a3c; line-height:1.8;">
             <li>Apoio ao técnico na instalação e manutenção de equipamentos</li>
@@ -837,13 +837,13 @@
         </div>
 
         <!-- Candidatura Espontânea -->
-        <div style="border:1.5px dashed #E8E3DE; border-radius:12px; padding:1.25rem;">
+        <div style="border:1.5px dashed #E8E3DE; border-radius:0; padding:1.25rem;">
           <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <div>
               <h3 style="margin:0 0 .3rem; font-size:1rem; color:#1C1C1E; font-family:'Poppins',sans-serif;">Candidatura Espontânea</h3>
               <p style="margin:0; font-size:.85rem; color:#8A8784;">Não encontrou a vaga certa? Envie-nos a sua candidatura na mesma.</p>
             </div>
-            <button onclick="showApplyForm('Espontânea')" style="background:transparent; color:#F97316; border:1.5px solid #F97316; border-radius:8px; padding:.6rem 1.1rem; font-size:.875rem; font-weight:600; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0;">Candidatar</button>
+            <button onclick="showApplyForm('Espontânea')" style="background:transparent; color:#F97316; border:1.5px solid #F97316; border-radius:0; padding:.6rem 1.1rem; font-size:.875rem; font-weight:600; cursor:pointer; white-space:nowrap; font-family:'Inter',sans-serif; flex-shrink:0;">Candidatar</button>
           </div>
         </div>
       </div>
@@ -860,7 +860,7 @@
         <h2 style="margin:0 0 .75rem; font-family:'Poppins',sans-serif; font-size:1.2rem; color:#1C1C1E;">Candidatura enviada!</h2>
         <p style="margin:0 0 .75rem; font-size:.93rem; color:#3a3a3c; line-height:1.65;">Obrigado pelo interesse em fazer parte da equipa Artico. Analisamos cada candidatura com atenção e entraremos em contacto assim que possível.</p>
         <p style="margin:0 0 1.5rem; font-size:.93rem; color:#3a3a3c; line-height:1.65;">Enquanto isso, podes conhecer melhor o nosso trabalho no Instagram. Até breve! 👋</p>
-        <button onclick="closeRecruitModal()" style="background:#F97316; color:#fff; border:none; border-radius:8px; padding:.75rem 2rem; font-size:.95rem; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif;">Fechar</button>
+        <button onclick="closeRecruitModal()" style="background:#F97316; color:#fff; border:none; border-radius:0; padding:.75rem 2rem; font-size:.95rem; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif;">Fechar</button>
       </div>
 
     </div>
@@ -907,7 +907,7 @@
           '<li><strong>Contacto telefónico</strong></li>' +
           (isSpont ? '<li>Área de interesse ou função pretendida</li>' : '') +
         '</ul>' +
-        '<a href="' + mailto + '" onclick="setTimeout(showRecruitThanks, 800);" style="display:block; text-align:center; background:#F97316; color:#fff; border-radius:8px; padding:.8rem 1rem; font-size:.95rem; font-weight:600; text-decoration:none; font-family:\'Inter\',sans-serif;">✉&nbsp; Abrir email para candidatura</a>';
+        '<a href="' + mailto + '" onclick="setTimeout(showRecruitThanks, 800);" style="display:block; text-align:center; background:#F97316; color:#fff; border-radius:0; padding:.8rem 1rem; font-size:.95rem; font-weight:600; text-decoration:none; font-family:\'Inter\',sans-serif;">✉&nbsp; Abrir email para candidatura</a>';
     }
     function showRecruitThanks() {
       document.getElementById('recruit-apply').style.display = 'none';
