@@ -74,22 +74,20 @@ function $q(sel) { return document.querySelector(sel); }
     navToggle.setAttribute('aria-expanded', isOpen);
   });
 
-  /* Close menu on link click (skip parent items on mobile — they open submenus) */
+  /* Close menu on link click (skip parent items — they open submenus) */
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if (window.innerWidth <= 1200 && link.classList.contains('nav__link--parent')) return;
+      if (link.classList.contains('nav__link--parent')) return;
       navMenu.classList.remove('open');
       navToggle.classList.remove('open');
     });
   });
 
-  /* Mobile: toggle submenu on parent click */
+  /* Toggle submenu on parent click */
   document.querySelectorAll('.nav__link--parent').forEach(parent => {
     parent.addEventListener('click', e => {
-      if (window.innerWidth <= 1200) {
-        e.preventDefault();
-        parent.closest('.nav__item--has-sub').classList.toggle('open');
-      }
+      e.preventDefault();
+      parent.closest('.nav__item--has-sub').classList.toggle('open');
     });
   });
 

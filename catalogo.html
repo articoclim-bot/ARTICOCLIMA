@@ -48,6 +48,9 @@
   <!-- ===== HEADER ===== -->
   <header class="header" id="header">
     <nav class="nav container">
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
       <a href="index.html" class="nav__logo">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="96" style="display:block" aria-label="Artico Climatização">
           <defs>
@@ -61,7 +64,9 @@
           <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
         </svg>
       </a>
-      <ul class="nav__menu" id="navMenu">
+<div class="lang-select" id="langSelect"><button class="lang-toggle" id="langToggle"><span class="fi fi-pt"></span> PT ▾</button><div class="lang-dropdown" id="langDropdown"><button data-lang="pt"><span class="fi fi-pt"></span> PT</button><button data-lang="en"><span class="fi fi-gb"></span> EN</button><button data-lang="fr"><span class="fi fi-fr"></span> FR</button><button data-lang="es"><span class="fi fi-es"></span> ES</button><button data-lang="de"><span class="fi fi-de"></span> DE</button></div></div></nav>
+  </header>
+  <ul class="nav__menu" id="navMenu">
         <li><a href="index.html#inicio"    class="nav__link">Início</a></li>
         <li><a href="index.html#servicos"  class="nav__link">Serviços</a></li>
         <li><a href="index.html#marcas"    class="nav__link">Marcas</a></li>
@@ -90,14 +95,8 @@
         <li><a href="simulador.html" class="nav__link">Simulador AC</a></li>
         <li><a href="index.html#sobre"     class="nav__link">Sobre Nós</a></li>
         <li><a href="index.html#contacto"  class="nav__link">Contacto</a></li>
+        <li class="nav__menu-cta"><a href="index.html#contacto" class="btn btn--primary">Contactar &rarr;</a></li>
       </ul>
-      <div class="lang-select" id="langSelect"><button class="lang-toggle" id="langToggle"><span class="fi fi-pt"></span> PT ▾</button><div class="lang-dropdown" id="langDropdown"><button data-lang="pt"><span class="fi fi-pt"></span> PT</button><button data-lang="en"><span class="fi fi-gb"></span> EN</button><button data-lang="fr"><span class="fi fi-fr"></span> FR</button><button data-lang="es"><span class="fi fi-es"></span> ES</button><button data-lang="de"><span class="fi fi-de"></span> DE</button></div></div>
-      <a href="index.html#contacto" class="btn btn--primary nav__cta">Contactar</a>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
 
   <!-- ===== HERO STRIP ===== -->
   <div class="catalog-page-hero catalog-page">

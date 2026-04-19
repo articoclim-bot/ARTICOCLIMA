@@ -259,7 +259,30 @@
       "Bash(cp \"C:/Users/artic/Desktop/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/bosch 3200i imagem1.jpg\" \"C:/Users/artic/Documents/GitHub/ARTICOCLIMA/assets/products/bosch-3200i-1.jpg\")",
       "Bash(cp \"C:/Users/artic/Desktop/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/bosch 3200i imagem2.jpg\" \"C:/Users/artic/Documents/GitHub/ARTICOCLIMA/assets/products/bosch-3200i-2.jpg\")",
       "Bash(cp \"C:/Users/artic/Desktop/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/bosch 3200i imagem 1.jpg\" \"C:/Users/artic/Documents/GitHub/ARTICOCLIMA/assets/products/bosch-3200i-1.jpg\")",
-      "Bash(cp \"C:/Users/artic/Desktop/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/bosch 3200i imagem 2.jpg\" \"C:/Users/artic/Documents/GitHub/ARTICOCLIMA/assets/products/bosch-3200i-2.jpg\")"
+      "Bash(cp \"C:/Users/artic/Desktop/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/bosch 3200i imagem 2.jpg\" \"C:/Users/artic/Documents/GitHub/ARTICOCLIMA/assets/products/bosch-3200i-2.jpg\")",
+      "Bash(cp '/c/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/Bosch 7000i branco foto 1.webp' /c/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/bosch-7000i-branco-1.webp)",
+      "Bash(cp '/c/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/Bosch 7000i branco foto 2.webp' /c/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/bosch-7000i-branco-2.webp)",
+      "Bash(cp '/c/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/Bosch 7000i branco foto 3.webp' /c/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/bosch-7000i-branco-3.webp)",
+      "Bash(cp '/c/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/Bosch 7000i silver foto 1.webp' /c/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/bosch-7000i-silver-1.webp)",
+      "Bash(cp '/c/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Bosch/Bosch 7000i silver foto 2.webp' /c/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/bosch-7000i-silver-2.webp)",
+      "Bash(git add *)",
+      "Bash(git status *)",
+      "Bash(git check-ignore *)",
+      "Bash(git ls-files *)",
+      "Bash(git restore *)",
+      "Bash(git push *)",
+      "Bash(cp 'C:/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Daikin/Sensira/Imagem 1.jpg' C:/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/daikin-sensira-1.jpg)",
+      "Bash(cp 'C:/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Daikin/Sensira/Imagem 2.jpg' C:/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/daikin-sensira-2.jpg)",
+      "Bash(cp 'C:/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Daikin/Sensira/Imagem 3.jpg' C:/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/daikin-sensira-3.jpg)",
+      "Bash(cp 'C:/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Daikin/Confora/Imagem 1.jpg' C:/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/daikin-confora-1.jpg)",
+      "Bash(cp 'C:/Users/fabio/OneDrive/Artico Climatização/1.Logo/Imagens modelos de AC/Daikin/Confora/Imagem 2.jpg' C:/Users/fabio/ARTICOCLIMA/.claude/worktrees/elated-almeida-81416b/assets/products/daikin-confora-2.jpg)",
+      "Bash(cp 'C:\\\\Users\\\\fabio\\\\OneDrive\\\\Artico Climatização\\\\1.Logo\\\\Imagens modelos de AC\\\\Daitsu/daitsu-artic-plus foto 1.png' 'C:\\\\Users\\\\fabio\\\\ARTICOCLIMA\\\\.claude\\\\worktrees\\\\elated-almeida-81416b\\\\assets\\\\products/daitsu-artic-plus-1.png')",
+      "Bash(cp 'C:\\\\Users\\\\fabio\\\\OneDrive\\\\Artico Climatização\\\\1.Logo\\\\Imagens modelos de AC\\\\Daitsu/Artic plus foto 2.jpg' 'C:\\\\Users\\\\fabio\\\\ARTICOCLIMA\\\\.claude\\\\worktrees\\\\elated-almeida-81416b\\\\assets\\\\products/daitsu-artic-plus-2.jpg')",
+      "Bash(cp 'C:\\\\Users\\\\fabio\\\\OneDrive\\\\Artico Climatização\\\\1.Logo\\\\Imagens modelos de AC\\\\Daitsu/daitsu artic plus foto 4.jpg' 'C:\\\\Users\\\\fabio\\\\ARTICOCLIMA\\\\.claude\\\\worktrees\\\\elated-almeida-81416b\\\\assets\\\\products/daitsu-artic-plus-3.jpg')",
+      "Bash(cp 'C:\\\\Users\\\\fabio\\\\OneDrive\\\\Artico Climatização\\\\1.Logo\\\\Imagens modelos de AC\\\\Daitsu/Artic plus foto 1.jpg' 'C:\\\\Users\\\\fabio\\\\ARTICOCLIMA\\\\.claude\\\\worktrees\\\\elated-almeida-81416b\\\\assets\\\\products/daitsu-artic-plus-4.jpg')",
+      "Bash(xargs -I{} basename {})",
+      "Bash(python3 -)",
+      "Bash(node -e ' *)"
     ]
   }
 }
