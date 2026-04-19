@@ -525,10 +525,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .service-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  color: var(--dark);
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #fff;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
 }
 .service-card p {
   color: var(--gray);
