@@ -28,7 +28,7 @@ const IMG = {
   bosch7000iBranco: ['assets/products/bosch-7000i-branco-1.webp','assets/products/bosch-7000i-branco-2.webp','assets/products/bosch-7000i-branco-3.webp'],
   bosch7000iSilver: ['assets/products/bosch-7000i-silver-1.webp','assets/products/bosch-7000i-silver-2.webp','assets/products/bosch-7000i-silver-3.webp'],
   bosch7000iBlack:  ['assets/products/bosch-7000i-black-1.webp','assets/products/bosch-7000i-black-2.webp','assets/products/bosch-7000i-black-3.webp'],
-  articPlus:       ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp','assets/products/daitsu-artic-plus-4.jpg'],
+  articPlus:       ['assets/products/daitsu-artic-plus-1.png','assets/products/daitsu-artic-plus-2.jpg','assets/products/daitsu-artic-plus-3.jpg','assets/products/daitsu-artic-plus-4.jpg'],
 };
 
 const PRODUCTS = [
