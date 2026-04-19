@@ -9,9 +9,9 @@
 
 /* imagens partilhadas por série (3 fotos reais por modelo) */
 const IMG = {
-  sensira:         ['assets/products/daikin-sensira-ftxf20.webp'],
-  confora:         ['assets/products/daikin-confora-ftxp20.webp'],
-  perfera:         ['assets/products/daikin-perfera-ftxm20.webp'],
+  sensira:         ['assets/products/daikin-sensira-ftxf20.webp','assets/products/daikin-sensira-1.jpg','assets/products/daikin-sensira-2.jpg','assets/products/daikin-sensira-3.jpg'],
+  confora:         ['assets/products/daikin-confora-ftxp20.webp','assets/products/daikin-confora-1.jpg','assets/products/daikin-confora-2.jpg','assets/products/daikin-confora-3.jpg'],
+  perfera:         ['assets/products/daikin-perfera-ftxm20.webp','assets/products/daikin-perfera-1.jpg','assets/products/daikin-perfera-2.jpg','assets/products/daikin-perfera-3.jpg','assets/products/daikin-perfera-4.jpg'],
   stylishBranco:    ['assets/products/daikin-stylish-branco-4.webp','assets/products/daikin-stylish-branco-5.webp','assets/products/daikin-stylish-branco-6.webp','assets/products/daikin-stylish-novas-cores.jpg'],
   stylishSilver:    ['assets/products/daikin-stylish-silver-4.webp','assets/products/daikin-stylish-silver-5.webp','assets/products/daikin-stylish-silver-6.webp','assets/products/daikin-stylish-novas-cores.jpg'],
   stylishBlack:     ['assets/products/daikin-stylish-black-4.webp','assets/products/daikin-stylish-black-5.webp','assets/products/daikin-stylish-black-6.webp','assets/products/daikin-stylish-novas-cores.jpg'],
