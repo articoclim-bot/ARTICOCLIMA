@@ -664,6 +664,14 @@ function modalHTML(p) {
           <div class="modal__color-swatches">${colorSwatches}</div>
         </div>` : ''}
 
+        ${p.brand === 'daitsu' ? `
+        <div class="modal__video">
+          <iframe src="https://www.youtube.com/embed/cKnXyHA9D9E"
+            title="Daitsu ARTIC Plus — Vídeo Promocional"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy" frameborder="0"></iframe>
+        </div>` : ''}
+
         <div class="modal__cta">
           <div class="modal__price-block">
             <span class="modal__price-label">PVP a partir de</span>
