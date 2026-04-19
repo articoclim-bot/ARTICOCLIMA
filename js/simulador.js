@@ -177,63 +177,64 @@ const DAIKIN_MXF_OUTDOOR = [
 
 // --- BOSCH — Monosplit (conjuntos, c/ IVA) ---
 const BOSCH_MONO = {
-  '3000i': {
-    label: 'Climate 3000i', tier: 'entrada', badge: '💰 Melhor Preço',
-    energyCool: 'A++', energyHeat: 'A+',
-    desc: 'Gama entrada — WiFi Matter · Auto-limpeza iClean · Alexa/Google/Siri',
-    prices: { 9000:898, 12000:978, 18000:1439, 24000:1747 },
-    models: { 9000:'CL3000i-Set 26WE', 12000:'CL3000i-Set 35WE', 18000:'CL3000i-Set 53WE', 24000:'CL3000i-Set 70WE' },
-    features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
-    image: 'assets/products/bosch-3000i-1.webp',
-    images: ['assets/products/bosch-3000i-1.webp','assets/products/bosch-3000i-2.webp'],
-  },
   '3200i': {
     label: 'Climate 3200i', tier: 'entrada', badge: '🆕 Novo Modelo',
     energyCool: 'A++', energyHeat: 'A+',
-    desc: 'Novo design — WiFi Matter · Auto-limpeza iClean · Alexa/Google/Siri',
-    prices: { 9000:933, 12000:1013, 18000:1474, 24000:1782 },
+    desc: 'Novo design — iClean · Super Ionizador · Golden Fin · WiFi via acessório',
+    prices: { 9000:916, 12000:996, 18000:1470, 24000:1784 },
     models: { 9000:'CL3200i-Set 26WE', 12000:'CL3200i-Set 35WE', 18000:'CL3200i-Set 53WE', 24000:'CL3200i-Set 70WE' },
-    features: ['Inverter', 'R-32', 'WiFi Matter', 'Auto-limpeza iClean', 'Alexa/Google/Siri'],
+    features: ['Inverter', 'R-32', 'Auto-limpeza iClean', 'Super Ionizador', 'Golden Fin anticorrosivo'],
     image: 'assets/products/bosch-3200i-1.jpg',
     images: ['assets/products/bosch-3200i-1.jpg','assets/products/bosch-3200i-2.jpg'],
   },
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++',
-    desc: 'Gama premium — Ionizador · Sensor presença · A+++ · WiFi integrado',
-    prices: { 9000:1082, 12000:1193, 18000:1784, 24000:2177 },
+    desc: 'Gama premium — A+++ · Ionizador · Sensor de movimento · Golden Fin · Swing 3D',
+    prices: { 9000:1107, 12000:1218, 18000:1790, 24000:2220 },
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
-    features: ['Inverter', 'R-32', 'WiFi integrado', 'Ionizador', 'Sensor de presença'],
+    features: ['Inverter', 'R-32', 'A+++', 'Ionizador', 'Sensor de movimento', 'Golden Fin anticorrosivo'],
     image: 'assets/products/bosch-6000i-1.webp',
     images: ['assets/products/bosch-6000i-1.webp','assets/products/bosch-6000i-2.webp','assets/products/bosch-6000i-3.webp','assets/products/bosch-6000i-4.webp'],
   },
+  '7000i': {
+    label: 'Climate 7000i', tier: 'premium', badge: '🏆 Topo de Gama',
+    energyCool: 'A+++', energyHeat: 'A+++',
+    desc: 'Topo de gama — WiFi integrado · A+++ · Sensor presença · Ionizador · iF Design 2025',
+    prices: { 9000:1550, 12000:1667, 18000:2731 },
+    models: { 9000:'CL7000i-Set 26WE', 12000:'CL7000i-Set 35WE', 18000:'CL7000i-Set 53WE' },
+    features: ['Inverter', 'R-32', 'WiFi integrado', 'A+++', 'Sensor de presença', 'Ionizador avançado'],
+    image: 'assets/products/bosch-7000i-branco-1.webp',
+    images: ['assets/products/bosch-7000i-branco-1.webp','assets/products/bosch-7000i-branco-2.webp','assets/products/bosch-7000i-branco-3.webp'],
+  },
 };
 
-// --- BOSCH — Multisplit Interior (Climate 3000i Mural, c/ IVA) ---
+// --- BOSCH — Multisplit Interior (Climate 3200i Mural, c/ IVA) ---
 const BOSCH_MULTI_INDOOR = [
-  { btu: 9000,  kw: 2.6, model: 'CL3000i 26E', pvp: 258 },
-  { btu: 12000, kw: 3.5, model: 'CL3000i 35E', pvp: 295 },
-  { btu: 18000, kw: 5.3, model: 'CL3000i 53E', pvp: 369 },
-  { btu: 24000, kw: 7.0, model: 'CL3000i 70E', pvp: 504 },
+  { btu: 7000,  kw: 2.1, model: 'CL3200i 20E', pvp: 258 },
+  { btu: 9000,  kw: 2.6, model: 'CL3200i 26E', pvp: 271 },
+  { btu: 12000, kw: 3.5, model: 'CL3200i 35E', pvp: 308 },
+  { btu: 18000, kw: 5.3, model: 'CL3200i 53E', pvp: 381 },
+  { btu: 24000, kw: 7.0, model: 'CL3200i 70E', pvp: 517 },
 ];
 
 // --- BOSCH — Multisplit Interior (Climate 6000i Mural, c/ IVA) ---
 const BOSCH_6000I_MULTI_INDOOR = [
-  { btu: 9000,  kw: 2.6, model: 'CL6000i 26E', pvp: Math.round(250 * 1.23) },
-  { btu: 12000, kw: 3.5, model: 'CL6000i 35E', pvp: Math.round(290 * 1.23) },
-  { btu: 18000, kw: 5.3, model: 'CL6000i 53E', pvp: Math.round(360 * 1.23) },
-  { btu: 24000, kw: 7.0, model: 'CL6000i 70E', pvp: Math.round(490 * 1.23) },
+  { btu: 9000,  kw: 2.6, model: 'CL6001i 26E', pvp: 314 },
+  { btu: 12000, kw: 3.5, model: 'CL6001i 35E', pvp: 363 },
+  { btu: 18000, kw: 5.3, model: 'CL6001i 53E', pvp: 455 },
+  { btu: 24000, kw: 7.0, model: 'CL6001i 70E', pvp: 615 },
 ];
 
 // --- BOSCH — Multisplit Exterior (Climate 5000 M, c/ IVA) ---
 const BOSCH_MULTI_OUTDOOR = [
-  { model: 'Climate 5000 M 41/2',  zones: 2, kw: 4.1,  pvp: 1132 },
-  { model: 'Climate 5000 M 53/2',  zones: 2, kw: 5.3,  pvp: 1285 },
-  { model: 'Climate 5000 M 62/3',  zones: 3, kw: 6.2,  pvp: 1642 },
-  { model: 'Climate 5000 M 79/3',  zones: 3, kw: 7.9,  pvp: 1907 },
-  { model: 'Climate 5000 M 82/4',  zones: 4, kw: 8.2,  pvp: 2073 },
-  { model: 'Climate 5000 M 105/4', zones: 4, kw: 10.5, pvp: 2546 },
-  { model: 'Climate 5000 M 125/5', zones: 5, kw: 12.5, pvp: 2829 },
+  { model: 'Climate 5000 M 41/2',  zones: 2, kw: 4.1,  pvp: 1156 },
+  { model: 'Climate 5000 M 53/2',  zones: 2, kw: 5.3,  pvp: 1310 },
+  { model: 'Climate 5000 M 62/3',  zones: 3, kw: 6.2,  pvp: 1673 },
+  { model: 'Climate 5000 M 79/3',  zones: 3, kw: 7.9,  pvp: 1943 },
+  { model: 'Climate 5000 M 82/4',  zones: 4, kw: 8.2,  pvp: 2116 },
+  { model: 'Climate 5000 M 105/4', zones: 4, kw: 10.6, pvp: 2595 },
+  { model: 'Climate 5000 M 125/5', zones: 5, kw: 12.3, pvp: 2884 },
 ];
 
 // --- DAITSU — Monosplit (conjuntos, c/ IVA) ---
@@ -677,7 +678,7 @@ function calcAltBrandConfig(brand, rooms) {
 
   const multiResult = calcBrandMulti(brand, roomsWT);
   if (multiResult) {
-    const seriesLabel = brand === 'daikin' ? 'FTXM-A' : (brand === 'bosch' ? 'CL3000i Mural' : 'ARTIC Plus');
+    const seriesLabel = brand === 'daikin' ? 'FTXM-A' : (brand === 'bosch' ? 'CL3200i Mural' : 'ARTIC Plus');
     return {
       total: multiResult.total,
       system: 'multi',
@@ -1003,7 +1004,7 @@ function renderRoomModelCard(room) {
           imgSrc = 'assets/products/daikin-perfera-1.webp';
         }
       } else if (state.brand === 'bosch') {
-        imgSrc = 'assets/products/bosch-3000i-1.webp';
+        imgSrc = 'assets/products/bosch-3200i-1.jpg';
       } else {
         imgSrc = 'assets/products/daitsu-artic-plus-1.webp';
       }
@@ -1230,7 +1231,7 @@ function buildPickerCards(room, tier) {
       if (cu) allOptions.push({ type: 'confora_multi', key: '__confora_multi__', unit: cu });
     }
 
-    // Opção Padrão — Perfera (FTXM / Climate 3000i / ARTIC Plus)
+    // Opção Padrão — Perfera (FTXM / Climate 3200i / ARTIC Plus)
     const stdu = getMultiIndoorUnit(state.brand, tier);
     if (stdu) allOptions.push({ type: 'multi', key: '__multi__', unit: stdu });
 
@@ -1793,7 +1794,11 @@ function getMultiSeriesLabel(brand, model) {
     if (model.startsWith('FTXP')) return 'Confora';
     return 'Perfera'; // FTXM default
   }
-  if (brand === 'bosch')  return model.startsWith('CL6000i') ? 'Climate 6000i' : 'Climate 3000i';
+  if (brand === 'bosch') {
+    if (model.startsWith('CL7000i')) return 'Climate 7000i';
+    if (model.startsWith('CL6000i')) return 'Climate 6000i';
+    return 'Climate 3200i';
+  }
   if (brand === 'daitsu') return 'ARTIC Plus';
   return model;
 }
@@ -1842,7 +1847,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
       else if (unit.model.startsWith('CTXF')) img = 'assets/products/daikin-sensira-1.webp';
       else                                    img = 'assets/products/daikin-perfera-1.webp';
     } else if (state.brand === 'bosch') {
-      img = 'assets/products/bosch-3000i-1.webp';
+      img = 'assets/products/bosch-3200i-1.jpg';
     } else {
       img = 'assets/products/daitsu-artic-plus-1.webp';
     }
