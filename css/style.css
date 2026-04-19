@@ -2223,7 +2223,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-bottom-color: var(--white);
 }
 /* Desktop: show on hover / focus-within */
-@media (min-width: 1025px) {
+@media (min-width: 1201px) {
   .nav__item--has-sub:hover .nav__submenu,
   .nav__item--has-sub:focus-within .nav__submenu {
     opacity: 1;
@@ -2281,8 +2281,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 4px 0;
 }
 /* Mobile: inline, no animation */
-/* Nav hamburger — ativa a 1024px */
-@media (max-width: 1024px) {
+/* Nav hamburger — ativa a 1200px */
+@media (max-width: 1200px) {
   .nav__menu {
     position: fixed;
     top: 100px;

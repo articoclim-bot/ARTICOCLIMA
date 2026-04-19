@@ -85,7 +85,7 @@ function $q(sel) { return document.querySelector(sel); }
   /* Mobile: toggle submenu on parent click */
   document.querySelectorAll('.nav__link--parent').forEach(parent => {
     parent.addEventListener('click', e => {
-      if (window.innerWidth <= 1024) {
+      if (window.innerWidth <= 1200) {
         e.preventDefault();
         parent.closest('.nav__item--has-sub').classList.toggle('open');
       }
