@@ -152,6 +152,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-bottom-color: transparent;
 }
 .header--transparent:not(.scrolled) .nav__toggle span { background: #fff; }
+.header--transparent:not(.scrolled) .nav__logo svg { filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,.25)); }
 .header--transparent:not(.scrolled) .lang-toggle { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.35); }
 .header--transparent:not(.scrolled) .lang-toggle:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.1); }
 
