@@ -1656,7 +1656,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .series-card[data-brand="bosch"]:hover .series-card__photo,
 .series-card[data-brand="daitsu"]:hover .series-card__photo {
-  transform: scale(1.0);
+  transform: scale(1.07);
   padding: 24px;
 }
 .series-card__fallback {
