@@ -1848,7 +1848,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--white);
   border-radius: 0;
   width: 100%;
-  max-width: 860px;
+  max-width: 640px;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 24px 80px rgba(0,0,0,.35);
@@ -1876,9 +1876,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .modal__close:hover { background: var(--gray-light); }
 
 .modal__layout {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 0;
+  display: flex;
+  flex-direction: column;
 }
 .modal__img-col {
   background: var(--off-white);
@@ -2053,7 +2052,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
 }
 
-.modal__info-col { padding: 32px 28px; display: flex; flex-direction: column; gap: 16px; }
+.modal__info-col { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 16px; }
+.modal__header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.modal__title-block { display: flex; flex-direction: column; gap: 0; }
+.modal__details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+.modal__features-col { display: flex; flex-direction: column; gap: 16px; }
 .modal__brand-name {
   font-size: .75rem;
   font-weight: 700;
@@ -2096,8 +2099,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .modal__features li { font-size: .85rem; color: var(--dark); padding-left: 16px; position: relative; }
 .modal__features li::before { content: '✓'; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
 
-.modal__cta { margin-top: auto; border-top: 1px solid var(--gray-light); padding-top: 20px; }
-.modal__price-block { margin-bottom: 14px; }
+.modal__cta { border-top: 1px solid var(--gray-light); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.modal__price-block { margin-bottom: 0; }
 .modal__price-label { display: block; font-size: .75rem; color: var(--gray); }
 .modal__price-val { display: block; font-size: 2rem; font-weight: 800; color: var(--dark); line-height: 1.1; }
 .modal__price-note { font-size: .72rem; color: var(--gray); display: block; margin-top: 2px; }
@@ -2136,9 +2139,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .option-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .option-grid--3 { grid-template-columns: 1fr; }
   .hero__content { padding: 64px 24px; }
-  .modal__layout { grid-template-columns: 1fr; }
   .modal__img-col { border-radius: 0; }
-  .modal__img-wrap { height: 280px; }
+  .modal__img-wrap { height: 260px; }
+  .modal__details-grid { grid-template-columns: 1fr; }
+  .modal__header-row { flex-direction: column; }
 }
 
 @media (max-width: 720px) {

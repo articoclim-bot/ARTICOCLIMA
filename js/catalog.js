@@ -604,59 +604,65 @@ function modalHTML(p) {
         </div>
         ${initGallery.length > 1 ? `
         <div class="modal__thumbs" id="modalThumbs">${thumbsHTML}</div>` : ''}
+      </div>
+
+      <div class="modal__info-col">
+        <div class="modal__header-row">
+          <div class="modal__title-block">
+            <p class="modal__brand-name">${BRAND_LABEL[p.brand]}</p>
+            <p class="modal__series-name">${p.series}</p>
+            <h2 class="modal__model-name">${p.model}</h2>
+          </div>
+          <div class="modal__energy-row">
+            <div class="modal__energy-item">
+              ${energyBadge(p.energyCool)}
+              <span>Arrefecimento</span>
+            </div>
+            <div class="modal__energy-item">
+              ${energyBadge(p.energyHeat)}
+              <span>Aquecimento</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal__details-grid">
+          <div class="modal__specs">
+            <div class="spec-row">
+              <span class="spec-row__label">Potência</span>
+              <span class="spec-row__val">${kwStr(p.kw)} · ${formatBtu(p.btu)}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row__label">Ruído interior</span>
+              <span class="spec-row__val">${p.noiseIn} dB(A)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row__label">Ruído exterior</span>
+              <span class="spec-row__val">${p.noiseOut} dB(A)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row__label">Tecnologia</span>
+              <span class="spec-row__val tech-row">${techTags}</span>
+            </div>
+          </div>
+          <div class="modal__features-col">
+            <div class="modal__features">
+              <p class="modal__features-label">Características</p>
+              <ul>${featureList}</ul>
+            </div>
+            ${p.awards ? `
+            <div class="modal__awards">
+              <div class="modal__awards-grid">
+                ${p.awards.map((src, i, arr) => `<img src="${src}" alt="Prémio" class="award-img${(arr.length % 2 !== 0 && i === arr.length - 1) ? ' award-img--wide' : ''}">`).join('')}
+              </div>
+            </div>` : ''}
+          </div>
+        </div>
+
         ${p.colors.length > 1 ? `
         <div class="modal__color-section">
           <p class="modal__color-label">Cores disponíveis</p>
           <div class="modal__color-swatches">${colorSwatches}</div>
         </div>` : ''}
-      </div>
-      <div class="modal__info-col">
-        <p class="modal__brand-name">${BRAND_LABEL[p.brand]}</p>
-        <p class="modal__series-name">${p.series}</p>
-        <h2 class="modal__model-name">${p.model}</h2>
-
-        <div class="modal__energy-row">
-          <div class="modal__energy-item">
-            ${energyBadge(p.energyCool)}
-            <span>Arrefecimento</span>
-          </div>
-          <div class="modal__energy-item">
-            ${energyBadge(p.energyHeat)}
-            <span>Aquecimento</span>
-          </div>
-        </div>
-
-        <div class="modal__specs">
-          <div class="spec-row">
-            <span class="spec-row__label">Potência</span>
-            <span class="spec-row__val">${kwStr(p.kw)} · ${formatBtu(p.btu)}</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-row__label">Ruído interior</span>
-            <span class="spec-row__val">${p.noiseIn} dB(A)</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-row__label">Ruído exterior</span>
-            <span class="spec-row__val">${p.noiseOut} dB(A)</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-row__label">Tecnologia</span>
-            <span class="spec-row__val tech-row">${techTags}</span>
-          </div>
-        </div>
-
-        <div class="modal__features-awards-row">
-          <div class="modal__features">
-            <p class="modal__features-label">Características</p>
-            <ul>${featureList}</ul>
-          </div>
-          ${p.awards ? `
-          <div class="modal__awards">
-            <div class="modal__awards-grid">
-              ${p.awards.map((src, i, arr) => `<img src="${src}" alt="Prémio" class="award-img${(arr.length % 2 !== 0 && i === arr.length - 1) ? ' award-img--wide' : ''}">`).join('')}
-            </div>
-          </div>` : ''}
-        </div>
 
         <div class="modal__cta">
           <div class="modal__price-block">
