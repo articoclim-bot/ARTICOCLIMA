@@ -216,13 +216,11 @@
       document.getElementById('navToggle').classList.toggle('open', isOpen);
     });
 
-    // Dropdown toggle (mobile)
+    // Dropdown toggle
     document.querySelectorAll('.nav__link--parent').forEach(a => {
       a.addEventListener('click', e => {
-        if (window.innerWidth <= 900) {
-          e.preventDefault();
-          a.closest('.nav__item--has-sub').classList.toggle('open');
-        }
+        e.preventDefault();
+        a.closest('.nav__item--has-sub').classList.toggle('open');
       });
     });
   </script>
