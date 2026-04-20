@@ -186,35 +186,27 @@
 <body>
 
   <!-- NAV -->
-  <nav class="nav" id="mainNav">
-    <div class="nav__inner container">
-      <a href="index.html" class="nav__logo-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute">
-          <defs>
-            <filter id="logo-nav" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
-              <feColorMatrix type="matrix"
-                values="0 0 0 0 0.976
-                        0 0 0 0 0.455
-                        0 0 0 0 0.086
-                        0 0 0 -100 101"/>
-            </filter>
-          </defs>
-        </svg>
-        <img src="assets/logo.png" alt="ARTICOCLIMA" class="nav__logo" height="44" filter="url(#logo-nav)"
-             style="filter:url(#logo-nav)">
-      </a>
-      <div class="nav__links" id="navLinks">
-        <a href="index.html#servicos" class="nav__link">Serviços</a>
-        <a href="catalogo.html" class="nav__link">Catálogo AC</a>
-        <a href="catalogo-solar.html" class="nav__link">Solar AQS</a>
-        <a href="simulador.html" class="nav__link">Orçamento</a>
-        <a href="index.html#contacto" class="btn btn--primary nav__cta">Contacto</a>
-      </div>
-      <button class="nav__hamburger" id="navHamburger" aria-label="Menu">
+  <header class="header scrolled" id="header">
+    <nav class="nav container">
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu">
         <span></span><span></span><span></span>
       </button>
-    </div>
-  </nav>
+      <a href="index.html" class="nav__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="80" style="display:block" aria-label="Artico Climatização">
+          <defs>
+            <filter id="logo-nav" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
+            </filter>
+          </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-nav)"/>
+        </svg>
+      </a>
+      <div class="lang-select" id="langSelect"><button class="lang-toggle" id="langToggle"><span class="fi fi-pt"></span> PT ▾</button><div class="lang-dropdown" id="langDropdown"><button data-lang="pt"><span class="fi fi-pt"></span> PT</button><button data-lang="en"><span class="fi fi-gb"></span> EN</button><button data-lang="fr"><span class="fi fi-fr"></span> FR</button><button data-lang="es"><span class="fi fi-es"></span> ES</button><button data-lang="de"><span class="fi fi-de"></span> DE</button></div></div>
+    </nav>
+  </header>
 
   <!-- HERO -->
   <section class="hig-hero">
@@ -304,36 +296,40 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
-      <div class="footer__brand">
-        <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute">
+      <a href="index.html#inicio" class="nav__logo footer__logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 672" height="64" style="display:block" aria-label="Artico Climatização">
           <defs>
-            <filter id="logo-footer" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
-              <feColorMatrix type="matrix"
-                values="0 0 0 0 0.976
-                        0 0 0 0 0.455
-                        0 0 0 0 0.086
-                        0 0 0 -100 101"/>
+            <filter id="logo-footer" color-interpolation-filters="sRGB">
+              <feColorMatrix type="matrix" values="0 0 0 0 0.976
+                                                   0 0 0 0 0.451
+                                                   0 0 0 0 0.086
+                                                  -1 0 0 0 1"/>
             </filter>
           </defs>
+          <image href="assets/logo.png" width="1536" height="672" filter="url(#logo-footer)"/>
         </svg>
-        <img src="assets/logo.png" alt="ARTICOCLIMA" class="nav__logo footer__logo" height="38"
-             style="filter:url(#logo-footer)">
-        <p class="footer__tagline">Climatização profissional no Algarve</p>
-      </div>
+      </a>
       <div class="footer__links">
         <a href="index.html#servicos">Serviços</a>
-        <a href="catalogo.html">Catálogo AC</a>
-        <a href="catalogo-solar.html">Solar AQS</a>
-        <a href="simulador.html">Orçamento</a>
+        <a href="index.html#orcamento">Orçamento</a>
         <a href="index.html#contacto">Contacto</a>
       </div>
       <p class="footer__copy">© 2025 ARTICOCLIMA · Todos os direitos reservados</p>
+      <div class="footer__legal">
+        <a href="politica-privacidade.html">Política de Privacidade</a>
+        <a href="politica-cookies.html">Política de Cookies</a>
+      </div>
     </div>
   </footer>
 
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  </script>
   <script src="js/script.js"></script>
+  <script src="js/i18n.js"></script>
 </body>
 </html>
