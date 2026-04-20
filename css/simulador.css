@@ -6,7 +6,9 @@
 /* ── Hero ──────────────────────────────────────────────────────── */
 .sim-hero {
   margin-top: 84px;
-  background: linear-gradient(135deg, var(--dark) 0%, #2d2d30 100%);
+  background:
+    linear-gradient(rgba(15,12,8,.72), rgba(15,12,8,.72)),
+    url('../assets/sim-hero-bg.png') center center / cover no-repeat;
   padding: 72px 0 60px;
   text-align: center;
   color: var(--white);
