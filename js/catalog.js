@@ -1071,7 +1071,7 @@ const SOLAR_PRODUCTS = [
   {
     id: 'bosch-compress5000-100',
     brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5000DW 100 W',
-    capacity: 100, energyClass: 'A+', pvp: 1990,
+    capacity: 100, energyClass: 'A+', pvp: 2448,
     image: 'assets/products/bosch-compress5000-1.webp',
     images: ['assets/products/bosch-compress5000-1.webp','assets/products/bosch-compress5000-2.webp','assets/products/bosch-compress5000-3.webp','assets/products/bosch-compress5000-4.webp','assets/products/bosch-compress5000-5.webp','assets/products/bosch-compress5000-6.webp','assets/products/bosch-compress5000-7.webp','assets/products/bosch-compress5000-8.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
@@ -1082,7 +1082,7 @@ const SOLAR_PRODUCTS = [
   {
     id: 'bosch-compress5000-150',
     brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5000DW 150 W',
-    capacity: 150, energyClass: 'A+', pvp: 2100,
+    capacity: 150, energyClass: 'A+', pvp: 2583,
     image: 'assets/products/bosch-compress5000-1.webp',
     images: ['assets/products/bosch-compress5000-1.webp','assets/products/bosch-compress5000-2.webp','assets/products/bosch-compress5000-3.webp','assets/products/bosch-compress5000-4.webp','assets/products/bosch-compress5000-5.webp','assets/products/bosch-compress5000-6.webp','assets/products/bosch-compress5000-7.webp','assets/products/bosch-compress5000-8.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
@@ -1093,7 +1093,7 @@ const SOLAR_PRODUCTS = [
   {
     id: 'bosch-compress5001-200',
     brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5001DW 200',
-    capacity: 200, energyClass: 'A+', pvp: 2650,
+    capacity: 200, energyClass: 'A+', pvp: 3260,
     image: 'assets/products/bosch-compress5000-1.webp',
     images: ['assets/products/bosch-compress5000-1.webp','assets/products/bosch-compress5000-2.webp','assets/products/bosch-compress5000-3.webp','assets/products/bosch-compress5000-4.webp','assets/products/bosch-compress5000-5.webp','assets/products/bosch-compress5000-6.webp','assets/products/bosch-compress5000-7.webp','assets/products/bosch-compress5000-8.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
@@ -1104,7 +1104,7 @@ const SOLAR_PRODUCTS = [
   {
     id: 'bosch-compress5001-260',
     brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5001DW 260',
-    capacity: 260, energyClass: 'A+', pvp: 2950,
+    capacity: 260, energyClass: 'A+', pvp: 3629,
     image: 'assets/products/bosch-compress5000-1.webp',
     images: ['assets/products/bosch-compress5000-1.webp','assets/products/bosch-compress5000-2.webp','assets/products/bosch-compress5000-3.webp','assets/products/bosch-compress5000-4.webp','assets/products/bosch-compress5000-5.webp','assets/products/bosch-compress5000-6.webp','assets/products/bosch-compress5000-7.webp','assets/products/bosch-compress5000-8.webp'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
