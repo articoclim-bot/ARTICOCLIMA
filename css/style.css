@@ -1677,13 +1677,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .series-card:hover .series-card__photo {
   transform: scale(1.07);
 }
-.series-card[data-brand="bosch"] .series-card__photo,
-.series-card[data-brand="daitsu"] .series-card__photo {
+.series-card[data-brand="bosch"] .series-card__photo {
   object-fit: contain;
   padding: 24px;
 }
-.series-card[data-brand="bosch"]:hover .series-card__photo,
-.series-card[data-brand="daitsu"]:hover .series-card__photo {
+.series-card[data-brand="bosch"]:hover .series-card__photo {
   transform: scale(1.07);
   padding: 24px;
 }
