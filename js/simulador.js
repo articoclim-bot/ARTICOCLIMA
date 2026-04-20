@@ -239,24 +239,24 @@ const BOSCH_MULTI_OUTDOOR = [
 
 // --- DAITSU — Monosplit (conjuntos, c/ IVA) ---
 const DAITSU_MONO = {
-  'ARTIC Plus': {
-    label: 'ARTIC Plus', tier: 'premium', badge: '🏆 Alta Eficiência',
-    energyCool: 'A++', energyHeat: 'A++',
-    desc: 'A++ · WiFi incluído · I Feel · Gentle Air · 5 filtros de qualidade do ar',
+  'ARTIC': {
+    label: 'ARTIC', tier: 'premium', badge: '🏆 Alta Eficiência',
+    energyCool: 'A++', energyHeat: 'A+++',
+    desc: 'A+++ aquec. · WiFi incluído · I Feel · IA+ · Controlo por Voz · 5 filtros de qualidade do ar',
     prices: { 9000:700, 12000:760, 18000:1090, 24000:1290 },
-    models: { 9000:'DS-9KTP-6', 12000:'DS-12KTP-6', 18000:'DS-18KTP-6', 24000:'DS-24KTP-6' },
-    features: ['Inverter', 'R-32', 'WiFi incluído', 'A++', 'I Feel', 'Gentle Air', '5 filtros'],
+    models: { 9000:'DS-9KZ', 12000:'DS-12KZ', 18000:'DS-18KZ', 24000:'DS-24KZ' },
+    features: ['Inverter', 'R-32', 'WiFi incluído', 'A+++', 'I Feel', 'IA+', '5 filtros'],
     maxBTU: 24000,
     image: 'assets/products/daitsu-artic-plus-1.webp',
     images: ['assets/products/daitsu-artic-plus-1.webp','assets/products/daitsu-artic-plus-2.webp','assets/products/daitsu-artic-plus-3.webp'],
   },
 };
 
-// --- DAITSU — Multisplit Interior (ARTIC Plus, c/ IVA) ---
+// --- DAITSU — Multisplit Interior (ARTIC, c/ IVA) ---
 const DAITSU_MULTI_INDOOR = [
-  { btu: 9000,  kw: 2.5, model: 'DS-9KTP-6',  pvp: 260 },
-  { btu: 12000, kw: 3.5, model: 'DS-12KTP-6', pvp: 265 },
-  { btu: 18000, kw: 5.0, model: 'DS-18KTP-6', pvp: 430 },
+  { btu: 9000,  kw: 2.64, model: 'DS-9KZ',  pvp: 260 },
+  { btu: 12000, kw: 3.52, model: 'DS-12KZ', pvp: 265 },
+  { btu: 18000, kw: 5.14, model: 'DS-18KZ', pvp: 430 },
 ];
 
 // --- DAITSU — Multisplit Exterior (FREE-MAX, c/ IVA) ---

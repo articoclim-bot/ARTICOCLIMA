@@ -28,7 +28,7 @@ const IMG = {
   bosch7000iBranco: ['assets/products/bosch-7000i-branco-1.webp','assets/products/bosch-7000i-branco-2.webp','assets/products/bosch-7000i-branco-3.webp'],
   bosch7000iSilver: ['assets/products/bosch-7000i-silver-1.webp','assets/products/bosch-7000i-silver-2.webp','assets/products/bosch-7000i-silver-3.webp'],
   bosch7000iBlack:  ['assets/products/bosch-7000i-black-1.webp','assets/products/bosch-7000i-black-2.webp','assets/products/bosch-7000i-black-3.webp'],
-  articPlus:       ['assets/products/daitsu-artic-plus-1.png','assets/products/daitsu-artic-plus-2.jpg','assets/products/daitsu-artic-plus-3.jpg','assets/products/daitsu-artic-plus-4.jpg'],
+  artic:           ['assets/products/daitsu-artic-plus-1.png','assets/products/daitsu-artic-plus-2.jpg','assets/products/daitsu-artic-plus-3.jpg','assets/products/daitsu-artic-plus-4.jpg'],
 };
 
 const PRODUCTS = [
@@ -350,20 +350,22 @@ const PRODUCTS = [
     colorGallery:{'Branco':IMG.bosch7000iBranco,'Prateado':IMG.bosch7000iSilver,'Preto':IMG.bosch7000iBlack} },
 
   /* ===================================================
-     DAITSU — Série ARTIC PLUS (DS-KTP-6)
-     Classe A++ arref. / A++ aquec. | WiFi incluído
+     DAITSU — Série ARTIC (DS-KZ)
+     Classe A++ arref. / A+++ aquec. | WiFi incluído | IA+
      Preços Tabela 2025 c/ IVA
      =================================================== */
   {
-    id: 'daitsu-artic-plus-9',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-9KTP-6',
-    btu: 9000, kw: 2.6,
-    energyCool: 'A++', energyHeat: 'A++',
-    noiseIn: 37, noiseOut: 52,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
+    id: 'daitsu-artic-9',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-9KZ',
+    btu: 9000, kw: 2.64,
+    energyCool: 'A++', energyHeat: 'A+++',
+    noiseIn: 36, noiseOut: 53,
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
-      'Classe A++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A+++ aquecimento',
       'WiFi incluído',
+      'Controlo por Voz',
+      'Inteligência Artificial (IA+)',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -374,18 +376,20 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 745,
-    image: IMG.articPlus[0], images: IMG.articPlus,
+    image: IMG.artic[0], images: IMG.artic,
   },
   {
-    id: 'daitsu-artic-plus-12',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-12KTP-6',
-    btu: 12000, kw: 3.5,
-    energyCool: 'A++', energyHeat: 'A++',
-    noiseIn: 37, noiseOut: 53,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
+    id: 'daitsu-artic-12',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-12KZ',
+    btu: 12000, kw: 3.52,
+    energyCool: 'A++', energyHeat: 'A+++',
+    noiseIn: 36, noiseOut: 55,
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
-      'Classe A++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A+++ aquecimento',
       'WiFi incluído',
+      'Controlo por Voz',
+      'Inteligência Artificial (IA+)',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -396,18 +400,20 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 760,
-    image: IMG.articPlus[0], images: IMG.articPlus,
+    image: IMG.artic[0], images: IMG.artic,
   },
   {
-    id: 'daitsu-artic-plus-18',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-18KTP-6',
-    btu: 18000, kw: 5.2,
-    energyCool: 'A++', energyHeat: 'A++',
-    noiseIn: 40, noiseOut: 55,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
+    id: 'daitsu-artic-18',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-18KZ',
+    btu: 18000, kw: 5.14,
+    energyCool: 'A++', energyHeat: 'A+++',
+    noiseIn: 41, noiseOut: 55,
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
-      'Classe A++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A+++ aquecimento',
       'WiFi incluído',
+      'Controlo por Voz',
+      'Inteligência Artificial (IA+)',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -418,18 +424,20 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1230,
-    image: IMG.articPlus[0], images: IMG.articPlus,
+    image: IMG.artic[0], images: IMG.artic,
   },
   {
-    id: 'daitsu-artic-plus-24',
-    brand: 'daitsu', series: 'ARTIC Plus', model: 'DS-24KTP-6',
-    btu: 24000, kw: 6.9,
-    energyCool: 'A++', energyHeat: 'A++',
-    noiseIn: 40, noiseOut: 58,
-    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A++'],
+    id: 'daitsu-artic-24',
+    brand: 'daitsu', series: 'ARTIC', model: 'DS-24KZ',
+    btu: 24000, kw: 6.45,
+    energyCool: 'A++', energyHeat: 'A+++',
+    noiseIn: 45, noiseOut: 59,
+    tech: ['Inverter', 'R-32', 'WiFi incluído', 'A+++'],
     features: [
-      'Classe A++ arrefecimento / A++ aquecimento',
+      'Classe A++ arrefecimento / A+++ aquecimento',
       'WiFi incluído',
+      'Controlo por Voz',
+      'Inteligência Artificial (IA+)',
       '5 filtros de alta eficiência (pó, iões prata, carvão ativo, catequina, vitamina C)',
       'Modo Gentle Air — brisa suave sem correntes diretas',
       'Auto-limpeza do evaporador',
@@ -440,7 +448,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1555,
-    image: IMG.articPlus[0], images: IMG.articPlus,
+    image: IMG.artic[0], images: IMG.artic,
   },
 
 ];
