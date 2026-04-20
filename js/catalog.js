@@ -375,7 +375,7 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 745,
+    pvp: 745, isNew: true,
     image: IMG.artic[0], images: IMG.artic,
   },
   {
@@ -399,7 +399,7 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 760,
+    pvp: 760, isNew: true,
     image: IMG.artic[0], images: IMG.artic,
   },
   {
@@ -423,7 +423,7 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1230,
+    pvp: 1230, isNew: true,
     image: IMG.artic[0], images: IMG.artic,
   },
   {
@@ -447,7 +447,7 @@ const PRODUCTS = [
       'Contacto seco ON/OFF',
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
-    pvp: 1555,
+    pvp: 1555, isNew: true,
     image: IMG.artic[0], images: IMG.artic,
   },
 
