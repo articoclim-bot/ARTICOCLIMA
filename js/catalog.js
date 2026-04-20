@@ -554,7 +554,7 @@ function seriesCardHTML(group) {
         <div class="series-card__footer">
           <div>
             <span class="price-from">A partir de · c/ IVA</span>
-            <span class="price-val" id="sc-price-${sk}">${first.pvp.toLocaleString('pt-PT')} €</span>
+            <span class="price-val" id="sc-price-${sk}">${first.pvp ? first.pvp.toLocaleString('pt-PT') + ' €' : 'Sob consulta'}</span>
           </div>
           <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
         </div>
@@ -675,7 +675,7 @@ function modalHTML(p) {
         <div class="modal__cta">
           <div class="modal__price-block">
             <span class="modal__price-label">PVP a partir de</span>
-            <span class="modal__price-val">${p.pvp.toLocaleString('pt-PT')}€</span>
+            <span class="modal__price-val">${p.pvp ? p.pvp.toLocaleString('pt-PT') + '€' : 'Sob consulta'}</span>
             <span class="modal__price-note">* Preço c/ IVA. Instalação não incluída.</span>
           </div>
           <div class="modal__btn-row">
@@ -738,7 +738,7 @@ function modalHTML(p) {
       pill.classList.add('active');
 
       const priceEl = document.getElementById(`sc-price-${sk}`);
-      if (priceEl) priceEl.textContent = p.pvp.toLocaleString('pt-PT') + ' €';
+      if (priceEl) priceEl.textContent = p.pvp ? p.pvp.toLocaleString('pt-PT') + ' €' : 'Sob consulta';
 
       const energyEl = document.getElementById(`sc-energy-${sk}`);
       if (energyEl) energyEl.innerHTML = energyBadge(p.energyCool);
@@ -1067,28 +1067,50 @@ const SOLAR_PRODUCTS = [
     specs: [{ label: 'Volume', val: '300 L' }, { label: 'Coletores', val: '3 painéis planos' }, { label: 'Área captação', val: '5,76 m²' }, { label: 'Pressão máx.', val: '6 bar' }],
   },
 
-  /* ---- BOSCH Compress 5000 DW — Bomba de Calor AQS (chão, sem serpentina) ---- */
+  /* ---- BOSCH Compress 5000 DW — Bomba de Calor AQS ---- */
+  {
+    id: 'bosch-compress5000-100',
+    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5000DW 100 W',
+    capacity: 100, energyClass: 'A+', pvp: 0,
+    image: 'assets/products/bosch-compress5000.jpg',
+    images: ['assets/products/bosch-compress5000.jpg'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor AQS · Parede',
+    features: ['COP 3,5 — 70% de poupança energética', 'Instalação de parede — ideal para espaços reduzidos', 'Resistência auxiliar 1,5 kW integrada', 'Compatível com fotovoltaico', 'Desumidificação do espaço incluída', 'Refrigerante R513A — baixo impacto ambiental (GWP 631)'],
+    specs: [{ label: 'Volume', val: '100 L' }, { label: 'Instalação', val: 'Parede' }, { label: 'COP', val: '3,5' }, { label: 'Resistência aux.', val: '1,5 kW' }, { label: 'Ruído int.', val: '50 dB(A)' }, { label: 'Dimensões (A×L×P)', val: '1381 × 520 × 540 mm' }, { label: 'Refrigerante', val: 'R513A' }],
+  },
+  {
+    id: 'bosch-compress5000-150',
+    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5000DW 150 W',
+    capacity: 150, energyClass: 'A+', pvp: 0,
+    image: 'assets/products/bosch-compress5000.jpg',
+    images: ['assets/products/bosch-compress5000.jpg'],
+    colors: [{ name: 'Branco', hex: '#EFEFEF' }],
+    tagline: 'Bomba de calor AQS · Parede',
+    features: ['COP 3,5 — 70% de poupança energética', 'Instalação de parede — ideal para espaços reduzidos', 'Resistência auxiliar 1,5 kW integrada', 'Compatível com fotovoltaico', 'Desumidificação do espaço incluída', 'Refrigerante R513A — baixo impacto ambiental (GWP 631)'],
+    specs: [{ label: 'Volume', val: '150 L' }, { label: 'Instalação', val: 'Parede' }, { label: 'COP', val: '3,5' }, { label: 'Resistência aux.', val: '1,5 kW' }, { label: 'Ruído int.', val: '50 dB(A)' }, { label: 'Refrigerante', val: 'R513A' }],
+  },
   {
     id: 'bosch-compress5001-200',
-    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5001DW 200',
+    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5000DW 200',
     capacity: 200, energyClass: 'A+', pvp: 3260,
     image: 'assets/products/bosch-compress5000.jpg',
     images: ['assets/products/bosch-compress5000.jpg'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     tagline: 'Bomba de calor AQS · Chão',
-    features: ['Bomba de calor aerotérmica', 'Instalação de chão', 'COP 3,5 (A+++ a 20°C)', 'R513A — baixo impacto ambiental', 'Inclui válvula de segurança e retenção'],
-    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,5' }, { label: 'Serpentina solar', val: 'Não' }, { label: 'Dimensões (Ax⌀)', val: '1720 × 630 mm' }],
+    features: ['COP 3,5 — 70% de poupança energética', 'Instalação de chão — capacidade familiar', 'Resistência auxiliar 1,5 kW integrada', 'Compatível com fotovoltaico', 'Desumidificação do espaço incluída', 'Refrigerante R513A — baixo impacto ambiental (GWP 631)'],
+    specs: [{ label: 'Volume', val: '200 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,5' }, { label: 'Resistência aux.', val: '1,5 kW' }, { label: 'Ruído int.', val: '50 dB(A)' }, { label: 'Dimensões (A×⌀)', val: '1720 × 630 mm' }, { label: 'Refrigerante', val: 'R513A' }],
   },
   {
     id: 'bosch-compress5001-260',
-    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5001DW 260',
+    brand: 'bosch', series: 'Compress 5000 DW', model: 'CS5000DW 260',
     capacity: 260, energyClass: 'A+', pvp: 3629,
     image: 'assets/products/bosch-compress5000.jpg',
     images: ['assets/products/bosch-compress5000.jpg'],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     tagline: 'Bomba de calor AQS · Chão',
-    features: ['Bomba de calor aerotérmica', 'Instalação de chão', 'COP 3,6 (A+++ a 20°C)', 'R513A — baixo impacto ambiental', 'Inclui válvula de segurança e retenção'],
-    specs: [{ label: 'Volume', val: '260 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,6' }, { label: 'Serpentina solar', val: 'Não' }, { label: 'Dimensões (Ax⌀)', val: '2010 × 630 mm' }],
+    features: ['COP 3,6 — 70% de poupança energética', 'Instalação de chão — grande capacidade', 'Resistência auxiliar 1,5 kW integrada', 'Compatível com fotovoltaico', 'Desumidificação do espaço incluída', 'Refrigerante R513A — baixo impacto ambiental (GWP 631)'],
+    specs: [{ label: 'Volume', val: '260 L' }, { label: 'Instalação', val: 'Chão' }, { label: 'COP', val: '3,6' }, { label: 'Resistência aux.', val: '1,5 kW' }, { label: 'Ruído int.', val: '50 dB(A)' }, { label: 'Dimensões (A×⌀)', val: '2010 × 630 mm' }, { label: 'Refrigerante', val: 'R513A' }],
   },
 
 ];
@@ -1142,7 +1164,7 @@ function solarSeriesCardHTML(group) {
         <div class="series-card__footer">
           <div>
             <span class="price-from">A partir de · c/ IVA</span>
-            <span class="price-val" id="sc-price-${sk}">${first.pvp.toLocaleString('pt-PT')} €</span>
+            <span class="price-val" id="sc-price-${sk}">${first.pvp ? first.pvp.toLocaleString('pt-PT') + ' €' : 'Sob consulta'}</span>
           </div>
           <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
         </div>
@@ -1200,7 +1222,7 @@ function solarModalHTML(p) {
         <div class="modal__cta">
           <div class="modal__price-block">
             <span class="modal__price-label">PVP a partir de</span>
-            <span class="modal__price-val">${p.pvp.toLocaleString('pt-PT')}€</span>
+            <span class="modal__price-val">${p.pvp ? p.pvp.toLocaleString('pt-PT') + '€' : 'Sob consulta'}</span>
             <span class="modal__price-note">* Preço c/ IVA. Instalação não incluída.</span>
           </div>
           <div class="modal__btn-row">
@@ -1252,7 +1274,7 @@ function solarModalHTML(p) {
         pill.classList.add('active');
         const p = group[idx];
         const priceEl = document.getElementById('sc-price-' + sk);
-        if (priceEl) priceEl.textContent = p.pvp.toLocaleString('pt-PT') + ' €';
+        if (priceEl) priceEl.textContent = p.pvp ? p.pvp.toLocaleString('pt-PT') + ' €' : 'Sob consulta';
         /* update card image */
         const imgEl = document.getElementById('sc-img-' + sk);
         if (imgEl) { imgEl.src = p.image; imgEl.style.display = ''; }
