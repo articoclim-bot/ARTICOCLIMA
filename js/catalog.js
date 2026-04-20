@@ -376,7 +376,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 745, isNew: true,
-    image: IMG.artic[0], images: IMG.artic,
+    image: IMG.artic[1], images: IMG.artic,
   },
   {
     id: 'daitsu-artic-12',
@@ -400,7 +400,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 760, isNew: true,
-    image: IMG.artic[0], images: IMG.artic,
+    image: IMG.artic[1], images: IMG.artic,
   },
   {
     id: 'daitsu-artic-18',
@@ -424,7 +424,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1230, isNew: true,
-    image: IMG.artic[0], images: IMG.artic,
+    image: IMG.artic[1], images: IMG.artic,
   },
   {
     id: 'daitsu-artic-24',
@@ -448,7 +448,7 @@ const PRODUCTS = [
     ],
     colors: [{ name: 'Branco', hex: '#EFEFEF' }],
     pvp: 1555, isNew: true,
-    image: IMG.artic[0], images: IMG.artic,
+    image: IMG.artic[1], images: IMG.artic,
   },
 
 ];
