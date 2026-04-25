@@ -79,51 +79,57 @@ async function handleSugerir(req, res) {
   req.on('data', c => body += c);
   req.on('end', async () => {
     try {
-      const { descricao } = JSON.parse(body);
+      const payload = JSON.parse(body);
+      const { descricao, catalogText: clientCatalog } = payload;
       if (!descricao) return json(res, { erro: 'descricao obrigatória' }, 400);
 
-      const catalogs = loadCatalogs();
-      if (catalogs.length === 0) return json(res, { erro: 'Catálogos não encontrados em data/' }, 500);
+      let catalogText = clientCatalog;
+      if (!catalogText) {
+        const catalogs = loadCatalogs();
+        catalogText = catalogs.map(c =>
+          `=== ${c.marca} ===\n` +
+          (c.produtos || []).map(p => {
+            const pvp = p.pvp_com_iva || (p.pvp_sem_iva ? Math.round(p.pvp_sem_iva * 1.23) : '?');
+            return `${p.nome} | ${p.tipo} | ${p.kw_frio}kW | ${p.btu ? p.btu + 'BTU | ' : ''}${pvp}€ c/IVA`;
+          }).join('\n')
+        ).join('\n\n');
+      }
 
-      const catalogText = catalogs.map(c =>
-        `=== ${c.marca} ${c.ano} ===\n` +
-        (c.produtos || []).map(p =>
-          `[${p.ref}] ${p.nome} | ${p.tipo} | ${p.kw_frio}kW frio${p.kw_quente ? ` / ${p.kw_quente}kW calor` : ''} | ${p.btu ? p.btu + ' BTU' : ''} | ${p.classe_energetica || ''} | PVP: ${p.pvp_sem_iva ? p.pvp_sem_iva + '€ s/IVA' : p.pvp_com_iva + '€ c/IVA'}`
-        ).join('\n')
-      ).join('\n\n');
+      const system = `És um especialista em climatização. Dado o pedido do técnico, sugere TODAS as opções relevantes para o cliente.
 
-      const system = `És um especialista em climatização (ar condicionado). Tens acesso ao catálogo completo de três marcas: Daitsu, Daikin e Bosch.
+REGRAS OBRIGATÓRIAS:
+- Apresenta opções de TODAS as marcas disponíveis (Daikin, Bosch, Daitsu)
+- Para pedidos de múltiplas divisões: inclui SEMPRE opção multi-split (kit completo) E opção mono-splits individuais
+- Ordena por relação qualidade/preço (melhor primeiro)
+- Todos os preços são COM IVA 23% incluído
+- Cada opção precisa de uma justificação de venda (2-3 frases) para o técnico apresentar ao cliente
 
-Regras de dimensionamento (orientação geral):
-- ~100 BTU por m² (arrefecimento)
-- Ambientes com grande exposição solar ou mal isolados: +20-30%
-- Escritórios/comercial: +30%
-
-Quando o utilizador descreve uma necessidade, devolves APENAS um JSON válido com as opções recomendadas, ordenadas por adequação. Sem texto extra.
-
-Formato de resposta (JSON puro):
+Devolve APENAS JSON válido (sem markdown, sem texto extra):
 {
-  "resumo_necessidade": "...",
+  "resumo": "1 frase resumo da necessidade",
   "kw_recomendado": 3.5,
   "opcoes": [
     {
       "posicao": 1,
+      "titulo": "Bosch Climate 3200i 35 — Mono-split",
       "marca": "Bosch",
-      "ref": "...",
-      "nome": "...",
-      "tipo": "split_mural",
-      "kw_frio": 3.5,
-      "kw_quente": 4.0,
+      "produto_id": "bosch-3200i-35",
+      "modelo": "CL3200i-Set 35 WE",
+      "tipo": "mono_split",
+      "kw": 3.5,
       "btu": 12000,
-      "classe_energetica": "A+++",
-      "pvp_sem_iva": 850.00,
-      "pvp_com_iva": null,
-      "justificacao": "Ideal para quarto de 20m²..."
+      "classe": "A++",
+      "pvp_unitario": 996,
+      "imagem": "assets/products/bosch-3200i-new-1.jpg",
+      "justificacao": "Texto de venda 2-3 frases.",
+      "unidades": [
+        { "descricao": "Bosch Climate 3200i Set 35 WE (kit split)", "qty": 1, "pvp": 996 }
+      ]
     }
   ]
 }
 
-Catálogos disponíveis:
+CATÁLOGOS:
 ${catalogText}`;
 
       const resposta = await callClaude(system, descricao);
@@ -165,13 +171,13 @@ function handleGerarOrcamento(req, res) {
         numero,
         numero_formatado,
         data: new Date().toISOString(),
+        categoria: dados.categoria || 'ac',
         cliente: dados.cliente || '',
-        descricao_pedido: dados.descricao_pedido || '',
-        produto: dados.produto,
-        quantidade: dados.quantidade || 1,
+        itens: dados.itens || [],
         instalacao: dados.instalacao || null,
+        desconto: dados.desconto || 0,
         notas: dados.notas || '',
-        total_sem_iva: dados.total_sem_iva || null,
+        justificacao: dados.justificacao || '',
         total_com_iva: dados.total_com_iva || null,
       };
 

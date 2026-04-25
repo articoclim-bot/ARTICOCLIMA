@@ -6,750 +6,1005 @@
   <title>ARTICOCLIMA — Back Office</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg: #0f0f11;
-      --surface: #1a1a1f;
-      --surface2: #22222a;
-      --border: #2e2e38;
-      --orange: #f97316;
-      --orange-dim: #c05a0e;
-      --text: #e8e8ed;
-      --muted: #888;
-      --green: #22c55e;
-      --blue: #3b82f6;
-      --red: #ef4444;
-      --radius: 10px;
+      --bg: #0f0f11; --surface: #1a1a1f; --surface2: #22222a; --border: #2e2e38;
+      --orange: #f97316; --orange-dim: #7c3208; --text: #e8e8ed; --muted: #888;
+      --green: #22c55e; --blue: #3b82f6; --red: #ef4444; --radius: 8px;
       --font: 'Segoe UI', system-ui, sans-serif;
     }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr;
-    }
+    /* ── Header ── */
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+    .header-logo { height: 36px; }
+    .header-title { font-size: .85rem; color: var(--muted); }
+    header nav { margin-left: auto; display: flex; gap: 8px; }
+    header nav button { background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 16px; border-radius: var(--radius); cursor: pointer; font-size: .85rem; transition: all .15s; }
+    header nav button.active, header nav button:hover { border-color: var(--orange); color: var(--orange); }
 
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    header .logo {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--orange);
-      letter-spacing: 0.5px;
-    }
-
-    header .subtitle {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    header nav {
-      margin-left: auto;
-      display: flex;
-      gap: 8px;
-    }
-
-    header nav button {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 6px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all .15s;
-    }
-
-    header nav button.active,
-    header nav button:hover {
-      border-color: var(--orange);
-      color: var(--orange);
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .view { display: none; padding: 28px 24px; max-width: 960px; margin: 0 auto; width: 100%; }
+    /* ── Layout ── */
+    .view { display: none; padding: 28px 24px; max-width: 1000px; margin: 0 auto; width: 100%; }
     .view.active { display: block; }
 
-    h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; }
+    /* ── Category tabs ── */
+    .cat-tabs { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .cat-tab { padding: 10px 20px; background: none; border: none; color: var(--muted); cursor: pointer; font-size: .9rem; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s; }
+    .cat-tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+    .cat-tab:hover:not(.active) { color: var(--text); }
+    .cat-panel { display: none; }
+    .cat-panel.active { display: block; }
 
-    /* ── Input area ── */
-    .input-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 20px;
+    /* ── Inputs ── */
+    label { font-size: .78rem; color: var(--muted); display: block; margin-bottom: 6px; }
+    textarea, input[type=text], input[type=number], select {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+      padding: 10px 12px; border-radius: var(--radius); font-size: .9rem; font-family: var(--font);
+      transition: border-color .15s; resize: vertical;
     }
+    textarea:focus, input:focus, select:focus { outline: none; border-color: var(--orange); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .form-group { margin-bottom: 16px; }
 
-    label { font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 6px; }
-
-    textarea, input[type=text], input[type=number] {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 0.95rem;
-      font-family: var(--font);
-      resize: vertical;
-      transition: border-color .15s;
-    }
-
-    textarea:focus, input:focus {
-      outline: none;
-      border-color: var(--orange);
-    }
-
-    textarea { min-height: 80px; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all .15s;
-    }
-
+    /* ── Buttons ── */
+    .btn { padding: 10px 20px; border: none; border-radius: var(--radius); cursor: pointer; font-size: .9rem; font-weight: 600; transition: all .15s; }
     .btn-primary { background: var(--orange); color: #fff; }
-    .btn-primary:hover { background: var(--orange-dim); }
-    .btn-primary:disabled { background: #444; cursor: not-allowed; }
-
-    .btn-ghost {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
+    .btn-primary:hover { background: #e06010; }
+    .btn-primary:disabled { background: var(--orange-dim); cursor: not-allowed; opacity: .6; }
+    .btn-ghost { background: none; border: 1px solid var(--border); color: var(--muted); }
     .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+    .btn-sm { padding: 6px 12px; font-size: .8rem; }
+    .btn-green { background: var(--green); color: #000; }
+    .btn-green:hover { background: #16a34a; }
 
-    .btn-success { background: var(--green); color: #fff; }
-    .btn-success:hover { filter: brightness(0.88); }
+    /* ── Cards ── */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+    .card + .card { margin-top: 12px; }
+    h2 { font-size: 1rem; font-weight: 600; margin-bottom: 16px; }
+    h3 { font-size: .9rem; font-weight: 600; }
 
-    /* ── Loading ── */
-    .loading {
-      display: none;
-      align-items: center;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      padding: 16px 0;
-    }
-    .loading.show { display: flex; }
-    .spinner {
-      width: 20px; height: 20px;
-      border: 2px solid var(--border);
-      border-top-color: var(--orange);
-      border-radius: 50%;
-      animation: spin .7s linear infinite;
-    }
+    /* ── AC Suggestions ── */
+    .sugerir-area { margin-bottom: 20px; }
+    .sugerir-row { display: flex; gap: 10px; align-items: flex-end; }
+    .sugerir-row textarea { flex: 1; min-height: 72px; }
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--orange); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 8px; }
     @keyframes spin { to { transform: rotate(360deg); } }
+    #resumo-necessidade { font-size: .85rem; color: var(--muted); margin-bottom: 16px; padding: 10px 14px; background: var(--surface2); border-radius: var(--radius); display: none; }
 
-    /* ── Options grid ── */
-    .options-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
-    .need-badge {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .need-badge strong { color: var(--orange); }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .option-card {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      cursor: pointer;
-      transition: border-color .15s, transform .1s;
-      position: relative;
-    }
-
-    .option-card:hover { border-color: var(--orange); transform: translateY(-1px); }
-    .option-card.selected { border-color: var(--orange); background: rgba(249,115,22,.07); }
-
-    .option-card .badge-pos {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      background: var(--orange);
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .option-brand {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--orange);
-      margin-bottom: 4px;
-    }
-
-    .option-name { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
-    .option-ref { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
-
-    .option-specs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .spec-tag {
-      background: var(--surface2);
-      border-radius: 4px;
-      padding: 2px 8px;
-      font-size: 0.75rem;
-      color: var(--text);
-    }
-
-    .spec-tag.energy { color: var(--green); }
-
-    .option-price {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--orange);
-    }
-
-    .option-price small { font-size: 0.7rem; color: var(--muted); font-weight: 400; }
-
-    .option-justificacao {
-      margin-top: 10px;
-      font-size: 0.78rem;
-      color: var(--muted);
-      line-height: 1.5;
-      border-top: 1px solid var(--border);
-      padding-top: 8px;
-    }
+    /* ── Option cards ── */
+    .opcoes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .opcao-card { background: var(--surface2); border: 2px solid var(--border); border-radius: var(--radius); padding: 14px; cursor: pointer; transition: all .15s; display: flex; flex-direction: column; gap: 8px; }
+    .opcao-card:hover { border-color: var(--orange); }
+    .opcao-card.selected { border-color: var(--orange); background: color-mix(in srgb, var(--orange) 8%, var(--surface2)); }
+    .opcao-badge { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .badge { font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+    .badge-daikin { background: #1a3a6b; color: #7eb8f5; }
+    .badge-bosch { background: #3a1a10; color: #f5a07e; }
+    .badge-daitsu { background: #1a3a25; color: #7ef5a0; }
+    .badge-multi { background: #2a1a4a; color: #c07ef5; }
+    .badge-classe { background: var(--surface); color: var(--green); border: 1px solid var(--green); }
+    .opcao-title { font-size: .9rem; font-weight: 600; }
+    .opcao-specs { font-size: .78rem; color: var(--muted); display: flex; gap: 12px; }
+    .opcao-pvp { font-size: 1.1rem; font-weight: 700; color: var(--orange); }
+    .opcao-justificacao { font-size: .8rem; color: #aaa; line-height: 1.5; border-top: 1px solid var(--border); padding-top: 8px; }
+    .opcao-img { width: 100%; height: 100px; object-fit: contain; border-radius: 4px; background: #111; }
+    .opcao-select-btn { margin-top: auto; width: 100%; }
 
     /* ── Quote form ── */
-    .quote-panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
-      display: none;
-    }
-    .quote-panel.show { display: block; }
+    #quote-form { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 20px; }
+    #quote-form h2 { color: var(--orange); }
+    .selected-product-summary { background: var(--surface2); border-radius: var(--radius); padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .selected-product-summary img { width: 60px; height: 60px; object-fit: contain; border-radius: 4px; }
+    .sps-info { flex: 1; }
+    .sps-name { font-weight: 600; font-size: .95rem; }
+    .sps-sub { font-size: .78rem; color: var(--muted); }
 
-    .quote-panel h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; }
+    /* ── Solar products ── */
+    .solar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px; }
+    .solar-card { background: var(--surface2); border: 2px solid var(--border); border-radius: var(--radius); padding: 12px; cursor: pointer; transition: all .15s; text-align: center; }
+    .solar-card:hover { border-color: var(--orange); }
+    .solar-card.selected { border-color: var(--orange); background: color-mix(in srgb, var(--orange) 8%, var(--surface2)); }
+    .solar-card img { width: 100%; height: 90px; object-fit: contain; margin-bottom: 8px; }
+    .solar-card-name { font-size: .82rem; font-weight: 600; margin-bottom: 4px; }
+    .solar-card-pvp { font-size: 1rem; color: var(--orange); font-weight: 700; }
+    .solar-card-tag { font-size: .72rem; color: var(--muted); }
+    .solar-series-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); margin: 16px 0 8px; }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
+    /* ── Services ── */
+    .service-row { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--surface2); border-radius: var(--radius); margin-bottom: 8px; }
+    .service-row input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--orange); flex-shrink: 0; cursor: pointer; }
+    .service-label { flex: 1; font-size: .9rem; cursor: pointer; }
+    .service-price-wrap { display: flex; align-items: center; gap: 6px; }
+    .service-price-wrap input { width: 90px; text-align: right; }
+    .service-price-wrap span { font-size: .8rem; color: var(--muted); }
+    .custom-service-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; background: var(--surface2); border-radius: var(--radius); padding: 12px; margin-bottom: 8px; }
 
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1 / -1; }
+    /* ── Total preview ── */
+    .total-preview { background: var(--surface2); border-radius: var(--radius); padding: 14px 16px; margin-top: 16px; }
+    .total-line { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); margin-bottom: 4px; }
+    .total-final { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; color: var(--text); border-top: 1px solid var(--border); padding-top: 10px; margin-top: 6px; }
+    .total-final span:last-child { color: var(--orange); }
 
-    /* ── Toast ── */
-    #toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--green);
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 4px 20px rgba(0,0,0,.4);
-      transform: translateY(80px);
-      opacity: 0;
-      transition: all .3s;
-      z-index: 999;
-    }
-    #toast.show { transform: translateY(0); opacity: 1; }
-    #toast.error { background: var(--red); }
+    /* ── History ── */
+    .historico-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .historico-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 8px 12px; border-bottom: 1px solid var(--border); font-size: .78rem; text-transform: uppercase; letter-spacing: .5px; }
+    .historico-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .historico-table tr:hover td { background: var(--surface2); }
+    .cat-pill { font-size: .7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+    .cat-ac { background: #1a2a3a; color: #7eb8f5; }
+    .cat-solar { background: #3a2a10; color: #f5c57e; }
+    .cat-servicos { background: #1a3a1a; color: #7ef57e; }
 
-    /* ── History view ── */
-    .history-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
+    /* ── Notifications ── */
+    .toast { position: fixed; bottom: 24px; right: 24px; background: var(--green); color: #000; padding: 12px 20px; border-radius: var(--radius); font-weight: 600; font-size: .9rem; z-index: 999; transform: translateY(80px); opacity: 0; transition: all .3s; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.error { background: var(--red); color: #fff; }
 
-    .history-table th {
-      text-align: left;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .history-table td {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .history-table tr:hover td { background: var(--surface2); }
-
-    .history-table .num { color: var(--orange); font-weight: 700; }
-
-    .btn-print {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.78rem;
-      transition: all .15s;
-    }
-    .btn-print:hover { border-color: var(--blue); color: var(--blue); }
-
-    .empty-state {
-      text-align: center;
-      color: var(--muted);
-      padding: 60px 0;
-      font-size: 0.9rem;
-    }
-
-    /* ── Print layout ── */
+    /* ══════════════════════════════════════
+       PRINT STYLES
+    ══════════════════════════════════════ */
     @media print {
-      body > * { display: none !important; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body, header, .view, .cat-tabs { display: none !important; }
       #print-area { display: block !important; }
+      @page { margin: 18mm 20mm; size: A4; }
     }
 
     #print-area {
       display: none;
-      padding: 40px;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       color: #111;
+      background: #fff;
+      font-size: 10pt;
+      line-height: 1.5;
     }
-
-    #print-area .print-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 3px solid #f97316;
-      padding-bottom: 16px;
-      margin-bottom: 24px;
-    }
-
-    #print-area .print-company { font-size: 1.3rem; font-weight: 700; color: #f97316; }
-    #print-area .print-company small { display: block; font-size: 0.75rem; color: #666; font-weight: 400; }
-
-    #print-area .print-title { font-size: 1rem; font-weight: 700; text-align: right; }
-    #print-area .print-num { font-size: 1.4rem; color: #f97316; font-weight: 700; }
-
-    #print-area table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-    #print-area th { background: #f4f4f4; padding: 8px 12px; text-align: left; font-size: 0.85rem; border: 1px solid #ddd; }
-    #print-area td { padding: 8px 12px; font-size: 0.85rem; border: 1px solid #ddd; }
-
-    #print-area .total-row { font-weight: 700; background: #fff8f0; }
-    #print-area .notas-section { margin-top: 24px; font-size: 0.82rem; color: #666; }
-    #print-area .footer-note { margin-top: 40px; font-size: 0.75rem; color: #999; border-top: 1px solid #eee; padding-top: 12px; }
+    .print-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 12pt; border-bottom: 2pt solid #f97316; margin-bottom: 16pt; }
+    .print-logo { height: 48pt; }
+    .print-orc-info { text-align: right; }
+    .print-orc-num { font-size: 14pt; font-weight: 700; color: #f97316; }
+    .print-orc-date { font-size: 9pt; color: #666; }
+    .print-cliente { margin-bottom: 16pt; }
+    .print-cliente strong { font-size: 11pt; }
+    .print-section-title { font-size: 8pt; text-transform: uppercase; letter-spacing: .5pt; color: #888; margin-bottom: 6pt; }
+    .print-items { width: 100%; border-collapse: collapse; margin-bottom: 16pt; }
+    .print-items th { background: #f5f5f5; font-size: 8pt; text-transform: uppercase; letter-spacing: .3pt; padding: 5pt 8pt; text-align: left; color: #555; }
+    .print-items td { padding: 8pt 8pt; border-bottom: 1pt solid #eee; vertical-align: top; }
+    .print-items .item-img { width: 48pt; text-align: center; }
+    .print-items .item-img img { max-width: 44pt; max-height: 44pt; object-fit: contain; }
+    .print-items .item-desc { font-weight: 600; }
+    .print-items .item-sub { font-size: 8.5pt; color: #555; margin-top: 2pt; }
+    .print-items .right { text-align: right; white-space: nowrap; }
+    .print-totals { width: 340pt; margin-left: auto; margin-bottom: 16pt; }
+    .print-totals table { width: 100%; border-collapse: collapse; }
+    .print-totals td { padding: 3pt 8pt; font-size: 9.5pt; }
+    .print-totals .total-row td { font-size: 12pt; font-weight: 700; border-top: 1.5pt solid #f97316; padding-top: 6pt; color: #f97316; }
+    .print-justificacao { background: #fff8f0; border-left: 3pt solid #f97316; padding: 8pt 12pt; margin-bottom: 16pt; font-size: 9pt; color: #333; }
+    .print-notas { background: #f9f9f9; border-left: 3pt solid #ccc; padding: 8pt 12pt; margin-bottom: 16pt; font-size: 9pt; color: #444; }
+    .print-pagamento { border: 1pt solid #ddd; border-radius: 4pt; padding: 10pt 12pt; margin-bottom: 16pt; }
+    .print-pagamento p { font-size: 9pt; color: #333; margin-bottom: 4pt; }
+    .print-pagamento p:last-child { margin-bottom: 0; }
+    .print-footer { border-top: 1pt solid #ddd; padding-top: 8pt; display: flex; justify-content: space-between; font-size: 8.5pt; color: #777; }
   </style>
 </head>
 <body>
 
 <header>
-  <div>
-    <div class="logo">ARTICOCLIMA</div>
-    <div class="subtitle">Back Office — Orçamentos</div>
-  </div>
+  <img src="../assets/logo.png" class="header-logo" alt="ARTICOCLIMA" style="filter: invert(52%) sepia(97%) saturate(1829%) hue-rotate(357deg) brightness(98%) contrast(95%);">
+  <span class="header-title">Back Office — Orçamentos</span>
   <nav>
-    <button class="active" onclick="showView('novo')">+ Novo Orçamento</button>
-    <button onclick="showView('historico')">Histórico</button>
+    <button class="active" id="btn-novo" onclick="showView('novo')">Novo Orçamento</button>
+    <button id="btn-historico" onclick="showView('historico')">Histórico</button>
   </nav>
 </header>
 
-<main>
-  <!-- ── NOVO ORÇAMENTO ── -->
-  <div id="view-novo" class="view active">
-    <h2>Novo Orçamento</h2>
+<!-- ═══════ VIEW: NOVO ORÇAMENTO ═══════ -->
+<div class="view active" id="view-novo">
+  <div class="cat-tabs">
+    <button class="cat-tab active" onclick="showCat('ac')">❄️ Ar Condicionado</button>
+    <button class="cat-tab" onclick="showCat('solar')">☀️ Solar AQS</button>
+    <button class="cat-tab" onclick="showCat('servicos')">🔧 Outros Serviços</button>
+  </div>
 
-    <div class="input-card">
-      <label for="descricao">Descreve o que o cliente precisa</label>
-      <textarea id="descricao" placeholder="Ex: quarto de 18m², boa exposição solar, uso residencial, cliente quer algo econômico..." rows="3"></textarea>
-      <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-        <button class="btn btn-primary" onclick="sugerir()" id="btn-sugerir">
-          <span>🔍</span> Encontrar opções
-        </button>
-        <button class="btn btn-ghost" onclick="limpar()">Limpar</button>
+  <!-- ── Categoria AC ── -->
+  <div class="cat-panel active" id="cat-ac">
+    <div class="card sugerir-area">
+      <h2>Descreva a necessidade do cliente</h2>
+      <div class="sugerir-row">
+        <textarea id="ac-descricao" placeholder="Ex: quarto de 20m², 1º andar sul, bem isolado. Também sala de 35m² com muita exposição solar. Querem marca económica." rows="3"></textarea>
+        <button class="btn btn-primary" id="btn-sugerir" onclick="sugerirAC()">Sugerir</button>
       </div>
     </div>
 
-    <div class="loading" id="loading">
-      <div class="spinner"></div>
-      <span>A analisar e a procurar as melhores opções...</span>
-    </div>
+    <div id="resumo-necessidade"></div>
 
-    <div id="resultados" style="display:none;">
-      <div class="options-header">
-        <h2 style="margin:0">Opções recomendadas</h2>
-        <div class="need-badge" id="need-badge"></div>
+    <div class="opcoes-grid" id="opcoes-grid"></div>
+
+    <!-- Formulário de orçamento AC -->
+    <div id="quote-form-ac" style="display:none;">
+      <h2 style="margin-bottom:16px;">Gerar Orçamento</h2>
+      <div class="selected-product-summary" id="selected-summary-ac"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome do Cliente</label>
+          <input type="text" id="ac-cliente" placeholder="Nome completo ou empresa">
+        </div>
+        <div class="form-group">
+          <label>Quantidade</label>
+          <input type="number" id="ac-qty" value="1" min="1">
+        </div>
       </div>
-      <div class="options-grid" id="options-grid"></div>
-
-      <div class="quote-panel" id="quote-panel">
-        <h3>Gerar Orçamento — <span id="selected-name" style="color:var(--orange)"></span></h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="cliente">Nome do cliente</label>
-            <input type="text" id="cliente" placeholder="Nome completo">
-          </div>
-          <div class="form-group">
-            <label for="quantidade">Quantidade</label>
-            <input type="number" id="quantidade" value="1" min="1">
-          </div>
-          <div class="form-group">
-            <label for="instalacao">Custo instalação (€, sem IVA)</label>
-            <input type="number" id="instalacao" placeholder="0.00" step="0.01">
-          </div>
-          <div class="form-group">
-            <label for="desconto">Desconto (€)</label>
-            <input type="number" id="desconto" placeholder="0.00" step="0.01">
-          </div>
-          <div class="form-group full">
-            <label for="notas">Notas adicionais</label>
-            <textarea id="notas" rows="2" placeholder="Observações, condições especiais..."></textarea>
-          </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Instalação (€ c/IVA)</label>
+          <input type="number" id="ac-instalacao" placeholder="0" min="0" step="0.01">
         </div>
-        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-          <button class="btn btn-success" onclick="gerarOrcamento()">✓ Gerar PDF do Orçamento</button>
-          <button class="btn btn-ghost" onclick="cancelarSelecao()">Cancelar seleção</button>
-          <span id="total-preview" style="margin-left:auto; font-size:0.9rem; color:var(--muted);"></span>
+        <div class="form-group">
+          <label>Desconto (%)</label>
+          <input type="number" id="ac-desconto" placeholder="0" min="0" max="100" step="0.5">
         </div>
+      </div>
+      <div class="form-group">
+        <label>Notas internas (não aparecem no PDF)</label>
+        <textarea id="ac-notas" rows="2" placeholder="Notas para arquivo interno..."></textarea>
+      </div>
+      <div class="total-preview" id="ac-total-preview"></div>
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button class="btn btn-green" onclick="gerarOrcamentoAC()">Gerar & Imprimir</button>
+        <button class="btn btn-ghost" onclick="cancelarSelecaoAC()">Cancelar</button>
       </div>
     </div>
   </div>
 
-  <!-- ── HISTÓRICO ── -->
-  <div id="view-historico" class="view">
-    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
-      <h2 style="margin:0">Histórico de Orçamentos</h2>
-      <button class="btn btn-ghost" onclick="carregarHistorico()" style="font-size:0.8rem; padding:6px 12px;">↻ Atualizar</button>
+  <!-- ── Categoria Solar ── -->
+  <div class="cat-panel" id="cat-solar">
+    <div class="card" style="margin-bottom:20px;">
+      <h2>Selecione o produto solar</h2>
+
+      <div class="solar-series-label">Bosch FCC 220 — Termossifão</div>
+      <div class="solar-grid" id="solar-grid-termossifao"></div>
+
+      <div class="solar-series-label">Bosch FCC 220 — Circuito Forçado</div>
+      <div class="solar-grid" id="solar-grid-forcado"></div>
+
+      <div class="solar-series-label">Bosch Compress 5000 DW — Bomba de Calor AQS</div>
+      <div class="solar-grid" id="solar-grid-compress"></div>
     </div>
-    <div id="historico-container"></div>
+
+    <div id="quote-form-solar" style="display:none;">
+      <h2 style="margin-bottom:16px;">Gerar Orçamento Solar</h2>
+      <div class="selected-product-summary" id="selected-summary-solar"></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome do Cliente</label>
+          <input type="text" id="solar-cliente" placeholder="Nome completo ou empresa">
+        </div>
+        <div class="form-group">
+          <label>Quantidade</label>
+          <input type="number" id="solar-qty" value="1" min="1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Instalação (€ c/IVA)</label>
+          <input type="number" id="solar-instalacao" placeholder="0" min="0" step="0.01">
+        </div>
+        <div class="form-group">
+          <label>Desconto (%)</label>
+          <input type="number" id="solar-desconto" placeholder="0" min="0" max="100" step="0.5">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Termoacumulador adicional — Descrição (opcional)</label>
+        <input type="text" id="solar-termo-desc" placeholder="Ex: Termoacumulador Ariston 100L ref. XX">
+      </div>
+      <div class="form-group">
+        <label>Termoacumulador — Preço (€ c/IVA)</label>
+        <input type="number" id="solar-termo-pvp" placeholder="0" min="0" step="0.01">
+      </div>
+      <div class="form-group">
+        <label>Notas internas (não aparecem no PDF)</label>
+        <textarea id="solar-notas" rows="2" placeholder="Notas para arquivo interno..."></textarea>
+      </div>
+      <div class="total-preview" id="solar-total-preview"></div>
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button class="btn btn-green" onclick="gerarOrcamentoSolar()">Gerar & Imprimir</button>
+        <button class="btn btn-ghost" onclick="cancelarSelecaoSolar()">Cancelar</button>
+      </div>
+    </div>
   </div>
-</main>
 
-<!-- Print area -->
-<div id="print-area"></div>
+  <!-- ── Categoria Serviços ── -->
+  <div class="cat-panel" id="cat-servicos">
+    <div class="card" style="margin-bottom:20px;">
+      <h2>Selecione os serviços</h2>
 
-<div id="toast"></div>
+      <div class="service-row">
+        <input type="checkbox" id="svc-hig1" onchange="calcServicos()">
+        <label class="service-label" for="svc-hig1">Higienização da Unidade Interior (filtros, evaporador, tabuleiro condensados, desinfeção + relatório HACCP)</label>
+        <div class="service-price-wrap">
+          <input type="number" id="svc-hig1-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
+          <span>€</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <input type="checkbox" id="svc-hig2" onchange="calcServicos()">
+        <label class="service-label" for="svc-hig2">Higienização + Manutenção Completa (inclui Serviço 1 + inspeção unidade exterior, caudal de ar, diagnóstico, verificação elétrica/frigorífica + relatório completo)</label>
+        <div class="service-price-wrap">
+          <input type="number" id="svc-hig2-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
+          <span>€</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <input type="checkbox" id="svc-preinstal" onchange="calcServicos()">
+        <label class="service-label" for="svc-preinstal">Pré-instalação de Ar Condicionado (passagem de tubagens, fixações, abertura de vãos)</label>
+        <div class="service-price-wrap">
+          <input type="number" id="svc-preinstal-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
+          <span>€</span>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <input type="checkbox" id="svc-reinstal" onchange="calcServicos()">
+        <label class="service-label" for="svc-reinstal">Desmontagem e Reinstalação de AC do Cliente (retirada do equipamento existente e reinstalação no novo local)</label>
+        <div class="service-price-wrap">
+          <input type="number" id="svc-reinstal-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
+          <span>€</span>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <label>Serviço personalizado — Descrição</label>
+        <input type="text" id="svc-custom-desc" placeholder="Descrição do serviço..." oninput="calcServicos()" style="margin-bottom:8px;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <input type="number" id="svc-custom-pvp" placeholder="Preço €" min="0" step="0.5" onchange="calcServicos()" style="width:130px;">
+          <span style="font-size:.8rem; color:var(--muted);">€ c/IVA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nome do Cliente</label>
+        <input type="text" id="svc-cliente" placeholder="Nome completo ou empresa">
+      </div>
+      <div class="form-group">
+        <label>Notas internas (não aparecem no PDF)</label>
+        <input type="text" id="svc-notas" placeholder="Notas...">
+      </div>
+    </div>
+
+    <div class="total-preview" id="svc-total-preview"></div>
+    <div style="margin-top:16px;">
+      <button class="btn btn-green" onclick="gerarOrcamentoServicos()">Gerar & Imprimir</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ VIEW: HISTÓRICO ═══════ -->
+<div class="view" id="view-historico">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h2 style="margin:0;">Histórico de Orçamentos</h2>
+    <button class="btn btn-ghost btn-sm" onclick="loadHistorico()">↺ Atualizar</button>
+  </div>
+  <div class="card">
+    <table class="historico-table">
+      <thead>
+        <tr>
+          <th>Nº</th><th>Data</th><th>Categoria</th><th>Cliente</th><th>Total</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="historico-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════ PRINT AREA ═══════ -->
+<div id="print-area">
+  <div class="print-header">
+    <img src="../assets/logo.png" class="print-logo" alt="ARTICOCLIMA">
+    <div class="print-orc-info">
+      <div class="print-orc-num" id="pr-numero"></div>
+      <div class="print-orc-date" id="pr-data"></div>
+    </div>
+  </div>
+
+  <div class="print-cliente">
+    <div class="print-section-title">Cliente</div>
+    <strong id="pr-cliente"></strong>
+  </div>
+
+  <table class="print-items" id="pr-items-table">
+    <thead>
+      <tr>
+        <th class="item-img"></th>
+        <th>Descrição</th>
+        <th class="right">Qtd.</th>
+        <th class="right">Preço unit.</th>
+        <th class="right">Total</th>
+      </tr>
+    </thead>
+    <tbody id="pr-items-body"></tbody>
+  </table>
+
+  <div class="print-totals">
+    <table>
+      <tbody id="pr-totals-body"></tbody>
+    </table>
+  </div>
+
+  <div class="print-justificacao" id="pr-justificacao" style="display:none;"></div>
+
+  <div class="print-pagamento">
+    <p>O pagamento pode ser efectuado por transferência bancária:</p>
+    <p><strong>IBAN: PT50 004571404039499605632</strong></p>
+    <p>Garantia conforme a legislação em vigor (3 anos para particulares / 6 meses para empresas).</p>
+    <p>O orçamento só é considerado válido após adjudicação de <strong>80% do seu valor</strong>. Sendo o restante pago no dia da instalação.</p>
+  </div>
+
+  <div class="print-footer">
+    <span>ARTICOCLIMA — Climatização e Energias Renováveis</span>
+    <span>artico.clim@gmail.com</span>
+    <span>+351 964 501 776</span>
+    <span>Seg–Sex 9h–18h</span>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
-  let selectedOption = null;
-  let allOptions = null;
+/* ═══════════════════════════════════════════
+   CATÁLOGO AC (preços COM IVA)
+═══════════════════════════════════════════ */
+const CATALOG_AC = [
+  // Daikin Sensira
+  {id:'daikin-sensira-ftxf20',brand:'Daikin',series:'Sensira',model:'FTXF20',kw:2.0,btu:7000,pvp:972,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg'},
+  {id:'daikin-sensira-ftxf25',brand:'Daikin',series:'Sensira',model:'FTXF25',kw:2.5,btu:9000,pvp:1033,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg'},
+  {id:'daikin-sensira-ftxf35',brand:'Daikin',series:'Sensira',model:'FTXF35',kw:3.5,btu:12000,pvp:1169,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg'},
+  {id:'daikin-sensira-ftxf42',brand:'Daikin',series:'Sensira',model:'FTXF42',kw:4.2,btu:15000,pvp:1396,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg'},
+  {id:'daikin-sensira-ftxf50',brand:'Daikin',series:'Sensira',model:'FTXF50',kw:5.0,btu:18000,pvp:1863,classe:'A+',img:'../assets/products/daikin-sensira-1.jpg'},
+  {id:'daikin-sensira-ftxf60',brand:'Daikin',series:'Sensira',model:'FTXF60',kw:7.0,btu:24000,pvp:2319,classe:'A+',img:'../assets/products/daikin-sensira-1.jpg'},
+  {id:'daikin-sensira-ftxf71',brand:'Daikin',series:'Sensira',model:'FTXF71',kw:8.2,btu:28000,pvp:2774,classe:'A+',img:'../assets/products/daikin-sensira-1.jpg'},
+  // Daikin Confora
+  {id:'daikin-confora-ftxp20',brand:'Daikin',series:'Confora',model:'FTXP20',kw:2.0,btu:7000,pvp:1248,classe:'A+++',img:'../assets/products/daikin-confora-1.jpg'},
+  {id:'daikin-confora-ftxp25',brand:'Daikin',series:'Confora',model:'FTXP25',kw:2.5,btu:9000,pvp:1341,classe:'A+++',img:'../assets/products/daikin-confora-1.jpg'},
+  {id:'daikin-confora-ftxp35',brand:'Daikin',series:'Confora',model:'FTXP35',kw:3.5,btu:12000,pvp:1513,classe:'A+++',img:'../assets/products/daikin-confora-1.jpg'},
+  {id:'daikin-confora-ftxp50',brand:'Daikin',series:'Confora',model:'FTXP50',kw:5.0,btu:18000,pvp:2392,classe:'A+++',img:'../assets/products/daikin-confora-1.jpg'},
+  {id:'daikin-confora-ftxp60',brand:'Daikin',series:'Confora',model:'FTXP60',kw:7.0,btu:24000,pvp:2983,classe:'A+++',img:'../assets/products/daikin-confora-1.jpg'},
+  {id:'daikin-confora-ftxp71',brand:'Daikin',series:'Confora',model:'FTXP71',kw:8.2,btu:28000,pvp:3450,classe:'A+++',img:'../assets/products/daikin-confora-1.jpg'},
+  // Daikin Perfera
+  {id:'daikin-perfera-ftxm20',brand:'Daikin',series:'Perfera',model:'FTXM20',kw:2.0,btu:7000,pvp:1482,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg'},
+  {id:'daikin-perfera-ftxm25',brand:'Daikin',series:'Perfera',model:'FTXM25',kw:2.5,btu:9000,pvp:1568,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg'},
+  {id:'daikin-perfera-ftxm35',brand:'Daikin',series:'Perfera',model:'FTXM35',kw:3.5,btu:12000,pvp:1802,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg'},
+  {id:'daikin-perfera-ftxm42',brand:'Daikin',series:'Perfera',model:'FTXM42',kw:4.2,btu:15000,pvp:2300,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg'},
+  {id:'daikin-perfera-ftxm50',brand:'Daikin',series:'Perfera',model:'FTXM50',kw:5.0,btu:18000,pvp:2952,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg'},
+  {id:'daikin-perfera-ftxm60',brand:'Daikin',series:'Perfera',model:'FTXM60',kw:7.0,btu:24000,pvp:3346,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg'},
+  {id:'daikin-perfera-ftxm71',brand:'Daikin',series:'Perfera',model:'FTXM71',kw:8.2,btu:28000,pvp:4121,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg'},
+  // Daikin Stylish (Branco)
+  {id:'daikin-stylish-ftxa20',brand:'Daikin',series:'Stylish',model:'FTXA20 Branco',kw:2.0,btu:7000,pvp:1759,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp'},
+  {id:'daikin-stylish-ftxa25',brand:'Daikin',series:'Stylish',model:'FTXA25 Branco',kw:2.5,btu:9000,pvp:1888,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp'},
+  {id:'daikin-stylish-ftxa35',brand:'Daikin',series:'Stylish',model:'FTXA35 Branco',kw:3.5,btu:12000,pvp:2189,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp'},
+  {id:'daikin-stylish-ftxa42',brand:'Daikin',series:'Stylish',model:'FTXA42 Branco',kw:4.2,btu:15000,pvp:2768,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp'},
+  {id:'daikin-stylish-ftxa50',brand:'Daikin',series:'Stylish',model:'FTXA50 Branco',kw:5.0,btu:18000,pvp:3290,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp'},
+  // Daikin Emura (Branco)
+  {id:'daikin-emura-ftxj20',brand:'Daikin',series:'Emura',model:'FTXJ20 Branco',kw:2.0,btu:7000,pvp:1962,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp'},
+  {id:'daikin-emura-ftxj25',brand:'Daikin',series:'Emura',model:'FTXJ25 Branco',kw:2.5,btu:9000,pvp:2048,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp'},
+  {id:'daikin-emura-ftxj35',brand:'Daikin',series:'Emura',model:'FTXJ35 Branco',kw:3.5,btu:12000,pvp:2343,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp'},
+  {id:'daikin-emura-ftxj42',brand:'Daikin',series:'Emura',model:'FTXJ42 Branco',kw:4.2,btu:15000,pvp:3007,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp'},
+  {id:'daikin-emura-ftxj50',brand:'Daikin',series:'Emura',model:'FTXJ50 Branco',kw:5.0,btu:18000,pvp:3487,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp'},
+  // Bosch Climate 3200i
+  {id:'bosch-3200i-26',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 26 WE',kw:2.6,btu:9000,pvp:916,classe:'A++',img:'../assets/products/bosch-3200i-new-1.jpg'},
+  {id:'bosch-3200i-35',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 35 WE',kw:3.5,btu:12000,pvp:996,classe:'A++',img:'../assets/products/bosch-3200i-new-1.jpg'},
+  {id:'bosch-3200i-53',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 53 WE',kw:5.3,btu:18000,pvp:1470,classe:'A++',img:'../assets/products/bosch-3200i-new-1.jpg'},
+  {id:'bosch-3200i-70',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 70 WE',kw:7.0,btu:24000,pvp:1784,classe:'A++',img:'../assets/products/bosch-3200i-new-1.jpg'},
+  // Bosch Climate 6000i
+  {id:'bosch-6000i-26',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 26 WE',kw:2.6,btu:9000,pvp:1107,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
+  {id:'bosch-6000i-35',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 35 WE',kw:3.5,btu:12000,pvp:1218,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
+  {id:'bosch-6000i-53',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 53 WE',kw:5.3,btu:18000,pvp:1790,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
+  {id:'bosch-6000i-70',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 70 WE',kw:7.0,btu:24000,pvp:2220,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
+  // Bosch Climate 7000i
+  {id:'bosch-7000i-20',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 20 WE',kw:2.0,btu:7000,pvp:1451,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
+  {id:'bosch-7000i-26',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 26 WE',kw:2.5,btu:9000,pvp:1550,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
+  {id:'bosch-7000i-35',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 35 WE',kw:3.4,btu:12000,pvp:1667,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
+  {id:'bosch-7000i-41',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 41 WE',kw:4.0,btu:14000,pvp:2196,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
+  {id:'bosch-7000i-53',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 53 WE',kw:5.0,btu:18000,pvp:2731,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
+  // Daitsu ARTIC (DS-KZ)
+  {id:'daitsu-artic-9',brand:'Daitsu',series:'ARTIC',model:'DS-9KZ',kw:2.64,btu:9000,pvp:745,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg'},
+  {id:'daitsu-artic-12',brand:'Daitsu',series:'ARTIC',model:'DS-12KZ',kw:3.52,btu:12000,pvp:760,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg'},
+  {id:'daitsu-artic-18',brand:'Daitsu',series:'ARTIC',model:'DS-18KZ',kw:5.14,btu:18000,pvp:1230,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg'},
+  {id:'daitsu-artic-24',brand:'Daitsu',series:'ARTIC',model:'DS-24KZ',kw:6.45,btu:24000,pvp:1555,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg'},
+  // Daitsu FREE MAX ARTIC — kits multi-split (preços s/IVA × 1.23)
+  {id:'daitsu-freemax-2x1-9-9',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (9K+9K)',kw:5.1,btu:18000,pvp:1851,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split'},
+  {id:'daitsu-freemax-2x1-9-12',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (9K+12K)',kw:5.1,btu:21000,pvp:1863,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split'},
+  {id:'daitsu-freemax-2x1-12-12-ue18',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (12K+12K) UE18',kw:5.1,btu:24000,pvp:1876,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split'},
+  {id:'daitsu-freemax-2x1-12-12-ue21',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (12K+12K) UE21',kw:6.2,btu:24000,pvp:2091,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split'},
+  {id:'daitsu-freemax-3x1-9-9-9',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 3×1 (9K+9K+9K)',kw:6.2,btu:27000,pvp:2288,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split'},
+  {id:'daitsu-freemax-3x1-9-9-12',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 3×1 (9K+9K+12K)',kw:6.2,btu:30000,pvp:2362,classe:'A++',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split'},
+];
 
-  function showView(name) {
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById('view-' + name).classList.add('active');
-    document.querySelectorAll('header nav button').forEach((b, i) => {
-      b.classList.toggle('active', (name === 'novo' && i === 0) || (name === 'historico' && i === 1));
+/* ═══════════════════════════════════════════
+   CATÁLOGO SOLAR (preços COM IVA)
+═══════════════════════════════════════════ */
+const CATALOG_SOLAR = [
+  {id:'bosch-solar-fcc-150',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 150L',capacity:'150 L',pvp:1859,img:'../assets/products/bosch-solar-fcc-150.webp',tag:'1 painel · termossifão',grupo:'termossifao'},
+  {id:'bosch-solar-fcc-200',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 200L',capacity:'200 L',pvp:2019,img:'../assets/products/bosch-solar-fcc-200.webp',tag:'2 painéis · termossifão',grupo:'termossifao'},
+  {id:'bosch-solar-fcc-300',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 300L',capacity:'300 L',pvp:2649,img:'../assets/products/bosch-solar-fcc-300.webp',tag:'3 painéis · termossifão',grupo:'termossifao'},
+  {id:'bosch-solar-fcc-forcado-300',serie:'FCC 220 Forçado',model:'FCC 220 Kit Forçado 300L',capacity:'300 L',pvp:5298,img:'../assets/products/bosch-solar-fcc-forcado.jpg',tag:'2 painéis · circuito forçado',grupo:'forcado'},
+  {id:'bosch-solar-fcc-forcado-500',serie:'FCC 220 Forçado',model:'FCC 220 Kit Forçado 500L',capacity:'500 L',pvp:7145,img:'../assets/products/bosch-solar-fcc-forcado.jpg',tag:'3 painéis · circuito forçado',grupo:'forcado'},
+  {id:'bosch-compress5000-100',serie:'Compress 5000 DW',model:'CS5000DW 100 W',capacity:'100 L · Parede',pvp:2448,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · parede',grupo:'compress'},
+  {id:'bosch-compress5000-150',serie:'Compress 5000 DW',model:'CS5000DW 150 W',capacity:'150 L · Parede',pvp:2583,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · parede',grupo:'compress'},
+  {id:'bosch-compress5001-200',serie:'Compress 5000 DW',model:'CS5001DW 200',capacity:'200 L · Chão',pvp:3260,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · chão',grupo:'compress'},
+  {id:'bosch-compress5001-260',serie:'Compress 5000 DW',model:'CS5001DW 260',capacity:'260 L · Chão',pvp:3629,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · chão',grupo:'compress'},
+];
+
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+let selectedOpcao = null;
+let selectedSolar = null;
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('header nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  document.getElementById('btn-' + v).classList.add('active');
+  if (v === 'historico') loadHistorico();
+}
+
+function showCat(cat) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('cat-' + cat).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════ */
+function fmt(val) {
+  return Number(val).toLocaleString('pt-PT', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' €';
+}
+
+function brandBadgeClass(brand) {
+  const b = (brand || '').toLowerCase();
+  if (b === 'daikin') return 'badge-daikin';
+  if (b === 'bosch') return 'badge-bosch';
+  if (b === 'daitsu') return 'badge-daitsu';
+  return '';
+}
+
+function showToast(msg, isError) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (isError ? ' error' : '');
+  setTimeout(() => t.className = 'toast', 3200);
+}
+
+function buildCatalogText() {
+  const lines = [];
+  lines.push('=== DAIKIN — MONO-SPLIT (preços c/IVA) ===');
+  CATALOG_AC.filter(p => p.brand === 'Daikin' && !p.tipo).forEach(p =>
+    lines.push(`${p.series} ${p.model} | ${p.kw}kW / ${p.btu}BTU | ${p.classe} | ${p.pvp}€ | id:${p.id}`)
+  );
+  lines.push('\n=== BOSCH — MONO-SPLIT (preços c/IVA) ===');
+  CATALOG_AC.filter(p => p.brand === 'Bosch').forEach(p =>
+    lines.push(`${p.series} ${p.model} | ${p.kw}kW / ${p.btu}BTU | ${p.classe} | ${p.pvp}€ | id:${p.id}`)
+  );
+  lines.push('\n=== DAITSU — MONO-SPLIT (preços c/IVA) ===');
+  CATALOG_AC.filter(p => p.brand === 'Daitsu' && !p.tipo).forEach(p =>
+    lines.push(`${p.series} ${p.model} | ${p.kw}kW / ${p.btu}BTU | ${p.classe} | ${p.pvp}€ | id:${p.id}`)
+  );
+  lines.push('\n=== DAITSU — MULTI-SPLIT (kits completos c/IVA) ===');
+  CATALOG_AC.filter(p => p.tipo === 'multi_split').forEach(p =>
+    lines.push(`${p.series} ${p.model} | ${p.kw}kW total | ${p.pvp}€ | id:${p.id}`)
+  );
+  return lines.join('\n');
+}
+
+function findProduct(id) {
+  return CATALOG_AC.find(p => p.id === id) || null;
+}
+
+/* ═══════════════════════════════════════════
+   AC — SUGERIR
+═══════════════════════════════════════════ */
+async function sugerirAC() {
+  const descricao = document.getElementById('ac-descricao').value.trim();
+  if (!descricao) { showToast('Escreva a descrição da necessidade', true); return; }
+
+  const btn = document.getElementById('btn-sugerir');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>A consultar...';
+  document.getElementById('opcoes-grid').innerHTML = '';
+  document.getElementById('resumo-necessidade').style.display = 'none';
+  document.getElementById('quote-form-ac').style.display = 'none';
+  selectedOpcao = null;
+
+  try {
+    const resp = await fetch('/api/sugerir', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ descricao, catalogText: buildCatalogText() }),
     });
-    if (name === 'historico') carregarHistorico();
+    const data = await resp.json();
+    if (data.erro) throw new Error(data.erro);
+    renderOpcoes(data);
+  } catch (e) {
+    showToast('Erro: ' + e.message, true);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Sugerir';
+  }
+}
+
+function renderOpcoes(data) {
+  const resumoEl = document.getElementById('resumo-necessidade');
+  if (data.resumo) {
+    resumoEl.textContent = '💡 ' + data.resumo + (data.kw_recomendado ? ` — ${data.kw_recomendado} kW recomendado` : '');
+    resumoEl.style.display = 'block';
   }
 
-  function showToast(msg, isError = false) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'show' + (isError ? ' error' : '');
-    setTimeout(() => { t.className = ''; }, 3500);
+  const grid = document.getElementById('opcoes-grid');
+  if (!data.opcoes || data.opcoes.length === 0) {
+    grid.innerHTML = '<p style="color:var(--muted)">Nenhuma opção encontrada.</p>';
+    return;
   }
 
-  async function sugerir() {
-    const descricao = document.getElementById('descricao').value.trim();
-    if (!descricao) { showToast('Escreve uma descrição primeiro', true); return; }
-
-    const btn = document.getElementById('btn-sugerir');
-    btn.disabled = true;
-    document.getElementById('loading').classList.add('show');
-    document.getElementById('resultados').style.display = 'none';
-
-    try {
-      const res = await fetch('/api/sugerir', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ descricao }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.erro || 'Erro desconhecido');
-      renderOpcoes(data);
-    } catch (e) {
-      showToast('Erro: ' + e.message, true);
-    } finally {
-      btn.disabled = false;
-      document.getElementById('loading').classList.remove('show');
-    }
-  }
-
-  function renderOpcoes(data) {
-    allOptions = data;
-    const grid = document.getElementById('options-grid');
-    const badge = document.getElementById('need-badge');
-
-    badge.innerHTML = `<strong>${data.kw_recomendado || '?'} kW</strong> recomendado — ${data.resumo_necessidade || ''}`;
-
-    grid.innerHTML = (data.opcoes || []).map((o, i) => `
-      <div class="option-card" onclick="selectOption(${i})" id="card-${i}">
-        <div class="badge-pos">${o.posicao || i+1}</div>
-        <div class="option-brand">${o.marca}</div>
-        <div class="option-name">${o.nome}</div>
-        <div class="option-ref">${o.ref}</div>
-        <div class="option-specs">
-          <span class="spec-tag">${o.kw_frio} kW frio</span>
-          ${o.kw_quente ? `<span class="spec-tag">${o.kw_quente} kW calor</span>` : ''}
-          ${o.btu ? `<span class="spec-tag">${(o.btu/1000).toFixed(0)}k BTU</span>` : ''}
-          ${o.classe_energetica ? `<span class="spec-tag energy">${o.classe_energetica}</span>` : ''}
-        </div>
-        <div class="option-price">
-          ${o.pvp_sem_iva ? o.pvp_sem_iva.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : o.pvp_com_iva ? o.pvp_com_iva.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : 'Preço n/d'}
-          <small>${o.pvp_sem_iva ? 's/ IVA' : 'c/ IVA'}</small>
-        </div>
-        ${o.justificacao ? `<div class="option-justificacao">${o.justificacao}</div>` : ''}
+  grid.innerHTML = data.opcoes.map((op, i) => {
+    const prod = findProduct(op.produto_id) || {};
+    const imgSrc = op.imagem ? ('../assets/products/' + op.imagem.split('assets/products/').pop()) : (prod.img || '');
+    const brandCls = brandBadgeClass(op.marca);
+    const pvp = op.pvp_unitario || 0;
+    return `
+    <div class="opcao-card" id="opcao-card-${i}" onclick="selecionarOpcao(${i}, ${JSON.stringify(op).replace(/"/g,'&quot;')})">
+      ${imgSrc ? `<img class="opcao-img" src="${imgSrc}" alt="${op.modelo}" onerror="this.style.display='none'">` : ''}
+      <div class="opcao-badge">
+        <span class="badge ${brandCls}">${op.marca || ''}</span>
+        ${op.tipo === 'multi_split' || (op.titulo || '').toLowerCase().includes('multi') ? '<span class="badge badge-multi">Multi-split</span>' : ''}
+        <span class="badge badge-classe">${op.classe || ''}</span>
       </div>
-    `).join('');
+      <div class="opcao-title">${op.titulo || op.modelo}</div>
+      <div class="opcao-specs">
+        <span>${op.kw || '?'} kW</span>
+        ${op.btu ? `<span>${op.btu.toLocaleString('pt-PT')} BTU</span>` : ''}
+      </div>
+      <div class="opcao-pvp">${fmt(pvp)}</div>
+      ${op.justificacao ? `<div class="opcao-justificacao">${op.justificacao}</div>` : ''}
+      <button class="btn btn-primary btn-sm opcao-select-btn">Selecionar</button>
+    </div>`;
+  }).join('');
+}
 
-    document.getElementById('resultados').style.display = 'block';
-    document.getElementById('quote-panel').classList.remove('show');
-    selectedOption = null;
-  }
+function selecionarOpcao(i, opcao) {
+  selectedOpcao = opcao;
+  document.querySelectorAll('.opcao-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('opcao-card-' + i);
+  if (card) card.classList.add('selected');
 
-  function selectOption(i) {
-    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-    document.getElementById('card-' + i).classList.add('selected');
-    selectedOption = allOptions.opcoes[i];
-    document.getElementById('selected-name').textContent = selectedOption.nome;
-    document.getElementById('quote-panel').classList.add('show');
-    updateTotalPreview();
-    document.getElementById('quote-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
+  const form = document.getElementById('quote-form-ac');
+  form.style.display = 'block';
+  form.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  function cancelarSelecao() {
-    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-    document.getElementById('quote-panel').classList.remove('show');
-    selectedOption = null;
-  }
+  const prod = findProduct(opcao.produto_id) || {};
+  const imgSrc = opcao.imagem ? ('../assets/products/' + opcao.imagem.split('assets/products/').pop()) : (prod.img || '');
+  document.getElementById('selected-summary-ac').innerHTML = `
+    ${imgSrc ? `<img src="${imgSrc}" alt="${opcao.modelo}" onerror="this.style.display='none'">` : ''}
+    <div class="sps-info">
+      <div class="sps-name">${opcao.titulo || opcao.modelo}</div>
+      <div class="sps-sub">${opcao.marca} · ${opcao.kw || '?'} kW · ${opcao.classe || ''} · ${fmt(opcao.pvp_unitario || 0)} / unid.</div>
+    </div>`;
 
-  function updateTotalPreview() {
-    if (!selectedOption) return;
-    const qty = parseInt(document.getElementById('quantidade').value) || 1;
-    const inst = parseFloat(document.getElementById('instalacao').value) || 0;
-    const desc = parseFloat(document.getElementById('desconto').value) || 0;
-    const unitPrice = selectedOption.pvp_sem_iva || 0;
-    const subtotal = (unitPrice * qty) + inst - desc;
-    const comIva = subtotal * 1.23;
-    document.getElementById('total-preview').innerHTML =
-      `Total s/ IVA: <strong>${subtotal.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</strong> | c/ IVA: <strong>${comIva.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</strong>`;
-  }
-
-  document.addEventListener('input', e => {
-    if (['quantidade','instalacao','desconto'].includes(e.target.id)) updateTotalPreview();
+  ['ac-qty','ac-instalacao','ac-desconto'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calcAC);
   });
+  calcAC();
+}
 
-  async function gerarOrcamento() {
-    if (!selectedOption) return;
-    const qty = parseInt(document.getElementById('quantidade').value) || 1;
-    const inst = parseFloat(document.getElementById('instalacao').value) || 0;
-    const desc = parseFloat(document.getElementById('desconto').value) || 0;
-    const unitPrice = selectedOption.pvp_sem_iva || 0;
-    const totalSemIva = (unitPrice * qty) + inst - desc;
-    const totalComIva = totalSemIva * 1.23;
+function cancelarSelecaoAC() {
+  selectedOpcao = null;
+  document.getElementById('quote-form-ac').style.display = 'none';
+  document.querySelectorAll('.opcao-card').forEach(c => c.classList.remove('selected'));
+}
 
-    const payload = {
-      cliente: document.getElementById('cliente').value.trim(),
-      descricao_pedido: document.getElementById('descricao').value.trim(),
-      produto: selectedOption,
-      quantidade: qty,
-      instalacao: inst || null,
-      desconto: desc || null,
-      notas: document.getElementById('notas').value.trim(),
-      total_sem_iva: totalSemIva,
-      total_com_iva: totalComIva,
-    };
+function calcAC() {
+  if (!selectedOpcao) return;
+  const qty = parseInt(document.getElementById('ac-qty').value) || 1;
+  const install = parseFloat(document.getElementById('ac-instalacao').value) || 0;
+  const desconto = parseFloat(document.getElementById('ac-desconto').value) || 0;
+  const pvpUnit = selectedOpcao.pvp_unitario || 0;
+  const subtotal = pvpUnit * qty;
+  const descVal = subtotal * desconto / 100;
+  const total = subtotal - descVal + install;
 
-    try {
-      const res = await fetch('/api/gerar-orcamento', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.erro);
-      showToast(`Orçamento ${data.orcamento.numero_formatado} criado!`);
-      printOrcamento(data.orcamento, payload);
-    } catch (e) {
-      showToast('Erro: ' + e.message, true);
+  let html = `<div class="total-line"><span>${qty}x ${fmt(pvpUnit)}</span><span>${fmt(subtotal)}</span></div>`;
+  if (desconto > 0) html += `<div class="total-line"><span>Desconto ${desconto}%</span><span>- ${fmt(descVal)}</span></div>`;
+  if (install > 0) html += `<div class="total-line"><span>Instalação</span><span>${fmt(install)}</span></div>`;
+  html += `<div class="total-final"><span>TOTAL c/ IVA</span><span>${fmt(total)}</span></div>`;
+  document.getElementById('ac-total-preview').innerHTML = html;
+}
+
+async function gerarOrcamentoAC() {
+  if (!selectedOpcao) return;
+  const cliente = document.getElementById('ac-cliente').value.trim();
+  if (!cliente) { showToast('Indique o nome do cliente', true); return; }
+
+  const qty = parseInt(document.getElementById('ac-qty').value) || 1;
+  const install = parseFloat(document.getElementById('ac-instalacao').value) || 0;
+  const desconto = parseFloat(document.getElementById('ac-desconto').value) || 0;
+  const notas = document.getElementById('ac-notas').value;
+  const pvpUnit = selectedOpcao.pvp_unitario || 0;
+  const subtotal = pvpUnit * qty;
+  const descVal = subtotal * desconto / 100;
+  const total = subtotal - descVal + install;
+
+  const unidades = selectedOpcao.unidades && selectedOpcao.unidades.length > 0
+    ? selectedOpcao.unidades.map(u => ({ descricao: u.descricao, qty: (u.qty || 1) * qty, pvp_unitario: u.pvp, pvp_total: (u.pvp || 0) * (u.qty || 1) * qty }))
+    : [{ descricao: selectedOpcao.titulo || selectedOpcao.modelo, qty, pvp_unitario: pvpUnit, pvp_total: subtotal }];
+
+  const prod = findProduct(selectedOpcao.produto_id);
+  unidades[0].imagem = selectedOpcao.imagem || (prod && prod.img.replace('../','')) || '';
+
+  const payload = {
+    categoria: 'ac',
+    cliente,
+    itens: unidades,
+    instalacao: install || null,
+    desconto,
+    notas,
+    justificacao: selectedOpcao.justificacao || '',
+    total_com_iva: total,
+  };
+
+  await salvarEImprimir(payload);
+}
+
+/* ═══════════════════════════════════════════
+   SOLAR
+═══════════════════════════════════════════ */
+function initSolarGrid() {
+  ['termossifao','forcado','compress'].forEach(grupo => {
+    const el = document.getElementById('solar-grid-' + grupo);
+    const products = CATALOG_SOLAR.filter(p => p.grupo === grupo);
+    el.innerHTML = products.map(p => `
+      <div class="solar-card" id="solar-card-${p.id}" onclick="selecionarSolar('${p.id}')">
+        <img src="${p.img}" alt="${p.model}" onerror="this.src='data:image/svg+xml,<svg/>'">
+        <div class="solar-card-name">${p.model}</div>
+        <div class="solar-card-pvp">${fmt(p.pvp)}</div>
+        <div class="solar-card-tag">${p.capacity} · ${p.tag}</div>
+      </div>`).join('');
+  });
+}
+
+function selecionarSolar(id) {
+  selectedSolar = CATALOG_SOLAR.find(p => p.id === id);
+  document.querySelectorAll('.solar-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('solar-card-' + id).classList.add('selected');
+
+  const form = document.getElementById('quote-form-solar');
+  form.style.display = 'block';
+  form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  document.getElementById('selected-summary-solar').innerHTML = `
+    <img src="${selectedSolar.img}" alt="${selectedSolar.model}" onerror="this.style.display='none'" style="width:60px;height:60px;object-fit:contain;">
+    <div class="sps-info">
+      <div class="sps-name">${selectedSolar.model}</div>
+      <div class="sps-sub">${selectedSolar.serie} · ${selectedSolar.capacity} · ${fmt(selectedSolar.pvp)} / unid.</div>
+    </div>`;
+
+  ['solar-qty','solar-instalacao','solar-desconto','solar-termo-pvp'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calcSolar);
+  });
+  calcSolar();
+}
+
+function cancelarSelecaoSolar() {
+  selectedSolar = null;
+  document.getElementById('quote-form-solar').style.display = 'none';
+  document.querySelectorAll('.solar-card').forEach(c => c.classList.remove('selected'));
+}
+
+function calcSolar() {
+  if (!selectedSolar) return;
+  const qty = parseInt(document.getElementById('solar-qty').value) || 1;
+  const install = parseFloat(document.getElementById('solar-instalacao').value) || 0;
+  const desconto = parseFloat(document.getElementById('solar-desconto').value) || 0;
+  const termoPvp = parseFloat(document.getElementById('solar-termo-pvp').value) || 0;
+  const subtotal = selectedSolar.pvp * qty;
+  const descVal = subtotal * desconto / 100;
+  const total = subtotal - descVal + install + termoPvp;
+
+  let html = `<div class="total-line"><span>${qty}x ${selectedSolar.model}</span><span>${fmt(subtotal)}</span></div>`;
+  if (termoPvp > 0) html += `<div class="total-line"><span>Termoacumulador</span><span>${fmt(termoPvp)}</span></div>`;
+  if (desconto > 0) html += `<div class="total-line"><span>Desconto ${desconto}%</span><span>- ${fmt(descVal)}</span></div>`;
+  if (install > 0) html += `<div class="total-line"><span>Instalação</span><span>${fmt(install)}</span></div>`;
+  html += `<div class="total-final"><span>TOTAL c/ IVA</span><span>${fmt(total)}</span></div>`;
+  document.getElementById('solar-total-preview').innerHTML = html;
+}
+
+async function gerarOrcamentoSolar() {
+  if (!selectedSolar) { showToast('Selecione um produto solar', true); return; }
+  const cliente = document.getElementById('solar-cliente').value.trim();
+  if (!cliente) { showToast('Indique o nome do cliente', true); return; }
+
+  const qty = parseInt(document.getElementById('solar-qty').value) || 1;
+  const install = parseFloat(document.getElementById('solar-instalacao').value) || 0;
+  const desconto = parseFloat(document.getElementById('solar-desconto').value) || 0;
+  const termoDesc = document.getElementById('solar-termo-desc').value.trim();
+  const termoPvp = parseFloat(document.getElementById('solar-termo-pvp').value) || 0;
+  const notas = document.getElementById('solar-notas').value;
+
+  const itens = [{ descricao: selectedSolar.model, qty, pvp_unitario: selectedSolar.pvp, pvp_total: selectedSolar.pvp * qty, imagem: selectedSolar.img.replace('../','') }];
+  if (termoDesc && termoPvp > 0) itens.push({ descricao: termoDesc, qty: 1, pvp_unitario: termoPvp, pvp_total: termoPvp });
+
+  const subtotal = selectedSolar.pvp * qty;
+  const descVal = subtotal * desconto / 100;
+  const total = subtotal - descVal + install + termoPvp;
+
+  const payload = { categoria: 'solar', cliente, itens, instalacao: install || null, desconto, notas, total_com_iva: total };
+  await salvarEImprimir(payload);
+}
+
+/* ═══════════════════════════════════════════
+   SERVIÇOS
+═══════════════════════════════════════════ */
+const SERVICOS_DEF = [
+  {id:'svc-hig1', label:'Higienização da Unidade Interior (filtros, evaporador, tabuleiro condensados, desinfeção + relatório HACCP)'},
+  {id:'svc-hig2', label:'Higienização + Manutenção Completa (inclui Serviço 1 + inspeção unidade exterior, caudal de ar, diagnóstico, verificação elétrica/frigorífica + relatório completo)'},
+  {id:'svc-preinstal', label:'Pré-instalação de Ar Condicionado'},
+  {id:'svc-reinstal', label:'Desmontagem e Reinstalação de AC do Cliente'},
+];
+
+function calcServicos() {
+  let total = 0;
+  let html = '';
+  SERVICOS_DEF.forEach(s => {
+    const chk = document.getElementById(s.id);
+    if (chk && chk.checked) {
+      const pvp = parseFloat(document.getElementById(s.id + '-pvp').value) || 0;
+      total += pvp;
+      html += `<div class="total-line"><span>${s.label.split('(')[0].trim()}</span><span>${fmt(pvp)}</span></div>`;
     }
+  });
+  const customDesc = document.getElementById('svc-custom-desc').value.trim();
+  const customPvp = parseFloat(document.getElementById('svc-custom-pvp').value) || 0;
+  if (customDesc && customPvp > 0) {
+    total += customPvp;
+    html += `<div class="total-line"><span>${customDesc}</span><span>${fmt(customPvp)}</span></div>`;
   }
+  html += `<div class="total-final"><span>TOTAL c/ IVA</span><span>${fmt(total)}</span></div>`;
+  document.getElementById('svc-total-preview').innerHTML = html;
+}
 
-  function printOrcamento(orc, payload) {
-    const p = orc.produto;
-    const qty = orc.quantidade;
-    const unitPrice = p.pvp_sem_iva || 0;
-    const inst = payload.instalacao || 0;
-    const desc = payload.desconto || 0;
-    const subtotalEquip = unitPrice * qty;
-    const totalSemIva = orc.total_sem_iva;
-    const totalComIva = orc.total_com_iva;
-    const dataFmt = new Date(orc.data).toLocaleDateString('pt-PT');
+async function gerarOrcamentoServicos() {
+  const cliente = document.getElementById('svc-cliente').value.trim();
+  if (!cliente) { showToast('Indique o nome do cliente', true); return; }
 
-    const area = document.getElementById('print-area');
-    area.innerHTML = `
-      <div class="print-header">
-        <div>
-          <div class="print-company">ARTICOCLIMA
-            <small>Climatização e Energias Renováveis · artico.clim@gmail.com</small>
-          </div>
-        </div>
-        <div style="text-align:right">
-          <div class="print-title">ORÇAMENTO</div>
-          <div class="print-num">${orc.numero_formatado}</div>
-          <div style="font-size:0.8rem;color:#666">${dataFmt}</div>
-        </div>
-      </div>
-
-      ${orc.cliente ? `<p style="margin-bottom:16px"><strong>Cliente:</strong> ${orc.cliente}</p>` : ''}
-      ${orc.descricao_pedido ? `<p style="margin-bottom:16px;color:#555;font-size:0.85rem"><strong>Pedido:</strong> ${orc.descricao_pedido}</p>` : ''}
-
-      <table>
-        <thead>
-          <tr>
-            <th>Ref.</th>
-            <th>Descrição</th>
-            <th style="text-align:center">Qtd.</th>
-            <th style="text-align:right">Unit. s/ IVA</th>
-            <th style="text-align:right">Total s/ IVA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>${p.ref || '—'}</td>
-            <td>${p.nome} ${p.kw_frio ? '· ' + p.kw_frio + 'kW' : ''} ${p.classe_energetica || ''}</td>
-            <td style="text-align:center">${qty}</td>
-            <td style="text-align:right">${unitPrice ? unitPrice.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : '—'}</td>
-            <td style="text-align:right">${subtotalEquip ? subtotalEquip.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : '—'}</td>
-          </tr>
-          ${inst ? `<tr><td></td><td>Instalação e mão de obra</td><td style="text-align:center">1</td><td style="text-align:right">${inst.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td><td style="text-align:right">${inst.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td></tr>` : ''}
-          ${desc ? `<tr><td></td><td>Desconto</td><td style="text-align:center">1</td><td style="text-align:right">-${desc.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td><td style="text-align:right">-${desc.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td></tr>` : ''}
-          <tr class="total-row">
-            <td colspan="4" style="text-align:right">Total s/ IVA (23%)</td>
-            <td style="text-align:right">${totalSemIva.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td>
-          </tr>
-          <tr class="total-row">
-            <td colspan="4" style="text-align:right">IVA (23%)</td>
-            <td style="text-align:right">${(totalComIva - totalSemIva).toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td>
-          </tr>
-          <tr class="total-row" style="font-size:1.05rem">
-            <td colspan="4" style="text-align:right">Total c/ IVA</td>
-            <td style="text-align:right;color:#f97316">${totalComIva.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td>
-          </tr>
-        </tbody>
-      </table>
-
-      ${orc.notas ? `<div class="notas-section"><strong>Notas:</strong> ${orc.notas}</div>` : ''}
-
-      <div class="footer-note">
-        Orçamento válido por 30 dias. Preços sujeitos a alteração. Inclui EcoREEE conforme tabela em vigor.
-        A instalação está sujeita a visita técnica prévia. IVA à taxa legal em vigor.
-      </div>
-    `;
-
-    window.print();
-  }
-
-  async function carregarHistorico() {
-    const container = document.getElementById('historico-container');
-    container.innerHTML = '<div class="empty-state">A carregar...</div>';
-    try {
-      const res = await fetch('/api/orcamentos');
-      const list = await res.json();
-      if (!list.length) {
-        container.innerHTML = '<div class="empty-state">Ainda não foram gerados orçamentos.</div>';
-        return;
-      }
-      container.innerHTML = `
-        <table class="history-table">
-          <thead>
-            <tr>
-              <th>Nº</th>
-              <th>Data</th>
-              <th>Cliente</th>
-              <th>Produto</th>
-              <th>Marca</th>
-              <th>Total c/ IVA</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            ${list.map(o => `
-              <tr>
-                <td class="num">${o.numero_formatado}</td>
-                <td>${new Date(o.data).toLocaleDateString('pt-PT')}</td>
-                <td>${o.cliente || '—'}</td>
-                <td>${o.produto?.nome || '—'}</td>
-                <td>${o.produto?.marca || '—'}</td>
-                <td>${o.total_com_iva ? o.total_com_iva.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : '—'}</td>
-                <td><button class="btn-print" onclick="reimprimir(${o.numero})">🖨 Imprimir</button></td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      `;
-    } catch {
-      container.innerHTML = '<div class="empty-state">Erro ao carregar histórico.</div>';
+  const itens = [];
+  SERVICOS_DEF.forEach(s => {
+    const chk = document.getElementById(s.id);
+    if (chk && chk.checked) {
+      const pvp = parseFloat(document.getElementById(s.id + '-pvp').value) || 0;
+      itens.push({ descricao: s.label, qty: 1, pvp_unitario: pvp, pvp_total: pvp });
     }
-  }
+  });
+  const customDesc = document.getElementById('svc-custom-desc').value.trim();
+  const customPvp = parseFloat(document.getElementById('svc-custom-pvp').value) || 0;
+  if (customDesc && customPvp > 0) itens.push({ descricao: customDesc, qty: 1, pvp_unitario: customPvp, pvp_total: customPvp });
 
-  async function reimprimir(numero) {
-    const res = await fetch('/api/orcamentos/' + numero);
-    const orc = await res.json();
-    if (!orc.numero) { showToast('Orçamento não encontrado', true); return; }
-    printOrcamento(orc, { instalacao: orc.instalacao, desconto: orc.desconto });
-  }
+  if (itens.length === 0) { showToast('Selecione pelo menos um serviço', true); return; }
 
-  function limpar() {
-    document.getElementById('descricao').value = '';
-    document.getElementById('resultados').style.display = 'none';
-    document.getElementById('quote-panel').classList.remove('show');
-    selectedOption = null;
-    allOptions = null;
+  const total = itens.reduce((s, i) => s + i.pvp_total, 0);
+  const payload = { categoria: 'servicos', cliente, itens, total_com_iva: total, notas: document.getElementById('svc-notas').value };
+  await salvarEImprimir(payload);
+}
+
+/* ═══════════════════════════════════════════
+   GUARDAR & IMPRIMIR
+═══════════════════════════════════════════ */
+async function salvarEImprimir(payload) {
+  try {
+    const resp = await fetch('/api/gerar-orcamento', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await resp.json();
+    if (!data.sucesso) throw new Error(data.erro || 'Erro desconhecido');
+    showToast('Orçamento ' + data.orcamento.numero_formatado + ' guardado!');
+    preencherPrintArea(data.orcamento);
+    setTimeout(() => window.print(), 300);
+  } catch (e) {
+    showToast('Erro ao guardar: ' + e.message, true);
   }
+}
+
+function preencherPrintArea(orc) {
+  const dataFmt = new Date(orc.data).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  document.getElementById('pr-numero').textContent = orc.numero_formatado;
+  document.getElementById('pr-data').textContent = 'Data: ' + dataFmt;
+  document.getElementById('pr-cliente').textContent = orc.cliente;
+
+  const tbody = document.getElementById('pr-items-body');
+  tbody.innerHTML = (orc.itens || []).map(item => {
+    const imgPath = item.imagem ? ('../' + item.imagem.replace(/^\.\.\//, '').replace(/^assets\//, 'assets/')) : '';
+    return `
+    <tr>
+      <td class="item-img">${imgPath ? `<img src="${imgPath}" alt="">` : ''}</td>
+      <td>
+        <div class="item-desc">${item.descricao}</div>
+      </td>
+      <td class="right">${item.qty}</td>
+      <td class="right">${fmt(item.pvp_unitario || 0)}</td>
+      <td class="right">${fmt(item.pvp_total || (item.pvp_unitario * item.qty))}</td>
+    </tr>`;
+  }).join('');
+
+  const instVal = orc.instalacao || 0;
+  const descontoVal = orc.desconto || 0;
+  const total = orc.total_com_iva || 0;
+  const subTotal = (orc.itens || []).reduce((s, i) => s + (i.pvp_total || (i.pvp_unitario * i.qty)), 0);
+
+  let totalsHTML = '';
+  if (descontoVal > 0) {
+    totalsHTML += `<tr><td style="color:#555">Subtotal</td><td class="right">${fmt(subTotal)}</td></tr>`;
+    totalsHTML += `<tr><td style="color:#555">Desconto ${descontoVal}%</td><td class="right" style="color:#c00">- ${fmt(subTotal * descontoVal / 100)}</td></tr>`;
+  }
+  if (instVal > 0) totalsHTML += `<tr><td style="color:#555">Instalação</td><td class="right">${fmt(instVal)}</td></tr>`;
+  totalsHTML += `<tr class="total-row"><td>TOTAL c/ IVA</td><td class="right">${fmt(total)}</td></tr>`;
+  document.getElementById('pr-totals-body').innerHTML = totalsHTML;
+
+  const justEl = document.getElementById('pr-justificacao');
+  if (orc.justificacao) {
+    justEl.textContent = orc.justificacao;
+    justEl.style.display = 'block';
+  } else {
+    justEl.style.display = 'none';
+  }
+}
+
+function reimprimir(orcJson) {
+  preencherPrintArea(orcJson);
+  setTimeout(() => window.print(), 150);
+}
+
+/* ═══════════════════════════════════════════
+   HISTÓRICO
+═══════════════════════════════════════════ */
+async function loadHistorico() {
+  try {
+    const resp = await fetch('/api/orcamentos');
+    const data = await resp.json();
+    const tbody = document.getElementById('historico-tbody');
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="6" style="color:var(--muted);padding:20px">Nenhum orçamento ainda.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = data.map(orc => {
+      const d = new Date(orc.data).toLocaleDateString('pt-PT');
+      const catPill = `<span class="cat-pill cat-${orc.categoria || 'ac'}">${{ac:'AC',solar:'Solar',servicos:'Serviços'}[orc.categoria||'ac']}</span>`;
+      return `<tr>
+        <td><strong>${orc.numero_formatado}</strong></td>
+        <td>${d}</td>
+        <td>${catPill}</td>
+        <td>${orc.cliente || '—'}</td>
+        <td>${orc.total_com_iva != null ? fmt(orc.total_com_iva) : '—'}</td>
+        <td><button class="btn btn-ghost btn-sm" onclick='reimprimir(${JSON.stringify(orc)})'>Imprimir</button></td>
+      </tr>`;
+    }).join('');
+  } catch (e) {
+    showToast('Erro ao carregar histórico', true);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+initSolarGrid();
+calcServicos();
 </script>
 </body>
 </html>
