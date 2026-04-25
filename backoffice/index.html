@@ -18,7 +18,7 @@
       --muted: #6b7280;
       --green: #16a34a;
       --red: #dc2626;
-      --radius: 10px;
+      --radius: 0px;
       --shadow: 0 1px 4px rgba(0,0,0,.07), 0 4px 12px rgba(0,0,0,.04);
       --shadow-md: 0 2px 8px rgba(0,0,0,.09), 0 6px 20px rgba(0,0,0,.05);
       --font: 'Segoe UI', system-ui, sans-serif;
@@ -35,13 +35,13 @@
       height: 58px;
       box-shadow: 0 1px 3px rgba(0,0,0,.06);
     }
-    .header-logo { height: 32px; filter: invert(52%) sepia(97%) saturate(1829%) hue-rotate(357deg) brightness(98%) contrast(95%); }
+    .header-logo { height: 32px; mix-blend-mode: multiply; }
     .header-divider { width: 1px; height: 22px; background: var(--border); }
     .header-title { font-size: .82rem; color: var(--muted); font-weight: 500; }
     header nav { margin-left: auto; display: flex; gap: 6px; }
     header nav button {
       background: none; border: 1px solid transparent; color: var(--muted);
-      padding: 6px 16px; border-radius: 20px; cursor: pointer; font-size: .84rem;
+      padding: 6px 16px; cursor: pointer; font-size: .84rem;
       font-weight: 500; transition: all .15s;
     }
     header nav button.active { background: var(--orange-light); border-color: #fbd0b5; color: var(--orange); font-weight: 600; }
@@ -55,13 +55,13 @@
     .cat-tabs {
       display: flex; gap: 4px; margin-bottom: 24px;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 4px;
+      padding: 4px;
       box-shadow: var(--shadow);
     }
     .cat-tab {
       flex: 1; padding: 9px 16px; background: none; border: none;
       color: var(--muted); cursor: pointer; font-size: .88rem; font-weight: 500;
-      border-radius: 8px; transition: all .15s; text-align: center;
+      transition: all .15s; text-align: center;
     }
     .cat-tab.active { background: var(--orange); color: #fff; font-weight: 600; box-shadow: 0 2px 8px rgba(249,115,22,.35); }
     .cat-tab:hover:not(.active) { background: var(--surface2); color: var(--text); }
@@ -119,7 +119,7 @@
     .opcao-card:hover { border-color: var(--orange); box-shadow: var(--shadow-md); transform: translateY(-1px); }
     .opcao-card.selected { border-color: var(--orange); background: var(--orange-light); box-shadow: 0 0 0 3px rgba(249,115,22,.15); }
     .opcao-badge { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .badge { font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+    .badge { font-size: .68rem; font-weight: 700; padding: 2px 8px; }
     .badge-daikin { background: #dbeafe; color: #1d4ed8; }
     .badge-bosch { background: #fee2e2; color: #b91c1c; }
     .badge-daitsu { background: #dcfce7; color: #15803d; }
@@ -129,14 +129,14 @@
     .opcao-specs { font-size: .78rem; color: var(--muted); display: flex; gap: 12px; }
     .opcao-pvp { font-size: 1.15rem; font-weight: 800; color: var(--orange); }
     .opcao-justificacao { font-size: .8rem; color: #555; line-height: 1.55; border-top: 1px solid var(--border); padding-top: 8px; }
-    .opcao-img { width: 100%; height: 100px; object-fit: contain; border-radius: 6px; background: #f8f9fb; }
+    .opcao-img { width: 100%; height: 100px; object-fit: contain; background: #f8f9fb; }
     .opcao-select-btn { margin-top: auto; width: 100%; }
 
     /* ── Quote form ── */
     #quote-form { background: #fff; border: 1.5px solid #fbd0b5; border-radius: var(--radius); padding: 22px; margin-top: 20px; box-shadow: var(--shadow-md); }
     #quote-form h2 { color: var(--orange); }
     .selected-product-summary { background: var(--orange-light); border: 1px solid #fbd0b5; border-radius: var(--radius); padding: 12px 16px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-    .selected-product-summary img { width: 60px; height: 60px; object-fit: contain; border-radius: 6px; background: #fff; padding: 4px; }
+    .selected-product-summary img { width: 60px; height: 60px; object-fit: contain; background: #fff; padding: 4px; }
     .sps-info { flex: 1; }
     .sps-name { font-weight: 700; font-size: .95rem; }
     .sps-sub { font-size: .78rem; color: #7c3f0a; margin-top: 2px; }
@@ -184,7 +184,7 @@
     .historico-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 8px 14px; border-bottom: 1.5px solid var(--border); font-size: .75rem; text-transform: uppercase; letter-spacing: .5px; }
     .historico-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
     .historico-table tr:hover td { background: var(--orange-light); }
-    .cat-pill { font-size: .7rem; padding: 3px 10px; border-radius: 20px; font-weight: 700; }
+    .cat-pill { font-size: .7rem; padding: 3px 10px; font-weight: 700; }
     .cat-ac { background: #dbeafe; color: #1d4ed8; }
     .cat-solar { background: #fef9c3; color: #854d0e; }
     .cat-servicos { background: #dcfce7; color: #15803d; }
@@ -234,7 +234,7 @@
     .print-totals .total-row td { font-size: 12pt; font-weight: 700; border-top: 1.5pt solid #f97316; padding-top: 6pt; color: #f97316; }
     .print-justificacao { background: #fff8f0; border-left: 3pt solid #f97316; padding: 8pt 12pt; margin-bottom: 16pt; font-size: 9pt; color: #333; }
     .print-notas { background: #f9f9f9; border-left: 3pt solid #ccc; padding: 8pt 12pt; margin-bottom: 16pt; font-size: 9pt; color: #444; }
-    .print-pagamento { border: 1pt solid #ddd; border-radius: 4pt; padding: 10pt 12pt; margin-bottom: 16pt; }
+    .print-pagamento { border: 1pt solid #ddd; padding: 10pt 12pt; margin-bottom: 16pt; }
     .print-pagamento p { font-size: 9pt; color: #333; margin-bottom: 4pt; }
     .print-pagamento p:last-child { margin-bottom: 0; }
     .print-footer { border-top: 1pt solid #ddd; padding-top: 8pt; display: flex; justify-content: space-between; font-size: 8.5pt; color: #777; }
@@ -243,7 +243,7 @@
 <body>
 
 <header>
-  <img src="../assets/logo.png" class="header-logo" alt="ARTICOCLIMA" style="filter: invert(52%) sepia(97%) saturate(1829%) hue-rotate(357deg) brightness(98%) contrast(95%);">
+  <img src="../assets/logo.png" class="header-logo" alt="ARTICOCLIMA" style="mix-blend-mode: multiply;">
   <span class="header-title">Back Office — Orçamentos</span>
   <nav>
     <button class="active" id="btn-novo" onclick="showView('novo')">Novo Orçamento</button>
