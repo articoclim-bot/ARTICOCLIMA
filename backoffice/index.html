@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARTICOCLIMA — Back Office</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f11;
+      --surface: #1a1a1f;
+      --surface2: #22222a;
+      --border: #2e2e38;
+      --orange: #f97316;
+      --orange-dim: #c05a0e;
+      --text: #e8e8ed;
+      --muted: #888;
+      --green: #22c55e;
+      --blue: #3b82f6;
+      --red: #ef4444;
+      --radius: 10px;
+      --font: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    header .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.5px;
+    }
+
+    header .subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    header nav {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    header nav button {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all .15s;
+    }
+
+    header nav button.active,
+    header nav button:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .view { display: none; padding: 28px 24px; max-width: 960px; margin: 0 auto; width: 100%; }
+    .view.active { display: block; }
+
+    h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 16px; }
+
+    /* ── Input area ── */
+    .input-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    label { font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 6px; }
+
+    textarea, input[type=text], input[type=number] {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-family: var(--font);
+      resize: vertical;
+      transition: border-color .15s;
+    }
+
+    textarea:focus, input:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+
+    textarea { min-height: 80px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all .15s;
+    }
+
+    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary:hover { background: var(--orange-dim); }
+    .btn-primary:disabled { background: #444; cursor: not-allowed; }
+
+    .btn-ghost {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+    .btn-success { background: var(--green); color: #fff; }
+    .btn-success:hover { filter: brightness(0.88); }
+
+    /* ── Loading ── */
+    .loading {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 16px 0;
+    }
+    .loading.show { display: flex; }
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Options grid ── */
+    .options-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .need-badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .need-badge strong { color: var(--orange); }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .option-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      cursor: pointer;
+      transition: border-color .15s, transform .1s;
+      position: relative;
+    }
+
+    .option-card:hover { border-color: var(--orange); transform: translateY(-1px); }
+    .option-card.selected { border-color: var(--orange); background: rgba(249,115,22,.07); }
+
+    .option-card .badge-pos {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .option-brand {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .option-name { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+    .option-ref { font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; }
+
+    .option-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .spec-tag {
+      background: var(--surface2);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      color: var(--text);
+    }
+
+    .spec-tag.energy { color: var(--green); }
+
+    .option-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .option-price small { font-size: 0.7rem; color: var(--muted); font-weight: 400; }
+
+    .option-justificacao {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+
+    /* ── Quote form ── */
+    .quote-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: none;
+    }
+    .quote-panel.show { display: block; }
+
+    .quote-panel h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--green);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,.4);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all .3s;
+      z-index: 999;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.error { background: var(--red); }
+
+    /* ── History view ── */
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .history-table th {
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .history-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .history-table tr:hover td { background: var(--surface2); }
+
+    .history-table .num { color: var(--orange); font-weight: 700; }
+
+    .btn-print {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      transition: all .15s;
+    }
+    .btn-print:hover { border-color: var(--blue); color: var(--blue); }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+      padding: 60px 0;
+      font-size: 0.9rem;
+    }
+
+    /* ── Print layout ── */
+    @media print {
+      body > * { display: none !important; }
+      #print-area { display: block !important; }
+    }
+
+    #print-area {
+      display: none;
+      padding: 40px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #111;
+    }
+
+    #print-area .print-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid #f97316;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    #print-area .print-company { font-size: 1.3rem; font-weight: 700; color: #f97316; }
+    #print-area .print-company small { display: block; font-size: 0.75rem; color: #666; font-weight: 400; }
+
+    #print-area .print-title { font-size: 1rem; font-weight: 700; text-align: right; }
+    #print-area .print-num { font-size: 1.4rem; color: #f97316; font-weight: 700; }
+
+    #print-area table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    #print-area th { background: #f4f4f4; padding: 8px 12px; text-align: left; font-size: 0.85rem; border: 1px solid #ddd; }
+    #print-area td { padding: 8px 12px; font-size: 0.85rem; border: 1px solid #ddd; }
+
+    #print-area .total-row { font-weight: 700; background: #fff8f0; }
+    #print-area .notas-section { margin-top: 24px; font-size: 0.82rem; color: #666; }
+    #print-area .footer-note { margin-top: 40px; font-size: 0.75rem; color: #999; border-top: 1px solid #eee; padding-top: 12px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">ARTICOCLIMA</div>
+    <div class="subtitle">Back Office — Orçamentos</div>
+  </div>
+  <nav>
+    <button class="active" onclick="showView('novo')">+ Novo Orçamento</button>
+    <button onclick="showView('historico')">Histórico</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ── NOVO ORÇAMENTO ── -->
+  <div id="view-novo" class="view active">
+    <h2>Novo Orçamento</h2>
+
+    <div class="input-card">
+      <label for="descricao">Descreve o que o cliente precisa</label>
+      <textarea id="descricao" placeholder="Ex: quarto de 18m², boa exposição solar, uso residencial, cliente quer algo econômico..." rows="3"></textarea>
+      <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-primary" onclick="sugerir()" id="btn-sugerir">
+          <span>🔍</span> Encontrar opções
+        </button>
+        <button class="btn btn-ghost" onclick="limpar()">Limpar</button>
+      </div>
+    </div>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <span>A analisar e a procurar as melhores opções...</span>
+    </div>
+
+    <div id="resultados" style="display:none;">
+      <div class="options-header">
+        <h2 style="margin:0">Opções recomendadas</h2>
+        <div class="need-badge" id="need-badge"></div>
+      </div>
+      <div class="options-grid" id="options-grid"></div>
+
+      <div class="quote-panel" id="quote-panel">
+        <h3>Gerar Orçamento — <span id="selected-name" style="color:var(--orange)"></span></h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="cliente">Nome do cliente</label>
+            <input type="text" id="cliente" placeholder="Nome completo">
+          </div>
+          <div class="form-group">
+            <label for="quantidade">Quantidade</label>
+            <input type="number" id="quantidade" value="1" min="1">
+          </div>
+          <div class="form-group">
+            <label for="instalacao">Custo instalação (€, sem IVA)</label>
+            <input type="number" id="instalacao" placeholder="0.00" step="0.01">
+          </div>
+          <div class="form-group">
+            <label for="desconto">Desconto (€)</label>
+            <input type="number" id="desconto" placeholder="0.00" step="0.01">
+          </div>
+          <div class="form-group full">
+            <label for="notas">Notas adicionais</label>
+            <textarea id="notas" rows="2" placeholder="Observações, condições especiais..."></textarea>
+          </div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <button class="btn btn-success" onclick="gerarOrcamento()">✓ Gerar PDF do Orçamento</button>
+          <button class="btn btn-ghost" onclick="cancelarSelecao()">Cancelar seleção</button>
+          <span id="total-preview" style="margin-left:auto; font-size:0.9rem; color:var(--muted);"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HISTÓRICO ── -->
+  <div id="view-historico" class="view">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+      <h2 style="margin:0">Histórico de Orçamentos</h2>
+      <button class="btn btn-ghost" onclick="carregarHistorico()" style="font-size:0.8rem; padding:6px 12px;">↻ Atualizar</button>
+    </div>
+    <div id="historico-container"></div>
+  </div>
+</main>
+
+<!-- Print area -->
+<div id="print-area"></div>
+
+<div id="toast"></div>
+
+<script>
+  let selectedOption = null;
+  let allOptions = null;
+
+  function showView(name) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + name).classList.add('active');
+    document.querySelectorAll('header nav button').forEach((b, i) => {
+      b.classList.toggle('active', (name === 'novo' && i === 0) || (name === 'historico' && i === 1));
+    });
+    if (name === 'historico') carregarHistorico();
+  }
+
+  function showToast(msg, isError = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'show' + (isError ? ' error' : '');
+    setTimeout(() => { t.className = ''; }, 3500);
+  }
+
+  async function sugerir() {
+    const descricao = document.getElementById('descricao').value.trim();
+    if (!descricao) { showToast('Escreve uma descrição primeiro', true); return; }
+
+    const btn = document.getElementById('btn-sugerir');
+    btn.disabled = true;
+    document.getElementById('loading').classList.add('show');
+    document.getElementById('resultados').style.display = 'none';
+
+    try {
+      const res = await fetch('/api/sugerir', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ descricao }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.erro || 'Erro desconhecido');
+      renderOpcoes(data);
+    } catch (e) {
+      showToast('Erro: ' + e.message, true);
+    } finally {
+      btn.disabled = false;
+      document.getElementById('loading').classList.remove('show');
+    }
+  }
+
+  function renderOpcoes(data) {
+    allOptions = data;
+    const grid = document.getElementById('options-grid');
+    const badge = document.getElementById('need-badge');
+
+    badge.innerHTML = `<strong>${data.kw_recomendado || '?'} kW</strong> recomendado — ${data.resumo_necessidade || ''}`;
+
+    grid.innerHTML = (data.opcoes || []).map((o, i) => `
+      <div class="option-card" onclick="selectOption(${i})" id="card-${i}">
+        <div class="badge-pos">${o.posicao || i+1}</div>
+        <div class="option-brand">${o.marca}</div>
+        <div class="option-name">${o.nome}</div>
+        <div class="option-ref">${o.ref}</div>
+        <div class="option-specs">
+          <span class="spec-tag">${o.kw_frio} kW frio</span>
+          ${o.kw_quente ? `<span class="spec-tag">${o.kw_quente} kW calor</span>` : ''}
+          ${o.btu ? `<span class="spec-tag">${(o.btu/1000).toFixed(0)}k BTU</span>` : ''}
+          ${o.classe_energetica ? `<span class="spec-tag energy">${o.classe_energetica}</span>` : ''}
+        </div>
+        <div class="option-price">
+          ${o.pvp_sem_iva ? o.pvp_sem_iva.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : o.pvp_com_iva ? o.pvp_com_iva.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : 'Preço n/d'}
+          <small>${o.pvp_sem_iva ? 's/ IVA' : 'c/ IVA'}</small>
+        </div>
+        ${o.justificacao ? `<div class="option-justificacao">${o.justificacao}</div>` : ''}
+      </div>
+    `).join('');
+
+    document.getElementById('resultados').style.display = 'block';
+    document.getElementById('quote-panel').classList.remove('show');
+    selectedOption = null;
+  }
+
+  function selectOption(i) {
+    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('card-' + i).classList.add('selected');
+    selectedOption = allOptions.opcoes[i];
+    document.getElementById('selected-name').textContent = selectedOption.nome;
+    document.getElementById('quote-panel').classList.add('show');
+    updateTotalPreview();
+    document.getElementById('quote-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function cancelarSelecao() {
+    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('quote-panel').classList.remove('show');
+    selectedOption = null;
+  }
+
+  function updateTotalPreview() {
+    if (!selectedOption) return;
+    const qty = parseInt(document.getElementById('quantidade').value) || 1;
+    const inst = parseFloat(document.getElementById('instalacao').value) || 0;
+    const desc = parseFloat(document.getElementById('desconto').value) || 0;
+    const unitPrice = selectedOption.pvp_sem_iva || 0;
+    const subtotal = (unitPrice * qty) + inst - desc;
+    const comIva = subtotal * 1.23;
+    document.getElementById('total-preview').innerHTML =
+      `Total s/ IVA: <strong>${subtotal.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</strong> | c/ IVA: <strong>${comIva.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</strong>`;
+  }
+
+  document.addEventListener('input', e => {
+    if (['quantidade','instalacao','desconto'].includes(e.target.id)) updateTotalPreview();
+  });
+
+  async function gerarOrcamento() {
+    if (!selectedOption) return;
+    const qty = parseInt(document.getElementById('quantidade').value) || 1;
+    const inst = parseFloat(document.getElementById('instalacao').value) || 0;
+    const desc = parseFloat(document.getElementById('desconto').value) || 0;
+    const unitPrice = selectedOption.pvp_sem_iva || 0;
+    const totalSemIva = (unitPrice * qty) + inst - desc;
+    const totalComIva = totalSemIva * 1.23;
+
+    const payload = {
+      cliente: document.getElementById('cliente').value.trim(),
+      descricao_pedido: document.getElementById('descricao').value.trim(),
+      produto: selectedOption,
+      quantidade: qty,
+      instalacao: inst || null,
+      desconto: desc || null,
+      notas: document.getElementById('notas').value.trim(),
+      total_sem_iva: totalSemIva,
+      total_com_iva: totalComIva,
+    };
+
+    try {
+      const res = await fetch('/api/gerar-orcamento', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.erro);
+      showToast(`Orçamento ${data.orcamento.numero_formatado} criado!`);
+      printOrcamento(data.orcamento, payload);
+    } catch (e) {
+      showToast('Erro: ' + e.message, true);
+    }
+  }
+
+  function printOrcamento(orc, payload) {
+    const p = orc.produto;
+    const qty = orc.quantidade;
+    const unitPrice = p.pvp_sem_iva || 0;
+    const inst = payload.instalacao || 0;
+    const desc = payload.desconto || 0;
+    const subtotalEquip = unitPrice * qty;
+    const totalSemIva = orc.total_sem_iva;
+    const totalComIva = orc.total_com_iva;
+    const dataFmt = new Date(orc.data).toLocaleDateString('pt-PT');
+
+    const area = document.getElementById('print-area');
+    area.innerHTML = `
+      <div class="print-header">
+        <div>
+          <div class="print-company">ARTICOCLIMA
+            <small>Climatização e Energias Renováveis · artico.clim@gmail.com</small>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="print-title">ORÇAMENTO</div>
+          <div class="print-num">${orc.numero_formatado}</div>
+          <div style="font-size:0.8rem;color:#666">${dataFmt}</div>
+        </div>
+      </div>
+
+      ${orc.cliente ? `<p style="margin-bottom:16px"><strong>Cliente:</strong> ${orc.cliente}</p>` : ''}
+      ${orc.descricao_pedido ? `<p style="margin-bottom:16px;color:#555;font-size:0.85rem"><strong>Pedido:</strong> ${orc.descricao_pedido}</p>` : ''}
+
+      <table>
+        <thead>
+          <tr>
+            <th>Ref.</th>
+            <th>Descrição</th>
+            <th style="text-align:center">Qtd.</th>
+            <th style="text-align:right">Unit. s/ IVA</th>
+            <th style="text-align:right">Total s/ IVA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${p.ref || '—'}</td>
+            <td>${p.nome} ${p.kw_frio ? '· ' + p.kw_frio + 'kW' : ''} ${p.classe_energetica || ''}</td>
+            <td style="text-align:center">${qty}</td>
+            <td style="text-align:right">${unitPrice ? unitPrice.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : '—'}</td>
+            <td style="text-align:right">${subtotalEquip ? subtotalEquip.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : '—'}</td>
+          </tr>
+          ${inst ? `<tr><td></td><td>Instalação e mão de obra</td><td style="text-align:center">1</td><td style="text-align:right">${inst.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td><td style="text-align:right">${inst.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td></tr>` : ''}
+          ${desc ? `<tr><td></td><td>Desconto</td><td style="text-align:center">1</td><td style="text-align:right">-${desc.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td><td style="text-align:right">-${desc.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td></tr>` : ''}
+          <tr class="total-row">
+            <td colspan="4" style="text-align:right">Total s/ IVA (23%)</td>
+            <td style="text-align:right">${totalSemIva.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="4" style="text-align:right">IVA (23%)</td>
+            <td style="text-align:right">${(totalComIva - totalSemIva).toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td>
+          </tr>
+          <tr class="total-row" style="font-size:1.05rem">
+            <td colspan="4" style="text-align:right">Total c/ IVA</td>
+            <td style="text-align:right;color:#f97316">${totalComIva.toLocaleString('pt-PT', {minimumFractionDigits:2})} €</td>
+          </tr>
+        </tbody>
+      </table>
+
+      ${orc.notas ? `<div class="notas-section"><strong>Notas:</strong> ${orc.notas}</div>` : ''}
+
+      <div class="footer-note">
+        Orçamento válido por 30 dias. Preços sujeitos a alteração. Inclui EcoREEE conforme tabela em vigor.
+        A instalação está sujeita a visita técnica prévia. IVA à taxa legal em vigor.
+      </div>
+    `;
+
+    window.print();
+  }
+
+  async function carregarHistorico() {
+    const container = document.getElementById('historico-container');
+    container.innerHTML = '<div class="empty-state">A carregar...</div>';
+    try {
+      const res = await fetch('/api/orcamentos');
+      const list = await res.json();
+      if (!list.length) {
+        container.innerHTML = '<div class="empty-state">Ainda não foram gerados orçamentos.</div>';
+        return;
+      }
+      container.innerHTML = `
+        <table class="history-table">
+          <thead>
+            <tr>
+              <th>Nº</th>
+              <th>Data</th>
+              <th>Cliente</th>
+              <th>Produto</th>
+              <th>Marca</th>
+              <th>Total c/ IVA</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            ${list.map(o => `
+              <tr>
+                <td class="num">${o.numero_formatado}</td>
+                <td>${new Date(o.data).toLocaleDateString('pt-PT')}</td>
+                <td>${o.cliente || '—'}</td>
+                <td>${o.produto?.nome || '—'}</td>
+                <td>${o.produto?.marca || '—'}</td>
+                <td>${o.total_com_iva ? o.total_com_iva.toLocaleString('pt-PT', {minimumFractionDigits:2}) + ' €' : '—'}</td>
+                <td><button class="btn-print" onclick="reimprimir(${o.numero})">🖨 Imprimir</button></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    } catch {
+      container.innerHTML = '<div class="empty-state">Erro ao carregar histórico.</div>';
+    }
+  }
+
+  async function reimprimir(numero) {
+    const res = await fetch('/api/orcamentos/' + numero);
+    const orc = await res.json();
+    if (!orc.numero) { showToast('Orçamento não encontrado', true); return; }
+    printOrcamento(orc, { instalacao: orc.instalacao, desconto: orc.desconto });
+  }
+
+  function limpar() {
+    document.getElementById('descricao').value = '';
+    document.getElementById('resultados').style.display = 'none';
+    document.getElementById('quote-panel').classList.remove('show');
+    selectedOption = null;
+    allOptions = null;
+  }
+</script>
+</body>
+</html>
