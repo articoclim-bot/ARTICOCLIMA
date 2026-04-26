@@ -2,6 +2,18 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+// Carrega .env se existir (sem npm)
+try {
+  fs.readFileSync(path.join(__dirname, '.env'), 'utf8').split('\n').forEach(line => {
+    const eq = line.indexOf('=');
+    if (eq > 0) {
+      const k = line.slice(0, eq).trim();
+      const v = line.slice(eq + 1).trim().replace(/^["']|["']$/g, '');
+      if (k && !process.env[k]) process.env[k] = v;
+    }
+  });
+} catch {}
+
 const PORT = process.env.PORT || 8080;
 const DATA_DIR = path.join(__dirname, 'data');
 const COUNTER_FILE = path.join(DATA_DIR, 'counter.json');
