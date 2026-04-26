@@ -229,7 +229,7 @@
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       header, .view, .cat-tabs, #toast-container { display: none !important; }
       #print-area { display: block !important; }
-      @page { margin: 18mm 20mm; size: A4; }
+      @page { margin: 14mm 16mm; size: A4; }
     }
 
     #print-area {
@@ -240,44 +240,78 @@
       font-size: 10pt;
       line-height: 1.5;
     }
-    .print-header { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 12pt; border-bottom: 2pt solid #f97316; margin-bottom: 14pt; }
-    .print-logo { height: 44pt; mix-blend-mode: multiply; }
-    .print-orc-info { text-align: right; }
-    .print-orc-num { font-size: 14pt; font-weight: 700; color: #f97316; }
-    .print-orc-date { font-size: 9pt; color: #666; }
-    .print-cliente { margin-bottom: 12pt; }
-    .print-cliente strong { font-size: 11pt; }
-    .print-intro { font-size: 9pt; color: #555; margin-bottom: 14pt; }
 
-    /* Opção card */
-    .print-opcao { border: 1pt solid #ddd; margin-bottom: 14pt; page-break-inside: avoid; }
-    .print-opcao-header {
+    /* ── Print header ── */
+    .ph { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 10pt; border-bottom: 2.5pt solid #f97316; margin-bottom: 12pt; }
+    .ph-logo { height: 40pt; mix-blend-mode: multiply; }
+    .ph-orc { text-align: right; }
+    .ph-num { font-size: 15pt; font-weight: 800; color: #f97316; }
+    .ph-date { font-size: 9pt; color: #666; }
+
+    /* ── Client ── */
+    .pc { margin-bottom: 10pt; }
+    .pc-label { font-size: 7.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .5pt; color: #999; margin-bottom: 2pt; }
+    .pc-name { font-size: 12pt; font-weight: 700; }
+
+    /* ── Intro text ── */
+    .pi { font-size: 9pt; color: #555; margin-bottom: 12pt; font-style: italic; }
+
+    /* ── Option card ── */
+    .po { border: 1pt solid #e0e0e0; margin-bottom: 14pt; page-break-inside: avoid; box-shadow: 0 1pt 4pt rgba(0,0,0,.06); }
+    .po-header {
       display: flex; align-items: center; gap: 8pt;
       background: #f97316; color: #fff;
-      padding: 6pt 10pt;
+      padding: 7pt 12pt;
     }
-    .print-opcao-letra { font-size: 14pt; font-weight: 900; min-width: 18pt; }
-    .print-opcao-brand { height: 18pt; mix-blend-mode: multiply; background: #fff; padding: 1pt 4pt; }
-    .print-opcao-titulo { font-size: 10pt; font-weight: 700; flex: 1; }
-    .print-opcao-total { font-size: 12pt; font-weight: 900; white-space: nowrap; }
-    .print-opcao-body { padding: 8pt 10pt; }
+    .po-letra { font-size: 18pt; font-weight: 900; min-width: 20pt; line-height: 1; }
+    .po-brand { height: 22pt; mix-blend-mode: multiply; background: #fff; padding: 2pt 5pt; border-radius: 2pt; flex-shrink: 0; }
+    .po-title { font-size: 11pt; font-weight: 700; flex: 1; }
+    .po-total { font-size: 14pt; font-weight: 900; white-space: nowrap; }
 
+    /* ── Option body ── */
+    .po-body { padding: 10pt 12pt; }
+    .po-cols { display: flex; gap: 14pt; margin-bottom: 8pt; }
+
+    /* Photo column */
+    .po-photo-col { flex: 0 0 120pt; }
+    .po-photo { width: 120pt; height: 120pt; object-fit: contain; background: #f8f9fb; display: block; border: 1pt solid #eee; }
+
+    /* Detail column */
+    .po-detail-col { flex: 1; display: flex; flex-direction: column; gap: 8pt; }
+    .po-features { list-style: none; margin: 0; padding: 0; }
+    .po-features li { font-size: 8.5pt; color: #222; padding: 1.5pt 0; border-bottom: .5pt solid #f4f4f4; }
+    .po-features li:last-child { border-bottom: none; }
+
+    /* Price breakdown */
+    .po-breakdown { border: 1pt solid #f0f0f0; background: #fafafa; padding: 6pt 8pt; margin-top: auto; }
+    .pob-line { display: flex; justify-content: space-between; font-size: 8.5pt; color: #555; padding: 1.5pt 0; }
+    .pob-discount { display: flex; justify-content: space-between; font-size: 8.5pt; color: #c00; padding: 1.5pt 0; }
+    .pob-total { display: flex; justify-content: space-between; font-size: 11pt; font-weight: 800; color: #f97316; border-top: 1.5pt solid #f97316; padding-top: 4pt; margin-top: 3pt; }
+
+    /* Pitch / justificação */
+    .po-pitch { font-size: 8.5pt; color: #444; border-left: 2.5pt solid #f97316; padding-left: 8pt; line-height: 1.55; }
+
+    /* ── Legacy layout (solar / serviços) ── */
     .print-items { width: 100%; border-collapse: collapse; margin-bottom: 8pt; }
-    .print-items td { padding: 5pt 6pt; border-bottom: 1pt solid #eee; vertical-align: middle; font-size: 9.5pt; }
+    .print-items th { text-align: left; font-size: 8pt; color: #888; font-weight: 600; padding: 4pt 6pt; border-bottom: 1pt solid #ddd; }
+    .print-items td { padding: 5pt 6pt; border-bottom: .5pt solid #eee; vertical-align: middle; font-size: 9.5pt; }
     .print-items .item-img { width: 44pt; text-align: center; }
     .print-items .item-img img { max-width: 40pt; max-height: 40pt; object-fit: contain; }
     .print-items .item-desc { font-weight: 600; }
     .print-items .item-sub { font-size: 8pt; color: #666; }
     .print-items .right { text-align: right; white-space: nowrap; }
-    .print-opcao-line { display: flex; justify-content: space-between; font-size: 9pt; color: #555; padding: 1pt 0; }
-    .print-opcao-line.bold { font-weight: 700; font-size: 11pt; color: #f97316; border-top: 1pt solid #f97316; padding-top: 4pt; margin-top: 4pt; }
-    .print-just { font-size: 8.5pt; color: #444; border-left: 2pt solid #f97316; padding-left: 6pt; margin-top: 6pt; }
+    .print-totals { width: 100%; display: flex; justify-content: flex-end; margin-bottom: 10pt; }
+    .print-totals table { min-width: 200pt; }
+    .print-totals td { padding: 3pt 6pt; font-size: 9pt; }
+    .print-totals .right { text-align: right; }
+    .total-row td { font-weight: 800; font-size: 11pt; color: #f97316; border-top: 1.5pt solid #f97316; padding-top: 5pt; }
+    .print-justificacao { font-size: 8.5pt; color: #444; border-left: 2.5pt solid #f97316; padding-left: 8pt; margin-bottom: 10pt; }
 
-    .print-notas { background: #f9f9f9; border-left: 3pt solid #ccc; padding: 8pt 12pt; margin-bottom: 12pt; font-size: 9pt; color: #444; }
-    .print-pagamento { border: 1pt solid #ddd; padding: 10pt 12pt; margin-bottom: 12pt; }
-    .print-pagamento p { font-size: 9pt; color: #333; margin-bottom: 4pt; }
-    .print-pagamento p:last-child { margin-bottom: 0; }
-    .print-footer { border-top: 1pt solid #ddd; padding-top: 8pt; display: flex; justify-content: space-between; font-size: 8.5pt; color: #777; }
+    /* ── Payment / footer (shared) ── */
+    .pp { border: 1pt solid #ddd; padding: 9pt 12pt; margin-bottom: 10pt; }
+    .pp p { font-size: 8.5pt; color: #333; margin-bottom: 3pt; }
+    .pp p:last-child { margin: 0; }
+    .pf { border-top: 1pt solid #ddd; padding-top: 7pt; display: flex; justify-content: space-between; font-size: 8pt; color: #888; }
   </style>
 </head>
 <body>
@@ -568,55 +602,7 @@
 </div>
 
 <!-- ═══════ PRINT AREA ═══════ -->
-<div id="print-area">
-  <div class="print-header">
-    <img src="../assets/logo.png" class="print-logo" alt="ARTICOCLIMA">
-    <div class="print-orc-info">
-      <div class="print-orc-num" id="pr-numero"></div>
-      <div class="print-orc-date" id="pr-data"></div>
-    </div>
-  </div>
-
-  <div class="print-cliente">
-    <div class="print-section-title">Cliente</div>
-    <strong id="pr-cliente"></strong>
-  </div>
-
-  <table class="print-items" id="pr-items-table">
-    <thead>
-      <tr>
-        <th class="item-img"></th>
-        <th>Descrição</th>
-        <th class="right">Qtd.</th>
-        <th class="right">Preço unit.</th>
-        <th class="right">Total</th>
-      </tr>
-    </thead>
-    <tbody id="pr-items-body"></tbody>
-  </table>
-
-  <div class="print-totals">
-    <table>
-      <tbody id="pr-totals-body"></tbody>
-    </table>
-  </div>
-
-  <div class="print-justificacao" id="pr-justificacao" style="display:none;"></div>
-
-  <div class="print-pagamento">
-    <p>O pagamento pode ser efectuado por transferência bancária:</p>
-    <p><strong>IBAN: PT50 004571404039499605632</strong></p>
-    <p>Garantia conforme a legislação em vigor (3 anos para particulares / 6 meses para empresas).</p>
-    <p>O orçamento só é considerado válido após adjudicação de <strong>80% do seu valor</strong>. Sendo o restante pago no dia da instalação.</p>
-  </div>
-
-  <div class="print-footer">
-    <span>ARTICOCLIMA — Climatização e Energias Renováveis</span>
-    <span>artico.clim@gmail.com</span>
-    <span>+351 964 501 776</span>
-    <span>Seg–Sex 9h–18h</span>
-  </div>
-</div>
+<div id="print-area"></div>
 
 <div class="toast" id="toast"></div>
 
@@ -953,6 +939,30 @@ function getPitch(series) {
   return PITCH[series] || 'Equipamento de climatização inverter de alta eficiência com garantia de qualidade.';
 }
 
+const FEATURES = {
+  'ARTIC':          ['✓ WiFi integrado — controlo via app My Daitsu', '✓ Classe A+++ no aquecimento', '✓ 5 filtros de alta eficiência (PM2.5, carvão, catecol, vitamina C, HEPA)', '✓ Controlo de voz compatível (Google, Alexa, Siri)', '✓ Tecnologia AI+ — aprende os seus hábitos'],
+  'FREE MAX ARTIC': ['✓ Kit completo — uma unidade exterior para várias divisões', '✓ Classe A++ aquecimento e arrefecimento', '✓ WiFi integrado em cada unidade interior', '✓ Menor obra e custo de instalação vs. mono-splits individuais', '✓ Controlo independente de temperatura por divisão'],
+  'Climate 3200i':  ['✓ Auto-limpeza iClean a 56°C — elimina bactérias e fungos', '✓ Filtro catalítico e revestimento Golden Fin anticorrosivo', '✓ Classe A++ aquecimento e arrefecimento', '✓ Modo Turbo para arrefecimento/aquecimento rápido', '✓ Prémio German Design Award 2026'],
+  'Multi 3200i':    ['✓ Kit multi-split — uma unidade exterior, várias divisões', '✓ Interiores Climate 3200i com auto-limpeza iClean a 56°C', '✓ Filtro catalítico e revestimento Golden Fin anticorrosivo', '✓ Classe A++ — instalação mais limpa e económica', '✓ Controlo independente de temperatura por divisão'],
+  'Climate 6000i':  ['✓ Classe A+++ aquecimento e arrefecimento — poupança máxima', '✓ Sensor de movimento — ajusta automaticamente a direção do ar', '✓ Ionizador integrado para melhorar a qualidade do ar interior', '✓ Controlo de humidade integrado', '✓ WiFi integrado de série — controlo por app'],
+  'Multi 6000i':    ['✓ Kit multi-split A+++ — uma unidade exterior, várias divisões', '✓ Interiores Climate 6000i com sensor de movimento e ionizador', '✓ Controlo de humidade integrado em cada unidade', '✓ WiFi integrado de série', '✓ Controlo independente por divisão via app'],
+  'Climate 7000i':  ['✓ Topo de gama Bosch — A+++ aquecimento e arrefecimento', '✓ WiFi integrado e monitorização de consumo de energia', '✓ Sensor de presença com ajuste automático de direção', '✓ Operação até -20°C exterior (modo aquecimento)', '✓ Prémio iF Design Award 2025'],
+  'Sensira':        ['✓ WiFi incluído de série — controlo por app Daikin Mobile Controller', '✓ Classe A++ — eficiência energética elevada', '✓ Marca líder mundial em climatização (90+ anos)', '✓ Tecnologia inverter de velocidade variável — silenciosa', '✓ Filtro de limpeza fácil incluído'],
+  'Multi Sensira':  ['✓ Kit multi-split Daikin com interiores Sensira FTXF', '✓ WiFi incluído de série em cada unidade interior', '✓ Classe A++ — eficiência energética elevada', '✓ Marca líder mundial em climatização (90+ anos)', '✓ Controlo independente por divisão via app'],
+  'Confora':        ['✓ Classe A+++ — poupança máxima em energia', '✓ Modo I-Feel — sensor no telecomando mede temperatura real do utilizador', '✓ Filtro PM2.5 — captura partículas ultrafinas', '✓ WiFi integrado — controlo total por app', '✓ Tecnologia inverter silenciosa Daikin'],
+  'Multi Confora':  ['✓ Kit multi-split A+++ com interiores Confora FTXP', '✓ Modo I-Feel — sensor de temperatura no telecomando', '✓ Filtro PM2.5 incluído em cada unidade interior', '✓ WiFi integrado — controlo por app divisão a divisão', '✓ Uma unidade exterior, todas as divisões a A+++'],
+  'Perfera':        ['✓ Topo da gama residencial Daikin — A+++', '✓ Purificador de ar integrado — flash streamer', '✓ I-Feel — mede temperatura real na posição do utilizador', '✓ WiFi integrado de série', '✓ Operação até -15°C exterior no modo aquecimento'],
+  'Multi Perfera':  ['✓ Kit multi-split premium Daikin A+++ com interiores FTXM', '✓ Purificador de ar (flash streamer) em cada unidade', '✓ I-Feel — sensor temperatura no telecomando', '✓ WiFi integrado de série', '✓ Uma unidade exterior, várias divisões com qualidade premium'],
+  'Stylish':        ['✓ Design premiado EPA + iF Design Award + Red Dot Award', '✓ Disponível em 8 cores — integra em qualquer decoração', '✓ Classe A+++ — máxima eficiência energética', '✓ WiFi integrado de série — app Daikin Online Controller', '✓ Fluxo de ar de 360° para distribuição uniforme e silenciosa'],
+  'Multi Stylish':  ['✓ Kit multi-split design premiado com interiores FTXA Branco', '✓ Design vencedor EPA + iF Design Award + Red Dot Award', '✓ Classe A+++ com WiFi integrado de série', '✓ Fluxo de ar 360° para distribuição uniforme', '✓ Uma unidade exterior, várias divisões com design premium'],
+  'Emura':          ['✓ O aparelho mais elegante do mercado — design icónico premiado', '✓ Premiado iF Design Award + Red Dot Award 2022', '✓ Classe A+++ — eficiência máxima', '✓ WiFi integrado de série + I-Feel', '✓ Purificador de ar flash streamer integrado'],
+  'Multi Emura':    ['✓ Kit multi-split com o design mais elegante — interiores FTXJ Branco', '✓ Premiado iF Design Award + Red Dot Award', '✓ Classe A+++ com WiFi integrado de série', '✓ I-Feel + purificador de ar em cada divisão', '✓ Uma unidade exterior, várias divisões com design de topo'],
+};
+
+function getFeatures(series) {
+  return FEATURES[series] || ['✓ Tecnologia inverter de alta eficiência', '✓ WiFi para controlo remoto', '✓ Classe energética elevada', '✓ Garantia de qualidade e fiabilidade', '✓ Instalação profissional incluída'];
+}
+
 /* ═══════════════════════════════════════════
    AC — CATÁLOGO MANUAL
 ═══════════════════════════════════════════ */
@@ -1168,7 +1178,7 @@ function toggleOpcaoLocal(i) {
   const p = grid._produtos[i];
   const opcao = {
     titulo: `${p.series} ${p.model}`,
-    marca: p.brand, produto_id: p.id, modelo: p.model,
+    marca: p.brand, produto_id: p.id, modelo: p.model, series: p.series,
     tipo: p.tipo || 'mono_split', kw: p.kw, btu: p.btu,
     classe: p.classe, pvp_unitario: p.pvp,
     imagem: p.img.replace('../',''),
@@ -1280,6 +1290,7 @@ async function gerarOrcamentoAC() {
       letra: String.fromCharCode(65 + i),
       titulo: opcao.titulo,
       marca: opcao.marca,
+      series: opcao.series,
       imagem: opcao.imagem,
       justificacao: opcao.justificacao,
       kw: opcao.kw,
@@ -1467,73 +1478,86 @@ async function salvarEImprimir(payload) {
 }
 
 function preencherPrintArea(orc) {
-  const dataFmt = new Date(orc.data).toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' });
-  document.getElementById('pr-numero').textContent = orc.numero_formatado;
-  document.getElementById('pr-data').textContent = 'Data: ' + dataFmt;
-  document.getElementById('pr-cliente').textContent = orc.cliente;
-
-  // Remove previous dynamic block if any
-  const prev = document.getElementById('pr-opcoes-block');
-  if (prev) prev.remove();
-
   const BRAND_LOGOS = { daikin: '../assets/logo-daikin.jpg', bosch: '../assets/logo-bosch.jpg', daitsu: '../assets/logo-daitsu.jpg' };
+  const dataFmt = new Date(orc.data).toLocaleDateString('pt-PT', { day: '2-digit', month: 'long', year: 'numeric' });
+
+  const header = `
+    <div class="ph">
+      <img src="../assets/logo.png" class="ph-logo" alt="ARTICOCLIMA">
+      <div class="ph-orc">
+        <div class="ph-num">${orc.numero_formatado}</div>
+        <div class="ph-date">${dataFmt}</div>
+      </div>
+    </div>
+    <div class="pc">
+      <div class="pc-label">Cliente</div>
+      <div class="pc-name">${orc.cliente || '—'}</div>
+    </div>`;
+
+  const footer = `
+    <div class="pp">
+      <p>O pagamento pode ser efectuado por transferência bancária:</p>
+      <p><strong>IBAN: PT50 004571404039499605632</strong></p>
+      <p>Garantia conforme a legislação em vigor (3 anos para particulares / 6 meses para empresas).</p>
+      <p>O orçamento só é considerado válido após adjudicação de <strong>80% do seu valor</strong>, sendo o restante pago no dia da instalação.</p>
+    </div>
+    <div class="pf">
+      <span>ARTICOCLIMA — Climatização e Energias Renováveis</span>
+      <span>artico.clim@gmail.com</span>
+      <span>+351 964 501 776</span>
+      <span>Seg–Sex 9h–18h</span>
+    </div>`;
+
+  let body = '';
 
   if (orc.opcoes && orc.opcoes.length > 0) {
-    // Multi-option layout: hide legacy table, render opcao cards
-    document.getElementById('pr-items-table').style.display = 'none';
-    document.querySelector('.print-totals').style.display = 'none';
-    document.getElementById('pr-justificacao').style.display = 'none';
-
-    let html = '';
     if (orc.opcoes.length > 1) {
-      html += `<p class="print-intro">Apresentamos ${orc.opcoes.length} opções para o seu caso. Escolha a que melhor se adequa.</p>`;
+      body += `<p class="pi">Apresentamos ${orc.opcoes.length} opções para o seu caso. Analise cada uma e escolha a que melhor se adequa ao seu espaço e orçamento.</p>`;
     }
 
     orc.opcoes.forEach(op => {
       const logoSrc = BRAND_LOGOS[(op.marca || '').toLowerCase()];
       const subtotal = (op.itens || []).reduce((s, i) => s + (i.pvp_total || 0), 0);
-      const descVal = subtotal * (op.desconto || 0) / 100;
-      let html2 = '';
-      (op.itens || []).forEach(item => {
-        const imgPath = item.imagem ? ('../' + item.imagem.replace(/^\.\.\//, '').replace(/^assets\//, 'assets/')) : '';
-        html2 += `<tr>
-          <td class="item-img">${imgPath ? `<img src="${imgPath}" alt="">` : ''}</td>
-          <td><div class="item-desc">${item.descricao}</div><div class="item-sub">${op.kw ? op.kw + ' kW' : ''} ${op.classe ? '· ' + op.classe : ''}</div></td>
-          <td class="right">${item.qty}</td>
-          <td class="right">${fmt(item.pvp_unitario || 0)}</td>
-          <td class="right">${fmt(item.pvp_total || 0)}</td>
-        </tr>`;
-      });
+      const descVal = Math.round(subtotal * (op.desconto || 0) / 100 * 100) / 100;
+      const imgPath = op.imagem ? ('../' + op.imagem.replace(/^\.\.\//, '').replace(/^assets\//, 'assets/')) : '';
+      const features = getFeatures(op.series);
 
-      html += `<div class="print-opcao">
-        <div class="print-opcao-header">
-          <span class="print-opcao-letra">${op.letra}</span>
-          ${logoSrc ? `<img class="print-opcao-brand" src="${logoSrc}" alt="${op.marca}">` : ''}
-          <span class="print-opcao-titulo">${op.titulo}</span>
-          <span class="print-opcao-total">${fmt(op.total_com_iva)}</span>
-        </div>
-        <div class="print-opcao-body">
-          <table class="print-items"><tbody>${html2}</tbody></table>
-          ${op.desconto > 0 ? `<div class="print-opcao-line"><span>Desconto ${op.desconto}%</span><span>- ${fmt(descVal)}</span></div>` : ''}
-          ${op.instalacao > 0 ? `<div class="print-opcao-line"><span>Instalação</span><span>${fmt(op.instalacao)}</span></div>` : ''}
-          <div class="print-opcao-line bold"><span>Total c/ IVA</span><span>${fmt(op.total_com_iva)}</span></div>
-          ${op.justificacao ? `<div class="print-just">${op.justificacao}</div>` : ''}
-        </div>
-      </div>`;
+      let breakdown = '';
+      (op.itens || []).forEach(item => {
+        breakdown += `<div class="pob-line"><span>${item.qty > 1 ? item.qty + '× ' : ''}${item.descricao}</span><span>${fmt(item.pvp_total || item.pvp_unitario)}</span></div>`;
+      });
+      if (op.desconto > 0) breakdown += `<div class="pob-discount"><span>Desconto ${op.desconto}%</span><span>- ${fmt(descVal)}</span></div>`;
+      if (op.instalacao > 0) breakdown += `<div class="pob-line"><span>Instalação e montagem</span><span>${fmt(op.instalacao)}</span></div>`;
+      breakdown += `<div class="pob-total"><span>Total c/ IVA</span><span>${fmt(op.total_com_iva)}</span></div>`;
+
+      const specsLine = [op.kw ? op.kw + ' kW' : '', op.classe || ''].filter(Boolean).join(' · ');
+
+      body += `
+        <div class="po">
+          <div class="po-header">
+            <span class="po-letra">${op.letra}</span>
+            ${logoSrc ? `<img class="po-brand" src="${logoSrc}" alt="${op.marca}">` : `<span style="font-weight:800;font-size:11pt">${op.marca}</span>`}
+            <span class="po-title">${op.titulo}${specsLine ? ' <span style="font-size:9pt;opacity:.85">· ' + specsLine + '</span>' : ''}</span>
+            <span class="po-total">${fmt(op.total_com_iva)}</span>
+          </div>
+          <div class="po-body">
+            <div class="po-cols">
+              <div class="po-photo-col">
+                ${imgPath ? `<img class="po-photo" src="${imgPath}" alt="${op.titulo}" onerror="this.style.display='none'">` : ''}
+              </div>
+              <div class="po-detail-col">
+                <ul class="po-features">${features.map(f => `<li>${f}</li>`).join('')}</ul>
+                <div class="po-breakdown">${breakdown}</div>
+              </div>
+            </div>
+            ${op.justificacao ? `<div class="po-pitch">${op.justificacao}</div>` : ''}
+          </div>
+        </div>`;
     });
 
-    const block = document.createElement('div');
-    block.id = 'pr-opcoes-block';
-    block.innerHTML = html;
-    document.querySelector('.print-pagamento').before(block);
-
   } else {
-    // Legacy flat layout (solar, serviços, single AC)
-    document.getElementById('pr-items-table').style.display = '';
-    document.querySelector('.print-totals').style.display = '';
-
-    const tbody = document.getElementById('pr-items-body');
-    tbody.innerHTML = (orc.itens || []).map(item => {
+    // Legacy flat layout for solar / serviços
+    const rows = (orc.itens || []).map(item => {
       const imgPath = item.imagem ? ('../' + item.imagem.replace(/^\.\.\//, '').replace(/^assets\//, 'assets/')) : '';
       return `<tr>
         <td class="item-img">${imgPath ? `<img src="${imgPath}" alt="">` : ''}</td>
@@ -1556,12 +1580,20 @@ function preencherPrintArea(orc) {
     }
     if (instVal > 0) totalsHTML += `<tr><td style="color:#555">Instalação</td><td class="right">${fmt(instVal)}</td></tr>`;
     totalsHTML += `<tr class="total-row"><td>TOTAL c/ IVA</td><td class="right">${fmt(total)}</td></tr>`;
-    document.getElementById('pr-totals-body').innerHTML = totalsHTML;
 
-    const justEl = document.getElementById('pr-justificacao');
-    if (orc.justificacao) { justEl.textContent = orc.justificacao; justEl.style.display = 'block'; }
-    else { justEl.style.display = 'none'; }
+    body += `
+      <table class="print-items">
+        <thead><tr><th class="item-img"></th><th>Descrição</th><th class="right">Qtd.</th><th class="right">Preço unit.</th><th class="right">Total</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="print-totals"><table><tbody>${totalsHTML}</tbody></table></div>`;
+
+    if (orc.justificacao) {
+      body += `<div class="print-justificacao">${orc.justificacao}</div>`;
+    }
   }
+
+  document.getElementById('print-area').innerHTML = header + body + footer;
 }
 
 function reimprimir(orcJson) {
