@@ -167,7 +167,7 @@ function handleGerarOrcamento(req, res) {
   req.on('end', () => {
     try {
       const dados = JSON.parse(body);
-      if (!dados.produto) return json(res, { erro: 'produto obrigatório' }, 400);
+      if (!dados.itens || dados.itens.length === 0) return json(res, { erro: 'itens obrigatório' }, 400);
 
       if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
