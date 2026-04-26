@@ -186,6 +186,7 @@ function handleGerarOrcamento(req, res) {
         categoria: dados.categoria || 'ac',
         cliente: dados.cliente || '',
         itens: dados.itens || [],
+        opcoes: dados.opcoes || null,
         instalacao: dados.instalacao || null,
         desconto: dados.desconto || 0,
         notas: dados.notas || '',
