@@ -142,6 +142,25 @@
     .opcao-justificacao { font-size: .8rem; color: #555; line-height: 1.55; border-top: 1px solid var(--border); padding-top: 8px; }
     .opcao-img { width: 100%; height: 100px; object-fit: contain; background: #f8f9fb; }
     .opcao-select-btn { margin-top: auto; width: 100%; }
+    .opcao-select-btn.selected-btn { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .tipo-divider {
+      grid-column: 1 / -1; font-size:.7rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:.8px; color:var(--orange); margin:16px 0 4px; display:flex; align-items:center; gap:8px;
+      border-top:1px solid var(--border); padding-top:12px;
+    }
+    .tipo-divider:first-child { border-top:none; padding-top:0; margin-top:0; }
+    .selected-items-list { display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+    .selected-item-row {
+      background:var(--orange-light); border:1px solid #fbd0b5; padding:10px 14px;
+      display:flex; align-items:center; gap:12px;
+    }
+    .selected-item-row img { width:50px; height:50px; object-fit:contain; background:#fff; padding:2px; flex-shrink:0; }
+    .selected-item-info { flex:1; min-width:0; }
+    .selected-item-name { font-weight:700; font-size:.88rem; }
+    .selected-item-pvp { font-size:.78rem; color:#7c3f0a; margin-top:2px; }
+    .selected-item-qty { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+    .selected-item-qty label { font-size:.78rem; color:var(--muted); }
+    .selected-item-qty input { width:58px; }
 
     /* ── Quote form ── */
     #quote-form { background: #fff; border: 1.5px solid #fbd0b5; border-radius: var(--radius); padding: 22px; margin-top: 20px; box-shadow: var(--shadow-md); }
@@ -342,16 +361,12 @@
 
     <!-- Formulário de orçamento AC -->
     <div id="quote-form-ac" style="display:none;">
-      <h2 style="margin-bottom:16px;">Gerar Orçamento</h2>
-      <div class="selected-product-summary" id="selected-summary-ac"></div>
+      <h2 style="margin-bottom:12px;">Gerar Orçamento</h2>
+      <div class="selected-items-list" id="selected-items-ac"></div>
       <div class="form-row">
         <div class="form-group">
           <label>Nome do Cliente</label>
           <input type="text" id="ac-cliente" placeholder="Nome completo ou empresa">
-        </div>
-        <div class="form-group">
-          <label>Quantidade</label>
-          <input type="number" id="ac-qty" value="1" min="1">
         </div>
       </div>
       <div class="form-row">
@@ -662,7 +677,7 @@ const CATALOG_SOLAR = [
 /* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
-let selectedOpcao = null;
+let selectedOpcoes = []; // [{index, opcao}]
 let selectedSolar = null;
 
 /* ═══════════════════════════════════════════
@@ -838,7 +853,7 @@ function sugerirAC() {
   document.getElementById('opcoes-grid').innerHTML = '';
   document.getElementById('resumo-necessidade').style.display = 'none';
   document.getElementById('quote-form-ac').style.display = 'none';
-  selectedOpcao = null;
+  selectedOpcoes = [];
 
   // Calcular kW necessários
   const solar  = document.querySelector('#chips-solar .chip.active')?.textContent || '';
@@ -896,102 +911,145 @@ function sugerirAC() {
   renderOpcoes(produtos);
 }
 
+function renderCard(p, i) {
+  const brandCls = brandBadgeClass(p.brand);
+  const isMulti = p.tipo === 'multi_split';
+  return `
+  <div class="opcao-card" id="opcao-card-${i}" onclick="toggleOpcaoLocal(${i})">
+    <img class="opcao-img" src="${p.img}" alt="${p.model}" onerror="this.style.display='none'">
+    <div class="opcao-badge">
+      <span class="badge ${brandCls}">${p.brand}</span>
+      ${isMulti ? '<span class="badge badge-multi">Multi-split</span>' : ''}
+      <span class="badge badge-classe">${p.classe}</span>
+    </div>
+    <div class="opcao-title">${p.series} ${p.model}</div>
+    <div class="opcao-specs">
+      <span>${p.kw} kW</span>
+      ${p.btu ? `<span>${p.btu.toLocaleString('pt-PT')} BTU</span>` : ''}
+    </div>
+    <div class="opcao-pvp">${fmt(p.pvp)}</div>
+    <div class="opcao-justificacao">${getPitch(p.series)}</div>
+    <button class="btn btn-primary btn-sm opcao-select-btn" id="btn-select-${i}">Selecionar</button>
+  </div>`;
+}
+
 function renderOpcoes(produtos) {
   const grid = document.getElementById('opcoes-grid');
   if (!produtos.length) {
     grid.innerHTML = '<p style="color:var(--muted);padding:16px">Nenhum produto encontrado para estas especificações.</p>';
+    grid._produtos = [];
     return;
   }
 
-  grid.innerHTML = produtos.map((p, i) => {
-    const brandCls = brandBadgeClass(p.brand);
-    const isMulti = p.tipo === 'multi_split';
-    return `
-    <div class="opcao-card" id="opcao-card-${i}" onclick="selecionarOpcaoLocal(${i})">
-      <img class="opcao-img" src="${p.img}" alt="${p.model}" onerror="this.style.display='none'">
-      <div class="opcao-badge">
-        <span class="badge ${brandCls}">${p.brand}</span>
-        ${isMulti ? '<span class="badge badge-multi">Multi-split</span>' : ''}
-        <span class="badge badge-classe">${p.classe}</span>
-      </div>
-      <div class="opcao-title">${p.series} ${p.model}</div>
-      <div class="opcao-specs">
-        <span>${p.kw} kW</span>
-        ${p.btu ? `<span>${p.btu.toLocaleString('pt-PT')} BTU</span>` : ''}
-      </div>
-      <div class="opcao-pvp">${fmt(p.pvp)}</div>
-      <div class="opcao-justificacao">${getPitch(p.series)}</div>
-      <button class="btn btn-primary btn-sm opcao-select-btn">Selecionar</button>
-    </div>`;
-  }).join('');
+  const mono = produtos.map((p,i) => ({p,i})).filter(({p}) => p.tipo !== 'multi_split');
+  const multi = produtos.map((p,i) => ({p,i})).filter(({p}) => p.tipo === 'multi_split');
+  const hasBoth = mono.length > 0 && multi.length > 0;
 
-  // guardar lista para lookup no select
+  let html = '';
+  if (mono.length > 0) {
+    if (hasBoth) html += '<div class="tipo-divider">🌬 Mono-split — unidade por divisão</div>';
+    html += mono.map(({p,i}) => renderCard(p, i)).join('');
+  }
+  if (multi.length > 0) {
+    html += '<div class="tipo-divider">🔀 Multi-split — uma unidade exterior, várias interiores</div>';
+    html += multi.map(({p,i}) => renderCard(p, i)).join('');
+  }
+
+  grid.innerHTML = html;
   grid._produtos = produtos;
 }
 
-function selecionarOpcaoLocal(i) {
+function toggleOpcaoLocal(i) {
   const grid = document.getElementById('opcoes-grid');
   const p = grid._produtos[i];
-  // converter para formato compatível com selecionarOpcao
   const opcao = {
     titulo: `${p.series} ${p.model}`,
-    marca: p.brand,
-    produto_id: p.id,
-    modelo: p.model,
-    tipo: p.tipo || 'mono_split',
-    kw: p.kw,
-    btu: p.btu,
-    classe: p.classe,
-    pvp_unitario: p.pvp,
+    marca: p.brand, produto_id: p.id, modelo: p.model,
+    tipo: p.tipo || 'mono_split', kw: p.kw, btu: p.btu,
+    classe: p.classe, pvp_unitario: p.pvp,
     imagem: p.img.replace('../',''),
     justificacao: getPitch(p.series),
-    unidades: [{ descricao: `${p.series} ${p.model}`, qty: 1, pvp: p.pvp }],
   };
-  selecionarOpcao(i, opcao);
+
+  const existIdx = selectedOpcoes.findIndex(s => s.index === i);
+  const card = document.getElementById('opcao-card-' + i);
+  const btn = document.getElementById('btn-select-' + i);
+
+  if (existIdx >= 0) {
+    selectedOpcoes.splice(existIdx, 1);
+    card?.classList.remove('selected');
+    if (btn) { btn.textContent = 'Selecionar'; btn.classList.remove('selected-btn'); }
+  } else {
+    selectedOpcoes.push({ index: i, opcao });
+    card?.classList.add('selected');
+    if (btn) { btn.textContent = '✓ Selecionado'; btn.classList.add('selected-btn'); }
+  }
+
+  updateFormAC();
 }
 
-function selecionarOpcao(i, opcao) {
-  selectedOpcao = opcao;
-  document.querySelectorAll('.opcao-card').forEach(c => c.classList.remove('selected'));
-  const card = document.getElementById('opcao-card-' + i);
-  if (card) card.classList.add('selected');
-
+function updateFormAC() {
   const form = document.getElementById('quote-form-ac');
-  form.style.display = 'block';
-  form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (selectedOpcoes.length === 0) {
+    form.style.display = 'none';
+    return;
+  }
 
-  const prod = findProduct(opcao.produto_id) || {};
-  const imgSrc = opcao.imagem ? ('../assets/products/' + opcao.imagem.split('assets/products/').pop()) : (prod.img || '');
-  document.getElementById('selected-summary-ac').innerHTML = `
-    ${imgSrc ? `<img src="${imgSrc}" alt="${opcao.modelo}" onerror="this.style.display='none'">` : ''}
-    <div class="sps-info">
-      <div class="sps-name">${opcao.titulo || opcao.modelo}</div>
-      <div class="sps-sub">${opcao.marca} · ${opcao.kw || '?'} kW · ${opcao.classe || ''} · ${fmt(opcao.pvp_unitario || 0)} / unid.</div>
+  const listEl = document.getElementById('selected-items-ac');
+  listEl.innerHTML = selectedOpcoes.map(({index, opcao}) => {
+    const imgSrc = opcao.imagem ? `../assets/products/${opcao.imagem.split('assets/products/').pop()}` : '';
+    return `<div class="selected-item-row">
+      ${imgSrc ? `<img src="${imgSrc}" alt="${opcao.modelo}" onerror="this.style.display='none'">` : ''}
+      <div class="selected-item-info">
+        <div class="selected-item-name">${opcao.titulo}</div>
+        <div class="selected-item-pvp">${opcao.marca} · ${opcao.kw} kW · ${fmt(opcao.pvp_unitario)}/unid.</div>
+      </div>
+      <div class="selected-item-qty">
+        <label>Qtd</label>
+        <input type="number" class="ac-item-qty" data-index="${index}" value="1" min="1" oninput="calcAC()">
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="toggleOpcaoLocal(${index})" style="padding:4px 10px; font-size:.8rem; flex-shrink:0;">✕</button>
     </div>`;
+  }).join('');
 
-  ['ac-qty','ac-instalacao','ac-desconto'].forEach(id => {
-    document.getElementById(id).addEventListener('input', calcAC);
+  form.style.display = 'block';
+  ['ac-instalacao','ac-desconto'].forEach(id => {
+    const el = document.getElementById(id);
+    el.oninput = calcAC;
   });
   calcAC();
+
+  if (selectedOpcoes.length === 1) {
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function cancelarSelecaoAC() {
-  selectedOpcao = null;
+  selectedOpcoes = [];
   document.getElementById('quote-form-ac').style.display = 'none';
   document.querySelectorAll('.opcao-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.opcao-select-btn').forEach(btn => {
+    btn.textContent = 'Selecionar'; btn.classList.remove('selected-btn');
+  });
 }
 
 function calcAC() {
-  if (!selectedOpcao) return;
-  const qty = parseInt(document.getElementById('ac-qty').value) || 1;
+  if (selectedOpcoes.length === 0) return;
   const install = parseFloat(document.getElementById('ac-instalacao').value) || 0;
   const desconto = parseFloat(document.getElementById('ac-desconto').value) || 0;
-  const pvpUnit = selectedOpcao.pvp_unitario || 0;
-  const subtotal = pvpUnit * qty;
+
+  let subtotal = 0;
+  let html = '';
+  selectedOpcoes.forEach(({index, opcao}) => {
+    const qtyEl = document.querySelector(`.ac-item-qty[data-index="${index}"]`);
+    const qty = parseInt(qtyEl?.value) || 1;
+    const lineTotal = (opcao.pvp_unitario || 0) * qty;
+    subtotal += lineTotal;
+    html += `<div class="total-line"><span>${qty}× ${opcao.titulo}</span><span>${fmt(lineTotal)}</span></div>`;
+  });
+
   const descVal = subtotal * desconto / 100;
   const total = subtotal - descVal + install;
-
-  let html = `<div class="total-line"><span>${qty}x ${fmt(pvpUnit)}</span><span>${fmt(subtotal)}</span></div>`;
   if (desconto > 0) html += `<div class="total-line"><span>Desconto ${desconto}%</span><span>- ${fmt(descVal)}</span></div>`;
   if (install > 0) html += `<div class="total-line"><span>Instalação</span><span>${fmt(install)}</span></div>`;
   html += `<div class="total-final"><span>TOTAL c/ IVA</span><span>${fmt(total)}</span></div>`;
@@ -999,34 +1057,37 @@ function calcAC() {
 }
 
 async function gerarOrcamentoAC() {
-  if (!selectedOpcao) return;
+  if (selectedOpcoes.length === 0) return;
   const cliente = document.getElementById('ac-cliente').value.trim();
   if (!cliente) { showToast('Indique o nome do cliente', true); return; }
 
-  const qty = parseInt(document.getElementById('ac-qty').value) || 1;
   const install = parseFloat(document.getElementById('ac-instalacao').value) || 0;
   const desconto = parseFloat(document.getElementById('ac-desconto').value) || 0;
   const notas = document.getElementById('ac-notas').value;
-  const pvpUnit = selectedOpcao.pvp_unitario || 0;
-  const subtotal = pvpUnit * qty;
+
+  let subtotal = 0;
+  const itens = selectedOpcoes.map(({index, opcao}) => {
+    const qtyEl = document.querySelector(`.ac-item-qty[data-index="${index}"]`);
+    const qty = parseInt(qtyEl?.value) || 1;
+    const pvpUnit = opcao.pvp_unitario || 0;
+    const pvpTotal = pvpUnit * qty;
+    subtotal += pvpTotal;
+    const prod = findProduct(opcao.produto_id);
+    const imagem = opcao.imagem || (prod && prod.img.replace('../','')) || '';
+    return { descricao: opcao.titulo || opcao.modelo, qty, pvp_unitario: pvpUnit, pvp_total: pvpTotal, imagem };
+  });
+
   const descVal = subtotal * desconto / 100;
   const total = subtotal - descVal + install;
-
-  const unidades = selectedOpcao.unidades && selectedOpcao.unidades.length > 0
-    ? selectedOpcao.unidades.map(u => ({ descricao: u.descricao, qty: (u.qty || 1) * qty, pvp_unitario: u.pvp, pvp_total: (u.pvp || 0) * (u.qty || 1) * qty }))
-    : [{ descricao: selectedOpcao.titulo || selectedOpcao.modelo, qty, pvp_unitario: pvpUnit, pvp_total: subtotal }];
-
-  const prod = findProduct(selectedOpcao.produto_id);
-  unidades[0].imagem = selectedOpcao.imagem || (prod && prod.img.replace('../','')) || '';
 
   const payload = {
     categoria: 'ac',
     cliente,
-    itens: unidades,
+    itens,
     instalacao: install || null,
     desconto,
     notas,
-    justificacao: selectedOpcao.justificacao || '',
+    justificacao: selectedOpcoes.map(s => s.opcao.justificacao).filter(Boolean).join('\n'),
     total_com_iva: total,
   };
 
