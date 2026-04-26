@@ -809,75 +809,145 @@ function buildDescricaoAC() {
 }
 
 /* ═══════════════════════════════════════════
-   AC — SUGERIR
+   AC — PITCHES DE VENDA (sem IA)
 ═══════════════════════════════════════════ */
-async function sugerirAC() {
-  const descricao = buildDescricaoAC();
-  if (!descricao || document.querySelectorAll('.divisao-row').length === 0) {
-    showToast('Adicione pelo menos uma divisão', true); return;
-  }
+const PITCH = {
+  'ARTIC':          'Melhor relação qualidade/preço do mercado. WiFi incluído de série, A+++ aquecimento e 5 filtros de alta eficiência — tecnologia muito acima do preço.',
+  'FREE MAX ARTIC': 'Solução multi-split económica para várias divisões com uma única unidade exterior. Menos obra, menos custo de instalação e WiFi incluído.',
+  'Climate 3200i':  'Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.',
+  'Climate 6000i':  'Classe A+++ com sensor de movimento, ionizador integrado e controlo de humidade. O equilíbrio perfeito entre preço e tecnologia Bosch.',
+  'Climate 7000i':  'Topo de gama Bosch. WiFi integrado, A+++ aquecimento, monitorização de energia e sensor de presença. O melhor da linha Bosch. Prémio iF Design 2025.',
+  'Sensira':        'Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.',
+  'Confora':        'Classe A+++ com modo I-Feel (sente a temperatura onde está o telecomando) e filtro PM2.5. Conforto superior com consumo mínimo.',
+  'Perfera':        'O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.',
+  'Stylish':        'Design premiado disponível em 8 cores. Tecnologia A+++ com estética que complementa qualquer decoração. Premiado EPA, iF Design e Red Dot.',
+  'Emura':          'O aparelho mais elegante do mercado. Design icónico premiado iF + Red Dot 2022. Para clientes que querem o melhor em tecnologia e estética.',
+};
 
-  const btn = document.getElementById('btn-sugerir');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>A consultar...';
+function getPitch(series) {
+  return PITCH[series] || 'Equipamento de climatização inverter de alta eficiência com garantia de qualidade.';
+}
+
+/* ═══════════════════════════════════════════
+   AC — SUGERIR (local, sem API)
+═══════════════════════════════════════════ */
+function sugerirAC() {
+  const rows = document.querySelectorAll('.divisao-row');
+  if (rows.length === 0) { showToast('Adicione pelo menos uma divisão', true); return; }
+
   document.getElementById('opcoes-grid').innerHTML = '';
   document.getElementById('resumo-necessidade').style.display = 'none';
   document.getElementById('quote-form-ac').style.display = 'none';
   selectedOpcao = null;
 
-  try {
-    const resp = await fetch('/api/sugerir', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ descricao, catalogText: buildCatalogText() }),
-    });
-    const data = await resp.json();
-    if (data.erro) throw new Error(data.erro);
-    renderOpcoes(data);
-  } catch (e) {
-    showToast('Erro: ' + e.message, true);
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = 'Sugerir';
-  }
+  // Calcular kW necessários
+  const solar  = document.querySelector('#chips-solar .chip.active')?.textContent || '';
+  const isol   = document.querySelector('#chips-isolamento .chip.active')?.textContent || '';
+  const uso    = document.querySelector('#chips-uso .chip.active')?.textContent || '';
+  const gama   = document.querySelector('#chips-gama .chip.active')?.textContent || '';
+
+  let totalKW = 0;
+  rows.forEach(row => {
+    const id = row.id.replace('div-row-', '');
+    const area = parseFloat(document.getElementById('div-area-'+id)?.value) || 15;
+    let fator = 100; // W/m² base
+    if (solar.includes('Muito sol'))   fator *= 1.25;
+    if (solar.includes('Pouco sol'))   fator *= 0.9;
+    if (isol.includes('Mal isolado'))  fator *= 1.2;
+    if (isol.includes('Bem isolado'))  fator *= 0.9;
+    if (uso.includes('Escritório') || uso.includes('Comércio')) fator *= 1.3;
+    totalKW += (area * fator) / 1000; // W → kW
+  });
+  totalKW = Math.round(totalKW * 10) / 10;
+
+  // Filtrar catálogo
+  const multiRoom = rows.length > 1;
+  let produtos = CATALOG_AC.filter(p => {
+    if (!multiRoom && p.tipo === 'multi_split') return false;
+    return p.kw >= totalKW * 0.65 && p.kw <= totalKW * 1.55;
+  });
+
+  // Filtro de gama
+  if (gama.includes('Económico'))
+    produtos = produtos.filter(p => ['ARTIC','Climate 3200i','Sensira','FREE MAX ARTIC'].includes(p.series));
+  else if (gama.includes('Premium'))
+    produtos = produtos.filter(p => ['Climate 7000i','Perfera','Emura'].includes(p.series));
+  else if (gama.includes('Design'))
+    produtos = produtos.filter(p => ['Stylish','Emura'].includes(p.series));
+
+  // Se não sobrar nada com filtro de gama, mostra tudo
+  if (produtos.length === 0)
+    produtos = CATALOG_AC.filter(p => p.kw >= totalKW * 0.65 && p.kw <= totalKW * 1.55);
+
+  // Ordenar: multi-split primeiro se multi-room, depois por pvp
+  produtos.sort((a, b) => {
+    if (multiRoom) {
+      if (a.tipo === 'multi_split' && b.tipo !== 'multi_split') return -1;
+      if (b.tipo === 'multi_split' && a.tipo !== 'multi_split') return 1;
+    }
+    return a.pvp - b.pvp;
+  });
+
+  // Resumo
+  const resumoEl = document.getElementById('resumo-necessidade');
+  resumoEl.textContent = `💡 ${rows.length} divisão(ões) · ${totalKW.toFixed(1)} kW recomendado · ${produtos.length} opções encontradas`;
+  resumoEl.style.display = 'block';
+
+  renderOpcoes(produtos);
 }
 
-function renderOpcoes(data) {
-  const resumoEl = document.getElementById('resumo-necessidade');
-  if (data.resumo) {
-    resumoEl.textContent = '💡 ' + data.resumo + (data.kw_recomendado ? ` — ${data.kw_recomendado} kW recomendado` : '');
-    resumoEl.style.display = 'block';
-  }
-
+function renderOpcoes(produtos) {
   const grid = document.getElementById('opcoes-grid');
-  if (!data.opcoes || data.opcoes.length === 0) {
-    grid.innerHTML = '<p style="color:var(--muted)">Nenhuma opção encontrada.</p>';
+  if (!produtos.length) {
+    grid.innerHTML = '<p style="color:var(--muted);padding:16px">Nenhum produto encontrado para estas especificações.</p>';
     return;
   }
 
-  grid.innerHTML = data.opcoes.map((op, i) => {
-    const prod = findProduct(op.produto_id) || {};
-    const imgSrc = op.imagem ? ('../assets/products/' + op.imagem.split('assets/products/').pop()) : (prod.img || '');
-    const brandCls = brandBadgeClass(op.marca);
-    const pvp = op.pvp_unitario || 0;
+  grid.innerHTML = produtos.map((p, i) => {
+    const brandCls = brandBadgeClass(p.brand);
+    const isMulti = p.tipo === 'multi_split';
     return `
-    <div class="opcao-card" id="opcao-card-${i}" onclick="selecionarOpcao(${i}, ${JSON.stringify(op).replace(/"/g,'&quot;')})">
-      ${imgSrc ? `<img class="opcao-img" src="${imgSrc}" alt="${op.modelo}" onerror="this.style.display='none'">` : ''}
+    <div class="opcao-card" id="opcao-card-${i}" onclick="selecionarOpcaoLocal(${i})">
+      <img class="opcao-img" src="${p.img}" alt="${p.model}" onerror="this.style.display='none'">
       <div class="opcao-badge">
-        <span class="badge ${brandCls}">${op.marca || ''}</span>
-        ${op.tipo === 'multi_split' || (op.titulo || '').toLowerCase().includes('multi') ? '<span class="badge badge-multi">Multi-split</span>' : ''}
-        <span class="badge badge-classe">${op.classe || ''}</span>
+        <span class="badge ${brandCls}">${p.brand}</span>
+        ${isMulti ? '<span class="badge badge-multi">Multi-split</span>' : ''}
+        <span class="badge badge-classe">${p.classe}</span>
       </div>
-      <div class="opcao-title">${op.titulo || op.modelo}</div>
+      <div class="opcao-title">${p.series} ${p.model}</div>
       <div class="opcao-specs">
-        <span>${op.kw || '?'} kW</span>
-        ${op.btu ? `<span>${op.btu.toLocaleString('pt-PT')} BTU</span>` : ''}
+        <span>${p.kw} kW</span>
+        ${p.btu ? `<span>${p.btu.toLocaleString('pt-PT')} BTU</span>` : ''}
       </div>
-      <div class="opcao-pvp">${fmt(pvp)}</div>
-      ${op.justificacao ? `<div class="opcao-justificacao">${op.justificacao}</div>` : ''}
+      <div class="opcao-pvp">${fmt(p.pvp)}</div>
+      <div class="opcao-justificacao">${getPitch(p.series)}</div>
       <button class="btn btn-primary btn-sm opcao-select-btn">Selecionar</button>
     </div>`;
   }).join('');
+
+  // guardar lista para lookup no select
+  grid._produtos = produtos;
+}
+
+function selecionarOpcaoLocal(i) {
+  const grid = document.getElementById('opcoes-grid');
+  const p = grid._produtos[i];
+  // converter para formato compatível com selecionarOpcao
+  const opcao = {
+    titulo: `${p.series} ${p.model}`,
+    marca: p.brand,
+    produto_id: p.id,
+    modelo: p.model,
+    tipo: p.tipo || 'mono_split',
+    kw: p.kw,
+    btu: p.btu,
+    classe: p.classe,
+    pvp_unitario: p.pvp,
+    imagem: p.img.replace('../',''),
+    justificacao: getPitch(p.series),
+    unidades: [{ descricao: `${p.series} ${p.model}`, qty: 1, pvp: p.pvp }],
+  };
+  selecionarOpcao(i, opcao);
 }
 
 function selecionarOpcao(i, opcao) {
