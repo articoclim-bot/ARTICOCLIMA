@@ -694,7 +694,17 @@ const CATALOG_AC = [
   {id:'bosch-ms-6000i-3x1-9-9-12', brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (9K+9K+12K)',  kw:6.2,pvp:2663,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:3},
   {id:'bosch-ms-6000i-3x1-12-12-12',brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (12K+12K+12K)',kw:7.9,pvp:3032,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:3},
   {id:'bosch-ms-6000i-4x1-9x4',    brand:'Bosch',series:'Multi 6000i',model:'Kit 4×1 6000i (9K×4)',        kw:8.2,pvp:3370,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:4},
-  // Nota: Sensira (FTXF) não tem versão multi-split — apenas mono-split. Removido.
+  // Daikin — kits multi-split com interiores Sensira CTXF (A++, c/IVA)
+  // Exteriores: 2MXF40A=1145€, 2MXF50A=1235€, 3MXF52A9=1420€, 3MXF68A9=1795€ s/IVA
+  // Interiores: CTXF20F=245€, CTXF25F=270€, CTXF35F=315€ s/IVA (máx. 12K por interior)
+  {id:'daikin-multi-s-2x1-7-7',   brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF20+20 (7K+7K)',    kw:4.0,btu:14000,pvp:2011, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-2x1-9-9',   brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF25+25 (9K+9K)',    kw:5.0,btu:18000,pvp:2183, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-2x1-9-12',  brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF25+35 (9K+12K)',   kw:5.0,btu:21000,pvp:2239, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-2x1-12-12', brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF35+35 (12K+12K)',  kw:5.0,btu:24000,pvp:2294, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-3x1-7-7-7', brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF20×3 (7K+7K+7K)', kw:5.2,btu:21000,pvp:2651, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-s-3x1-9-9-9', brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF25×3 (9K+9K+9K)', kw:5.2,btu:27000,pvp:2743, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-s-3x1-9-9-12',brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF25+25+35 (9K+9K+12K)',kw:6.8,btu:30000,pvp:2798,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-s-3x1-12-12-12',brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF35×3 (12K+12K+12K)',kw:6.8,btu:36000,pvp:3370,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
   // Daikin — kits multi-split com interiores Perfera FTXM (c/IVA)
   {id:'daikin-multi-p-2x1-7-7',  brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM20+20 (7K+7K)',    kw:4.0,pvp:2774,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:2},
   {id:'daikin-multi-p-2x1-9-9',  brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM25+25 (9K+9K)',    kw:5.0,pvp:3014,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:2},
@@ -913,6 +923,7 @@ const PITCH = {
   'Multi 3200i':    'Kit multi-split Bosch com interiores Climate 3200i — auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin. Uma unidade exterior para várias divisões, instalação mais limpa e económica.',
   'Multi 6000i':    'Kit multi-split Bosch A+++ com interiores Climate 6000i — sensor de movimento, ionizador integrado e controlo de humidade. O equilíbrio perfeito entre tecnologia e preço em multi-split.',
   'Multi Perfera':  'Kit multi-split Daikin premium com interiores Perfera FTXM — classe A+++, WiFi integrado, purificador de ar e I-Feel (sente a temperatura onde está o telecomando). O melhor conforto em multi-split.',
+  'Multi Sensira':  'Kit multi-split Daikin com interiores Sensira CTXF — a entrada mais económica da gama multi-split Daikin. WiFi de série, marca líder mundial, máxima fiabilidade em todas as divisões.',
   'Multi Confora':  'Kit multi-split Daikin A+++ com interiores Confora FTXP — modo I-Feel e filtro PM2.5. Conforto superior em todas as divisões com consumo mínimo.',
   'Multi Stylish':  'Kit multi-split Daikin com design premiado em 8 cores. Tecnologia A+++ com estética que complementa qualquer decoração em todas as divisões simultaneamente.',
   'Multi Emura':    'Kit multi-split Daikin com o design mais elegante do mercado. Para quem não abdica do melhor em tecnologia e estética em cada divisão. Premiado iF + Red Dot.',
@@ -940,6 +951,7 @@ const FEATURES = {
   'Climate 7000i':  ['✓ Topo de gama Bosch — A+++ aquecimento e arrefecimento', '✓ WiFi integrado e monitorização de consumo de energia', '✓ Sensor de presença com ajuste automático de direção', '✓ Operação até -20°C exterior (modo aquecimento)', '✓ Prémio iF Design Award 2025'],
   'Sensira':        ['✓ WiFi incluído de série — controlo por app Daikin Mobile Controller', '✓ Classe A++ — eficiência energética elevada', '✓ Marca líder mundial em climatização (90+ anos)', '✓ Tecnologia inverter de velocidade variável — silenciosa', '✓ Filtro de limpeza fácil incluído'],
   'Confora':        ['✓ Classe A+++ — poupança máxima em energia', '✓ Modo I-Feel — sensor no telecomando mede temperatura real do utilizador', '✓ Filtro PM2.5 — captura partículas ultrafinas', '✓ WiFi integrado — controlo total por app', '✓ Tecnologia inverter silenciosa Daikin'],
+  'Multi Sensira':  ['✓ Kit multi-split Daikin — entrada mais económica da gama multi-split', '✓ Interiores Sensira CTXF com WiFi integrado de série', '✓ Classe A++ — boa eficiência energética', '✓ Marca líder mundial em climatização (90+ anos)', '✓ Controlo independente por divisão via app'],
   'Multi Confora':  ['✓ Kit multi-split A+++ com interiores Confora FTXP', '✓ Modo I-Feel — sensor de temperatura no telecomando', '✓ Filtro PM2.5 incluído em cada unidade interior', '✓ WiFi integrado — controlo por app divisão a divisão', '✓ Uma unidade exterior, todas as divisões a A+++'],
   'Perfera':        ['✓ Topo da gama residencial Daikin — A+++', '✓ Purificador de ar integrado — flash streamer', '✓ I-Feel — mede temperatura real na posição do utilizador', '✓ WiFi integrado de série', '✓ Operação até -15°C exterior no modo aquecimento'],
   'Multi Perfera':  ['✓ Kit multi-split premium Daikin A+++ com interiores FTXM', '✓ Purificador de ar (flash streamer) em cada unidade', '✓ I-Feel — sensor temperatura no telecomando', '✓ WiFi integrado de série', '✓ Uma unidade exterior, várias divisões com qualidade premium'],
@@ -1059,7 +1071,7 @@ function sugerirAC() {
   const multiRoom = rows.length > 1;
 
   // Mono-splits: filtrar pelo kW da maior divisão (1 unidade por divisão)
-  const GAMA_ECONOMICA  = ['ARTIC','Climate 3200i','Sensira','FREE MAX ARTIC','Multi 3200i'];
+  const GAMA_ECONOMICA  = ['ARTIC','Climate 3200i','Sensira','FREE MAX ARTIC','Multi 3200i','Multi Sensira'];
   const GAMA_PREMIUM    = ['Climate 7000i','Confora','Perfera','Emura','Multi 6000i','Multi Confora','Multi Perfera','Multi Emura'];
   const GAMA_DESIGN     = ['Stylish','Emura','Multi Stylish','Multi Emura'];
 
@@ -1461,7 +1473,10 @@ async function salvarEImprimir(payload) {
     if (!data.sucesso) throw new Error(data.erro || 'Erro desconhecido');
     showToast('Orçamento ' + data.orcamento.numero_formatado + ' guardado!');
     preencherPrintArea(data.orcamento);
-    setTimeout(() => window.print(), 300);
+    const tituloOriginal = document.title;
+    const nomeCliente = (data.orcamento.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
+    document.title = data.orcamento.numero_formatado + ' — ' + nomeCliente;
+    setTimeout(() => { window.print(); document.title = tituloOriginal; }, 300);
   } catch (e) {
     showToast('Erro ao guardar: ' + e.message, true);
   }
@@ -1490,6 +1505,8 @@ function preencherPrintArea(orc) {
       <p><strong>IBAN: PT50 004571404039499605632</strong></p>
       <p>Garantia conforme a legislação em vigor (3 anos para particulares / 6 meses para empresas).</p>
       <p>O orçamento só é considerado válido após adjudicação de <strong>80% do seu valor</strong>, sendo o restante pago no dia da instalação.</p>
+      <p><strong>Acesso:</strong> O cliente deve garantir acesso ao local da instalação e disponibilidade de energia elétrica no local durante a execução do serviço.</p>
+      <p style="font-size:7.5pt;color:#888;margin-top:5pt;">Os dados pessoais recolhidos neste documento serão tratados exclusivamente para fins de faturação e gestão de garantia, em conformidade com o RGPD (Regulamento Geral sobre a Proteção de Dados).</p>
     </div>
     <div class="pf">
       <span>ARTICOCLIMA — Climatização e Energias Renováveis</span>
@@ -1583,12 +1600,41 @@ function preencherPrintArea(orc) {
     }
   }
 
-  document.getElementById('print-area').innerHTML = header + body + footer;
+  // Ponto 2: campo de aceitação + assinatura
+  let aceitacao = '';
+  if (orc.opcoes && orc.opcoes.length > 0) {
+    const linhas = orc.opcoes.map(op =>
+      `<div style="display:flex;align-items:center;gap:10pt;margin-bottom:5pt;">
+        <div style="width:14pt;height:14pt;border:1.5pt solid #333;flex-shrink:0;"></div>
+        <span style="font-size:9pt;"><strong>Opção ${op.letra}</strong> — ${op.titulo} — <strong>${fmt(op.total_com_iva)}</strong></span>
+      </div>`
+    ).join('');
+    aceitacao = `
+      <div style="border:1pt solid #ddd;padding:10pt 12pt;margin-bottom:12pt;page-break-inside:avoid;">
+        <div style="font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.5pt;color:#999;margin-bottom:8pt;">Aceitação do Orçamento</div>
+        ${linhas}
+        <div style="display:flex;gap:20pt;margin-top:14pt;">
+          <div style="flex:1;">
+            <div style="font-size:8pt;color:#666;margin-bottom:4pt;">Data</div>
+            <div style="border-bottom:1pt solid #333;height:18pt;"></div>
+          </div>
+          <div style="flex:3;">
+            <div style="font-size:8pt;color:#666;margin-bottom:4pt;">Assinatura do Cliente</div>
+            <div style="border-bottom:1pt solid #333;height:18pt;"></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  document.getElementById('print-area').innerHTML = header + body + aceitacao + footer;
 }
 
 function reimprimir(orcJson) {
   preencherPrintArea(orcJson);
-  setTimeout(() => window.print(), 150);
+  const tituloOriginal = document.title;
+  const nomeCliente = (orcJson.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
+  document.title = orcJson.numero_formatado + ' — ' + nomeCliente;
+  setTimeout(() => { window.print(); document.title = tituloOriginal; }, 150);
 }
 
 /* ═══════════════════════════════════════════
