@@ -131,11 +131,9 @@
     .opcao-card.selected { border-color: var(--orange); background: var(--orange-light); box-shadow: 0 0 0 3px rgba(249,115,22,.15); }
     .opcao-badge { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .badge { font-size: .68rem; font-weight: 700; padding: 2px 8px; }
-    .badge-daikin { background: #dbeafe; color: #1d4ed8; }
-    .badge-bosch { background: #fee2e2; color: #b91c1c; }
-    .badge-daitsu { background: #dcfce7; color: #15803d; }
     .badge-multi { background: #f3e8ff; color: #7c3aed; }
     .badge-classe { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .brand-logo { height: 20px; object-fit: contain; mix-blend-mode: multiply; max-width: 90px; }
     .opcao-title { font-size: .9rem; font-weight: 700; color: var(--text); }
     .opcao-specs { font-size: .78rem; color: var(--muted); display: flex; gap: 12px; }
     .opcao-pvp { font-size: 1.15rem; font-weight: 800; color: var(--orange); }
@@ -717,12 +715,11 @@ function fmt(val) {
   return Number(val).toLocaleString('pt-PT', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' €';
 }
 
-function brandBadgeClass(brand) {
+function brandLogoImg(brand) {
   const b = (brand || '').toLowerCase();
-  if (b === 'daikin') return 'badge-daikin';
-  if (b === 'bosch') return 'badge-bosch';
-  if (b === 'daitsu') return 'badge-daitsu';
-  return '';
+  const map = { daikin: '../assets/logo-daikin.jpg', bosch: '../assets/logo-bosch.jpg', daitsu: '../assets/logo-daitsu.jpg' };
+  const src = map[b];
+  return src ? `<img class="brand-logo" src="${src}" alt="${brand}">` : `<span style="font-weight:700;font-size:.8rem">${brand}</span>`;
 }
 
 function showToast(msg, isError) {
@@ -948,13 +945,12 @@ function sugerirAC() {
 }
 
 function renderCard(p, i) {
-  const brandCls = brandBadgeClass(p.brand);
   const isMulti = p.tipo === 'multi_split';
   return `
   <div class="opcao-card" id="opcao-card-${i}" onclick="toggleOpcaoLocal(${i})">
     <img class="opcao-img" src="${p.img}" alt="${p.model}" onerror="this.style.display='none'">
     <div class="opcao-badge">
-      <span class="badge ${brandCls}">${p.brand}</span>
+      ${brandLogoImg(p.brand)}
       ${isMulti ? '<span class="badge badge-multi">Multi-split</span>' : ''}
       <span class="badge badge-classe">${p.classe}</span>
     </div>
