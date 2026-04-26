@@ -359,13 +359,34 @@
         <input type="text" id="ac-notas-extra" placeholder="Ex: não podem fazer barulho, querem comando central…">
       </div>
 
-      <div style="margin-top:16px; display:flex; align-items:center; gap:12px;">
+      <div style="margin-top:16px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
         <button class="btn btn-primary" id="btn-sugerir" onclick="sugerirAC()" style="min-width:130px;">Sugerir opções</button>
+        <button class="btn btn-ghost" onclick="mostrarCatalogo()">📋 Ver catálogo completo</button>
         <span id="ac-resumo-chips" style="font-size:.8rem; color:var(--muted);"></span>
       </div>
     </div>
 
     <div id="resumo-necessidade"></div>
+
+    <!-- Filtros catálogo manual -->
+    <div id="catalogo-filtros" style="display:none; background:#fff; border:1px solid var(--border); padding:14px 16px; margin-bottom:14px; box-shadow:var(--shadow);">
+      <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <span style="font-size:.75rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.4px;">Marca</span>
+          <button class="chip active" id="cf-marca-todos" onclick="setCatFiltro('marca','todos')">Todos</button>
+          <button class="chip" id="cf-marca-daikin" onclick="setCatFiltro('marca','Daikin')">Daikin</button>
+          <button class="chip" id="cf-marca-bosch" onclick="setCatFiltro('marca','Bosch')">Bosch</button>
+          <button class="chip" id="cf-marca-daitsu" onclick="setCatFiltro('marca','Daitsu')">Daitsu</button>
+        </div>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <span style="font-size:.75rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.4px;">Tipo</span>
+          <button class="chip active" id="cf-tipo-todos" onclick="setCatFiltro('tipo','todos')">Todos</button>
+          <button class="chip" id="cf-tipo-mono" onclick="setCatFiltro('tipo','mono')">Mono-split</button>
+          <button class="chip" id="cf-tipo-multi" onclick="setCatFiltro('tipo','multi')">Multi-split</button>
+        </div>
+        <input type="text" id="cf-search" placeholder="Pesquisar modelo…" oninput="renderCatalogo()" style="width:180px; margin:0; padding:7px 10px; font-size:.85rem;">
+      </div>
+    </div>
 
     <div class="opcoes-grid" id="opcoes-grid"></div>
 
@@ -877,6 +898,72 @@ function getPitch(series) {
 }
 
 /* ═══════════════════════════════════════════
+   AC — CATÁLOGO MANUAL
+═══════════════════════════════════════════ */
+let catFiltro = { marca: 'todos', tipo: 'todos' };
+
+function mostrarCatalogo() {
+  document.getElementById('catalogo-filtros').style.display = 'block';
+  document.getElementById('resumo-necessidade').style.display = 'none';
+  catFiltro = { marca: 'todos', tipo: 'todos' };
+  document.getElementById('cf-search').value = '';
+  // reset chips
+  ['marca-todos','marca-daikin','marca-bosch','marca-daitsu','tipo-todos','tipo-mono','tipo-multi'].forEach(k => {
+    const el = document.getElementById('cf-' + k);
+    if (el) el.classList.toggle('active', k === 'marca-todos' || k === 'tipo-todos');
+  });
+  renderCatalogo();
+}
+
+function setCatFiltro(dim, val) {
+  catFiltro[dim] = val;
+  const prefix = 'cf-' + dim + '-';
+  document.querySelectorAll('[id^="' + prefix + '"]').forEach(el => el.classList.remove('active'));
+  document.getElementById(prefix + val.toLowerCase()).classList.add('active');
+  renderCatalogo();
+}
+
+function renderCatalogo() {
+  const search = (document.getElementById('cf-search')?.value || '').toLowerCase();
+  let lista = CATALOG_AC.filter(p => {
+    if (catFiltro.marca !== 'todos' && p.brand !== catFiltro.marca) return false;
+    if (catFiltro.tipo === 'mono'  && p.tipo === 'multi_split') return false;
+    if (catFiltro.tipo === 'multi' && p.tipo !== 'multi_split') return false;
+    if (search && !(p.series + ' ' + p.model + ' ' + p.brand).toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  const mono  = lista.filter(p => p.tipo !== 'multi_split');
+  const multi = lista.filter(p => p.tipo === 'multi_split');
+  const hasBoth = mono.length > 0 && multi.length > 0;
+
+  const allWithIdx = lista.map(p => ({ p, i: CATALOG_AC.indexOf(p) }));
+  const monoIdx  = allWithIdx.filter(({p}) => p.tipo !== 'multi_split');
+  const multiIdx = allWithIdx.filter(({p}) => p.tipo === 'multi_split');
+
+  let html = '';
+  if (monoIdx.length > 0) {
+    if (hasBoth) html += '<div class="tipo-divider">🌬 Mono-split — unidade por divisão</div>';
+    html += monoIdx.map(({p,i}) => renderCard(p, i)).join('');
+  }
+  if (multiIdx.length > 0) {
+    html += '<div class="tipo-divider">🔀 Multi-split — uma unidade exterior, várias interiores</div>';
+    html += multiIdx.map(({p,i}) => renderCard(p, i)).join('');
+  }
+  if (!html) html = '<p style="color:var(--muted);padding:16px;grid-column:1/-1">Nenhum produto encontrado.</p>';
+
+  const grid = document.getElementById('opcoes-grid');
+  grid.innerHTML = html;
+  grid._produtos = CATALOG_AC; // index = position in CATALOG_AC
+  // restore selected state visually
+  selectedOpcoes.forEach(({index}) => {
+    document.getElementById('opcao-card-' + index)?.classList.add('selected');
+    const btn = document.getElementById('btn-select-' + index);
+    if (btn) { btn.textContent = '✓ Selecionado'; btn.classList.add('selected-btn'); }
+  });
+}
+
+/* ═══════════════════════════════════════════
    AC — SUGERIR (local, sem API)
 ═══════════════════════════════════════════ */
 function sugerirAC() {
@@ -886,6 +973,7 @@ function sugerirAC() {
   document.getElementById('opcoes-grid').innerHTML = '';
   document.getElementById('resumo-necessidade').style.display = 'none';
   document.getElementById('quote-form-ac').style.display = 'none';
+  document.getElementById('catalogo-filtros').style.display = 'none';
   selectedOpcoes = [];
 
   // Calcular kW necessários
