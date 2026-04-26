@@ -100,13 +100,24 @@
     h2 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--text); }
     h3 { font-size: .9rem; font-weight: 600; }
 
-    /* ── AC Suggestions ── */
+    /* ── AC Selector ── */
     .sugerir-area { margin-bottom: 20px; }
-    .sugerir-row { display: flex; gap: 10px; align-items: flex-end; }
-    .sugerir-row textarea { flex: 1; min-height: 72px; }
+    .ac-section { margin-bottom: 18px; }
+    .ac-section-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin-bottom: 8px; }
+
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { padding: 7px 14px; background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); font-size: .85rem; cursor: pointer; transition: all .12s; font-family: var(--font); }
+    .chip:hover { border-color: var(--orange); background: var(--orange-light); }
+    .chip.active { background: var(--orange); border-color: var(--orange); color: #fff; font-weight: 600; }
+
+    .divisao-row { display: grid; grid-template-columns: 1fr 1fr 90px 32px; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .divisao-row select, .divisao-row input { margin: 0; }
+    .divisao-row .btn-remove { padding: 0; width: 32px; height: 36px; background: none; border: 1.5px solid var(--border); color: var(--muted); font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .12s; }
+    .divisao-row .btn-remove:hover { border-color: var(--red); color: var(--red); background: #fee2e2; }
+
     .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #fbd0b5; border-top-color: var(--orange); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 8px; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    #resumo-necessidade { font-size: .85rem; color: #7c3f0a; margin-bottom: 16px; padding: 10px 14px; background: var(--orange-light); border: 1px solid #fbd0b5; border-radius: var(--radius); display: none; }
+    #resumo-necessidade { font-size: .85rem; color: #7c3f0a; margin-bottom: 16px; padding: 10px 14px; background: var(--orange-light); border: 1px solid #fbd0b5; display: none; }
 
     /* ── Option cards ── */
     .opcoes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; }
@@ -262,10 +273,66 @@
   <!-- ── Categoria AC ── -->
   <div class="cat-panel active" id="cat-ac">
     <div class="card sugerir-area">
-      <h2>Descreva a necessidade do cliente</h2>
-      <div class="sugerir-row">
-        <textarea id="ac-descricao" placeholder="Ex: quarto de 20m², 1º andar sul, bem isolado. Também sala de 35m² com muita exposição solar. Querem marca económica." rows="3"></textarea>
-        <button class="btn btn-primary" id="btn-sugerir" onclick="sugerirAC()">Sugerir</button>
+      <h2>O que precisa o cliente?</h2>
+
+      <!-- Divisões -->
+      <div class="ac-section">
+        <div class="ac-section-label">Divisões a climatizar</div>
+        <div id="divisoes-list"></div>
+        <button class="btn btn-ghost btn-sm" onclick="adicionarDivisao()" style="margin-top:8px;">+ Adicionar divisão</button>
+      </div>
+
+      <!-- Exposição solar -->
+      <div class="ac-section">
+        <div class="ac-section-label">Exposição solar</div>
+        <div class="chip-group" id="chips-solar">
+          <button class="chip" onclick="toggleChip(this,'solar')">☀️ Muito sol (Sul/Oeste)</button>
+          <button class="chip" onclick="toggleChip(this,'solar')">🌤 Sol moderado</button>
+          <button class="chip" onclick="toggleChip(this,'solar')">🌥 Pouco sol (Norte)</button>
+        </div>
+      </div>
+
+      <!-- Isolamento -->
+      <div class="ac-section">
+        <div class="ac-section-label">Isolamento do espaço</div>
+        <div class="chip-group" id="chips-isolamento">
+          <button class="chip" onclick="toggleChip(this,'isolamento')">🧱 Bem isolado</button>
+          <button class="chip" onclick="toggleChip(this,'isolamento')">🏠 Isolamento normal</button>
+          <button class="chip" onclick="toggleChip(this,'isolamento')">💨 Mal isolado</button>
+        </div>
+      </div>
+
+      <!-- Tipo de uso -->
+      <div class="ac-section">
+        <div class="ac-section-label">Tipo de utilização</div>
+        <div class="chip-group" id="chips-uso">
+          <button class="chip" onclick="toggleChip(this,'uso')">🏡 Habitação</button>
+          <button class="chip" onclick="toggleChip(this,'uso')">🏢 Escritório</button>
+          <button class="chip" onclick="toggleChip(this,'uso')">🏪 Comércio / loja</button>
+          <button class="chip" onclick="toggleChip(this,'uso')">🏨 Alojamento</button>
+        </div>
+      </div>
+
+      <!-- Preferência -->
+      <div class="ac-section">
+        <div class="ac-section-label">Preferência de gama</div>
+        <div class="chip-group" id="chips-gama">
+          <button class="chip" onclick="toggleChip(this,'gama')">💶 Económico</button>
+          <button class="chip" onclick="toggleChip(this,'gama')">⚖️ Qualidade/Preço</button>
+          <button class="chip" onclick="toggleChip(this,'gama')">⭐ Premium</button>
+          <button class="chip" onclick="toggleChip(this,'gama')">🎨 Design (Daikin Stylish/Emura)</button>
+        </div>
+      </div>
+
+      <!-- Notas opcionais -->
+      <div class="ac-section" style="margin-bottom:0">
+        <div class="ac-section-label">Notas adicionais (opcional)</div>
+        <input type="text" id="ac-notas-extra" placeholder="Ex: não podem fazer barulho, querem comando central…">
+      </div>
+
+      <div style="margin-top:16px; display:flex; align-items:center; gap:12px;">
+        <button class="btn btn-primary" id="btn-sugerir" onclick="sugerirAC()" style="min-width:130px;">Sugerir opções</button>
+        <span id="ac-resumo-chips" style="font-size:.8rem; color:var(--muted);"></span>
       </div>
     </div>
 
@@ -664,11 +731,91 @@ function findProduct(id) {
 }
 
 /* ═══════════════════════════════════════════
+   AC — DIVISÕES
+═══════════════════════════════════════════ */
+let numDivisoes = 0;
+
+const TIPOS_DIVISAO = ['Quarto','Sala','Sala de jantar','Escritório','Cozinha','Loja / Espaço comercial','Hall / Corredor','Outro'];
+
+function adicionarDivisao() {
+  numDivisoes++;
+  const id = numDivisoes;
+  const div = document.createElement('div');
+  div.className = 'divisao-row';
+  div.id = 'div-row-' + id;
+  div.innerHTML = `
+    <select id="div-tipo-${id}">
+      ${TIPOS_DIVISAO.map(t => `<option>${t}</option>`).join('')}
+    </select>
+    <div style="position:relative">
+      <input type="number" id="div-area-${id}" placeholder="Área (m²)" min="1" max="500">
+    </div>
+    <select id="div-andar-${id}">
+      <option value="">Andar?</option>
+      <option>R/C</option><option>1º</option><option>2º</option><option>3º+</option><option>Último</option><option>Sótão</option>
+    </select>
+    <button class="btn-remove" onclick="removerDivisao(${id})" title="Remover">×</button>`;
+  document.getElementById('divisoes-list').appendChild(div);
+}
+
+function removerDivisao(id) {
+  const el = document.getElementById('div-row-' + id);
+  if (el) el.remove();
+}
+
+function toggleChip(btn, grupo) {
+  // grupo com uma só seleção
+  btn.closest('.chip-group').querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.toggle('active');
+}
+
+function buildDescricaoAC() {
+  const partes = [];
+
+  // divisões
+  const rows = document.querySelectorAll('.divisao-row');
+  if (rows.length > 0) {
+    const divs = [];
+    rows.forEach(row => {
+      const id = row.id.replace('div-row-','');
+      const tipo = document.getElementById('div-tipo-'+id)?.value || '';
+      const area = document.getElementById('div-area-'+id)?.value || '';
+      const andar = document.getElementById('div-andar-'+id)?.value || '';
+      let d = tipo;
+      if (area) d += ` de ${area}m²`;
+      if (andar) d += ` (${andar} andar)`;
+      divs.push(d);
+    });
+    partes.push(divs.length === 1 ? `1 divisão: ${divs[0]}` : `${divs.length} divisões: ${divs.join(', ')}`);
+  }
+
+  // chips
+  const solar = document.querySelector('#chips-solar .chip.active');
+  if (solar) partes.push('exposição solar: ' + solar.textContent.replace(/^.{2}/,'').trim());
+
+  const isol = document.querySelector('#chips-isolamento .chip.active');
+  if (isol) partes.push(isol.textContent.replace(/^.{2}/,'').trim());
+
+  const uso = document.querySelector('#chips-uso .chip.active');
+  if (uso) partes.push('uso: ' + uso.textContent.replace(/^.{2}/,'').trim());
+
+  const gama = document.querySelector('#chips-gama .chip.active');
+  if (gama) partes.push('preferência: ' + gama.textContent.replace(/^.{2}/,'').trim());
+
+  const extra = document.getElementById('ac-notas-extra')?.value.trim();
+  if (extra) partes.push(extra);
+
+  return partes.join('. ');
+}
+
+/* ═══════════════════════════════════════════
    AC — SUGERIR
 ═══════════════════════════════════════════ */
 async function sugerirAC() {
-  const descricao = document.getElementById('ac-descricao').value.trim();
-  if (!descricao) { showToast('Escreva a descrição da necessidade', true); return; }
+  const descricao = buildDescricaoAC();
+  if (!descricao || document.querySelectorAll('.divisao-row').length === 0) {
+    showToast('Adicione pelo menos uma divisão', true); return;
+  }
 
   const btn = document.getElementById('btn-sugerir');
   btn.disabled = true;
@@ -1059,6 +1206,7 @@ async function loadHistorico() {
 ═══════════════════════════════════════════ */
 initSolarGrid();
 calcServicos();
+adicionarDivisao(); // começa com 1 divisão por defeito
 </script>
 </body>
 </html>
