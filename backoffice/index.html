@@ -764,9 +764,9 @@ function removerDivisao(id) {
 }
 
 function toggleChip(btn, grupo) {
-  // grupo com uma só seleção
+  const wasActive = btn.classList.contains('active');
   btn.closest('.chip-group').querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-  btn.classList.toggle('active');
+  if (!wasActive) btn.classList.add('active');
 }
 
 function buildDescricaoAC() {
