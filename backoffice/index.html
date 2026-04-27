@@ -222,6 +222,44 @@
     .toast.show { transform: translateY(0); opacity: 1; }
     .toast.error { background: var(--red); }
 
+    /* ── Group builder ── */
+    .groups-header { display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+    .groups-header-label { font-size:.74rem; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:var(--muted); margin-right:4px; flex-shrink:0; }
+    .grupo-tab { display:flex; align-items:center; gap:6px; padding:7px 14px; border:1.5px solid var(--border); background:#fff; color:var(--muted); font-size:.85rem; font-weight:600; cursor:pointer; transition:all .15s; }
+    .grupo-tab.active { background:var(--orange); border-color:var(--orange); color:#fff; }
+    .grupo-tab:hover:not(.active) { border-color:var(--orange); color:var(--orange); background:var(--orange-light); }
+    .grupo-tab-remove { background:none; border:none; cursor:pointer; font-size:1rem; padding:0 0 0 4px; line-height:1; color:inherit; opacity:.65; transition:opacity .12s; }
+    .grupo-tab-remove:hover { opacity:1; }
+    .btn-new-group { padding:7px 14px; border:1.5px dashed var(--border); background:none; color:var(--muted); font-size:.85rem; cursor:pointer; transition:all .15s; font-family:var(--font); }
+    .btn-new-group:hover { border-color:var(--orange); color:var(--orange); }
+    .active-group-hint { font-size:.8rem; color:var(--muted); margin-bottom:14px; padding:8px 12px; background:var(--orange-light); border:1px solid #fbd0b5; }
+    .active-group-hint strong { color:var(--orange); }
+
+    .grupo-card { background:#fff; border:1.5px solid var(--border); margin-bottom:10px; transition:border-color .15s; }
+    .grupo-card.is-active { border-color:var(--orange); }
+    .grupo-card-header { display:flex; align-items:center; gap:10px; padding:9px 14px; background:var(--surface2); border-bottom:1px solid var(--border); cursor:pointer; }
+    .grupo-card.is-active .grupo-card-header { background:var(--orange-light); border-bottom-color:#fbd0b5; }
+    .grupo-card-letra { width:26px; height:26px; background:var(--border); color:var(--text); font-weight:900; font-size:.9rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .grupo-card.is-active .grupo-card-letra { background:var(--orange); color:#fff; }
+    .grupo-card-title { flex:1; font-size:.88rem; font-weight:600; color:var(--text); }
+    .grupo-card-subtotal { font-size:.95rem; font-weight:800; color:var(--orange); }
+    .grupo-card-del { background:none; border:1px solid var(--border); color:var(--muted); cursor:pointer; padding:3px 8px; font-size:.75rem; flex-shrink:0; transition:all .12s; }
+    .grupo-card-del:hover { border-color:var(--red); color:var(--red); background:#fee2e2; }
+    .grupo-card-body { padding:10px 14px; }
+    .grupo-item-row { display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid var(--border); }
+    .grupo-item-row:last-child { border-bottom:none; }
+    .grupo-item-img { width:44px; height:44px; object-fit:contain; background:#f8f9fb; padding:2px; flex-shrink:0; border:1px solid var(--border); }
+    .grupo-item-info { flex:1; min-width:0; }
+    .grupo-item-name { font-weight:600; font-size:.88rem; }
+    .grupo-item-pvp { font-size:.75rem; color:var(--muted); margin-top:2px; }
+    .grupo-item-qty { display:flex; align-items:center; gap:5px; flex-shrink:0; }
+    .grupo-item-qty label { font-size:.74rem; color:var(--muted); }
+    .grupo-item-qty input { width:54px; margin:0; padding:5px 8px; }
+    .grupo-item-total { font-size:.88rem; font-weight:700; white-space:nowrap; min-width:72px; text-align:right; }
+    .grupo-item-remove { background:none; border:1px solid var(--border); color:var(--muted); cursor:pointer; padding:4px 8px; font-size:.82rem; flex-shrink:0; transition:all .12s; }
+    .grupo-item-remove:hover { border-color:var(--red); color:var(--red); background:#fee2e2; }
+    .grupo-empty { font-size:.84rem; color:var(--muted); padding:8px 0; font-style:italic; }
+
     /* ══════════════════════════════════════
        PRINT STYLES
     ══════════════════════════════════════ */
@@ -426,9 +464,17 @@
 
     <!-- Formulário de orçamento AC -->
     <div id="quote-form-ac" style="display:none;">
-      <h2 style="margin-bottom:12px;">Gerar Orçamento</h2>
-      <div class="selected-items-list" id="selected-items-ac"></div>
-      <div class="form-row">
+      <h2 style="margin-bottom:12px;">Propostas do Orçamento</h2>
+
+      <!-- Tabs das opções -->
+      <div class="groups-header" id="grupos-header"></div>
+      <div class="active-group-hint" id="grupos-hint"></div>
+
+      <!-- Cards de cada opção -->
+      <div id="grupos-list"></div>
+
+      <!-- Campos comuns -->
+      <div class="form-row" style="margin-top:16px;">
         <div class="form-group">
           <label>Nome do Cliente</label>
           <input type="text" id="ac-cliente" placeholder="Nome completo ou empresa">
@@ -436,12 +482,12 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Instalação (€ c/IVA)</label>
-          <input type="number" id="ac-instalacao" placeholder="0" min="0" step="0.01">
+          <label>Instalação (€ c/IVA) — comum a todas as opções</label>
+          <input type="number" id="ac-instalacao" placeholder="0" min="0" step="0.01" oninput="calcAC()">
         </div>
         <div class="form-group">
           <label>Desconto (%)</label>
-          <input type="number" id="ac-desconto" placeholder="0" min="0" max="100" step="0.5">
+          <input type="number" id="ac-desconto" placeholder="0" min="0" max="100" step="0.5" oninput="calcAC()">
         </div>
       </div>
       <div class="form-group">
@@ -769,7 +815,10 @@ const CATALOG_SOLAR = [
 /* ═══════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════ */
-let selectedOpcoes = []; // [{index, opcao}]
+// opcaoGroups: [{id, letra, items:[{productId, opcao, qty}]}]
+let opcaoGroups = [];
+let activeGroupId = null;
+let groupCounter = 0;
 let selectedSolar = null;
 
 /* ═══════════════════════════════════════════
@@ -973,6 +1022,8 @@ let catFiltro = { marca: 'todos', tipo: 'todos' };
 function mostrarCatalogo() {
   document.getElementById('catalogo-filtros').style.display = 'block';
   document.getElementById('resumo-necessidade').style.display = 'none';
+  opcaoGroups = []; activeGroupId = null;
+  document.getElementById('quote-form-ac').style.display = 'none';
   catFiltro = { marca: 'todos', tipo: 'todos' };
   document.getElementById('cf-search').value = '';
   // reset chips
@@ -1005,30 +1056,23 @@ function renderCatalogo() {
   const multi = lista.filter(p => p.tipo === 'multi_split');
   const hasBoth = mono.length > 0 && multi.length > 0;
 
-  const allWithIdx = lista.map(p => ({ p, i: CATALOG_AC.indexOf(p) }));
-  const monoIdx  = allWithIdx.filter(({p}) => p.tipo !== 'multi_split');
-  const multiIdx = allWithIdx.filter(({p}) => p.tipo === 'multi_split');
+  const mono  = lista.filter(p => p.tipo !== 'multi_split');
+  const multi = lista.filter(p => p.tipo === 'multi_split');
 
   let html = '';
-  if (monoIdx.length > 0) {
+  if (mono.length > 0) {
     if (hasBoth) html += '<div class="tipo-divider">🌬 Mono-split — unidade por divisão</div>';
-    html += monoIdx.map(({p,i}) => renderCard(p, i)).join('');
+    html += mono.map(p => renderCard(p)).join('');
   }
-  if (multiIdx.length > 0) {
+  if (multi.length > 0) {
     html += '<div class="tipo-divider">🔀 Multi-split — uma unidade exterior, várias interiores</div>';
-    html += multiIdx.map(({p,i}) => renderCard(p, i)).join('');
+    html += multi.map(p => renderCard(p)).join('');
   }
   if (!html) html = '<p style="color:var(--muted);padding:16px;grid-column:1/-1">Nenhum produto encontrado.</p>';
 
   const grid = document.getElementById('opcoes-grid');
   grid.innerHTML = html;
-  grid._produtos = CATALOG_AC; // index = position in CATALOG_AC
-  // restore selected state visually
-  selectedOpcoes.forEach(({index}) => {
-    document.getElementById('opcao-card-' + index)?.classList.add('selected');
-    const btn = document.getElementById('btn-select-' + index);
-    if (btn) { btn.textContent = '✓ Selecionado'; btn.classList.add('selected-btn'); }
-  });
+  updateCardStates();
 }
 
 /* ═══════════════════════════════════════════
@@ -1042,7 +1086,7 @@ function sugerirAC() {
   document.getElementById('resumo-necessidade').style.display = 'none';
   document.getElementById('quote-form-ac').style.display = 'none';
   document.getElementById('catalogo-filtros').style.display = 'none';
-  selectedOpcoes = [];
+  opcaoGroups = []; activeGroupId = null;
 
   // Calcular kW necessários
   const solar  = document.querySelector('#chips-solar .chip.active')?.textContent || '';
@@ -1128,10 +1172,11 @@ function sugerirAC() {
   renderOpcoes(produtos);
 }
 
-function renderCard(p, i) {
+function renderCard(p) {
   const isMulti = p.tipo === 'multi_split';
+  const pid = p.id;
   return `
-  <div class="opcao-card" id="opcao-card-${i}" onclick="toggleOpcaoLocal(${i})">
+  <div class="opcao-card" id="opcao-card-${pid}" onclick="addToActiveGroup('${pid}')">
     <img class="opcao-img" src="${p.img}" alt="${p.model}" onerror="this.style.display='none'">
     <div class="opcao-badge">
       ${brandLogoImg(p.brand)}
@@ -1145,7 +1190,7 @@ function renderCard(p, i) {
     </div>
     <div class="opcao-pvp">${fmt(p.pvp)}</div>
     <div class="opcao-justificacao">${getPitch(p.series)}</div>
-    <button class="btn btn-primary btn-sm opcao-select-btn" id="btn-select-${i}">Selecionar</button>
+    <button class="btn btn-primary btn-sm opcao-select-btn" id="btn-select-${pid}">+ Selecionar</button>
   </div>`;
 }
 
@@ -1153,165 +1198,278 @@ function renderOpcoes(produtos) {
   const grid = document.getElementById('opcoes-grid');
   if (!produtos.length) {
     grid.innerHTML = '<p style="color:var(--muted);padding:16px">Nenhum produto encontrado para estas especificações.</p>';
-    grid._produtos = [];
     return;
   }
 
-  const mono = produtos.map((p,i) => ({p,i})).filter(({p}) => p.tipo !== 'multi_split');
-  const multi = produtos.map((p,i) => ({p,i})).filter(({p}) => p.tipo === 'multi_split');
+  const mono  = produtos.filter(p => p.tipo !== 'multi_split');
+  const multi = produtos.filter(p => p.tipo === 'multi_split');
   const hasBoth = mono.length > 0 && multi.length > 0;
 
   let html = '';
   if (mono.length > 0) {
     if (hasBoth) html += '<div class="tipo-divider">🌬 Mono-split — unidade por divisão</div>';
-    html += mono.map(({p,i}) => renderCard(p, i)).join('');
+    html += mono.map(p => renderCard(p)).join('');
   }
   if (multi.length > 0) {
     html += '<div class="tipo-divider">🔀 Multi-split — uma unidade exterior, várias interiores</div>';
-    html += multi.map(({p,i}) => renderCard(p, i)).join('');
+    html += multi.map(p => renderCard(p)).join('');
   }
 
   grid.innerHTML = html;
-  grid._produtos = produtos;
+  updateCardStates();
 }
 
-function toggleOpcaoLocal(i) {
-  const grid = document.getElementById('opcoes-grid');
-  const p = grid._produtos[i];
-  const opcao = {
-    titulo: `${p.series} ${p.model}`,
-    marca: p.brand, produto_id: p.id, modelo: p.model, series: p.series,
-    tipo: p.tipo || 'mono_split', kw: p.kw, btu: p.btu,
-    classe: p.classe, pvp_unitario: p.pvp,
-    imagem: p.img.replace('../',''),
-    justificacao: getPitch(p.series),
-  };
+/* ═══════════════════════════════════════════
+   AC — GESTÃO DE GRUPOS
+═══════════════════════════════════════════ */
+function createGroup() {
+  if (opcaoGroups.length >= 6) { showToast('Máximo de 6 opções', true); return null; }
+  const id = ++groupCounter;
+  const letra = String.fromCharCode(64 + opcaoGroups.length + 1);
+  opcaoGroups.push({ id, letra, items: [] });
+  activeGroupId = id;
+  updateFormAC();
+  updateCardStates();
+  document.getElementById('quote-form-ac').style.display = 'block';
+  return id;
+}
 
-  const existIdx = selectedOpcoes.findIndex(s => s.index === i);
-  const card = document.getElementById('opcao-card-' + i);
-  const btn = document.getElementById('btn-select-' + i);
+function setActiveGroup(id) {
+  activeGroupId = id;
+  updateFormAC();
+  updateCardStates();
+}
 
-  if (existIdx >= 0) {
-    selectedOpcoes.splice(existIdx, 1);
-    card?.classList.remove('selected');
-    if (btn) { btn.textContent = 'Selecionar'; btn.classList.remove('selected-btn'); }
-  } else {
-    selectedOpcoes.push({ index: i, opcao });
-    card?.classList.add('selected');
-    if (btn) { btn.textContent = '✓ Selecionado'; btn.classList.add('selected-btn'); }
-  }
-
+function removeGroup(id) {
+  opcaoGroups = opcaoGroups.filter(g => g.id !== id);
+  opcaoGroups.forEach((g, i) => { g.letra = String.fromCharCode(65 + i); });
+  if (activeGroupId === id)
+    activeGroupId = opcaoGroups.length > 0 ? opcaoGroups[opcaoGroups.length - 1].id : null;
+  if (opcaoGroups.length === 0)
+    document.getElementById('quote-form-ac').style.display = 'none';
+  updateCardStates();
   updateFormAC();
 }
 
-function updateFormAC() {
-  const form = document.getElementById('quote-form-ac');
-  if (selectedOpcoes.length === 0) {
-    form.style.display = 'none';
-    return;
+function removeItemFromGroup(groupId, itemIdx) {
+  const g = opcaoGroups.find(g => g.id === groupId);
+  if (g) { g.items.splice(itemIdx, 1); updateCardStates(); updateFormAC(); }
+}
+
+function changeItemQty(groupId, itemIdx, val) {
+  const g = opcaoGroups.find(g => g.id === groupId);
+  if (g && g.items[itemIdx]) {
+    g.items[itemIdx].qty = Math.max(1, parseInt(val) || 1);
+    updateFormAC();
   }
+}
 
-  const listEl = document.getElementById('selected-items-ac');
-  listEl.innerHTML = selectedOpcoes.map(({index, opcao}) => {
-    const imgSrc = opcao.imagem ? `../assets/products/${opcao.imagem.split('assets/products/').pop()}` : '';
-    return `<div class="selected-item-row">
-      ${imgSrc ? `<img src="${imgSrc}" alt="${opcao.modelo}" onerror="this.style.display='none'">` : ''}
-      <div class="selected-item-info">
-        <div class="selected-item-name">${opcao.titulo}</div>
-        <div class="selected-item-pvp">${opcao.marca} · ${opcao.kw} kW · ${fmt(opcao.pvp_unitario)}/unid.</div>
-      </div>
-      <div class="selected-item-qty">
-        <label>Qtd</label>
-        <input type="number" class="ac-item-qty" data-index="${index}" value="1" min="1" oninput="calcAC()">
-      </div>
-      <button class="btn btn-ghost btn-sm" onclick="toggleOpcaoLocal(${index})" style="padding:4px 10px; font-size:.8rem; flex-shrink:0;">✕</button>
-    </div>`;
-  }).join('');
+function addToActiveGroup(productId) {
+  if (opcaoGroups.length === 0) createGroup();
+  if (!activeGroupId) return;
+  const group = opcaoGroups.find(g => g.id === activeGroupId);
+  if (!group) return;
+  const p = CATALOG_AC.find(prod => prod.id === productId);
+  if (!p) return;
 
-  form.style.display = 'block';
-  ['ac-instalacao','ac-desconto'].forEach(id => {
-    const el = document.getElementById(id);
-    el.oninput = calcAC;
+  const existIdx = group.items.findIndex(it => it.productId === productId);
+  if (existIdx >= 0) {
+    group.items.splice(existIdx, 1);
+  } else {
+    group.items.push({
+      productId,
+      qty: 1,
+      opcao: {
+        titulo: `${p.series} ${p.model}`,
+        marca: p.brand, produto_id: p.id, modelo: p.model, series: p.series,
+        tipo: p.tipo || 'mono_split', kw: p.kw, btu: p.btu,
+        classe: p.classe, pvp_unitario: p.pvp,
+        imagem: p.img.replace('../',''),
+        justificacao: getPitch(p.series),
+      },
+    });
+  }
+  updateCardStates();
+  updateFormAC();
+  document.getElementById('quote-form-ac').style.display = 'block';
+}
+
+function updateCardStates() {
+  const inGroupsMap = {};
+  opcaoGroups.forEach(g => {
+    g.items.forEach(it => {
+      (inGroupsMap[it.productId] = inGroupsMap[it.productId] || []).push(g.letra);
+    });
   });
-  calcAC();
+  const ag = opcaoGroups.find(g => g.id === activeGroupId);
 
-  if (selectedOpcoes.length === 1) {
-    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  CATALOG_AC.forEach(p => {
+    const card = document.getElementById('opcao-card-' + p.id);
+    const btn  = document.getElementById('btn-select-' + p.id);
+    if (!card || !btn) return;
+
+    const letras  = inGroupsMap[p.id] || [];
+    const inActive = ag && ag.items.some(it => it.productId === p.id);
+
+    btn.style.cssText = '';
+    btn.classList.remove('selected-btn');
+    card.classList.toggle('selected', !!inActive);
+
+    if (inActive) {
+      btn.textContent = `✓ Na Opção ${ag.letra}`;
+      btn.classList.add('selected-btn');
+    } else if (letras.length > 0) {
+      btn.textContent = ag
+        ? `Na Opção ${letras.join('/')} · + Opção ${ag.letra}`
+        : `Na Opção ${letras.join('/')}`;
+      btn.style.background = 'var(--surface2)';
+      btn.style.color = 'var(--muted)';
+      btn.style.borderColor = 'var(--border)';
+    } else {
+      btn.textContent = ag ? `+ Opção ${ag.letra}` : '+ Selecionar';
+    }
+  });
 }
 
 function cancelarSelecaoAC() {
-  selectedOpcoes = [];
+  opcaoGroups = [];
+  activeGroupId = null;
   document.getElementById('quote-form-ac').style.display = 'none';
-  document.querySelectorAll('.opcao-card').forEach(c => c.classList.remove('selected'));
-  document.querySelectorAll('.opcao-select-btn').forEach(btn => {
-    btn.textContent = 'Selecionar'; btn.classList.remove('selected-btn');
-  });
+  updateCardStates();
+}
+
+function updateFormAC() {
+  if (opcaoGroups.length === 0) return;
+  const ag = opcaoGroups.find(g => g.id === activeGroupId);
+
+  // Tabs
+  const tabsHtml = opcaoGroups.map(g => `
+    <button class="grupo-tab ${g.id === activeGroupId ? 'active' : ''}" onclick="setActiveGroup(${g.id})">
+      Opção ${g.letra}
+      <span class="grupo-tab-remove" onclick="event.stopPropagation();removeGroup(${g.id})" title="Remover opção">×</span>
+    </button>`).join('');
+  document.getElementById('grupos-header').innerHTML =
+    `<span class="groups-header-label">Propostas:</span>${tabsHtml}` +
+    `<button class="btn-new-group" onclick="createGroup()">+ Nova opção</button>`;
+
+  // Hint
+  document.getElementById('grupos-hint').innerHTML = ag
+    ? `A clicar num produto <strong>adiciona à Opção ${ag.letra}</strong>. Clica novamente para remover.`
+    : `Clica em "+ Nova opção" para criar uma proposta.`;
+
+  // Cards das opções
+  const listHtml = opcaoGroups.map(g => {
+    const subtotal = g.items.reduce((s, it) => s + it.opcao.pvp_unitario * it.qty, 0);
+    const bodyHtml = g.items.length === 0
+      ? `<div class="grupo-empty">Sem produtos — clica num produto do catálogo acima.</div>`
+      : g.items.map((it, idx) => {
+          const img = it.opcao.imagem ? `../${it.opcao.imagem.replace(/^\.\.\//, '')}` : '';
+          return `<div class="grupo-item-row">
+            ${img ? `<img class="grupo-item-img" src="${img}" alt="${it.opcao.modelo}" onerror="this.style.display='none'">` : ''}
+            <div class="grupo-item-info">
+              <div class="grupo-item-name">${it.opcao.titulo}</div>
+              <div class="grupo-item-pvp">${it.opcao.marca} · ${it.opcao.kw} kW · ${fmt(it.opcao.pvp_unitario)}/un.</div>
+            </div>
+            <div class="grupo-item-qty">
+              <label>Qtd</label>
+              <input type="number" value="${it.qty}" min="1" onchange="changeItemQty(${g.id},${idx},this.value)">
+            </div>
+            <div class="grupo-item-total">${fmt(it.opcao.pvp_unitario * it.qty)}</div>
+            <button class="grupo-item-remove" onclick="removeItemFromGroup(${g.id},${idx})">✕</button>
+          </div>`;
+        }).join('');
+    return `<div class="grupo-card ${g.id === activeGroupId ? 'is-active' : ''}" >
+      <div class="grupo-card-header" onclick="setActiveGroup(${g.id})">
+        <div class="grupo-card-letra">${g.letra}</div>
+        <div class="grupo-card-title">${g.items.length === 0 ? 'Sem produtos' : g.items.map(it => `${it.qty > 1 ? it.qty + '× ' : ''}${it.opcao.titulo}`).join(' + ')}</div>
+        <div class="grupo-card-subtotal">${fmt(subtotal)}</div>
+        <button class="grupo-card-del" onclick="event.stopPropagation();removeGroup(${g.id})">Remover</button>
+      </div>
+      <div class="grupo-card-body">${bodyHtml}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('grupos-list').innerHTML = listHtml;
+  calcAC();
 }
 
 function calcAC() {
-  if (selectedOpcoes.length === 0) return;
-  const install = parseFloat(document.getElementById('ac-instalacao').value) || 0;
+  if (opcaoGroups.length === 0) return;
+  const install  = parseFloat(document.getElementById('ac-instalacao').value) || 0;
   const desconto = parseFloat(document.getElementById('ac-desconto').value) || 0;
 
-  let subtotal = 0;
   let html = '';
-  selectedOpcoes.forEach(({index, opcao}) => {
-    const qtyEl = document.querySelector(`.ac-item-qty[data-index="${index}"]`);
-    const qty = parseInt(qtyEl?.value) || 1;
-    const lineTotal = (opcao.pvp_unitario || 0) * qty;
-    subtotal += lineTotal;
-    html += `<div class="total-line"><span>${qty}× ${opcao.titulo}</span><span>${fmt(lineTotal)}</span></div>`;
+  opcaoGroups.forEach(g => {
+    const sub    = g.items.reduce((s, it) => s + it.opcao.pvp_unitario * it.qty, 0);
+    const desc   = sub * desconto / 100;
+    const total  = sub - desc + install;
+    const label  = g.items.length > 0
+      ? g.items.map(it => `${it.qty > 1 ? it.qty + '× ' : ''}${it.opcao.titulo}`).join(' + ')
+      : 'Sem produtos';
+    html += `<div class="total-line"><span><strong>Opção ${g.letra}</strong> — ${label}</span><span>${fmt(total)}</span></div>`;
   });
-
-  const descVal = subtotal * desconto / 100;
-  const total = subtotal - descVal + install;
-  if (desconto > 0) html += `<div class="total-line"><span>Desconto ${desconto}%</span><span>- ${fmt(descVal)}</span></div>`;
-  if (install > 0) html += `<div class="total-line"><span>Instalação</span><span>${fmt(install)}</span></div>`;
-  html += `<div class="total-final"><span>TOTAL c/ IVA</span><span>${fmt(total)}</span></div>`;
+  if (desconto > 0) html += `<div class="total-line" style="font-size:.8rem;color:var(--muted)"><span>Desconto ${desconto}% aplicado a cada opção</span></div>`;
+  if (install  > 0) html += `<div class="total-line" style="font-size:.8rem;color:var(--muted)"><span>Instalação ${fmt(install)} incluída em cada opção</span></div>`;
   document.getElementById('ac-total-preview').innerHTML = html;
 }
 
 async function gerarOrcamentoAC() {
-  if (selectedOpcoes.length === 0) return;
+  if (opcaoGroups.length === 0) return;
+  if (opcaoGroups.some(g => g.items.length === 0)) {
+    showToast('Há opções sem produtos — adiciona produtos ou remove a opção', true); return;
+  }
   const cliente = document.getElementById('ac-cliente').value.trim();
   if (!cliente) { showToast('Indique o nome do cliente', true); return; }
 
-  const install = parseFloat(document.getElementById('ac-instalacao').value) || 0;
+  const install  = parseFloat(document.getElementById('ac-instalacao').value) || 0;
   const desconto = parseFloat(document.getElementById('ac-desconto').value) || 0;
-  const notas = document.getElementById('ac-notas').value;
+  const notas    = document.getElementById('ac-notas').value;
 
-  const opcoes = selectedOpcoes.map(({index, opcao}, i) => {
-    const qtyEl = document.querySelector(`.ac-item-qty[data-index="${index}"]`);
-    const qty = parseInt(qtyEl?.value) || 1;
-    const pvpUnit = opcao.pvp_unitario || 0;
-    const subtotal = pvpUnit * qty;
-    const descVal = subtotal * desconto / 100;
-    const total = Math.round((subtotal - descVal + install) * 100) / 100;
+  const opcoes = opcaoGroups.map(g => {
+    const itens   = g.items.map(it => ({
+      descricao: it.opcao.titulo,
+      qty: it.qty,
+      pvp_unitario: it.opcao.pvp_unitario,
+      pvp_total: it.opcao.pvp_unitario * it.qty,
+    }));
+    const sub    = itens.reduce((s, i) => s + i.pvp_total, 0);
+    const desc   = sub * desconto / 100;
+    const total  = Math.round((sub - desc + install) * 100) / 100;
+    const rep    = g.items[0].opcao;
+
+    // Título compacto da opção
+    let titulo;
+    if (g.items.length === 1) {
+      const it = g.items[0];
+      titulo = it.qty > 1 ? `${it.qty}× ${rep.titulo}` : rep.titulo;
+    } else {
+      const brands = [...new Set(g.items.map(it => it.opcao.marca))];
+      const series = [...new Set(g.items.map(it => it.opcao.series))];
+      if (brands.length === 1 && series.length === 1) {
+        const powers = g.items.flatMap(it =>
+          Array(it.qty).fill(it.opcao.btu ? Math.round(it.opcao.btu / 1000) + 'K' : it.opcao.kw + 'kW')
+        );
+        titulo = `${brands[0]} ${series[0]} — ${powers.join(' + ')}`;
+      } else {
+        titulo = g.items.map(it =>
+          (it.qty > 1 ? it.qty + '× ' : '') + it.opcao.titulo
+        ).join(' + ');
+      }
+    }
+
+    const totalKw = Math.round(g.items.reduce((s, it) => s + it.opcao.kw * it.qty, 0) * 10) / 10;
     return {
-      letra: String.fromCharCode(65 + i),
-      titulo: opcao.titulo,
-      marca: opcao.marca,
-      series: opcao.series,
-      imagem: opcao.imagem,
-      justificacao: opcao.justificacao,
-      kw: opcao.kw,
-      classe: opcao.classe,
-      itens: [{ descricao: opcao.titulo, qty, pvp_unitario: pvpUnit, pvp_total: subtotal }],
-      instalacao: install || null,
-      desconto,
-      total_com_iva: total,
+      letra: g.letra, titulo, marca: rep.marca, series: rep.series,
+      imagem: rep.imagem, justificacao: rep.justificacao,
+      kw: totalKw, classe: rep.classe,
+      itens, instalacao: install || null, desconto, total_com_iva: total,
     };
   });
 
   const payload = {
-    categoria: 'ac',
-    cliente,
-    itens: opcoes[0].itens,
-    opcoes,
-    instalacao: install || null,
-    desconto,
-    notas,
+    categoria: 'ac', cliente,
+    itens: opcoes[0].itens, opcoes,
+    instalacao: install || null, desconto, notas,
     justificacao: opcoes.map(o => `Opção ${o.letra}: ${o.justificacao}`).join('\n'),
     total_com_iva: opcoes[0].total_com_iva,
   };
