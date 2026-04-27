@@ -1056,9 +1056,6 @@ function renderCatalogo() {
   const multi = lista.filter(p => p.tipo === 'multi_split');
   const hasBoth = mono.length > 0 && multi.length > 0;
 
-  const mono  = lista.filter(p => p.tipo !== 'multi_split');
-  const multi = lista.filter(p => p.tipo === 'multi_split');
-
   let html = '';
   if (mono.length > 0) {
     if (hasBoth) html += '<div class="tipo-divider">🌬 Mono-split — unidade por divisão</div>';
