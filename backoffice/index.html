@@ -1287,19 +1287,32 @@ function sugerirAC() {
   mono = top3PorMarca(mono);
 
   // Multi-split: só mostrar se multiRoom, com slots = nº de divisões e kW exterior ≥ totalKW
+  // e unidade interior máxima capaz de servir a maior divisão
+  function maxInteriorKW(p) {
+    const m = p.model.match(/\(([^)]+)\)/);
+    if (!m) return p.kw;
+    const s = m[1];
+    const rx = s.match(/^(\d+)K[×x](\d+)$/);
+    if (rx) return parseInt(rx[1]) * 1000 / 3412;
+    const vals = s.split('+').map(x => parseInt(x) * 1000 / 3412);
+    return Math.max(...vals);
+  }
+
   const numDivs = rows.length;
   let multi = [];
   if (multiRoom) {
     multi = CATALOG_AC.filter(p =>
       p.tipo === 'multi_split' &&
       p.slots === numDivs &&
-      p.kw >= totalKW * 0.65 && p.kw <= totalKW * 1.55
+      p.kw >= totalKW * 0.65 && p.kw <= totalKW * 1.55 &&
+      maxInteriorKW(p) >= kwMaxDiv * 0.85
     );
     if (multi.length === 0)
       multi = CATALOG_AC.filter(p =>
         p.tipo === 'multi_split' &&
         p.slots === numDivs &&
-        p.kw >= totalKW * 0.55 && p.kw <= totalKW * 1.7
+        p.kw >= totalKW * 0.55 && p.kw <= totalKW * 1.7 &&
+        maxInteriorKW(p) >= kwMaxDiv * 0.80
       );
     multi.sort((a, b) => a.pvp - b.pvp);
   }
