@@ -350,6 +350,35 @@
     .pp p { font-size: 8.5pt; color: #333; margin-bottom: 3pt; }
     .pp p:last-child { margin: 0; }
     .pf { border-top: 1pt solid #ddd; padding-top: 7pt; display: flex; justify-content: space-between; font-size: 8pt; color: #888; }
+
+    /* ── Annex ── */
+    .annex-sep { page-break-before: always; border-bottom: 2.5pt solid #f97316; padding-bottom: 8pt; margin-bottom: 16pt; display: flex; align-items: baseline; gap: 12pt; }
+    .annex-sep-title { font-size: 13pt; font-weight: 800; color: #f97316; }
+    .annex-sep-sub { font-size: 8.5pt; color: #888; }
+    .annex-sheet { margin-bottom: 16pt; border: 1pt solid #e0e0e0; page-break-inside: avoid; }
+    .annex-sheet + .annex-sheet { page-break-before: always; }
+    .annex-sh { background: #f97316; color: #fff; padding: 7pt 12pt; display: flex; align-items: center; gap: 10pt; }
+    .annex-sh-logo { height: 20pt; background: #fff; padding: 2pt 6pt; flex-shrink: 0; }
+    .annex-sh-name { font-size: 12pt; font-weight: 800; flex: 1; }
+    .annex-sb { padding: 12pt; }
+    .annex-photos { display: flex; flex-wrap: wrap; gap: 6pt; margin-bottom: 12pt; }
+    .annex-photo { flex: 0 0 calc(20% - 5pt); }
+    .annex-photo img { width: 100%; height: 65pt; object-fit: contain; background: #f8f9fb; border: .5pt solid #eee; display: block; }
+    .annex-cols { display: flex; gap: 16pt; }
+    .annex-specs-col { flex: 1 1 45%; }
+    .annex-feat-col { flex: 1 1 45%; }
+    .annex-col-title { font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: .4pt; color: #aaa; margin-bottom: 5pt; }
+    .annex-specs { width: 100%; border-collapse: collapse; font-size: 8pt; }
+    .annex-specs td { padding: 2.5pt 5pt; border-bottom: .5pt solid #f4f4f4; vertical-align: top; }
+    .annex-specs td:first-child { color: #888; font-weight: 600; width: 42%; }
+    .annex-feats { list-style: none; margin: 0; padding: 0; }
+    .annex-feats li { font-size: 8.5pt; color: #222; padding: 2pt 0; border-bottom: .5pt solid #f4f4f4; line-height: 1.4; }
+    .annex-feats li:last-child { border-bottom: none; }
+    .annex-extras { margin-top: 9pt; }
+    .annex-extras-title { font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: .3pt; color: #aaa; margin-bottom: 4pt; }
+    .annex-awards { display: flex; gap: 8pt; align-items: center; margin-top: 10pt; flex-wrap: wrap; }
+    .annex-award { height: 34pt; object-fit: contain; }
+    .annex-pitch { font-size: 8.5pt; color: #444; border-left: 2.5pt solid #f97316; padding-left: 8pt; margin-top: 10pt; font-style: italic; line-height: 1.55; }
   </style>
 </head>
 <body>
@@ -811,6 +840,123 @@ const CATALOG_SOLAR = [
   {id:'bosch-compress5001-200',serie:'Compress 5000 DW',model:'CS5001DW 200',capacity:'200 L · Chão',pvp:3260,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · chão',grupo:'compress'},
   {id:'bosch-compress5001-260',serie:'Compress 5000 DW',model:'CS5001DW 260',capacity:'260 L · Chão',pvp:3629,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · chão',grupo:'compress'},
 ];
+
+/* ═══════════════════════════════════════════
+   ANEXO — GALERIA DE FOTOS POR SÉRIE
+═══════════════════════════════════════════ */
+const GALLERY = {
+  'ARTIC':          ['daitsu-artic-kz-1.jpg','daitsu-artic-kz-2.jpg','daitsu-artic-kz-3.jpg','daitsu-artic-kz-4.jpg','daitsu-artic-kz-5.jpg','daitsu-artic-kz-6.jpg','daitsu-artic-kz-7.jpg','daitsu-artic-kz-8.jpg','daitsu-artic-kz-9.jpg'],
+  'Climate 3200i':  ['bosch-3200i-new-1.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg','bosch-3200i-new-5.jpg','bosch-3200i-new-6.jpg'],
+  'Climate 6000i':  ['bosch-6000i-1.webp','bosch-6000i-2.webp','bosch-6000i-3.webp','bosch-6000i-4.webp'],
+  'Climate 7000i':  ['bosch-7000i-branco-1.webp','bosch-7000i-branco-2.webp','bosch-7000i-branco-3.webp','bosch-7000i-silver-1.webp','bosch-7000i-silver-2.webp','bosch-7000i-silver-3.webp','bosch-7000i-black-1.webp','bosch-7000i-black-2.webp','bosch-7000i-black-3.webp'],
+  'Sensira':        ['daikin-sensira-1.webp','daikin-sensira-2.webp','daikin-sensira-3.webp'],
+  'Confora':        ['daikin-confora-1.webp','daikin-confora-2.webp','daikin-confora-3.webp'],
+  'Perfera':        ['daikin-perfera-1.webp','daikin-perfera-2.webp','daikin-perfera-3.webp','daikin-perfera-4.jpg'],
+  'Stylish':        ['daikin-stylish-branco-1.webp','daikin-stylish-branco-2.webp','daikin-stylish-branco-3.webp','daikin-stylish-branco-4.webp','daikin-stylish-branco-5.webp','daikin-stylish-branco-6.webp','daikin-stylish-silver-1.webp','daikin-stylish-black-1.webp','daikin-stylish-novas-cores.jpg'],
+  'Emura':          ['daikin-emura-branco-1.webp','daikin-emura-branco-2.webp','daikin-emura-branco-3.webp','daikin-emura-branco-4.webp','daikin-emura-branco-5.webp','daikin-emura-branco-6.webp','daikin-emura-branco-7.webp','daikin-emura-silver-1.webp','daikin-emura-black-1.webp'],
+};
+// Multi-split usa galeria da unidade interior
+const GALLERY_MAP = {
+  'FREE MAX ARTIC':'ARTIC','Multi 3200i':'Climate 3200i','Multi 6000i':'Climate 6000i',
+  'Multi Sensira':'Sensira','Multi Confora':'Confora','Multi Perfera':'Perfera',
+  'Multi Stylish':'Stylish','Multi Emura':'Emura',
+};
+
+/* ═══════════════════════════════════════════
+   ANEXO — ESPECIFICAÇÕES TÉCNICAS POR SÉRIE
+═══════════════════════════════════════════ */
+const ANNEX_SPECS = {
+  'ARTIC': {
+    refrigerante:'R32', garantia:'3 anos',
+    filtros:'5 filtros: PM2.5, Carvão Ativado, Catecol, Vitamina C, HEPA',
+    wifi:'Integrado de série — App My Daitsu',
+    voz:'Google Home, Amazon Alexa, Apple Siri',
+    range_arref:'-10°C a +50°C (exterior)', range_aquec:'-25°C a +24°C (exterior)',
+    som_int:'25 dB(A) (modo silencioso)', som_ext:'52 dB(A)',
+    awards:[],
+    extras:['AI+ — aprende e adapta-se aos hábitos do utilizador','Auto-diagnóstico integrado','Timer semanal programável','Follow Me (I-Feel) — mede temperatura real na posição do utilizador'],
+  },
+  'Climate 3200i': {
+    refrigerante:'R32', garantia:'3 anos Bosch',
+    filtros:'Filtro catalítico + revestimento Golden Fin anticorrosivo',
+    wifi:'Integrado de série — App Home Connect',
+    voz:'—',
+    range_arref:'-15°C a +43°C (exterior)', range_aquec:'-20°C a +24°C (exterior)',
+    som_int:'26 dB(A)', som_ext:'55 dB(A)',
+    awards:['award-bosch-3200i-german-design-2026.jpg'],
+    extras:['Auto-limpeza iClean a 56°C — elimina bactérias e fungos','Modo Turbo — arrefecimento/aquecimento rápido','Sleep mode — ajuste automático noturno'],
+  },
+  'Climate 6000i': {
+    refrigerante:'R32', garantia:'3 anos Bosch',
+    filtros:'Filtro HEPA + ionizador integrado',
+    wifi:'Integrado de série — App Home Connect',
+    voz:'—',
+    range_arref:'-15°C a +46°C (exterior)', range_aquec:'-20°C a +24°C (exterior)',
+    som_int:'24 dB(A)', som_ext:'53 dB(A)',
+    awards:[],
+    extras:['Sensor de movimento — direciona o ar automaticamente','Ionizador integrado — melhora qualidade do ar interior','Controlo de humidade integrado','Monitorização de consumo energético'],
+  },
+  'Climate 7000i': {
+    refrigerante:'R32', garantia:'3 anos Bosch',
+    filtros:'Filtro duplo premium + ionizador',
+    wifi:'Integrado de série — App Home Connect',
+    voz:'Amazon Alexa, Google Home',
+    range_arref:'-15°C a +46°C (exterior)', range_aquec:'-20°C a +24°C (exterior)',
+    som_int:'20 dB(A)', som_ext:'52 dB(A)',
+    awards:['award-bosch-7000i-if-2025.jpg'],
+    extras:['Sensor de presença com ajuste automático de direção do ar','Monitorização de consumo de energia em tempo real','Operação até -20°C exterior no modo aquecimento','Modo energia solar — integração com painéis fotovoltaicos'],
+  },
+  'Sensira': {
+    refrigerante:'R32', garantia:'3 anos Daikin',
+    filtros:'Filtro de limpeza fácil',
+    wifi:'Integrado de série — Daikin Mobile Controller App',
+    voz:'—',
+    range_arref:'-10°C a +46°C (exterior)', range_aquec:'-15°C a +18°C (exterior)',
+    som_int:'22 dB(A)', som_ext:'48 dB(A)',
+    awards:[],
+    extras:['Modo Econo — limita consumo máximo de energia','Timer semanal programável','Auto-restart após corte de energia','Indicador de limpeza de filtro'],
+  },
+  'Confora': {
+    refrigerante:'R32', garantia:'3 anos Daikin',
+    filtros:'Filtro PM2.5 (captura partículas ultrafinas)',
+    wifi:'Integrado de série — Daikin Mobile Controller App',
+    voz:'—',
+    range_arref:'-10°C a +46°C (exterior)', range_aquec:'-15°C a +18°C (exterior)',
+    som_int:'21 dB(A)', som_ext:'47 dB(A)',
+    awards:[],
+    extras:['I-Feel — sensor no telecomando mede temperatura real','Modo Econo — limita consumo máximo','Purificação do ar com filtro PM2.5','Auto-restart após corte de energia'],
+  },
+  'Perfera': {
+    refrigerante:'R32', garantia:'3 anos Daikin',
+    filtros:'Flash Streamer (purificador integrado) + filtro PM2.5',
+    wifi:'Integrado de série — Daikin Mobile Controller App',
+    voz:'Amazon Alexa, Google Home',
+    range_arref:'-10°C a +50°C (exterior)', range_aquec:'-20°C a +18°C (exterior)',
+    som_int:'19 dB(A)', som_ext:'48 dB(A)',
+    awards:[],
+    extras:['I-Feel — mede temperatura real na posição do utilizador','Flash Streamer — purificador de ar de alta eficiência','Operação até -20°C exterior no modo aquecimento','Modo 2-em-1 Heating (resistência + bomba calor)'],
+  },
+  'Stylish': {
+    refrigerante:'R32', garantia:'3 anos Daikin',
+    filtros:'Flash Streamer + filtro premium PM2.5',
+    wifi:'Integrado de série — Daikin Online Controller App',
+    voz:'Amazon Alexa, Google Home, Apple Siri',
+    range_arref:'-10°C a +46°C (exterior)', range_aquec:'-15°C a +18°C (exterior)',
+    som_int:'19 dB(A)', som_ext:'48 dB(A)',
+    awards:['award-epa-2021.jpg','award-epa-2022.jpg','award-if-2018.jpg','award-reddot-gooddesign.jpg'],
+    extras:['Disponível em 8 cores — integra em qualquer decoração','Fluxo de ar 360° (horizontal + vertical) — distribuição uniforme e silenciosa','I-Feel — sensor no telecomando','Flash Streamer — purificador de ar integrado'],
+  },
+  'Emura': {
+    refrigerante:'R32', garantia:'3 anos Daikin',
+    filtros:'Flash Streamer + filtro premium',
+    wifi:'Integrado de série — Daikin Online Controller App',
+    voz:'Amazon Alexa, Google Home',
+    range_arref:'-10°C a +46°C (exterior)', range_aquec:'-15°C a +18°C (exterior)',
+    som_int:'19 dB(A)', som_ext:'46 dB(A)',
+    awards:['award-emura-if-2022.jpg','award-emura-reddot-2022.jpg'],
+    extras:['Design icónico premiado — o aparelho mais elegante do mercado','I-Feel — sensor no telecomando mede temperatura real na posição do utilizador','Flash Streamer — purificador de ar integrado','Fluxo de ar suave e silencioso a 19 dB(A)'],
+  },
+};
 
 /* ═══════════════════════════════════════════
    STATE
@@ -1425,6 +1571,7 @@ async function gerarOrcamentoAC() {
   const opcoes = opcaoGroups.map(g => {
     const itens   = g.items.map(it => ({
       descricao: it.opcao.titulo,
+      series: it.opcao.series,
       qty: it.qty,
       pvp_unitario: it.opcao.pvp_unitario,
       pvp_total: it.opcao.pvp_unitario * it.qty,
@@ -1615,6 +1762,100 @@ async function gerarOrcamentoServicos() {
 }
 
 /* ═══════════════════════════════════════════
+   ANEXO — GERAÇÃO DO HTML
+═══════════════════════════════════════════ */
+function buildAnnex(opcoes) {
+  if (!opcoes || opcoes.length === 0) return '';
+
+  const BRAND_LOGOS = { daikin:'../assets/logo-daikin.jpg', bosch:'../assets/logo-bosch.jpg', daitsu:'../assets/logo-daitsu.jpg' };
+  function brandOf(series) {
+    if (['ARTIC','FREE MAX ARTIC'].some(s => series === s)) return 'daitsu';
+    if (series.startsWith('Climate') || series.startsWith('Multi 3') || series.startsWith('Multi 6')) return 'bosch';
+    return 'daikin';
+  }
+  function effSeries(series) { return GALLERY_MAP[series] || series; }
+
+  // Colecionar séries únicas (ordem de aparição)
+  const seen = new Set();
+  const seriesList = [];
+  opcoes.forEach(op => {
+    (op.itens || []).forEach(it => {
+      const s = it.series || op.series;
+      if (s && !seen.has(s)) { seen.add(s); seriesList.push(s); }
+    });
+    if (op.series && !seen.has(op.series)) { seen.add(op.series); seriesList.push(op.series); }
+  });
+
+  if (seriesList.length === 0) return '';
+
+  let html = `<div class="annex-sep">
+    <div><div class="annex-sep-title">Anexo — Fichas de Produto</div>
+    <div class="annex-sep-sub">Especificações técnicas e galeria de imagens dos modelos propostos</div></div>
+  </div>`;
+
+  seriesList.forEach((series, idx) => {
+    const eff     = effSeries(series);
+    const brand   = brandOf(series);
+    const logoSrc = BRAND_LOGOS[brand];
+    const gallery = GALLERY[eff] || GALLERY[series] || [];
+    const specs   = ANNEX_SPECS[eff] || ANNEX_SPECS[series] || {};
+    const feats   = getFeatures(eff) || getFeatures(series) || [];
+    const pitch   = getPitch(eff) || getPitch(series) || '';
+
+    const photosHtml = gallery.map(f =>
+      `<div class="annex-photo"><img src="../assets/products/${f}" alt="${series}" onerror="this.parentElement.style.display='none'"></div>`
+    ).join('');
+
+    const specsRows = [
+      ['Refrigerante', specs.refrigerante],
+      ['Filtros / Purificação', specs.filtros],
+      ['Conectividade', specs.wifi],
+      ['Controlo de voz', specs.voz && specs.voz !== '—' ? specs.voz : null],
+      ['Temp. op. arrefecimento', specs.range_arref],
+      ['Temp. op. aquecimento', specs.range_aquec],
+      ['Ruído interior (mín.)', specs.som_int],
+      ['Ruído exterior', specs.som_ext],
+      ['Garantia', specs.garantia],
+    ].filter(([,v]) => v).map(([k,v]) =>
+      `<tr><td>${k}</td><td>${v}</td></tr>`
+    ).join('');
+
+    const awardsHtml = (specs.awards || []).length > 0
+      ? `<div class="annex-awards"><span style="font-size:7pt;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:.3pt;margin-right:4pt;">Prémios</span>${specs.awards.map(a => `<img class="annex-award" src="../assets/products/${a}" alt="award" onerror="this.style.display='none'">`).join('')}</div>`
+      : '';
+
+    const extrasHtml = (specs.extras || []).length > 0
+      ? `<div class="annex-extras"><div class="annex-extras-title">Destaques adicionais</div><ul class="annex-feats">${specs.extras.map(e => `<li>✦ ${e}</li>`).join('')}</ul></div>`
+      : '';
+
+    html += `<div class="annex-sheet"${idx > 0 ? ' style="page-break-before:always"' : ''}>
+      <div class="annex-sh">
+        ${logoSrc ? `<img class="annex-sh-logo" src="${logoSrc}" alt="${brand}">` : ''}
+        <span class="annex-sh-name">${brand.charAt(0).toUpperCase()+brand.slice(1)} ${series}</span>
+      </div>
+      <div class="annex-sb">
+        ${photosHtml ? `<div class="annex-photos">${photosHtml}</div>` : ''}
+        <div class="annex-cols">
+          <div class="annex-specs-col">
+            <div class="annex-col-title">Especificações Técnicas</div>
+            <table class="annex-specs"><tbody>${specsRows}</tbody></table>
+            ${awardsHtml}
+          </div>
+          <div class="annex-feat-col">
+            <div class="annex-col-title">Características Principais</div>
+            <ul class="annex-feats">${feats.map(f => `<li>${f}</li>`).join('')}</ul>
+            ${extrasHtml}
+          </div>
+        </div>
+        ${pitch ? `<div class="annex-pitch">${pitch}</div>` : ''}
+      </div>
+    </div>`;
+  });
+
+  return html;
+}
+
+/* ═══════════════════════════════════════════
    GUARDAR & IMPRIMIR
 ═══════════════════════════════════════════ */
 async function salvarEImprimir(payload) {
@@ -1781,7 +2022,8 @@ function preencherPrintArea(orc) {
       </div>`;
   }
 
-  document.getElementById('print-area').innerHTML = header + body + aceitacao + footer;
+  const annex = (orc.opcoes && orc.opcoes.length > 0) ? buildAnnex(orc.opcoes) : '';
+  document.getElementById('print-area').innerHTML = header + body + aceitacao + footer + annex;
 }
 
 function reimprimir(orcJson) {
