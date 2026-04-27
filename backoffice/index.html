@@ -1955,7 +1955,8 @@ function preencherPrintArea(orc) {
       const showTotal = itens.length > 1 || op.desconto > 0 || op.instalacao > 0;
       let breakdown = '';
       itens.forEach(item => {
-        breakdown += `<div class="pob-line"><span>${item.qty > 1 ? item.qty + '× ' : ''}${item.descricao}</span><span>${fmt(item.pvp_total || item.pvp_unitario)}</span></div>`;
+        const priceCol = showTotal ? `<span>${fmt(item.pvp_total || item.pvp_unitario)}</span>` : '';
+        breakdown += `<div class="pob-line"><span>${item.qty > 1 ? item.qty + '× ' : ''}${item.descricao}</span>${priceCol}</div>`;
       });
       if (op.desconto > 0) breakdown += `<div class="pob-discount"><span>Desconto ${op.desconto}%</span><span>- ${fmt(descVal)}</span></div>`;
       if (op.instalacao > 0) breakdown += `<div class="pob-line"><span>Instalação e montagem</span><span>${fmt(op.instalacao)}</span></div>`;
@@ -1969,6 +1970,7 @@ function preencherPrintArea(orc) {
             <span class="po-letra">${op.letra}</span>
             ${logoSrc ? `<img class="po-brand" src="${logoSrc}" alt="${op.marca}">` : `<span style="font-weight:800;font-size:11pt">${op.marca}</span>`}
             <span class="po-title">${op.titulo}${specsLine ? ' <span style="font-size:9pt;opacity:.85">· ' + specsLine + '</span>' : ''}</span>
+            <span class="po-total">${fmt(op.total_com_iva)}</span>
           </div>
           <div class="po-body">
             <div class="po-cols">
