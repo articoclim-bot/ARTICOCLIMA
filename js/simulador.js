@@ -1585,16 +1585,16 @@ function updateLiveTotal() {
 
   const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
   if (!validRooms.length) {
-    el.textContent = '€ —';
+    el.textContent = t('Configure as suas divisões');
     return;
   }
 
   const config = calcSystemConfig(state.brand, state.rooms);
   if (!config || !config.total) {
-    el.textContent = '€ —';
+    el.textContent = t('Configure as suas divisões');
     return;
   }
-  el.textContent = fmtPrice(config.total);
+  el.textContent = t('Sistema configurado ✓');
 }
 
 // ============================================================
@@ -1710,7 +1710,7 @@ function buildMonoAltBox(monoAlt) {
     const colorLabel = (series && series.colorPrices && color && color !== 'white')
       ? (t(COLOR_LABELS[color]) || '') : '';
     const displayName = colorLabel ? `${label} ${colorLabel}` : label;
-    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${escHtml(displayName)}</span><span>${fmtPrice(price)}</span></div>`;
+    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${escHtml(displayName)}</span></div>`;
   });
   return `
 <div class="sim-multi-suggest standard">
@@ -1720,10 +1720,9 @@ function buildMonoAltBox(monoAlt) {
       <div class="sim-multi-suggest__title">${t('Alternativa Monosplit')} <span class="sim-ms-tag">🔧 Individual</span></div>
       <div class="sim-multi-suggest__sub">${t('Uma unidade exterior por cada interior — total independência por divisão')}</div>
     </div>
-    <div class="sim-multi-suggest__total">${fmtPrice(monoAlt.total)}</div>
   </div>
   <div class="sim-multi-suggest__rows">${rows}</div>
-  <div class="sim-multi-suggest__note">${t('IVA incluído · Excl. instalação · Gama de entrada por divisão')}</div>
+  <div class="sim-multi-suggest__note">${t('Inclua esta alternativa no seu pedido de orçamento')}</div>
 </div>`;
 }
 
@@ -1731,28 +1730,26 @@ function buildMonoAltBox(monoAlt) {
 function buildCheapMultiAltBox(cheapMulti, savings) {
   const isSensira = cheapMulti.multiSystemType === 'sensira';
   const seriesLabel = isSensira ? 'Sensira (CTXF + MXF)' : 'Perfera (FTXM + MXM)';
-  const savingsText = `−${fmtPrice(savings)} vs. a sua escolha`;
   let rows = '';
   (cheapMulti.indoorUnits || []).forEach(({ room, unit }) => {
     const label = getMultiSeriesLabel(state.brand, unit.model);
-    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${label} · ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
+    rows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${label} · ${unit.model}</span></div>`;
   });
   if (cheapMulti.outdoor) {
     const ou = cheapMulti.outdoor;
-    rows += `<div class="sim-ms-row"><span>${t('Exterior partilhado — ')}${ou.model} (${ou.zones} ${t('zonas')} · ${ou.kw} kW)</span><span>${fmtPrice(ou.pvp)}</span></div>`;
+    rows += `<div class="sim-ms-row"><span>${t('Exterior partilhado — ')}${ou.model} (${ou.zones} ${t('zonas')} · ${ou.kw} kW)</span></div>`;
   }
   return `
 <div class="sim-multi-suggest">
   <div class="sim-multi-suggest__header">
     <span class="sim-multi-suggest__icon">💸</span>
     <div>
-      <div class="sim-multi-suggest__title">${t('Multisplit mais económico')} <span class="sim-ms-tag">${savingsText}</span></div>
+      <div class="sim-multi-suggest__title">${t('Alternativa mais económica')} <span class="sim-ms-tag">💰 Budget</span></div>
       <div class="sim-multi-suggest__sub">${t('Mesma unidade exterior partilhada — interiores mais económicos · ')}${seriesLabel}</div>
     </div>
-    <div class="sim-multi-suggest__total">${fmtPrice(cheapMulti.total)}</div>
   </div>
   <div class="sim-multi-suggest__rows">${rows}</div>
-  <div class="sim-multi-suggest__note">${t('IVA incluído · Excl. instalação · Peça orçamento para confirmar compatibilidade')}</div>
+  <div class="sim-multi-suggest__note">${t('Inclua esta alternativa no seu pedido de orçamento para comparação')}</div>
 </div>`;
 }
 
@@ -1764,11 +1761,11 @@ function buildMultiSuggestBox(ms) {
   const msTag = isSensira ? '💸 Budget' : '⭐ Padrão';
   let msRows = '';
   (ms.indoorUnits || []).forEach(({ room, unit }) => {
-    msRows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
+    msRows += `<div class="sim-ms-row"><span>${escHtml(room.name)} — ${unit.model}</span></div>`;
   });
   if (ms.outdoor) {
     const ou = ms.outdoor;
-    msRows += `<div class="sim-ms-row"><span>Exterior partilhado — ${ou.model} (${ou.zones} zonas · ${ou.kw} kW)</span><span>${fmtPrice(ou.pvp)}</span></div>`;
+    msRows += `<div class="sim-ms-row"><span>Exterior partilhado — ${ou.model} (${ou.zones} zonas · ${ou.kw} kW)</span></div>`;
   }
   return `
 <div class="sim-multi-suggest${isSensira ? '' : ' standard'}">
@@ -1778,10 +1775,9 @@ function buildMultiSuggestBox(ms) {
       <div class="sim-multi-suggest__title">${t('Alternativa Multisplit')} <span class="sim-ms-tag">${msTag}</span></div>
       <div class="sim-multi-suggest__sub">${t('Mesmo com modelos diferentes, pode instalar uma unidade exterior partilhada · ')}${msLabel}</div>
     </div>
-    <div class="sim-multi-suggest__total">${fmtPrice(ms.total)}</div>
   </div>
   <div class="sim-multi-suggest__rows">${msRows}</div>
-  <div class="sim-multi-suggest__note">${t('IVA incluído · Excl. instalação · Peça-nos orçamento para confirmar compatibilidade')}</div>
+  <div class="sim-multi-suggest__note">${t('Inclua esta alternativa no seu pedido de orçamento para confirmar compatibilidade')}</div>
 </div>`;
 }
 
@@ -1829,7 +1825,6 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     <div class="sim-res-row__specs">${btuLabel(tier)} · ${kwLabel(tier)}${modelNum ? ' · ' + modelNum : ''}</div>
     <span class="sim-res-row__badge ${badgeClass}">${badgeText}</span>
   </div>
-  <div class="sim-res-row__price">${fmtPrice(price)}</div>
 </div>`;
   });
 
@@ -1861,7 +1856,6 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     <div class="sim-res-row__specs">${btuLabel(unit.btu)} · ${unit.kw} kW · ${unit.model}</div>
     <span class="sim-res-row__badge">${multiBadge}</span>
   </div>
-  <div class="sim-res-row__price">${fmtPrice(unit.pvp)}</div>
 </div>`;
   });
 
@@ -1877,7 +1871,6 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     <div class="sim-res-row__model">${ou.model}</div>
     <div class="sim-res-row__specs">${ou.zones} ${t('zonas')} · ${ou.kw} kW${multiNames ? ` · ${t('para: ')}` + multiNames : ''}</div>
   </div>
-  <div class="sim-res-row__price">${fmtPrice(ou.pvp)}</div>
 </div>`;
   }
 
@@ -1906,12 +1899,12 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     </div>
   </div>
   ${rowsHtml}
-  <div class="sim-res-total">
-    <span class="sim-res-total__label">${t('Total equipamentos')}</span>
-    <span class="sim-res-total__value">${fmtPrice(config.total)}</span>
+  <div class="sim-res-cta">
+    <p class="sim-res-cta__text">${t('Sistema recomendado para o seu espaço. Solicite um orçamento sem compromisso e respondemos brevemente.')}</p>
+    <button class="btn btn--primary btn--lg sim-res-cta__btn" onclick="openQuoteModal()">${t('Solicitar Orçamento Personalizado →')}</button>
   </div>
 </div>
-<p class="sim-res-disclaimer">${t('IVA incluído · Exclui instalação, suportes e materiais')}</p>
+<p class="sim-res-disclaimer">${t('Recomendação baseada na área e orientação das suas divisões · Orçamento final após visita técnica')}</p>
 ${cheapMultiAltHtml}${monoAltHtml}`;
 }
 
@@ -1931,19 +1924,18 @@ function buildAltBrandsHTML() {
     let detailRows = '';
     if (cfg.system === 'multi' && cfg.indoorUnits) {
       cfg.indoorUnits.forEach(({ room, unit }) => {
-        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${unit.model}</span><span>${fmtPrice(unit.pvp)}</span></div>`;
+        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${unit.model}</span></div>`;
       });
       if (cfg.outdoor) {
-        detailRows += `<div class="sim-alt-detail-row"><span>${t('Exterior: ')}${cfg.outdoor.model}</span><span>${fmtPrice(cfg.outdoor.pvp)}</span></div>`;
+        detailRows += `<div class="sim-alt-detail-row"><span>${t('Exterior: ')}${cfg.outdoor.model}</span></div>`;
       }
     } else if (cfg.rooms) {
       cfg.rooms.forEach(({ room, seriesKey, price }) => {
         const catalog = getBrandCatalog(brand);
         const label = catalog[seriesKey] ? catalog[seriesKey].label : seriesKey;
-        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${label}</span><span>${fmtPrice(price)}</span></div>`;
+        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${label}</span></div>`;
       });
     }
-    detailRows += `<div class="sim-alt-detail-total"><span>${t('Total equipamentos')}</span><span>${fmtPrice(cfg.total)}</span></div>`;
 
     return `
 <div class="sim-alt-card" id="alt-${brand}">
@@ -1951,7 +1943,7 @@ function buildAltBrandsHTML() {
     <div class="sim-alt-card__icon">💡</div>
     <div class="sim-alt-card__info">
       <div class="sim-alt-card__text">A <strong>${brandName}</strong>${t(' também resolve esta necessidade')}</div>
-      <div class="sim-alt-card__price">${t('desde ')}${fmtPrice(cfg.total)}</div>
+      <div class="sim-alt-card__price">${t('Peça orçamento para comparar')}</div>
     </div>
     <button class="sim-alt-card__toggle">${t('Ver detalhes ▾')}</button>
   </div>

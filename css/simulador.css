@@ -608,12 +608,30 @@
   font-size: 1.5rem;
   color: var(--primary);
 }
+/* CTA block replacing total price */
+.sim-res-cta {
+  padding: 24px;
+  background: #fff7ed;
+  border-top: 2px solid var(--gray-light);
+  text-align: center;
+}
+.sim-res-cta__text {
+  font-size: .88rem;
+  color: var(--dark);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.sim-res-cta__btn {
+  width: 100%;
+  max-width: 380px;
+}
+
 .sim-res-disclaimer {
   font-size: .73rem;
   color: var(--gray);
   text-align: right;
   padding: 6px 24px 14px;
-  background: #fff7ed;
+  background: transparent;
   border-radius: 0;
   margin-bottom: 20px;
 }
