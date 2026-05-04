@@ -445,17 +445,12 @@
             '<div class="r-val r-val--accent">' + fmt(savingsYear) + ' €/ano</div>' +
             '<div class="r-sub">≈ ' + fmt(savingsYear / 12) + ' € por mês</div>' +
           '</div>' +
-          '<div class="r-row">' +
-            '<div class="r-lbl">Dedução IRS estimada</div>' +
-            '<div class="r-val">' + fmt(irs) + ' €</div>' +
-            '<div class="r-sub">30% do equipamento, máx. 700 €</div>' +
-          '</div>' +
           '<div class="r-sys">' +
             '<strong>Sistema recomendado</strong>' +
-            system.name + ' — ' + fmt(system.price) + ' €' +
+            system.name +
           '</div>' +
-          '<div class="r-badge">Custo líquido após IRS: <strong>' + fmt(netCost) + ' €</strong>. Payback estimado: <strong>' + fmtD(payback, 1) + ' anos</strong>.<br>Em 25 anos (vida útil), poupança acumulada: <strong>' + fmt(savingsYear * 25) + ' €</strong>.</div>' +
-          '<a href="catalogo-solar.html" class="btn btn--primary">Ver sistemas solares →</a>' +
+          '<div class="r-badge">Beneficia de dedução IRS de 30% (máx. 700 €).<br>Em 25 anos (vida útil), poupança acumulada: <strong>' + fmt(savingsYear * 25) + ' €</strong>.</div>' +
+          '<a href="index.html#contacto" class="btn btn--primary">Solicitar Orçamento Personalizado →</a>' +
         '</div>';
 
       addMsg(html, false);
