@@ -880,7 +880,7 @@ function renderRoomHTML(room) {
     } else if (seriesKey) {
       price = getMonoPrice(state.brand, seriesKey, tier, room.color);
     }
-    metaText = `${room.areaM2}m² · ${btuLabel(tier)}${modelName ? ' · ' + modelName : ''}${price ? ' · ' + fmtPrice(price) : ''}`;
+    metaText = `${room.areaM2}m² · ${btuLabel(tier)}${modelName ? ' · ' + modelName : ''}`;
     hasMeta = true;
   }
 
@@ -1037,7 +1037,6 @@ function renderRoomModelCard(room) {
         <div class="sim-rm__btu">${modelNum ? modelNum + ' · ' : ''}${kwLabel(tier)}</div>
         <span class="sim-rm__type-badge ${badgeClass === 'individual' ? 'individual' : ''}">${badgeText}</span>
       </div>
-      <div class="sim-rm__price">${fmtPrice(price)}</div>
     </div>
     ${hasColors ? `<div class="sim-rm__colors" id="rm-colors-${room.id}">
       <span class="sim-rm__colors-label">${t('Cor:')}</span>
@@ -1085,7 +1084,7 @@ function updateRoomHeader(id) {
     }
   }
 
-  metaEl.textContent = `${room.areaM2}m² · ${btuLabel(tier)}${modelName ? ' · ' + modelName : ''}${price ? ' · ' + fmtPrice(price) : ''}`;
+  metaEl.textContent = `${room.areaM2}m² · ${btuLabel(tier)}${modelName ? ' · ' + modelName : ''}`;
   metaEl.classList.add('has-data');
 }
 
@@ -1410,12 +1409,9 @@ function buildPickerCards(room, tier) {
 }
 
 function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker = '', features }) {
-  let diffText;
-  if (diff === 0) {
-    diffText = `<div class="smp-card__diff base"><span class="smp-diff-tag base">${t('★ Mais económico')}</span></div>`;
-  } else {
-    diffText = `<div class="smp-card__diff"><span class="smp-diff-tag plus">+${fmtPrice(diff)}</span> <span class="smp-diff-vs">${t('vs. opção base')}</span></div>`;
-  }
+  const diffText = diff === 0
+    ? `<div class="smp-card__diff base"><span class="smp-diff-tag base">${t('★ Mais económico')}</span></div>`
+    : '';
 
   const badgeHtml = badge ? `<div class="smp-card__badge ${badgeClass || ''}">${badge}</div>` : '';
   const checkHtml = isSelected ? `<div class="smp-card__check">✓</div>` : '';
@@ -1439,8 +1435,6 @@ function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs
     <div class="smp-card__series">${series}</div>
     <div class="smp-card__specs">${specs}</div>
     ${featHtml}
-    <div class="smp-card__price">${fmtPrice(price)}</div>
-    <div class="smp-card__price-note">${priceNote}</div>
     ${diffText}
   </div>
   ${colorPicker}
@@ -1482,9 +1476,6 @@ function setPickerColor(roomId, seriesKey, color, btnEl) {
   const catalog = getBrandCatalog(state.brand);
   const series = catalog[seriesKey];
   if (series && series.colorPrices && card) {
-    const price = series.colorPrices[color]?.[tier] || series.prices[tier] || 0;
-    const priceEl = card.querySelector('.smp-card__price');
-    if (priceEl) priceEl.textContent = fmtPrice(price);
     // Update image
     const imgEl = card.querySelector('.smp-card__img');
     if (imgEl && series.images && !Array.isArray(series.images)) {
@@ -2040,8 +2031,7 @@ function buildQuoteText(data) {
   }
 
   lines.push('');
-  if (config) lines.push(`💰 *Total equipamentos: ${fmtPrice(config.total)}*`);
-  lines.push('_(IVA incluído · Excl. instalação e materiais)_');
+  lines.push('_(Orçamento detalhado enviado em breve)_');
   lines.push('');
   lines.push(`👤 Nome: ${data.name}`);
   lines.push(`📞 Contacto: ${data.contact}`);
@@ -2160,11 +2150,7 @@ function generatePDF() {
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(80, 80, 80);
     doc.text(`${entry.desc}  ·  ${btuLabel(entry.btu)}  ·  ${entry.badge}`, margin + 4, y);
-    y += 5;
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(249, 115, 22);
-    doc.text(fmtPrice(entry.price), pageW - margin, y - 5, { align: 'right' });
-    y += 4;
+    y += 9;
   });
 
   if (config && config.outdoor) {
@@ -2179,9 +2165,6 @@ function generatePDF() {
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(80, 80, 80);
     doc.text(`${ou.model}  ·  ${ou.zones} zonas  ·  ${ou.kw} kW`, margin + 4, y);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(249, 115, 22);
-    doc.text(fmtPrice(ou.pvp), pageW - margin, y, { align: 'right' });
     y += 8;
   }
 
@@ -2190,16 +2173,12 @@ function generatePDF() {
   doc.setFontSize(14);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(28, 28, 30);
-  doc.text('Total equipamentos:', margin, y);
-  if (config) {
-    doc.setTextColor(249, 115, 22);
-    doc.text(fmtPrice(config.total), pageW - margin, y, { align: 'right' });
-  }
+  doc.text('Configuração recomendada para orçamento', margin, y);
   y += 7;
   doc.setFontSize(8);
   doc.setFont('helvetica', 'italic');
   doc.setTextColor(130, 130, 130);
-  doc.text('IVA incluído · Exclui instalação, suportes e materiais', margin, y);
+  doc.text('Orçamento final após visita técnica · Exclui instalação, suportes e materiais', margin, y);
   y += 12;
 
   checkPage(16);
