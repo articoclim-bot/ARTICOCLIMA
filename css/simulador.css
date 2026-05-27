@@ -93,8 +93,10 @@
   filter: grayscale(1) brightness(.4);
   transition: filter .2s;
 }
-.sim-brand-btn.active .sim-brand-img,
 .sim-brand-btn:hover .sim-brand-img {
+  filter: brightness(0) saturate(100%) invert(57%) sepia(91%) saturate(5272%) hue-rotate(341deg) brightness(103%);
+}
+.sim-brand-btn.active .sim-brand-img {
   filter: brightness(0) invert(1);
 }
 

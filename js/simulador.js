@@ -1756,7 +1756,7 @@ function buildMultiSuggestBox(ms) {
   });
   if (ms.outdoor) {
     const ou = ms.outdoor;
-    msRows += `<div class="sim-ms-row"><span>Exterior partilhado — ${ou.model} (${ou.zones} zonas · ${ou.kw} kW)</span></div>`;
+    msRows += `<div class="sim-ms-row"><span>${t('Exterior partilhado — ')}${ou.model} (${ou.zones} ${t('zonas')} · ${ou.kw} kW)</span></div>`;
   }
   return `
 <div class="sim-multi-suggest${isSensira ? '' : ' standard'}">

@@ -271,6 +271,13 @@ const TRANSLATIONS = {
     'IVA incluído · Excl. instalação · Gama de entrada por divisão': 'VAT included · Excl. installation · Entry-level range per room',
     'Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.': 'Fill in the details for at least one room before requesting a quote.',
     'Por favor indique o seu nome e contacto.': 'Please enter your name and contact details.',
+    'Inclua esta alternativa no seu pedido de orçamento': 'Include this alternative in your quote request',
+    'Inclua esta alternativa no seu pedido de orçamento para comparação': 'Include this alternative in your quote request for comparison',
+    'Inclua esta alternativa no seu pedido de orçamento para confirmar compatibilidade': 'Include this alternative in your quote request to confirm compatibility',
+    'Sistema recomendado para o seu espaço. Solicite um orçamento sem compromisso e respondemos brevemente.': 'Recommended system for your space. Request a no-obligation quote and we\'ll get back to you shortly.',
+    'Solicitar Orçamento Personalizado →': 'Request Personalised Quote →',
+    'Recomendação baseada na área e orientação das suas divisões · Orçamento final após visita técnica': 'Recommendation based on your room dimensions and orientation · Final quote after site visit',
+    'Peça orçamento para comparar': 'Request a quote to compare',
   },
 
   fr: {
@@ -539,6 +546,13 @@ const TRANSLATIONS = {
     'IVA incluído · Excl. instalação · Gama de entrada por divisão': 'TVA incluse · Hors installation · Gamme d\'entrée par pièce',
     'Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.': 'Remplissez les données d\'au moins une pièce avant de demander un devis.',
     'Por favor indique o seu nome e contacto.': 'Veuillez indiquer votre nom et votre contact.',
+    'Inclua esta alternativa no seu pedido de orçamento': 'Incluez cette alternative dans votre demande de devis',
+    'Inclua esta alternativa no seu pedido de orçamento para comparação': 'Incluez cette alternative dans votre demande de devis pour comparaison',
+    'Inclua esta alternativa no seu pedido de orçamento para confirmar compatibilidade': 'Incluez cette alternative dans votre demande de devis pour confirmer la compatibilité',
+    'Sistema recomendado para o seu espaço. Solicite um orçamento sem compromisso e respondemos brevemente.': 'Système recommandé pour votre espace. Demandez un devis sans engagement et nous vous répondrons rapidement.',
+    'Solicitar Orçamento Personalizado →': 'Demander un Devis Personnalisé →',
+    'Recomendação baseada na área e orientação das suas divisões · Orçamento final após visita técnica': 'Recommandation basée sur la superficie et l\'orientation de vos pièces · Devis final après visite technique',
+    'Peça orçamento para comparar': 'Demandez un devis pour comparer',
   },
 
   es: {
@@ -805,6 +819,13 @@ const TRANSLATIONS = {
     'IVA incluído · Excl. instalação · Gama de entrada por divisão': 'IVA incluido · Excl. instalación · Gama de entrada por habitación',
     'Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.': 'Rellene los datos de al menos una habitación antes de solicitar presupuesto.',
     'Por favor indique o seu nome e contacto.': 'Por favor indique su nombre y contacto.',
+    'Inclua esta alternativa no seu pedido de orçamento': 'Incluya esta alternativa en su solicitud de presupuesto',
+    'Inclua esta alternativa no seu pedido de orçamento para comparação': 'Incluya esta alternativa en su solicitud de presupuesto para comparación',
+    'Inclua esta alternativa no seu pedido de orçamento para confirmar compatibilidade': 'Incluya esta alternativa en su solicitud de presupuesto para confirmar compatibilidad',
+    'Sistema recomendado para o seu espaço. Solicite um orçamento sem compromisso e respondemos brevemente.': 'Sistema recomendado para su espacio. Solicite un presupuesto sin compromiso y le responderemos en breve.',
+    'Solicitar Orçamento Personalizado →': 'Solicitar Presupuesto Personalizado →',
+    'Recomendação baseada na área e orientação das suas divisões · Orçamento final após visita técnica': 'Recomendación basada en el área y orientación de sus habitaciones · Presupuesto final tras visita técnica',
+    'Peça orçamento para comparar': 'Solicite presupuesto para comparar',
   },
 
   de: {
@@ -1071,6 +1092,13 @@ const TRANSLATIONS = {
     'IVA incluído · Excl. instalação · Gama de entrada por divisão': 'MwSt. inkl. · Ohne Installation · Einstiegssortiment pro Raum',
     'Preencha os dados de pelo menos uma divisão antes de solicitar orçamento.': 'Füllen Sie die Details für mindestens einen Raum aus, bevor Sie ein Angebot anfordern.',
     'Por favor indique o seu nome e contacto.': 'Bitte geben Sie Ihren Namen und Kontakt an.',
+    'Inclua esta alternativa no seu pedido de orçamento': 'Nehmen Sie diese Alternative in Ihre Angebotsanfrage auf',
+    'Inclua esta alternativa no seu pedido de orçamento para comparação': 'Nehmen Sie diese Alternative zum Vergleich in Ihre Angebotsanfrage auf',
+    'Inclua esta alternativa no seu pedido de orçamento para confirmar compatibilidade': 'Nehmen Sie diese Alternative in Ihre Angebotsanfrage auf, um die Kompatibilität zu bestätigen',
+    'Sistema recomendado para o seu espaço. Solicite um orçamento sem compromisso e respondemos brevemente.': 'Empfohlenes System für Ihren Raum. Fordern Sie ein unverbindliches Angebot an und wir antworten Ihnen bald.',
+    'Solicitar Orçamento Personalizado →': 'Persönliches Angebot Anfordern →',
+    'Recomendação baseada na área e orientação das suas divisões · Orçamento final após visita técnica': 'Empfehlung basierend auf Raumgröße und -ausrichtung · Endangebot nach technischem Besuch',
+    'Peça orçamento para comparar': 'Angebot zum Vergleich anfordern',
   },
 };
 
