@@ -373,11 +373,11 @@ function getMultiIndoorUnit(brand, tier) {
 // Devolve a unidade interior correcta para um room multi, respeitando o multiType e cor.
 // Se a escolha não é explícita, usa getEffectiveMultiType para determinar o tipo óptimo.
 // pvp já inclui ajuste de cor (para Stylish/Emura).
-function getMultiIndoorForRoom(room, tier) {
-  if (state.brand === 'bosch' && room.multiType === '6000i' && room.multiTypeExplicit) {
+function getMultiIndoorForRoom(room, tier, brand = state.brand) {
+  if (brand === 'bosch' && room.multiType === '6000i' && room.multiTypeExplicit) {
     return BOSCH_6000I_MULTI_INDOOR.find(u => u.btu >= tier) || BOSCH_6000I_MULTI_INDOOR[BOSCH_6000I_MULTI_INDOOR.length - 1] || null;
   }
-  if (state.brand !== 'daikin') return getMultiIndoorUnit(state.brand, tier);
+  if (brand !== 'daikin') return getMultiIndoorUnit(brand, tier);
   const mt = room.multiTypeExplicit
     ? (room.multiType || 'standard')
     : getEffectiveMultiType(room, state.rooms);
@@ -452,7 +452,7 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
   const indoorUnits = multiRoomsWithTier.map(r => {
     let unit;
     if (brand === 'daikin' || brand === 'bosch') {
-      unit = getMultiIndoorForRoom(r, r.tier);
+      unit = getMultiIndoorForRoom(r, r.tier, brand);
     } else {
       const indoorList = getMultiIndoorList(brand);
       unit = indoorList.find(u => u.btu >= r.tier) || indoorList[indoorList.length - 1];
