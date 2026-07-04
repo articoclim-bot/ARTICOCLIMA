@@ -445,6 +445,7 @@
 
     /* ── Cover page ── */
     .cover { page-break-after: always; min-height: 257mm; display: flex; flex-direction: column; position: relative; overflow: hidden; z-index: 1; }
+    @media print { .pf-fixed { display: none !important; } }
     .cover-top { background: #f97316; height: 8pt; width: 100%; }
     .cover-body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40pt 30pt; gap: 0; }
     .cover-logo { height: 72pt; object-fit: contain; margin-bottom: 32pt; }
@@ -1296,11 +1297,13 @@ const GALLERY = {
   'Climate 3200i':  ['bosch-3200i-new-2.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg','bosch-3200i-new-5.jpg','bosch-3200i-new-6.jpg'],
   'Climate 6000i':  ['bosch-6000i-2.webp','bosch-6000i-2.webp','bosch-6000i-3.webp','bosch-6000i-4.webp'],
   'Climate 7000i':  ['bosch-7000i-branco-2.webp','bosch-7000i-branco-2.webp','bosch-7000i-branco-3.webp','bosch-7000i-silver-1.webp','bosch-7000i-silver-2.webp','bosch-7000i-silver-3.webp','bosch-7000i-black-1.webp','bosch-7000i-black-2.webp','bosch-7000i-black-3.webp'],
-  'Sensira':        ['daikin-sensira-1.webp','daikin-sensira-2.webp','daikin-sensira-3.webp'],
-  'Confora':        ['daikin-confora-1.webp','daikin-confora-2.webp','daikin-confora-3.webp'],
-  'Perfera':        ['daikin-perfera-1.webp','daikin-perfera-2.webp','daikin-perfera-3.webp','daikin-perfera-4.jpg'],
-  'Stylish':        ['daikin-stylish-branco-1.webp','daikin-stylish-branco-2.webp','daikin-stylish-branco-3.webp','daikin-stylish-branco-4.webp','daikin-stylish-branco-2.webp','daikin-stylish-branco-6.webp','daikin-stylish-silver-1.webp','daikin-stylish-black-2.webp','daikin-stylish-novas-cores.jpg'],
-  'Emura':          ['daikin-emura-branco-1.webp','daikin-emura-branco-2.webp','daikin-emura-branco-3.webp','daikin-emura-branco-4.webp','daikin-emura-branco-5.webp','daikin-emura-branco-2.webp','daikin-emura-branco-7.webp','daikin-emura-silver-2.webp','daikin-emura-black-2.webp'],
+  'Sensira':        ['daikin-sensira-p1.jpg','daikin-sensira-p2.jpg','daikin-sensira-p3.jpg'],
+  'Confora':        ['daikin-confora-p1.jpg','daikin-confora-p2.jpg','daikin-confora-p3.jpg'],
+  'Perfera':        ['daikin-perfera-p1.jpg','daikin-perfera-p2.jpg','daikin-perfera-p3.jpg','daikin-perfera-p4.jpg'],
+  'Stylish':        ['daikin-stylish-branco-p1.webp','daikin-stylish-branco-p2.webp','daikin-stylish-branco-p3.webp'],
+  'Stylish Prateado': ['daikin-stylish-prata-p1.webp','daikin-stylish-prata-p2.webp','daikin-stylish-prata-p3.webp'],
+  'Stylish Preto':  ['daikin-stylish-preto-p1.webp','daikin-stylish-preto-p2.webp','daikin-stylish-preto-p3.webp'],
+  'Emura':          ['daikin-emura-branco-p1.webp','daikin-emura-branco-p2.webp','daikin-emura-branco-p3.webp','daikin-emura-branco-p4.webp'],
   // Bosch Climate 5000i — usa imagens do 3200i como placeholder até haver fotos dedicadas
   'Climate 5000i':  ['bosch-3200i-new-2.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg'],
   // Daikin Condutas FDXM — placeholder com imagens Daikin até haver fotos dedicadas
@@ -3099,13 +3102,29 @@ function buildSeriesSheet(series, lang) {
   };
   const A = AL[lang] || AL.pt;
 
-  const [hero, ...thumbs] = gallery;
-  const heroHtml = hero
-    ? `<img src="../assets/products/${hero}" alt="${series}" onerror="this.style.display='none'" style="width:100%;height:172pt;object-fit:contain;background:#f8f9fb;display:block;border-bottom:1pt solid #eee;">`
-    : '';
-  const thumbsHtml = thumbs.length > 0
-    ? `<div style="display:flex;gap:4pt;padding:6pt 10pt;border-bottom:1pt solid #eee;">${thumbs.map(f => `<div style="flex:1;"><img src="../assets/products/${f}" alt="${series}" onerror="this.parentElement.style.display='none'" style="width:100%;height:54pt;object-fit:contain;background:#f8f9fb;display:block;border:.5pt solid #eee;"></div>`).join('')}</div>`
-    : '';
+  // Grelha de fotos: imagem principal esquerda (55%), restantes em grid direita (45%)
+  const photosHtml = (() => {
+    if (!gallery.length) return '';
+    const [main, ...rest] = gallery;
+    const mainImg = `<img src="../assets/products/${main}" alt="${series}"
+      onerror="this.parentElement.style.display='none'"
+      style="width:100%;height:100%;object-fit:cover;display:block;">`;
+    const gridCols = rest.length >= 2 ? 'repeat(2,1fr)' : '1fr';
+    const restImgs = rest.slice(0, 4).map(f =>
+      `<div style="background:#f8f9fb;overflow:hidden;">
+        <img src="../assets/products/${f}" alt="${series}"
+          onerror="this.parentElement.style.display='none'"
+          style="width:100%;height:62pt;object-fit:contain;display:block;">
+      </div>`
+    ).join('');
+    const rightPanel = rest.length > 0
+      ? `<div style="flex:1;display:grid;grid-template-columns:${gridCols};gap:2pt;padding:2pt;background:#e8e9eb;">${restImgs}</div>`
+      : '';
+    return `<div style="display:flex;gap:0;border-bottom:1pt solid #eee;height:128pt;overflow:hidden;">
+      <div style="flex:0 0 ${rest.length ? '55%' : '100%'};background:#f8f9fb;overflow:hidden;">${mainImg}</div>
+      ${rightPanel}
+    </div>`;
+  })();
 
   const specsRows = [
     [A.refrig, specs.refrigerante],
@@ -3136,8 +3155,7 @@ function buildSeriesSheet(series, lang) {
       ${logoSrc ? `<img class="annex-sh-logo" src="${logoSrc}" alt="${brand}">` : ''}
       <span class="annex-sh-name">${brand.charAt(0).toUpperCase()+brand.slice(1)} ${series}</span>
     </div>
-    ${heroHtml}
-    ${thumbsHtml}
+    ${photosHtml}
     <div class="annex-sb">
       <div class="annex-cols">
         <div class="annex-specs-col">
