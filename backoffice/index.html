@@ -2298,6 +2298,10 @@ function changeGroupNotas(groupId, val) {
   const g = opcaoGroups.find(g => g.id === groupId);
   if (g) g.notas = val;
 }
+function changeGroupRec(groupId, val) {
+  const g = opcaoGroups.find(g => g.id === groupId);
+  if (g) g.rec = val;
+}
 
 function changeItemQty(groupId, itemIdx, val) {
   const g = opcaoGroups.find(g => g.id === groupId);
@@ -2776,6 +2780,17 @@ function updateFormAC() {
           style="width:100%;font-size:.82rem;padding:6px 8px;border:1px solid var(--border);border-radius:4px;resize:vertical;font-family:var(--font);"
           onchange="changeGroupNotas(${g.id}, this.value)"
           oninput="changeGroupNotas(${g.id}, this.value)">${g.notas || ''}</textarea>
+      </div>
+      <div style="padding:6px 0 0;">
+        <label style="font-size:.74rem;color:var(--muted);font-weight:600;display:block;margin-bottom:4px;">Selo de recomendação (opcional)</label>
+        <select style="font-size:.82rem;padding:5px 8px;border:1px solid var(--border);border-radius:4px;width:100%;"
+          onchange="changeGroupRec(${g.id}, this.value)">
+          <option value="" ${!g.rec ? 'selected' : ''}>— Sem selo —</option>
+          <option value="⭐ Melhor Relação Q/P" ${ g.rec === '⭐ Melhor Relação Q/P' ? 'selected' : ''}>⭐ Melhor Relação Q/P</option>
+          <option value="🏆 Mais Vendida" ${ g.rec === '🏆 Mais Vendida' ? 'selected' : ''}>🏆 Mais Vendida</option>
+          <option value="💎 Premium" ${ g.rec === '💎 Premium' ? 'selected' : ''}>💎 Premium</option>
+          <option value="✅ Recomendada" ${ g.rec === '✅ Recomendada' ? 'selected' : ''}>✅ Recomendada</option>
+        </select>
       </div>`;
     return `<div class="grupo-card ${g.id === activeGroupId ? 'is-active' : ''}">
       <div class="grupo-card-header" onclick="setActiveGroup(${g.id})">
@@ -2874,6 +2889,7 @@ async function gerarOrcamentoAC() {
       kw: totalKw, btu: totalBtu, classe: rep.classe,
       itens, instalacao: install || null, deslocacao: deslocacao || null, desconto, total_com_iva: total,
       notas_opcao: g.notas || null,
+      recomendacao: g.rec || null,
     };
   });
 
@@ -3052,6 +3068,94 @@ async function gerarOrcamentoServicos() {
 /* ═══════════════════════════════════════════
    ANEXO — GERAÇÃO DO HTML
 ═══════════════════════════════════════════ */
+function buildSeriesSheet(series, lang) {
+  if (!series) return '';
+
+  const BRAND_LOGOS = { daikin:'../assets/logo-daikin.jpg', bosch:'../assets/logo-bosch.jpg', daitsu:'../assets/logo-daitsu.jpg' };
+  function brandOf(s) {
+    if (s === 'ARTIC' || s.startsWith('FREE MAX')) return 'daitsu';
+    if (s.startsWith('Climate') || s.startsWith('Multi 3') || s.startsWith('Multi 6')) return 'bosch';
+    return 'daikin';
+  }
+
+  const eff     = GALLERY_MAP[series] || series;
+  const brand   = brandOf(series);
+  const logoSrc = BRAND_LOGOS[brand];
+  const gallery = GALLERY[eff] || GALLERY[series] || [];
+  const specs   = getAnnexSpecs(ANNEX_SPECS[eff] ? eff : series, lang);
+  const feats   = getFeatures(eff, lang) || getFeatures(series, lang) || [];
+  const pitch   = getPitch(eff, lang) || getPitch(series, lang) || '';
+
+  if (!gallery.length && !specs.refrigerante && !feats.length) return '';
+
+  const AL = {
+    pt:{specs:'Especificações Técnicas',feats:'Características Principais',extras:'Destaques adicionais',awards:'Prémios',refrig:'Refrigerante',filtros:'Filtros / Purificação',wifi:'Conectividade',voz:'Controlo de voz',arref:'Temp. op. arrefecimento',aquec:'Temp. op. aquecimento',ruido_int:'Ruído interior (mín.)',ruido_ext:'Ruído exterior',garantia:'Garantia'},
+    en:{specs:'Technical Specifications',feats:'Key Features',extras:'Additional Highlights',awards:'Awards',refrig:'Refrigerant',filtros:'Filters / Purification',wifi:'Connectivity',voz:'Voice Control',arref:'Cooling op. temp.',aquec:'Heating op. temp.',ruido_int:'Indoor noise (min.)',ruido_ext:'Outdoor noise',garantia:'Warranty'},
+    fr:{specs:'Caractéristiques Techniques',feats:'Points Clés',extras:'Points Supplémentaires',awards:'Récompenses',refrig:'Réfrigérant',filtros:'Filtres / Purification',wifi:'Connectivité',voz:'Commande vocale',arref:'Temp. op. refroidissement',aquec:'Temp. op. chauffage',ruido_int:'Bruit intérieur (min.)',ruido_ext:'Bruit extérieur',garantia:'Garantie'},
+    de:{specs:'Technische Daten',feats:'Hauptmerkmale',extras:'Weitere Highlights',awards:'Auszeichnungen',refrig:'Kältemittel',filtros:'Filter / Reinigung',wifi:'Konnektivität',voz:'Sprachsteuerung',arref:'Kühlbetrieb Temp.',aquec:'Heizbetrieb Temp.',ruido_int:'Innengeräusch (min.)',ruido_ext:'Außengeräusch',garantia:'Garantie'},
+    es:{specs:'Especificaciones Técnicas',feats:'Características Principales',extras:'Destacados Adicionales',awards:'Premios',refrig:'Refrigerante',filtros:'Filtros / Purificación',wifi:'Conectividad',voz:'Control por voz',arref:'Temp. op. refrigeración',aquec:'Temp. op. calefacción',ruido_int:'Ruido interior (mín.)',ruido_ext:'Ruido exterior',garantia:'Garantía'},
+    it:{specs:'Specifiche Tecniche',feats:'Caratteristiche Principali',extras:'Ulteriori Punti Salienti',awards:'Premi',refrig:'Refrigerante',filtros:'Filtri / Purificazione',wifi:'Connettività',voz:'Controllo vocale',arref:'Temp. op. raffreddamento',aquec:'Temp. op. riscaldamento',ruido_int:'Rumore interno (min.)',ruido_ext:'Rumore esterno',garantia:'Garanzia'},
+    nl:{specs:'Technische Specificaties',feats:'Belangrijkste Kenmerken',extras:'Extra Hoogtepunten',awards:'Onderscheidingen',refrig:'Koelmiddel',filtros:'Filters / Luchtzuivering',wifi:'Connectiviteit',voz:'Stembesturing',arref:'Koel bedrijfstemperatuur',aquec:'Verwarm bedrijfstemperatuur',ruido_int:'Binnengeluid (min.)',ruido_ext:'Buitengeluid',garantia:'Garantie'},
+  };
+  const A = AL[lang] || AL.pt;
+
+  const [hero, ...thumbs] = gallery;
+  const heroHtml = hero
+    ? `<img src="../assets/products/${hero}" alt="${series}" onerror="this.style.display='none'" style="width:100%;height:172pt;object-fit:contain;background:#f8f9fb;display:block;border-bottom:1pt solid #eee;">`
+    : '';
+  const thumbsHtml = thumbs.length > 0
+    ? `<div style="display:flex;gap:4pt;padding:6pt 10pt;border-bottom:1pt solid #eee;">${thumbs.map(f => `<div style="flex:1;"><img src="../assets/products/${f}" alt="${series}" onerror="this.parentElement.style.display='none'" style="width:100%;height:54pt;object-fit:contain;background:#f8f9fb;display:block;border:.5pt solid #eee;"></div>`).join('')}</div>`
+    : '';
+
+  const specsRows = [
+    [A.refrig, specs.refrigerante],
+    [A.filtros, specs.filtros],
+    [A.wifi, specs.wifi],
+    [A.voz, specs.voz && specs.voz !== '—' ? specs.voz : null],
+    [A.arref, specs.range_arref],
+    [A.aquec, specs.range_aquec],
+    [A.ruido_int, specs.som_int],
+    [A.ruido_ext, specs.som_ext],
+    [A.garantia, specs.garantia],
+  ].filter(([,v]) => v).map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+
+  const awardsHtml = (specs.awards || []).length > 0
+    ? `<div class="annex-awards"><span style="font-size:7pt;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:.3pt;margin-right:4pt;">${A.awards}</span>${specs.awards.map(a => `<img class="annex-award" src="../assets/products/${a}" alt="award" onerror="this.style.display='none'">`).join('')}</div>`
+    : '';
+
+  const extrasHtml = (specs.extras || []).length > 0
+    ? `<div class="annex-extras"><div class="annex-extras-title">${A.extras}</div><ul class="annex-feats">${specs.extras.map(e => `<li>✦ ${e}</li>`).join('')}</ul></div>`
+    : '';
+
+  const featsHtml = feats.length > 0
+    ? `<ul class="annex-feats">${feats.map(f => `<li>${f}</li>`).join('')}</ul>`
+    : '';
+
+  return `<div class="annex-sheet" style="margin-top:10pt;">
+    <div class="annex-sh">
+      ${logoSrc ? `<img class="annex-sh-logo" src="${logoSrc}" alt="${brand}">` : ''}
+      <span class="annex-sh-name">${brand.charAt(0).toUpperCase()+brand.slice(1)} ${series}</span>
+    </div>
+    ${heroHtml}
+    ${thumbsHtml}
+    <div class="annex-sb">
+      <div class="annex-cols">
+        <div class="annex-specs-col">
+          <div class="annex-col-title">${A.specs}</div>
+          <table class="annex-specs"><tbody>${specsRows}</tbody></table>
+          ${awardsHtml}
+        </div>
+        <div class="annex-feat-col">
+          <div class="annex-col-title">${A.feats}</div>
+          ${featsHtml}
+          ${extrasHtml}
+          ${pitch ? `<div class="annex-pitch">${pitch}</div>` : ''}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function buildAnnex(opcoes, lang='pt') {
   if (!opcoes || opcoes.length === 0) return '';
 
@@ -3329,7 +3433,7 @@ function preencherPrintArea(orc) {
       body += `<p class="pi">${T.intro(orc.opcoes.length)}</p>`;
     }
 
-    orc.opcoes.forEach(op => {
+    orc.opcoes.forEach((op, opIdx) => {
       const logoSrc = BRAND_LOGOS[(op.marca || '').toLowerCase()];
       const subtotal = (op.itens || []).reduce((s, i) => s + (i.pvp_total || 0), 0);
       const descVal = Math.round(subtotal * (op.desconto || 0) / 100 * 100) / 100;
@@ -3353,12 +3457,13 @@ function preencherPrintArea(orc) {
 
       const specsLine = [op.btu ? op.btu.toLocaleString(T.locale) + ' BTU' : (op.kw ? op.kw + ' kW' : ''), op.classe || ''].filter(Boolean).join(' · ');
 
-      body += `
+      body += (opIdx > 0 ? '<div style="page-break-before:always;">' : '') + `
         <div class="po">
           <div class="po-header">
             <span class="po-letra">${op.letra}</span>
             ${logoSrc ? `<img class="po-brand" src="${logoSrc}" alt="${op.marca}">` : `<span style="font-weight:800;font-size:11pt">${op.marca}</span>`}
             <span class="po-title">${op.titulo}${specsLine ? ' <span style="font-size:9pt;opacity:.85">· ' + specsLine + '</span>' : ''}</span>
+            ${op.recomendacao ? `<span style="background:#fff;color:#f97316;font-size:7.5pt;font-weight:800;padding:2pt 7pt;border-radius:2pt;white-space:nowrap;letter-spacing:.3pt;">${op.recomendacao}</span>` : ''}
             <span class="po-total">${fmt(op.total_com_iva)}</span>
           </div>
           <div class="po-body">
@@ -3377,7 +3482,7 @@ function preencherPrintArea(orc) {
             ${op.series ? `<div class="po-pitch">${getPitch(op.series, lang)}</div>` : (op.justificacao ? `<div class="po-pitch">${op.justificacao}</div>` : '')}
             ${op.notas_opcao ? `<div style="margin-top:6pt;font-size:8pt;color:#444;background:#fffbf5;border:1pt solid #fde8cc;border-radius:3pt;padding:5pt 8pt;"><strong>${T.nota_pin}</strong> ${op.notas_opcao}</div>` : ''}
           </div>
-        </div>`;
+        </div>` + buildSeriesSheet(op.series || (op.itens && op.itens[0] ? op.itens[0].series : ''), lang) + (opIdx > 0 ? '</div>' : '');
     });
 
   } else {
@@ -3438,7 +3543,7 @@ function preencherPrintArea(orc) {
       </div>`;
     }).join('');
     aceitacao = `
-      <div style="border:2pt solid #f97316;margin-bottom:12pt;page-break-inside:avoid;">
+      <div style="page-break-before:always;"><div style="border:2pt solid #f97316;margin-bottom:12pt;page-break-inside:avoid;">
         <div style="background:#f97316;padding:6pt 12pt;display:flex;align-items:center;gap:8pt;">
           <span style="font-size:10pt;color:#fff;">✍</span>
           <span style="font-size:9pt;font-weight:800;text-transform:uppercase;letter-spacing:.6pt;color:#fff;">${T.aceitacao_titulo}</span>
@@ -3455,12 +3560,19 @@ function preencherPrintArea(orc) {
               <div style="border-bottom:1.5pt solid #333;height:22pt;"></div>
             </div>
           </div>
+          <div style="margin-top:14pt;border-top:1pt solid #eee;padding-top:12pt;display:flex;align-items:center;gap:12pt;">
+            <a href="https://wa.me/351964501776?text=${encodeURIComponent('Olá Fábio, analisei o orçamento ' + orc.numero_formatado + ' e quero avançar com a Opção _____.')}" target="_blank"
+              style="display:inline-flex;align-items:center;gap:7pt;background:#25D366;color:#fff;font-size:9pt;font-weight:700;padding:7pt 14pt;border-radius:3pt;text-decoration:none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.843L.057 23.428a.5.5 0 0 0 .609.61l5.693-1.485A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.031-1.388l-.36-.214-3.733.974.997-3.63-.235-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+              Aprovar via WhatsApp
+            </a>
+            <span style="font-size:7.5pt;color:#aaa;">O cliente clica e abre o WhatsApp com a mensagem pré-preenchida</span>
+          </div>
         </div>
-      </div>`;
+      </div></div>`;
   }
 
-  const annex = (orc.opcoes && orc.opcoes.length > 0) ? buildAnnex(orc.opcoes, lang) : '';
-  document.getElementById('print-area').innerHTML = cover + header + body + aceitacao + footer + annex + fixedFooter;
+  document.getElementById('print-area').innerHTML = cover + header + body + aceitacao + footer + fixedFooter;
 }
 
 function reimprimir(orcJson) {
