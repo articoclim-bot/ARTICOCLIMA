@@ -22,11 +22,11 @@ const BTU_TO_KW = {
 const DAIKIN_MONO = {
   Sensira: {
     label: 'Sensira', tier: 'entrada', badge: '💰 Melhor Preço',
-    energyCool: 'A++', energyHeat: 'A+', noise: '22 dB(A)', wifiStatus: 'none',
-    desc: 'Gama de entrada — conforto essencial, Inverter R-32',
+    energyCool: 'A++', energyHeat: 'A+', noise: '22 dB(A)', wifiStatus: 'builtin',
+    desc: 'Gama de entrada — conforto essencial, WiFi integrado, Inverter R-32',
     prices:  { 7000:972,  9000:1033, 12000:1169, 15000:1396, 18000:1863, 24000:2319, 28000:2774 },
     models:  { 7000:'FTXF20F', 9000:'FTXF25F', 12000:'FTXF35F', 15000:'FTXF42F', 18000:'FTXF50F', 24000:'FTXF60F', 28000:'FTXF71F' },
-    features: ['Inverter', 'R-32', 'Filtro básico', 'Auto-restart'],
+    features: ['Inverter', 'R-32', 'WiFi integrado', 'Filtro básico', 'Auto-restart'],
     // REGRA 3: FTXF é EXCLUSIVAMENTE monosplit (c/ exterior RXF). Nunca multisplit.
     monoOnly: true,
     image: 'assets/products/daikin-sensira-1.webp',
@@ -34,11 +34,11 @@ const DAIKIN_MONO = {
   },
   Confora: {
     label: 'Comfora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
-    energyCool: 'A++', energyHeat: 'A++', noise: '19 dB(A)', wifiStatus: 'optional',
-    desc: 'Gama intermédia — A++ com WiFi opcional e filtro PM2.5',
+    energyCool: 'A++', energyHeat: 'A++', noise: '19 dB(A)', wifiStatus: 'builtin',
+    desc: 'Gama intermédia — A++ com WiFi integrado e filtro PM2.5',
     prices:  { 7000:1248, 9000:1341, 12000:1513, 18000:2392, 24000:2983, 28000:3450 },
     models:  { 7000:'FTXP20N9', 9000:'FTXP25N9', 12000:'FTXP35N9', 18000:'FTXP50N9', 24000:'FTXP60N', 28000:'FTXP71N' },
-    features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi opcional'],
+    features: ['Inverter', 'R-32', 'Modo I-Feel', 'Filtro PM2.5', 'WiFi integrado'],
     // REGRA 1+2: FTXP20/25/35 (≤12k) compatíveis multisplit MXM. FTXP50/60/71 (≥18k) monosplit c/ RXP.
     multisplitMaxBTU: 12000,
     image: 'assets/products/daikin-confora-1.webp',
