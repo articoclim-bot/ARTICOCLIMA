@@ -409,7 +409,7 @@
 
     /* Photo column */
     .po-photo-col { flex: 0 0 120pt; }
-    .po-photo { width: 120pt; height: 120pt; object-fit: contain; background: #f8f9fb; display: block; border: 1pt solid #eee; }
+    .po-photo { width: 120pt; height: 120pt; object-fit: contain; background: #fff; display: block; border: 1pt solid #eee; }
 
     /* Detail column */
     .po-detail-col { flex: 1; display: flex; flex-direction: column; gap: 8pt; }
@@ -445,7 +445,7 @@
 
     /* ── Cover page ── */
     .cover { page-break-after: always; min-height: 257mm; display: flex; flex-direction: column; position: relative; overflow: hidden; z-index: 1; }
-    @media print { .pf-fixed { display: none !important; } }
+    @media print { .pf-fixed { display: none !important; } body, html { background: #fff !important; } }
     .cover-top { background: #f97316; height: 8pt; width: 100%; }
     .cover-body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40pt 30pt; gap: 0; }
     .cover-logo { height: 72pt; object-fit: contain; margin-bottom: 32pt; }
@@ -3113,17 +3113,17 @@ function buildSeriesSheet(series, lang) {
       style="width:100%;height:100%;object-fit:cover;display:block;">`;
     const gridCols = rest.length >= 2 ? 'repeat(2,1fr)' : '1fr';
     const restImgs = rest.slice(0, 4).map(f =>
-      `<div style="background:#f8f9fb;overflow:hidden;">
+      `<div style="background:#fff;overflow:hidden;">
         <img src="../assets/products/${f}" alt="${series}"
           onerror="this.parentElement.style.display='none'"
           style="width:100%;height:62pt;object-fit:contain;display:block;">
       </div>`
     ).join('');
     const rightPanel = rest.length > 0
-      ? `<div style="flex:1;display:grid;grid-template-columns:${gridCols};gap:2pt;padding:2pt;background:#e8e9eb;">${restImgs}</div>`
+      ? `<div style="flex:1;display:grid;grid-template-columns:${gridCols};gap:2pt;padding:2pt;background:#fff;">${restImgs}</div>`
       : '';
     return `<div style="display:flex;gap:0;border-bottom:1pt solid #eee;height:128pt;overflow:hidden;">
-      <div style="flex:0 0 ${rest.length ? '55%' : '100%'};background:#f8f9fb;overflow:hidden;">${mainImg}</div>
+      <div style="flex:0 0 ${rest.length ? '55%' : '100%'};background:#fff;overflow:hidden;">${mainImg}</div>
       ${rightPanel}
     </div>`;
   })();
@@ -3586,7 +3586,10 @@ function preencherPrintArea(orc) {
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.843L.057 23.428a.5.5 0 0 0 .609.61l5.693-1.485A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.031-1.388l-.36-.214-3.733.974.997-3.63-.235-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
               Aprovar via WhatsApp
             </a>
-            <span style="font-size:7.5pt;color:#aaa;">O cliente clica e abre o WhatsApp com a mensagem pré-preenchida</span>
+            <div style="font-size:7.5pt;color:#555;line-height:1.5;">
+              <strong>Como aprovar:</strong> clique no botão → a mensagem abre pré-preenchida no WhatsApp →<br>
+              <span style="color:#f97316;font-weight:700;">substitua _____ pela letra da opção escolhida</span> (A, B ou C) → envie.
+            </div>
           </div>
         </div>
       </div></div>`;
