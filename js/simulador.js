@@ -503,6 +503,9 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
     return unit ? { room: r, unit } : null;
   });
   if (indoorUnits.some(iu => !iu)) return null;
+  // Rede de segurança: uma unidade Sensira (CTXF) nunca pode ir para o exterior
+  // MXM partilhado aqui — precisa do exterior MXF dedicado (ver calcSensiraMulti).
+  if (brand === 'daikin' && indoorUnits.some(iu => iu.unit.model && iu.unit.model.startsWith('CTXF'))) return null;
 
   const totalKW  = indoorUnits.reduce((s, { unit }) => s + unit.kw, 0);
   const maxZoneKW = Math.max(...indoorUnits.map(({ unit }) => unit.kw));
@@ -542,10 +545,13 @@ function calcBrandMulti(brand, multiRoomsWithTier) {
 }
 
 // Verifica se o sistema Sensira (CTXF+MXF) é viável para estas divisões.
-// Condições: 2-3 zonas, todas ≤12k BTU, E existe exterior MXF para o kW total.
+// Condições: 2-3 zonas, todas ≤12k BTU, nenhuma já fixada explicitamente noutra
+// série (a Sensira usa exterior MXF exclusivo, incompatível com o MXM das outras),
+// E existe exterior MXF para o kW total.
 function isSensiraPossible(multiRooms) {
   const n = multiRooms.length;
   if (n < 2 || n > 3) return false;
+  if (multiRooms.some(r => r.multiTypeExplicit && r.multiType !== 'sensira')) return false;
   const tiers = multiRooms.map(r => btuToTier(calcBTU(r)));
   if (!tiers.every(t => t <= 12000)) return false;
   const totalKW = tiers.reduce((s, t) => s + (BTU_TO_KW[t] || 0), 0);
@@ -1253,10 +1259,16 @@ function buildPickerCards(room, tier) {
     // -------------------------------------------------------
     const allOptions = [];
 
-    // Opção Sensira Budget (Daikin only, todas as zonas ≤12k BTU, 2-3 zonas)
-    // CTXF podem ser misturados entre si (ex: CTXF25 + CTXF35)
-    if (state.brand === 'daikin' && tier <= 12000) {
-      const otherMultiRooms = state.rooms.filter(r => r.id !== room.id && parseFloat(r.areaM2) > 0);
+    // A Sensira multisplit (CTXF) usa um exterior MXF dedicado, incompatível com o
+    // MXM que todas as outras séries Daikin (Confora/Perfera/Stylish/Emura) partilham.
+    // Por isso um grupo multi tem de ser TODO Sensira ou TODO não-Sensira — nunca os dois.
+    const otherMultiRooms = state.rooms.filter(r => r.id !== room.id && parseFloat(r.areaM2) > 0);
+    const siblingLockedToSensira    = otherMultiRooms.some(r => r.multiTypeExplicit && r.multiType === 'sensira');
+    const siblingLockedToNonSensira = otherMultiRooms.some(r => r.multiTypeExplicit && r.multiType !== 'sensira');
+
+    // Opção Sensira Budget (Daikin only, todas as zonas ≤12k BTU, 2-3 zonas,
+    // e nenhuma outra divisão já fixada noutra série — exterior MXF exclusivo)
+    if (state.brand === 'daikin' && tier <= 12000 && !siblingLockedToNonSensira) {
       const otherTiers = otherMultiRooms.map(r => btuToTier(calcBTU(r)));
       const sensiraOk = otherTiers.length > 0 &&
         otherTiers.every(t => t <= 12000) &&
@@ -1267,15 +1279,18 @@ function buildPickerCards(room, tier) {
       }
     }
 
-    // Opção Confora (FTXP, Daikin only, ≤12k BTU)
-    if (state.brand === 'daikin' && tier <= 12000) {
+    // Opção Confora (FTXP, Daikin only, ≤12k BTU) — só se nenhuma outra divisão
+    // já estiver fixada em Sensira (exterior MXM incompatível com o MXF da Sensira)
+    if (state.brand === 'daikin' && tier <= 12000 && !siblingLockedToSensira) {
       const cu = DAIKIN_CONFORA_MULTI_INDOOR.find(u => u.btu >= tier);
       if (cu) allOptions.push({ type: 'confora_multi', key: '__confora_multi__', unit: cu });
     }
 
     // Opção Padrão — Perfera (FTXM / Climate 3200i / ARTIC Plus)
-    const stdu = getMultiIndoorUnit(state.brand, tier);
-    if (stdu) allOptions.push({ type: 'multi', key: '__multi__', unit: stdu });
+    if (!siblingLockedToSensira) {
+      const stdu = getMultiIndoorUnit(state.brand, tier);
+      if (stdu) allOptions.push({ type: 'multi', key: '__multi__', unit: stdu });
+    }
 
     // Opção 6000i Premium (Bosch only)
     if (state.brand === 'bosch') {
@@ -1284,13 +1299,13 @@ function buildPickerCards(room, tier) {
     }
 
     // Opção Stylish (FTXA, Daikin only, ≤18k BTU)
-    if (state.brand === 'daikin' && tier <= 18000) {
+    if (state.brand === 'daikin' && tier <= 18000 && !siblingLockedToSensira) {
       const su = DAIKIN_STYLISH_MULTI_INDOOR.find(u => u.btu >= tier);
       if (su) allOptions.push({ type: 'stylish_multi', key: '__stylish_multi__', unit: su });
     }
 
     // Opção Emura (FTXJ, Daikin only, ≤18k BTU)
-    if (state.brand === 'daikin' && tier <= 18000) {
+    if (state.brand === 'daikin' && tier <= 18000 && !siblingLockedToSensira) {
       const eu = DAIKIN_EMURA_MULTI_INDOOR.find(u => u.btu >= tier);
       if (eu) allOptions.push({ type: 'emura_multi', key: '__emura_multi__', unit: eu });
     }
