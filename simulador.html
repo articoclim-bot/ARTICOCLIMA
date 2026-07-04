@@ -186,6 +186,19 @@
             </button>
           </div>
         </div>
+        <div class="qm-field" id="qm-wifi-field" style="display:none">
+          <label>Quer o módulo WiFi para controlo por app? (acessório, custo adicional)</label>
+          <div class="qm-goal-options" id="qm-wifi-options">
+            <button type="button" class="qm-goal-btn" data-wifi="sim" onclick="setQuoteWifi('sim', this)">
+              <span class="qm-goal-btn__dot"></span>
+              <span>Sim, quero o módulo WiFi</span>
+            </button>
+            <button type="button" class="qm-goal-btn" data-wifi="nao" onclick="setQuoteWifi('nao', this)">
+              <span class="qm-goal-btn__dot"></span>
+              <span>Não, obrigado</span>
+            </button>
+          </div>
+        </div>
         <p class="qm-error" id="qm-error"></p>
       </div>
       <div class="qm-actions">

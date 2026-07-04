@@ -22,7 +22,7 @@ const BTU_TO_KW = {
 const DAIKIN_MONO = {
   Sensira: {
     label: 'Sensira', tier: 'entrada', badge: '💰 Melhor Preço',
-    energyCool: 'A++', energyHeat: 'A+', noise: '22 dB(A)',
+    energyCool: 'A++', energyHeat: 'A+', noise: '22 dB(A)', wifiStatus: 'none',
     desc: 'Gama de entrada — conforto essencial, Inverter R-32',
     prices:  { 7000:972,  9000:1033, 12000:1169, 15000:1396, 18000:1863, 24000:2319, 28000:2774 },
     models:  { 7000:'FTXF20F', 9000:'FTXF25F', 12000:'FTXF35F', 15000:'FTXF42F', 18000:'FTXF50F', 24000:'FTXF60F', 28000:'FTXF71F' },
@@ -34,7 +34,7 @@ const DAIKIN_MONO = {
   },
   Confora: {
     label: 'Comfora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
-    energyCool: 'A++', energyHeat: 'A++', noise: '19 dB(A)',
+    energyCool: 'A++', energyHeat: 'A++', noise: '19 dB(A)', wifiStatus: 'optional',
     desc: 'Gama intermédia — A++ com WiFi opcional e filtro PM2.5',
     prices:  { 7000:1248, 9000:1341, 12000:1513, 18000:2392, 24000:2983, 28000:3450 },
     models:  { 7000:'FTXP20N9', 9000:'FTXP25N9', 12000:'FTXP35N9', 18000:'FTXP50N9', 24000:'FTXP60N', 28000:'FTXP71N' },
@@ -46,7 +46,7 @@ const DAIKIN_MONO = {
   },
   Perfera: {
     label: 'Perfera', tier: 'premium', badge: '🏆 Topo de Gama',
-    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)', wifiStatus: 'builtin',
     desc: 'Gama premium — WiFi integrado, purificador de ar e controlo por app',
     prices:  { 7000:1482, 9000:1568, 12000:1802, 15000:2300, 18000:2952, 24000:3346, 28000:4121 },
     models:  { 7000:'FTXM20A', 9000:'FTXM25A', 12000:'FTXM35A', 15000:'FTXM42A', 18000:'FTXM50A', 24000:'FTXM60A', 28000:'FTXM71A' },
@@ -57,7 +57,7 @@ const DAIKIN_MONO = {
   },
   Stylish: {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
-    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)', wifiStatus: 'builtin',
     desc: 'Design premiado — Branco, Prateado e Preto (máx. 18k BTU)',
     prices:  { 7000:1759, 9000:1888, 12000:2189, 15000:2768, 18000:3290 },
     models:  { 7000:'FTXA20CW', 9000:'FTXA25CW', 12000:'FTXA35CW', 15000:'FTXA42CW', 18000:'FTXA50CW' },
@@ -89,7 +89,7 @@ const DAIKIN_MONO = {
   },
   Emura: {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
-    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)', wifiStatus: 'builtin',
     desc: 'Design icónico europeu — purificador de ar e app (máx. 18k BTU)',
     prices:  { 7000:1962, 9000:2048, 12000:2343, 15000:3007, 18000:3487 },
     models:  { 7000:'FTXJ20AW', 9000:'FTXJ25AW', 12000:'FTXJ35AW', 15000:'FTXJ42AW', 18000:'FTXJ50AW' },
@@ -179,7 +179,7 @@ const DAIKIN_MXF_OUTDOOR = [
 const BOSCH_MONO = {
   '3200i': {
     label: 'Climate 3200i', tier: 'entrada', badge: '🆕 Novo Modelo',
-    energyCool: 'A++', energyHeat: 'A+', noise: '26 dB(A)',
+    energyCool: 'A++', energyHeat: 'A+', noise: '26 dB(A)', wifiStatus: 'optional',
     desc: 'Novo design — iClean · Super Ionizador · Golden Fin · WiFi via acessório',
     prices: { 9000:916, 12000:996, 18000:1470, 24000:1784 },
     models: { 9000:'CL3200i-Set 26WE', 12000:'CL3200i-Set 35WE', 18000:'CL3200i-Set 53WE', 24000:'CL3200i-Set 70WE' },
@@ -189,8 +189,8 @@ const BOSCH_MONO = {
   },
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
-    energyCool: 'A+++', energyHeat: 'A++', noise: '24 dB(A)',
-    desc: 'Gama premium — A+++ · Ionizador · Sensor de movimento · Golden Fin · Swing 3D',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '24 dB(A)', wifiStatus: 'optional',
+    desc: 'Gama premium — A+++ · Ionizador · Sensor de movimento · Golden Fin · Swing 3D · WiFi via acessório',
     prices: { 9000:1107, 12000:1218, 18000:1790, 24000:2220 },
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'A+++', 'Ionizador', 'Sensor de movimento', 'Golden Fin anticorrosivo'],
@@ -199,11 +199,11 @@ const BOSCH_MONO = {
   },
   '7000i': {
     label: 'Climate 7000i', tier: 'premium', badge: '🏆 Topo de Gama',
-    energyCool: 'A+++', energyHeat: 'A+++', noise: '20 dB(A)',
-    desc: 'Topo de gama — WiFi integrado · A+++ · Sensor presença · Ionizador · iF Design 2025',
+    energyCool: 'A+++', energyHeat: 'A+++', noise: '20 dB(A)', wifiStatus: 'optional',
+    desc: 'Topo de gama — A+++ · Sensor presença · Ionizador · iF Design 2025 · WiFi via acessório',
     prices: { 9000:1550, 12000:1667, 18000:2731 },
     models: { 9000:'CL7000i-Set 26WE', 12000:'CL7000i-Set 35WE', 18000:'CL7000i-Set 53WE' },
-    features: ['Inverter', 'R-32', 'WiFi integrado', 'A+++', 'Sensor de presença', 'Ionizador avançado'],
+    features: ['Inverter', 'R-32', 'A+++', 'Sensor de presença', 'Ionizador avançado'],
     image: 'assets/products/bosch-7000i-branco-1.webp',
     images: ['assets/products/bosch-7000i-branco-1.webp','assets/products/bosch-7000i-branco-2.webp','assets/products/bosch-7000i-branco-3.webp'],
   },
@@ -241,7 +241,7 @@ const BOSCH_MULTI_OUTDOOR = [
 const DAITSU_MONO = {
   'ARTIC': {
     label: 'ARTIC', tier: 'premium', badge: '🏆 Alta Eficiência',
-    energyCool: 'A++', energyHeat: 'A+++', noise: '25 dB(A)',
+    energyCool: 'A++', energyHeat: 'A+++', noise: '25 dB(A)', wifiStatus: 'builtin',
     desc: 'A+++ aquec. · WiFi incluído · I Feel · IA+ · Controlo por Voz · 5 filtros de qualidade do ar',
     prices: { 9000:700, 12000:760, 18000:1090, 24000:1290 },
     models: { 9000:'DS-9KZ', 12000:'DS-12KZ', 18000:'DS-18KZ', 24000:'DS-24KZ' },
@@ -279,6 +279,7 @@ const state = {
   modelPickerRoomId: null,
   pickerColors: {}, // roomId → color (for Stylish/Emura in picker before confirm)
   quoteGoal: null, // 'novo' | 'substituicao' | 'sem_pre' — objetivo da instalação (pedido de orçamento)
+  wifiChoice: null, // 'sim' | 'nao' — só relevante quando a config tem WiFi opcional (acessório)
 };
 
 // Objetivo da instalação — opções do formulário de pedido de orçamento
@@ -290,9 +291,35 @@ const INSTALL_GOALS = {
 
 function setQuoteGoal(goal, btnEl) {
   state.quoteGoal = goal;
-  document.querySelectorAll('.qm-goal-btn').forEach(b => b.classList.toggle('active', b === btnEl));
+  document.querySelectorAll('#qm-goal-options .qm-goal-btn').forEach(b => b.classList.toggle('active', b === btnEl));
   const errEl = document.getElementById('qm-error');
   if (errEl) errEl.textContent = '';
+}
+
+function setQuoteWifi(choice, btnEl) {
+  state.wifiChoice = choice;
+  document.querySelectorAll('#qm-wifi-options .qm-goal-btn').forEach(b => b.classList.toggle('active', b === btnEl));
+  const errEl = document.getElementById('qm-error');
+  if (errEl) errEl.textContent = '';
+}
+
+// Verifica se alguma divisão da configuração actual usa um modelo cujo WiFi é opcional
+// (acessório à parte) — só nesse caso faz sentido perguntar no pedido de orçamento.
+function configHasOptionalWifi() {
+  const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
+  return validRooms.some(room => {
+    const tier = btuToTier(calcBTU(room));
+    const isMulti = state.rooms.length > 1 && room.useMulti;
+    let key;
+    if (isMulti) {
+      const unit = getMultiIndoorForRoom(room, tier);
+      key = unit ? getSeriesCatalogKey(state.brand, unit.model) : null;
+    } else {
+      key = room.series || getCheapestMonoSeries(state.brand, tier);
+    }
+    const desc = getSeriesDescriptors(state.brand, key);
+    return desc && desc.wifiStatus === 'optional';
+  });
 }
 
 function newRoom(id) {
@@ -1842,11 +1869,12 @@ function getSeriesDescriptors(brand, key) {
     energyCool: series.energyCool || '',
     energyHeat: series.energyHeat || '',
     noise: series.noise || '',
+    wifiStatus: series.wifiStatus || '',
     features: distinctFeatures.slice(0, 3),
   };
 }
 
-// Constrói o bloco HTML de selos (classe energética + ruído) e destaques —
+// Constrói o bloco HTML de selos (classe energética + ruído + WiFi) e destaques —
 // usado de forma consistente no picker, no cartão de resultado e na grelha de marcas.
 function buildSpecInfoHTML(desc) {
   if (!desc) return '';
@@ -1854,6 +1882,8 @@ function buildSpecInfoHTML(desc) {
   if (desc.energyCool) badges.push(`<span class="sim-spec-badge">❄️ ${desc.energyCool}</span>`);
   if (desc.energyHeat) badges.push(`<span class="sim-spec-badge">🔥 ${desc.energyHeat}</span>`);
   if (desc.noise) badges.push(`<span class="sim-spec-badge">🔈 ${desc.noise}</span>`);
+  if (desc.wifiStatus === 'builtin') badges.push(`<span class="sim-spec-badge">📶 ${t('WiFi incluído')}</span>`);
+  else if (desc.wifiStatus === 'optional') badges.push(`<span class="sim-spec-badge wifi-optional">📶 ${t('WiFi opcional (acessório)')}</span>`);
   const badgesHtml = badges.length ? `<div class="sim-spec-badges">${badges.join('')}</div>` : '';
   const featsHtml = desc.features.length ? `<div class="sim-spec-feats">${desc.features.map(f => escHtml(t(f))).join(' · ')}</div>` : '';
   return badgesHtml + featsHtml;
@@ -2061,6 +2091,8 @@ function openQuoteModal() {
     document.body.style.overflow = 'hidden';
     const errEl = document.getElementById('qm-error');
     if (errEl) errEl.textContent = '';
+    const wifiField = document.getElementById('qm-wifi-field');
+    if (wifiField) wifiField.style.display = configHasOptionalWifi() ? '' : 'none';
   }
 }
 
@@ -2086,8 +2118,17 @@ function validateQuoteForm() {
     if (errEl) errEl.textContent = t('Por favor indique o objetivo da instalação.');
     return null;
   }
+  const wifiField = document.getElementById('qm-wifi-field');
+  const wifiRequired = wifiField && wifiField.style.display !== 'none';
+  if (wifiRequired && !state.wifiChoice) {
+    if (errEl) errEl.textContent = t('Por favor indique se quer o módulo WiFi.');
+    return null;
+  }
   if (errEl) errEl.textContent = '';
-  return { name: name || 'Não indicado', contact: contact || 'Não indicado', goal: state.quoteGoal };
+  return {
+    name: name || 'Não indicado', contact: contact || 'Não indicado', goal: state.quoteGoal,
+    wifi: wifiRequired ? state.wifiChoice : null,
+  };
 }
 
 function buildQuoteText(data) {
@@ -2124,6 +2165,9 @@ function buildQuoteText(data) {
 
   lines.push('');
   lines.push(`🎯 ${t('Objetivo: ')}${t(INSTALL_GOALS[data.goal] || '')}`);
+  if (data.wifi) {
+    lines.push(`📶 ${t('Módulo WiFi (acessório): ')}${data.wifi === 'sim' ? t('Sim') : t('Não')}`);
+  }
   lines.push('');
   lines.push('_(Orçamento detalhado enviado em breve)_');
   lines.push('');
