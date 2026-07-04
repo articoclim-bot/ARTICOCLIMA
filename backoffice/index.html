@@ -624,6 +624,7 @@
     <!-- ── Painel Multi-split Personalizado ── -->
     <div class="card" id="ac-multisplit-panel" style="display:none;">
       <h2>⚙️ Multi-split Personalizado</h2>
+      <div id="ms-append-banner" style="display:none;background:#555;color:#fff;font-size:.8rem;font-weight:700;padding:6px 12px;border-radius:4px;margin-bottom:12px;"></div>
       <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px;">Seleciona a unidade exterior e adiciona as unidades interiores para cada divisão individualmente.</p>
 
       <!-- Filtros -->
@@ -2661,11 +2662,38 @@ function updateMSSummary() {
   if (btn) btn.disabled = msInteriors.length === 0;
 }
 
-function addMSOptionToQuote() {
-  // Show MS panel without resetting existing opcaoGroups
+let msAppendToActive = false;
+
+function addMonoSplitOption() {
+  // Create a new empty group and show the catalog — without resetting existing groups
+  const id = createGroup();
+  if (!id) return;
+  // Show catalog filters and render catalog
+  document.getElementById('catalogo-filtros').style.display = 'block';
+  document.getElementById('ac-auto-panel').style.display = 'none';
+  document.getElementById('ac-multisplit-panel').style.display = 'none';
+  catFiltro = { marca: 'todos', tipo: 'todos' };
+  const search = document.getElementById('cf-search');
+  if (search) search.value = '';
+  ['marca-todos','marca-daikin','marca-bosch','marca-daitsu','tipo-todos','tipo-mono','tipo-multi'].forEach(k => {
+    const el = document.getElementById('cf-' + k);
+    if (el) el.classList.toggle('active', k === 'marca-todos' || k === 'tipo-todos');
+  });
+  renderCatalogo();
+  document.getElementById('catalogo-filtros').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function addMSOptionToQuote(appendToActive) {
+  msAppendToActive = !!appendToActive;
   document.getElementById('ac-multisplit-panel').style.display = '';
   document.getElementById('ac-multisplit-panel').scrollIntoView({behavior:'smooth', block:'start'});
-  // Reset MS selections for a fresh pick
+  // Show banner if appending
+  const banner = document.getElementById('ms-append-banner');
+  if (banner) {
+    const ag = opcaoGroups.find(g => g.id === activeGroupId);
+    banner.style.display = msAppendToActive ? '' : 'none';
+    banner.textContent = msAppendToActive && ag ? `⚙️ A adicionar à Opção ${ag.letra} (ex: 2º kit 2+1)` : '';
+  }
   msExterior = null;
   msInteriors = [];
   renderMSExterior();
@@ -2696,20 +2724,24 @@ function msAvancarOrcamento() {
     justificacao: '', classe: it.unit.classe || 'A++',
   }));
 
-  const newGroup = {
-    id: Date.now(), letra: String.fromCharCode(65 + opcaoGroups.length),
-    items: [{opcao: extOpcao, qty: 1}, ...msInteriors.map((it, i) => ({opcao: intOpcoes[i], qty: it.qty}))],
-    desconto: 0,
-  };
+  const newItems = [{opcao: extOpcao, qty: 1}, ...msInteriors.map((it, i) => ({opcao: intOpcoes[i], qty: it.qty}))];
 
-  if (opcaoGroups.length === 0) {
-    // Fresh start — create first group
-    opcaoGroups = [newGroup];
+  if (msAppendToActive && activeGroupId && opcaoGroups.find(g => g.id === activeGroupId)) {
+    // Merge into existing active group
+    const ag = opcaoGroups.find(g => g.id === activeGroupId);
+    ag.items.push(...newItems);
   } else {
-    // Append to existing options
-    opcaoGroups.push(newGroup);
+    // Create new group
+    const newGroup = {
+      id: Date.now(), letra: String.fromCharCode(65 + opcaoGroups.length),
+      items: newItems,
+      desconto: 0,
+    };
+    if (opcaoGroups.length === 0) opcaoGroups = [newGroup];
+    else opcaoGroups.push(newGroup);
+    activeGroupId = newGroup.id;
   }
-  activeGroupId = newGroup.id;
+  msAppendToActive = false;
 
   // Hide MS panel, show quote form
   document.getElementById('ac-multisplit-panel').style.display = 'none';
@@ -2731,8 +2763,9 @@ function updateFormAC() {
     </button>`).join('');
   document.getElementById('grupos-header').innerHTML =
     `<span class="groups-header-label">Propostas:</span>${tabsHtml}` +
-    `<button class="btn-new-group" onclick="createGroup()">+ Nova opção</button>` +
-    `<button class="btn-new-group" onclick="addMSOptionToQuote()" style="background:var(--orange);color:#fff;border-color:var(--orange);">⚙️ + Multi-split</button>`;
+    `<button class="btn-new-group" onclick="addMonoSplitOption()">📋 + Mono-split</button>` +
+    `<button class="btn-new-group" onclick="addMSOptionToQuote(false)" style="background:var(--orange);color:#fff;border-color:var(--orange);">⚙️ + Multi-split</button>` +
+    `<button class="btn-new-group" onclick="addMSOptionToQuote(true)" style="background:#555;color:#fff;border-color:#555;" title="Adiciona unidades à opção já ativa (ex: 2x kit 2+1)">⚙️ + MS à Opção ${ag ? ag.letra : ''}</button>`;
 
   // Hint
   document.getElementById('grupos-hint').innerHTML = ag
