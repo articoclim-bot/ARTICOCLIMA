@@ -22,7 +22,7 @@ const BTU_TO_KW = {
 const DAIKIN_MONO = {
   Sensira: {
     label: 'Sensira', tier: 'entrada', badge: '💰 Melhor Preço',
-    energyCool: 'A++', energyHeat: 'A+',
+    energyCool: 'A++', energyHeat: 'A+', noise: '22 dB(A)',
     desc: 'Gama de entrada — conforto essencial, Inverter R-32',
     prices:  { 7000:972,  9000:1033, 12000:1169, 15000:1396, 18000:1863, 24000:2319, 28000:2774 },
     models:  { 7000:'FTXF20F', 9000:'FTXF25F', 12000:'FTXF35F', 15000:'FTXF42F', 18000:'FTXF50F', 24000:'FTXF60F', 28000:'FTXF71F' },
@@ -34,7 +34,7 @@ const DAIKIN_MONO = {
   },
   Confora: {
     label: 'Comfora', tier: 'intermedio', badge: '⚡ Alta Eficiência',
-    energyCool: 'A++', energyHeat: 'A++',
+    energyCool: 'A++', energyHeat: 'A++', noise: '19 dB(A)',
     desc: 'Gama intermédia — A++ com WiFi opcional e filtro PM2.5',
     prices:  { 7000:1248, 9000:1341, 12000:1513, 18000:2392, 24000:2983, 28000:3450 },
     models:  { 7000:'FTXP20N9', 9000:'FTXP25N9', 12000:'FTXP35N9', 18000:'FTXP50N9', 24000:'FTXP60N', 28000:'FTXP71N' },
@@ -46,7 +46,7 @@ const DAIKIN_MONO = {
   },
   Perfera: {
     label: 'Perfera', tier: 'premium', badge: '🏆 Topo de Gama',
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)',
     desc: 'Gama premium — WiFi integrado, purificador de ar e controlo por app',
     prices:  { 7000:1482, 9000:1568, 12000:1802, 15000:2300, 18000:2952, 24000:3346, 28000:4121 },
     models:  { 7000:'FTXM20A', 9000:'FTXM25A', 12000:'FTXM35A', 15000:'FTXM42A', 18000:'FTXM50A', 24000:'FTXM60A', 28000:'FTXM71A' },
@@ -57,7 +57,7 @@ const DAIKIN_MONO = {
   },
   Stylish: {
     label: 'Stylish', tier: 'design', badge: '🎨 Design Premium',
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)',
     desc: 'Design premiado — Branco, Prateado e Preto (máx. 18k BTU)',
     prices:  { 7000:1759, 9000:1888, 12000:2189, 15000:2768, 18000:3290 },
     models:  { 7000:'FTXA20CW', 9000:'FTXA25CW', 12000:'FTXA35CW', 15000:'FTXA42CW', 18000:'FTXA50CW' },
@@ -89,7 +89,7 @@ const DAIKIN_MONO = {
   },
   Emura: {
     label: 'Emura', tier: 'design', badge: '✨ Ícone de Design',
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '19 dB(A)',
     desc: 'Design icónico europeu — purificador de ar e app (máx. 18k BTU)',
     prices:  { 7000:1962, 9000:2048, 12000:2343, 15000:3007, 18000:3487 },
     models:  { 7000:'FTXJ20AW', 9000:'FTXJ25AW', 12000:'FTXJ35AW', 15000:'FTXJ42AW', 18000:'FTXJ50AW' },
@@ -179,7 +179,7 @@ const DAIKIN_MXF_OUTDOOR = [
 const BOSCH_MONO = {
   '3200i': {
     label: 'Climate 3200i', tier: 'entrada', badge: '🆕 Novo Modelo',
-    energyCool: 'A++', energyHeat: 'A+',
+    energyCool: 'A++', energyHeat: 'A+', noise: '26 dB(A)',
     desc: 'Novo design — iClean · Super Ionizador · Golden Fin · WiFi via acessório',
     prices: { 9000:916, 12000:996, 18000:1470, 24000:1784 },
     models: { 9000:'CL3200i-Set 26WE', 12000:'CL3200i-Set 35WE', 18000:'CL3200i-Set 53WE', 24000:'CL3200i-Set 70WE' },
@@ -189,7 +189,7 @@ const BOSCH_MONO = {
   },
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
-    energyCool: 'A+++', energyHeat: 'A++',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '24 dB(A)',
     desc: 'Gama premium — A+++ · Ionizador · Sensor de movimento · Golden Fin · Swing 3D',
     prices: { 9000:1107, 12000:1218, 18000:1790, 24000:2220 },
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
@@ -199,7 +199,7 @@ const BOSCH_MONO = {
   },
   '7000i': {
     label: 'Climate 7000i', tier: 'premium', badge: '🏆 Topo de Gama',
-    energyCool: 'A+++', energyHeat: 'A+++',
+    energyCool: 'A+++', energyHeat: 'A+++', noise: '20 dB(A)',
     desc: 'Topo de gama — WiFi integrado · A+++ · Sensor presença · Ionizador · iF Design 2025',
     prices: { 9000:1550, 12000:1667, 18000:2731 },
     models: { 9000:'CL7000i-Set 26WE', 12000:'CL7000i-Set 35WE', 18000:'CL7000i-Set 53WE' },
@@ -241,7 +241,7 @@ const BOSCH_MULTI_OUTDOOR = [
 const DAITSU_MONO = {
   'ARTIC': {
     label: 'ARTIC', tier: 'premium', badge: '🏆 Alta Eficiência',
-    energyCool: 'A++', energyHeat: 'A+++',
+    energyCool: 'A++', energyHeat: 'A+++', noise: '25 dB(A)',
     desc: 'A+++ aquec. · WiFi incluído · I Feel · IA+ · Controlo por Voz · 5 filtros de qualidade do ar',
     prices: { 9000:700, 12000:760, 18000:1090, 24000:1290 },
     models: { 9000:'DS-9KZ', 12000:'DS-12KZ', 18000:'DS-18KZ', 24000:'DS-24KZ' },
@@ -1290,7 +1290,7 @@ function buildPickerCards(room, tier) {
           price: su.pvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected,
-          features: ['R-32', 'Inverter', t('Série económica')],
+          specInfo: getSeriesDescriptors('daikin', 'Sensira'),
         });
       } else if (opt.type === 'confora_multi') {
         const cu = opt.unit;
@@ -1304,7 +1304,7 @@ function buildPickerCards(room, tier) {
           price: cu.pvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected,
-          features: ['A+++', 'R-32', t('Filtro PM2.5')],
+          specInfo: getSeriesDescriptors('daikin', 'Confora'),
         });
       } else if (opt.type === 'multi') {
         const stdu = opt.unit;
@@ -1323,6 +1323,7 @@ function buildPickerCards(room, tier) {
           price: stdu.pvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected: isStdSelected,
+          specInfo: getSeriesDescriptors(state.brand, getSeriesCatalogKey(state.brand, stdu.model)),
         });
       } else if (opt.type === 'stylish_multi') {
         const su = opt.unit;
@@ -1339,7 +1340,7 @@ function buildPickerCards(room, tier) {
           price: coloredPvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected, colorPicker,
-          features: ['A+++', 'Design icónico', '3 cores'],
+          specInfo: getSeriesDescriptors('daikin', 'Stylish'),
         });
       } else if (opt.type === 'emura_multi') {
         const eu = opt.unit;
@@ -1356,7 +1357,7 @@ function buildPickerCards(room, tier) {
           price: coloredPvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected, colorPicker,
-          features: ['A+++', 'Design ícone', '3 cores'],
+          specInfo: getSeriesDescriptors('daikin', 'Emura'),
         });
       } else if (opt.type === 'bosch6000i_multi') {
         const u6 = opt.unit;
@@ -1370,7 +1371,7 @@ function buildPickerCards(room, tier) {
           price: u6.pvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected,
-          features: ['A+++', 'WiFi integrado', 'Ionizador'],
+          specInfo: getSeriesDescriptors('bosch', '6000i'),
         });
       }
     });
@@ -1411,11 +1412,11 @@ function buildPickerCards(room, tier) {
         id: room.id, type: 'mono', seriesKey: key,
         badge: null,
         img, series: series.label,
-        specs: `${btuLabel(eTier)} · ${BTU_TO_KW[eTier]} kW · ${series.energyCool || 'A++'} arref.`,
+        specs: `${btuLabel(eTier)} · ${BTU_TO_KW[eTier]} kW`,
         price, priceNote: 'Kit completo (inclui exterior)',
         diff, isSelected, color: pickerColor,
         colorPicker,
-        features: series.features ? series.features.slice(0, 3) : [],
+        specInfo: getSeriesDescriptors(state.brand, key),
       });
     });
   }
@@ -1423,14 +1424,14 @@ function buildPickerCards(room, tier) {
   return html;
 }
 
-function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker = '', features }) {
+function pickerCard({ id, type, seriesKey, badge, badgeClass, img, series, specs, price, priceNote, diff, isSelected, colorPicker = '', specInfo }) {
   const diffText = diff === 0
     ? `<div class="smp-card__diff base"><span class="smp-diff-tag base">${t('★ Mais económico')}</span></div>`
     : '';
 
   const badgeHtml = badge ? `<div class="smp-card__badge ${badgeClass || ''}">${badge}</div>` : '';
   const checkHtml = isSelected ? `<div class="smp-card__check">✓</div>` : '';
-  const featHtml  = features && features.length ? `<div class="smp-card__specs" style="margin-top:4px">${features.join(' · ')}</div>` : '';
+  const featHtml  = buildSpecInfoHTML(specInfo);
 
   // onclick — color is read from state.pickerColors inside selectModel
   let onClick;
@@ -1797,12 +1798,65 @@ function getMultiSeriesLabel(brand, model) {
     return 'Perfera'; // FTXM default
   }
   if (brand === 'bosch') {
-    if (model.startsWith('CL7000i')) return 'Climate 7000i';
-    if (model.startsWith('CL6000i')) return 'Climate 6000i';
+    if (model.startsWith('CL7000i') || model.startsWith('CL7001i')) return 'Climate 7000i';
+    if (model.startsWith('CL6000i') || model.startsWith('CL6001i')) return 'Climate 6000i';
     return 'Climate 3200i';
   }
   if (brand === 'daitsu') return 'ARTIC Plus';
   return model;
+}
+
+// Resolve a chave do catálogo mono (DAIKIN_MONO/BOSCH_MONO/DAITSU_MONO) a partir do
+// modelo de uma unidade interior multi — permite reaproveitar classe energética,
+// ruído e destaques do mono equivalente em qualquer contexto (mono ou multi).
+function getSeriesCatalogKey(brand, model) {
+  if (brand === 'daikin') {
+    if (model.startsWith('CTXF')) return 'Sensira';
+    if (model.startsWith('FTXJ')) return 'Emura';
+    if (model.startsWith('FTXA')) return 'Stylish';
+    if (model.startsWith('FTXP')) return 'Confora';
+    return 'Perfera';
+  }
+  if (brand === 'bosch') {
+    if (model.startsWith('CL7000i') || model.startsWith('CL7001i')) return '7000i';
+    if (model.startsWith('CL6000i') || model.startsWith('CL6001i')) return '6000i';
+    return '3200i';
+  }
+  if (brand === 'daitsu') return 'ARTIC';
+  return null;
+}
+
+// Devolve classe energética, ruído e destaques (máx. 3) do catálogo mono equivalente —
+// usado para mostrar a mesma informação de decisão em qualquer contexto (mono/multi,
+// picker, cartão de resultado, grelha de comparação de marcas).
+// Termos base presentes em quase todos os equipamentos (Inverter, R-32) — não ajudam
+// a diferenciar modelos, por isso ficam de fora dos destaques mostrados ao cliente.
+const GENERIC_FEATURES = new Set(['Inverter', 'R-32', 'R32']);
+
+function getSeriesDescriptors(brand, key) {
+  const catalog = getBrandCatalog(brand);
+  const series = key && catalog[key];
+  if (!series) return null;
+  const distinctFeatures = (series.features || []).filter(f => !GENERIC_FEATURES.has(f));
+  return {
+    energyCool: series.energyCool || '',
+    energyHeat: series.energyHeat || '',
+    noise: series.noise || '',
+    features: distinctFeatures.slice(0, 3),
+  };
+}
+
+// Constrói o bloco HTML de selos (classe energética + ruído) e destaques —
+// usado de forma consistente no picker, no cartão de resultado e na grelha de marcas.
+function buildSpecInfoHTML(desc) {
+  if (!desc) return '';
+  const badges = [];
+  if (desc.energyCool) badges.push(`<span class="sim-spec-badge">❄️ ${desc.energyCool}</span>`);
+  if (desc.energyHeat) badges.push(`<span class="sim-spec-badge">🔥 ${desc.energyHeat}</span>`);
+  if (desc.noise) badges.push(`<span class="sim-spec-badge">🔈 ${desc.noise}</span>`);
+  const badgesHtml = badges.length ? `<div class="sim-spec-badges">${badges.join('')}</div>` : '';
+  const featsHtml = desc.features.length ? `<div class="sim-spec-feats">${desc.features.map(f => escHtml(t(f))).join(' · ')}</div>` : '';
+  return badgesHtml + featsHtml;
 }
 
 function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
@@ -1821,6 +1875,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     const modelNum = model || (series && series.models[tier]) || '';
     const badgeClass = room.wasMulti ? '' : 'individual';
     const badgeText = room.wasMulti ? t('Sistema individual') : t('Sistema individual');
+    const specInfoHtml = buildSpecInfoHTML(getSeriesDescriptors(state.brand, seriesKey));
 
     rowsHtml += `
 <div class="sim-res-row">
@@ -1829,6 +1884,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     <div class="sim-res-row__label">${escHtml(room.name)}</div>
     <div class="sim-res-row__model">${escHtml(label)}</div>
     <div class="sim-res-row__specs">${btuLabel(tier)} · ${kwLabel(tier)}${modelNum ? ' · ' + modelNum : ''}</div>
+    ${specInfoHtml}
     <span class="sim-res-row__badge ${badgeClass}">${badgeText}</span>
   </div>
 </div>`;
@@ -1853,6 +1909,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
       img = 'assets/products/daitsu-artic-plus-1.webp';
     }
     const multiBadge = unit.model.startsWith('CTXF') ? t('Multisplit Budget') : t('Multisplit');
+    const specInfoHtml = buildSpecInfoHTML(getSeriesDescriptors(state.brand, getSeriesCatalogKey(state.brand, unit.model)));
     rowsHtml += `
 <div class="sim-res-row">
   <img src="${img}" alt="${seriesLabel}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
@@ -1860,6 +1917,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
     <div class="sim-res-row__label">${escHtml(room.name)}</div>
     <div class="sim-res-row__model">${seriesLabel}</div>
     <div class="sim-res-row__specs">${btuLabel(unit.btu)} · ${unit.kw} kW · ${unit.model}</div>
+    ${specInfoHtml}
     <span class="sim-res-row__badge">${multiBadge}</span>
   </div>
 </div>`;
@@ -1926,12 +1984,12 @@ function buildBrandCompareHTML(config) {
       config.monoRooms.forEach(({ room, seriesKey }) => {
         const catalog = getBrandCatalog(brand);
         const label = seriesKey && catalog[seriesKey] ? catalog[seriesKey].label : '';
-        rows.push(`${escHtml(room.name)} — ${escHtml(label)}`);
+        rows.push({ name: room.name, label, specInfo: getSeriesDescriptors(brand, seriesKey) });
       });
       config.multiRooms.forEach(({ room, unit }) => {
-        rows.push(`${escHtml(room.name)} — ${escHtml(getMultiSeriesLabel(brand, unit.model))}`);
+        rows.push({ name: room.name, label: getMultiSeriesLabel(brand, unit.model), specInfo: getSeriesDescriptors(brand, getSeriesCatalogKey(brand, unit.model)) });
       });
-      if (config.outdoor) rows.push(`${t('Exterior: ')}${config.outdoor.model}`);
+      if (config.outdoor) rows.push({ name: t('Exterior'), label: config.outdoor.model });
       const systemLabel = config.outdoor ? t('Sistema multisplit') : t('Sistema individual');
       return { brand, total: config.total, systemLabel, rows };
     }
@@ -1939,13 +1997,13 @@ function buildBrandCompareHTML(config) {
     if (!cfg || !cfg.total) return { brand, total: null, systemLabel: '', rows: [] };
     const rows = [];
     if (cfg.system === 'multi' && cfg.indoorUnits) {
-      cfg.indoorUnits.forEach(({ room, unit }) => rows.push(`${escHtml(room.name)} — ${unit.model}`));
-      if (cfg.outdoor) rows.push(`${t('Exterior: ')}${cfg.outdoor.model}`);
+      cfg.indoorUnits.forEach(({ room, unit }) => rows.push({ name: room.name, label: unit.model, specInfo: getSeriesDescriptors(brand, getSeriesCatalogKey(brand, unit.model)) }));
+      if (cfg.outdoor) rows.push({ name: t('Exterior'), label: cfg.outdoor.model });
     } else if (cfg.rooms) {
       cfg.rooms.forEach(({ room, seriesKey }) => {
         const catalog = getBrandCatalog(brand);
         const label = catalog[seriesKey] ? catalog[seriesKey].label : seriesKey;
-        rows.push(`${escHtml(room.name)} — ${escHtml(label)}`);
+        rows.push({ name: room.name, label, specInfo: getSeriesDescriptors(brand, seriesKey) });
       });
     }
     const systemLabel = cfg.system === 'multi'
@@ -1963,7 +2021,10 @@ function buildBrandCompareHTML(config) {
     const isCheapest = cheapestTotal != null && total === cheapestTotal;
     const brandName = capFirst(brand);
     const brandImg = `assets/logo-${brand}.png`;
-    const rowsHtml = rows.map(r => `<div class="sbc-card__row">${r}</div>`).join('');
+    const rowsHtml = rows.map(r => {
+      const specInfoHtml = buildSpecInfoHTML(r.specInfo);
+      return `<div class="sbc-card__row"><div class="sbc-card__row-title">${escHtml(r.name)} — ${escHtml(r.label)}</div>${specInfoHtml}</div>`;
+    }).join('');
     const badgeHtml = isCheapest ? `<div class="sbc-card__badge">💰 ${t('Melhor Preço')}</div>` : '';
     const actionHtml = isActive
       ? `<div class="sbc-card__selected">✓ ${t('Selecionada')}</div>`

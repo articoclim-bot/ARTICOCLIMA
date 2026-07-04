@@ -564,6 +564,25 @@
   color: var(--gray);
   margin-top: 2px;
 }
+/* Selos de classe energética/ruído e destaques — usados no picker, cartão de
+   resultado e grelha de comparação de marcas */
+.sim-spec-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.sim-spec-badge {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 0;
+  background: #f3f4f6;
+  color: var(--dark);
+  border: 1px solid var(--gray-light);
+}
+.sim-spec-feats {
+  font-size: .74rem;
+  color: var(--gray);
+  margin-top: 4px;
+  line-height: 1.4;
+}
 .sim-res-row__badge {
   display: inline-block;
   font-size: .68rem;
@@ -776,9 +795,10 @@
 .sbc-card__row {
   font-size: .8rem;
   color: var(--dark);
-  padding: 4px 0;
+  padding: 6px 0;
   border-bottom: 1px solid var(--gray-light);
 }
+.sbc-card__row-title { font-weight: 600; }
 .sbc-card__row:last-child { border-bottom: none; }
 .sbc-card__selected {
   margin-top: auto;
