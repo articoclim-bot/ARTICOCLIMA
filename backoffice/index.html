@@ -814,8 +814,9 @@
         <input type="checkbox" id="svc-hig1" onchange="calcServicos()">
         <label class="service-label" for="svc-hig1">Higienização da Unidade Interior (filtros, evaporador, tabuleiro condensados, desinfeção + relatório HACCP)</label>
         <div class="service-price-wrap">
-          <input type="number" id="svc-hig1-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
-          <span>€</span>
+          <input type="number" id="svc-hig1-pvp" placeholder="0" min="0" step="0.5" oninput="calcServicos()" style="width:80px;">
+          <span style="color:var(--muted)">€ ×</span>
+          <input type="number" id="svc-hig1-qty" value="1" min="1" max="99" step="1" oninput="calcServicos()" style="width:48px;text-align:center;">
         </div>
       </div>
 
@@ -823,8 +824,9 @@
         <input type="checkbox" id="svc-hig2" onchange="calcServicos()">
         <label class="service-label" for="svc-hig2">Higienização + Manutenção Completa (inclui Serviço 1 + inspeção unidade exterior, caudal de ar, diagnóstico, verificação elétrica/frigorífica + relatório completo)</label>
         <div class="service-price-wrap">
-          <input type="number" id="svc-hig2-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
-          <span>€</span>
+          <input type="number" id="svc-hig2-pvp" placeholder="0" min="0" step="0.5" oninput="calcServicos()" style="width:80px;">
+          <span style="color:var(--muted)">€ ×</span>
+          <input type="number" id="svc-hig2-qty" value="1" min="1" max="99" step="1" oninput="calcServicos()" style="width:48px;text-align:center;">
         </div>
       </div>
 
@@ -832,8 +834,9 @@
         <input type="checkbox" id="svc-preinstal" onchange="calcServicos()">
         <label class="service-label" for="svc-preinstal">Pré-instalação de Ar Condicionado (passagem de tubagens, fixações, abertura de vãos)</label>
         <div class="service-price-wrap">
-          <input type="number" id="svc-preinstal-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
-          <span>€</span>
+          <input type="number" id="svc-preinstal-pvp" placeholder="0" min="0" step="0.5" oninput="calcServicos()" style="width:80px;">
+          <span style="color:var(--muted)">€ ×</span>
+          <input type="number" id="svc-preinstal-qty" value="1" min="1" max="99" step="1" oninput="calcServicos()" style="width:48px;text-align:center;">
         </div>
       </div>
 
@@ -841,8 +844,9 @@
         <input type="checkbox" id="svc-reinstal" onchange="calcServicos()">
         <label class="service-label" for="svc-reinstal">Desmontagem e Reinstalação de AC do Cliente (retirada do equipamento existente e reinstalação no novo local)</label>
         <div class="service-price-wrap">
-          <input type="number" id="svc-reinstal-pvp" placeholder="0" min="0" step="0.5" onchange="calcServicos()" style="width:90px;">
-          <span>€</span>
+          <input type="number" id="svc-reinstal-pvp" placeholder="0" min="0" step="0.5" oninput="calcServicos()" style="width:80px;">
+          <span style="color:var(--muted)">€ ×</span>
+          <input type="number" id="svc-reinstal-qty" value="1" min="1" max="99" step="1" oninput="calcServicos()" style="width:48px;text-align:center;">
         </div>
       </div>
 
@@ -1810,6 +1814,8 @@ function novoOrcamento() {
   ['svc-hig1-pvp','svc-hig2-pvp','svc-preinstal-pvp','svc-reinstal-pvp',
    'svc-custom-pvp','svc-custom-desc','svc-cliente','svc-nif','svc-morada','svc-notas','svc-deslocacao']
     .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  ['svc-hig1-qty','svc-hig2-qty','svc-preinstal-qty','svc-reinstal-qty']
+    .forEach(id => { const el = document.getElementById(id); if (el) el.value = '1'; });
   calcServicos();
 
   // — Reset idioma, categoria, barra —
@@ -2994,8 +3000,11 @@ function calcServicos() {
     const chk = document.getElementById(s.id);
     if (chk && chk.checked) {
       const pvp = parseFloat(document.getElementById(s.id + '-pvp').value) || 0;
-      total += pvp;
-      html += `<div class="total-line"><span>${svcLabel(s).split('(')[0].trim()}</span><span>${fmt(pvp)}</span></div>`;
+      const qty = parseInt(document.getElementById(s.id + '-qty')?.value) || 1;
+      const subtotal = pvp * qty;
+      total += subtotal;
+      const label = svcLabel(s).split('(')[0].trim();
+      html += `<div class="total-line"><span>${qty > 1 ? qty + '× ' : ''}${label}</span><span>${fmt(subtotal)}</span></div>`;
     }
   });
   const customDesc = document.getElementById('svc-custom-desc').value.trim();
@@ -3022,7 +3031,8 @@ async function gerarOrcamentoServicos() {
     const chk = document.getElementById(s.id);
     if (chk && chk.checked) {
       const pvp = parseFloat(document.getElementById(s.id + '-pvp').value) || 0;
-      itens.push({ descricao: svcLabel(s), qty: 1, pvp_unitario: pvp, pvp_total: pvp });
+      const qty = parseInt(document.getElementById(s.id + '-qty')?.value) || 1;
+      itens.push({ descricao: svcLabel(s), qty, pvp_unitario: pvp, pvp_total: pvp * qty });
     }
   });
   const customDesc = document.getElementById('svc-custom-desc').value.trim();
