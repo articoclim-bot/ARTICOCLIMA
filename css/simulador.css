@@ -1103,6 +1103,7 @@ body { padding-bottom: 80px; }
 /* Color picker inside SMP card */
 .smp-card__colors {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   padding: 8px 12px;
   border-top: 1px solid var(--gray-light);
@@ -1113,7 +1114,9 @@ body { padding-bottom: 80px; }
   color: var(--gray);
   font-weight: 600;
   margin-right: 2px;
+  flex-basis: 100%;
 }
+.smp-card__colors .sim-color-btn { flex-shrink: 0; }
 
 /* ── Quote Modal ─────────────────────────────────────────────────── */
 .qm-overlay {
