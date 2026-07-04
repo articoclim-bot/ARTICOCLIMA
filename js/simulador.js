@@ -278,7 +278,22 @@ const state = {
   nextRoomId: 1,
   modelPickerRoomId: null,
   pickerColors: {}, // roomId → color (for Stylish/Emura in picker before confirm)
+  quoteGoal: null, // 'novo' | 'substituicao' | 'sem_pre' — objetivo da instalação (pedido de orçamento)
 };
+
+// Objetivo da instalação — opções do formulário de pedido de orçamento
+const INSTALL_GOALS = {
+  novo: 'Instalação de equipamento novo com pré-instalação',
+  substituicao: 'Substituição do equipamento antigo',
+  sem_pre: 'Instalação do equipamento sem pré-instalação',
+};
+
+function setQuoteGoal(goal, btnEl) {
+  state.quoteGoal = goal;
+  document.querySelectorAll('.qm-goal-btn').forEach(b => b.classList.toggle('active', b === btnEl));
+  const errEl = document.getElementById('qm-error');
+  if (errEl) errEl.textContent = '';
+}
 
 function newRoom(id) {
   return {
@@ -1603,27 +1618,27 @@ function renderResults() {
   updateResultsVisibility();
   const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
   const contentEl = document.getElementById('sim-results-content');
-  const altEl = document.getElementById('sim-alt-brands');
+  const compareEl = document.getElementById('sim-brand-compare');
   if (!contentEl) return;
 
   if (!validRooms.length) {
     contentEl.innerHTML = '';
-    if (altEl) altEl.innerHTML = '';
+    if (compareEl) compareEl.innerHTML = '';
     return;
   }
 
   if (validRooms.length === 1) {
     // 1 divisão → sempre monosplit como primário, sem alternativa
     const config = calcSystemConfig(state.brand, state.rooms);
-    if (!config || !config.total) { contentEl.innerHTML = ''; if (altEl) altEl.innerHTML = ''; return; }
+    if (!config || !config.total) { contentEl.innerHTML = ''; if (compareEl) compareEl.innerHTML = ''; return; }
     contentEl.innerHTML = buildResultsHTML(config, null);
-    if (altEl) altEl.innerHTML = buildAltBrandsHTML();
+    if (compareEl) compareEl.innerHTML = buildBrandCompareHTML(config);
     return;
   }
 
   // 2+ divisões → usar a configuração actual do utilizador (respeita as escolhas do picker)
   const config = calcSystemConfig(state.brand, state.rooms);
-  if (!config || !config.total) { contentEl.innerHTML = ''; if (altEl) altEl.innerHTML = ''; return; }
+  if (!config || !config.total) { contentEl.innerHTML = ''; if (compareEl) compareEl.innerHTML = ''; return; }
 
   // Alternativa monosplit (respeita a série escolhida pelo user)
   const monoAlt = calcCheapestMonoAlt(state.brand, validRooms);
@@ -1632,7 +1647,7 @@ function renderResults() {
   const cheapMultiAlt = calcCheapestMultiAlt(state.brand, validRooms);
 
   contentEl.innerHTML = buildResultsHTML(config, monoAlt, cheapMultiAlt);
-  if (altEl) altEl.innerHTML = buildAltBrandsHTML();
+  if (compareEl) compareEl.innerHTML = buildBrandCompareHTML(config);
 }
 
 // Calcula a alternativa monosplit — respeita a série escolhida pelo utilizador no picker
@@ -1899,63 +1914,75 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
 ${cheapMultiAltHtml}${monoAltHtml}`;
 }
 
-function buildAltBrandsHTML() {
+// Grelha de comparação das 3 marcas — mostra sempre Daikin, Bosch e Daitsu lado a
+// lado (a marca activa usa a configuração escolhida pelo cliente; as outras mostram
+// a opção mais económica dessa marca). Sem valores em €: apenas um selo na mais barata.
+function buildBrandCompareHTML(config) {
   const allBrands = ['daikin', 'bosch', 'daitsu'];
-  const altBrands = allBrands.filter(b => b !== state.brand);
 
-  return altBrands.map(brand => {
-    const cfg = calcAltBrandConfig(brand, state.rooms);
-    if (!cfg || !cfg.total) return '';
-    const brandName = capFirst(brand);
-    const brandImg = `assets/logo-${brand}.png`;
-    let systemDesc = '';
-    if (cfg.system === 'multi') systemDesc = `${t('Sistema multisplit')} · ${cfg.seriesLabel}`;
-    else systemDesc = `${t('Sistema individual')} · ${cfg.seriesLabel}`;
-
-    let detailRows = '';
-    if (cfg.system === 'multi' && cfg.indoorUnits) {
-      cfg.indoorUnits.forEach(({ room, unit }) => {
-        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${unit.model}</span></div>`;
+  const brandData = allBrands.map(brand => {
+    if (brand === state.brand) {
+      const rows = [];
+      config.monoRooms.forEach(({ room, seriesKey }) => {
+        const catalog = getBrandCatalog(brand);
+        const label = seriesKey && catalog[seriesKey] ? catalog[seriesKey].label : '';
+        rows.push(`${escHtml(room.name)} — ${escHtml(label)}`);
       });
-      if (cfg.outdoor) {
-        detailRows += `<div class="sim-alt-detail-row"><span>${t('Exterior: ')}${cfg.outdoor.model}</span></div>`;
-      }
+      config.multiRooms.forEach(({ room, unit }) => {
+        rows.push(`${escHtml(room.name)} — ${escHtml(getMultiSeriesLabel(brand, unit.model))}`);
+      });
+      if (config.outdoor) rows.push(`${t('Exterior: ')}${config.outdoor.model}`);
+      const systemLabel = config.outdoor ? t('Sistema multisplit') : t('Sistema individual');
+      return { brand, total: config.total, systemLabel, rows };
+    }
+    const cfg = calcAltBrandConfig(brand, state.rooms);
+    if (!cfg || !cfg.total) return { brand, total: null, systemLabel: '', rows: [] };
+    const rows = [];
+    if (cfg.system === 'multi' && cfg.indoorUnits) {
+      cfg.indoorUnits.forEach(({ room, unit }) => rows.push(`${escHtml(room.name)} — ${unit.model}`));
+      if (cfg.outdoor) rows.push(`${t('Exterior: ')}${cfg.outdoor.model}`);
     } else if (cfg.rooms) {
-      cfg.rooms.forEach(({ room, seriesKey, price }) => {
+      cfg.rooms.forEach(({ room, seriesKey }) => {
         const catalog = getBrandCatalog(brand);
         const label = catalog[seriesKey] ? catalog[seriesKey].label : seriesKey;
-        detailRows += `<div class="sim-alt-detail-row"><span>${room.name} — ${label}</span></div>`;
+        rows.push(`${escHtml(room.name)} — ${escHtml(label)}`);
       });
     }
+    const systemLabel = cfg.system === 'multi'
+      ? `${t('Sistema multisplit')} · ${cfg.seriesLabel}`
+      : `${t('Sistema individual')} · ${cfg.seriesLabel}`;
+    return { brand, total: cfg.total, systemLabel, rows };
+  });
 
+  const totals = brandData.map(b => b.total).filter(v => v != null && v > 0);
+  const cheapestTotal = totals.length ? Math.min(...totals) : null;
+
+  const cardsHtml = brandData.map(({ brand, total, systemLabel, rows }) => {
+    if (total == null) return '';
+    const isActive = brand === state.brand;
+    const isCheapest = cheapestTotal != null && total === cheapestTotal;
+    const brandName = capFirst(brand);
+    const brandImg = `assets/logo-${brand}.png`;
+    const rowsHtml = rows.map(r => `<div class="sbc-card__row">${r}</div>`).join('');
+    const badgeHtml = isCheapest ? `<div class="sbc-card__badge">💰 ${t('Melhor Preço')}</div>` : '';
+    const actionHtml = isActive
+      ? `<div class="sbc-card__selected">✓ ${t('Selecionada')}</div>`
+      : `<button class="sbc-card__btn" onclick="changeBrand('${brand}')">${t('Ver esta opção →')}</button>`;
     return `
-<div class="sim-alt-card" id="alt-${brand}">
-  <div class="sim-alt-card__header" onclick="toggleAltCard('${brand}')">
-    <div class="sim-alt-card__icon">💡</div>
-    <div class="sim-alt-card__info">
-      <div class="sim-alt-card__text">A <strong>${brandName}</strong>${t(' também resolve esta necessidade')}</div>
-      <div class="sim-alt-card__price">${t('Peça orçamento para comparar')}</div>
-    </div>
-    <button class="sim-alt-card__toggle">${t('Ver detalhes ▾')}</button>
-  </div>
-  <div class="sim-alt-card__detail">
-    <div class="sim-alt-card__detail-inner">
-      <div class="sim-alt-card__detail-content">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-          <img src="${brandImg}" alt="${brandName}" style="height:20px;filter:grayscale(1)" onerror="this.style.display='none'">
-          <span style="font-size:.78rem;color:#6b7280">${systemDesc} ${t('· IVA inc. · Excl. instalação')}</span>
-        </div>
-        ${detailRows}
-      </div>
-    </div>
-  </div>
+<div class="sbc-card${isActive ? ' active' : ''}${isCheapest ? ' cheapest' : ''}">
+  ${badgeHtml}
+  <img src="${brandImg}" alt="${brandName}" class="sbc-card__logo" onerror="this.style.display='none'">
+  <div class="sbc-card__system">${systemLabel}</div>
+  <div class="sbc-card__rows">${rowsHtml}</div>
+  ${actionHtml}
 </div>`;
   }).join('');
-}
 
-function toggleAltCard(brand) {
-  const card = document.getElementById('alt-' + brand);
-  if (card) card.classList.toggle('expanded');
+  return `
+<div class="sim-brand-compare">
+  <div class="sim-brand-compare__title">${t('Compare as 3 marcas para esta configuração')}</div>
+  <div class="sim-brand-compare__grid">${cardsHtml}</div>
+</div>`;
 }
 
 // ============================================================
@@ -1994,8 +2021,12 @@ function validateQuoteForm() {
     if (errEl) errEl.textContent = t('Por favor indique o seu nome e contacto.');
     return null;
   }
+  if (!state.quoteGoal) {
+    if (errEl) errEl.textContent = t('Por favor indique o objetivo da instalação.');
+    return null;
+  }
   if (errEl) errEl.textContent = '';
-  return { name: name || 'Não indicado', contact: contact || 'Não indicado' };
+  return { name: name || 'Não indicado', contact: contact || 'Não indicado', goal: state.quoteGoal };
 }
 
 function buildQuoteText(data) {
@@ -2030,6 +2061,8 @@ function buildQuoteText(data) {
     lines.push(`• Exterior partilhado: ${config.outdoor.model}`);
   }
 
+  lines.push('');
+  lines.push(`🎯 ${t('Objetivo: ')}${t(INSTALL_GOALS[data.goal] || '')}`);
   lines.push('');
   lines.push('_(Orçamento detalhado enviado em breve)_');
   lines.push('');
@@ -2223,6 +2256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('langchange', () => {
   renderRooms();
   renderResults();
+  updateLiveTotal();
   // Actualizar picker se estiver aberto
   const pickerOverlay = document.getElementById('smp-overlay');
   if (pickerOverlay && pickerOverlay.style.display === 'flex' && state.modelPickerRoomId) {

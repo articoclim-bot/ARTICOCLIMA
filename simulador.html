@@ -107,8 +107,8 @@
   <!-- ===== RESULTADOS ===== -->
   <section class="sim-results" id="sim-results" style="display:none">
     <div class="container">
+      <div id="sim-brand-compare"></div>
       <div id="sim-results-content"></div>
-      <div id="sim-alt-brands"></div>
     </div>
   </section>
 
@@ -168,6 +168,23 @@
         <div class="qm-field">
           <label for="qm-contact">Telemóvel ou Email</label>
           <input type="text" id="qm-contact" placeholder="+351 9XX XXX XXX" autocomplete="tel">
+        </div>
+        <div class="qm-field">
+          <label>Objetivo da instalação</label>
+          <div class="qm-goal-options" id="qm-goal-options">
+            <button type="button" class="qm-goal-btn" data-goal="novo" onclick="setQuoteGoal('novo', this)">
+              <span class="qm-goal-btn__dot"></span>
+              <span>Instalação de equipamento novo com pré-instalação</span>
+            </button>
+            <button type="button" class="qm-goal-btn" data-goal="substituicao" onclick="setQuoteGoal('substituicao', this)">
+              <span class="qm-goal-btn__dot"></span>
+              <span>Substituição do equipamento antigo</span>
+            </button>
+            <button type="button" class="qm-goal-btn" data-goal="sem_pre" onclick="setQuoteGoal('sem_pre', this)">
+              <span class="qm-goal-btn__dot"></span>
+              <span>Instalação do equipamento sem pré-instalação</span>
+            </button>
+          </div>
         </div>
         <p class="qm-error" id="qm-error"></p>
       </div>
