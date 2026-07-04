@@ -10255,5 +10255,722 @@
     "justificacao": "Opção A: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.\nOpção B: Classe A++ com modo I-Feel (sente a temperatura onde está o telecomando) e filtro PM2.5. Conforto superior com consumo mínimo.\nOpção C: O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.\nOpção D: Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.\nOpção E: Melhor relação qualidade/preço do mercado. WiFi incluído de série, A+++ aquecimento e 5 filtros de alta eficiência — tecnologia muito acima do preço.",
     "total_com_iva": 1396,
     "validade_dias": 30
+  },
+  {
+    "numero": 104,
+    "numero_formatado": "ORC-2026-0104",
+    "data": "2026-07-04T14:50:23.013Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "Maria Santos",
+    "morada": "Rua das Flores, 12 — Cascais",
+    "nif": null,
+    "itens": [
+      {
+        "series": "Climate 3200i",
+        "qty": 1,
+        "pvp_total": null
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "series": "Climate 3200i",
+        "imagens": null,
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "series": "Climate 3200i",
+            "qty": 1,
+            "pvp_total": null
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": null,
+        "notas_opcao": null,
+        "recomendacao": "⭐ Melhor Relação Q/P"
+      },
+      {
+        "letra": "B",
+        "series": "Sensira",
+        "imagens": null,
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_total": null
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": null,
+        "notas_opcao": null,
+        "recomendacao": "✅ Recomendada"
+      },
+      {
+        "letra": "C",
+        "series": "Perfera",
+        "imagens": null,
+        "kw": 5,
+        "btu": 18000,
+        "classe": "A+++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "series": "Perfera",
+            "qty": 1,
+            "pvp_total": null
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": null,
+        "notas_opcao": null,
+        "recomendacao": "💎 Premium"
+      }
+    ],
+    "instalacao": 280,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: undefined\nOpção B: undefined\nOpção C: undefined",
+    "total_com_iva": null,
+    "validade_dias": 30
+  },
+  {
+    "numero": 105,
+    "numero_formatado": "ORC-2026-0105",
+    "data": "2026-07-04T15:00:55.532Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "Maria Santos",
+    "morada": "Rua das Flores, 12 — Cascais",
+    "nif": null,
+    "itens": [
+      {
+        "descricao": "Climate 3200i CL3200i-Set 35 WE",
+        "series": "Climate 3200i",
+        "qty": 1,
+        "pvp_unitario": 996,
+        "pvp_total": 996
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Climate 3200i CL3200i-Set 35 WE",
+        "marca": "Bosch",
+        "series": "Climate 3200i",
+        "imagem": "assets/products/bosch-3200i-new-2.jpg",
+        "imagens": null,
+        "justificacao": "Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Climate 3200i CL3200i-Set 35 WE",
+            "series": "Climate 3200i",
+            "qty": 1,
+            "pvp_unitario": 996,
+            "pvp_total": 996
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1276,
+        "notas_opcao": null,
+        "recomendacao": "⭐ Melhor Relação Q/P"
+      },
+      {
+        "letra": "B",
+        "titulo": "Sensira FTXF35",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF35",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 1169,
+            "pvp_total": 1169
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1449,
+        "notas_opcao": null,
+        "recomendacao": "✅ Recomendada"
+      },
+      {
+        "letra": "C",
+        "titulo": "Perfera FTXM50",
+        "marca": "Daikin",
+        "series": "Perfera",
+        "imagem": "assets/products/daikin-perfera-2.webp",
+        "imagens": null,
+        "justificacao": "O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.",
+        "kw": 5,
+        "btu": 18000,
+        "classe": "A+++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Perfera FTXM50",
+            "series": "Perfera",
+            "qty": 1,
+            "pvp_unitario": 2952,
+            "pvp_total": 2952
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 3232,
+        "notas_opcao": null,
+        "recomendacao": "💎 Premium"
+      }
+    ],
+    "instalacao": 280,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.\nOpção B: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.\nOpção C: O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.",
+    "total_com_iva": 1276,
+    "validade_dias": 30
+  },
+  {
+    "numero": 106,
+    "numero_formatado": "ORC-2026-0106",
+    "data": "2026-07-04T15:04:49.333Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "teste1",
+    "morada": "teste1",
+    "nif": "999999999",
+    "itens": [
+      {
+        "descricao": "Sensira FTXF20",
+        "series": "Sensira",
+        "qty": 1,
+        "pvp_unitario": 972,
+        "pvp_total": 972
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Sensira FTXF20",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 2,
+        "btu": 7000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF20",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 972,
+            "pvp_total": 972
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 972,
+        "notas_opcao": null,
+        "recomendacao": null
+      },
+      {
+        "letra": "B",
+        "titulo": "Stylish FTXA35 Branco",
+        "marca": "Daikin",
+        "series": "Stylish",
+        "imagem": "assets/products/daikin-stylish-branco-2.webp",
+        "imagens": null,
+        "justificacao": "Design premiado disponível em 8 cores. Tecnologia A+++ com estética que complementa qualquer decoração. Premiado EPA, iF Design e Red Dot.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A+++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Stylish FTXA35 Branco",
+            "series": "Stylish",
+            "qty": 1,
+            "pvp_unitario": 2189,
+            "pvp_total": 2189
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 2189,
+        "notas_opcao": null,
+        "recomendacao": null
+      },
+      {
+        "letra": "C",
+        "titulo": "Climate 6000i CL6000i-Set 53 WE",
+        "marca": "Bosch",
+        "series": "Climate 6000i",
+        "imagem": "assets/products/bosch-6000i-2.webp",
+        "imagens": null,
+        "justificacao": "Classe A+++ com sensor de movimento, ionizador integrado e controlo de humidade. O equilíbrio perfeito entre preço e tecnologia Bosch.",
+        "kw": 5.3,
+        "btu": 18000,
+        "classe": "A+++",
+        "itens": [
+          {
+            "descricao": "Climate 6000i CL6000i-Set 53 WE",
+            "series": "Climate 6000i",
+            "qty": 1,
+            "pvp_unitario": 1790,
+            "pvp_total": 1790
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1790,
+        "notas_opcao": null,
+        "recomendacao": null
+      }
+    ],
+    "instalacao": null,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.\nOpção B: Design premiado disponível em 8 cores. Tecnologia A+++ com estética que complementa qualquer decoração. Premiado EPA, iF Design e Red Dot.\nOpção C: Classe A+++ com sensor de movimento, ionizador integrado e controlo de humidade. O equilíbrio perfeito entre preço e tecnologia Bosch.",
+    "total_com_iva": 972,
+    "validade_dias": 30
+  },
+  {
+    "numero": 107,
+    "numero_formatado": "ORC-2026-0107",
+    "data": "2026-07-04T15:10:50.701Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "Maria Santos",
+    "morada": "Rua das Flores, 12 — Cascais",
+    "nif": null,
+    "itens": [
+      {
+        "descricao": "Climate 3200i CL3200i-Set 35 WE",
+        "series": "Climate 3200i",
+        "qty": 1,
+        "pvp_unitario": 996,
+        "pvp_total": 996
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Climate 3200i CL3200i-Set 35 WE",
+        "marca": "Bosch",
+        "series": "Climate 3200i",
+        "imagem": "assets/products/bosch-3200i-new-2.jpg",
+        "imagens": null,
+        "justificacao": "Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Climate 3200i CL3200i-Set 35 WE",
+            "series": "Climate 3200i",
+            "qty": 1,
+            "pvp_unitario": 996,
+            "pvp_total": 996
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1276,
+        "notas_opcao": null,
+        "recomendacao": "⭐ Melhor Relação Q/P"
+      },
+      {
+        "letra": "B",
+        "titulo": "Sensira FTXF35",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF35",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 1169,
+            "pvp_total": 1169
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1449,
+        "notas_opcao": null,
+        "recomendacao": "✅ Recomendada"
+      },
+      {
+        "letra": "C",
+        "titulo": "Perfera FTXM50",
+        "marca": "Daikin",
+        "series": "Perfera",
+        "imagem": "assets/products/daikin-perfera-2.webp",
+        "imagens": null,
+        "justificacao": "O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.",
+        "kw": 5,
+        "btu": 18000,
+        "classe": "A+++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Perfera FTXM50",
+            "series": "Perfera",
+            "qty": 1,
+            "pvp_unitario": 2952,
+            "pvp_total": 2952
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 3232,
+        "notas_opcao": null,
+        "recomendacao": "💎 Premium"
+      }
+    ],
+    "instalacao": 280,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.\nOpção B: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.\nOpção C: O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.",
+    "total_com_iva": 1276,
+    "validade_dias": 30
+  },
+  {
+    "numero": 108,
+    "numero_formatado": "ORC-2026-0108",
+    "data": "2026-07-04T15:15:12.490Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "Maria Santos",
+    "morada": null,
+    "nif": null,
+    "itens": [
+      {
+        "descricao": "Sensira FTXF35",
+        "series": "Sensira",
+        "qty": 1,
+        "pvp_unitario": 1169,
+        "pvp_total": 1169
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Sensira FTXF35",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF35",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 1169,
+            "pvp_total": 1169
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1449,
+        "notas_opcao": null,
+        "recomendacao": "✅ Recomendada"
+      },
+      {
+        "letra": "B",
+        "titulo": "Perfera FTXM50",
+        "marca": "Daikin",
+        "series": "Perfera",
+        "imagem": "assets/products/daikin-perfera-2.webp",
+        "imagens": null,
+        "justificacao": "O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.",
+        "kw": 5,
+        "btu": 18000,
+        "classe": "A+++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Perfera FTXM50",
+            "series": "Perfera",
+            "qty": 1,
+            "pvp_unitario": 2952,
+            "pvp_total": 2952
+          }
+        ],
+        "instalacao": 280,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 3232,
+        "notas_opcao": null,
+        "recomendacao": "💎 Premium"
+      }
+    ],
+    "instalacao": 280,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.\nOpção B: O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.",
+    "total_com_iva": 1449,
+    "validade_dias": 30
+  },
+  {
+    "numero": 109,
+    "numero_formatado": "ORC-2026-0109",
+    "data": "2026-07-04T15:21:49.769Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "teste2",
+    "morada": "teste2",
+    "nif": "999999999",
+    "itens": [
+      {
+        "descricao": "Sensira FTXF25",
+        "series": "Sensira",
+        "qty": 1,
+        "pvp_unitario": 1033,
+        "pvp_total": 1033
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Sensira FTXF25",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 2.5,
+        "btu": 9000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF25",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 1033,
+            "pvp_total": 1033
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1033,
+        "notas_opcao": null,
+        "recomendacao": null
+      },
+      {
+        "letra": "B",
+        "titulo": "ARTIC DS-12KZ",
+        "marca": "Daitsu",
+        "series": "ARTIC",
+        "imagem": "assets/products/daitsu-artic-kz-6.jpg",
+        "imagens": null,
+        "justificacao": "Melhor relação qualidade/preço do mercado. WiFi incluído de série, A+++ aquecimento e 5 filtros de alta eficiência — tecnologia muito acima do preço.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "ARTIC DS-12KZ",
+            "series": "ARTIC",
+            "qty": 1,
+            "pvp_unitario": 760,
+            "pvp_total": 760
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 760,
+        "notas_opcao": null,
+        "recomendacao": null
+      },
+      {
+        "letra": "C",
+        "titulo": "Climate 3200i CL3200i-Set 35 WE",
+        "marca": "Bosch",
+        "series": "Climate 3200i",
+        "imagem": "assets/products/bosch-3200i-new-2.jpg",
+        "imagens": null,
+        "justificacao": "Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.",
+        "kw": 3.5,
+        "btu": 12000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Climate 3200i CL3200i-Set 35 WE",
+            "series": "Climate 3200i",
+            "qty": 1,
+            "pvp_unitario": 996,
+            "pvp_total": 996
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 996,
+        "notas_opcao": null,
+        "recomendacao": null
+      }
+    ],
+    "instalacao": null,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.\nOpção B: Melhor relação qualidade/preço do mercado. WiFi incluído de série, A+++ aquecimento e 5 filtros de alta eficiência — tecnologia muito acima do preço.\nOpção C: Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.",
+    "total_com_iva": 1033,
+    "validade_dias": 30
+  },
+  {
+    "numero": 110,
+    "numero_formatado": "ORC-2026-0110",
+    "data": "2026-07-04T15:31:54.821Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "teste3",
+    "morada": "teste3",
+    "nif": "999999999",
+    "itens": [
+      {
+        "descricao": "Sensira FTXF25",
+        "series": "Sensira",
+        "qty": 1,
+        "pvp_unitario": 1033,
+        "pvp_total": 1033
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Sensira FTXF25",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 2.5,
+        "btu": 9000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF25",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 1033,
+            "pvp_total": 1033
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1033,
+        "notas_opcao": null,
+        "recomendacao": null
+      }
+    ],
+    "instalacao": null,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+    "total_com_iva": 1033,
+    "validade_dias": 30
+  },
+  {
+    "numero": 111,
+    "numero_formatado": "ORC-2026-0111",
+    "data": "2026-07-04T15:33:33.498Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "teste4",
+    "morada": "teste4",
+    "nif": "999999999",
+    "itens": [
+      {
+        "descricao": "Sensira FTXF20",
+        "series": "Sensira",
+        "qty": 1,
+        "pvp_unitario": 972,
+        "pvp_total": 972
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Sensira FTXF20",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 2,
+        "btu": 7000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF20",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 972,
+            "pvp_total": 972
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 972,
+        "notas_opcao": null,
+        "recomendacao": null
+      }
+    ],
+    "instalacao": null,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+    "total_com_iva": 972,
+    "validade_dias": 30
   }
 ]
