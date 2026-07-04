@@ -1,6 +1,14 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { exec } = require('child_process');
+
+const PDF_OUTPUT_DIR = 'C:\\Users\\fabio\\OneDrive\\Artico Climatização\\Clientes\\Orçamentos de clientes\\Novo Template de Orçamento';
+const TEMP_HTML = path.join(__dirname, 'backoffice', '_print_temp.html');
+const EDGE_PATHS = [
+  'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
+  'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
+];
 
 // Carrega .env se existir (sem npm)
 try {
@@ -184,14 +192,19 @@ function handleGerarOrcamento(req, res) {
         numero_formatado,
         data: new Date().toISOString(),
         categoria: dados.categoria || 'ac',
+        lang: dados.lang || 'pt',
         cliente: dados.cliente || '',
+        morada: dados.morada || null,
+        nif: dados.nif || null,
         itens: dados.itens || [],
         opcoes: dados.opcoes || null,
         instalacao: dados.instalacao || null,
+        deslocacao: dados.deslocacao || null,
         desconto: dados.desconto || 0,
         notas: dados.notas || '',
         justificacao: dados.justificacao || '',
         total_com_iva: dados.total_com_iva || null,
+        validade_dias: dados.validade_dias || 30,
       };
 
       const orcamentos = readJson(QUOTES_FILE, []);
@@ -200,6 +213,38 @@ function handleGerarOrcamento(req, res) {
 
       json(res, { sucesso: true, orcamento });
     } catch (e) {
+      json(res, { erro: e.message }, 500);
+    }
+  });
+}
+
+function handleGuardarPdf(req, res) {
+  let body = '';
+  req.on('data', c => body += c);
+  req.on('end', () => {
+    try {
+      const { html, filename } = JSON.parse(body);
+
+      const edgePath = EDGE_PATHS.find(p => fs.existsSync(p));
+      if (!edgePath) return json(res, { erro: 'Microsoft Edge não encontrado no sistema.' }, 500);
+
+      if (!fs.existsSync(PDF_OUTPUT_DIR)) fs.mkdirSync(PDF_OUTPUT_DIR, { recursive: true });
+
+      const pdfPath = path.join(PDF_OUTPUT_DIR, filename + '.pdf');
+      fs.writeFileSync(TEMP_HTML, html, 'utf8');
+
+      const fileUrl = 'file:///' + TEMP_HTML.replace(/\\/g, '/');
+      const cmd = `"${edgePath}" --headless --disable-gpu --no-sandbox --no-pdf-header-footer --print-to-pdf="${pdfPath}" "${fileUrl}"`;
+
+      exec(cmd, { timeout: 30000 }, (err) => {
+        try { fs.unlinkSync(TEMP_HTML); } catch {}
+        if (err && !fs.existsSync(pdfPath)) {
+          return json(res, { erro: 'Falha ao gerar PDF: ' + err.message }, 500);
+        }
+        json(res, { sucesso: true, nome: filename + '.pdf', caminho: pdfPath });
+      });
+    } catch (e) {
+      try { fs.unlinkSync(TEMP_HTML); } catch {}
       json(res, { erro: e.message }, 500);
     }
   });
@@ -227,6 +272,7 @@ http.createServer((req, res) => {
 
   if (req.method === 'POST' && url === '/api/sugerir') return handleSugerir(req, res);
   if (req.method === 'POST' && url === '/api/gerar-orcamento') return handleGerarOrcamento(req, res);
+  if (req.method === 'POST' && url === '/api/guardar-pdf') return handleGuardarPdf(req, res);
   if (req.method === 'GET' && url === '/api/orcamentos') return handleListarOrcamentos(req, res);
   if (req.method === 'GET' && url.startsWith('/api/orcamentos/')) {
     const id = url.split('/').pop();

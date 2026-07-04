@@ -1,5 +1,5 @@
 @echo off
-cd /d "C:\Users\fabio\ARTICOCLIMA"
+cd /d "C:\Users\fabio\repos\ARTICOCLIMA"
 
 :: Verifica se o servidor já está a correr na porta 8080
 netstat -an | find "0.0.0.0:8080" >nul 2>&1

@@ -48,7 +48,7 @@
     header nav button:hover:not(.active) { background: var(--surface2); color: var(--text); }
 
     /* ── Layout ── */
-    .view { display: none; padding: 28px 24px; max-width: 1020px; margin: 0 auto; width: 100%; }
+    .view { display: none; padding: 28px 24px; max-width: 1600px; margin: 0 auto; width: 100%; }
     .view.active { display: block; }
 
     /* ── Category tabs ── */
@@ -153,7 +153,9 @@
     .opcao-specs { font-size: .78rem; color: var(--muted); display: flex; gap: 12px; }
     .opcao-pvp { font-size: 1.15rem; font-weight: 800; color: var(--orange); }
     .opcao-justificacao { font-size: .8rem; color: #555; line-height: 1.55; border-top: 1px solid var(--border); padding-top: 8px; }
-    .opcao-img { width: 100%; height: 100px; object-fit: contain; background: #f8f9fb; }
+    .opcao-img-wrap { width: 100%; height: 100px; background: #f8f9fb; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .opcao-img { width: 100%; height: 100px; object-fit: contain; }
+    .opcao-img[data-brand="daikin"] { transform: scale(2.4); }
     .opcao-select-btn { margin-top: auto; width: 100%; }
     .opcao-select-btn.selected-btn { background: var(--orange); color: #fff; border-color: var(--orange); }
     .tipo-divider {
@@ -284,6 +286,7 @@
     .ms-int-card:hover:not(.disabled) { border-color:var(--orange); }
     .ms-int-card.has-qty { border-color:var(--orange); background:var(--orange-light); }
     .ms-int-card.disabled { opacity:.38; cursor:not-allowed; }
+    .ms-int-card img { width:100%; height:90px; object-fit:cover; border-radius:5px; margin-bottom:6px; }
     .ms-int-name { font-size:.77rem; font-weight:600; margin-bottom:3px; line-height:1.3; }
     .ms-int-specs { font-size:.71rem; color:var(--muted); }
     .ms-int-pvp { font-size:.81rem; font-weight:700; color:var(--orange); margin-top:3px; }
@@ -356,7 +359,7 @@
     ══════════════════════════════════════ */
     @media print {
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      header, .view, .cat-tabs, #toast-container, .toast, .barra-acoes, #back-to-top { display: none !important; }
+      header, .view, .cat-tabs, .lang-bar, #toast-container, .toast, .barra-acoes, #back-to-top { display: none !important; }
       #print-area { display: block !important; }
       @page { margin: 14mm 16mm 20mm 16mm; size: A4; }
       .pf-fixed { display: flex !important; }
@@ -522,24 +525,24 @@
   </nav>
 </header>
 
+<!-- Idioma do documento — sempre visível -->
+<div class="lang-bar">
+  <span class="lang-bar-label">🌐 Idioma do documento</span>
+  <button class="lang-btn active" onclick="setLang('pt')" data-lang="pt">🇵🇹 PT</button>
+  <button class="lang-btn" onclick="setLang('en')" data-lang="en">🇬🇧 EN</button>
+  <button class="lang-btn" onclick="setLang('fr')" data-lang="fr">🇫🇷 FR</button>
+  <button class="lang-btn" onclick="setLang('de')" data-lang="de">🇩🇪 DE</button>
+  <button class="lang-btn" onclick="setLang('es')" data-lang="es">🇪🇸 ES</button>
+  <button class="lang-btn" onclick="setLang('it')" data-lang="it">🇮🇹 IT</button>
+  <button class="lang-btn" onclick="setLang('nl')" data-lang="nl">🇳🇱 NL</button>
+</div>
+
 <!-- ═══════ VIEW: NOVO ORÇAMENTO ═══════ -->
 <div class="view active" id="view-novo">
   <div class="cat-tabs">
     <button class="cat-tab active" onclick="showCat('ac')">❄️ Ar Condicionado</button>
     <button class="cat-tab" onclick="showCat('solar')">☀️ Solar AQS</button>
     <button class="cat-tab" onclick="showCat('servicos')">🔧 Outros Serviços</button>
-  </div>
-
-  <!-- Idioma do documento -->
-  <div class="lang-bar">
-    <span class="lang-bar-label">🌐 Idioma do documento</span>
-    <button class="lang-btn active" onclick="setLang('pt')" data-lang="pt">🇵🇹 PT</button>
-    <button class="lang-btn" onclick="setLang('en')" data-lang="en">🇬🇧 EN</button>
-    <button class="lang-btn" onclick="setLang('fr')" data-lang="fr">🇫🇷 FR</button>
-    <button class="lang-btn" onclick="setLang('de')" data-lang="de">🇩🇪 DE</button>
-    <button class="lang-btn" onclick="setLang('es')" data-lang="es">🇪🇸 ES</button>
-    <button class="lang-btn" onclick="setLang('it')" data-lang="it">🇮🇹 IT</button>
-    <button class="lang-btn" onclick="setLang('nl')" data-lang="nl">🇳🇱 NL</button>
   </div>
 
   <!-- ── Categoria AC ── -->
@@ -916,6 +919,15 @@
   <span class="barra-acoes-sep">·</span>
   <span style="font-size:.88rem;color:var(--muted);">guardado com sucesso</span>
   <div class="barra-acoes-btns">
+    <span style="font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-right:2px;">🌐</span>
+    <button class="lang-btn" onclick="setLang('pt')" data-lang="pt" style="padding:4px 8px;font-size:.78rem;">🇵🇹</button>
+    <button class="lang-btn" onclick="setLang('en')" data-lang="en" style="padding:4px 8px;font-size:.78rem;">🇬🇧</button>
+    <button class="lang-btn" onclick="setLang('fr')" data-lang="fr" style="padding:4px 8px;font-size:.78rem;">🇫🇷</button>
+    <button class="lang-btn" onclick="setLang('de')" data-lang="de" style="padding:4px 8px;font-size:.78rem;">🇩🇪</button>
+    <button class="lang-btn" onclick="setLang('es')" data-lang="es" style="padding:4px 8px;font-size:.78rem;">🇪🇸</button>
+    <button class="lang-btn" onclick="setLang('it')" data-lang="it" style="padding:4px 8px;font-size:.78rem;">🇮🇹</button>
+    <button class="lang-btn" onclick="setLang('nl')" data-lang="nl" style="padding:4px 8px;font-size:.78rem;">🇳🇱</button>
+    <span class="barra-acoes-sep">·</span>
     <button class="btn btn-ghost" onclick="executarPrint()">🖨️ Imprimir</button>
     <button class="btn btn-primary" id="btn-guardar-pdf" onclick="guardarPdfAuto(this)">💾 Guardar PDF</button>
     <button class="btn btn-ghost" onclick="fecharBarraAcoes()" style="padding:8px 12px;font-size:.9rem;" title="Fechar">✕</button>
@@ -928,143 +940,143 @@
 ═══════════════════════════════════════════ */
 const CATALOG_AC = [
   // Daikin Sensira
-  {id:'daikin-sensira-ftxf20',brand:'Daikin',series:'Sensira',model:'FTXF20',kw:2.0,btu:7000,pvp:972,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-1.jpg'},
-  {id:'daikin-sensira-ftxf25',brand:'Daikin',series:'Sensira',model:'FTXF25',kw:2.5,btu:9000,pvp:1033,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-1.jpg'},
-  {id:'daikin-sensira-ftxf35',brand:'Daikin',series:'Sensira',model:'FTXF35',kw:3.5,btu:12000,pvp:1169,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-1.jpg'},
-  {id:'daikin-sensira-ftxf42',brand:'Daikin',series:'Sensira',model:'FTXF42',kw:4.2,btu:15000,pvp:1396,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-1.jpg'},
-  {id:'daikin-sensira-ftxf50',brand:'Daikin',series:'Sensira',model:'FTXF50',kw:5.0,btu:18000,pvp:1863,classe:'A+',img:'../assets/products/daikin-sensira-1.jpg'},
-  {id:'daikin-sensira-ftxf60',brand:'Daikin',series:'Sensira',model:'FTXF60',kw:7.0,btu:24000,pvp:2319,classe:'A+',img:'../assets/products/daikin-sensira-1.jpg'},
-  {id:'daikin-sensira-ftxf71',brand:'Daikin',series:'Sensira',model:'FTXF71',kw:8.2,btu:28000,pvp:2774,classe:'A+',img:'../assets/products/daikin-sensira-1.jpg'},
+  {id:'daikin-sensira-ftxf20',brand:'Daikin',series:'Sensira',model:'FTXF20',kw:2.0,btu:7000,pvp:972,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-2.webp'},
+  {id:'daikin-sensira-ftxf25',brand:'Daikin',series:'Sensira',model:'FTXF25',kw:2.5,btu:9000,pvp:1033,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-2.webp'},
+  {id:'daikin-sensira-ftxf35',brand:'Daikin',series:'Sensira',model:'FTXF35',kw:3.5,btu:12000,pvp:1169,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-2.webp'},
+  {id:'daikin-sensira-ftxf42',brand:'Daikin',series:'Sensira',model:'FTXF42',kw:4.2,btu:15000,pvp:1396,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daikin-sensira-2.webp'},
+  {id:'daikin-sensira-ftxf50',brand:'Daikin',series:'Sensira',model:'FTXF50',kw:5.0,btu:18000,pvp:1863,classe:'A+',img:'../assets/products/daikin-sensira-2.webp'},
+  {id:'daikin-sensira-ftxf60',brand:'Daikin',series:'Sensira',model:'FTXF60',kw:7.0,btu:24000,pvp:2319,classe:'A+',img:'../assets/products/daikin-sensira-2.webp'},
+  {id:'daikin-sensira-ftxf71',brand:'Daikin',series:'Sensira',model:'FTXF71',kw:8.2,btu:28000,pvp:2774,classe:'A+',img:'../assets/products/daikin-sensira-2.webp'},
   // Daikin Confora
-  {id:'daikin-confora-ftxp20',brand:'Daikin',series:'Confora',model:'FTXP20',kw:2.0,btu:7000,pvp:1248,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-1.jpg'},
-  {id:'daikin-confora-ftxp25',brand:'Daikin',series:'Confora',model:'FTXP25',kw:2.5,btu:9000,pvp:1341,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-1.jpg'},
-  {id:'daikin-confora-ftxp35',brand:'Daikin',series:'Confora',model:'FTXP35',kw:3.5,btu:12000,pvp:1513,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-1.jpg'},
-  {id:'daikin-confora-ftxp50',brand:'Daikin',series:'Confora',model:'FTXP50',kw:5.0,btu:18000,pvp:2392,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-1.jpg'},
-  {id:'daikin-confora-ftxp60',brand:'Daikin',series:'Confora',model:'FTXP60',kw:7.0,btu:24000,pvp:2983,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-1.jpg'},
-  {id:'daikin-confora-ftxp71',brand:'Daikin',series:'Confora',model:'FTXP71',kw:8.2,btu:28000,pvp:3450,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-1.jpg'},
+  {id:'daikin-confora-ftxp20',brand:'Daikin',series:'Confora',model:'FTXP20',kw:2.0,btu:7000,pvp:1248,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-2.webp'},
+  {id:'daikin-confora-ftxp25',brand:'Daikin',series:'Confora',model:'FTXP25',kw:2.5,btu:9000,pvp:1341,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-2.webp'},
+  {id:'daikin-confora-ftxp35',brand:'Daikin',series:'Confora',model:'FTXP35',kw:3.5,btu:12000,pvp:1513,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-2.webp'},
+  {id:'daikin-confora-ftxp50',brand:'Daikin',series:'Confora',model:'FTXP50',kw:5.0,btu:18000,pvp:2392,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-2.webp'},
+  {id:'daikin-confora-ftxp60',brand:'Daikin',series:'Confora',model:'FTXP60',kw:7.0,btu:24000,pvp:2983,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-2.webp'},
+  {id:'daikin-confora-ftxp71',brand:'Daikin',series:'Confora',model:'FTXP71',kw:8.2,btu:28000,pvp:3450,classe:'A++ Frio / A++ Quente',img:'../assets/products/daikin-confora-2.webp'},
   // Daikin Perfera
-  {id:'daikin-perfera-ftxm20',brand:'Daikin',series:'Perfera',model:'FTXM20',kw:2.0,btu:7000,pvp:1482,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-1.jpg'},
-  {id:'daikin-perfera-ftxm25',brand:'Daikin',series:'Perfera',model:'FTXM25',kw:2.5,btu:9000,pvp:1568,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-1.jpg'},
-  {id:'daikin-perfera-ftxm35',brand:'Daikin',series:'Perfera',model:'FTXM35',kw:3.5,btu:12000,pvp:1802,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-1.jpg'},
-  {id:'daikin-perfera-ftxm42',brand:'Daikin',series:'Perfera',model:'FTXM42',kw:4.2,btu:15000,pvp:2300,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-1.jpg'},
-  {id:'daikin-perfera-ftxm50',brand:'Daikin',series:'Perfera',model:'FTXM50',kw:5.0,btu:18000,pvp:2952,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-1.jpg'},
-  {id:'daikin-perfera-ftxm60',brand:'Daikin',series:'Perfera',model:'FTXM60',kw:7.0,btu:24000,pvp:3346,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-1.jpg'},
-  {id:'daikin-perfera-ftxm71',brand:'Daikin',series:'Perfera',model:'FTXM71',kw:8.2,btu:28000,pvp:4121,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-1.jpg'},
+  {id:'daikin-perfera-ftxm20',brand:'Daikin',series:'Perfera',model:'FTXM20',kw:2.0,btu:7000,pvp:1482,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-2.webp'},
+  {id:'daikin-perfera-ftxm25',brand:'Daikin',series:'Perfera',model:'FTXM25',kw:2.5,btu:9000,pvp:1568,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-2.webp'},
+  {id:'daikin-perfera-ftxm35',brand:'Daikin',series:'Perfera',model:'FTXM35',kw:3.5,btu:12000,pvp:1802,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-2.webp'},
+  {id:'daikin-perfera-ftxm42',brand:'Daikin',series:'Perfera',model:'FTXM42',kw:4.2,btu:15000,pvp:2300,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-2.webp'},
+  {id:'daikin-perfera-ftxm50',brand:'Daikin',series:'Perfera',model:'FTXM50',kw:5.0,btu:18000,pvp:2952,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-2.webp'},
+  {id:'daikin-perfera-ftxm60',brand:'Daikin',series:'Perfera',model:'FTXM60',kw:7.0,btu:24000,pvp:3346,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-2.webp'},
+  {id:'daikin-perfera-ftxm71',brand:'Daikin',series:'Perfera',model:'FTXM71',kw:8.2,btu:28000,pvp:4121,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-perfera-2.webp'},
   // Daikin Stylish (Branco)
-  {id:'daikin-stylish-ftxa20',brand:'Daikin',series:'Stylish',model:'FTXA20 Branco',kw:2.0,btu:7000,pvp:1759,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-5.webp'},
-  {id:'daikin-stylish-ftxa25',brand:'Daikin',series:'Stylish',model:'FTXA25 Branco',kw:2.5,btu:9000,pvp:1888,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-5.webp'},
-  {id:'daikin-stylish-ftxa35',brand:'Daikin',series:'Stylish',model:'FTXA35 Branco',kw:3.5,btu:12000,pvp:2189,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-5.webp'},
-  {id:'daikin-stylish-ftxa42',brand:'Daikin',series:'Stylish',model:'FTXA42 Branco',kw:4.2,btu:15000,pvp:2768,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-5.webp'},
-  {id:'daikin-stylish-ftxa50',brand:'Daikin',series:'Stylish',model:'FTXA50 Branco',kw:5.0,btu:18000,pvp:3290,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-5.webp'},
+  {id:'daikin-stylish-ftxa20',brand:'Daikin',series:'Stylish',model:'FTXA20 Branco',kw:2.0,btu:7000,pvp:1759,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-2.webp'},
+  {id:'daikin-stylish-ftxa25',brand:'Daikin',series:'Stylish',model:'FTXA25 Branco',kw:2.5,btu:9000,pvp:1888,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-2.webp'},
+  {id:'daikin-stylish-ftxa35',brand:'Daikin',series:'Stylish',model:'FTXA35 Branco',kw:3.5,btu:12000,pvp:2189,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-2.webp'},
+  {id:'daikin-stylish-ftxa42',brand:'Daikin',series:'Stylish',model:'FTXA42 Branco',kw:4.2,btu:15000,pvp:2768,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-2.webp'},
+  {id:'daikin-stylish-ftxa50',brand:'Daikin',series:'Stylish',model:'FTXA50 Branco',kw:5.0,btu:18000,pvp:3290,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-stylish-branco-2.webp'},
   // Daikin Emura (Branco)
-  {id:'daikin-emura-ftxj20',brand:'Daikin',series:'Emura',model:'FTXJ20 Branco',kw:2.0,btu:7000,pvp:1962,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-6.webp'},
-  {id:'daikin-emura-ftxj25',brand:'Daikin',series:'Emura',model:'FTXJ25 Branco',kw:2.5,btu:9000,pvp:2048,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-6.webp'},
-  {id:'daikin-emura-ftxj35',brand:'Daikin',series:'Emura',model:'FTXJ35 Branco',kw:3.5,btu:12000,pvp:2343,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-6.webp'},
-  {id:'daikin-emura-ftxj42',brand:'Daikin',series:'Emura',model:'FTXJ42 Branco',kw:4.2,btu:15000,pvp:3007,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-6.webp'},
-  {id:'daikin-emura-ftxj50',brand:'Daikin',series:'Emura',model:'FTXJ50 Branco',kw:5.0,btu:18000,pvp:3487,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-6.webp'},
+  {id:'daikin-emura-ftxj20',brand:'Daikin',series:'Emura',model:'FTXJ20 Branco',kw:2.0,btu:7000,pvp:1962,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-2.webp'},
+  {id:'daikin-emura-ftxj25',brand:'Daikin',series:'Emura',model:'FTXJ25 Branco',kw:2.5,btu:9000,pvp:2048,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-2.webp'},
+  {id:'daikin-emura-ftxj35',brand:'Daikin',series:'Emura',model:'FTXJ35 Branco',kw:3.5,btu:12000,pvp:2343,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-2.webp'},
+  {id:'daikin-emura-ftxj42',brand:'Daikin',series:'Emura',model:'FTXJ42 Branco',kw:4.2,btu:15000,pvp:3007,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-2.webp'},
+  {id:'daikin-emura-ftxj50',brand:'Daikin',series:'Emura',model:'FTXJ50 Branco',kw:5.0,btu:18000,pvp:3487,classe:'A+++ Frio / A+++ Quente',img:'../assets/products/daikin-emura-branco-2.webp'},
   // Bosch Climate 3200i
-  {id:'bosch-3200i-26',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 26 WE',kw:2.6,btu:9000,pvp:916,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'bosch-3200i-35',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 35 WE',kw:3.5,btu:12000,pvp:996,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'bosch-3200i-53',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 53 WE',kw:5.3,btu:18000,pvp:1470,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'bosch-3200i-70',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 70 WE',kw:7.0,btu:24000,pvp:1784,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-1.jpg'},
+  {id:'bosch-3200i-26',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 26 WE',kw:2.6,btu:9000,pvp:916,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'bosch-3200i-35',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 35 WE',kw:3.5,btu:12000,pvp:996,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'bosch-3200i-53',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 53 WE',kw:5.3,btu:18000,pvp:1470,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'bosch-3200i-70',brand:'Bosch',series:'Climate 3200i',model:'CL3200i-Set 70 WE',kw:7.0,btu:24000,pvp:1784,classe:'A++ Frio / A+++ Quente',img:'../assets/products/bosch-3200i-new-2.jpg'},
   // Bosch Climate 6000i
-  {id:'bosch-6000i-26',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 26 WE',kw:2.6,btu:9000,pvp:1107,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
-  {id:'bosch-6000i-35',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 35 WE',kw:3.5,btu:12000,pvp:1218,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
-  {id:'bosch-6000i-53',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 53 WE',kw:5.3,btu:18000,pvp:1790,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
-  {id:'bosch-6000i-70',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 70 WE',kw:7.0,btu:24000,pvp:2220,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp'},
+  {id:'bosch-6000i-26',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 26 WE',kw:2.6,btu:9000,pvp:1107,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp'},
+  {id:'bosch-6000i-35',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 35 WE',kw:3.5,btu:12000,pvp:1218,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp'},
+  {id:'bosch-6000i-53',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 53 WE',kw:5.3,btu:18000,pvp:1790,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp'},
+  {id:'bosch-6000i-70',brand:'Bosch',series:'Climate 6000i',model:'CL6000i-Set 70 WE',kw:7.0,btu:24000,pvp:2220,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp'},
   // Bosch Climate 7000i
-  {id:'bosch-7000i-20',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 20 WE',kw:2.0,btu:7000,pvp:1451,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
-  {id:'bosch-7000i-26',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 26 WE',kw:2.5,btu:9000,pvp:1550,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
-  {id:'bosch-7000i-35',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 35 WE',kw:3.4,btu:12000,pvp:1667,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
-  {id:'bosch-7000i-41',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 41 WE',kw:4.0,btu:14000,pvp:2196,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
-  {id:'bosch-7000i-53',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 53 WE',kw:5.0,btu:18000,pvp:2731,classe:'A+++',img:'../assets/products/bosch-7000i-branco-1.webp'},
+  {id:'bosch-7000i-20',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 20 WE',kw:2.0,btu:7000,pvp:1451,classe:'A+++',img:'../assets/products/bosch-7000i-branco-2.webp'},
+  {id:'bosch-7000i-26',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 26 WE',kw:2.5,btu:9000,pvp:1550,classe:'A+++',img:'../assets/products/bosch-7000i-branco-2.webp'},
+  {id:'bosch-7000i-35',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 35 WE',kw:3.4,btu:12000,pvp:1667,classe:'A+++',img:'../assets/products/bosch-7000i-branco-2.webp'},
+  {id:'bosch-7000i-41',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 41 WE',kw:4.0,btu:14000,pvp:2196,classe:'A+++',img:'../assets/products/bosch-7000i-branco-2.webp'},
+  {id:'bosch-7000i-53',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 53 WE',kw:5.0,btu:18000,pvp:2731,classe:'A+++',img:'../assets/products/bosch-7000i-branco-2.webp'},
   // Daitsu ARTIC (DS-KZ)
-  {id:'daitsu-artic-9',brand:'Daitsu',series:'ARTIC',model:'DS-9KZ',kw:2.64,btu:9000,pvp:745,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'daitsu-artic-12',brand:'Daitsu',series:'ARTIC',model:'DS-12KZ',kw:3.52,btu:12000,pvp:760,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'daitsu-artic-18',brand:'Daitsu',series:'ARTIC',model:'DS-18KZ',kw:5.14,btu:18000,pvp:1230,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'daitsu-artic-24',brand:'Daitsu',series:'ARTIC',model:'DS-24KZ',kw:6.45,btu:24000,pvp:1555,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg'},
+  {id:'daitsu-artic-9',brand:'Daitsu',series:'ARTIC',model:'DS-9KZ',kw:2.64,btu:9000,pvp:745,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'daitsu-artic-12',brand:'Daitsu',series:'ARTIC',model:'DS-12KZ',kw:3.52,btu:12000,pvp:760,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'daitsu-artic-18',brand:'Daitsu',series:'ARTIC',model:'DS-18KZ',kw:5.14,btu:18000,pvp:1230,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'daitsu-artic-24',brand:'Daitsu',series:'ARTIC',model:'DS-24KZ',kw:6.45,btu:24000,pvp:1555,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
   // Daitsu FREE MAX ARTIC — kits multi-split (preços c/IVA) — slots = nº de unidades interiores
-  {id:'daitsu-freemax-2x1-9-9',  brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (9K+9K)',    kw:5.1,btu:18000,pvp:1851,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daitsu-freemax-2x1-9-12', brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (9K+12K)',   kw:5.1,btu:21000,pvp:1863,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daitsu-freemax-2x1-12-12',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (12K+12K)',  kw:6.2,btu:24000,pvp:2091,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daitsu-freemax-3x1-9-9-9',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 3×1 (9K+9K+9K)',kw:6.2,btu:27000,pvp:2288,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daitsu-freemax-3x1-9-9-12',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 3×1 (9K+9K+12K)',kw:7.4,btu:30000,pvp:2362,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-1.jpg',tipo:'multi_split',slots:3},
+  {id:'daitsu-freemax-2x1-9-9',  brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (9K+9K)',    kw:5.1,btu:18000,pvp:1851,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',tipo:'multi_split',slots:2},
+  {id:'daitsu-freemax-2x1-9-12', brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (9K+12K)',   kw:5.1,btu:21000,pvp:1863,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',tipo:'multi_split',slots:2},
+  {id:'daitsu-freemax-2x1-12-12',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (12K+12K)',  kw:6.2,btu:24000,pvp:2091,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',tipo:'multi_split',slots:2},
+  {id:'daitsu-freemax-3x1-9-9-9',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 3×1 (9K+9K+9K)',kw:6.2,btu:27000,pvp:2288,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',tipo:'multi_split',slots:3},
+  {id:'daitsu-freemax-3x1-9-9-12',brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 3×1 (9K+9K+12K)',kw:7.4,btu:30000,pvp:2362,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',tipo:'multi_split',slots:3},
   // Bosch — kits multi-split com interiores Climate 3200i (A++, c/IVA)
   // Exterior CL5000M 53/2 (1065€) + interiores CL3200iU: 9K=220€, 12K=250€
   // Exterior CL5000M 62/3 (1360€) para 3x1 até 12K+12K+12K
   // Exterior CL5000M 79/3 (1580€) para 3x1 12K+12K+12K
   // Exterior CL5000M 82/4 (1720€) para 4x1
-  {id:'bosch-ms-3200i-2x1-9-9',    brand:'Bosch',series:'Multi 3200i',model:'Kit 2×1 3200i (9K+9K)',       kw:5.3,pvp:1851,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-1.jpg',tipo:'multi_split',slots:2},
-  {id:'bosch-ms-3200i-2x1-9-12',   brand:'Bosch',series:'Multi 3200i',model:'Kit 2×1 3200i (9K+12K)',      kw:5.3,pvp:1888,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-1.jpg',tipo:'multi_split',slots:2},
-  {id:'bosch-ms-3200i-2x1-12-12',  brand:'Bosch',series:'Multi 3200i',model:'Kit 2×1 3200i (12K+12K)',     kw:5.3,pvp:1925,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-1.jpg',tipo:'multi_split',slots:2},
-  {id:'bosch-ms-3200i-3x1-9-9-9',  brand:'Bosch',series:'Multi 3200i',model:'Kit 3×1 3200i (9K+9K+9K)',   kw:6.2,pvp:2485,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-1.jpg',tipo:'multi_split',slots:3},
-  {id:'bosch-ms-3200i-3x1-9-9-12', brand:'Bosch',series:'Multi 3200i',model:'Kit 3×1 3200i (9K+9K+12K)',  kw:6.2,pvp:2522,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-1.jpg',tipo:'multi_split',slots:3},
-  {id:'bosch-ms-3200i-3x1-12-12-12',brand:'Bosch',series:'Multi 3200i',model:'Kit 3×1 3200i (12K+12K+12K)',kw:7.9,pvp:2866,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-1.jpg',tipo:'multi_split',slots:3},
-  {id:'bosch-ms-3200i-4x1-9x4',    brand:'Bosch',series:'Multi 3200i',model:'Kit 4×1 3200i (9K×4)',        kw:8.2,pvp:3198,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-1.jpg',tipo:'multi_split',slots:4},
+  {id:'bosch-ms-3200i-2x1-9-9',    brand:'Bosch',series:'Multi 3200i',model:'Kit 2×1 3200i (9K+9K)',       kw:5.3,pvp:1851,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-2.jpg',tipo:'multi_split',slots:2},
+  {id:'bosch-ms-3200i-2x1-9-12',   brand:'Bosch',series:'Multi 3200i',model:'Kit 2×1 3200i (9K+12K)',      kw:5.3,pvp:1888,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-2.jpg',tipo:'multi_split',slots:2},
+  {id:'bosch-ms-3200i-2x1-12-12',  brand:'Bosch',series:'Multi 3200i',model:'Kit 2×1 3200i (12K+12K)',     kw:5.3,pvp:1925,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-2.jpg',tipo:'multi_split',slots:2},
+  {id:'bosch-ms-3200i-3x1-9-9-9',  brand:'Bosch',series:'Multi 3200i',model:'Kit 3×1 3200i (9K+9K+9K)',   kw:6.2,pvp:2485,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-2.jpg',tipo:'multi_split',slots:3},
+  {id:'bosch-ms-3200i-3x1-9-9-12', brand:'Bosch',series:'Multi 3200i',model:'Kit 3×1 3200i (9K+9K+12K)',  kw:6.2,pvp:2522,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-2.jpg',tipo:'multi_split',slots:3},
+  {id:'bosch-ms-3200i-3x1-12-12-12',brand:'Bosch',series:'Multi 3200i',model:'Kit 3×1 3200i (12K+12K+12K)',kw:7.9,pvp:2866,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-2.jpg',tipo:'multi_split',slots:3},
+  {id:'bosch-ms-3200i-4x1-9x4',    brand:'Bosch',series:'Multi 3200i',model:'Kit 4×1 3200i (9K×4)',        kw:8.2,pvp:3198,classe:'A++ Frio / A+++ Quente', img:'../assets/products/bosch-3200i-new-2.jpg',tipo:'multi_split',slots:4},
   // Bosch — kits multi-split com interiores Climate 6000i (A+++, c/IVA)
   // Exterior CL5000M 53/2 (1065€) + interiores CL6001iU: 9K=255€, 12K=295€
-  {id:'bosch-ms-6000i-2x1-9-9',    brand:'Bosch',series:'Multi 6000i',model:'Kit 2×1 6000i (9K+9K)',       kw:5.3,pvp:1937,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:2},
-  {id:'bosch-ms-6000i-2x1-9-12',   brand:'Bosch',series:'Multi 6000i',model:'Kit 2×1 6000i (9K+12K)',      kw:5.3,pvp:1986,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:2},
-  {id:'bosch-ms-6000i-2x1-12-12',  brand:'Bosch',series:'Multi 6000i',model:'Kit 2×1 6000i (12K+12K)',     kw:5.3,pvp:2036,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:2},
-  {id:'bosch-ms-6000i-3x1-9-9-9',  brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (9K+9K+9K)',   kw:6.2,pvp:2614,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:3},
-  {id:'bosch-ms-6000i-3x1-9-9-12', brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (9K+9K+12K)',  kw:6.2,pvp:2663,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:3},
-  {id:'bosch-ms-6000i-3x1-12-12-12',brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (12K+12K+12K)',kw:7.9,pvp:3032,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:3},
-  {id:'bosch-ms-6000i-4x1-9x4',    brand:'Bosch',series:'Multi 6000i',model:'Kit 4×1 6000i (9K×4)',        kw:8.2,pvp:3370,classe:'A+++',img:'../assets/products/bosch-6000i-1.webp',tipo:'multi_split',slots:4},
+  {id:'bosch-ms-6000i-2x1-9-9',    brand:'Bosch',series:'Multi 6000i',model:'Kit 2×1 6000i (9K+9K)',       kw:5.3,pvp:1937,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp',tipo:'multi_split',slots:2},
+  {id:'bosch-ms-6000i-2x1-9-12',   brand:'Bosch',series:'Multi 6000i',model:'Kit 2×1 6000i (9K+12K)',      kw:5.3,pvp:1986,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp',tipo:'multi_split',slots:2},
+  {id:'bosch-ms-6000i-2x1-12-12',  brand:'Bosch',series:'Multi 6000i',model:'Kit 2×1 6000i (12K+12K)',     kw:5.3,pvp:2036,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp',tipo:'multi_split',slots:2},
+  {id:'bosch-ms-6000i-3x1-9-9-9',  brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (9K+9K+9K)',   kw:6.2,pvp:2614,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp',tipo:'multi_split',slots:3},
+  {id:'bosch-ms-6000i-3x1-9-9-12', brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (9K+9K+12K)',  kw:6.2,pvp:2663,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp',tipo:'multi_split',slots:3},
+  {id:'bosch-ms-6000i-3x1-12-12-12',brand:'Bosch',series:'Multi 6000i',model:'Kit 3×1 6000i (12K+12K+12K)',kw:7.9,pvp:3032,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp',tipo:'multi_split',slots:3},
+  {id:'bosch-ms-6000i-4x1-9x4',    brand:'Bosch',series:'Multi 6000i',model:'Kit 4×1 6000i (9K×4)',        kw:8.2,pvp:3370,classe:'A+++',img:'../assets/products/bosch-6000i-2.webp',tipo:'multi_split',slots:4},
   // Daikin — kits multi-split com interiores Sensira CTXF (A++, c/IVA)
   // Exteriores: 2MXF40A=1145€, 2MXF50A=1235€, 3MXF52A9=1420€, 3MXF68A9=1795€ s/IVA
   // Interiores: CTXF20F=245€, CTXF25F=270€, CTXF35F=315€ s/IVA (máx. 12K por interior)
-  {id:'daikin-multi-s-2x1-7-7',   brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF20+20 (7K+7K)',    kw:4.0,btu:14000,pvp:2011, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-s-2x1-9-9',   brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF25+25 (9K+9K)',    kw:5.0,btu:18000,pvp:2183, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-s-2x1-9-12',  brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF25+35 (9K+12K)',   kw:5.0,btu:21000,pvp:2239, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-s-2x1-12-12', brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF35+35 (12K+12K)',  kw:5.0,btu:24000,pvp:2294, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-s-3x1-7-7-7', brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF20×3 (7K+7K+7K)', kw:5.2,btu:21000,pvp:2651, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-s-3x1-9-9-9', brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF25×3 (9K+9K+9K)', kw:5.2,btu:27000,pvp:2743, classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-s-3x1-9-9-12',brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF25+25+35 (9K+9K+12K)',kw:6.8,btu:30000,pvp:2798,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-s-3x1-12-12-12',brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF35×3 (12K+12K+12K)',kw:6.8,btu:36000,pvp:3370,classe:'A++',img:'../assets/products/daikin-sensira-1.jpg',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-s-2x1-7-7',   brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF20+20 (7K+7K)',    kw:4.0,btu:14000,pvp:2011, classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-2x1-9-9',   brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF25+25 (9K+9K)',    kw:5.0,btu:18000,pvp:2183, classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-2x1-9-12',  brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF25+35 (9K+12K)',   kw:5.0,btu:21000,pvp:2239, classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-2x1-12-12', brand:'Daikin',series:'Multi Sensira',model:'Kit 2×1 CTXF35+35 (12K+12K)',  kw:5.0,btu:24000,pvp:2294, classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-s-3x1-7-7-7', brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF20×3 (7K+7K+7K)', kw:5.2,btu:21000,pvp:2651, classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-s-3x1-9-9-9', brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF25×3 (9K+9K+9K)', kw:5.2,btu:27000,pvp:2743, classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-s-3x1-9-9-12',brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF25+25+35 (9K+9K+12K)',kw:6.8,btu:30000,pvp:2798,classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-s-3x1-12-12-12',brand:'Daikin',series:'Multi Sensira',model:'Kit 3×1 CTXF35×3 (12K+12K+12K)',kw:6.8,btu:36000,pvp:3370,classe:'A++',img:'../assets/products/daikin-sensira-2.webp',tipo:'multi_split',slots:3},
   // Daikin — kits multi-split com interiores Perfera FTXM (c/IVA)
-  {id:'daikin-multi-p-2x1-7-7',  brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM20+20 (7K+7K)',    kw:4.0,pvp:2774,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-p-2x1-9-9',  brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM25+25 (9K+9K)',    kw:5.0,pvp:3014,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-p-2x1-9-12', brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM25+35 (9K+12K)',   kw:5.0,pvp:3454,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-p-2x1-12-12',brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM35+35 (12K+12K)',  kw:6.8,pvp:3893,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-p-3x1-7-7-7',  brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM20×3 (7K+7K+7K)',      kw:5.2,pvp:3733,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-p-3x1-9-9-9',  brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM25×3 (9K+9K+9K)',      kw:6.8,pvp:4428,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-p-3x1-9-9-12', brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM25+25+35 (9K+9K+12K)', kw:6.8,pvp:4628,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-p-3x1-12-12-12',brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM35×3 (12K+12K+12K)',  kw:6.8,pvp:4945,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-p-4x1-7kw',    brand:'Daikin',series:'Multi Perfera',model:'Kit 4×1 FTXM20×4 (7K×4)',           kw:6.8,pvp:5308,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:4},
-  {id:'daikin-multi-p-4x1-8kw',    brand:'Daikin',series:'Multi Perfera',model:'Kit 4×1 FTXM25×4 (9K×4)',           kw:8.0,pvp:6193,classe:'A+++',img:'../assets/products/daikin-perfera-1.jpg',tipo:'multi_split',slots:4},
+  {id:'daikin-multi-p-2x1-7-7',  brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM20+20 (7K+7K)',    kw:4.0,pvp:2774,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-p-2x1-9-9',  brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM25+25 (9K+9K)',    kw:5.0,pvp:3014,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-p-2x1-9-12', brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM25+35 (9K+12K)',   kw:5.0,pvp:3454,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-p-2x1-12-12',brand:'Daikin',series:'Multi Perfera',model:'Kit 2×1 FTXM35+35 (12K+12K)',  kw:6.8,pvp:3893,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-p-3x1-7-7-7',  brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM20×3 (7K+7K+7K)',      kw:5.2,pvp:3733,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-p-3x1-9-9-9',  brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM25×3 (9K+9K+9K)',      kw:6.8,pvp:4428,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-p-3x1-9-9-12', brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM25+25+35 (9K+9K+12K)', kw:6.8,pvp:4628,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-p-3x1-12-12-12',brand:'Daikin',series:'Multi Perfera',model:'Kit 3×1 FTXM35×3 (12K+12K+12K)',  kw:6.8,pvp:4945,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-p-4x1-7kw',    brand:'Daikin',series:'Multi Perfera',model:'Kit 4×1 FTXM20×4 (7K×4)',           kw:6.8,pvp:5308,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:4},
+  {id:'daikin-multi-p-4x1-8kw',    brand:'Daikin',series:'Multi Perfera',model:'Kit 4×1 FTXM25×4 (9K×4)',           kw:8.0,pvp:6193,classe:'A+++',img:'../assets/products/daikin-perfera-2.webp',tipo:'multi_split',slots:4},
   // Daikin — kits multi-split com interiores Confora FTXP (A+++, c/IVA)
   // 2MXM40A=1275€, 2MXM50A=1380€, 2MXM68A9=1790€ | 3MXM52A9=1585€, 3MXM68A9=2005€ | 4MXM80A9=2890€ (s/IVA)
   // FTXP20=300€, FTXP25=340€, FTXP35=405€ (s/IVA)
-  {id:'daikin-multi-c-2x1-7-7',    brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP20+20 (7K+7K)',         kw:4.0,pvp:2306,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-c-2x1-9-9',    brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP25+25 (9K+9K)',         kw:5.0,pvp:2534,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-c-2x1-9-12',   brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP25+35 (9K+12K)',        kw:5.0,pvp:2614,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-c-2x1-12-12',  brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP35+35 (12K+12K)',       kw:6.8,pvp:3198,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-c-3x1-7-7-7',  brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP20×3 (7K+7K+7K)',      kw:5.2,pvp:3057,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-c-3x1-9-9-9',  brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP25×3 (9K+9K+9K)',      kw:6.8,pvp:3721,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-c-3x1-9-9-12', brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP25+25+35 (9K+9K+12K)', kw:6.8,pvp:3801,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-c-3x1-12-12-12',brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP35×3 (12K+12K+12K)', kw:6.8,pvp:3961,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-c-4x1-7x4',    brand:'Daikin',series:'Multi Confora',model:'Kit 4×1 FTXP20×4 (7K×4)',          kw:6.8,pvp:4385,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:4},
-  {id:'daikin-multi-c-4x1-9x4',    brand:'Daikin',series:'Multi Confora',model:'Kit 4×1 FTXP25×4 (9K×4)',          kw:8.0,pvp:5228,classe:'A++',img:'../assets/products/daikin-confora-1.jpg',tipo:'multi_split',slots:4},
+  {id:'daikin-multi-c-2x1-7-7',    brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP20+20 (7K+7K)',         kw:4.0,pvp:2306,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-c-2x1-9-9',    brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP25+25 (9K+9K)',         kw:5.0,pvp:2534,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-c-2x1-9-12',   brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP25+35 (9K+12K)',        kw:5.0,pvp:2614,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-c-2x1-12-12',  brand:'Daikin',series:'Multi Confora',model:'Kit 2×1 FTXP35+35 (12K+12K)',       kw:6.8,pvp:3198,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-c-3x1-7-7-7',  brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP20×3 (7K+7K+7K)',      kw:5.2,pvp:3057,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-c-3x1-9-9-9',  brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP25×3 (9K+9K+9K)',      kw:6.8,pvp:3721,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-c-3x1-9-9-12', brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP25+25+35 (9K+9K+12K)', kw:6.8,pvp:3801,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-c-3x1-12-12-12',brand:'Daikin',series:'Multi Confora',model:'Kit 3×1 FTXP35×3 (12K+12K+12K)', kw:6.8,pvp:3961,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-c-4x1-7x4',    brand:'Daikin',series:'Multi Confora',model:'Kit 4×1 FTXP20×4 (7K×4)',          kw:6.8,pvp:4385,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:4},
+  {id:'daikin-multi-c-4x1-9x4',    brand:'Daikin',series:'Multi Confora',model:'Kit 4×1 FTXP25×4 (9K×4)',          kw:8.0,pvp:5228,classe:'A++',img:'../assets/products/daikin-confora-2.webp',tipo:'multi_split',slots:4},
   // Daikin — kits multi-split com interiores Stylish FTXA Branco (A+++, c/IVA)
   // FTXA20CW=585€, FTXA25CW=635€, FTXA35CW=695€ (s/IVA)
-  {id:'daikin-multi-st-2x1-7-7',   brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA20+20 Branco (7K+7K)',         kw:4.0,pvp:3007,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-st-2x1-9-9',   brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA25+25 Branco (9K+9K)',         kw:5.0,pvp:3260,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-st-2x1-9-12',  brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA25+35 Branco (9K+12K)',        kw:5.0,pvp:3333,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-st-2x1-12-12', brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA35+35 Branco (12K+12K)',       kw:6.8,pvp:3911,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-st-3x1-7-7-7', brand:'Daikin',series:'Multi Stylish',model:'Kit 3×1 FTXA20×3 Branco (7K+7K+7K)',      kw:5.2,pvp:4108,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-st-3x1-9-9-9', brand:'Daikin',series:'Multi Stylish',model:'Kit 3×1 FTXA25×3 Branco (9K+9K+9K)',      kw:6.8,pvp:4809,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-st-3x1-9-9-12',brand:'Daikin',series:'Multi Stylish',model:'Kit 3×1 FTXA25+25+35 Branco (9K+9K+12K)', kw:6.8,pvp:4883,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-st-4x1-9x4',   brand:'Daikin',series:'Multi Stylish',model:'Kit 4×1 FTXA25×4 Branco (9K×4)',          kw:8.0,pvp:6679,classe:'A+++',img:'../assets/products/daikin-stylish-branco-5.webp',tipo:'multi_split',slots:4},
+  {id:'daikin-multi-st-2x1-7-7',   brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA20+20 Branco (7K+7K)',         kw:4.0,pvp:3007,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-st-2x1-9-9',   brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA25+25 Branco (9K+9K)',         kw:5.0,pvp:3260,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-st-2x1-9-12',  brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA25+35 Branco (9K+12K)',        kw:5.0,pvp:3333,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-st-2x1-12-12', brand:'Daikin',series:'Multi Stylish',model:'Kit 2×1 FTXA35+35 Branco (12K+12K)',       kw:6.8,pvp:3911,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-st-3x1-7-7-7', brand:'Daikin',series:'Multi Stylish',model:'Kit 3×1 FTXA20×3 Branco (7K+7K+7K)',      kw:5.2,pvp:4108,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-st-3x1-9-9-9', brand:'Daikin',series:'Multi Stylish',model:'Kit 3×1 FTXA25×3 Branco (9K+9K+9K)',      kw:6.8,pvp:4809,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-st-3x1-9-9-12',brand:'Daikin',series:'Multi Stylish',model:'Kit 3×1 FTXA25+25+35 Branco (9K+9K+12K)', kw:6.8,pvp:4883,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-st-4x1-9x4',   brand:'Daikin',series:'Multi Stylish',model:'Kit 4×1 FTXA25×4 Branco (9K×4)',          kw:8.0,pvp:6679,classe:'A+++',img:'../assets/products/daikin-stylish-branco-2.webp',tipo:'multi_split',slots:4},
   // Daikin — kits multi-split com interiores Emura FTXJ Branco (A+++, c/IVA)
   // FTXJ20AW=650€, FTXJ25AW=680€, FTXJ35AW=835€ (s/IVA)
-  {id:'daikin-multi-em-2x1-7-7',   brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ20+20 Branco (7K+7K)',          kw:4.0,pvp:3167,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-em-2x1-9-9',   brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ25+25 Branco (9K+9K)',          kw:5.0,pvp:3370,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-em-2x1-9-12',  brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ25+35 Branco (9K+12K)',         kw:5.0,pvp:3561,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-em-2x1-12-12', brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ35+35 Branco (12K+12K)',        kw:6.8,pvp:4256,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:2},
-  {id:'daikin-multi-em-3x1-7-7-7', brand:'Daikin',series:'Multi Emura',model:'Kit 3×1 FTXJ20×3 Branco (7K+7K+7K)',       kw:5.2,pvp:4348,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-em-3x1-9-9-9', brand:'Daikin',series:'Multi Emura',model:'Kit 3×1 FTXJ25×3 Branco (9K+9K+9K)',       kw:6.8,pvp:4975,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-em-3x1-9-9-12',brand:'Daikin',series:'Multi Emura',model:'Kit 3×1 FTXJ25+25+35 Branco (9K+9K+12K)',  kw:6.8,pvp:5166,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:3},
-  {id:'daikin-multi-em-4x1-9x4',   brand:'Daikin',series:'Multi Emura',model:'Kit 4×1 FTXJ25×4 Branco (9K×4)',           kw:8.0,pvp:6900,classe:'A+++',img:'../assets/products/daikin-emura-branco-6.webp',tipo:'multi_split',slots:4},
+  {id:'daikin-multi-em-2x1-7-7',   brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ20+20 Branco (7K+7K)',          kw:4.0,pvp:3167,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-em-2x1-9-9',   brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ25+25 Branco (9K+9K)',          kw:5.0,pvp:3370,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-em-2x1-9-12',  brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ25+35 Branco (9K+12K)',         kw:5.0,pvp:3561,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-em-2x1-12-12', brand:'Daikin',series:'Multi Emura',model:'Kit 2×1 FTXJ35+35 Branco (12K+12K)',        kw:6.8,pvp:4256,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:2},
+  {id:'daikin-multi-em-3x1-7-7-7', brand:'Daikin',series:'Multi Emura',model:'Kit 3×1 FTXJ20×3 Branco (7K+7K+7K)',       kw:5.2,pvp:4348,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-em-3x1-9-9-9', brand:'Daikin',series:'Multi Emura',model:'Kit 3×1 FTXJ25×3 Branco (9K+9K+9K)',       kw:6.8,pvp:4975,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-em-3x1-9-9-12',brand:'Daikin',series:'Multi Emura',model:'Kit 3×1 FTXJ25+25+35 Branco (9K+9K+12K)',  kw:6.8,pvp:5166,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:3},
+  {id:'daikin-multi-em-4x1-9x4',   brand:'Daikin',series:'Multi Emura',model:'Kit 4×1 FTXJ25×4 Branco (9K×4)',           kw:8.0,pvp:6900,classe:'A+++',img:'../assets/products/daikin-emura-branco-2.webp',tipo:'multi_split',slots:4},
 ];
 
 /* ═══════════════════════════════════════════
@@ -1088,12 +1100,12 @@ const CATALOG_SOLAR = [
 ═══════════════════════════════════════════ */
 const CATALOG_MS_EXTERIOR = [
   // Daitsu FREE MAX ARTIC
-  {id:'ms-ext-daitsu-2x1-14k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 2×1 (14K)', slots:2, kw:4.1,  pvp:1144, img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'ms-ext-daitsu-2x1-18k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 2×1 (18K)', slots:2, kw:5.3,  pvp:1408, img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'ms-ext-daitsu-3x1-21k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 3×1 (21K)', slots:3, kw:6.2,  pvp:1624, img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'ms-ext-daitsu-3x1-27k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 3×1 (27K)', slots:3, kw:7.9,  pvp:1814, img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'ms-ext-daitsu-4x1',     brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 4×1',       slots:4, kw:8.8,  pvp:2743, img:'../assets/products/daitsu-artic-kz-1.jpg'},
-  {id:'ms-ext-daitsu-5x1',     brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 5×1',       slots:5, kw:10.0, pvp:3063, img:'../assets/products/daitsu-artic-kz-1.jpg'},
+  {id:'ms-ext-daitsu-2x1-14k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 2×1 (14K)', slots:2, kw:4.1,  pvp:1144, img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'ms-ext-daitsu-2x1-18k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 2×1 (18K)', slots:2, kw:5.3,  pvp:1408, img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'ms-ext-daitsu-3x1-21k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 3×1 (21K)', slots:3, kw:6.2,  pvp:1624, img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'ms-ext-daitsu-3x1-27k', brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 3×1 (27K)', slots:3, kw:7.9,  pvp:1814, img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'ms-ext-daitsu-4x1',     brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 4×1',       slots:4, kw:8.8,  pvp:2743, img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'ms-ext-daitsu-5x1',     brand:'Daitsu', series:'FREE MAX ARTIC', model:'FREE MAX 5×1',       slots:5, kw:10.0, pvp:3063, img:'../assets/products/daitsu-artic-kz-6.jpg'},
   // Daikin MXM (compatível com Sensira FTXF, Perfera FTXM, Chão FVXM, Condutas FDXM)
   {id:'ms-ext-daikin-2mxm40', brand:'Daikin', series:'MXM', model:'2MXM40 (4.0 kW)', slots:2, kw:4.0, pvp:1679, img:'../assets/products/daikin-multisplit-exterior.jpg', compat:'mxm'},
   {id:'ms-ext-daikin-2mxm50', brand:'Daikin', series:'MXM', model:'2MXM50 (5.0 kW)', slots:2, kw:5.0, pvp:1820, img:'../assets/products/daikin-multisplit-exterior.jpg', compat:'mxm'},
@@ -1110,44 +1122,56 @@ const CATALOG_MS_EXTERIOR = [
   {id:'ms-ext-daikin-3mxf52', brand:'Daikin', series:'Multi-Sensira MXF', model:'3MXF52A9 (5.2 kW)', slots:3, kw:5.2, pvp:1747, img:'../assets/products/daikin-multisplit-exterior.jpg', compat:'mxf'},
   {id:'ms-ext-daikin-3mxf68', brand:'Daikin', series:'Multi-Sensira MXF', model:'3MXF68A9 (6.8 kW)', slots:3, kw:6.8, pvp:2208, img:'../assets/products/daikin-multisplit-exterior.jpg', compat:'mxf'},
   // Bosch Climate 5000M
-  {id:'ms-ext-bosch-2x1-4k1',  brand:'Bosch', series:'Climate 5000M', model:'5000M 2×1 (4.1 kW)',  slots:2, kw:4.1,  pvp:1156, img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'ms-ext-bosch-2x1-5k3',  brand:'Bosch', series:'Climate 5000M', model:'5000M 2×1 (5.3 kW)',  slots:2, kw:5.3,  pvp:1310, img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'ms-ext-bosch-3x1-6k2',  brand:'Bosch', series:'Climate 5000M', model:'5000M 3×1 (6.2 kW)',  slots:3, kw:6.2,  pvp:1673, img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'ms-ext-bosch-3x1-7k9',  brand:'Bosch', series:'Climate 5000M', model:'5000M 3×1 (7.9 kW)',  slots:3, kw:7.9,  pvp:1943, img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'ms-ext-bosch-4x1-8k2',  brand:'Bosch', series:'Climate 5000M', model:'5000M 4×1 (8.2 kW)',  slots:4, kw:8.2,  pvp:2116, img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'ms-ext-bosch-4x1-10k6', brand:'Bosch', series:'Climate 5000M', model:'5000M 4×1 (10.6 kW)', slots:4, kw:10.6, pvp:2595, img:'../assets/products/bosch-3200i-new-1.jpg'},
-  {id:'ms-ext-bosch-5x1-12k3', brand:'Bosch', series:'Climate 5000M', model:'5000M 5×1 (12.3 kW)', slots:5, kw:12.3, pvp:2884, img:'../assets/products/bosch-3200i-new-1.jpg'},
+  {id:'ms-ext-bosch-2x1-4k1',  brand:'Bosch', series:'Climate 5000M', model:'5000M 2×1 (4.1 kW)',  slots:2, kw:4.1,  pvp:1156, img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'ms-ext-bosch-2x1-5k3',  brand:'Bosch', series:'Climate 5000M', model:'5000M 2×1 (5.3 kW)',  slots:2, kw:5.3,  pvp:1310, img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'ms-ext-bosch-3x1-6k2',  brand:'Bosch', series:'Climate 5000M', model:'5000M 3×1 (6.2 kW)',  slots:3, kw:6.2,  pvp:1673, img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'ms-ext-bosch-3x1-7k9',  brand:'Bosch', series:'Climate 5000M', model:'5000M 3×1 (7.9 kW)',  slots:3, kw:7.9,  pvp:1943, img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'ms-ext-bosch-4x1-8k2',  brand:'Bosch', series:'Climate 5000M', model:'5000M 4×1 (8.2 kW)',  slots:4, kw:8.2,  pvp:2116, img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'ms-ext-bosch-4x1-10k6', brand:'Bosch', series:'Climate 5000M', model:'5000M 4×1 (10.6 kW)', slots:4, kw:10.6, pvp:2595, img:'../assets/products/bosch-3200i-new-2.jpg'},
+  {id:'ms-ext-bosch-5x1-12k3', brand:'Bosch', series:'Climate 5000M', model:'5000M 5×1 (12.3 kW)', slots:5, kw:12.3, pvp:2884, img:'../assets/products/bosch-3200i-new-2.jpg'},
 ];
 
 /* Unidades Interiores Murais (preços COM IVA 23%) */
+const CATALOG_MS_NOVOS = new Set([
+  'ms-int-daikin-ftxa-dl-5k','ms-int-daikin-ftxa-dl-7k','ms-int-daikin-ftxa-dl-9k','ms-int-daikin-ftxa-dl-12k','ms-int-daikin-ftxa-dl-14k','ms-int-daikin-ftxa-dl-17k',
+  'ms-int-daikin-ftxa-dy-5k','ms-int-daikin-ftxa-dy-7k','ms-int-daikin-ftxa-dy-9k','ms-int-daikin-ftxa-dy-12k','ms-int-daikin-ftxa-dy-14k','ms-int-daikin-ftxa-dy-17k',
+  'ms-int-daikin-ftxa-dc-5k','ms-int-daikin-ftxa-dc-7k','ms-int-daikin-ftxa-dc-9k','ms-int-daikin-ftxa-dc-12k','ms-int-daikin-ftxa-dc-14k','ms-int-daikin-ftxa-dc-17k',
+  'ms-int-daikin-ftxa-dg-5k','ms-int-daikin-ftxa-dg-7k','ms-int-daikin-ftxa-dg-9k','ms-int-daikin-ftxa-dg-12k','ms-int-daikin-ftxa-dg-14k','ms-int-daikin-ftxa-dg-17k',
+  'ms-int-daikin-ftxa-dp-5k','ms-int-daikin-ftxa-dp-7k','ms-int-daikin-ftxa-dp-9k','ms-int-daikin-ftxa-dp-12k','ms-int-daikin-ftxa-dp-14k','ms-int-daikin-ftxa-dp-17k',
+]);
+
 const CATALOG_MS_INTERIOR = [
   // Daitsu FREE MAX ARTIC — murais
-  {id:'ms-int-daitsu-m-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Mural',   model:'FREE MAX Mural 9K',  kw:2.6, btu:9000,  pvp:221,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-m-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Mural',   model:'FREE MAX Mural 12K', kw:3.5, btu:12000, pvp:234,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-m-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Mural',   model:'FREE MAX Mural 18K', kw:5.3, btu:18000, pvp:332,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-m-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Mural',   model:'FREE MAX Mural 9K',  kw:2.6, btu:9000,  pvp:221,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-m-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Mural',   model:'FREE MAX Mural 12K', kw:3.5, btu:12000, pvp:234,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-m-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Mural',   model:'FREE MAX Mural 18K', kw:5.3, btu:18000, pvp:332,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
   // Daitsu FREE MAX ARTIC — chão/consola (suelo)
-  {id:'ms-int-daitsu-s-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Chão',    model:'FREE MAX Chão 9K',   kw:2.6, btu:9000,  pvp:603,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-s-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Chão',    model:'FREE MAX Chão 12K',  kw:3.5, btu:12000, pvp:621,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-s-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Chão',    model:'FREE MAX Chão 18K',  kw:5.3, btu:18000, pvp:640,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-s-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Chão',    model:'FREE MAX Chão 9K',   kw:2.6, btu:9000,  pvp:603,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-s-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Chão',    model:'FREE MAX Chão 12K',  kw:3.5, btu:12000, pvp:621,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-s-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Chão',    model:'FREE MAX Chão 18K',  kw:5.3, btu:18000, pvp:640,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
   // Daitsu FREE MAX ARTIC — cassete
-  {id:'ms-int-daitsu-c-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Cassete', model:'FREE MAX Cassete 9K',  kw:2.6, btu:9000,  pvp:720,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-c-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Cassete', model:'FREE MAX Cassete 12K', kw:3.5, btu:12000, pvp:756,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-c-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Cassete', model:'FREE MAX Cassete 18K', kw:5.3, btu:18000, pvp:806,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-c-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Cassete', model:'FREE MAX Cassete 9K',  kw:2.6, btu:9000,  pvp:720,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-c-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Cassete', model:'FREE MAX Cassete 12K', kw:3.5, btu:12000, pvp:756,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-c-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Cassete', model:'FREE MAX Cassete 18K', kw:5.3, btu:18000, pvp:806,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
   // Daitsu FREE MAX ARTIC — condutas
-  {id:'ms-int-daitsu-d-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Condutas', model:'FREE MAX Condutas 9K',  kw:2.6, btu:9000,  pvp:320,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-d-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Condutas', model:'FREE MAX Condutas 12K', kw:3.5, btu:12000, pvp:326,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-daitsu-d-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Condutas', model:'FREE MAX Condutas 18K', kw:5.3, btu:18000, pvp:529,  img:'../assets/products/daitsu-artic-kz-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-d-9k',  brand:'Daitsu', series:'FREE MAX ARTIC — Condutas', model:'FREE MAX Condutas 9K',  kw:2.6, btu:9000,  pvp:320,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-d-12k', brand:'Daitsu', series:'FREE MAX ARTIC — Condutas', model:'FREE MAX Condutas 12K', kw:3.5, btu:12000, pvp:326,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-daitsu-d-18k', brand:'Daitsu', series:'FREE MAX ARTIC — Condutas', model:'FREE MAX Condutas 18K', kw:5.3, btu:18000, pvp:529,  img:'../assets/products/daitsu-artic-kz-6.jpg', classe:'A++ Frio / A+++ Quente'},
   // Daikin Multi-Sensira MXF — interiores exclusivos CTXF-F
-  {id:'ms-int-daikin-ctxf-7k',  brand:'Daikin', series:'Sensira CTXF (Multi-Sensira)', model:'Sensira CTXF20F (7K)',  kw:2.0, btu:7000,  pvp:301,  img:'../assets/products/daikin-sensira-1.jpg', classe:'A++ Frio / A+++ Quente', compat:'mxf'},
-  {id:'ms-int-daikin-ctxf-9k',  brand:'Daikin', series:'Sensira CTXF (Multi-Sensira)', model:'Sensira CTXF25F (9K)',  kw:2.5, btu:9000,  pvp:332,  img:'../assets/products/daikin-sensira-1.jpg', classe:'A++ Frio / A+++ Quente', compat:'mxf'},
-  {id:'ms-int-daikin-ctxf-12k', brand:'Daikin', series:'Sensira CTXF (Multi-Sensira)', model:'Sensira CTXF35F (12K)', kw:3.5, btu:12000, pvp:387,  img:'../assets/products/daikin-sensira-1.jpg', classe:'A++ Frio / A+++ Quente', compat:'mxf'},
+  {id:'ms-int-daikin-ctxf-7k',  brand:'Daikin', series:'Sensira CTXF (Multi-Sensira)', model:'Sensira CTXF20F (7K)',  kw:2.0, btu:7000,  pvp:301,  img:'../assets/products/daikin-sensira-2.webp', classe:'A++ Frio / A+++ Quente', compat:'mxf'},
+  {id:'ms-int-daikin-ctxf-9k',  brand:'Daikin', series:'Sensira CTXF (Multi-Sensira)', model:'Sensira CTXF25F (9K)',  kw:2.5, btu:9000,  pvp:332,  img:'../assets/products/daikin-sensira-2.webp', classe:'A++ Frio / A+++ Quente', compat:'mxf'},
+  {id:'ms-int-daikin-ctxf-12k', brand:'Daikin', series:'Sensira CTXF (Multi-Sensira)', model:'Sensira CTXF35F (12K)', kw:3.5, btu:12000, pvp:387,  img:'../assets/products/daikin-sensira-2.webp', classe:'A++ Frio / A+++ Quente', compat:'mxf'},
   // Daikin Perfera FTXM — murais (MXM)
-  {id:'ms-int-daikin-perfera-7k',  brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM20 (7K)',  kw:2.0, btu:7000,  pvp:547,  img:'../assets/products/daikin-perfera-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-perfera-9k',  brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM25 (9K)',  kw:2.5, btu:9000,  pvp:597,  img:'../assets/products/daikin-perfera-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-perfera-12k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM35 (12K)', kw:3.5, btu:12000, pvp:769,  img:'../assets/products/daikin-perfera-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-perfera-14k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM42 (14K)', kw:4.2, btu:14000, pvp:886,  img:'../assets/products/daikin-perfera-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-perfera-17k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM50 (17K)', kw:5.0, btu:17000, pvp:953,  img:'../assets/products/daikin-perfera-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-5k',  brand:'Daikin', series:'Perfera — Mural', model:'Perfera CTXM15 (5K)',  kw:1.5, btu:5000,  pvp:510,  img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-7k',  brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM20 (7K)',  kw:2.0, btu:7000,  pvp:547,  img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-9k',  brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM25 (9K)',  kw:2.5, btu:9000,  pvp:597,  img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-12k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM35 (12K)', kw:3.5, btu:12000, pvp:769,  img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-14k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM42 (14K)', kw:4.2, btu:14000, pvp:886,  img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-17k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM50 (17K)', kw:5.0, btu:17000, pvp:953,  img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-20k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM60 (20K)', kw:6.0, btu:20000, pvp:1033, img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-perfera-24k', brand:'Daikin', series:'Perfera — Mural', model:'Perfera FTXM71 (24K)', kw:7.1, btu:24000, pvp:1310, img:'../assets/products/daikin-perfera-2.webp', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Perfera de Chão FVXM (MXM)
+  {id:'ms-int-daikin-cvxm-20', brand:'Daikin', series:'Perfera — Chão', model:'Perfera CVXM20 (7K)',  kw:2.0, btu:7000,  pvp:1125, img:'../assets/products/daikin-perfera-chao.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   {id:'ms-int-daikin-fvxm-25', brand:'Daikin', series:'Perfera — Chão', model:'Perfera FVXM25 (9K)',  kw:2.5, btu:9000,  pvp:1212, img:'../assets/products/daikin-perfera-chao.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   {id:'ms-int-daikin-fvxm-35', brand:'Daikin', series:'Perfera — Chão', model:'Perfera FVXM35 (12K)', kw:3.5, btu:12000, pvp:1439, img:'../assets/products/daikin-perfera-chao.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   {id:'ms-int-daikin-fvxm-50', brand:'Daikin', series:'Perfera — Chão', model:'Perfera FVXM50 (17K)', kw:5.0, btu:17000, pvp:1673, img:'../assets/products/daikin-perfera-chao.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
@@ -1156,117 +1180,125 @@ const CATALOG_MS_INTERIOR = [
   {id:'ms-int-daikin-fdxm-35', brand:'Daikin', series:'Condutas FDXM', model:'Condutas FDXM35 (12K) + Comando Madoka Branco', kw:3.4, btu:12000, pvp:815,  img:'../assets/products/daikin-condutas-fdxm.jpg', classe:'A',   compat:'mxm'},
   {id:'ms-int-daikin-fdxm-50', brand:'Daikin', series:'Condutas FDXM', model:'Condutas FDXM50 (17K) + Comando Madoka Branco', kw:5.0, btu:17000, pvp:845,  img:'../assets/products/daikin-condutas-fdxm.jpg', classe:'A+',  compat:'mxm'},
   {id:'ms-int-daikin-fdxm-60', brand:'Daikin', series:'Condutas FDXM', model:'Condutas FDXM60 (20K) + Comando Madoka Branco', kw:6.0, btu:20000, pvp:865,  img:'../assets/products/daikin-condutas-fdxm.jpg', classe:'A',   compat:'mxm'},
-  // Daikin Confora FTXP (MXM) — FTXP20=300€, FTXP25=340€, FTXP35=405€ s/IVA
-  {id:'ms-int-daikin-ftxp-7k',  brand:'Daikin', series:'Confora — Mural', model:'Confora FTXP20 (7K)',  kw:2.0, btu:7000,  pvp:369,  img:'../assets/products/daikin-confora-1.jpg', classe:'A++ Frio / A++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxp-9k',  brand:'Daikin', series:'Confora — Mural', model:'Confora FTXP25 (9K)',  kw:2.5, btu:9000,  pvp:418,  img:'../assets/products/daikin-confora-1.jpg', classe:'A++ Frio / A++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxp-12k', brand:'Daikin', series:'Confora — Mural', model:'Confora FTXP35 (12K)', kw:3.5, btu:12000, pvp:498,  img:'../assets/products/daikin-confora-1.jpg', classe:'A++ Frio / A++ Quente', compat:'mxm'},
+  // Daikin Confora FTXP (MXM) — FTXP20=315€, FTXP25=355€, FTXP35=430€ s/IVA
+  {id:'ms-int-daikin-ftxp-7k',  brand:'Daikin', series:'Confora — Mural', model:'Confora FTXP20 (7K)',  kw:2.0, btu:7000,  pvp:387,  img:'../assets/products/daikin-confora-2.webp', classe:'A++ Frio / A++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxp-9k',  brand:'Daikin', series:'Confora — Mural', model:'Confora FTXP25 (9K)',  kw:2.5, btu:9000,  pvp:437,  img:'../assets/products/daikin-confora-2.webp', classe:'A++ Frio / A++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxp-12k', brand:'Daikin', series:'Confora — Mural', model:'Confora FTXP35 (12K)', kw:3.5, btu:12000, pvp:529,  img:'../assets/products/daikin-confora-2.webp', classe:'A++ Frio / A++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Branco CW (MXM)
-  {id:'ms-int-daikin-ftxa-branco-7k',    brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA20 Branco (7K)',    kw:2.0, btu:7000,  pvp:615,  img:'../assets/products/daikin-stylish-branco-5.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-branco-9k',    brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA25 Branco (9K)',    kw:2.5, btu:9000,  pvp:670,  img:'../assets/products/daikin-stylish-branco-5.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-branco-12k',   brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA35 Branco (12K)',   kw:3.5, btu:12000, pvp:730,  img:'../assets/products/daikin-stylish-branco-5.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-branco-14k',   brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA42 Branco (14K)',   kw:4.2, btu:14000, pvp:830,  img:'../assets/products/daikin-stylish-branco-5.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-branco-17k',   brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA50 Branco (17K)',   kw:5.0, btu:17000, pvp:885,  img:'../assets/products/daikin-stylish-branco-5.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-branco-5k',    brand:'Daikin', series:'Stylish — Branco',   model:'Stylish CTXA15 Branco (5K)',    kw:1.5, btu:5000,  pvp:720,  img:'../assets/products/daikin-stylish-branco-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-branco-7k',    brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA20 Branco (7K)',    kw:2.0, btu:7000,  pvp:756,  img:'../assets/products/daikin-stylish-branco-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-branco-9k',    brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA25 Branco (9K)',    kw:2.5, btu:9000,  pvp:824,  img:'../assets/products/daikin-stylish-branco-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-branco-12k',   brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA35 Branco (12K)',   kw:3.5, btu:12000, pvp:898,  img:'../assets/products/daikin-stylish-branco-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-branco-14k',   brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA42 Branco (14K)',   kw:4.2, btu:14000, pvp:1021, img:'../assets/products/daikin-stylish-branco-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-branco-17k',   brand:'Daikin', series:'Stylish — Branco',   model:'Stylish FTXA50 Branco (17K)',   kw:5.0, btu:17000, pvp:1089, img:'../assets/products/daikin-stylish-branco-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Prateado CS (MXM)
-  {id:'ms-int-daikin-ftxa-silver-7k',    brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA20 Prateado (7K)',  kw:2.0, btu:7000,  pvp:670,  img:'../assets/products/daikin-stylish-silver-1.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-silver-9k',    brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA25 Prateado (9K)',  kw:2.5, btu:9000,  pvp:735,  img:'../assets/products/daikin-stylish-silver-1.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-silver-12k',   brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA35 Prateado (12K)', kw:3.5, btu:12000, pvp:805,  img:'../assets/products/daikin-stylish-silver-1.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-silver-14k',   brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA42 Prateado (14K)', kw:4.2, btu:14000, pvp:915,  img:'../assets/products/daikin-stylish-silver-1.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-silver-17k',   brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA50 Prateado (17K)', kw:5.0, btu:17000, pvp:980,  img:'../assets/products/daikin-stylish-silver-1.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-silver-5k',    brand:'Daikin', series:'Stylish — Prateado', model:'Stylish CTXA15 Prateado (5K)',  kw:1.5, btu:5000,  pvp:787,  img:'../assets/products/daikin-stylish-silver-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-silver-7k',    brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA20 Prateado (7K)',  kw:2.0, btu:7000,  pvp:824,  img:'../assets/products/daikin-stylish-silver-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-silver-9k',    brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA25 Prateado (9K)',  kw:2.5, btu:9000,  pvp:904,  img:'../assets/products/daikin-stylish-silver-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-silver-12k',   brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA35 Prateado (12K)', kw:3.5, btu:12000, pvp:990,  img:'../assets/products/daikin-stylish-silver-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-silver-14k',   brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA42 Prateado (14K)', kw:4.2, btu:14000, pvp:1125, img:'../assets/products/daikin-stylish-silver-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-silver-17k',   brand:'Daikin', series:'Stylish — Prateado', model:'Stylish FTXA50 Prateado (17K)', kw:5.0, btu:17000, pvp:1205, img:'../assets/products/daikin-stylish-silver-2.webp',  classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Madeira Clara DL
-  {id:'ms-int-daikin-ftxa-dl-7k',  brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA20 Madeira Clara (7K)',  kw:2.0, btu:7000,  pvp:895,  img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dl-9k',  brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA25 Madeira Clara (9K)',  kw:2.5, btu:9000,  pvp:925,  img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dl-12k', brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA35 Madeira Clara (12K)', kw:3.5, btu:12000, pvp:995,  img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dl-14k', brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA42 Madeira Clara (14K)', kw:4.2, btu:14000, pvp:1100, img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dl-17k', brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA50 Madeira Clara (17K)', kw:5.0, btu:17000, pvp:1155, img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dl-5k',  brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish CTXA15 Madeira Clara (5K)',  kw:1.5, btu:5000,  pvp:1058, img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dl-7k',  brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA20 Madeira Clara (7K)',  kw:2.0, btu:7000,  pvp:1101,  img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dl-9k',  brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA25 Madeira Clara (9K)',  kw:2.5, btu:9000,  pvp:1138,  img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dl-12k', brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA35 Madeira Clara (12K)', kw:3.5, btu:12000, pvp:1224,  img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dl-14k', brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA42 Madeira Clara (14K)', kw:4.2, btu:14000, pvp:1353, img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dl-17k', brand:'Daikin', series:'Stylish — Madeira Clara (DL)', model:'Stylish FTXA50 Madeira Clara (17K)', kw:5.0, btu:17000, pvp:1421, img:'../assets/products/daikin-stylish-madeira-clara-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Madeira Escura DY
-  {id:'ms-int-daikin-ftxa-dy-7k',  brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA20 Madeira Escura (7K)',  kw:2.0, btu:7000,  pvp:895,  img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dy-9k',  brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA25 Madeira Escura (9K)',  kw:2.5, btu:9000,  pvp:925,  img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dy-12k', brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA35 Madeira Escura (12K)', kw:3.5, btu:12000, pvp:995,  img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dy-14k', brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA42 Madeira Escura (14K)', kw:4.2, btu:14000, pvp:1100, img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dy-17k', brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA50 Madeira Escura (17K)', kw:5.0, btu:17000, pvp:1155, img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dy-5k',  brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish CTXA15 Madeira Escura (5K)',  kw:1.5, btu:5000,  pvp:1058, img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dy-7k',  brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA20 Madeira Escura (7K)',  kw:2.0, btu:7000,  pvp:1101,  img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dy-9k',  brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA25 Madeira Escura (9K)',  kw:2.5, btu:9000,  pvp:1138,  img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dy-12k', brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA35 Madeira Escura (12K)', kw:3.5, btu:12000, pvp:1224,  img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dy-14k', brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA42 Madeira Escura (14K)', kw:4.2, btu:14000, pvp:1353, img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dy-17k', brand:'Daikin', series:'Stylish — Madeira Escura (DY)', model:'Stylish FTXA50 Madeira Escura (17K)', kw:5.0, btu:17000, pvp:1421, img:'../assets/products/daikin-stylish-madeira-escura-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Pele Castanho Escura DC
-  {id:'ms-int-daikin-ftxa-dc-7k',  brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA20 Pele Castanho (7K)',  kw:2.0, btu:7000,  pvp:895,  img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dc-9k',  brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA25 Pele Castanho (9K)',  kw:2.5, btu:9000,  pvp:925,  img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dc-12k', brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA35 Pele Castanho (12K)', kw:3.5, btu:12000, pvp:995,  img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dc-14k', brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA42 Pele Castanho (14K)', kw:4.2, btu:14000, pvp:1100, img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dc-17k', brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA50 Pele Castanho (17K)', kw:5.0, btu:17000, pvp:1155, img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dc-5k',  brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish CTXA15 Pele Castanho (5K)',  kw:1.5, btu:5000,  pvp:1058, img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dc-7k',  brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA20 Pele Castanho (7K)',  kw:2.0, btu:7000,  pvp:1101,  img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dc-9k',  brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA25 Pele Castanho (9K)',  kw:2.5, btu:9000,  pvp:1138,  img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dc-12k', brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA35 Pele Castanho (12K)', kw:3.5, btu:12000, pvp:1224,  img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dc-14k', brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA42 Pele Castanho (14K)', kw:4.2, btu:14000, pvp:1353, img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dc-17k', brand:'Daikin', series:'Stylish — Pele Castanho (DC)', model:'Stylish FTXA50 Pele Castanho (17K)', kw:5.0, btu:17000, pvp:1421, img:'../assets/products/daikin-stylish-castanho-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Tecido Cinzento DG
-  {id:'ms-int-daikin-ftxa-dg-7k',  brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA20 Tecido Cinzento (7K)',  kw:2.0, btu:7000,  pvp:895,  img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dg-9k',  brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA25 Tecido Cinzento (9K)',  kw:2.5, btu:9000,  pvp:925,  img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dg-12k', brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA35 Tecido Cinzento (12K)', kw:3.5, btu:12000, pvp:995,  img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dg-14k', brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA42 Tecido Cinzento (14K)', kw:4.2, btu:14000, pvp:1100, img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dg-17k', brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA50 Tecido Cinzento (17K)', kw:5.0, btu:17000, pvp:1155, img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dg-5k',  brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish CTXA15 Tecido Cinzento (5K)',  kw:1.5, btu:5000,  pvp:1058, img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dg-7k',  brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA20 Tecido Cinzento (7K)',  kw:2.0, btu:7000,  pvp:1101,  img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dg-9k',  brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA25 Tecido Cinzento (9K)',  kw:2.5, btu:9000,  pvp:1138,  img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dg-12k', brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA35 Tecido Cinzento (12K)', kw:3.5, btu:12000, pvp:1224,  img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dg-14k', brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA42 Tecido Cinzento (14K)', kw:4.2, btu:14000, pvp:1353, img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dg-17k', brand:'Daikin', series:'Stylish — Tecido Cinzento (DG)', model:'Stylish FTXA50 Tecido Cinzento (17K)', kw:5.0, btu:17000, pvp:1421, img:'../assets/products/daikin-stylish-cinzento-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Tecido Azul Petróleo DP
-  {id:'ms-int-daikin-ftxa-dp-7k',  brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA20 Tecido Azul (7K)',  kw:2.0, btu:7000,  pvp:895,  img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dp-9k',  brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA25 Tecido Azul (9K)',  kw:2.5, btu:9000,  pvp:925,  img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dp-12k', brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA35 Tecido Azul (12K)', kw:3.5, btu:12000, pvp:995,  img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dp-14k', brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA42 Tecido Azul (14K)', kw:4.2, btu:14000, pvp:1100, img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-dp-17k', brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA50 Tecido Azul (17K)', kw:5.0, btu:17000, pvp:1155, img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dp-5k',  brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish CTXA15 Tecido Azul (5K)',  kw:1.5, btu:5000,  pvp:1058, img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dp-7k',  brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA20 Tecido Azul (7K)',  kw:2.0, btu:7000,  pvp:1101,  img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dp-9k',  brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA25 Tecido Azul (9K)',  kw:2.5, btu:9000,  pvp:1138,  img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dp-12k', brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA35 Tecido Azul (12K)', kw:3.5, btu:12000, pvp:1224,  img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dp-14k', brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA42 Tecido Azul (14K)', kw:4.2, btu:14000, pvp:1353, img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-dp-17k', brand:'Daikin', series:'Stylish — Tecido Azul (DP)', model:'Stylish FTXA50 Tecido Azul (17K)', kw:5.0, btu:17000, pvp:1421, img:'../assets/products/daikin-stylish-azul-1.jpg', classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Stylish FTXA Preto CB (MXM)
-  {id:'ms-int-daikin-ftxa-black-7k',     brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA20 Preto (7K)',     kw:2.0, btu:7000,  pvp:670,  img:'../assets/products/daikin-stylish-black-1.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-black-9k',     brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA25 Preto (9K)',     kw:2.5, btu:9000,  pvp:735,  img:'../assets/products/daikin-stylish-black-1.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-black-12k',    brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA35 Preto (12K)',    kw:3.5, btu:12000, pvp:805,  img:'../assets/products/daikin-stylish-black-1.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-black-14k',    brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA42 Preto (14K)',    kw:4.2, btu:14000, pvp:915,  img:'../assets/products/daikin-stylish-black-1.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxa-black-17k',    brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA50 Preto (17K)',    kw:5.0, btu:17000, pvp:980,  img:'../assets/products/daikin-stylish-black-1.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-black-5k',     brand:'Daikin', series:'Stylish — Preto',    model:'Stylish CTXA15 Preto (5K)',     kw:1.5, btu:5000,  pvp:787,  img:'../assets/products/daikin-stylish-black-2.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-black-7k',     brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA20 Preto (7K)',     kw:2.0, btu:7000,  pvp:824,  img:'../assets/products/daikin-stylish-black-2.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-black-9k',     brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA25 Preto (9K)',     kw:2.5, btu:9000,  pvp:904,  img:'../assets/products/daikin-stylish-black-2.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-black-12k',    brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA35 Preto (12K)',    kw:3.5, btu:12000, pvp:990,  img:'../assets/products/daikin-stylish-black-2.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-black-14k',    brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA42 Preto (14K)',    kw:4.2, btu:14000, pvp:1125, img:'../assets/products/daikin-stylish-black-2.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxa-black-17k',    brand:'Daikin', series:'Stylish — Preto',    model:'Stylish FTXA50 Preto (17K)',    kw:5.0, btu:17000, pvp:1205, img:'../assets/products/daikin-stylish-black-2.webp',   classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Emura FTXJ Branco (MXM)
-  {id:'ms-int-daikin-ftxj-branco-7k',    brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ20 Branco (7K)',     kw:2.0, btu:7000,  pvp:615,  img:'../assets/products/daikin-emura-branco-6.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-branco-9k',    brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ25 Branco (9K)',     kw:2.5, btu:9000,  pvp:670,  img:'../assets/products/daikin-emura-branco-6.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-branco-12k',   brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ35 Branco (12K)',    kw:3.5, btu:12000, pvp:730,  img:'../assets/products/daikin-emura-branco-6.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-branco-14k',   brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ42 Branco (14K)',    kw:4.2, btu:14000, pvp:830,  img:'../assets/products/daikin-emura-branco-6.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-branco-17k',   brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ50 Branco (17K)',    kw:5.0, btu:17000, pvp:885,  img:'../assets/products/daikin-emura-branco-6.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-branco-7k',    brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ20 Branco (7K)',     kw:2.0, btu:7000,  pvp:843,  img:'../assets/products/daikin-emura-branco-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-branco-9k',    brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ25 Branco (9K)',     kw:2.5, btu:9000,  pvp:879,  img:'../assets/products/daikin-emura-branco-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-branco-12k',   brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ35 Branco (12K)',    kw:3.5, btu:12000, pvp:1076, img:'../assets/products/daikin-emura-branco-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-branco-14k',   brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ42 Branco (14K)',    kw:4.2, btu:14000, pvp:1175, img:'../assets/products/daikin-emura-branco-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-branco-17k',   brand:'Daikin', series:'Emura — Branco',     model:'Emura FTXJ50 Branco (17K)',    kw:5.0, btu:17000, pvp:1322, img:'../assets/products/daikin-emura-branco-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Emura FTXJ Prateado AS9 (MXM)
-  {id:'ms-int-daikin-ftxj-silver-7k',    brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ20 Prateado (7K)',   kw:2.0, btu:7000,  pvp:820,  img:'../assets/products/daikin-emura-silver-1.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-silver-9k',    brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ25 Prateado (9K)',   kw:2.5, btu:9000,  pvp:860,  img:'../assets/products/daikin-emura-silver-1.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-silver-12k',   brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ35 Prateado (12K)',  kw:3.5, btu:12000, pvp:1035, img:'../assets/products/daikin-emura-silver-1.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-silver-14k',   brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ42 Prateado (14K)',  kw:4.2, btu:14000, pvp:1050, img:'../assets/products/daikin-emura-silver-1.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-silver-17k',   brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ50 Prateado (17K)',  kw:5.0, btu:17000, pvp:1210, img:'../assets/products/daikin-emura-silver-1.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-silver-7k',    brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ20 Prateado (7K)',   kw:2.0, btu:7000,  pvp:1009, img:'../assets/products/daikin-emura-silver-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-silver-9k',    brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ25 Prateado (9K)',   kw:2.5, btu:9000,  pvp:1058, img:'../assets/products/daikin-emura-silver-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-silver-12k',   brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ35 Prateado (12K)',  kw:3.5, btu:12000, pvp:1273, img:'../assets/products/daikin-emura-silver-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-silver-14k',   brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ42 Prateado (14K)',  kw:4.2, btu:14000, pvp:1292, img:'../assets/products/daikin-emura-silver-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-silver-17k',   brand:'Daikin', series:'Emura — Prateado',   model:'Emura FTXJ50 Prateado (17K)',  kw:5.0, btu:17000, pvp:1488, img:'../assets/products/daikin-emura-silver-2.webp',    classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Daikin Emura FTXJ Preto AB9 (MXM)
-  {id:'ms-int-daikin-ftxj-black-7k',     brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ20 Preto (7K)',      kw:2.0, btu:7000,  pvp:820,  img:'../assets/products/daikin-emura-black-1.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-black-9k',     brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ25 Preto (9K)',      kw:2.5, btu:9000,  pvp:860,  img:'../assets/products/daikin-emura-black-1.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-black-12k',    brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ35 Preto (12K)',     kw:3.5, btu:12000, pvp:1035, img:'../assets/products/daikin-emura-black-1.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-black-14k',    brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ42 Preto (14K)',     kw:4.2, btu:14000, pvp:1050, img:'../assets/products/daikin-emura-black-1.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
-  {id:'ms-int-daikin-ftxj-black-17k',    brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ50 Preto (17K)',     kw:5.0, btu:17000, pvp:1210, img:'../assets/products/daikin-emura-black-1.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-black-7k',     brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ20 Preto (7K)',      kw:2.0, btu:7000,  pvp:1009, img:'../assets/products/daikin-emura-black-2.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-black-9k',     brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ25 Preto (9K)',      kw:2.5, btu:9000,  pvp:1058, img:'../assets/products/daikin-emura-black-2.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-black-12k',    brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ35 Preto (12K)',     kw:3.5, btu:12000, pvp:1273, img:'../assets/products/daikin-emura-black-2.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-black-14k',    brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ42 Preto (14K)',     kw:4.2, btu:14000, pvp:1292, img:'../assets/products/daikin-emura-black-2.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
+  {id:'ms-int-daikin-ftxj-black-17k',    brand:'Daikin', series:'Emura — Preto',      model:'Emura FTXJ50 Preto (17K)',     kw:5.0, btu:17000, pvp:1488, img:'../assets/products/daikin-emura-black-2.webp',     classe:'A+++ Frio / A+++ Quente', compat:'mxm'},
   // Bosch Climate 3200i Multi — murais
-  {id:'ms-int-bosch-3200i-7k',  brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 7K',  kw:2.1, btu:7000,  pvp:258,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-3200i-9k',  brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 9K',  kw:2.6, btu:9000,  pvp:271,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-3200i-12k', brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 12K', kw:3.5, btu:12000, pvp:308,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-3200i-18k', brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 18K', kw:5.3, btu:18000, pvp:381,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-3200i-24k', brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 24K', kw:7.0, btu:24000, pvp:517,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-3200i-7k',  brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 7K',  kw:2.1, btu:7000,  pvp:258,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-3200i-9k',  brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 9K',  kw:2.6, btu:9000,  pvp:271,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-3200i-12k', brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 12K', kw:3.5, btu:12000, pvp:308,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-3200i-18k', brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 18K', kw:5.3, btu:18000, pvp:381,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-3200i-24k', brand:'Bosch', series:'Climate 3200i — Mural', model:'3200i Multi Mural 24K', kw:7.0, btu:24000, pvp:517,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
   // Bosch Climate 2000 Multi — murais (renomear série)
   // (já acima como 'Climate 2000 Multi')
   // Bosch Climate 5000i — cassete
-  {id:'ms-int-bosch-cass-7k',  brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 7K',  kw:2.1, btu:7000,  pvp:615,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-cass-9k',  brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 9K',  kw:2.6, btu:9000,  pvp:640,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-cass-12k', brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 12K', kw:3.5, btu:12000, pvp:689,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-cass-18k', brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 18K', kw:5.3, btu:18000, pvp:732,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-cass-24k', brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 24K', kw:7.0, btu:24000, pvp:984,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cass-7k',  brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 7K',  kw:2.1, btu:7000,  pvp:615,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cass-9k',  brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 9K',  kw:2.6, btu:9000,  pvp:640,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cass-12k', brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 12K', kw:3.5, btu:12000, pvp:689,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cass-18k', brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 18K', kw:5.3, btu:18000, pvp:732,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cass-24k', brand:'Bosch', series:'Climate 5000i — Cassete', model:'5000i Cassete 24K', kw:7.0, btu:24000, pvp:984,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
   // Bosch Climate 5000i — condutas
-  {id:'ms-int-bosch-duct-7k',  brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 7K',  kw:2.1, btu:7000,  pvp:541,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-duct-9k',  brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 9K',  kw:2.6, btu:9000,  pvp:566,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-duct-12k', brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 12K', kw:3.5, btu:12000, pvp:621,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-duct-18k', brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 18K', kw:5.3, btu:18000, pvp:683,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-duct-24k', brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 24K', kw:7.0, btu:24000, pvp:929,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-duct-7k',  brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 7K',  kw:2.1, btu:7000,  pvp:541,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-duct-9k',  brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 9K',  kw:2.6, btu:9000,  pvp:566,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-duct-12k', brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 12K', kw:3.5, btu:12000, pvp:621,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-duct-18k', brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 18K', kw:5.3, btu:18000, pvp:683,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-duct-24k', brand:'Bosch', series:'Climate 5000i — Condutas', model:'5000i Condutas 24K', kw:7.0, btu:24000, pvp:929,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
   // Bosch Climate 5000i — consola (chão/teto)
-  {id:'ms-int-bosch-cons-9k',  brand:'Bosch', series:'Climate 5000i — Consola', model:'5000i Consola 9K',  kw:2.6, btu:9000,  pvp:603,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-cons-12k', brand:'Bosch', series:'Climate 5000i — Consola', model:'5000i Consola 12K', kw:3.5, btu:12000, pvp:652,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
-  {id:'ms-int-bosch-cons-17k', brand:'Bosch', series:'Climate 5000i — Consola', model:'5000i Consola 17K', kw:5.0, btu:17000, pvp:701,  img:'../assets/products/bosch-3200i-new-1.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cons-9k',  brand:'Bosch', series:'Climate 5000i — Consola', model:'5000i Consola 9K',  kw:2.6, btu:9000,  pvp:603,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cons-12k', brand:'Bosch', series:'Climate 5000i — Consola', model:'5000i Consola 12K', kw:3.5, btu:12000, pvp:652,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
+  {id:'ms-int-bosch-cons-17k', brand:'Bosch', series:'Climate 5000i — Consola', model:'5000i Consola 17K', kw:5.0, btu:17000, pvp:701,  img:'../assets/products/bosch-3200i-new-2.jpg', classe:'A++ Frio / A+++ Quente'},
 ];
 
 /* ═══════════════════════════════════════════
    ANEXO — GALERIA DE FOTOS POR SÉRIE
 ═══════════════════════════════════════════ */
 const GALLERY = {
-  'ARTIC':          ['daitsu-artic-kz-1.jpg','daitsu-artic-kz-2.jpg','daitsu-artic-kz-3.jpg','daitsu-artic-kz-4.jpg','daitsu-artic-kz-5.jpg','daitsu-artic-kz-6.jpg','daitsu-artic-kz-7.jpg','daitsu-artic-kz-8.jpg','daitsu-artic-kz-9.jpg'],
-  'Climate 3200i':  ['bosch-3200i-new-1.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg','bosch-3200i-new-5.jpg','bosch-3200i-new-6.jpg'],
-  'Climate 6000i':  ['bosch-6000i-1.webp','bosch-6000i-2.webp','bosch-6000i-3.webp','bosch-6000i-4.webp'],
-  'Climate 7000i':  ['bosch-7000i-branco-1.webp','bosch-7000i-branco-2.webp','bosch-7000i-branco-3.webp','bosch-7000i-silver-1.webp','bosch-7000i-silver-2.webp','bosch-7000i-silver-3.webp','bosch-7000i-black-1.webp','bosch-7000i-black-2.webp','bosch-7000i-black-3.webp'],
+  'ARTIC':          ['daitsu-artic-kz-6.jpg','daitsu-artic-kz-2.jpg','daitsu-artic-kz-3.jpg','daitsu-artic-kz-4.jpg','daitsu-artic-kz-5.jpg','daitsu-artic-kz-6.jpg','daitsu-artic-kz-7.jpg','daitsu-artic-kz-8.jpg','daitsu-artic-kz-9.jpg'],
+  'Climate 3200i':  ['bosch-3200i-new-2.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg','bosch-3200i-new-5.jpg','bosch-3200i-new-6.jpg'],
+  'Climate 6000i':  ['bosch-6000i-2.webp','bosch-6000i-2.webp','bosch-6000i-3.webp','bosch-6000i-4.webp'],
+  'Climate 7000i':  ['bosch-7000i-branco-2.webp','bosch-7000i-branco-2.webp','bosch-7000i-branco-3.webp','bosch-7000i-silver-1.webp','bosch-7000i-silver-2.webp','bosch-7000i-silver-3.webp','bosch-7000i-black-1.webp','bosch-7000i-black-2.webp','bosch-7000i-black-3.webp'],
   'Sensira':        ['daikin-sensira-1.webp','daikin-sensira-2.webp','daikin-sensira-3.webp'],
   'Confora':        ['daikin-confora-1.webp','daikin-confora-2.webp','daikin-confora-3.webp'],
   'Perfera':        ['daikin-perfera-1.webp','daikin-perfera-2.webp','daikin-perfera-3.webp','daikin-perfera-4.jpg'],
-  'Stylish':        ['daikin-stylish-branco-1.webp','daikin-stylish-branco-2.webp','daikin-stylish-branco-3.webp','daikin-stylish-branco-4.webp','daikin-stylish-branco-5.webp','daikin-stylish-branco-6.webp','daikin-stylish-silver-1.webp','daikin-stylish-black-1.webp','daikin-stylish-novas-cores.jpg'],
-  'Emura':          ['daikin-emura-branco-1.webp','daikin-emura-branco-2.webp','daikin-emura-branco-3.webp','daikin-emura-branco-4.webp','daikin-emura-branco-5.webp','daikin-emura-branco-6.webp','daikin-emura-branco-7.webp','daikin-emura-silver-1.webp','daikin-emura-black-1.webp'],
+  'Stylish':        ['daikin-stylish-branco-1.webp','daikin-stylish-branco-2.webp','daikin-stylish-branco-3.webp','daikin-stylish-branco-4.webp','daikin-stylish-branco-2.webp','daikin-stylish-branco-6.webp','daikin-stylish-silver-1.webp','daikin-stylish-black-2.webp','daikin-stylish-novas-cores.jpg'],
+  'Emura':          ['daikin-emura-branco-1.webp','daikin-emura-branco-2.webp','daikin-emura-branco-3.webp','daikin-emura-branco-4.webp','daikin-emura-branco-5.webp','daikin-emura-branco-2.webp','daikin-emura-branco-7.webp','daikin-emura-silver-2.webp','daikin-emura-black-2.webp'],
   // Bosch Climate 5000i — usa imagens do 3200i como placeholder até haver fotos dedicadas
-  'Climate 5000i':  ['bosch-3200i-new-1.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg'],
+  'Climate 5000i':  ['bosch-3200i-new-2.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg'],
   // Daikin Condutas FDXM — placeholder com imagens Daikin até haver fotos dedicadas
   'Condutas FDXM':  ['daikin-sensira-1.webp','daikin-sensira-2.webp','daikin-sensira-3.webp'],
 };
@@ -1457,6 +1489,7 @@ const I18N = {
     eic_cert:'Certif. EIC nº GF-0879 &nbsp;·&nbsp; Gases Fluorados &nbsp;·&nbsp; Técnicos Certificados',
     eic_f1:'Certif. EIC nº GF-0879', eic_f2:'Gases Fluorados · Empresa Licenciada',
     cover_tag:'Proposta de Orçamento', valid_until:'Válido até',
+    horario:'Seg–Sex 9h–18h', nota_pin:'📌 Nota:',
     svc_hig1:'Higienização da Unidade Interior (filtros, evaporador, tabuleiro condensados, desinfeção + relatório HACCP)',
     svc_hig2:'Higienização + Manutenção Completa (Serviço 1 + inspeção unidade exterior, caudal de ar, diagnóstico, verificação elétrica/frigorífica + relatório completo)',
     svc_preinstal:'Pré-instalação de Ar Condicionado (passagem de tubagens, fixações, abertura de vãos)',
@@ -1479,6 +1512,7 @@ const I18N = {
     eic_cert:'EIC Cert. nº GF-0879 &nbsp;·&nbsp; Fluorinated Gases &nbsp;·&nbsp; Certified Technicians',
     eic_f1:'EIC Cert. nº GF-0879', eic_f2:'Fluorinated Gases · Licensed Company',
     cover_tag:'Quote Proposal', valid_until:'Valid until',
+    horario:'Mon–Fri 9am–6pm', nota_pin:'📌 Note:',
     svc_hig1:'Indoor Unit Cleaning (filters, evaporator, condensate tray, disinfection + HACCP report)',
     svc_hig2:'Cleaning + Full Maintenance (Service 1 + outdoor unit inspection, airflow, diagnostics, electrical/refrigeration check + full report)',
     svc_preinstal:'Air Conditioning Pre-Installation (pipe routing, fixings, wall openings)',
@@ -1501,6 +1535,7 @@ const I18N = {
     eic_cert:'Cert. EIC nº GF-0879 &nbsp;·&nbsp; Gaz Fluorés &nbsp;·&nbsp; Techniciens Certifiés',
     eic_f1:'Cert. EIC nº GF-0879', eic_f2:'Gaz Fluorés · Entreprise Agréée',
     cover_tag:'Proposition de Devis', valid_until:'Valable jusqu\'au',
+    horario:'Lun–Ven 9h–18h', nota_pin:'📌 Remarque :',
     svc_hig1:'Nettoyage de l\'Unité Intérieure (filtres, évaporateur, bac à condensats, désinfection + rapport HACCP)',
     svc_hig2:'Nettoyage + Maintenance Complète (Service 1 + inspection unité extérieure, débit d\'air, diagnostic, vérification électrique/frigorifique + rapport complet)',
     svc_preinstal:'Pré-installation de Climatisation (passage de tuyauteries, fixations, percements)',
@@ -1523,6 +1558,7 @@ const I18N = {
     eic_cert:'EIC-Zert. Nr. GF-0879 &nbsp;·&nbsp; Fluorierte Gase &nbsp;·&nbsp; Zertifizierte Techniker',
     eic_f1:'EIC-Zert. Nr. GF-0879', eic_f2:'Fluorierte Gase · Zugelassenes Unternehmen',
     cover_tag:'Angebotsentwurf', valid_until:'Gültig bis',
+    horario:'Mo–Fr 9–18 Uhr', nota_pin:'📌 Hinweis:',
     svc_hig1:'Reinigung der Inneneinheit (Filter, Verdampfer, Kondenswanne, Desinfektion + HACCP-Bericht)',
     svc_hig2:'Reinigung + Vollwartung (Service 1 + Außeneinheitsinspektion, Luftdurchfluss, Diagnose, Elektro-/Kältemittelprüfung + vollständiger Bericht)',
     svc_preinstal:'Klimaanlage Vorinstallation (Rohrleitungsverlegung, Befestigungen, Wanddurchbrüche)',
@@ -1545,6 +1581,7 @@ const I18N = {
     eic_cert:'Cert. EIC nº GF-0879 &nbsp;·&nbsp; Gases Fluorados &nbsp;·&nbsp; Técnicos Certificados',
     eic_f1:'Cert. EIC nº GF-0879', eic_f2:'Gases Fluorados · Empresa Autorizada',
     cover_tag:'Propuesta de Presupuesto', valid_until:'Válido hasta',
+    horario:'Lun–Vie 9h–18h', nota_pin:'📌 Nota:',
     svc_hig1:'Higienización de la Unidad Interior (filtros, evaporador, bandeja de condensados, desinfección + informe HACCP)',
     svc_hig2:'Higienización + Mantenimiento Completo (Servicio 1 + inspección unidad exterior, caudal de aire, diagnóstico, comprobación eléctrica/frigorífica + informe completo)',
     svc_preinstal:'Pre-instalación de Aire Acondicionado (paso de tuberías, fijaciones, aperturas de vanos)',
@@ -1567,6 +1604,7 @@ const I18N = {
     eic_cert:'Cert. EIC n° GF-0879 &nbsp;·&nbsp; Gas Fluorurati &nbsp;·&nbsp; Tecnici Certificati',
     eic_f1:'Cert. EIC n° GF-0879', eic_f2:'Gas Fluorurati · Azienda Autorizzata',
     cover_tag:'Proposta di Preventivo', valid_until:'Valido fino al',
+    horario:'Lun–Ven 9–18', nota_pin:'📌 Nota:',
     svc_hig1:'Igienizzazione dell\'Unità Interna (filtri, evaporatore, vasca condensate, disinfezione + rapporto HACCP)',
     svc_hig2:'Igienizzazione + Manutenzione Completa (Servizio 1 + ispezione unità esterna, portata d\'aria, diagnostica, verifica elettrica/frigorifera + rapporto completo)',
     svc_preinstal:'Pre-installazione di Climatizzazione (passaggio tubazioni, fissaggi, aperture muri)',
@@ -1589,6 +1627,7 @@ const I18N = {
     eic_cert:'EIC Cert. nr. GF-0879 &nbsp;·&nbsp; Gefluoreerde Gassen &nbsp;·&nbsp; Gecertificeerde Technici',
     eic_f1:'EIC Cert. nr. GF-0879', eic_f2:'Gefluoreerde Gassen · Erkend Bedrijf',
     cover_tag:'Offerteaanbieding', valid_until:'Geldig tot',
+    horario:'Ma–Vr 9–18u', nota_pin:'📌 Opmerking:',
     svc_hig1:'Reiniging Binnenunit (filters, verdamper, condensopvangbak, desinfectie + HACCP-rapport)',
     svc_hig2:'Reiniging + Volledig Onderhoud (Service 1 + inspectie buitenunit, luchtstroom, diagnose, elektrische/koelcontrole + volledig rapport)',
     svc_preinstal:'Airconditioning Voorinstallatie (leidingdoorvoer, bevestigingen, wandopeningen)',
@@ -1597,10 +1636,12 @@ const I18N = {
 };
 
 let currentLang = 'pt';
+let _currentOrc = null;
 
 function setLang(lang) {
   currentLang = lang;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  if (_currentOrc) preencherPrintArea({..._currentOrc, lang});
 }
 
 /* ═══════════════════════════════════════════
@@ -1667,6 +1708,7 @@ function novoOrcamento() {
   calcServicos();
 
   // — Reset idioma, categoria, barra —
+  _currentOrc = null;
   setLang('pt');
   document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
@@ -2058,7 +2100,7 @@ function renderCard(p) {
   const pid = p.id;
   return `
   <div class="opcao-card" id="opcao-card-${pid}" onclick="addToActiveGroup('${pid}')">
-    <img class="opcao-img" src="${p.img}" alt="${p.model}" onerror="this.style.display='none'">
+    <div class="opcao-img-wrap"><img class="opcao-img" src="${p.img}" alt="${p.model}" data-brand="${p.brand.toLowerCase()}" onerror="this.style.display='none'"></div>
     <div class="opcao-badge">
       ${brandLogoImg(p.brand)}
       ${isMulti ? '<span class="badge badge-multi">Multi-split</span>' : ''}
@@ -2388,10 +2430,12 @@ function renderMSInteriorGrid() {
       const existing = msInteriors.find(it => it.unit.id === u.id);
       const qty = existing?.qty || 0;
       const full = slotsUsed >= msExterior.slots && !existing;
+      const isNovo = CATALOG_MS_NOVOS.has(u.id);
       return `<div class="ms-int-card ${qty > 0 ? 'has-qty' : ''} ${full ? 'disabled' : ''}" onclick="${full ? '' : `addMSInterior('${u.id}')`}">
-        ${qty > 0 ? `<div class="ms-int-badge">${qty}×</div>` : ''}
+        ${qty > 0 ? `<div class="ms-int-badge">${qty}×</div>` : (isNovo ? `<div class="ms-int-badge" style="background:#22c55e;font-size:.62rem;padding:0 5px;">NOVO</div>` : '')}
+        <img src="${u.img}" alt="${u.model}" onerror="this.style.display='none'">
         <div class="ms-int-name">${u.model}</div>
-        <div class="ms-int-specs">${u.btu ? u.btu.toLocaleString('pt-PT') + ' BTU' : u.kw + ' kW'}</div>
+        <div class="ms-int-specs">${u.btu ? u.btu.toLocaleString() + ' BTU' : u.kw + ' kW'}</div>
         <div class="ms-int-pvp">${fmt(u.pvp)}/un.</div>
       </div>`;
     }).join('')}</div>`;
@@ -2684,6 +2728,12 @@ async function gerarOrcamentoAC() {
     const desc   = sub * desconto / 100;
     const total  = Math.round((sub - desc + install + deslocacao) * 100) / 100;
     const rep    = g.items[0].opcao;
+    // One image per interior unit (respects qty), fall back to rep image
+    const interiorItems = g.items.filter(it => it.opcao.tipo === 'interior');
+    const interiorImagens = interiorItems.flatMap(it =>
+      it.opcao.imagem ? Array(it.qty).fill(it.opcao.imagem) : []
+    );
+    const repImagem = interiorImagens.length ? interiorImagens[0] : rep.imagem;
 
     // Título compacto da opção
     let titulo;
@@ -2709,7 +2759,7 @@ async function gerarOrcamentoAC() {
     const totalBtu = g.items.reduce((s, it) => s + (it.opcao.btu || 0) * it.qty, 0) || null;
     return {
       letra: g.letra, titulo, marca: rep.marca, series: rep.series,
-      imagem: rep.imagem, justificacao: rep.justificacao,
+      imagem: repImagem, imagens: interiorImagens.length > 1 ? interiorImagens : null, justificacao: rep.justificacao,
       kw: totalKw, btu: totalBtu, classe: rep.classe,
       itens, instalacao: install || null, deslocacao: deslocacao || null, desconto, total_com_iva: total,
       notas_opcao: g.notas || null,
@@ -3044,6 +3094,7 @@ async function salvarEImprimir(payload) {
     });
     const data = await resp.json();
     if (!data.sucesso) throw new Error(data.erro || 'Erro desconhecido');
+    _currentOrc = data.orcamento;
     preencherPrintArea(data.orcamento);
     const nomeCliente = (data.orcamento.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
     _tituloPrint = data.orcamento.numero_formatado + ' — ' + nomeCliente;
@@ -3056,6 +3107,7 @@ async function salvarEImprimir(payload) {
 function preencherPrintArea(orc) {
   const lang = orc.lang || currentLang;
   const T = I18N[lang] || I18N.pt;
+  const fmt = val => Number(val).toLocaleString(T.locale, {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
   const BRAND_LOGOS = { daikin: '../assets/logo-daikin.jpg', bosch: '../assets/logo-bosch.jpg', daitsu: '../assets/logo-daitsu.jpg' };
   const dataFmt = new Date(orc.data).toLocaleDateString(T.locale, { day: '2-digit', month: 'long', year: 'numeric' });
 
@@ -3129,7 +3181,7 @@ function preencherPrintArea(orc) {
     <div class="pf" style="align-items:center;">
       <div>
         <div>ARTICOCLIMA — Climatização e Energias Renováveis</div>
-        <div style="font-size:7pt;margin-top:2pt;">artico.clim@gmail.com &nbsp;·&nbsp; +351 964 501 776 &nbsp;·&nbsp; Seg–Sex 9h–18h</div>
+        <div style="font-size:7pt;margin-top:2pt;">artico.clim@gmail.com &nbsp;·&nbsp; +351 964 501 776 &nbsp;·&nbsp; ${T.horario}</div>
       </div>
       <div style="display:flex;align-items:center;gap:6pt;flex-shrink:0;">
         <img src="../assets/eic-badge.jpg" style="height:36pt;width:36pt;object-fit:contain;" alt="EIC">
@@ -3167,6 +3219,9 @@ function preencherPrintArea(orc) {
       const subtotal = (op.itens || []).reduce((s, i) => s + (i.pvp_total || 0), 0);
       const descVal = Math.round(subtotal * (op.desconto || 0) / 100 * 100) / 100;
       const imgPath = op.imagem ? ('../' + op.imagem.replace(/^\.\.\//, '').replace(/^assets\//, 'assets/')) : '';
+      const imgPaths = op.imagens && op.imagens.length
+        ? op.imagens.map(img => '../' + img.replace(/^\.\.\//, '').replace(/^assets\//, 'assets/'))
+        : (imgPath ? [imgPath] : []);
       const features = getFeatures(op.series, lang);
 
       const itens = op.itens || [];
@@ -3181,7 +3236,7 @@ function preencherPrintArea(orc) {
       if (op.deslocacao > 0) breakdown += `<div class="pob-line"><span>${T.deslocacao}</span><span>${fmt(op.deslocacao)}</span></div>`;
       if (showTotal) breakdown += `<div class="pob-total"><span>${T.total_iva}</span><span>${fmt(op.total_com_iva)}</span></div>`;
 
-      const specsLine = [op.btu ? op.btu.toLocaleString('pt-PT') + ' BTU' : (op.kw ? op.kw + ' kW' : ''), op.classe || ''].filter(Boolean).join(' · ');
+      const specsLine = [op.btu ? op.btu.toLocaleString(T.locale) + ' BTU' : (op.kw ? op.kw + ' kW' : ''), op.classe || ''].filter(Boolean).join(' · ');
 
       body += `
         <div class="po">
@@ -3194,7 +3249,10 @@ function preencherPrintArea(orc) {
           <div class="po-body">
             <div class="po-cols">
               <div class="po-photo-col">
-                ${imgPath ? `<img class="po-photo" src="${imgPath}" alt="${op.titulo}" onerror="this.style.display='none'">` : ''}
+                ${imgPaths.length > 1
+                  ? `<div style="display:flex;flex-direction:column;gap:4pt;">${imgPaths.map(p => `<img class="po-photo" style="height:${Math.floor(110/imgPaths.length)}pt;width:120pt;" src="${p}" alt="${op.titulo}" onerror="this.style.display='none'">`).join('')}</div>`
+                  : (imgPaths.length === 1 ? `<img class="po-photo" src="${imgPaths[0]}" alt="${op.titulo}" onerror="this.style.display='none'">` : '')
+                }
               </div>
               <div class="po-detail-col">
                 <ul class="po-features">${features.map(f => `<li>${f}</li>`).join('')}</ul>
@@ -3202,7 +3260,7 @@ function preencherPrintArea(orc) {
               </div>
             </div>
             ${op.series ? `<div class="po-pitch">${getPitch(op.series, lang)}</div>` : (op.justificacao ? `<div class="po-pitch">${op.justificacao}</div>` : '')}
-            ${op.notas_opcao ? `<div style="margin-top:6pt;font-size:8pt;color:#444;background:#fffbf5;border:1pt solid #fde8cc;border-radius:3pt;padding:5pt 8pt;"><strong>📌 Nota:</strong> ${op.notas_opcao}</div>` : ''}
+            ${op.notas_opcao ? `<div style="margin-top:6pt;font-size:8pt;color:#444;background:#fffbf5;border:1pt solid #fde8cc;border-radius:3pt;padding:5pt 8pt;"><strong>${T.nota_pin}</strong> ${op.notas_opcao}</div>` : ''}
           </div>
         </div>`;
     });
@@ -3291,7 +3349,8 @@ function preencherPrintArea(orc) {
 }
 
 function reimprimir(orcJson) {
-  preencherPrintArea(orcJson);
+  _currentOrc = orcJson;
+  preencherPrintArea({...orcJson, lang: currentLang});
   const nomeCliente = (orcJson.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
   _tituloPrint = orcJson.numero_formatado + ' — ' + nomeCliente;
   mostrarBarraAcoes(orcJson.numero_formatado);
@@ -3440,7 +3499,13 @@ function recuperarOrcamento(numero) {
     calcServicos();
   }
 
-  showToast('Orçamento recuperado — edita e gera novo');
+  // Renderiza o PDF com a língua atual para permitir mudar língua e guardar sem re-gerar
+  _currentOrc = orc;
+  preencherPrintArea({...orc, lang: currentLang});
+  const nomeCliente = (orc.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
+  _tituloPrint = orc.numero_formatado + ' — ' + nomeCliente;
+  mostrarBarraAcoes(orc.numero_formatado);
+  showToast('Orçamento recuperado — muda língua na barra e guarda, ou edita e gera novo');
 }
 
 /* ═══════════════════════════════════════════
