@@ -10097,5 +10097,163 @@
     "justificacao": "Opção A: Solução multi-split económica para várias divisões com uma única unidade exterior. Menos obra, menos custo de instalação e WiFi incluído.\nOpção B: Kit multi-split Bosch com interiores Climate 3200i — auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin. Uma unidade exterior para várias divisões, instalação mais limpa e económica.",
     "total_com_iva": 1651,
     "validade_dias": 30
+  },
+  {
+    "numero": 103,
+    "numero_formatado": "ORC-2026-0103",
+    "data": "2026-07-04T12:12:20.214Z",
+    "categoria": "ac",
+    "lang": "pt",
+    "cliente": "Manuela Castro",
+    "morada": "TVR",
+    "nif": "926534706",
+    "itens": [
+      {
+        "descricao": "Sensira FTXF42",
+        "series": "Sensira",
+        "qty": 1,
+        "pvp_unitario": 1396,
+        "pvp_total": 1396
+      }
+    ],
+    "opcoes": [
+      {
+        "letra": "A",
+        "titulo": "Sensira FTXF42",
+        "marca": "Daikin",
+        "series": "Sensira",
+        "imagem": "assets/products/daikin-sensira-2.webp",
+        "imagens": null,
+        "justificacao": "Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.",
+        "kw": 4.2,
+        "btu": 15000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Sensira FTXF42",
+            "series": "Sensira",
+            "qty": 1,
+            "pvp_unitario": 1396,
+            "pvp_total": 1396
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1396,
+        "notas_opcao": null
+      },
+      {
+        "letra": "B",
+        "titulo": "Confora FTXP50",
+        "marca": "Daikin",
+        "series": "Confora",
+        "imagem": "assets/products/daikin-confora-2.webp",
+        "imagens": null,
+        "justificacao": "Classe A++ com modo I-Feel (sente a temperatura onde está o telecomando) e filtro PM2.5. Conforto superior com consumo mínimo.",
+        "kw": 5,
+        "btu": 18000,
+        "classe": "A++ Frio / A++ Quente",
+        "itens": [
+          {
+            "descricao": "Confora FTXP50",
+            "series": "Confora",
+            "qty": 1,
+            "pvp_unitario": 2392,
+            "pvp_total": 2392
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 2392,
+        "notas_opcao": null
+      },
+      {
+        "letra": "C",
+        "titulo": "Perfera FTXM42",
+        "marca": "Daikin",
+        "series": "Perfera",
+        "imagem": "assets/products/daikin-perfera-2.webp",
+        "imagens": null,
+        "justificacao": "O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.",
+        "kw": 4.2,
+        "btu": 15000,
+        "classe": "A+++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Perfera FTXM42",
+            "series": "Perfera",
+            "qty": 1,
+            "pvp_unitario": 2300,
+            "pvp_total": 2300
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 2300,
+        "notas_opcao": null
+      },
+      {
+        "letra": "D",
+        "titulo": "Climate 3200i CL3200i-Set 53 WE",
+        "marca": "Bosch",
+        "series": "Climate 3200i",
+        "imagem": "assets/products/bosch-3200i-new-2.jpg",
+        "imagens": null,
+        "justificacao": "Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.",
+        "kw": 5.3,
+        "btu": 18000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "Climate 3200i CL3200i-Set 53 WE",
+            "series": "Climate 3200i",
+            "qty": 1,
+            "pvp_unitario": 1470,
+            "pvp_total": 1470
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1470,
+        "notas_opcao": null
+      },
+      {
+        "letra": "E",
+        "titulo": "ARTIC DS-18KZ",
+        "marca": "Daitsu",
+        "series": "ARTIC",
+        "imagem": "assets/products/daitsu-artic-kz-6.jpg",
+        "imagens": null,
+        "justificacao": "Melhor relação qualidade/preço do mercado. WiFi incluído de série, A+++ aquecimento e 5 filtros de alta eficiência — tecnologia muito acima do preço.",
+        "kw": 5.1,
+        "btu": 18000,
+        "classe": "A++ Frio / A+++ Quente",
+        "itens": [
+          {
+            "descricao": "ARTIC DS-18KZ",
+            "series": "ARTIC",
+            "qty": 1,
+            "pvp_unitario": 1230,
+            "pvp_total": 1230
+          }
+        ],
+        "instalacao": null,
+        "deslocacao": null,
+        "desconto": 0,
+        "total_com_iva": 1230,
+        "notas_opcao": null
+      }
+    ],
+    "instalacao": null,
+    "deslocacao": null,
+    "desconto": 0,
+    "notas": "",
+    "justificacao": "Opção A: Daikin de entrada com WiFi incluído de série. Marca líder mundial em climatização — fiabilidade comprovada ao melhor preço da gama Daikin.\nOpção B: Classe A++ com modo I-Feel (sente a temperatura onde está o telecomando) e filtro PM2.5. Conforto superior com consumo mínimo.\nOpção C: O topo da gama residencial Daikin. WiFi integrado, purificador de ar e I-Feel. Para quem não quer compromissos em qualidade.\nOpção D: Auto-limpeza iClean a 56°C, filtro catalítico e revestimento Golden Fin anticorrosivo. Fiabilidade Bosch com custo controlado. Prémio German Design 2026.\nOpção E: Melhor relação qualidade/preço do mercado. WiFi incluído de série, A+++ aquecimento e 5 filtros de alta eficiência — tecnologia muito acima do preço.",
+    "total_com_iva": 1396,
+    "validade_dias": 30
   }
 ]
