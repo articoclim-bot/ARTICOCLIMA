@@ -727,6 +727,10 @@
         <label>Notas internas (não aparecem no PDF)</label>
         <textarea id="ac-notas" rows="2" placeholder="Notas para arquivo interno..."></textarea>
       </div>
+      <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);cursor:pointer;margin-bottom:4px;">
+        <input type="checkbox" id="ac-sem-iva" style="width:16px;height:16px;accent-color:var(--orange);">
+        <span>Regime de autoliquidação de IVA <span style="color:#888;font-size:.8rem;">(preços apresentados s/ IVA — artigo 2.º, n.º 1, al. j) do CIVA)</span></span>
+      </label>
       <div class="total-preview" id="ac-total-preview"></div>
       <div style="display:flex; gap:10px; margin-top:16px;">
         <button class="btn btn-green" onclick="gerarOrcamentoAC()">Gerar Orçamento</button>
@@ -1594,6 +1598,8 @@ const I18N = {
     subtotal:'Subtotal', descricao:'Descrição', qtd:'Qtd.', preco_unit:'Preço unit.', total_col:'Total',
     aceitacao_titulo:'Aceitação do Orçamento', data_label:'Data', assinatura:'Assinatura do Cliente',
     total_iva_label:'Total c/ IVA:', adjud_label:'Adjudicação (80%):',
+    total_sem_iva:'Total s/ IVA', total_sem_iva_label:'Total s/ IVA:', adjud_sem_iva_label:'Adjudicação (80%):',
+    nota_autoliq:'IVA não liquidado — Autoliquidação nos termos do artigo 2.º, n.º 1, al. j) do CIVA.',
     intro:(n)=>`Apresentamos ${n} opções para o seu caso. Analise cada uma e escolha a que melhor se adequa ao seu espaço e orçamento.`,
     validade:(n)=>`Este orçamento tem validade de <strong>${n} dias</strong> a contar da data de emissão.`,
     pagamento:'O pagamento pode ser efectuado por transferência bancária:',
@@ -1617,6 +1623,8 @@ const I18N = {
     subtotal:'Subtotal', descricao:'Description', qtd:'Qty.', preco_unit:'Unit price', total_col:'Total',
     aceitacao_titulo:'Quote Acceptance', data_label:'Date', assinatura:'Client Signature',
     total_iva_label:'Total incl. VAT:', adjud_label:'Deposit (80%):',
+    total_sem_iva:'Total excl. VAT', total_sem_iva_label:'Total excl. VAT:', adjud_sem_iva_label:'Deposit (80%):',
+    nota_autoliq:'VAT reverse charge — Article 2(1)(j) of the Portuguese VAT Code (CIVA).',
     intro:(n)=>`We present ${n} options for your case. Analyse each one and choose the one that best suits your space and budget.`,
     validade:(n)=>`This quote is valid for <strong>${n} days</strong> from the date of issue.`,
     pagamento:'Payment can be made by bank transfer:',
@@ -1640,6 +1648,8 @@ const I18N = {
     subtotal:'Sous-total', descricao:'Description', qtd:'Qté', preco_unit:'Prix unit.', total_col:'Total',
     aceitacao_titulo:'Acceptation du Devis', data_label:'Date', assinatura:'Signature du Client',
     total_iva_label:'Total TTC :', adjud_label:'Acompte (80%) :',
+    total_sem_iva:'Total HT', total_sem_iva_label:'Total HT :', adjud_sem_iva_label:'Acompte (80%) :',
+    nota_autoliq:'TVA non liquidée — Autoliquidation conformément à l\'article 2, §1, al. j) du Code de la TVA portugais (CIVA).',
     intro:(n)=>`Nous vous présentons ${n} options pour votre projet. Analysez chacune et choisissez celle qui convient le mieux à votre espace et votre budget.`,
     validade:(n)=>`Ce devis est valable <strong>${n} jours</strong> à compter de sa date d'émission.`,
     pagamento:'Le règlement peut être effectué par virement bancaire :',
@@ -1663,6 +1673,8 @@ const I18N = {
     subtotal:'Zwischensumme', descricao:'Beschreibung', qtd:'Menge', preco_unit:'Einzelpreis', total_col:'Gesamt',
     aceitacao_titulo:'Auftragsbestätigung', data_label:'Datum', assinatura:'Unterschrift des Kunden',
     total_iva_label:'Gesamt inkl. MwSt.:', adjud_label:'Anzahlung (80%):',
+    total_sem_iva:'Gesamt netto', total_sem_iva_label:'Gesamt netto:', adjud_sem_iva_label:'Anzahlung (80%):',
+    nota_autoliq:'Steuerschuldnerschaft des Leistungsempfängers — gemäß Art. 2 Abs. 1 Buchst. j) des portugiesischen Umsatzsteuergesetzes (CIVA).',
     intro:(n)=>`Wir präsentieren Ihnen ${n} Optionen für Ihren Bedarf. Analysieren Sie jede Option und wählen Sie die passendste für Ihren Raum und Ihr Budget.`,
     validade:(n)=>`Dieses Angebot ist <strong>${n} Tage</strong> ab Ausstellungsdatum gültig.`,
     pagamento:'Die Zahlung kann per Banküberweisung erfolgen:',
@@ -1686,6 +1698,8 @@ const I18N = {
     subtotal:'Subtotal', descricao:'Descripción', qtd:'Cant.', preco_unit:'Precio unit.', total_col:'Total',
     aceitacao_titulo:'Aceptación del Presupuesto', data_label:'Fecha', assinatura:'Firma del Cliente',
     total_iva_label:'Total c/ IVA:', adjud_label:'Señal (80%):',
+    total_sem_iva:'Total s/ IVA', total_sem_iva_label:'Total s/ IVA:', adjud_sem_iva_label:'Señal (80%):',
+    nota_autoliq:'IVA no liquidado — Inversión del sujeto pasivo conforme al artículo 2, apartado 1, letra j) del CIVA portugués.',
     intro:(n)=>`Le presentamos ${n} opciones para su caso. Analice cada una y elija la que mejor se adapte a su espacio y presupuesto.`,
     validade:(n)=>`Este presupuesto tiene una validez de <strong>${n} días</strong> a partir de la fecha de emisión.`,
     pagamento:'El pago puede realizarse mediante transferencia bancaria:',
@@ -1709,6 +1723,8 @@ const I18N = {
     subtotal:'Subtotale', descricao:'Descrizione', qtd:'Qtà', preco_unit:'Prezzo unit.', total_col:'Totale',
     aceitacao_titulo:'Accettazione del Preventivo', data_label:'Data', assinatura:'Firma del Cliente',
     total_iva_label:'Totale IVA incl.:', adjud_label:'Acconto (80%):',
+    total_sem_iva:'Totale IVA escl.', total_sem_iva_label:'Totale IVA escl.:', adjud_sem_iva_label:'Acconto (80%):',
+    nota_autoliq:'IVA non applicata — Inversione contabile ai sensi dell\'art. 2, co. 1, lett. j) del CIVA portoghese.',
     intro:(n)=>`Presentiamo ${n} opzioni per il vostro caso. Analizzate ciascuna e scegliete quella più adatta al vostro spazio e budget.`,
     validade:(n)=>`Questo preventivo è valido per <strong>${n} giorni</strong> dalla data di emissione.`,
     pagamento:'Il pagamento può essere effettuato tramite bonifico bancario:',
@@ -1732,6 +1748,8 @@ const I18N = {
     subtotal:'Subtotaal', descricao:'Omschrijving', qtd:'Aantal', preco_unit:'Eenheidsprijs', total_col:'Totaal',
     aceitacao_titulo:'Akkoordverklaring Offerte', data_label:'Datum', assinatura:'Handtekening Klant',
     total_iva_label:'Totaal incl. BTW:', adjud_label:'Aanbetaling (80%):',
+    total_sem_iva:'Totaal excl. BTW', total_sem_iva_label:'Totaal excl. BTW:', adjud_sem_iva_label:'Aanbetaling (80%):',
+    nota_autoliq:'BTW verlegd — Verlegging van btw conform artikel 2, lid 1, onder j) van de Portugese btw-wet (CIVA).',
     intro:(n)=>`Wij presenteren u ${n} opties voor uw situatie. Analyseer elke optie en kies de optie die het beste past bij uw ruimte en budget.`,
     validade:(n)=>`Deze offerte is geldig voor <strong>${n} dagen</strong> vanaf de uitgiftedatum.`,
     pagamento:'Betaling kan worden gedaan via bankoverschrijving:',
@@ -1794,6 +1812,7 @@ function novoOrcamento() {
   adicionarDivisao();
   document.querySelectorAll('#chips-solar .chip, #chips-isolamento .chip, #chips-uso .chip, #chips-gama .chip')
     .forEach(c => c.classList.remove('active'));
+  const semIvaEl = document.getElementById('ac-sem-iva'); if (semIvaEl) semIvaEl.checked = false;
   ['ac-cliente','ac-nif','ac-morada','ac-notas','ac-notas-extra'].forEach(id => {
     const el = document.getElementById(id); if (el) el.value = '';
   });
@@ -2931,12 +2950,14 @@ async function gerarOrcamentoAC() {
     };
   });
 
+  const semIva = document.getElementById('ac-sem-iva')?.checked || false;
   const payload = {
     categoria: 'ac', cliente, morada: morada || null, nif: nif || null, lang: currentLang,
     itens: opcoes[0].itens, opcoes,
     instalacao: install || null, deslocacao: deslocacao || null, notas,
     justificacao: opcoes.map(o => `Opção ${o.letra}: ${o.justificacao}`).join('\n'),
     total_com_iva: opcoes[0].total_com_iva,
+    sem_iva: semIva,
   };
 
   await salvarEImprimir(payload);
@@ -3366,8 +3387,8 @@ async function salvarEImprimir(payload) {
     });
     const data = await resp.json();
     if (!data.sucesso) throw new Error(data.erro || 'Erro desconhecido');
-    _currentOrc = data.orcamento;
-    preencherPrintArea(data.orcamento);
+    _currentOrc = { ...data.orcamento, sem_iva: payload.sem_iva || false };
+    preencherPrintArea(_currentOrc);
     const nomeCliente = (data.orcamento.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
     _tituloPrint = data.orcamento.numero_formatado + ' — ' + nomeCliente;
     mostrarBarraAcoes(data.orcamento.numero_formatado);
@@ -3379,7 +3400,13 @@ async function salvarEImprimir(payload) {
 function preencherPrintArea(orc) {
   const lang = orc.lang || currentLang;
   const T = I18N[lang] || I18N.pt;
-  const fmt = val => Number(val).toLocaleString(T.locale, {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
+  const semIva = !!orc.sem_iva;
+  const vatFactor = semIva ? (1 / 1.23) : 1;
+  const fmtVal = val => Math.round(Number(val) * vatFactor * 100) / 100;
+  const fmt = val => Number(fmtVal(val)).toLocaleString(T.locale, {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
+  const totalLabel = semIva ? T.total_sem_iva : T.total_iva;
+  const totalLabelColon = semIva ? T.total_sem_iva_label : T.total_iva_label;
+  const adjudLabel = semIva ? T.adjud_sem_iva_label : T.adjud_label;
   const BRAND_LOGOS = { daikin: '../assets/logo-daikin.jpg', bosch: '../assets/logo-bosch.jpg', daitsu: '../assets/logo-daitsu.jpg' };
   const dataFmt = new Date(orc.data).toLocaleDateString(T.locale, { day: '2-digit', month: 'long', year: 'numeric' });
 
@@ -3448,6 +3475,7 @@ function preencherPrintArea(orc) {
       <p>${T.garantia}</p>
       <p>${T.cond_adjud}</p>
       <p>${T.acesso}</p>
+      ${semIva ? `<p style="font-size:8pt;font-weight:700;color:#333;margin-top:5pt;border-top:1pt solid #ddd;padding-top:5pt;">⚖️ ${T.nota_autoliq}</p>` : ''}
       <p style="font-size:7.5pt;color:#888;margin-top:5pt;">${T.rgpd}</p>
     </div>
     <div class="pf" style="align-items:center;">
@@ -3506,7 +3534,7 @@ function preencherPrintArea(orc) {
       if (op.desconto > 0) breakdown += `<div class="pob-discount"><span>${T.desconto(op.desconto)}</span><span>- ${fmt(descVal)}</span></div>`;
       if (op.instalacao > 0) breakdown += `<div class="pob-line"><span>${T.instalacao}</span><span>${fmt(op.instalacao)}</span></div>`;
       if (op.deslocacao > 0) breakdown += `<div class="pob-line"><span>${T.deslocacao}</span><span>${fmt(op.deslocacao)}</span></div>`;
-      if (showTotal) breakdown += `<div class="pob-total"><span>${T.total_iva}</span><span>${fmt(op.total_com_iva)}</span></div>`;
+      if (showTotal) breakdown += `<div class="pob-total"><span>${totalLabel}</span><span>${fmt(op.total_com_iva)}</span></div>`;
 
       const specsLine = [op.btu ? op.btu.toLocaleString(T.locale) + ' BTU' : (op.kw ? op.kw + ' kW' : ''), op.classe || ''].filter(Boolean).join(' · ');
 
@@ -3564,7 +3592,7 @@ function preencherPrintArea(orc) {
     }
     if (instVal > 0) totalsHTML += `<tr><td style="color:#555">${T.instalacao}</td><td class="right">${fmt(instVal)}</td></tr>`;
     if (deslocacaoVal > 0) totalsHTML += `<tr><td style="color:#555">${T.deslocacao}</td><td class="right">${fmt(deslocacaoVal)}</td></tr>`;
-    totalsHTML += `<tr class="total-row"><td>${T.total_iva}</td><td class="right">${fmt(total)}</td></tr>`;
+    totalsHTML += `<tr class="total-row"><td>${totalLabel}</td><td class="right">${fmt(total)}</td></tr>`;
     totalsHTML += `<tr><td style="color:#888;font-size:8pt;font-style:italic">${T.adjudicacao}</td><td class="right" style="color:#888;font-size:8pt;font-style:italic">${fmt(Math.round(total * 0.8 * 100) / 100)}</td></tr>`;
 
     body += `
@@ -3583,14 +3611,14 @@ function preencherPrintArea(orc) {
   let aceitacao = '';
   if (orc.opcoes && orc.opcoes.length > 0) {
     const linhas = orc.opcoes.map(op => {
-      const adjud = fmt(Math.round(op.total_com_iva * 0.8 * 100) / 100);
+      const adjud = fmt(Math.round(fmtVal(op.total_com_iva) * 0.8 * 100) / 100);
       return `<div style="display:flex;align-items:center;gap:10pt;margin-bottom:6pt;">
         <div style="width:14pt;height:14pt;border:1.5pt solid #333;flex-shrink:0;"></div>
         <div style="flex:1;">
           <span style="font-size:9pt;"><strong>${T.opcao} ${op.letra}</strong> — ${op.titulo}</span>
           <div style="display:flex;gap:16pt;margin-top:2pt;">
-            <span style="font-size:8.5pt;color:#333;">${T.total_iva_label} <strong>${fmt(op.total_com_iva)}</strong></span>
-            <span style="font-size:8.5pt;color:#f97316;">${T.adjud_label} <strong>${adjud}</strong></span>
+            <span style="font-size:8.5pt;color:#333;">${totalLabelColon} <strong>${fmt(op.total_com_iva)}</strong></span>
+            <span style="font-size:8.5pt;color:#f97316;">${adjudLabel} <strong>${adjud}</strong></span>
           </div>
         </div>
       </div>`;
