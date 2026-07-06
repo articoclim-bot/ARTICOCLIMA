@@ -2122,6 +2122,84 @@ function getFeatures(series, lang='pt') {
 ═══════════════════════════════════════════ */
 let catFiltro = { marca: 'todos', tipo: 'todos' };
 
+// --- Agrupamento por família de produto ---
+function seriesFamily(series) {
+  if (series.startsWith('Stylish')) return 'Stylish';
+  if (series.startsWith('Emura'))   return 'Emura';
+  return series;
+}
+function seriesColorLabel(series) {
+  if (series === 'Stylish' || series === 'Emura') return 'Branco';
+  const s = series.replace(/^(Stylish|Emura)\s*/, '');
+  return s || 'Branco';
+}
+function famSafeId(family) {
+  return family.replace(/[^a-zA-Z0-9]/g, '_');
+}
+
+const _famState = {};
+
+function renderConfigCard(family, products) {
+  const brand  = products[0].brand;
+  const colors = [...new Set(products.map(p => seriesColorLabel(p.series)))];
+  const kws    = [...new Set(products.map(p => p.kw))].sort((a,b) => a-b);
+  const fid    = famSafeId(family);
+
+  if (!_famState[fid]) _famState[fid] = { color: colors[0], kw: kws[0] };
+  const st  = _famState[fid];
+  const sel = products.find(p => seriesColorLabel(p.series) === st.color && p.kw === st.kw) || products[0];
+
+  const colorChips = colors.map(c =>
+    `<button class="chip fam-chip${c===st.color?' active':''}" style="padding:4px 10px;font-size:.78rem" onclick="setFamOpt('${fid}','color','${c.replace(/'/g,"\\'")}')">` + c + `</button>`
+  ).join('');
+  const kwChips = kws.map(k =>
+    `<button class="chip fam-chip${k===st.kw?' active':''}" style="padding:4px 10px;font-size:.78rem" onclick="setFamOpt('${fid}','kw',${k})">` + k + ` kW</button>`
+  ).join('');
+
+  return `<div class="opcao-card" id="fam-card-${fid}" onclick="">
+    <div class="opcao-img-wrap"><img class="opcao-img" id="fam-img-${fid}" src="${sel.img}" alt="${family}" onerror="this.style.display='none'"></div>
+    <div class="opcao-badge">${brandLogoImg(brand)}<span class="badge badge-classe">${sel.classe}</span></div>
+    <div class="opcao-title">${family}</div>
+    ${colors.length > 1 ? `<div class="ac-section-label" style="margin:8px 0 4px">Cor</div><div class="chip-group" style="gap:5px" id="fam-colors-${fid}">${colorChips}</div>` : ''}
+    <div class="ac-section-label" style="margin:8px 0 4px">Potência</div>
+    <div class="chip-group" style="gap:5px" id="fam-kws-${fid}">${kwChips}</div>
+    <div class="opcao-pvp" id="fam-pvp-${fid}">${fmt(sel.pvp)}</div>
+    <div class="opcao-justificacao">${getPitch(sel.series)}</div>
+    <button class="btn btn-primary btn-sm opcao-select-btn" id="fam-btn-${fid}" onclick="addFamToGroup('${fid}');event.stopPropagation()">+ Selecionar</button>
+  </div>`;
+}
+
+function setFamOpt(fid, dim, val) {
+  if (!_famState[fid]) _famState[fid] = {};
+  _famState[fid][dim] = dim === 'kw' ? Number(val) : val;
+  const st = _famState[fid];
+
+  const allMono = CATALOG_AC.filter(p => p.tipo !== 'multi_split');
+  const products = allMono.filter(p => famSafeId(seriesFamily(p.series)) === fid);
+
+  document.querySelectorAll(`#fam-colors-${fid} .fam-chip`).forEach(b =>
+    b.classList.toggle('active', b.textContent.trim() === st.color));
+  document.querySelectorAll(`#fam-kws-${fid} .fam-chip`).forEach(b =>
+    b.classList.toggle('active', parseFloat(b.textContent) === st.kw));
+
+  const sel = products.find(p => seriesColorLabel(p.series) === st.color && p.kw === st.kw);
+  if (sel) {
+    const pvpEl = document.getElementById(`fam-pvp-${fid}`);
+    const imgEl = document.getElementById(`fam-img-${fid}`);
+    if (pvpEl) pvpEl.textContent = fmt(sel.pvp);
+    if (imgEl) imgEl.src = sel.img;
+  }
+  updateCardStates();
+}
+
+function addFamToGroup(fid) {
+  const st = _famState[fid] || {};
+  const allMono = CATALOG_AC.filter(p => p.tipo !== 'multi_split');
+  const products = allMono.filter(p => famSafeId(seriesFamily(p.series)) === fid);
+  const sel = products.find(p => seriesColorLabel(p.series) === st.color && p.kw === st.kw) || products[0];
+  if (sel) addToActiveGroup(sel.id);
+}
+
 function mostrarCatalogo() {
   document.getElementById('catalogo-filtros').style.display = 'block';
   document.getElementById('resumo-necessidade').style.display = 'none';
@@ -2162,7 +2240,20 @@ function renderCatalogo() {
   let html = '';
   if (mono.length > 0) {
     if (hasBoth) html += '<div class="tipo-divider">🌬 Mono-split — unidade por divisão</div>';
-    html += mono.map(p => renderCard(p)).join('');
+    // Agrupar por família
+    const famMap = new Map();
+    mono.forEach(p => {
+      const fam = seriesFamily(p.series);
+      if (!famMap.has(fam)) famMap.set(fam, { products: [], brand: p.brand });
+      famMap.get(fam).products.push(p);
+    });
+    famMap.forEach(({ products }, family) => {
+      if (products.length === 1) {
+        html += renderCard(products[0]);
+      } else {
+        html += renderConfigCard(family, products);
+      }
+    });
   }
   if (multi.length > 0) {
     html += '<div class="tipo-divider">🔀 Multi-split — uma unidade exterior, várias interiores</div>';
