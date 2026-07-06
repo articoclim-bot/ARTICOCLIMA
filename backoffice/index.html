@@ -2139,32 +2139,49 @@ function famSafeId(family) {
 
 const _famState = {};
 
+const FAM_COLOR_CSS = {
+  'Branco':          '#f5f5f5',
+  'Prateado':        '#b8bfc7',
+  'Preto':           '#222',
+  'Madeira Clara':   '#c8a97a',
+  'Madeira Escura':  '#6b4226',
+  'Pele Castanho':   '#8b6343',
+  'Tecido Cinzento': '#7a7a7a',
+  'Tecido Azul':     '#2e5d6e',
+};
+
 function renderConfigCard(family, products) {
   const brand  = products[0].brand;
   const colors = [...new Set(products.map(p => seriesColorLabel(p.series)))];
   const kws    = [...new Set(products.map(p => p.kw))].sort((a,b) => a-b);
   const fid    = famSafeId(family);
+  const kwBtu  = Object.fromEntries(products.map(p => [p.kw, p.btu]));
 
   if (!_famState[fid]) _famState[fid] = { color: colors[0], kw: kws[0] };
   const st  = _famState[fid];
   const sel = products.find(p => seriesColorLabel(p.series) === st.color && p.kw === st.kw) || products[0];
 
-  const colorChips = colors.map(c =>
-    `<button class="chip fam-chip${c===st.color?' active':''}" style="padding:4px 10px;font-size:.78rem" onclick="setFamOpt('${fid}','color','${c.replace(/'/g,"\\'")}')">` + c + `</button>`
-  ).join('');
-  const kwChips = kws.map(k =>
-    `<button class="chip fam-chip${k===st.kw?' active':''}" style="padding:4px 10px;font-size:.78rem" onclick="setFamOpt('${fid}','kw',${k})">` + k + ` kW</button>`
-  ).join('');
+  const colorDots = colors.length > 1 ? colors.map(c => {
+    const css  = FAM_COLOR_CSS[c] || '#999';
+    const bord = c === st.color ? '2.5px solid var(--orange)' : (c === 'Branco' ? '1.5px solid #ccc' : '2px solid transparent');
+    return `<button title="${c}" onclick="setFamOpt('${fid}','color','${c.replace(/'/g,"\\'")}');event.stopPropagation()" style="width:26px;height:26px;border-radius:50%;background:${css};border:${bord};cursor:pointer;flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.15);outline:none" id="fam-dot-${fid}-${c.replace(/\s/g,'_')}"></button>`;
+  }).join('') : '';
+
+  const kwChips = kws.map(k => {
+    const btu = kwBtu[k] ? kwBtu[k].toLocaleString('pt-PT') + ' BTU' : k + ' kW';
+    return `<button class="chip fam-chip${k===st.kw?' active':''}" style="padding:4px 10px;font-size:.78rem" onclick="setFamOpt('${fid}','kw',${k});event.stopPropagation()">${btu}</button>`;
+  }).join('');
 
   return `<div class="opcao-card" id="fam-card-${fid}" onclick="">
     <div class="opcao-img-wrap"><img class="opcao-img" id="fam-img-${fid}" src="${sel.img}" alt="${family}" onerror="this.style.display='none'"></div>
     <div class="opcao-badge">${brandLogoImg(brand)}<span class="badge badge-classe">${sel.classe}</span></div>
     <div class="opcao-title">${family}</div>
-    ${colors.length > 1 ? `<div class="ac-section-label" style="margin:8px 0 4px">Cor</div><div class="chip-group" style="gap:5px" id="fam-colors-${fid}">${colorChips}</div>` : ''}
+    ${colors.length > 1 ? `
+    <div class="ac-section-label" style="margin:8px 0 6px">Cor — <span id="fam-color-label-${fid}" style="color:var(--text);font-weight:600;text-transform:none;letter-spacing:0">${st.color}</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:4px" id="fam-colors-${fid}">${colorDots}</div>` : ''}
     <div class="ac-section-label" style="margin:8px 0 4px">Potência</div>
     <div class="chip-group" style="gap:5px" id="fam-kws-${fid}">${kwChips}</div>
     <div class="opcao-pvp" id="fam-pvp-${fid}">${fmt(sel.pvp)}</div>
-    <div class="opcao-justificacao">${getPitch(sel.series)}</div>
     <button class="btn btn-primary btn-sm opcao-select-btn" id="fam-btn-${fid}" onclick="addFamToGroup('${fid}');event.stopPropagation()">+ Selecionar</button>
   </div>`;
 }
@@ -2177,8 +2194,19 @@ function setFamOpt(fid, dim, val) {
   const allMono = CATALOG_AC.filter(p => p.tipo !== 'multi_split');
   const products = allMono.filter(p => famSafeId(seriesFamily(p.series)) === fid);
 
-  document.querySelectorAll(`#fam-colors-${fid} .fam-chip`).forEach(b =>
-    b.classList.toggle('active', b.textContent.trim() === st.color));
+  // Atualizar bolinhas de cor
+  products.length && (() => {
+    const colors = [...new Set(products.map(p => seriesColorLabel(p.series)))];
+    colors.forEach(c => {
+      const dot = document.getElementById(`fam-dot-${fid}-${c.replace(/\s/g,'_')}`);
+      if (!dot) return;
+      const bord = c === st.color ? '2.5px solid var(--orange)' : (c === 'Branco' ? '1.5px solid #ccc' : '2px solid transparent');
+      dot.style.border = bord;
+    });
+    const lbl = document.getElementById(`fam-color-label-${fid}`);
+    if (lbl) lbl.textContent = st.color;
+  })();
+
   document.querySelectorAll(`#fam-kws-${fid} .fam-chip`).forEach(b =>
     b.classList.toggle('active', parseFloat(b.textContent) === st.kw));
 
