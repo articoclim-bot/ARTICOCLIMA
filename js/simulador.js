@@ -2126,6 +2126,7 @@ function closeQMIfOuter(event) {
 function validateQuoteForm() {
   const name    = (document.getElementById('qm-name')?.value || '').trim();
   const contact = (document.getElementById('qm-contact')?.value || '').trim();
+  const zona    = (document.getElementById('qm-zona')?.value || '').trim();
   const errEl   = document.getElementById('qm-error');
   if (!name && !contact) {
     if (errEl) errEl.textContent = t('Por favor indique o seu nome e contacto.');
@@ -2143,7 +2144,7 @@ function validateQuoteForm() {
   }
   if (errEl) errEl.textContent = '';
   return {
-    name: name || 'Não indicado', contact: contact || 'Não indicado', goal: state.quoteGoal,
+    name: name || 'Não indicado', contact: contact || 'Não indicado', zona: zona || 'Não indicada', goal: state.quoteGoal,
     wifi: wifiRequired ? state.wifiChoice : null,
   };
 }
@@ -2190,6 +2191,7 @@ function buildQuoteText(data) {
   lines.push('');
   lines.push(`👤 Nome: ${data.name}`);
   lines.push(`📞 Contacto: ${data.contact}`);
+  lines.push(`📍 Zona: ${data.zona}`);
 
   return lines.join('\n');
 }

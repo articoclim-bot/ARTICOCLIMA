@@ -153,9 +153,9 @@
     .opcao-specs { font-size: .78rem; color: var(--muted); display: flex; gap: 12px; }
     .opcao-pvp { font-size: 1.15rem; font-weight: 800; color: var(--orange); }
     .opcao-justificacao { font-size: .8rem; color: #555; line-height: 1.55; border-top: 1px solid var(--border); padding-top: 8px; }
-    .opcao-img-wrap { width: 100%; height: 100px; background: #f8f9fb; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-    .opcao-img { width: 100%; height: 100px; object-fit: contain; }
-    .opcao-img[data-brand="daikin"] { transform: scale(2.4); }
+    .opcao-img-wrap { width: 100%; height: 150px; background: #f8f9fb; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .opcao-img { width: 100%; height: 150px; object-fit: contain; }
+    .opcao-img[data-brand="daikin"] { transform: scale(2.2); }
     .opcao-select-btn { margin-top: auto; width: 100%; }
     .opcao-select-btn.selected-btn { background: var(--orange); color: #fff; border-color: var(--orange); }
     .tipo-divider {
@@ -2173,7 +2173,7 @@ function renderConfigCard(family, products) {
   }).join('');
 
   return `<div class="opcao-card" id="fam-card-${fid}" onclick="">
-    <div class="opcao-img-wrap"><img class="opcao-img" id="fam-img-${fid}" src="${sel.img}" alt="${family}" onerror="this.style.display='none'"></div>
+    <div class="opcao-img-wrap"><img class="opcao-img" id="fam-img-${fid}" src="${sel.img}" alt="${family}" data-brand="${brand.toLowerCase()}" onerror="this.style.display='none'"></div>
     <div class="opcao-badge">${brandLogoImg(brand)}<span class="badge badge-classe">${sel.classe}</span></div>
     <div class="opcao-title">${family}</div>
     ${colors.length > 1 ? `
