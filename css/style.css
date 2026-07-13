@@ -604,8 +604,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .brand-card__logo {
-  width: 130px;
-  height: 64px;
+  width: min(220px, 70%);
+  height: 80px;
   object-fit: contain;
   object-position: center;
   transition: transform var(--transition);
@@ -614,8 +614,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: scale(1.05);
 }
 .brand-card__logo--daitsu {
-  width: 80px;
-  height: 64px;
+  width: min(180px, 60%);
+  height: 80px;
 }
 
 .brand-card--link {
