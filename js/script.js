@@ -2,33 +2,6 @@
    ARTICOCLIMA - JavaScript
    ============================================= */
 
-/* =============================================
-   TABELA DE PREÇOS — EDITAR ESTES VALORES
-   =============================================
-   Todos os preços são em euros (€) e incluem
-   equipamento + mão de obra.
-   ============================================= */
-
-const PRICING = {
-
-  /* ---- ACRÉSCIMO por cenário de instalação ----
-     Valor extra a somar ao PVP do equipamento */
-  scenario: {
-    preinstall:  { label: 'Com pré-instalação',       extra: 0   },
-    replacement: { label: 'Substituição de aparelho', extra: 80  },
-    new:         { label: 'Instalação de raiz',       extra: 180 },
-  },
-
-  /* ---- ACRÉSCIMO por distância de tubagens ---- */
-  distance: {
-    short:  { label: 'Até 3 metros',      extra: 0   },
-    medium: { label: '3 a 6 metros',      extra: 50  },
-    long:   { label: '6 a 10 metros',     extra: 100 },
-    vlong:  { label: 'Mais de 10 metros', extra: 180 },
-  },
-
-};
-
 /* Número WhatsApp (sem espaços, com código país) */
 const WHATSAPP_NUMBER = '351964501776';
 

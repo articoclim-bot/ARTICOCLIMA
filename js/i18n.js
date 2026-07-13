@@ -68,8 +68,10 @@ const TRANSLATIONS = {
     'Catálogo Solar AQS': 'Solar AQS Catalogue',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Bosch solar panels and heat pumps for domestic hot water.',
     'Simulador de Instalação': 'Installation Simulator',
-    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit com preços indicativos.': 'Find the right capacity for each room and compare mono and multi-split solutions with indicative prices.',
+    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit.': 'Find the right capacity for each room and compare mono and multi-split solutions.',
     'Iniciar Simulação →': 'Start Simulation →',
+    'Configure as suas divisões, escolha a marca e obtenha a sugestão ideal.': 'Configure your rooms, choose the brand and get the ideal recommendation.',
+    'Alternativa mais económica': 'Budget Alternative',
 
     // ── WHY US ──
     'Porquê nós': 'Why Us',
@@ -385,8 +387,10 @@ const TRANSLATIONS = {
     'Catálogo Solar AQS': 'Catalogue Solaire ECS',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Panneaux solaires et pompes à chaleur Bosch pour l\'eau chaude sanitaire.',
     'Simulador de Instalação': 'Simulateur d\'Installation',
-    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit com preços indicativos.': 'Découvrez la puissance idéale pour chaque pièce et comparez les solutions mono et multi-split avec des prix indicatifs.',
+    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit.': 'Découvrez la puissance idéale pour chaque pièce et comparez les solutions mono et multi-split.',
     'Iniciar Simulação →': 'Démarrer la Simulation →',
+    'Configure as suas divisões, escolha a marca e obtenha a sugestão ideal.': 'Configurez vos pièces, choisissez la marque et obtenez la recommandation idéale.',
+    'Alternativa mais económica': 'Alternative Économique',
 
     // ── WHY US ──
     'Porquê nós': 'Pourquoi Nous',
@@ -702,8 +706,10 @@ const TRANSLATIONS = {
     'Catálogo Solar AQS': 'Catálogo Solar ACS',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Paneles solares y bombas de calor Bosch para agua caliente sanitaria.',
     'Simulador de Instalação': 'Simulador de Instalación',
-    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit com preços indicativos.': 'Descubra la potencia adecuada para cada habitación y compare soluciones mono y multisplit con precios indicativos.',
+    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit.': 'Descubra la potencia adecuada para cada habitación y compare soluciones mono y multisplit.',
     'Iniciar Simulação →': 'Iniciar Simulación →',
+    'Configure as suas divisões, escolha a marca e obtenha a sugestão ideal.': 'Configure sus habitaciones, elija la marca y obtenga la recomendación ideal.',
+    'Alternativa mais económica': 'Alternativa Económica',
 
     // ── WHY US ──
     'Porquê nós': 'Por qué Nosotros',
@@ -1017,8 +1023,10 @@ const TRANSLATIONS = {
     'Catálogo Solar AQS': 'Solarthermie Katalog',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Bosch Solarpanele und Wärmepumpen für Warmwasser.',
     'Simulador de Instalação': 'Installationssimulator',
-    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit com preços indicativos.': 'Finden Sie die richtige Leistung für jeden Raum und vergleichen Sie Mono- und Multisplit-Lösungen mit Richtpreisen.',
+    'Descubra a potência certa para cada divisão e compare soluções mono e multisplit.': 'Finden Sie die richtige Leistung für jeden Raum und vergleichen Sie Mono- und Multisplit-Lösungen.',
     'Iniciar Simulação →': 'Simulation Starten →',
+    'Configure as suas divisões, escolha a marca e obtenha a sugestão ideal.': 'Konfigurieren Sie Ihre Räume, wählen Sie die Marke und erhalten Sie die ideale Empfehlung.',
+    'Alternativa mais económica': 'Günstige Alternative',
 
     // ── WHY US ──
     'Porquê nós': 'Warum Wir',
