@@ -63,7 +63,7 @@ const TRANSLATIONS = {
     // ── CATALOGUES CTA ──
     'Os Nossos Produtos': 'Our Products',
     'Consulte os nossos catálogos de equipamentos e encontre a solução ideal para a sua casa ou empresa.': 'Browse our equipment catalogues and find the ideal solution for your home or business.',
-    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Daikin, Bosch and Daitsu air conditioning — 49 models available with specifications and prices.',
+    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Daikin, Bosch and Daitsu air conditioning — 49 models available with technical specifications.',
     'Ver Catálogo →': 'View Catalogue →',
     'Catálogo Solar AQS': 'Solar AQS Catalogue',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Bosch solar panels and heat pumps for domestic hot water.',
@@ -380,7 +380,7 @@ const TRANSLATIONS = {
     // ── CATALOGUES CTA ──
     'Os Nossos Produtos': 'Nos Produits',
     'Consulte os nossos catálogos de equipamentos e encontre a solução ideal para a sua casa ou empresa.': 'Consultez nos catalogues d\'équipements et trouvez la solution idéale pour votre maison ou entreprise.',
-    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Climatisation Daikin, Bosch et Daitsu — 49 modèles disponibles avec spécifications et prix.',
+    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Climatisation Daikin, Bosch et Daitsu — 49 modèles disponibles avec spécifications techniques.',
     'Ver Catálogo →': 'Voir le Catalogue →',
     'Catálogo Solar AQS': 'Catalogue Solaire ECS',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Panneaux solaires et pompes à chaleur Bosch pour l\'eau chaude sanitaire.',
@@ -697,7 +697,7 @@ const TRANSLATIONS = {
     // ── CATALOGUES CTA ──
     'Os Nossos Produtos': 'Nuestros Productos',
     'Consulte os nossos catálogos de equipamentos e encontre a solução ideal para a sua casa ou empresa.': 'Consulte nuestros catálogos de equipos y encuentre la solución ideal para su casa o empresa.',
-    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Aire acondicionado Daikin, Bosch y Daitsu — 49 modelos disponibles con especificaciones y precios.',
+    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Aire acondicionado Daikin, Bosch y Daitsu — 49 modelos disponibles con especificaciones técnicas.',
     'Ver Catálogo →': 'Ver Catálogo →',
     'Catálogo Solar AQS': 'Catálogo Solar ACS',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Paneles solares y bombas de calor Bosch para agua caliente sanitaria.',
@@ -1012,7 +1012,7 @@ const TRANSLATIONS = {
     // ── CATALOGUES CTA ──
     'Os Nossos Produtos': 'Unsere Produkte',
     'Consulte os nossos catálogos de equipamentos e encontre a solução ideal para a sua casa ou empresa.': 'Sehen Sie unsere Gerätekataloge und finden Sie die ideale Lösung für Ihr Zuhause oder Unternehmen.',
-    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Daikin, Bosch und Daitsu Klimaanlagen — 49 Modelle mit technischen Daten und Preisen.',
+    'Ar condicionado Daikin, Bosch e Daitsu — 49 modelos disponíveis com especificações e preços.': 'Daikin, Bosch und Daitsu Klimaanlagen — 49 Modelle mit technischen Daten.',
     'Ver Catálogo →': 'Katalog Ansehen →',
     'Catálogo Solar AQS': 'Solarthermie Katalog',
     'Painéis solares e bombas de calor Bosch para águas quentes sanitárias.': 'Bosch Solarpanele und Wärmepumpen für Warmwasser.',
