@@ -359,7 +359,7 @@ function calcBTU(room) {
   const numWindows = parseInt(room.windows) || 0;
   if (numWindows > 0) {
     const winArea = numWindows * 1.5;
-    const gainMap = { sul: 450, este: 250, oeste: 250, norte: 100 };
+    const gainMap = { sul: 300, este: 200, oeste: 200, norte: 100 };
     btu += winArea * (gainMap[room.orientation] || 300);
   }
 
