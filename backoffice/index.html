@@ -2975,12 +2975,15 @@ function updateFormAC() {
       Opção ${g.letra}
       <span class="grupo-tab-remove" onclick="event.stopPropagation();removeGroup(${g.id})" title="Remover opção">×</span>
     </button>`).join('');
+  const appendButtons = ag ? `
+    <span class="groups-header-label" style="margin-left:8px;border-left:1px solid var(--border);padding-left:12px;">Adicionar à Opção ${ag.letra}:</span>
+    <button class="btn-new-group" onclick="addMonoSplitOption(true)" title="Adiciona um mono-split à opção ativa">+ Mono</button>
+    <button class="btn-new-group" onclick="addMSOptionToQuote(true)" title="Adiciona kit multi-split à opção ativa (ex: 2º kit 2+1)">+ MS kit</button>` : '';
   document.getElementById('grupos-header').innerHTML =
     `<span class="groups-header-label">Propostas:</span>${tabsHtml}` +
-    `<button class="btn-new-group" onclick="addMonoSplitOption(false)">📋 + Mono-split</button>` +
-    `<button class="btn-new-group" onclick="addMonoSplitOption(true)" style="background:#555;color:#fff;border-color:#555;" title="Adiciona mono-split à opção já ativa">📋 + Mono à Opção ${ag ? ag.letra : ''}</button>` +
-    `<button class="btn-new-group" onclick="addMSOptionToQuote(false)" style="background:var(--orange);color:#fff;border-color:var(--orange);">⚙️ + Multi-split</button>` +
-    `<button class="btn-new-group" onclick="addMSOptionToQuote(true)" style="background:#555;color:#fff;border-color:#555;" title="Adiciona unidades à opção já ativa (ex: 2x kit 2+1)">⚙️ + MS à Opção ${ag ? ag.letra : ''}</button>`;
+    `<button class="btn-new-group" onclick="addMonoSplitOption(false)" style="background:var(--orange);color:#fff;border-color:var(--orange);">+ Nova Opção Mono-split</button>` +
+    `<button class="btn-new-group" onclick="addMSOptionToQuote(false)" style="background:var(--orange);color:#fff;border-color:var(--orange);">+ Nova Opção Multi-split</button>` +
+    appendButtons;
 
   // Hint
   document.getElementById('grupos-hint').innerHTML = ag
