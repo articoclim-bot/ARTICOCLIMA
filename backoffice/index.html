@@ -3089,8 +3089,16 @@ async function gerarOrcamentoAC() {
   if (opcaoGroups.some(g => g.items.length === 0)) {
     showToast('Há opções sem produtos — adiciona produtos ou remove a opção', true); return;
   }
-  const cliente = document.getElementById('ac-cliente').value.trim();
-  if (!cliente) { showToast('Indique o nome do cliente', true); return; }
+  const clienteEl = document.getElementById('ac-cliente');
+  const cliente = (clienteEl?.value || '').trim();
+  if (!cliente) {
+    clienteEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    clienteEl?.focus();
+    if (clienteEl) clienteEl.style.outline = '2.5px solid red';
+    showToast('⚠️ Preenche o nome do cliente antes de gerar', true);
+    return;
+  }
+  if (clienteEl) clienteEl.style.outline = '';
 
   const install    = parseFloat(document.getElementById('ac-instalacao').value) || 0;
   const deslocacao = parseFloat(document.getElementById('ac-deslocacao').value) || 0;
@@ -3591,6 +3599,8 @@ async function salvarEImprimir(payload) {
     const nomeCliente = (data.orcamento.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
     _tituloPrint = data.orcamento.numero_formatado + ' — ' + nomeCliente;
     mostrarBarraAcoes(data.orcamento.numero_formatado);
+    // Refrescar histórico em background para confirmar guardado
+    loadHistorico().catch(() => {});
   } catch (e) {
     showToast('Erro ao guardar: ' + e.message, true);
   }
@@ -3909,7 +3919,23 @@ function copiarOrcamento(numero) {
   // Limpar dados do cliente — manter produtos/opções
   const campos = ['ac-cliente','ac-nif','ac-morada','solar-cliente','solar-nif','solar-morada','serv-cliente','serv-nif','serv-morada'];
   campos.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-  showToast('Propostas copiadas — preenche os dados do novo cliente');
+
+  // Destacar campo cliente e fazer scroll para ele
+  setTimeout(() => {
+    const clienteEl = document.getElementById('ac-cliente');
+    if (clienteEl) {
+      clienteEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      clienteEl.focus();
+      clienteEl.style.outline = '2.5px solid var(--orange)';
+      clienteEl.placeholder = '⚠️ Preenche o nome do novo cliente';
+      clienteEl.addEventListener('input', () => {
+        clienteEl.style.outline = '';
+        clienteEl.placeholder = 'Nome do cliente';
+      }, { once: true });
+    }
+  }, 300);
+
+  showToast('✅ Propostas copiadas — preenche o nome do novo cliente');
 }
 
 function recuperarOrcamento(numero) {
