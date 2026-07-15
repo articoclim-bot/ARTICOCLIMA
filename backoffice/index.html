@@ -3892,6 +3892,7 @@ async function loadHistorico() {
         <td style="display:flex;gap:6px;align-items:center;">
           <button class="btn btn-ghost btn-sm" onclick='reimprimir(${JSON.stringify(orc)})'>Imprimir</button>
           <button class="btn btn-ghost btn-sm" style="color:var(--orange);border-color:var(--orange-dim);" onclick="recuperarOrcamento(${orc.numero})">Recuperar</button>
+          <button class="btn btn-ghost btn-sm" style="color:#2563eb;border-color:#93c5fd;" onclick="copiarOrcamento(${orc.numero})" title="Copia as propostas para um novo orçamento com cliente em branco">Copiar</button>
         </td>
       </tr>`;
     }).join('');
@@ -3901,8 +3902,16 @@ async function loadHistorico() {
 }
 
 /* ═══════════════════════════════════════════
-   RECUPERAR ORÇAMENTO
+   RECUPERAR / COPIAR ORÇAMENTO
 ═══════════════════════════════════════════ */
+function copiarOrcamento(numero) {
+  recuperarOrcamento(numero);
+  // Limpar dados do cliente — manter produtos/opções
+  const campos = ['ac-cliente','ac-nif','ac-morada','solar-cliente','solar-nif','solar-morada','serv-cliente','serv-nif','serv-morada'];
+  campos.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  showToast('Propostas copiadas — preenche os dados do novo cliente');
+}
+
 function recuperarOrcamento(numero) {
   const orc = _orcamentosCache[numero];
   if (!orc) { showToast('Orçamento não encontrado', true); return; }
