@@ -2547,6 +2547,9 @@ function addToActiveGroup(productId) {
       },
     });
   }
+  monoAppendToActive = false;
+  const monoBanner = document.getElementById('mono-append-banner');
+  if (monoBanner) monoBanner.style.display = 'none';
   updateCardStates();
   updateFormAC();
   document.getElementById('quote-form-ac').style.display = 'block';
@@ -2861,14 +2864,28 @@ function updateMSSummary() {
 
 let msAppendToActive = false;
 
-function addMonoSplitOption() {
-  // Create a new empty group and show the catalog — without resetting existing groups
-  const id = createGroup();
-  if (!id) return;
-  // Show catalog filters and render catalog
+let monoAppendToActive = false;
+
+function addMonoSplitOption(appendToActive) {
+  monoAppendToActive = !!appendToActive;
+  if (!monoAppendToActive) {
+    const id = createGroup();
+    if (!id) return;
+  }
   document.getElementById('catalogo-filtros').style.display = 'block';
   document.getElementById('ac-auto-panel').style.display = 'none';
   document.getElementById('ac-multisplit-panel').style.display = 'none';
+  // Banner de aviso
+  let banner = document.getElementById('mono-append-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'mono-append-banner';
+    banner.style.cssText = 'background:#f0f0f0;border:1px solid #ccc;padding:8px 12px;font-size:.82rem;color:#444;margin-bottom:10px;display:none;';
+    document.getElementById('catalogo-filtros').prepend(banner);
+  }
+  const ag = opcaoGroups.find(g => g.id === activeGroupId);
+  banner.style.display = monoAppendToActive ? '' : 'none';
+  banner.textContent = monoAppendToActive && ag ? `📋 A adicionar mono-split à Opção ${ag.letra}` : '';
   catFiltro = { marca: 'todos', tipo: 'todos' };
   const search = document.getElementById('cf-search');
   if (search) search.value = '';
@@ -2960,7 +2977,8 @@ function updateFormAC() {
     </button>`).join('');
   document.getElementById('grupos-header').innerHTML =
     `<span class="groups-header-label">Propostas:</span>${tabsHtml}` +
-    `<button class="btn-new-group" onclick="addMonoSplitOption()">📋 + Mono-split</button>` +
+    `<button class="btn-new-group" onclick="addMonoSplitOption(false)">📋 + Mono-split</button>` +
+    `<button class="btn-new-group" onclick="addMonoSplitOption(true)" style="background:#555;color:#fff;border-color:#555;" title="Adiciona mono-split à opção já ativa">📋 + Mono à Opção ${ag ? ag.letra : ''}</button>` +
     `<button class="btn-new-group" onclick="addMSOptionToQuote(false)" style="background:var(--orange);color:#fff;border-color:var(--orange);">⚙️ + Multi-split</button>` +
     `<button class="btn-new-group" onclick="addMSOptionToQuote(true)" style="background:#555;color:#fff;border-color:#555;" title="Adiciona unidades à opção já ativa (ex: 2x kit 2+1)">⚙️ + MS à Opção ${ag ? ag.letra : ''}</button>`;
 
