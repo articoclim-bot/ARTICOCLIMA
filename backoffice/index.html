@@ -3920,22 +3920,7 @@ function copiarOrcamento(numero) {
   const campos = ['ac-cliente','ac-nif','ac-morada','solar-cliente','solar-nif','solar-morada','serv-cliente','serv-nif','serv-morada'];
   campos.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
 
-  // Destacar campo cliente e fazer scroll para ele
-  setTimeout(() => {
-    const clienteEl = document.getElementById('ac-cliente');
-    if (clienteEl) {
-      clienteEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      clienteEl.focus();
-      clienteEl.style.outline = '2.5px solid var(--orange)';
-      clienteEl.placeholder = '⚠️ Preenche o nome do novo cliente';
-      clienteEl.addEventListener('input', () => {
-        clienteEl.style.outline = '';
-        clienteEl.placeholder = 'Nome do cliente';
-      }, { once: true });
-    }
-  }, 300);
-
-  showToast('✅ Propostas copiadas — preenche o nome do novo cliente');
+  showToast('✅ Propostas copiadas — edita à vontade e preenche o novo cliente antes de gerar');
 }
 
 function recuperarOrcamento(numero) {
