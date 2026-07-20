@@ -1055,9 +1055,9 @@ const CATALOG_AC = [
   {id:'bosch-7000i-41',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 41 WE',kw:4.0,btu:14000,pvp:2196,classe:'A+++',img:'../assets/products/bosch-7000i-branco-2.webp'},
   {id:'bosch-7000i-53',brand:'Bosch',series:'Climate 7000i',model:'CL7000i-Set 53 WE',kw:5.0,btu:18000,pvp:2731,classe:'A+++',img:'../assets/products/bosch-7000i-branco-2.webp'},
   // Daitsu ARTIC (DS-KZ)
-  {id:'daitsu-artic-9',brand:'Daitsu',series:'ARTIC',model:'DS-9KZ',kw:2.64,btu:9000,pvp:745,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
-  {id:'daitsu-artic-12',brand:'Daitsu',series:'ARTIC',model:'DS-12KZ',kw:3.52,btu:12000,pvp:760,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
-  {id:'daitsu-artic-18',brand:'Daitsu',series:'ARTIC',model:'DS-18KZ',kw:5.14,btu:18000,pvp:1230,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'daitsu-artic-9',brand:'Daitsu',series:'ARTIC',model:'DS-9KZ',kw:2.64,btu:9000,pvp:760,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'daitsu-artic-12',brand:'Daitsu',series:'ARTIC',model:'DS-12KZ',kw:3.52,btu:12000,pvp:800,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
+  {id:'daitsu-artic-18',brand:'Daitsu',series:'ARTIC',model:'DS-18KZ',kw:5.14,btu:18000,pvp:1300,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
   {id:'daitsu-artic-24',brand:'Daitsu',series:'ARTIC',model:'DS-24KZ',kw:6.45,btu:24000,pvp:1555,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg'},
   // Daitsu FREE MAX ARTIC — kits multi-split (preços c/IVA) — slots = nº de unidades interiores
   {id:'daitsu-freemax-2x1-9-9',  brand:'Daitsu',series:'FREE MAX ARTIC',model:'Kit 2×1 (9K+9K)',    kw:5.1,btu:18000,pvp:1851,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',tipo:'multi_split',slots:2},
@@ -3919,7 +3919,7 @@ function copiarOrcamento(numero) {
   // Limpar dados do cliente — manter produtos/opções
   const campos = ['ac-cliente','ac-nif','ac-morada','solar-cliente','solar-nif','solar-morada','serv-cliente','serv-nif','serv-morada'];
   campos.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-
+  document.getElementById('barra-acoes')?.classList.remove('show');
   showToast('✅ Propostas copiadas — edita à vontade e preenche o novo cliente antes de gerar');
 }
 
@@ -4029,13 +4029,11 @@ function recuperarOrcamento(numero) {
     calcServicos();
   }
 
-  // Renderiza o PDF com a língua atual para permitir mudar língua e guardar sem re-gerar
-  _currentOrc = orc;
-  preencherPrintArea({...orc, lang: currentLang});
-  const nomeCliente = (orc.cliente || 'Cliente').replace(/[\\/:*?"<>|]/g, '');
-  _tituloPrint = orc.numero_formatado + ' — ' + nomeCliente;
-  mostrarBarraAcoes(orc.numero_formatado);
-  showToast('Orçamento recuperado — muda língua na barra e guarda, ou edita e gera novo');
+  // Não mostra barra — o número novo só existe depois de gerar o novo orçamento
+  _currentOrc = null;
+  _tituloPrint = '';
+  document.getElementById('barra-acoes')?.classList.remove('show');
+  showToast('Orçamento recuperado — edita e gera novo orçamento');
 }
 
 /* ═══════════════════════════════════════════
