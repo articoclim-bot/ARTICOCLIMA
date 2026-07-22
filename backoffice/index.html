@@ -1150,8 +1150,35 @@ const CATALOG_SOLAR = [
   {id:'bosch-solar-fcc-150',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 150L',capacity:'150 L',pvp:2128,img:'../assets/products/bosch-solar-fcc-150.webp',tag:'1 painel · termossifão',grupo:'termossifao'},
   {id:'bosch-solar-fcc-200',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 200L',capacity:'200 L',pvp:2256,img:'../assets/products/bosch-solar-fcc-200.webp',tag:'2 painéis · termossifão',grupo:'termossifao'},
   {id:'bosch-solar-fcc-300',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 300L',capacity:'300 L',pvp:3448,img:'../assets/products/bosch-solar-fcc-300.webp',tag:'3 painéis · termossifão',grupo:'termossifao'},
-  {id:'bosch-solar-fcc-forcado-300',serie:'FCC 220 Forçado',model:'FCC 220 Kit Forçado 300L',capacity:'300 L',pvp:5427,img:'../assets/products/bosch-solar-fcc-forcado.jpg',tag:'2 painéis · circuito forçado',grupo:'forcado'},
-  {id:'bosch-solar-fcc-forcado-500',serie:'FCC 220 Forçado',model:'FCC 220 Kit Forçado 500L',capacity:'500 L',pvp:7145,img:'../assets/products/bosch-solar-fcc-forcado.jpg',tag:'3 painéis · circuito forçado',grupo:'forcado'},
+  {id:'bosch-solar-fcc-forcado-300',serie:'FCC 220 Forçado',model:'FCC 220 Kit Forçado 300L',capacity:'300 L',pvp:5427,img:'../assets/products/bosch-solar-fcc-forcado.jpg',tag:'2 painéis · circuito forçado',grupo:'forcado',componentes:[
+    {qty:2, ref:'FCC220-2V CTE', desc:'Colector Solar Bosch FCC220-2V CTE'},
+    {qty:1, ref:'WFS18', desc:'Conjunto de Ligações WFS18'},
+    {qty:1, ref:'ELT6', desc:'Purgador Sky Top'},
+    {qty:1, ref:'WFV2', desc:'Estrutura de Suporte WFV2 (2 painéis)'},
+    {qty:1, ref:'AGS10-2', desc:'Controlador Solar AGS10-2'},
+    {qty:1, ref:'B-SOL100-2', desc:'Controlador B-SOL100-2'},
+    {qty:1, ref:'WTF20S', desc:'Líquido Solar 20 L (Tyfocor WTF20S)'},
+    {qty:1, ref:'SAG25', desc:'Vaso de Expansão 25 L SAG25'},
+    {qty:1, ref:'W300EPC1', desc:'Depósito de Acumulação W300EPC1'},
+    {qty:1, ref:'—', desc:'Válvula Termostática Fixa 55°C'},
+    {qty:1, ref:'—', desc:'Vaso de Expansão Sanitário 25 L'},
+    {qty:2, ref:'AAS1', desc:'Jogo de Peças de Ligação AAS1'},
+    {qty:1, ref:'—', desc:'Resistência Eléctrica de Apoio 2000W'},
+  ]},
+  {id:'bosch-solar-fcc-forcado-500',serie:'FCC 220 Forçado',model:'FCC 220 Kit Forçado 500L',capacity:'500 L',pvp:7145,img:'../assets/products/bosch-solar-fcc-forcado.jpg',tag:'3 painéis · circuito forçado',grupo:'forcado',componentes:[
+    {qty:3, ref:'FCC220-2V CTE', desc:'Colector Solar Bosch FCC220-2V CTE'},
+    {qty:1, ref:'WFS18', desc:'Conjunto de Ligações WFS18'},
+    {qty:1, ref:'ELT6', desc:'Purgador Sky Top'},
+    {qty:1, ref:'WFV3', desc:'Estrutura de Suporte WFV3 (3 painéis)'},
+    {qty:1, ref:'AGS10-2', desc:'Controlador Solar AGS10-2'},
+    {qty:1, ref:'B-SOL100-2', desc:'Controlador B-SOL100-2'},
+    {qty:1, ref:'WTF20S', desc:'Líquido Solar 20 L (Tyfocor WTF20S)'},
+    {qty:1, ref:'SAG50', desc:'Vaso de Expansão 50 L SAG50'},
+    {qty:1, ref:'W500EPC1', desc:'Depósito de Acumulação W500EPC1'},
+    {qty:1, ref:'—', desc:'Válvula Termostática Fixa 55°C'},
+    {qty:1, ref:'—', desc:'Vaso de Expansão Sanitário 50 L'},
+    {qty:1, ref:'—', desc:'Resistência Eléctrica de Apoio 2000W'},
+  ]},
   {id:'bosch-compress5000-100',serie:'Compress 5000 DW',model:'CS5000DW 100 W',capacity:'100 L · Parede',pvp:2448,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · parede',grupo:'compress'},
   {id:'bosch-compress5000-150',serie:'Compress 5000 DW',model:'CS5000DW 150 W',capacity:'150 L · Parede',pvp:2583,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · parede',grupo:'compress'},
   {id:'bosch-compress5001-200',serie:'Compress 5000 DW',model:'CS5001DW 200',capacity:'200 L · Chão',pvp:3260,img:'../assets/products/bosch-compress5000-1.webp',tag:'bomba calor · chão',grupo:'compress'},
@@ -3304,7 +3331,7 @@ async function gerarOrcamentoSolar() {
   const termoPvp = parseFloat(document.getElementById('solar-termo-pvp').value) || 0;
   const notas = document.getElementById('solar-notas').value;
 
-  const itens = [{ descricao: selectedSolar.model, qty, pvp_unitario: selectedSolar.pvp, pvp_total: selectedSolar.pvp * qty, imagem: selectedSolar.img.replace('../','') }];
+  const itens = [{ descricao: selectedSolar.model, qty, pvp_unitario: selectedSolar.pvp, pvp_total: selectedSolar.pvp * qty, imagem: selectedSolar.img.replace('../',''), componentes: selectedSolar.componentes || null }];
   if (termoDesc && termoPvp > 0) itens.push({ descricao: termoDesc, qty: 1, pvp_unitario: termoPvp, pvp_total: termoPvp });
 
   const subtotal = selectedSolar.pvp * qty;
@@ -3866,6 +3893,17 @@ function preencherPrintArea(orc) {
         <tbody>${rows}</tbody>
       </table>
       <div class="print-totals"><table><tbody>${totalsHTML}</tbody></table></div>`;
+
+    (orc.itens || []).forEach(item => {
+      if (!item.componentes || !item.componentes.length) return;
+      body += `<div style="margin-top:12pt;page-break-inside:avoid;">
+        <div style="background:#f97316;color:#fff;font-size:8pt;font-weight:800;text-transform:uppercase;letter-spacing:.5pt;padding:4pt 10pt;border-radius:2pt 2pt 0 0;">O que está incluído — ${item.descricao}</div>
+        <table style="width:100%;border-collapse:collapse;font-size:8pt;">
+          <thead><tr style="background:#fff8f2;"><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;width:30pt;">Qtd.</th><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;width:60pt;">Referência</th><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;">Descrição</th></tr></thead>
+          <tbody>${item.componentes.map((c, i) => `<tr style="background:${i%2===0?'#fff':'#fffbf8'}"><td style="padding:3pt 8pt;">${c.qty}×</td><td style="padding:3pt 8pt;color:#888;font-size:7.5pt;">${c.ref}</td><td style="padding:3pt 8pt;">${c.desc}</td></tr>`).join('')}</tbody>
+        </table>
+      </div>`;
+    });
 
     if (orc.justificacao) {
       body += `<div class="print-justificacao">${orc.justificacao}</div>`;
