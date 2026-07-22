@@ -2427,6 +2427,10 @@ function renderCard(p) {
     </div>
     <div class="opcao-pvp">${fmt(p.pvp)}</div>
     <div class="opcao-justificacao">${getPitch(p.series)}</div>
+    ${p.brand === 'Bosch' ? `<label onclick="event.stopPropagation()" style="display:flex;align-items:center;gap:5px;font-size:.75rem;cursor:pointer;margin-bottom:4px;">
+      <input type="checkbox" onclick="event.stopPropagation()" onchange="_cardWifi['${pid}']=this.checked" style="accent-color:var(--orange);">
+      WiFi Home Connect <span style="color:var(--orange);">+111€</span>
+    </label>` : ''}
     <button class="btn btn-primary btn-sm opcao-select-btn" id="btn-select-${pid}">+ Selecionar</button>
   </div>`;
 }
@@ -2533,6 +2537,9 @@ function addToActiveGroup(productId) {
   const existIdx = group.items.findIndex(it => it.productId === productId);
   if (existIdx >= 0) {
     group.items.splice(existIdx, 1);
+    // remove associated WiFi item if present
+    const wifiIdx = group.items.findIndex(it => it.productId === productId + '_wifi');
+    if (wifiIdx >= 0) group.items.splice(wifiIdx, 1);
   } else {
     group.items.push({
       productId,
@@ -2546,6 +2553,20 @@ function addToActiveGroup(productId) {
         justificacao: getPitch(p.series),
       },
     });
+    if (p.brand === 'Bosch' && _cardWifi[productId]) {
+      group.items.push({
+        productId: productId + '_wifi',
+        qty: 1,
+        opcao: {
+          titulo: 'Módulo WiFi Bosch Home Connect (IP-Gateway G10-3 + Conetor)',
+          marca: 'Bosch', produto_id: 'bosch-wifi-g10', modelo: 'IP-Gateway G10-3', series: 'Acessório',
+          tipo: 'acessorio', kw: 0, btu: null,
+          classe: '', pvp_unitario: 111, pvp_original: 111,
+          imagem: 'assets/products/bosch-wifi-g10.jpg',
+          justificacao: 'Wi-Fi não incluído de série — módulo adicional necessário para controlo remoto via app Home Connect.',
+        },
+      });
+    }
   }
   monoAppendToActive = false;
   const monoBanner = document.getElementById('mono-append-banner');
@@ -2805,9 +2826,20 @@ function renderMSSelectedList() {
   const el = document.getElementById('ms-selected-list');
   if (!el) return;
   if (msInteriors.length === 0) {
+    msWifiBosch = false;
     el.innerHTML = `<p style="font-size:.82rem;color:var(--muted);font-style:italic;padding:8px 0;">Clica numa unidade interior acima para adicionar.</p>`;
     return;
   }
+  const isBosch = msExterior?.brand === 'Bosch';
+  const totalInteriors = msInteriors.reduce((s, it) => s + it.qty, 0);
+  const wifiHtml = isBosch ? `
+    <div style="margin-top:12px;padding:10px 12px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.85rem;font-weight:600;">
+        <input type="checkbox" id="ms-wifi-check" ${msWifiBosch ? 'checked' : ''} onchange="msWifiBosch=this.checked;updateMSSummary()" style="width:16px;height:16px;accent-color:var(--orange);">
+        <span>Módulo WiFi Home Connect G10-3 <span style="color:var(--orange);">+${fmt(111 * totalInteriors)}</span></span>
+      </label>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:3px;margin-left:24px;">Wi-Fi não incluído de série · ${fmt(111)}/un. × ${totalInteriors} unidade(s)</div>
+    </div>` : '';
   el.innerHTML = `<div style="font-size:.73rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 6px;">Selecionadas</div>` +
     msInteriors.map(it => `
       <div class="ms-selected-row">
@@ -2821,7 +2853,7 @@ function renderMSSelectedList() {
           <button onclick="msMaisInterior('${it.unit.id}')">+</button>
           <button class="ms-remove" onclick="msRemoveInterior('${it.unit.id}')" title="Remover">×</button>
         </div>
-      </div>`).join('');
+      </div>`).join('') + wifiHtml;
 }
 
 function updateMSSummary() {
@@ -2841,7 +2873,10 @@ function updateMSSummary() {
   // Total box
   const extPvp = msExterior.pvp;
   const intPvp = msInteriors.reduce((s, it) => s + it.unit.pvp * it.qty, 0);
-  const total = extPvp + intPvp;
+  const totalInteriors = msInteriors.reduce((s, it) => s + it.qty, 0);
+  const isBosch = msExterior.brand === 'Bosch';
+  const wifiPvp = (isBosch && msWifiBosch) ? 111 * totalInteriors : 0;
+  const total = extPvp + intPvp + wifiPvp;
   const totalKw = Math.round(msInteriors.reduce((s, it) => s + it.unit.kw * it.qty, 0) * 10) / 10;
   const totalBtu = msInteriors.reduce((s, it) => s + (it.unit.btu || 0) * it.qty, 0);
   const box = document.getElementById('ms-total-box');
@@ -2851,6 +2886,7 @@ function updateMSSummary() {
       box.innerHTML = `
         <div class="ms-total-row"><span>Exterior: ${msExterior.brand} ${msExterior.model}</span><span>${fmt(extPvp)}</span></div>
         ${msInteriors.map(it => `<div class="ms-total-row"><span>${it.qty}× ${it.unit.model}</span><span>${fmt(it.unit.pvp * it.qty)}</span></div>`).join('')}
+        ${wifiPvp > 0 ? `<div class="ms-total-row"><span>${totalInteriors}× Módulo WiFi Home Connect G10-3</span><span>${fmt(wifiPvp)}</span></div>` : ''}
         <div class="ms-total-row ms-total-final"><span>Total equipamentos c/IVA</span><span>${fmt(total)}</span></div>
         ${totalBtu > 0 ? `<div style="font-size:.75rem;color:var(--muted);margin-top:6px;">${totalBtu.toLocaleString('pt-PT')} BTU · ${totalKw} kW instalados interiores</div>` : ''}`;
     } else {
@@ -2863,8 +2899,10 @@ function updateMSSummary() {
 }
 
 let msAppendToActive = false;
+let msWifiBosch = false;
 
 let monoAppendToActive = false;
+const _cardWifi = {};
 
 function addMonoSplitOption(appendToActive) {
   monoAppendToActive = !!appendToActive;
@@ -2939,6 +2977,24 @@ function msAvancarOrcamento() {
   }));
 
   const newItems = [{opcao: extOpcao, qty: 1}, ...msInteriors.map((it, i) => ({opcao: intOpcoes[i], qty: it.qty}))];
+
+  // Módulo WiFi Bosch
+  const totalBoschInteriors = msInteriors.reduce((s, it) => s + it.qty, 0);
+  if (msWifiBosch && msExterior.brand === 'Bosch' && totalBoschInteriors > 0) {
+    newItems.push({
+      qty: totalBoschInteriors,
+      opcao: {
+        id: 'bosch-wifi-g10', tipo: 'acessorio',
+        titulo: 'Módulo WiFi Bosch Home Connect (IP-Gateway G10-3 + Conetor)',
+        marca: 'Bosch', series: 'Acessório',
+        kw: 0, btu: null, pvp_unitario: 111, pvp_original: 111,
+        imagem: 'assets/products/bosch-wifi-g10.jpg',
+        justificacao: 'Wi-Fi não incluído de série nas unidades interiores Bosch — módulo adicional por unidade interior para controlo remoto via app Home Connect.',
+        classe: '',
+      },
+    });
+  }
+  msWifiBosch = false;
 
   if (msAppendToActive && activeGroupId && opcaoGroups.find(g => g.id === activeGroupId)) {
     // Merge into existing active group
