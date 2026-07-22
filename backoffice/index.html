@@ -3899,8 +3899,8 @@ function preencherPrintArea(orc) {
       body += `<div style="margin-top:12pt;page-break-inside:avoid;">
         <div style="background:#f97316;color:#fff;font-size:8pt;font-weight:800;text-transform:uppercase;letter-spacing:.5pt;padding:4pt 10pt;border-radius:2pt 2pt 0 0;">O que está incluído — ${item.descricao}</div>
         <table style="width:100%;border-collapse:collapse;font-size:8pt;">
-          <thead><tr style="background:#fff8f2;"><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;width:30pt;">Qtd.</th><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;width:60pt;">Referência</th><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;">Descrição</th></tr></thead>
-          <tbody>${item.componentes.map((c, i) => `<tr style="background:${i%2===0?'#fff':'#fffbf8'}"><td style="padding:3pt 8pt;">${c.qty}×</td><td style="padding:3pt 8pt;color:#888;font-size:7.5pt;">${c.ref}</td><td style="padding:3pt 8pt;">${c.desc}</td></tr>`).join('')}</tbody>
+          <thead><tr style="background:#fff8f2;"><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;width:30pt;">Qtd.</th><th style="padding:3pt 8pt;text-align:left;border-bottom:1pt solid #fde8cc;">Descrição</th></tr></thead>
+          <tbody>${item.componentes.map((c, i) => `<tr style="background:${i%2===0?'#fff':'#fffbf8'}"><td style="padding:3pt 8pt;">${c.qty}×</td><td style="padding:3pt 8pt;">${c.desc}</td></tr>`).join('')}</tbody>
         </table>
       </div>`;
     });
