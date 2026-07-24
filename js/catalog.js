@@ -885,6 +885,14 @@ function modalHTML(p) {
             allowfullscreen loading="lazy" frameborder="0"></iframe>
         </div>` : ''}
 
+        ${p.brand === 'samsung' ? `
+        <div class="modal__video">
+          <iframe src="https://www.youtube.com/embed/t8bPYmTbTuM"
+            title="Samsung WindFree™ — Vídeo Promocional"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy" frameborder="0"></iframe>
+        </div>` : ''}
+
         <div class="modal__cta">
           <div class="modal__btn-row">
             <a href="index.html#contacto" class="btn btn--primary modal-close-trigger">Pedir Orçamento →</a>

@@ -1443,6 +1443,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .ctab img {
   height: 30px;
   width: auto;
+  max-width: 110px;
   display: block;
   pointer-events: none;
   object-fit: contain;
