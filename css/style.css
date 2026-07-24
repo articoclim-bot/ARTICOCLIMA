@@ -622,8 +622,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 80px;
 }
 .brand-card__logo--samsung {
-  width: min(240px, 82%);
-  height: 52px;
+  width: min(300px, 92%);
+  height: auto;
 }
 
 .brand-card--link {
@@ -2665,8 +2665,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   max-width: 205px;
 }
 .guide-card__logo.brand-card__logo--samsung {
-  width: min(150px, 75%);
-  height: 28px;
+  width: min(200px, 85%);
+  height: auto;
   max-height: none;
   max-width: none;
 }
