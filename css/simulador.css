@@ -87,8 +87,10 @@
   color: var(--white);
 }
 .sim-brand-img {
+  display: block;
   height: 22px;
   width: auto;
+  max-height: 22px;
   object-fit: contain;
   filter: grayscale(1) brightness(.4);
   transition: filter .2s;
@@ -100,8 +102,8 @@
   filter: brightness(0) invert(1);
 }
 .sim-brand-btn[data-brand="samsung"] .sim-brand-img {
-  height: 13px;
-  max-width: 100px;
+  height: 20px;
+  width: auto;
 }
 
 /* ── Main content area ─────────────────────────────────────────── */
@@ -989,7 +991,6 @@ body { padding-bottom: 80px; }
 .smp-card {
   border: 2px solid var(--gray-light);
   border-radius: 0;
-  overflow: hidden;
   cursor: pointer;
   transition: border-color .2s, box-shadow .2s;
   position: relative;
