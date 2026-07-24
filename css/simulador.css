@@ -99,6 +99,10 @@
 .sim-brand-btn.active .sim-brand-img {
   filter: brightness(0) invert(1);
 }
+.sim-brand-btn[data-brand="samsung"] .sim-brand-img {
+  height: 13px;
+  max-width: 100px;
+}
 
 /* ── Main content area ─────────────────────────────────────────── */
 .sim-main {
@@ -759,10 +763,13 @@
 }
 .sim-brand-compare__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 14px;
 }
-@media (max-width: 780px) {
+@media (max-width: 900px) {
+  .sim-brand-compare__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
   .sim-brand-compare__grid { grid-template-columns: 1fr; }
 }
 .sbc-card {

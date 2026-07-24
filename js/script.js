@@ -17,7 +17,7 @@ const state = {
   distance: null,
 };
 
-const BRAND_LABELS = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu' };
+const BRAND_LABELS = { daikin: 'Daikin', bosch: 'Bosch', daitsu: 'Daitsu', samsung: 'Samsung' };
 const BTU_AREAS   = { 7000:'~15m²', 9000:'~20m²', 12000:'~30m²', 15000:'~40m²', 18000:'~50m²', 24000:'~70m²', 28000:'~90m²' };
 
 /* =============================================

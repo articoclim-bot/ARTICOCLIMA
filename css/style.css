@@ -622,8 +622,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 80px;
 }
 .brand-card__logo--samsung {
-  width: min(160px, 55%);
-  height: 80px;
+  width: min(240px, 82%);
+  height: 52px;
 }
 
 .brand-card--link {
@@ -1451,6 +1451,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
   pointer-events: none;
   object-fit: contain;
+}
+.ctab[data-brand="samsung"] img {
+  height: 18px;
+  max-width: 140px;
 }
 
 
@@ -2661,8 +2665,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   max-width: 205px;
 }
 .guide-card__logo.brand-card__logo--samsung {
-  max-height: 32px;
-  max-width: 120px;
+  width: min(150px, 75%);
+  height: 28px;
+  max-height: none;
+  max-width: none;
 }
 .guide-card__logo--square {
   max-height: 60px;

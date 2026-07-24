@@ -270,6 +270,92 @@ const DAITSU_MULTI_OUTDOOR = [
   { model: 'DOSM-42KDT',   zones: 5, kw: 12.2, pvp: 2490 },
 ];
 
+// --- SAMSUNG — Monosplit (conjuntos, c/ IVA) ---
+const SAMSUNG_MONO = {
+  'Cebu S2': {
+    label: 'Cebu S2', tier: 'entrada', badge: '💰 Melhor Preço',
+    energyCool: 'A++', energyHeat: 'A+', noise: '37 dB(A)', wifiStatus: 'builtin',
+    desc: 'Gama entrada — Wi-Fi SmartThings integrado · WindFree™ · Controlo Remoto Solar Cell',
+    prices: { 7000: 800, 9000: 880, 12000: 990, 18000: 1400, 24000: 1750 },
+    models: { 7000:'AR50F07C1AH', 9000:'AR50F09C1AH', 12000:'AR50F12C1AH', 18000:'AR50F18C1AH', 24000:'AR50F24C1AH' },
+    features: ['Wi-Fi SmartThings integrado', 'WindFree™ — sem corrente de ar frio direto', 'Controlo Remoto Solar Cell', 'Compatível Multi-Split FJM'],
+    image: 'assets/products/samsung-cebu-s2-1.png',
+    images: ['assets/products/samsung-cebu-s2-1.png','assets/products/samsung-cebu-s2-2.png'],
+  },
+  'AR35': {
+    label: 'AR35 Wi-Fi', tier: 'entrada', badge: '🆕 Novo Modelo',
+    energyCool: 'A++', energyHeat: 'A+', noise: '36 dB(A)', wifiStatus: 'builtin',
+    desc: 'Gama entrada — Wi-Fi SmartThings integrado · Visor Digital · Aquecimento até -15°C',
+    prices: { 9000: 850, 12000: 980, 18000: 1350, 24000: 1700 },
+    models: { 9000:'AR40H09C1AM', 12000:'AR40H12C1AM', 18000:'AR40H18C1AM', 24000:'AR40H24C1AM' },
+    features: ['Wi-Fi SmartThings integrado', 'Visor Digital', 'Aquecimento até -15°C exterior'],
+    monoOnly: true,
+    image: 'assets/products/samsung-ar35-wifi-1.png',
+    images: ['assets/products/samsung-ar35-wifi-1.png','assets/products/samsung-ar35-wifi-2.png'],
+  },
+  'Comfort S2': {
+    label: 'WindFree® Comfort S2', tier: 'intermedio', badge: '⚡ Conforto Total',
+    energyCool: 'A++', energyHeat: 'A++', noise: '38 dB(A)', wifiStatus: 'builtin',
+    desc: 'Gama intermédia — WindFree™ · Filtro Easy Plus + Freeze Wash · SmartThings',
+    prices: { 9000: 1050, 12000: 1200, 18000: 1650, 24000: 2100 },
+    models: { 9000:'AR60F09C1AW', 12000:'AR60F12C1AW', 18000:'AR60F18C1AW', 24000:'AR60F24C1AW' },
+    features: ['WindFree™ — sem corrente de ar frio direto', 'Filtro Easy Plus + Freeze Wash', 'Wi-Fi SmartThings integrado', 'Compatível Multi-Split FJM'],
+    image: 'assets/products/samsung-windfree-comfort-s2-1.png',
+    images: ['assets/products/samsung-windfree-comfort-s2-1.png','assets/products/samsung-windfree-comfort-s2-2.png'],
+  },
+  'Avant S2': {
+    label: 'WindFree® Avant S2', tier: 'intermedio', badge: '🌬️ WindFree™ A+++',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '38 dB(A)', wifiStatus: 'builtin',
+    desc: 'Gama premium-intermédia — A+++ arref. · WindFree™ · Filtro Tripla Ação + Freeze Wash',
+    prices: { 7000: 1100, 9000: 1200, 12000: 1380, 18000: 1900, 24000: 2400 },
+    models: { 7000:'AR70F07C1AW', 9000:'AR70F09C1AW', 12000:'AR70F12C1AW', 18000:'AR70F18C1AW', 24000:'AR70F24C1AW' },
+    features: ['WindFree™ — sem corrente de ar frio direto', 'A+++ arrefecimento', 'Filtro Tripla Ação + Freeze Wash', 'Compatível Multi-Split FJM'],
+    image: 'assets/products/samsung-windfree-avant-s2-1.png',
+    images: ['assets/products/samsung-windfree-avant-s2-1.png','assets/products/samsung-windfree-avant-s2-2.png'],
+  },
+  'Première': {
+    label: 'WindFree® Première', tier: 'premium', badge: '🏆 Alta Eficiência',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '37 dB(A)', wifiStatus: 'builtin',
+    desc: 'Gama premium — A+++ · WindFree™ · AI Motion Wind · Controlo Remoto Solar Cell',
+    prices: { 7000: 1350, 9000: 1450, 12000: 1650, 18000: 2200, 24000: 2850 },
+    models: { 7000:'AR70H07C1AW', 9000:'AR70H09C1AW', 12000:'AR70H12C1AW', 18000:'AR70H18C1AW', 24000:'AR70H24C1AW' },
+    features: ['WindFree™ + AI Motion Wind', 'A+++ arrefecimento', 'Filtro PM2.5 + Freeze Wash', 'Compatível Multi-Split FJM'],
+    image: 'assets/products/samsung-windfree-premiere-1.png',
+    images: ['assets/products/samsung-windfree-premiere-1.png','assets/products/samsung-windfree-premiere-2.png'],
+  },
+  'Première+': {
+    label: 'WindFree® Première+', tier: 'premium', badge: '✨ Topo de Gama',
+    energyCool: 'A+++', energyHeat: 'A+++', noise: '38 dB(A)', wifiStatus: 'builtin',
+    desc: 'Topo de gama — A+++ · Sensor Radar · Compressor Duplo Rotativo · Controlo Solar Cell',
+    prices: { 9000: 1700, 12000: 1900 },
+    models: { 9000:'AR70H09CAAW', 12000:'AR70H12CAAW' },
+    features: ['WindFree™ + Sensor de Movimento Radar', 'A+++ arref. e aquec.', 'Compressor Duplo Rotativo', 'Compatível Multi-Split FJM'],
+    maxBTU: 12000,
+    image: 'assets/products/samsung-windfree-premiere-plus-1.png',
+    images: ['assets/products/samsung-windfree-premiere-plus-1.png','assets/products/samsung-windfree-premiere-plus-2.png'],
+  },
+};
+
+// --- SAMSUNG — Multisplit Interior FJM (Avant S2, c/ IVA) ---
+// Todas as séries WindFree® (exceto AR35) são compatíveis com QUALQUER exterior FJM
+const SAMSUNG_MULTI_INDOOR = [
+  { btu: 7000,  kw: 2.0, model: 'AR70F07C1AW', pvp: 370 },
+  { btu: 9000,  kw: 2.5, model: 'AR70F09C1AW', pvp: 420 },
+  { btu: 12000, kw: 3.5, model: 'AR70F12C1AW', pvp: 480 },
+  { btu: 18000, kw: 5.0, model: 'AR70F18C1AW', pvp: 680 },
+  { btu: 24000, kw: 6.5, model: 'AR70F24C1AW', pvp: 890 },
+];
+
+// --- SAMSUNG — Multisplit Exterior FJM (c/ IVA) ---
+const SAMSUNG_MULTI_OUTDOOR = [
+  { model: 'AJ025TXJ2KH/EU', zones: 2, kw: 2.5, pvp: 1100 },
+  { model: 'AJ040TXJ2KH/EU', zones: 2, kw: 4.0, pvp: 1250 },
+  { model: 'AJ052TXJ3KH/EU', zones: 3, kw: 5.2, pvp: 1580 },
+  { model: 'AJ068TXJ3KH/EU', zones: 3, kw: 6.8, pvp: 1850 },
+  { model: 'AJ080TXJ4KH/EU', zones: 4, kw: 8.0, pvp: 2200 },
+  { model: 'AJ100TXJ5KH/EU', zones: 5, kw: 10.0, pvp: 2650 },
+];
+
 // ============================================================
 // 3. ESTADO
 // ============================================================
@@ -388,24 +474,31 @@ function fmtPrice(n) {
 // 5. CATÁLOGO HELPERS
 // ============================================================
 function getBrandCatalog(brand) {
-  if (brand === 'daikin') return DAIKIN_MONO;
-  if (brand === 'bosch')  return BOSCH_MONO;
-  if (brand === 'daitsu') return DAITSU_MONO;
+  if (brand === 'daikin')   return DAIKIN_MONO;
+  if (brand === 'bosch')    return BOSCH_MONO;
+  if (brand === 'daitsu')   return DAITSU_MONO;
+  if (brand === 'samsung')  return SAMSUNG_MONO;
   return {};
 }
 
 function getMultiIndoorList(brand) {
-  if (brand === 'daikin') return DAIKIN_MULTI_INDOOR;
-  if (brand === 'bosch')  return BOSCH_MULTI_INDOOR;
-  if (brand === 'daitsu') return DAITSU_MULTI_INDOOR;
+  if (brand === 'daikin')   return DAIKIN_MULTI_INDOOR;
+  if (brand === 'bosch')    return BOSCH_MULTI_INDOOR;
+  if (brand === 'daitsu')   return DAITSU_MULTI_INDOOR;
+  if (brand === 'samsung')  return SAMSUNG_MULTI_INDOOR;
   return [];
 }
 
 function getMultiOutdoorList(brand) {
-  if (brand === 'daikin') return DAIKIN_MULTI_OUTDOOR;
-  if (brand === 'bosch')  return BOSCH_MULTI_OUTDOOR;
-  if (brand === 'daitsu') return DAITSU_MULTI_OUTDOOR;
+  if (brand === 'daikin')   return DAIKIN_MULTI_OUTDOOR;
+  if (brand === 'bosch')    return BOSCH_MULTI_OUTDOOR;
+  if (brand === 'daitsu')   return DAITSU_MULTI_OUTDOOR;
+  if (brand === 'samsung')  return SAMSUNG_MULTI_OUTDOOR;
   return [];
+}
+
+function brandLogoSrc(brand) {
+  return brand === 'samsung' ? 'assets/logo-samsung.svg' : `assets/logo-${brand}.png`;
 }
 
 function getMultiIndoorUnit(brand, tier) {
@@ -1847,6 +1940,13 @@ function getMultiSeriesLabel(brand, model) {
     return 'Climate 3200i';
   }
   if (brand === 'daitsu') return 'ARTIC Plus';
+  if (brand === 'samsung') {
+    if (model.startsWith('AR70H')) return 'WindFree® Première';
+    if (model.startsWith('AR70F')) return 'WindFree® Avant S2';
+    if (model.startsWith('AR60F')) return 'WindFree® Comfort S2';
+    if (model.startsWith('AR50F')) return 'Cebu S2';
+    return 'WindFree®';
+  }
   return model;
 }
 
@@ -1867,6 +1967,13 @@ function getSeriesCatalogKey(brand, model) {
     return '3200i';
   }
   if (brand === 'daitsu') return 'ARTIC';
+  if (brand === 'samsung') {
+    if (model.startsWith('AR70H')) return 'Première';
+    if (model.startsWith('AR70F')) return 'Avant S2';
+    if (model.startsWith('AR60F')) return 'Comfort S2';
+    if (model.startsWith('AR50F')) return 'Cebu S2';
+    return 'Cebu S2';
+  }
   return null;
 }
 
@@ -1908,7 +2015,7 @@ function buildSpecInfoHTML(desc) {
 
 function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
   const brandName = capFirst(state.brand);
-  const brandImg = `assets/logo-${state.brand}.png`;
+  const brandImg = brandLogoSrc(state.brand);
   const isSensiraConfig = config.multiSystemType === 'sensira';
 
   let rowsHtml = '';
@@ -2019,11 +2126,11 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
 ${cheapMultiAltHtml}${monoAltHtml}`;
 }
 
-// Grelha de comparação das 3 marcas — mostra sempre Daikin, Bosch e Daitsu lado a
-// lado (a marca activa usa a configuração escolhida pelo cliente; as outras mostram
-// a opção mais económica dessa marca). Sem valores em €: apenas um selo na mais barata.
+// Grelha de comparação das 4 marcas — mostra sempre Daikin, Bosch, Daitsu e Samsung
+// lado a lado (a marca activa usa a configuração escolhida pelo cliente; as outras
+// mostram a opção mais económica dessa marca). Apenas um selo na mais barata.
 function buildBrandCompareHTML(config) {
-  const allBrands = ['daikin', 'bosch', 'daitsu'];
+  const allBrands = ['daikin', 'bosch', 'daitsu', 'samsung'];
 
   const brandData = allBrands.map(brand => {
     if (brand === state.brand) {
@@ -2067,7 +2174,7 @@ function buildBrandCompareHTML(config) {
     const isActive = brand === state.brand;
     const isCheapest = cheapestTotal != null && total === cheapestTotal;
     const brandName = capFirst(brand);
-    const brandImg = `assets/logo-${brand}.png`;
+    const brandImg = brandLogoSrc(brand);
     const rowsHtml = rows.map(r => {
       const specInfoHtml = buildSpecInfoHTML(r.specInfo);
       return `<div class="sbc-card__row"><div class="sbc-card__row-title">${escHtml(r.name)} — ${escHtml(r.label)}</div>${specInfoHtml}</div>`;
@@ -2088,7 +2195,7 @@ function buildBrandCompareHTML(config) {
 
   return `
 <div class="sim-brand-compare">
-  <div class="sim-brand-compare__title">${t('Compare as 3 marcas para esta configuração')}</div>
+  <div class="sim-brand-compare__title">${t('Compare as 4 marcas para esta configuração')}</div>
   <div class="sim-brand-compare__grid">${cardsHtml}</div>
 </div>`;
 }
