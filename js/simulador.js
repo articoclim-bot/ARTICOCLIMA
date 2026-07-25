@@ -280,7 +280,7 @@ const SAMSUNG_MONO = {
     models: { 7000:'AR50F07C1AH', 9000:'AR50F09C1AH', 12000:'AR50F12C1AH', 18000:'AR50F18C1AH', 24000:'AR50F24C1AH' },
     features: ['Wi-Fi SmartThings integrado', 'WindFree™ — sem corrente de ar frio direto', 'Controlo Remoto Solar Cell', 'Compatível Multi-Split FJM'],
     image: 'assets/products/samsung-cebu-s2-1.png',
-    images: ['assets/products/samsung-cebu-s2-1.png','assets/products/samsung-cebu-s2-2.png'],
+    images: ['assets/products/samsung-cebu-s2-1.png','assets/products/samsung-cebu-s2-2.png','assets/products/samsung-cebu-s2-3.png','assets/products/samsung-cebu-s2-4.png','assets/products/samsung-cebu-s2-5.png','assets/products/samsung-cebu-s2-6.png','assets/products/samsung-cebu-s2-7.png','assets/products/samsung-cebu-s2-8.png','assets/products/samsung-cebu-s2-9.png','assets/products/samsung-cebu-s2-10.png'],
   },
   'AR35': {
     label: 'AR35 Wi-Fi', tier: 'entrada', badge: '🆕 Novo Modelo',
@@ -291,7 +291,7 @@ const SAMSUNG_MONO = {
     features: ['Wi-Fi SmartThings integrado', 'Visor Digital', 'Aquecimento até -15°C exterior'],
     monoOnly: true,
     image: 'assets/products/samsung-ar35-wifi-1.png',
-    images: ['assets/products/samsung-ar35-wifi-1.png','assets/products/samsung-ar35-wifi-2.png'],
+    images: ['assets/products/samsung-ar35-wifi-1.png','assets/products/samsung-ar35-wifi-2.png','assets/products/samsung-ar35-wifi-3.png','assets/products/samsung-ar35-wifi-4.png','assets/products/samsung-ar35-wifi-5.png','assets/products/samsung-ar35-wifi-6.png'],
   },
   'Comfort S2': {
     label: 'WindFree® Comfort S2', tier: 'intermedio', badge: '⚡ Conforto Total',
@@ -301,7 +301,7 @@ const SAMSUNG_MONO = {
     models: { 9000:'AR60F09C1AW', 12000:'AR60F12C1AW', 18000:'AR60F18C1AW', 24000:'AR60F24C1AW' },
     features: ['WindFree™ — sem corrente de ar frio direto', 'Filtro Easy Plus + Freeze Wash', 'Wi-Fi SmartThings integrado', 'Compatível Multi-Split FJM'],
     image: 'assets/products/samsung-windfree-comfort-s2-1.png',
-    images: ['assets/products/samsung-windfree-comfort-s2-1.png','assets/products/samsung-windfree-comfort-s2-2.png'],
+    images: ['assets/products/samsung-windfree-comfort-s2-1.png','assets/products/samsung-windfree-comfort-s2-2.png','assets/products/samsung-windfree-comfort-s2-3.png','assets/products/samsung-windfree-comfort-s2-4.png','assets/products/samsung-windfree-comfort-s2-5.png','assets/products/samsung-windfree-comfort-s2-6.png','assets/products/samsung-windfree-comfort-s2-7.png','assets/products/samsung-windfree-comfort-s2-8.png','assets/products/samsung-windfree-comfort-s2-9.png','assets/products/samsung-windfree-comfort-s2-10.png'],
   },
   'Avant S2': {
     label: 'WindFree® Avant S2', tier: 'intermedio', badge: '🌬️ WindFree™ A+++',
@@ -311,7 +311,7 @@ const SAMSUNG_MONO = {
     models: { 7000:'AR70F07C1AW', 9000:'AR70F09C1AW', 12000:'AR70F12C1AW', 18000:'AR70F18C1AW', 24000:'AR70F24C1AW' },
     features: ['WindFree™ — sem corrente de ar frio direto', 'A+++ arrefecimento', 'Filtro Tripla Ação + Freeze Wash', 'Compatível Multi-Split FJM'],
     image: 'assets/products/samsung-windfree-avant-s2-1.png',
-    images: ['assets/products/samsung-windfree-avant-s2-1.png','assets/products/samsung-windfree-avant-s2-2.png'],
+    images: ['assets/products/samsung-windfree-avant-s2-1.png','assets/products/samsung-windfree-avant-s2-2.png','assets/products/samsung-windfree-avant-s2-3.png','assets/products/samsung-windfree-avant-s2-4.png','assets/products/samsung-windfree-avant-s2-5.png','assets/products/samsung-windfree-avant-s2-6.png','assets/products/samsung-windfree-avant-s2-7.png','assets/products/samsung-windfree-avant-s2-8.png','assets/products/samsung-windfree-avant-s2-9.png','assets/products/samsung-windfree-avant-s2-10.png'],
   },
   'Première': {
     label: 'WindFree® Première', tier: 'premium', badge: '🏆 Alta Eficiência',
@@ -321,7 +321,7 @@ const SAMSUNG_MONO = {
     models: { 7000:'AR70H07C1AW', 9000:'AR70H09C1AW', 12000:'AR70H12C1AW', 18000:'AR70H18C1AW', 24000:'AR70H24C1AW' },
     features: ['WindFree™ + AI Motion Wind', 'A+++ arrefecimento', 'Filtro PM2.5 + Freeze Wash', 'Compatível Multi-Split FJM'],
     image: 'assets/products/samsung-windfree-premiere-1.png',
-    images: ['assets/products/samsung-windfree-premiere-1.png','assets/products/samsung-windfree-premiere-2.png'],
+    images: ['assets/products/samsung-windfree-premiere-1.png','assets/products/samsung-windfree-premiere-2.png','assets/products/samsung-windfree-premiere-3.png','assets/products/samsung-windfree-premiere-4.png','assets/products/samsung-windfree-premiere-5.png','assets/products/samsung-windfree-premiere-6.png','assets/products/samsung-windfree-premiere-7.png','assets/products/samsung-windfree-premiere-8.png','assets/products/samsung-windfree-premiere-9.png'],
   },
   'Première+': {
     label: 'WindFree® Première+', tier: 'premium', badge: '✨ Topo de Gama',
@@ -332,7 +332,7 @@ const SAMSUNG_MONO = {
     features: ['WindFree™ + Sensor de Movimento Radar', 'A+++ arref. e aquec.', 'Compressor Duplo Rotativo', 'Compatível Multi-Split FJM'],
     maxBTU: 12000,
     image: 'assets/products/samsung-windfree-premiere-plus-1.png',
-    images: ['assets/products/samsung-windfree-premiere-plus-1.png','assets/products/samsung-windfree-premiere-plus-2.png'],
+    images: ['assets/products/samsung-windfree-premiere-plus-1.png','assets/products/samsung-windfree-premiere-plus-2.png','assets/products/samsung-windfree-premiere-plus-3.png','assets/products/samsung-windfree-premiere-plus-4.png','assets/products/samsung-windfree-premiere-plus-5.png','assets/products/samsung-windfree-premiere-plus-6.png','assets/products/samsung-windfree-premiere-plus-7.png','assets/products/samsung-windfree-premiere-plus-8.png','assets/products/samsung-windfree-premiere-plus-9.png'],
   },
 };
 
