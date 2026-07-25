@@ -218,6 +218,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .nav__menu-cta { margin-top: 24px; }
 .nav__menu-cta .btn { display: inline-flex; }
 
+/* Botão de telefone visível no nav mobile */
+.nav__phone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@media (min-width: 721px) {
+  .nav__phone-btn { display: none; }
+}
+
 .nav__toggle {
   display: flex;
   flex-direction: column;
@@ -578,11 +596,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .brands__row {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  flex-wrap: wrap;
 }
 
 .brand-card {
@@ -593,7 +609,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1 1 160px;
   min-height: 100px;
   transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
 }
@@ -635,8 +650,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 
 @media (max-width: 720px) {
-  .brands__row { gap: 16px; }
-  .brand-card { min-width: 140px; padding: 20px 24px; }
+  .brands__row { gap: 12px; grid-template-columns: repeat(2, 1fr); }
+  .brand-card { padding: 20px 16px; }
+  .container { padding: 0 20px; }
 }
 
 /* =============================================
@@ -1427,6 +1443,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+@media (max-width: 720px) {
+  .catalog__brand-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .catalog__brand-tabs::-webkit-scrollbar { display: none; }
+  .ctab { flex-shrink: 0; }
 }
 .ctab {
   padding: 10px 20px;
