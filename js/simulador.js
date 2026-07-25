@@ -820,7 +820,7 @@ function calcAltBrandConfig(brand, rooms) {
 
   const multiResult = calcBrandMulti(brand, roomsWT);
   if (multiResult) {
-    const seriesLabel = brand === 'daikin' ? 'FTXM-A' : (brand === 'bosch' ? 'CL3200i Mural' : 'ARTIC Plus');
+    const seriesLabel = brand === 'daikin' ? 'FTXM-A' : (brand === 'bosch' ? 'CL3200i Mural' : (brand === 'samsung' ? 'WindFree® Avant S2' : 'ARTIC Plus'));
     return {
       total: multiResult.total,
       system: 'multi',
@@ -1147,6 +1147,8 @@ function renderRoomModelCard(room) {
         }
       } else if (state.brand === 'bosch') {
         imgSrc = 'assets/products/bosch-3200i-1.jpg';
+      } else if (state.brand === 'samsung') {
+        imgSrc = 'assets/products/samsung-windfree-avant-s2-1.png';
       } else {
         imgSrc = 'assets/products/daitsu-artic-plus-1.webp';
       }
@@ -1435,7 +1437,7 @@ function buildPickerCards(room, tier) {
           id: room.id, type: 'confora_multi', seriesKey: '__confora_multi__',
           badge: 'MULTISPLIT', badgeClass: 'multi',
           img: 'assets/products/daikin-confora-1.webp',
-          series: 'Confora',
+          series: 'Comfora',
           specs: `${btuLabel(cu.btu)} · ${cu.kw} kW · ${cu.model}`,
           price: cu.pvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
@@ -1450,6 +1452,7 @@ function buildPickerCards(room, tier) {
         const isStdSelected = room.useMulti && (mt === 'standard' || (!room.multiTypeExplicit));
         const img = state.brand === 'daikin' ? 'assets/products/daikin-perfera-1.webp' :
                     state.brand === 'bosch'  ? 'assets/products/bosch-3000i-1.webp' :
+                    state.brand === 'samsung' ? 'assets/products/samsung-windfree-avant-s2-1.png' :
                                                'assets/products/daitsu-artic-plus-1.webp';
         html += pickerCard({
           id: room.id, type: 'multi', seriesKey: '__multi__',
@@ -1931,7 +1934,7 @@ function getMultiSeriesLabel(brand, model) {
     if (model.startsWith('CTXF')) return 'Sensira';
     if (model.startsWith('FTXJ')) return 'Emura';
     if (model.startsWith('FTXA')) return 'Stylish';
-    if (model.startsWith('FTXP')) return 'Confora';
+    if (model.startsWith('FTXP')) return 'Comfora';
     return 'Perfera'; // FTXM default
   }
   if (brand === 'bosch') {
@@ -1972,6 +1975,7 @@ function getSeriesCatalogKey(brand, model) {
     if (model.startsWith('AR70F')) return 'Avant S2';
     if (model.startsWith('AR60F')) return 'Comfort S2';
     if (model.startsWith('AR50F')) return 'Cebu S2';
+    if (model.startsWith('AR40H')) return 'AR35';
     return 'Cebu S2';
   }
   return null;
@@ -2059,6 +2063,8 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
       else                                    img = 'assets/products/daikin-perfera-1.webp';
     } else if (state.brand === 'bosch') {
       img = 'assets/products/bosch-3200i-1.jpg';
+    } else if (state.brand === 'samsung') {
+      img = 'assets/products/samsung-windfree-avant-s2-1.png';
     } else {
       img = 'assets/products/daitsu-artic-plus-1.webp';
     }
@@ -2339,7 +2345,7 @@ function dismissConfirmBanner() {
 function generatePDF() {
   const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
   if (!validRooms.length) {
-    alert('Preencha os dados de pelo menos uma divisão antes de gerar o PDF.');
+    alert(t('Preencha os dados de pelo menos uma divisão antes de gerar o PDF.'));
     return;
   }
 
