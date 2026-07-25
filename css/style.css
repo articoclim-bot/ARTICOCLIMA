@@ -580,7 +580,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .brands__row {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 24px;
   flex-wrap: wrap;
 }
