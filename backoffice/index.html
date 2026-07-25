@@ -2609,7 +2609,7 @@ function sugerirAC() {
   // Mono-splits: filtrar pelo kW da maior divisão (1 unidade por divisão)
   const GAMA_ECONOMICA  = ['ARTIC','Climate 3200i','Sensira','FREE MAX ARTIC','Multi 3200i','Multi Sensira','AR35 Wi-Fi','Cebu S2','WindFree Comfort S2'];
   const GAMA_PREMIUM    = ['Climate 7000i','Confora','Perfera','Emura','Multi 6000i','Multi Confora','Multi Perfera','Multi Emura','WindFree Première+','WindFree Première+ Preto','WindFree Première','WindFree Première Preto','WindFree Avant S2','WindFree Avant S2 Preto'];
-  const GAMA_DESIGN     = ['Stylish','Emura','Multi Stylish','Multi Emura'];
+  const GAMA_DESIGN     = ['Stylish','Emura','Multi Stylish','Multi Emura','WindFree Première+','WindFree Première+ Preto'];
 
   function aplicarGama(lista) {
     if (gama.includes('Económico')) return lista.filter(p => GAMA_ECONOMICA.includes(p.series));
