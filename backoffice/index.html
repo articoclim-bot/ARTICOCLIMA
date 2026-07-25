@@ -1495,6 +1495,16 @@ const GALLERY = {
   'Climate 5000i':  ['bosch-3200i-new-2.jpg','bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg'],
   // Daikin Condutas FDXM — placeholder com imagens Daikin até haver fotos dedicadas
   'Condutas FDXM':  ['daikin-sensira-1.webp','daikin-sensira-2.webp','daikin-sensira-3.webp'],
+  // Samsung
+  'WindFree Première+':       ['samsung-windfree-premiere-plus.png'],
+  'WindFree Première+ Preto': ['samsung-windfree-premiere-plus-preto.png'],
+  'WindFree Première':        ['samsung-windfree-premiere.png'],
+  'WindFree Première Preto':  ['samsung-windfree-premiere-preto.png'],
+  'WindFree Avant S2':        ['samsung-windfree-avant-s2.png'],
+  'WindFree Avant S2 Preto':  ['samsung-windfree-avant-s2-preto.png'],
+  'WindFree Comfort S2':      ['samsung-windfree-comfort-s2.png'],
+  'Cebu S2':                  ['samsung-cebu-s2.png'],
+  'AR35 Wi-Fi':               ['samsung-ar35-wifi.png'],
 };
 // Multi-split usa galeria da unidade interior
 const GALLERY_MAP = {
@@ -1523,8 +1533,17 @@ const GALLERY_MAP = {
   // Daikin MXM interiores — Confora, Stylish, Emura com sufixo de tipo
   'Confora — Mural':'Confora',
   'Stylish — Branco':'Stylish','Stylish — Prateado':'Stylish','Stylish — Preto':'Stylish',
-  'Stylish — Madeira Clara':'Stylish','Stylish — Madeira Escura':'Stylish',
-  'Stylish — Pele Castanho Escura':'Stylish','Stylish — Tecido Cinzento':'Stylish','Stylish — Tecido Azul Petróleo':'Stylish',
+  'Stylish — Madeira Clara':'Stylish Madeira Clara','Stylish — Madeira Escura':'Stylish Madeira Escura',
+  'Stylish — Pele Castanho Escura':'Stylish Pele Castanho','Stylish — Tecido Cinzento':'Stylish Tecido Cinzento','Stylish — Tecido Azul Petróleo':'Stylish Tecido Azul',
+  // Variantes com sufixo de código (CATALOG_MS_INTERIOR)
+  'Stylish — Madeira Clara (DL)':'Stylish Madeira Clara','Stylish — Madeira Escura (DY)':'Stylish Madeira Escura',
+  'Stylish — Pele Castanho (DC)':'Stylish Pele Castanho','Stylish — Tecido Cinzento (DG)':'Stylish Tecido Cinzento','Stylish — Tecido Azul (DP)':'Stylish Tecido Azul',
+  // Samsung FJM interiores → galeria da variante base
+  'WindFree Première+ — FJM':'WindFree Première+','WindFree Première+ Preto — FJM':'WindFree Première+ Preto',
+  'WindFree Première — FJM':'WindFree Première','WindFree Première Preto — FJM':'WindFree Première Preto',
+  'WindFree Avant S2 — FJM':'WindFree Avant S2','WindFree Avant S2 Preto — FJM':'WindFree Avant S2 Preto',
+  'WindFree Comfort S2 — FJM':'WindFree Comfort S2',
+  'Cebu S2 — FJM':'Cebu S2',
   'Emura — Branco':'Emura','Emura — Prateado':'Emura','Emura — Preto':'Emura',
 };
 
@@ -1644,6 +1663,67 @@ const ANNEX_SPECS = {
       'Modo Sleep e Eco integrados — maior poupança energética',
     ],
   },
+  // Samsung
+  'WindFree Première+': {
+    refrigerante:'R32', garantia:'3 anos Samsung',
+    filtros:'Tri-Care Filter — 3 camadas: pré-filtro, carvão ativado e filtro de partículas finas',
+    wifi:'Integrado de série — App SmartThings',
+    voz:'Bixby, Amazon Alexa, Google Home',
+    range_arref:'-10°C a +50°C (exterior)', range_aquec:'-15°C a +24°C (exterior)',
+    som_int:'16 dB(A)',
+    awards:[],
+    extras:['Sensor de Movimento (MDS) — poupa energia detetando presença na divisão','Tecnologia WindFree™ — 23.000 micro-orifícios, zero correntes de ar diretas','Digital Inverter Boost — máxima eficiência e rapidez de resposta','Disponível em branco e preto — design ultra-slim'],
+  },
+  'WindFree Première': {
+    refrigerante:'R32', garantia:'3 anos Samsung',
+    filtros:'Tri-Care Filter — pré-filtro + filtro de partículas finas + filtro desodorizante',
+    wifi:'Integrado de série — App SmartThings',
+    voz:'Bixby, Amazon Alexa, Google Home',
+    range_arref:'-10°C a +50°C (exterior)', range_aquec:'-15°C a +24°C (exterior)',
+    som_int:'16 dB(A)',
+    awards:[],
+    extras:['Modo AI Auto Comfort — analisa condições do espaço e otimiza funcionamento automaticamente','Tecnologia WindFree™ — arrefecimento/aquecimento sem correntes de ar incómodas','Funcionamento ultra-silencioso — ideal para quartos e uso noturno','Disponível em branco e preto — versatilidade de 7K a 24K BTU'],
+  },
+  'WindFree Avant S2': {
+    refrigerante:'R32', garantia:'3 anos Samsung',
+    filtros:'Tri-Care Filter + filtro antimicrobiano integrado',
+    wifi:'Integrado de série — App SmartThings',
+    voz:'Bixby, Amazon Alexa, Google Home',
+    range_arref:'-10°C a +50°C (exterior)', range_aquec:'-15°C a +24°C (exterior)',
+    som_int:'21 dB(A)',
+    awards:[],
+    extras:['Tecnologia WindFree™ S2 — distribuição homogénea e confortável do fluxo de ar','Limpeza Automática — secagem do permutador previne proliferação de bactérias e odores','Digital Inverter Boost — eficiência energética e rapidez','Disponível em branco e preto'],
+  },
+  'WindFree Comfort S2': {
+    refrigerante:'R32', garantia:'3 anos Samsung',
+    filtros:'Tri-Care Filter — 3 camadas de filtração para melhor qualidade do ar',
+    wifi:'Integrado de série — App SmartThings',
+    voz:'Amazon Alexa, Google Home',
+    range_arref:'-10°C a +46°C (exterior)', range_aquec:'-15°C a +24°C (exterior)',
+    som_int:'21 dB(A)',
+    awards:[],
+    extras:['Tecnologia WindFree™ — conforto sem correntes de ar diretas a preço acessível','Modo Fast Cooling — arrefecimento rápido de toda a divisão','Operação silenciosa — ideal para quartos e escritórios residenciais','Filtros acessíveis de frente para manutenção simples'],
+  },
+  'Cebu S2': {
+    refrigerante:'R32', garantia:'3 anos Samsung',
+    filtros:'Easy Filter Plus — fácil acesso frontal e limpeza',
+    wifi:'Integrado de série — App SmartThings',
+    voz:'Amazon Alexa, Google Home',
+    range_arref:'-10°C a +46°C (exterior)', range_aquec:'-15°C a +24°C (exterior)',
+    som_int:'21 dB(A)',
+    awards:[],
+    extras:['Auto Clean Automático — mantém o interior limpo e seco automaticamente','Funcionamento ultra-silencioso — desenvolvido para minimizar ruído operacional','Ampla gama de potências — 7K a 24K BTU para qualquer espaço','Classe A++ com alta fiabilidade e durabilidade comprovadas'],
+  },
+  'AR35 Wi-Fi': {
+    refrigerante:'R32', garantia:'3 anos Samsung',
+    filtros:'Filtro de limpeza fácil — acesso frontal',
+    wifi:'Integrado de série — App SmartThings',
+    voz:'Amazon Alexa, Google Home',
+    range_arref:'-10°C a +46°C (exterior)', range_aquec:'-15°C a +24°C (exterior)',
+    som_int:'24 dB(A)',
+    awards:[],
+    extras:['WiFi integrado de série — controlo total via SmartThings','Modo Turbo — arrefecimento e aquecimento rápido','Modo Sono — temperatura ajustada automaticamente durante a noite','Auto-restart após corte de corrente elétrica'],
+  },
   // Daikin Condutas FDXM (multi-split MXM)
   'Condutas FDXM': {
     refrigerante:'R32', garantia:'3 anos Daikin',
@@ -1755,6 +1835,55 @@ const ANNEX_SPECS_I18N = {
     es:{garantia:'3 años Daikin',filtros:'Filtro de fácil limpieza (accesible para mantenimiento)',wifi:'Compatible mediante accesorio BRP069C4x',range_arref:'-10°C a +46°C (exterior)',range_aquec:'-15°C a +18°C (exterior)',som_int:'27 dB(A) (modo silencioso)',extras:['Instalación en falso techo — totalmente oculta, se integra en cualquier habitación','Presión estática disponible hasta 100 Pa — adecuada para longitudes de conducto medias','Caudal de aire ajustable en 3 velocidades','Compatible con unidades exteriores Daikin MXM (2, 3, 4 y 5 interiores)']},
     it:{garantia:'3 anni Daikin',filtros:'Filtro di facile pulizia (accessibile per la manutenzione)',wifi:'Compatibile tramite accessorio BRP069C4x',range_arref:'-10°C a +46°C (esterno)',range_aquec:'-15°C a +18°C (esterno)',som_int:'27 dB(A) (modalità silenziosa)',extras:['Installazione a controsoffitto — completamente nascosta, si integra in qualsiasi ambiente','Pressione statica disponibile fino a 100 Pa — adatta per lunghezze di canale medie','Portata d\'aria regolabile su 3 velocità','Compatibile con unità esterne Daikin MXM (2, 3, 4 e 5 interne)']},
     nl:{garantia:'3 jaar Daikin',filtros:'Eenvoudig te reinigen filter (toegankelijk voor onderhoud)',wifi:'Compatibel via accessoire BRP069C4x',range_arref:'-10°C tot +46°C (buiten)',range_aquec:'-15°C tot +18°C (buiten)',som_int:'27 dB(A) (stille modus)',extras:['Installatie in verlaagd plafond — volledig verborgen, past in elke ruimte','Statische druk beschikbaar tot 100 Pa — geschikt voor gemiddelde kanaallengtes','Instelbare luchtstroom in 3 snelheden','Compatibel met Daikin MXM buitenunits (2, 3, 4 en 5 binnen)']},
+  },
+  // Samsung
+  'WindFree Première+': {
+    en:{garantia:'3 years Samsung',filtros:'Tri-Care Filter — 3 layers: pre-filter, activated carbon and fine particle filter',wifi:'Built-in as standard — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C to +50°C (outdoor)',range_aquec:'-15°C to +24°C (outdoor)',som_int:'16 dB(A)',extras:['Motion Detection Sensor (MDS) — saves energy by detecting room presence','WindFree™ technology — 23,000 micro-holes, zero cold air draughts','Digital Inverter Boost — maximum efficiency and speed of response','Available in white and black — ultra-slim design']},
+    fr:{garantia:'3 ans Samsung',filtros:'Tri-Care Filter — 3 couches : pré-filtre, charbon actif et filtre à particules fines',wifi:'Intégré de série — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C à +50°C (extérieur)',range_aquec:'-15°C à +24°C (extérieur)',som_int:'16 dB(A)',extras:['Capteur de détection de mouvement (MDS) — économise l\'énergie en détectant la présence','Technologie WindFree™ — 23 000 micro-orifices, zéro courant d\'air froid','Digital Inverter Boost — efficacité et rapidité maximales','Disponible en blanc et noir — design ultra-slim']},
+    de:{garantia:'3 Jahre Samsung',filtros:'Tri-Care Filter — 3 Schichten: Vorfilter, Aktivkohle und Feinstaubfilter',wifi:'Serienmäßig integriert — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C bis +50°C (außen)',range_aquec:'-15°C bis +24°C (außen)',som_int:'16 dB(A)',extras:['Bewegungserkennungssensor (MDS) — spart Energie durch Raumanwesenheitserkennung','WindFree™ Technologie — 23.000 Mikroöffnungen, null Kältezüge','Digital Inverter Boost — maximale Effizienz und Reaktionsgeschwindigkeit','Erhältlich in Weiß und Schwarz — ultra-schlankes Design']},
+    es:{garantia:'3 años Samsung',filtros:'Tri-Care Filter — 3 capas: prefiltro, carbón activo y filtro de partículas finas',wifi:'Integrado de serie — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C a +50°C (exterior)',range_aquec:'-15°C a +24°C (exterior)',som_int:'16 dB(A)',extras:['Sensor de detección de movimiento (MDS) — ahorra energía detectando presencia','Tecnología WindFree™ — 23.000 micro-orificios, cero corrientes de aire frío','Digital Inverter Boost — máxima eficiencia y rapidez de respuesta','Disponible en blanco y negro — diseño ultra-slim']},
+    it:{garantia:'3 anni Samsung',filtros:'Tri-Care Filter — 3 strati: prefiltro, carbone attivo e filtro per particelle fini',wifi:'Integrato di serie — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C a +50°C (esterno)',range_aquec:'-15°C a +24°C (esterno)',som_int:'16 dB(A)',extras:['Sensore di rilevamento movimento (MDS) — risparmia energia rilevando la presenza','Tecnologia WindFree™ — 23.000 micro-fori, zero correnti d\'aria fredda','Digital Inverter Boost — massima efficienza e velocità di risposta','Disponibile in bianco e nero — design ultra-slim']},
+    nl:{garantia:'3 jaar Samsung',filtros:'Tri-Care Filter — 3 lagen: voorfilter, actieve kool en fijnstoffilter',wifi:'Standaard ingebouwd — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C tot +50°C (buiten)',range_aquec:'-15°C tot +24°C (buiten)',som_int:'16 dB(A)',extras:['Bewegingsdetectiesensor (MDS) — bespaart energie door aanwezigheid te detecteren','WindFree™ technologie — 23.000 micro-gaatjes, nul koude tochtvlagen','Digital Inverter Boost — maximale efficiëntie en reactiesnelheid','Beschikbaar in wit en zwart — ultra-slim design']},
+  },
+  'WindFree Première': {
+    en:{garantia:'3 years Samsung',filtros:'Tri-Care Filter — pre-filter + fine particle filter + deodorising filter',wifi:'Built-in as standard — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C to +50°C (outdoor)',range_aquec:'-15°C to +24°C (outdoor)',som_int:'16 dB(A)',extras:['AI Auto Comfort mode — analyses room conditions and optimises operation automatically','WindFree™ technology — cooling and heating without uncomfortable air currents','Ultra-quiet operation — ideal for bedrooms and night use','Available in white and black — 7K to 24K BTU range']},
+    fr:{garantia:'3 ans Samsung',filtros:'Tri-Care Filter — pré-filtre + filtre à particules fines + filtre désodorisant',wifi:'Intégré de série — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C à +50°C (extérieur)',range_aquec:'-15°C à +24°C (extérieur)',som_int:'16 dB(A)',extras:['Mode AI Auto Comfort — analyse les conditions et optimise le fonctionnement automatiquement','Technologie WindFree™ — climatisation sans courants d\'air inconfortables','Fonctionnement ultra-silencieux — idéal pour les chambres et l\'usage nocturne','Disponible en blanc et noir — gamme de 7K à 24K BTU']},
+    de:{garantia:'3 Jahre Samsung',filtros:'Tri-Care Filter — Vorfilter + Feinstaubfilter + Geruchsfilter',wifi:'Serienmäßig integriert — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C bis +50°C (außen)',range_aquec:'-15°C bis +24°C (außen)',som_int:'16 dB(A)',extras:['AI Auto Comfort Modus — analysiert Raumbedingungen und optimiert Betrieb automatisch','WindFree™ Technologie — Klimatisierung ohne unangenehme Luftzüge','Ultra-leiser Betrieb — ideal für Schlafzimmer und Nachtgebrauch','Erhältlich in Weiß und Schwarz — 7K bis 24K BTU Leistungsbereich']},
+    es:{garantia:'3 años Samsung',filtros:'Tri-Care Filter — prefiltro + filtro de partículas finas + filtro desodorizante',wifi:'Integrado de serie — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C a +50°C (exterior)',range_aquec:'-15°C a +24°C (exterior)',som_int:'16 dB(A)',extras:['Modo AI Auto Comfort — analiza condiciones y optimiza el funcionamiento automáticamente','Tecnología WindFree™ — climatización sin corrientes de aire incómodas','Operación ultra-silenciosa — ideal para dormitorios y uso nocturno','Disponible en blanco y negro — gama de 7K a 24K BTU']},
+    it:{garantia:'3 anni Samsung',filtros:'Tri-Care Filter — prefiltro + filtro particelle fini + filtro deodorante',wifi:'Integrato di serie — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C a +50°C (esterno)',range_aquec:'-15°C a +24°C (esterno)',som_int:'16 dB(A)',extras:['Modalità AI Auto Comfort — analizza le condizioni e ottimizza il funzionamento automaticamente','Tecnologia WindFree™ — climatizzazione senza correnti d\'aria scomode','Funzionamento ultra-silenzioso — ideale per camere da letto e uso notturno','Disponibile in bianco e nero — gamma da 7K a 24K BTU']},
+    nl:{garantia:'3 jaar Samsung',filtros:'Tri-Care Filter — voorfilter + fijnstoffilter + geurfilter',wifi:'Standaard ingebouwd — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C tot +50°C (buiten)',range_aquec:'-15°C tot +24°C (buiten)',som_int:'16 dB(A)',extras:['AI Auto Comfort modus — analyseert omstandigheden en optimaliseert werking automatisch','WindFree™ technologie — klimaatregeling zonder oncomfortabele luchtstroom','Ultra-stille werking — ideaal voor slaapkamers en nachtelijk gebruik','Beschikbaar in wit en zwart — 7K tot 24K BTU vermogensbereik']},
+  },
+  'WindFree Avant S2': {
+    en:{garantia:'3 years Samsung',filtros:'Tri-Care Filter + integrated antimicrobial filter',wifi:'Built-in as standard — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C to +50°C (outdoor)',range_aquec:'-15°C to +24°C (outdoor)',som_int:'21 dB(A)',extras:['WindFree™ S2 technology — homogeneous and comfortable airflow distribution','Auto Clean — automatic heat exchanger drying prevents bacteria and odours','Digital Inverter Boost — energy efficiency and rapid temperature response','Available in white and black']},
+    fr:{garantia:'3 ans Samsung',filtros:'Tri-Care Filter + filtre antimicrobien intégré',wifi:'Intégré de série — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C à +50°C (extérieur)',range_aquec:'-15°C à +24°C (extérieur)',som_int:'21 dB(A)',extras:['Technologie WindFree™ S2 — distribution homogène et confortable du flux d\'air','Auto Clean — séchage automatique de l\'échangeur prévient bactéries et odeurs','Digital Inverter Boost — efficacité énergétique et réponse rapide','Disponible en blanc et noir']},
+    de:{garantia:'3 Jahre Samsung',filtros:'Tri-Care Filter + integrierter antimikrobieller Filter',wifi:'Serienmäßig integriert — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C bis +50°C (außen)',range_aquec:'-15°C bis +24°C (außen)',som_int:'21 dB(A)',extras:['WindFree™ S2 Technologie — homogene und komfortable Luftstromverteilung','Auto Clean — automatische Wärmetauschertrocknung verhindert Bakterien und Gerüche','Digital Inverter Boost — Energieeffizienz und schnelle Temperaturreaktion','Erhältlich in Weiß und Schwarz']},
+    es:{garantia:'3 años Samsung',filtros:'Tri-Care Filter + filtro antimicrobiano integrado',wifi:'Integrado de serie — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C a +50°C (exterior)',range_aquec:'-15°C a +24°C (exterior)',som_int:'21 dB(A)',extras:['Tecnología WindFree™ S2 — distribución homogénea y confortable del flujo de aire','Auto Clean — secado automático del intercambiador previene bacterias y olores','Digital Inverter Boost — eficiencia energética y respuesta rápida','Disponible en blanco y negro']},
+    it:{garantia:'3 anni Samsung',filtros:'Tri-Care Filter + filtro antimicrobico integrato',wifi:'Integrato di serie — App SmartThings',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C a +50°C (esterno)',range_aquec:'-15°C a +24°C (esterno)',som_int:'21 dB(A)',extras:['Tecnologia WindFree™ S2 — distribuzione omogenea e confortevole del flusso d\'aria','Auto Clean — essiccazione automatica dello scambiatore previene batteri e odori','Digital Inverter Boost — efficienza energetica e risposta rapida alla temperatura','Disponibile in bianco e nero']},
+    nl:{garantia:'3 jaar Samsung',filtros:'Tri-Care Filter + geïntegreerd antimicrobieel filter',wifi:'Standaard ingebouwd — SmartThings App',voz:'Bixby, Amazon Alexa, Google Home',range_arref:'-10°C tot +50°C (buiten)',range_aquec:'-15°C tot +24°C (buiten)',som_int:'21 dB(A)',extras:['WindFree™ S2 technologie — homogene en comfortabele luchtstromingsverdeling','Auto Clean — automatisch drogen van warmtewisselaar voorkomt bacteriën en geuren','Digital Inverter Boost — energieëfficiëntie en snelle temperatuurrespons','Beschikbaar in wit en zwart']},
+  },
+  'WindFree Comfort S2': {
+    en:{garantia:'3 years Samsung',filtros:'Tri-Care Filter — 3 layers for better air quality',wifi:'Built-in as standard — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C to +46°C (outdoor)',range_aquec:'-15°C to +24°C (outdoor)',som_int:'21 dB(A)',extras:['WindFree™ technology — comfort without direct cold air currents at an accessible price','Fast Cooling mode — rapid cooling from corner to corner of the room','Silent operation — ideal for bedrooms and residential offices','Front-accessible filters for easy maintenance']},
+    fr:{garantia:'3 ans Samsung',filtros:'Tri-Care Filter — 3 couches pour une meilleure qualité d\'air',wifi:'Intégré de série — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C à +46°C (extérieur)',range_aquec:'-15°C à +24°C (extérieur)',som_int:'21 dB(A)',extras:['Technologie WindFree™ — confort sans courants d\'air froid à prix accessible','Mode Fast Cooling — refroidissement rapide de bout en bout de la pièce','Fonctionnement silencieux — idéal pour chambres et bureaux résidentiels','Filtres accessibles par l\'avant pour un entretien facile']},
+    de:{garantia:'3 Jahre Samsung',filtros:'Tri-Care Filter — 3 Schichten für bessere Luftqualität',wifi:'Serienmäßig integriert — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C bis +46°C (außen)',range_aquec:'-15°C bis +24°C (außen)',som_int:'21 dB(A)',extras:['WindFree™ Technologie — Komfort ohne direkte Kältezüge zu einem erschwinglichen Preis','Fast Cooling Modus — schnelle Kühlung von Ecke zu Ecke des Raums','Leiser Betrieb — ideal für Schlafzimmer und Heimbüros','Von vorne zugängliche Filter für einfache Wartung']},
+    es:{garantia:'3 años Samsung',filtros:'Tri-Care Filter — 3 capas para mejor calidad del aire',wifi:'Integrado de serie — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C a +46°C (exterior)',range_aquec:'-15°C a +24°C (exterior)',som_int:'21 dB(A)',extras:['Tecnología WindFree™ — confort sin corrientes de aire frío a precio accesible','Modo Fast Cooling — refrigeración rápida de esquina a esquina de la habitación','Operación silenciosa — ideal para dormitorios y oficinas residenciales','Filtros accesibles por la parte frontal para mantenimiento fácil']},
+    it:{garantia:'3 anni Samsung',filtros:'Tri-Care Filter — 3 strati per una migliore qualità dell\'aria',wifi:'Integrato di serie — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C a +46°C (esterno)',range_aquec:'-15°C a +24°C (esterno)',som_int:'21 dB(A)',extras:['Tecnologia WindFree™ — comfort senza correnti d\'aria fredda a prezzo accessibile','Modalità Fast Cooling — raffreddamento rapido da angolo ad angolo dell\'ambiente','Funzionamento silenzioso — ideale per camere da letto e uffici residenziali','Filtri accessibili frontalmente per manutenzione semplice']},
+    nl:{garantia:'3 jaar Samsung',filtros:'Tri-Care Filter — 3 lagen voor betere luchtkwaliteit',wifi:'Standaard ingebouwd — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C tot +46°C (buiten)',range_aquec:'-15°C tot +24°C (buiten)',som_int:'21 dB(A)',extras:['WindFree™ technologie — comfort zonder directe koude tochtvlagen voor een toegankelijke prijs','Fast Cooling modus — snelle koeling van hoek tot hoek van de kamer','Stille werking — ideaal voor slaapkamers en thuiskantoren','Frontaal toegankelijke filters voor eenvoudig onderhoud']},
+  },
+  'Cebu S2': {
+    en:{garantia:'3 years Samsung',filtros:'Easy Filter Plus — front access and easy cleaning',wifi:'Built-in as standard — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C to +46°C (outdoor)',range_aquec:'-15°C to +24°C (outdoor)',som_int:'21 dB(A)',extras:['Auto Clean — automatically keeps the interior clean and dry','Ultra-quiet operation — designed to minimise operational noise','Wide power range — 7K to 24K BTU for any space','Class A++ with high reliability and proven durability']},
+    fr:{garantia:'3 ans Samsung',filtros:'Easy Filter Plus — accès frontal et nettoyage facile',wifi:'Intégré de série — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C à +46°C (extérieur)',range_aquec:'-15°C à +24°C (extérieur)',som_int:'21 dB(A)',extras:['Auto Clean — maintient automatiquement l\'intérieur propre et sec','Fonctionnement ultra-silencieux — conçu pour minimiser le bruit opérationnel','Large gamme de puissances — 7K à 24K BTU pour tout espace','Classe A++ avec haute fiabilité et durabilité prouvées']},
+    de:{garantia:'3 Jahre Samsung',filtros:'Easy Filter Plus — Frontzugang und einfache Reinigung',wifi:'Serienmäßig integriert — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C bis +46°C (außen)',range_aquec:'-15°C bis +24°C (außen)',som_int:'21 dB(A)',extras:['Auto Clean — hält das Innere automatisch sauber und trocken','Ultra-leiser Betrieb — entwickelt um den Betriebslärm zu minimieren','Breites Leistungsspektrum — 7K bis 24K BTU für jeden Raum','Klasse A++ mit hoher Zuverlässigkeit und bewährter Langlebigkeit']},
+    es:{garantia:'3 años Samsung',filtros:'Easy Filter Plus — acceso frontal y limpieza fácil',wifi:'Integrado de serie — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C a +46°C (exterior)',range_aquec:'-15°C a +24°C (exterior)',som_int:'21 dB(A)',extras:['Auto Clean — mantiene automáticamente el interior limpio y seco','Funcionamiento ultra-silencioso — diseñado para minimizar el ruido operacional','Amplia gama de potencias — 7K a 24K BTU para cualquier espacio','Clase A++ con alta fiabilidad y durabilidad demostradas']},
+    it:{garantia:'3 anni Samsung',filtros:'Easy Filter Plus — accesso frontale e pulizia facile',wifi:'Integrato di serie — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C a +46°C (esterno)',range_aquec:'-15°C a +24°C (esterno)',som_int:'21 dB(A)',extras:['Auto Clean — mantiene automaticamente l\'interno pulito e asciutto','Funzionamento ultra-silenzioso — progettato per minimizzare il rumore operativo','Ampia gamma di potenze — da 7K a 24K BTU per qualsiasi spazio','Classe A++ con alta affidabilità e durata comprovata']},
+    nl:{garantia:'3 jaar Samsung',filtros:'Easy Filter Plus — frontale toegang en eenvoudig reinigen',wifi:'Standaard ingebouwd — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C tot +46°C (buiten)',range_aquec:'-15°C tot +24°C (buiten)',som_int:'21 dB(A)',extras:['Auto Clean — houdt het interieur automatisch schoon en droog','Ultra-stille werking — ontworpen om operationeel geluid te minimaliseren','Breed vermogensbereik — 7K tot 24K BTU voor elke ruimte','Klasse A++ met hoge betrouwbaarheid en bewezen duurzaamheid']},
+  },
+  'AR35 Wi-Fi': {
+    en:{garantia:'3 years Samsung',filtros:'Easy-clean filter — front access',wifi:'Built-in as standard — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C to +46°C (outdoor)',range_aquec:'-15°C to +24°C (outdoor)',som_int:'24 dB(A)',extras:['Built-in WiFi as standard — full control via SmartThings','Turbo mode — rapid cooling and heating','Sleep mode — temperature automatically adjusted during the night','Auto-restart after power cut']},
+    fr:{garantia:'3 ans Samsung',filtros:'Filtre facile à nettoyer — accès frontal',wifi:'Intégré de série — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C à +46°C (extérieur)',range_aquec:'-15°C à +24°C (extérieur)',som_int:'24 dB(A)',extras:['WiFi intégré de série — contrôle total via SmartThings','Mode Turbo — refroidissement et chauffage rapides','Mode Nuit — température ajustée automatiquement pendant la nuit','Redémarrage automatique après coupure de courant']},
+    de:{garantia:'3 Jahre Samsung',filtros:'Leicht zu reinigender Filter — Frontzugang',wifi:'Serienmäßig integriert — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C bis +46°C (außen)',range_aquec:'-15°C bis +24°C (außen)',som_int:'24 dB(A)',extras:['Serienmäßiges WLAN — vollständige Steuerung über SmartThings','Turbo-Modus — schnelles Kühlen und Heizen','Schlafmodus — Temperatur wird nachts automatisch angepasst','Automatischer Neustart nach Stromausfall']},
+    es:{garantia:'3 años Samsung',filtros:'Filtro de fácil limpieza — acceso frontal',wifi:'Integrado de serie — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C a +46°C (exterior)',range_aquec:'-15°C a +24°C (exterior)',som_int:'24 dB(A)',extras:['WiFi integrado de serie — control total via SmartThings','Modo Turbo — refrigeración y calefacción rápidas','Modo Sueño — temperatura ajustada automáticamente durante la noche','Reinicio automático tras corte de corriente']},
+    it:{garantia:'3 anni Samsung',filtros:'Filtro di facile pulizia — accesso frontale',wifi:'Integrato di serie — App SmartThings',voz:'Amazon Alexa, Google Home',range_arref:'-10°C a +46°C (esterno)',range_aquec:'-15°C a +24°C (esterno)',som_int:'24 dB(A)',extras:['WiFi integrato di serie — controllo totale via SmartThings','Modalità Turbo — raffreddamento e riscaldamento rapidi','Modalità Sonno — temperatura regolata automaticamente durante la notte','Riavvio automatico dopo interruzione di corrente']},
+    nl:{garantia:'3 jaar Samsung',filtros:'Eenvoudig te reinigen filter — frontale toegang',wifi:'Standaard ingebouwd — SmartThings App',voz:'Amazon Alexa, Google Home',range_arref:'-10°C tot +46°C (buiten)',range_aquec:'-15°C tot +24°C (buiten)',som_int:'24 dB(A)',extras:['Standaard ingebouwde WiFi — volledige bediening via SmartThings','Turbomodus — snel koelen en verwarmen','Slaapstand — temperatuur automatisch aangepast \'s nachts','Automatisch herstarten na stroomonderbreking']},
   },
 };
 
@@ -2238,8 +2367,9 @@ const _FEATS_FALLBACK = {pt:['✓ Tecnologia inverter de alta eficiência','✓ 
 const _PITCH_FALLBACK = {pt:'Equipamento de climatização inverter de alta eficiência com garantia de qualidade.',en:'High-efficiency inverter air conditioning with quality guarantee.',fr:'Climatiseur inverter haute efficacité avec garantie de qualité.',de:'Hocheffiziente Inverter-Klimaanlage mit Qualitätsgarantie.',es:'Aire acondicionado inverter de alta eficiencia con garantía de calidad.',it:'Climatizzatore inverter ad alta efficienza con garanzia di qualità.',nl:'Hoogefficiënte inverter-airconditioning met kwaliteitsgarantie.'};
 
 function _normSeries(s) {
-  // 'Confora — Mural' → 'Confora', 'Stylish — Branco' → 'Stylish', etc.
-  return s ? s.split(' — ')[0].trim() : s;
+  // 'Confora — Mural' → 'Confora', 'WindFree Première+ Preto — FJM' → 'WindFree Première+', etc.
+  if (!s) return s;
+  return s.split(' — ')[0].trim().replace(/ (Preto|Branco)$/, '');
 }
 
 function getPitch(series, lang='pt') {
