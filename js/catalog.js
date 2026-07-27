@@ -770,6 +770,7 @@ function seriesCardHTML(group) {
         </div>` : ''}
         <div class="series-card__footer">
           <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
+          <button class="sc-compare-btn" data-sk="${sk}">+ Comparar</button>
         </div>
       </div>
     </article>`;
@@ -923,6 +924,150 @@ function modalHTML(p) {
   let activeBrand = 'all';
   let activeBtu   = 'all';
 
+  /* ---- Compare state ---- */
+  const compareItems = []; // { group, btuidx }
+
+  function syncCompareButtons() {
+    grid.querySelectorAll('.sc-compare-btn').forEach(btn => {
+      const inList = compareItems.some(i => seriesKey(i.group[0]) === btn.dataset.sk);
+      btn.classList.toggle('active', inList);
+      btn.textContent = inList ? '✓ Adicionado' : '+ Comparar';
+      btn.disabled = !inList && compareItems.length >= 4;
+    });
+  }
+
+  function addToCompare(sk) {
+    if (compareItems.some(i => seriesKey(i.group[0]) === sk)) return;
+    if (compareItems.length >= 4) return;
+    const group = allGroups.find(g => seriesKey(g[0]) === sk);
+    if (!group) return;
+    const detailBtn = grid.querySelector(`.sc-detail-btn[data-sk="${sk}"]`);
+    const btuidx = detailBtn ? parseInt(detailBtn.dataset.idx, 10) : 0;
+    compareItems.push({ group, btuidx });
+    syncCompareButtons();
+    renderCompareBar();
+  }
+
+  function removeFromCompare(sk) {
+    const idx = compareItems.findIndex(i => seriesKey(i.group[0]) === sk);
+    if (idx !== -1) compareItems.splice(idx, 1);
+    syncCompareButtons();
+    renderCompareBar();
+  }
+
+  function renderCompareBar() {
+    const bar = document.getElementById('compareBar');
+    if (!bar) return;
+    const count = compareItems.length;
+    if (count === 0) { bar.classList.remove('visible'); return; }
+    bar.classList.add('visible');
+    const thumbs = compareItems.map(item => {
+      const p = item.group[item.btuidx];
+      const sk = seriesKey(p);
+      return `<div class="cbar__thumb">
+        <img src="${p.image}" alt="${p.series}" onerror="this.style.display='none'">
+        <button class="cbar__thumb-remove" data-sk="${sk}" aria-label="Remover">✕</button>
+      </div>`;
+    }).join('');
+    bar.innerHTML = `<div class="cbar__inner container">
+      <div class="cbar__thumbs">${thumbs}</div>
+      <div class="cbar__actions">
+        <span class="cbar__count">${count}/4 selecionados</span>
+        <button class="btn btn--primary btn--sm" id="openCmpBtn"${count < 2 ? ' disabled' : ''}>Comparar →</button>
+        <button class="cbar__clear">Limpar</button>
+      </div>
+    </div>`;
+    bar.querySelectorAll('.cbar__thumb-remove').forEach(b =>
+      b.addEventListener('click', e => { e.stopPropagation(); removeFromCompare(b.dataset.sk); })
+    );
+    bar.querySelector('#openCmpBtn')?.addEventListener('click', openFullCompare);
+    bar.querySelector('.cbar__clear')?.addEventListener('click', () => {
+      compareItems.length = 0;
+      syncCompareButtons();
+      renderCompareBar();
+    });
+  }
+
+  /* ---- Full Compare Modal ---- */
+  function openFullCompare() {
+    const cfm = document.getElementById('compareFullModal');
+    if (!cfm) return;
+    renderCompareTable();
+    cfm.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeFullCompare() {
+    const cfm = document.getElementById('compareFullModal');
+    if (!cfm) return;
+    cfm.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderCompareTable() {
+    const cfm = document.getElementById('compareFullModal');
+    if (!cfm) return;
+    const items = compareItems;
+
+    const headerCols = items.map(item => {
+      const p = item.group[item.btuidx];
+      const sk = seriesKey(p);
+      return `<th>
+        <div class="cmp-col-hdr">
+          <div class="cmp-col-img"><img src="${p.image}" alt="${p.series}" onerror="this.style.display='none'"></div>
+          <div class="cmp-col-name">${BRAND_LABEL[p.brand]}<br><strong>${p.series}</strong></div>
+          <button class="cmp-col-remove" data-sk="${sk}" aria-label="Remover">✕</button>
+        </div>
+      </th>`;
+    }).join('');
+
+    const specRows = [
+      { label: 'Modelo / Potência', fn: (p, item) => {
+        const sk = seriesKey(p);
+        const opts = item.group.map((g, i) =>
+          `<option value="${i}"${i === item.btuidx ? ' selected' : ''}>${btuLabel(g.btu)} — ${g.model}</option>`
+        ).join('');
+        return `<select class="cmp-btu-sel" data-sk="${sk}">${opts}</select>`;
+      }},
+      { label: 'Potência',              fn: p => `${p.btu.toLocaleString('pt-PT')} BTU · ${p.kw} kW` },
+      { label: 'Classe energética (arref.)', fn: p => energyBadge(p.energyCool) },
+      { label: 'Classe energética (aquec.)', fn: p => energyBadge(p.energyHeat) },
+      { label: 'Ruído interior',        fn: p => `${p.noiseIn} dB(A)` },
+      { label: 'Ruído exterior',        fn: p => `${p.noiseOut} dB(A)` },
+      { label: 'Tecnologia',            fn: p => p.tech.join('<br>') },
+      { label: 'Características',       fn: p => p.features.map(f => `• ${f}`).join('<br>') },
+    ];
+
+    const rows = specRows.map(row => {
+      const cells = items.map(item => `<td>${row.fn(item.group[item.btuidx], item)}</td>`).join('');
+      return `<tr><th class="cmp-row-label">${row.label}</th>${cells}</tr>`;
+    }).join('');
+
+    const ctaRow = `<tr class="cmp-cta-row"><th></th>${items.map(() =>
+      `<td><a href="index.html#contacto" class="btn btn--primary btn--sm">Pedir orçamento →</a></td>`
+    ).join('')}</tr>`;
+
+    cfm.querySelector('.cfm-table-wrap').innerHTML = `
+      <table class="cfm-table">
+        <thead><tr><th></th>${headerCols}</tr></thead>
+        <tbody>${rows}${ctaRow}</tbody>
+      </table>`;
+
+    cfm.querySelectorAll('.cmp-btu-sel').forEach(sel => {
+      sel.addEventListener('change', () => {
+        const item = compareItems.find(i => seriesKey(i.group[0]) === sel.dataset.sk);
+        if (item) { item.btuidx = parseInt(sel.value); renderCompareTable(); }
+      });
+    });
+    cfm.querySelectorAll('.cmp-col-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        removeFromCompare(btn.dataset.sk);
+        if (compareItems.length === 0) closeFullCompare();
+        else renderCompareTable();
+      });
+    });
+  }
+
   /* ---- Render ---- */
   function render() {
     const filtered = allGroups.filter(group => {
@@ -936,10 +1081,21 @@ function modalHTML(p) {
       return;
     }
     grid.innerHTML = filtered.map(seriesCardHTML).join('');
+    syncCompareButtons();
   }
 
   /* ---- Card interactions (event delegation) ---- */
   grid.addEventListener('click', e => {
+    /* Compare button */
+    const cmpBtn = e.target.closest('.sc-compare-btn');
+    if (cmpBtn) {
+      e.stopPropagation();
+      const sk = cmpBtn.dataset.sk;
+      if (compareItems.some(i => seriesKey(i.group[0]) === sk)) removeFromCompare(sk);
+      else addToCompare(sk);
+      return;
+    }
+
     /* BTU pill */
     const pill = e.target.closest('.btu-pill');
     if (pill) {
@@ -1165,6 +1321,13 @@ function modalHTML(p) {
   }
   compareModal.querySelector('.cmp-overlay').addEventListener('click', closeCompareModal);
   compareModal.querySelector('.cmp-close').addEventListener('click', closeCompareModal);
+
+  /* ---- Full Compare Modal wiring ---- */
+  const compareFullModal = document.getElementById('compareFullModal');
+  if (compareFullModal) {
+    compareFullModal.querySelector('.cfm-overlay').addEventListener('click', closeFullCompare);
+    compareFullModal.querySelector('.cfm-close').addEventListener('click', closeFullCompare);
+  }
 
   /* ---- Init ---- */
   render();
