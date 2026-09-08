@@ -173,6 +173,23 @@ const TRANSLATIONS = {
     'Horário': 'Hours',
     'Segunda a Sexta:': 'Monday to Friday:',
 
+    // ── COVERAGE ──
+    'Onde trabalhamos': 'Where We Work',
+    'Área de Serviço': 'Service Area',
+    'Prestamos serviço em todo o Algarve Oriental e Central, com deslocação rápida às seguintes localidades:': 'We serve the entire Eastern and Central Algarve, with rapid response to the following areas:',
+    'Fora destas localidades?': 'Outside these areas?',
+    'Contacte-nos': 'Contact us',
+    '— cada projeto é analisado individualmente.': '— each project is assessed individually.',
+
+    // ── CALCULADORA ──
+    'Ver Poupança no AC': 'See AC Savings',
+    'Ver Poupança no AC →': 'See AC Savings →',
+    '⚡ Ver Poupança no AC →': '⚡ See AC Savings →',
+    'Substitua e poupe em energia': 'Replace and save on energy',
+
+    // ── RECRUTAMENTO ──
+    'Recrutamento': 'Recruitment',
+
     // ── FOOTER ──
     'Todos os direitos reservados': 'All rights reserved',
     'Política de Privacidade': 'Privacy Policy',
@@ -181,6 +198,7 @@ const TRANSLATIONS = {
     'Livro de Reclamações': 'Complaints Book',
     'Certif. EIC nº GF-0879': 'EIC Certif. No. GF-0879',
     '© 2025 ARTICOCLIMA · Todos os direitos reservados': '© 2025 ARTICOCLIMA · All rights reserved',
+    '© 2026 ARTICOCLIMA · Todos os direitos reservados': '© 2026 ARTICOCLIMA · All rights reserved',
     'Perguntas Frequentes': 'Frequently Asked Questions',
 
     // ── FORM ──
@@ -503,6 +521,23 @@ const TRANSLATIONS = {
     'Horário': 'Horaires',
     'Segunda a Sexta:': 'Lundi au Vendredi :',
 
+    // ── COVERAGE ──
+    'Onde trabalhamos': 'Où Nous Travaillons',
+    'Área de Serviço': 'Zone de Service',
+    'Prestamos serviço em todo o Algarve Oriental e Central, com deslocação rápida às seguintes localidades:': 'Nous intervenons dans tout l\'Algarve Oriental et Central, avec déplacement rapide vers les localités suivantes :',
+    'Fora destas localidades?': 'En dehors de ces localités ?',
+    'Contacte-nos': 'Contactez-nous',
+    '— cada projeto é analisado individualmente.': '— chaque projet est analysé individuellement.',
+
+    // ── CALCULADORA ──
+    'Ver Poupança no AC': 'Voir les Économies AC',
+    'Ver Poupança no AC →': 'Voir les Économies AC →',
+    '⚡ Ver Poupança no AC →': '⚡ Voir les Économies AC →',
+    'Substitua e poupe em energia': 'Remplacez et économisez sur l\'énergie',
+
+    // ── RECRUTAMENTO ──
+    'Recrutamento': 'Recrutement',
+
     // ── FOOTER ──
     'Todos os direitos reservados': 'Tous droits réservés',
     'Política de Privacidade': 'Politique de Confidentialité',
@@ -511,6 +546,7 @@ const TRANSLATIONS = {
     'Livro de Reclamações': 'Livre de Réclamations',
     'Certif. EIC nº GF-0879': 'Certif. EIC N° GF-0879',
     '© 2025 ARTICOCLIMA · Todos os direitos reservados': '© 2025 ARTICOCLIMA · Tous droits réservés',
+    '© 2026 ARTICOCLIMA · Todos os direitos reservados': '© 2026 ARTICOCLIMA · Tous droits réservés',
     'Perguntas Frequentes': 'Questions Fréquentes',
 
     // ── FORM ──
@@ -831,6 +867,23 @@ const TRANSLATIONS = {
     'Horário': 'Horario',
     'Segunda a Sexta:': 'Lunes a Viernes:',
 
+    // ── COVERAGE ──
+    'Onde trabalhamos': 'Dónde Trabajamos',
+    'Área de Serviço': 'Área de Servicio',
+    'Prestamos serviço em todo o Algarve Oriental e Central, com deslocação rápida às seguintes localidades:': 'Prestamos servicio en todo el Algarve Oriental y Central, con desplazamiento rápido a las siguientes localidades:',
+    'Fora destas localidades?': '¿Fuera de estas localidades?',
+    'Contacte-nos': 'Contáctenos',
+    '— cada projeto é analisado individualmente.': '— cada proyecto se analiza individualmente.',
+
+    // ── CALCULADORA ──
+    'Ver Poupança no AC': 'Ver Ahorro en AC',
+    'Ver Poupança no AC →': 'Ver Ahorro en AC →',
+    '⚡ Ver Poupança no AC →': '⚡ Ver Ahorro en AC →',
+    'Substitua e poupe em energia': 'Sustituya y ahorre en energía',
+
+    // ── RECRUTAMENTO ──
+    'Recrutamento': 'Empleo',
+
     // ── FOOTER ──
     'Todos os direitos reservados': 'Todos los derechos reservados',
     'Política de Privacidade': 'Política de Privacidad',
@@ -839,6 +892,7 @@ const TRANSLATIONS = {
     'Livro de Reclamações': 'Libro de Reclamaciones',
     'Certif. EIC nº GF-0879': 'Certif. EIC N.º GF-0879',
     '© 2025 ARTICOCLIMA · Todos os direitos reservados': '© 2025 ARTICOCLIMA · Todos los derechos reservados',
+    '© 2026 ARTICOCLIMA · Todos os direitos reservados': '© 2026 ARTICOCLIMA · Todos los derechos reservados',
     'Perguntas Frequentes': 'Preguntas Frecuentes',
 
     // ── FORM ──
@@ -1159,6 +1213,23 @@ const TRANSLATIONS = {
     'Horário': 'Öffnungszeiten',
     'Segunda a Sexta:': 'Montag bis Freitag:',
 
+    // ── COVERAGE ──
+    'Onde trabalhamos': 'Wo Wir Arbeiten',
+    'Área de Serviço': 'Servicegebiet',
+    'Prestamos serviço em todo o Algarve Oriental e Central, com deslocação rápida às seguintes localidades:': 'Wir sind im gesamten östlichen und zentralen Algarve tätig, mit schnellem Einsatz in folgenden Orten:',
+    'Fora destas localidades?': 'Außerhalb dieser Orte?',
+    'Contacte-nos': 'Kontaktieren Sie uns',
+    '— cada projeto é analisado individualmente.': '— jedes Projekt wird individuell bewertet.',
+
+    // ── CALCULADORA ──
+    'Ver Poupança no AC': 'AC-Einsparungen ansehen',
+    'Ver Poupança no AC →': 'AC-Einsparungen ansehen →',
+    '⚡ Ver Poupança no AC →': '⚡ AC-Einsparungen ansehen →',
+    'Substitua e poupe em energia': 'Ersetzen und Energie sparen',
+
+    // ── RECRUTAMENTO ──
+    'Recrutamento': 'Stellenangebote',
+
     // ── FOOTER ──
     'Todos os direitos reservados': 'Alle Rechte vorbehalten',
     'Política de Privacidade': 'Datenschutzrichtlinie',
@@ -1167,6 +1238,7 @@ const TRANSLATIONS = {
     'Livro de Reclamações': 'Beschwerdebuch',
     'Certif. EIC nº GF-0879': 'EIC-Zertif. Nr. GF-0879',
     '© 2025 ARTICOCLIMA · Todos os direitos reservados': '© 2025 ARTICOCLIMA · Alle Rechte vorbehalten',
+    '© 2026 ARTICOCLIMA · Todos os direitos reservados': '© 2026 ARTICOCLIMA · Alle Rechte vorbehalten',
     'Perguntas Frequentes': 'Häufige Fragen',
 
     // ── FORM ──
