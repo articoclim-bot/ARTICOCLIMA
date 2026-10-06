@@ -212,7 +212,6 @@ const BOSCH_MONO = {
 
 // --- BOSCH — Multisplit Interior (Climate 3200i Mural, c/ IVA) ---
 const BOSCH_MULTI_INDOOR = [
-  { btu: 7000,  kw: 2.1, model: 'CL3200i 20E', pvp: 258 },
   { btu: 9000,  kw: 2.6, model: 'CL3200i 26E', pvp: 271 },
   { btu: 12000, kw: 3.5, model: 'CL3200i 35E', pvp: 308 },
   { btu: 18000, kw: 5.3, model: 'CL3200i 53E', pvp: 381 },
@@ -454,6 +453,12 @@ function calcBTU(room) {
 
 function btuToTier(calculatedBTU) {
   return BTU_TIERS.find(t => t >= calculatedBTU) || 28000;
+}
+
+// Bosch and Daitsu don't sell 7k BTU units; bump small rooms to 9k for these brands.
+function clampTierForBrand(tier, brand) {
+  if (tier < 9000 && (brand === 'bosch' || brand === 'daitsu')) return 9000;
+  return tier;
 }
 
 function btuLabel(btu) {
@@ -712,7 +717,7 @@ function calcBestForcedMulti(brand, rooms) {
   const validRooms = rooms.filter(r => parseFloat(r.areaM2) > 0);
   if (validRooms.length < 2) return null;
 
-  const roomsWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard' }));
+  const roomsWT = validRooms.map(r => ({ ...r, tier: clampTierForBrand(btuToTier(calcBTU(r)), brand), useMulti: true, multiType: 'standard' }));
 
   // Daikin: tentar Sensira Multi primeiro se tudo ≤ 12k e 2-3 divisões
   if (brand === 'daikin' && roomsWT.length <= 3 && roomsWT.every(r => r.tier <= 12000)) {
@@ -732,7 +737,7 @@ function calcSystemConfig(brand, rooms) {
   if (!validRooms.length) return null;
 
   const roomsWithTier = validRooms.map(r => ({
-    ...r, tier: btuToTier(calcBTU(r))
+    ...r, tier: clampTierForBrand(btuToTier(calcBTU(r)), brand)
   }));
 
   const result = {
@@ -806,7 +811,7 @@ function calcAltBrandConfig(brand, rooms) {
   const validRooms = rooms.filter(r => parseFloat(r.areaM2) > 0);
   if (!validRooms.length) return null;
 
-  const roomsWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true }));
+  const roomsWT = validRooms.map(r => ({ ...r, tier: clampTierForBrand(btuToTier(calcBTU(r)), brand), useMulti: true }));
 
   if (roomsWT.length === 1) {
     const room = roomsWT[0];
@@ -997,7 +1002,7 @@ function renderRooms() {
 }
 
 function renderRoomHTML(room) {
-  const tier = room.areaM2 ? btuToTier(calcBTU(room)) : 0;
+  const tier = room.areaM2 ? clampTierForBrand(btuToTier(calcBTU(room)), state.brand) : 0;
   const hasData = parseFloat(room.areaM2) > 0;
   const multiCount = state.rooms.filter(r => r.useMulti).length;
   const isMulti = multiCount >= 2 && room.useMulti;
@@ -1107,7 +1112,7 @@ function renderRoomForm(room) {
 }
 
 function renderRoomModelCard(room) {
-  const tier = room.areaM2 ? btuToTier(calcBTU(room)) : 0;
+  const tier = room.areaM2 ? clampTierForBrand(btuToTier(calcBTU(room)), state.brand) : 0;
   const hasData = parseFloat(room.areaM2) > 0 && tier > 0;
   const multiCount = state.rooms.filter(r => r.useMulti).length;
   const isMulti = multiCount >= 2 && room.useMulti;
@@ -1195,7 +1200,7 @@ function renderRoomModelCard(room) {
 function updateRoomHeader(id) {
   const room = state.rooms.find(r => r.id === id);
   if (!room) return;
-  const tier = room.areaM2 ? btuToTier(calcBTU(room)) : 0;
+  const tier = room.areaM2 ? clampTierForBrand(btuToTier(calcBTU(room)), state.brand) : 0;
   const hasData = parseFloat(room.areaM2) > 0 && tier > 0;
   const isMulti = state.rooms.length > 1 && room.useMulti;
 
@@ -1251,7 +1256,7 @@ function openModelPicker(roomId) {
   state.pickerColors = {};
   state.pickerColors[roomId] = room.color || 'white';
 
-  const tier = btuToTier(calcBTU(room));
+  const tier = clampTierForBrand(btuToTier(calcBTU(room)), state.brand);
   const el = document.getElementById('smp-overlay');
   const titleEl = document.getElementById('smp-title');
   const subEl = document.getElementById('smp-sub');
@@ -1276,7 +1281,7 @@ function calcOptionSystemTotal(room, tier, optionType, seriesKey) {
 
   if (optionType === 'sensira_multi' || optionType === 'multi') {
     // Todas as divisões em multisplit com FTXM (standard) ou CTXF (sensira)
-    const allWT = validRooms.map(r => ({ ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard', multiTypeExplicit: true }));
+    const allWT = validRooms.map(r => ({ ...r, tier: clampTierForBrand(btuToTier(calcBTU(r)), brand), useMulti: true, multiType: 'standard', multiTypeExplicit: true }));
     let result = null;
     if (optionType === 'sensira_multi') result = calcSensiraMulti(allWT);
     if (!result) result = calcBrandMulti(brand, allWT);
@@ -1321,11 +1326,11 @@ function calcOptionSystemTotal(room, tier, optionType, seriesKey) {
 
   // Outras divisões: separar as que estão em mono das que estão em multi
   const otherMono = otherRooms.filter(r => !r.useMulti);
-  const otherMulti = otherRooms.filter(r => r.useMulti).map(r => ({ ...r, tier: btuToTier(calcBTU(r)) }));
+  const otherMulti = otherRooms.filter(r => r.useMulti).map(r => ({ ...r, tier: clampTierForBrand(btuToTier(calcBTU(r)), brand) }));
 
   let otherCost = 0;
   otherMono.forEach(r => {
-    const t = btuToTier(calcBTU(r));
+    const t = clampTierForBrand(btuToTier(calcBTU(r)), brand);
     const sk = r.series || getCheapestMonoSeries(brand, t);
     otherCost += getMonoPrice(brand, sk, t, state.pickerColors[r.id] || 'white');
   });
@@ -1610,7 +1615,7 @@ function setPickerColor(roomId, seriesKey, color, btnEl) {
   if (state.rooms.length > 1) {
     const room = state.rooms.find(r => r.id === roomId);
     if (room) {
-      const tier = btuToTier(calcBTU(room));
+      const tier = clampTierForBrand(btuToTier(calcBTU(room)), state.brand);
       const gridEl = document.getElementById('smp-grid');
       if (gridEl) gridEl.innerHTML = buildPickerCards(room, tier);
     }
@@ -1625,7 +1630,7 @@ function setPickerColor(roomId, seriesKey, color, btnEl) {
   // Update price in card
   const room = state.rooms.find(r => r.id === roomId);
   if (!room) return;
-  const tier = btuToTier(calcBTU(room));
+  const tier = clampTierForBrand(btuToTier(calcBTU(room)), state.brand);
   const catalog = getBrandCatalog(state.brand);
   const series = catalog[seriesKey];
   if (series && series.colorPrices && card) {
@@ -1797,7 +1802,7 @@ function calcCheapestMonoAlt(brand, rooms) {
   const roomResults = [];
   let total = 0;
   rooms.forEach(r => {
-    const tier = btuToTier(calcBTU(r));
+    const tier = clampTierForBrand(btuToTier(calcBTU(r)), brand);
     let seriesKey = null;
     // P1: user escolheu individual explicitamente
     if (!r.useMulti && r.series && catalog[r.series]) {
@@ -1829,7 +1834,7 @@ function calcCheapestMultiAlt(brand, rooms) {
   const validRooms = rooms.filter(r => parseFloat(r.areaM2) > 0);
   if (validRooms.length < 2) return null;
   const roomsWT = validRooms.map(r => ({
-    ...r, tier: btuToTier(calcBTU(r)), useMulti: true, multiType: 'standard', multiTypeExplicit: true,
+    ...r, tier: clampTierForBrand(btuToTier(calcBTU(r)), brand), useMulti: true, multiType: 'standard', multiTypeExplicit: true,
   }));
   // Tentar Sensira primeiro (mais barato, Daikin 2-3 zonas todas ≤12k)
   if (brand === 'daikin' && roomsWT.length >= 2 && roomsWT.length <= 3) {
@@ -2272,7 +2277,7 @@ function buildQuoteText(data) {
 
   const validRooms = state.rooms.filter(r => parseFloat(r.areaM2) > 0);
   validRooms.forEach(room => {
-    const tier = btuToTier(calcBTU(room));
+    const tier = clampTierForBrand(btuToTier(calcBTU(room)), state.brand);
     const isMulti = state.rooms.length > 1 && room.useMulti;
     let modelDesc = '';
     if (isMulti) {
