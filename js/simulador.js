@@ -1467,7 +1467,7 @@ function buildPickerCards(room, tier) {
           price: stdu.pvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected: isStdSelected,
-          specInfo: getSeriesDescriptors(state.brand, getSeriesCatalogKey(state.brand, stdu.model)),
+          specInfo: getSeriesDescriptors(state.brand, getSeriesCatalogKey(state.brand, stdu.model), true),
         });
       } else if (opt.type === 'stylish_multi') {
         const su = opt.unit;
@@ -1515,7 +1515,7 @@ function buildPickerCards(room, tier) {
           price: u6.pvp,
           priceNote: `${t('Unidade interior · sistema total: ')}${fmtPrice(sysTotal)}`,
           diff, isSelected,
-          specInfo: getSeriesDescriptors('bosch', '6000i'),
+          specInfo: getSeriesDescriptors('bosch', '6000i', true),
         });
       }
     });
@@ -1992,12 +1992,18 @@ function getSeriesCatalogKey(brand, model) {
 // Termos base presentes em quase todos os equipamentos (Inverter, R-32) — não ajudam
 // a diferenciar modelos, por isso ficam de fora dos destaques mostrados ao cliente.
 const GENERIC_FEATURES = new Set(['Inverter', 'R-32', 'R32']);
+// Features only present in monosplit kits — not available on multisplit indoor units.
+const MONO_ONLY_FEATURES = new Set(['Auto-limpeza iClean']);
 
-function getSeriesDescriptors(brand, key) {
+function getSeriesDescriptors(brand, key, isMulti = false) {
   const catalog = getBrandCatalog(brand);
   const series = key && catalog[key];
   if (!series) return null;
-  const distinctFeatures = (series.features || []).filter(f => !GENERIC_FEATURES.has(f));
+  const distinctFeatures = (series.features || []).filter(f => {
+    if (GENERIC_FEATURES.has(f)) return false;
+    if (isMulti && MONO_ONLY_FEATURES.has(f)) return false;
+    return true;
+  });
   return {
     energyCool: series.energyCool || '',
     energyHeat: series.energyHeat || '',
@@ -2074,7 +2080,7 @@ function buildResultsHTML(config, monoAlt, cheapMultiAlt) {
       img = 'assets/products/daitsu-artic-plus-1.webp';
     }
     const multiBadge = unit.model.startsWith('CTXF') ? t('Multisplit Budget') : t('Multisplit');
-    const specInfoHtml = buildSpecInfoHTML(getSeriesDescriptors(state.brand, getSeriesCatalogKey(state.brand, unit.model)));
+    const specInfoHtml = buildSpecInfoHTML(getSeriesDescriptors(state.brand, getSeriesCatalogKey(state.brand, unit.model), true));
     rowsHtml += `
 <div class="sim-res-row">
   <img src="${img}" alt="${seriesLabel}" class="sim-res-row__img" onerror="this.style.visibility='hidden'">
@@ -2152,7 +2158,7 @@ function buildBrandCompareHTML(config) {
         rows.push({ name: room.name, label, specInfo: getSeriesDescriptors(brand, seriesKey) });
       });
       config.multiRooms.forEach(({ room, unit }) => {
-        rows.push({ name: room.name, label: getMultiSeriesLabel(brand, unit.model), specInfo: getSeriesDescriptors(brand, getSeriesCatalogKey(brand, unit.model)) });
+        rows.push({ name: room.name, label: getMultiSeriesLabel(brand, unit.model), specInfo: getSeriesDescriptors(brand, getSeriesCatalogKey(brand, unit.model), true) });
       });
       if (config.outdoor) rows.push({ name: t('Exterior'), label: config.outdoor.model });
       const systemLabel = config.outdoor ? t('Sistema multisplit') : t('Sistema individual');
@@ -2162,7 +2168,7 @@ function buildBrandCompareHTML(config) {
     if (!cfg || !cfg.total) return { brand, total: null, systemLabel: '', rows: [] };
     const rows = [];
     if (cfg.system === 'multi' && cfg.indoorUnits) {
-      cfg.indoorUnits.forEach(({ room, unit }) => rows.push({ name: room.name, label: unit.model, specInfo: getSeriesDescriptors(brand, getSeriesCatalogKey(brand, unit.model)) }));
+      cfg.indoorUnits.forEach(({ room, unit }) => rows.push({ name: room.name, label: unit.model, specInfo: getSeriesDescriptors(brand, getSeriesCatalogKey(brand, unit.model), true) }));
       if (cfg.outdoor) rows.push({ name: t('Exterior'), label: cfg.outdoor.model });
     } else if (cfg.rooms) {
       cfg.rooms.forEach(({ room, seriesKey }) => {
