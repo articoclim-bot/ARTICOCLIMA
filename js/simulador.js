@@ -242,10 +242,10 @@ const DAITSU_MONO = {
   'ARTIC': {
     label: 'ARTIC', tier: 'premium', badge: '🏆 Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++', noise: '25 dB(A)', wifiStatus: 'builtin',
-    desc: 'A+++ arref. · WiFi incluído · I Feel · IA+ · Controlo por Voz · Auto-limpeza evaporador',
+    desc: 'A+++ arref. · WiFi incluído · I Feel · IA+ · Controlo por Voz · 5 filtros · Gentle Air',
     prices: { 9000:700, 12000:760, 18000:1090, 24000:1290 },
     models: { 9000:'DS-9KZ', 12000:'DS-12KZ', 18000:'DS-18KZ', 24000:'DS-24KZ' },
-    features: ['Inverter', 'R-32', 'WiFi incluído', 'A+++', 'I Feel', 'IA+', 'Auto-limpeza evaporador'],
+    features: ['Inverter', 'R-32', 'WiFi incluído', 'A+++', 'I Feel', 'IA+', '5 filtros', 'Gentle Air'],
     maxBTU: 24000,
     image: 'assets/products/daitsu-artic-kz-1.jpg',
     images: ['assets/products/daitsu-artic-kz-1.jpg','assets/products/daitsu-artic-kz-2.jpg','assets/products/daitsu-artic-kz-3.jpg','assets/products/daitsu-artic-kz-4.jpg','assets/products/daitsu-artic-kz-5.jpg','assets/products/daitsu-artic-kz-6.jpg','assets/products/daitsu-artic-kz-7.jpg','assets/products/daitsu-artic-kz-8.jpg','assets/products/daitsu-artic-kz-9.jpg'],
