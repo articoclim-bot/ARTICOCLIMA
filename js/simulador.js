@@ -241,11 +241,11 @@ const BOSCH_MULTI_OUTDOOR = [
 const DAITSU_MONO = {
   'ARTIC': {
     label: 'ARTIC', tier: 'premium', badge: '🏆 Alta Eficiência',
-    energyCool: 'A++', energyHeat: 'A+++', noise: '25 dB(A)', wifiStatus: 'builtin',
-    desc: 'A+++ aquec. · WiFi incluído · I Feel · IA+ · Controlo por Voz · 5 filtros de qualidade do ar',
+    energyCool: 'A+++', energyHeat: 'A++', noise: '25 dB(A)', wifiStatus: 'builtin',
+    desc: 'A+++ arref. · WiFi incluído · I Feel · IA+ · Controlo por Voz · Auto-limpeza evaporador',
     prices: { 9000:700, 12000:760, 18000:1090, 24000:1290 },
     models: { 9000:'DS-9KZ', 12000:'DS-12KZ', 18000:'DS-18KZ', 24000:'DS-24KZ' },
-    features: ['Inverter', 'R-32', 'WiFi incluído', 'A+++', 'I Feel', 'IA+', '5 filtros'],
+    features: ['Inverter', 'R-32', 'WiFi incluído', 'A+++', 'I Feel', 'IA+', 'Auto-limpeza evaporador'],
     maxBTU: 24000,
     image: 'assets/products/daitsu-artic-kz-1.jpg',
     images: ['assets/products/daitsu-artic-kz-1.jpg','assets/products/daitsu-artic-kz-2.jpg','assets/products/daitsu-artic-kz-3.jpg','assets/products/daitsu-artic-kz-4.jpg','assets/products/daitsu-artic-kz-5.jpg','assets/products/daitsu-artic-kz-6.jpg','assets/products/daitsu-artic-kz-7.jpg','assets/products/daitsu-artic-kz-8.jpg','assets/products/daitsu-artic-kz-9.jpg'],
@@ -274,10 +274,10 @@ const SAMSUNG_MONO = {
   'Cebu S2': {
     label: 'Cebu S2', tier: 'entrada', badge: '💰 Melhor Preço',
     energyCool: 'A++', energyHeat: 'A+', noise: '37 dB(A)', wifiStatus: 'builtin',
-    desc: 'Gama entrada — Wi-Fi SmartThings integrado · WindFree™ · Controlo Remoto Solar Cell',
+    desc: 'Gama entrada — Wi-Fi SmartThings integrado · Controlo Remoto Solar Cell · Filtro Easy Plus',
     prices: { 7000: 800, 9000: 880, 12000: 990, 18000: 1400, 24000: 1750 },
     models: { 7000:'AR50F07C1AH', 9000:'AR50F09C1AH', 12000:'AR50F12C1AH', 18000:'AR50F18C1AH', 24000:'AR50F24C1AH' },
-    features: ['Wi-Fi SmartThings integrado', 'WindFree™ — sem corrente de ar frio direto', 'Controlo Remoto Solar Cell', 'Compatível Multi-Split FJM'],
+    features: ['Wi-Fi SmartThings integrado', 'Filtro Easy Plus', 'Controlo Remoto Solar Cell', 'Compatível Multi-Split FJM'],
     image: 'assets/products/samsung-cebu-s2-1.png',
     images: ['assets/products/samsung-cebu-s2-1.png','assets/products/samsung-cebu-s2-2.png','assets/products/samsung-cebu-s2-3.png','assets/products/samsung-cebu-s2-4.png','assets/products/samsung-cebu-s2-5.png','assets/products/samsung-cebu-s2-6.png','assets/products/samsung-cebu-s2-7.png','assets/products/samsung-cebu-s2-8.png','assets/products/samsung-cebu-s2-9.png','assets/products/samsung-cebu-s2-10.png'],
   },
