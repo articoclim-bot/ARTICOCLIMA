@@ -1521,22 +1521,23 @@ function solarSeriesCardHTML(group) {
       <div class="series-card__img">
         <img src="${first.image}" alt="${BRAND_LABEL[first.brand]} ${first.series}" class="series-card__photo" id="sc-img-${sk}" onerror="this.style.display='none'">
         <div class="series-card__fallback">${SOLAR_ICON}</div>
-      </div>
-      <div class="series-card__body">
-        <div class="series-card__header-row">
-          <span class="series-card__brand">${BRAND_LABEL[first.brand]}</span>
+        <div class="series-card__img-overlay">
+          <div class="series-card__img-overlay-left">
+            <span class="series-card__brand">${BRAND_LABEL[first.brand]}</span>
+            <h3 class="series-card__name">${first.series}</h3>
+          </div>
           <span id="sc-energy-${sk}">${energyBadge(first.energyClass)}</span>
-        </div>
-        <h3 class="series-card__name">${first.series}</h3>
-        <p class="series-card__tagline">${first.tagline}</p>
-        <div class="series-card__btu-section">
-          <span class="series-card__btu-label">Volume disponível</span>
-          <div class="btu-pills">${capPills}</div>
-        </div>
-        <div class="series-card__footer">
-          <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
+          <p class="series-card__tagline">${first.tagline}</p>
+          <div class="series-card__btu-section">
+            <span class="series-card__btu-label">Volume disponível</span>
+            <div class="btu-pills">${capPills}</div>
+          </div>
+          <div class="series-card__footer">
+            <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
+          </div>
         </div>
       </div>
+      <div class="series-card__body"></div>
     </article>`;
 }
 

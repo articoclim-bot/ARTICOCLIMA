@@ -151,7 +151,11 @@
       </div>
 
       <!-- Grid (rendered by catalog.js → initSolarCatalog) -->
-      <div class="catalog__grid" id="solarGrid"></div>
+      <div class="catalog__scroll-wrap">
+        <button class="catalog__arrow-btn catalog__arrow-btn--left" id="solarScrollLeft" aria-label="Anteriores">‹</button>
+        <div class="catalog__grid" id="solarGrid"></div>
+        <button class="catalog__arrow-btn catalog__arrow-btn--right" id="solarScrollRight" aria-label="Ver mais">›</button>
+      </div>
 
 
     </div>
@@ -224,6 +228,13 @@
         e.preventDefault();
         a.closest('.nav__item--has-sub').classList.toggle('open');
       });
+    });
+
+    document.getElementById('solarScrollRight').addEventListener('click', () => {
+      document.getElementById('solarGrid').scrollBy({ left: 500, behavior: 'smooth' });
+    });
+    document.getElementById('solarScrollLeft').addEventListener('click', () => {
+      document.getElementById('solarGrid').scrollBy({ left: -500, behavior: 'smooth' });
     });
   </script>
   <script src="js/catalog.js"></script>
