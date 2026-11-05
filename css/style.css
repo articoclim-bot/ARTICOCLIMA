@@ -274,7 +274,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero__left {
   flex: 0 0 44%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   position: relative;
   z-index: 1;
 }
@@ -315,8 +315,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .hero__content {
-  padding: 100px 48px 72px 44px;
-  max-width: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 100px 48px 56px 44px;
   width: 100%;
 }
 
@@ -364,6 +366,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   gap: 28px;
   flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.10);
 }
 .stat {
   display: flex;
