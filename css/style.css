@@ -475,9 +475,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .services { background: var(--off-white); }
 
 .services__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
 }
 
 .service-card {
@@ -504,7 +504,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-direction: column;
   justify-content: flex-end;
   filter: grayscale(100%);
-  transition: filter .4s ease, transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  transition: flex-grow .5s cubic-bezier(.4,0,.2,1), filter .4s ease, border-color var(--transition);
 }
 .service-card--bg-img::before {
   content: '';
@@ -546,6 +549,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .service-card--bg-img.is-active,
 .service-card--bg-img:hover {
+  flex-grow: 4;
   filter: grayscale(0%);
   border-color: var(--primary);
 }
@@ -2540,12 +2544,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
   /* Mobile: carousel horizontal para serviços e catálogo */
   .services__grid {
-    grid-template-columns: unset;
-    display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 16px;
+    gap: 10px;
     padding-bottom: 10px;
   }
   .service-card--bg-img {
@@ -2563,7 +2565,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     pointer-events: auto;
   }
   .catalog__grid {
-    grid-template-columns: unset;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
