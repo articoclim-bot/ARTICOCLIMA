@@ -313,7 +313,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 100px 48px 56px 44px;
+  padding: 148px 48px 56px 44px;
   width: 100%;
   max-width: 52%;
 }
