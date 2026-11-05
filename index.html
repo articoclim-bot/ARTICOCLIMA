@@ -189,7 +189,7 @@
         <p class="section__desc">Soluções completas de climatização e energia solar para habitações e empresas.</p>
       </div>
       <div class="services__grid">
-        <div class="service-card service-card--bg-img" style="background-image:url('assets/instalacao-bg.jpg'); background-position:center 30%">
+        <div class="service-card service-card--bg-img is-active" style="background-image:url('assets/instalacao-bg.jpg'); background-position:center 30%">
           <h3>Instalação de Ar Condicionado</h3>
           <p>Instalação profissional de raiz ou em substituição de equipamento existente. Trabalhamos com Daikin, Bosch, Daitsu e Samsung, aproveitando a infraestrutura sempre que possível.</p>
           <a href="simulador.html" class="service-card__link">Pedir orçamento →</a>
@@ -930,6 +930,8 @@
         const isOpen = form.style.display !== 'none';
         form.style.display = isOpen ? 'none' : 'block';
         toggle.textContent  = isOpen ? 'Agendar →' : 'Fechar ✕';
+        const card = toggle.closest('.service-card--bg-img');
+        if (card) card.classList.toggle('is-active', !isOpen);
       });
 
       form.addEventListener('submit', e => {
