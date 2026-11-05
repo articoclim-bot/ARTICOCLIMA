@@ -1545,7 +1545,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .catalog__btu-select:focus { border-color: var(--primary); }
 .catalog__empty {
-  grid-column: 1/-1;
+  flex: 0 0 100%;
   text-align: center;
   color: var(--gray);
   padding: 40px 0;
@@ -1553,11 +1553,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* --- Product Grid --- */
 .catalog__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  align-items: start;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 8px;
+  align-items: flex-start;
+  padding-bottom: 4px;
 }
+.catalog__grid::-webkit-scrollbar { display: none; }
 
 /* --- Series Card --- */
 .series-card {
@@ -1565,16 +1568,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 0;
   overflow: hidden;
   border: 1.5px solid var(--gray-light);
-  transition: filter .4s ease, box-shadow var(--transition), border-color var(--transition), max-height 0.4s ease;
+  transition: flex-basis .5s cubic-bezier(.4,0,.2,1), filter .4s ease, box-shadow var(--transition), border-color var(--transition), max-height .4s ease;
   cursor: pointer;
   max-height: 220px;
   filter: grayscale(100%);
+  flex: 0 0 160px;
 }
 .series-card:hover {
   box-shadow: 0 10px 32px rgba(0,0,0,.13);
   border-color: rgba(249,115,22,.45);
   max-height: 560px;
   filter: grayscale(0%);
+  flex-basis: 380px;
 }
 
 /* Badge row (Novo Modelo + botão) */
