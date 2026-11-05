@@ -554,6 +554,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   filter: grayscale(0%);
   border-color: var(--primary);
 }
+/* Quando há um card activo, os outros encolhem suavemente */
+.services__grid:has(.is-active) .service-card--bg-img:not(.is-active),
+.services__grid:hover .service-card--bg-img:not(:hover) {
+  flex-basis: 55px;
+}
 .service-card--bg-img.is-active p,
 .service-card--bg-img:hover p,
 .service-card--bg-img.is-active .service-card__link,
