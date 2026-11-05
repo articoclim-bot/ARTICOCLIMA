@@ -1140,15 +1140,6 @@ function modalHTML(p) {
       return;
     }
 
-    /* Card body click → open for currently selected BTU */
-    const card = e.target.closest('.series-card');
-    if (card) {
-      const sk  = card.dataset.sk;
-      const btn = card.querySelector('.sc-detail-btn');
-      const idx = btn ? parseInt(btn.dataset.idx, 10) : 0;
-      const group = allGroups.find(g => seriesKey(g[0]) === sk);
-      if (group) openModal(group[idx].id);
-    }
   });
 
   /* ---- Filters ---- */
@@ -1648,14 +1639,6 @@ function solarModalHTML(p) {
         if (detailBtn) detailBtn.dataset.idx = idx;
       }
       return;
-    }
-    const card = e.target.closest('.series-card');
-    if (card) {
-      const sk = card.dataset.sk;
-      const activePill = card.querySelector('.btu-pill.active');
-      const idx = activePill ? parseInt(activePill.dataset.idx, 10) : 0;
-      const group = allGroups.find(g => solarSeriesKey(g[0]) === sk);
-      if (group) openSolarModal(group[idx].id);
     }
   });
 
