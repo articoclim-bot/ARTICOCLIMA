@@ -313,9 +313,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 200px 48px 56px 44px;
+  padding: 80px 48px 56px 44px;
   width: 100%;
   max-width: 52%;
+}
+.hero__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }
 
 .hero__badge {
@@ -484,7 +491,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: stretch;
 }
 /* Setas só aparecem no mobile */
-.services__arrow-btn {
+.services__arrow-btn,
+.catalog__arrow-btn.services__arrow-btn {
   display: none;
 }
 
@@ -2639,14 +2647,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     gap: 10px;
     padding-bottom: 10px;
   }
-  .services__arrow-btn {
+  .services__arrow-btn,
+  .catalog__arrow-btn.services__arrow-btn {
     display: flex;
   }
   .service-card--bg-img {
-    flex: 0 0 82vw;
+    flex: 0 0 82vw !important;
+    flex-basis: 82vw !important;
     scroll-snap-align: start;
     min-height: 320px;
     filter: grayscale(0%);
+  }
+  /* Anular o colapso do acordeão desktop no mobile */
+  .services__grid:has(.is-active) .service-card--bg-img:not(.is-active),
+  .services__grid:hover .service-card--bg-img:not(:hover) {
+    flex-basis: 82vw !important;
   }
   .service-card--bg-img p,
   .service-card--bg-img .service-card__link,
