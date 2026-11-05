@@ -920,6 +920,15 @@
   <script src="js/script.js"></script>
   <script src="js/i18n.js"></script>
   <script>
+    /* ── Serviços: CR7 gallery — first card resets on grid hover ── */
+    (function () {
+      const grid  = document.querySelector('.services__grid');
+      const first = grid && grid.querySelector('.service-card--bg-img');
+      if (!grid || !first) return;
+      grid.addEventListener('mouseenter', () => first.classList.remove('is-active'));
+      grid.addEventListener('mouseleave', () => first.classList.add('is-active'));
+    })();
+
     /* ── Booking form — Assistência Técnica ── */
     (function () {
       const toggle = document.getElementById('bookToggle');
