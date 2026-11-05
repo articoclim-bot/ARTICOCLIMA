@@ -505,10 +505,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-direction: column;
   justify-content: flex-end;
   filter: grayscale(100%);
-  flex: 1 1 0;
+  flex: 1 1 80px;
   min-width: 0;
   overflow: hidden;
-  transition: flex-grow 2.2s cubic-bezier(.4,0,.2,1), filter 1.8s ease, border-color 1s ease;
+  transition: flex-basis 2.2s cubic-bezier(.4,0,.2,1), filter 1.8s ease, border-color 1s ease;
 }
 .service-card--bg-img::before {
   content: '';
@@ -550,7 +550,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .service-card--bg-img.is-active,
 .service-card--bg-img:hover {
-  flex-grow: 4;
+  flex-basis: 500px;
   filter: grayscale(0%);
   border-color: var(--primary);
 }
