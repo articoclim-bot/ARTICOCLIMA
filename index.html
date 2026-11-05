@@ -920,13 +920,21 @@
   <script src="js/script.js"></script>
   <script src="js/i18n.js"></script>
   <script>
-    /* ── Serviços: CR7 gallery — first card resets on grid hover ── */
+    /* ── Serviços: CR7 gallery — smooth active card transfer ── */
     (function () {
       const grid  = document.querySelector('.services__grid');
-      const first = grid && grid.querySelector('.service-card--bg-img');
+      const cards = grid && [...grid.querySelectorAll('.service-card--bg-img')];
+      const first = cards && cards[0];
       if (!grid || !first) return;
-      grid.addEventListener('mouseenter', () => first.classList.remove('is-active'));
-      grid.addEventListener('mouseleave', () => first.classList.add('is-active'));
+
+      function setActive(card) {
+        cards.forEach(c => c.classList.toggle('is-active', c === card));
+      }
+
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => setActive(card));
+      });
+      grid.addEventListener('mouseleave', () => setActive(first));
     })();
 
     /* ── Booking form — Assistência Técnica ── */

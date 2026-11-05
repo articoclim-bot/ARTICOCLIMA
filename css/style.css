@@ -507,7 +507,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex: 1 1 0;
   min-width: 0;
   overflow: hidden;
-  transition: flex-grow .5s cubic-bezier(.4,0,.2,1), filter .4s ease, border-color var(--transition);
+  transition: flex-grow .6s cubic-bezier(.4,0,.2,1), filter .45s ease, border-color var(--transition);
 }
 .service-card--bg-img::before {
   content: '';
