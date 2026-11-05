@@ -1572,14 +1572,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   cursor: pointer;
   max-height: 220px;
   filter: grayscale(100%);
-  flex: 0 0 160px;
+  flex: 0 0 220px;
 }
 .series-card:hover {
   box-shadow: 0 10px 32px rgba(0,0,0,.13);
   border-color: rgba(249,115,22,.45);
   max-height: 560px;
   filter: grayscale(0%);
-  flex-basis: 380px;
+  flex-basis: 420px;
 }
 
 /* Badge row (Novo Modelo + botão) */
