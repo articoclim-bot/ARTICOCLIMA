@@ -520,10 +520,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-direction: column;
   justify-content: flex-end;
   filter: grayscale(100%);
-  flex: 1 1 80px;
-  min-width: 0;
+  flex: 1;
+  min-width: 55px;
+  max-width: 1000px;
   overflow: hidden;
-  transition: flex-basis 2.2s cubic-bezier(.4,0,.2,1), filter 1.8s ease, border-color 1s ease;
+  transition: max-width 2.2s cubic-bezier(.4,0,.2,1), filter 1.8s ease, border-color 1s ease;
 }
 .service-card--bg-img::before {
   content: '';
@@ -565,14 +566,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .service-card--bg-img.is-active,
 .service-card--bg-img:hover {
-  flex-basis: 500px;
   filter: grayscale(0%);
   border-color: var(--primary);
 }
 /* Quando há um card activo, os outros encolhem suavemente */
 .services__grid:has(.is-active) .service-card--bg-img:not(.is-active),
 .services__grid:hover .service-card--bg-img:not(:hover) {
-  flex-basis: 55px;
+  max-width: 55px;
 }
 .service-card--bg-img.is-active p,
 .service-card--bg-img:hover p,
@@ -2652,8 +2652,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     display: flex;
   }
   .service-card--bg-img {
-    flex: 0 0 82vw !important;
-    flex-basis: 82vw !important;
+    flex: 0 0 82vw;
+    min-width: 82vw;
+    max-width: 82vw !important;
     scroll-snap-align: start;
     min-height: 320px;
     filter: grayscale(0%);
@@ -2661,7 +2662,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   /* Anular o colapso do acordeão desktop no mobile */
   .services__grid:has(.is-active) .service-card--bg-img:not(.is-active),
   .services__grid:hover .service-card--bg-img:not(:hover) {
-    flex-basis: 82vw !important;
+    max-width: 82vw !important;
   }
   .service-card--bg-img p,
   .service-card--bg-img .service-card__link,
