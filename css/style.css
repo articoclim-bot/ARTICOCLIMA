@@ -475,10 +475,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================= */
 .services { background: var(--off-white); }
 
+.services__scroll-wrap {
+  position: relative;
+}
 .services__grid {
   display: flex;
   gap: 6px;
   align-items: stretch;
+}
+/* Setas só aparecem no mobile */
+.services__arrow-btn {
+  display: none;
 }
 
 .service-card {
@@ -2631,6 +2638,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     -webkit-overflow-scrolling: touch;
     gap: 10px;
     padding-bottom: 10px;
+  }
+  .services__arrow-btn {
+    display: flex;
   }
   .service-card--bg-img {
     flex: 0 0 82vw;

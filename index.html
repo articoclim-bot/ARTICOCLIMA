@@ -190,7 +190,9 @@
         <h2 class="section__title">Os Nossos Serviços</h2>
         <p class="section__desc">Soluções completas de climatização e energia solar para habitações e empresas.</p>
       </div>
-      <div class="services__grid">
+      <div class="services__scroll-wrap">
+        <button class="catalog__arrow-btn catalog__arrow-btn--left services__arrow-btn" id="servicesScrollLeft" aria-label="Serviço anterior">‹</button>
+        <div class="services__grid">
         <div class="service-card service-card--bg-img is-active" style="background-image:url('assets/instalacao-bg.jpg'); background-position:center 30%">
           <h3>Instalação de Ar Condicionado</h3>
           <p>Instalação profissional de raiz ou em substituição de equipamento existente. Trabalhamos com Daikin, Bosch, Daitsu e Samsung, aproveitando a infraestrutura sempre que possível.</p>
@@ -254,6 +256,8 @@
           <a href="catalogo-solar.html" class="service-card__link">Saber mais →</a>
           <a href="calculadora-solar.html" class="service-card__link service-card__link--secondary">Ver Retorno Solar →</a>
         </div>
+      </div>
+        <button class="catalog__arrow-btn catalog__arrow-btn--right services__arrow-btn" id="servicesScrollRight" aria-label="Próximo serviço">›</button>
       </div>
     </div>
   </section>
@@ -937,6 +941,14 @@
         card.addEventListener('mouseenter', () => setActive(card));
       });
       grid.addEventListener('mouseleave', () => setActive(first));
+
+      /* Setas de scroll (mobile) */
+      document.getElementById('servicesScrollRight')?.addEventListener('click', () => {
+        grid.scrollBy({ left: window.innerWidth * 0.9, behavior: 'smooth' });
+      });
+      document.getElementById('servicesScrollLeft')?.addEventListener('click', () => {
+        grid.scrollBy({ left: -window.innerWidth * 0.9, behavior: 'smooth' });
+      });
     })();
 
     /* ── Booking form — Assistência Técnica ── */
