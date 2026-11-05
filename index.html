@@ -132,48 +132,50 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="inicio">
-    <video class="hero__video" autoplay muted loop playsinline>
-      <source src="assets/bg-hero.mp4" type="video/mp4">
-    </video>
-    <div class="hero__overlay"></div>
-    <div class="hero__shapes">
-      <div class="shape shape--1"></div>
-      <div class="shape shape--2"></div>
+    <!-- Painel esquerdo: texto -->
+    <div class="hero__left">
+      <div class="hero__content">
+        <h1 class="hero__title">
+          O conforto térmico da sua casa<br>
+          <span class="text-accent">em boas mãos.</span>
+        </h1>
+        <p class="hero__desc">
+          Venda, instalação e assistência especializada<br>
+          em climatização em Tavira e em todo o Algarve.
+        </p>
+        <div class="hero__actions">
+          <a href="simulador.html" class="btn btn--primary btn--lg">
+            🔍 Simular Instalação →
+          </a>
+          <a href="tel:+351964501776" class="btn btn--outline btn--lg">
+            📞 Ligar Agora
+          </a>
+        </div>
+        <div class="hero__stats">
+          <!-- EDITAR estes valores conforme a realidade da empresa -->
+          <div class="stat">
+            <span class="stat__num">800<span class="stat__plus">+</span></span>
+            <span class="stat__label">Clientes</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <span class="stat__num">24<span class="stat__plus">+</span></span>
+            <span class="stat__label">Anos de Experiência</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <span class="stat__num">100<span class="stat__plus">%</span></span>
+            <span class="stat__label">Satisfação</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="container hero__content">
-      <h1 class="hero__title">
-        O conforto térmico da sua casa<br>
-        <span class="text-accent">em boas mãos.</span>
-      </h1>
-      <p class="hero__desc">
-        Venda, instalação e assistência especializada<br>
-        em climatização em Tavira e em todo o Algarve.
-      </p>
-      <div class="hero__actions">
-        <a href="simulador.html" class="btn btn--primary btn--lg">
-          🔍 Simular Instalação →
-        </a>
-        <a href="tel:+351964501776" class="btn btn--outline btn--lg">
-          📞 Ligar Agora
-        </a>
-      </div>
-      <div class="hero__stats">
-        <!-- EDITAR estes valores conforme a realidade da empresa -->
-        <div class="stat">
-          <span class="stat__num">800<span class="stat__plus">+</span></span>
-          <span class="stat__label">Clientes</span>
-        </div>
-        <div class="stat__divider"></div>
-        <div class="stat">
-          <span class="stat__num">24<span class="stat__plus">+</span></span>
-          <span class="stat__label">Anos de Experiência</span>
-        </div>
-        <div class="stat__divider"></div>
-        <div class="stat">
-          <span class="stat__num">100<span class="stat__plus">%</span></span>
-          <span class="stat__label">Satisfação</span>
-        </div>
-      </div>
+    <!-- Painel direito: vídeo -->
+    <div class="hero__right">
+      <video class="hero__video" autoplay muted loop playsinline>
+        <source src="assets/bg-hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero__overlay"></div>
     </div>
     <a href="#servicos" class="hero__scroll" aria-label="Rolar para baixo">
       <span class="scroll-arrow">↓</span>

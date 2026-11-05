@@ -263,16 +263,39 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    HERO
    ============================================= */
 .hero {
-  position: relative;
+  display: flex;
   min-height: 100vh;
   background: var(--dark);
-  display: flex;
-  align-items: center;
   overflow: hidden;
-  padding-top: 0;
+  position: relative;
 }
 
-/* Video background */
+/* Painel esquerdo — texto */
+.hero__left {
+  flex: 0 0 44%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+/* linha de separação subtil */
+.hero__left::after {
+  content: '';
+  position: absolute;
+  top: 12%; right: -1px; bottom: 12%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(249,115,22,.4), transparent);
+  z-index: 2;
+}
+
+/* Painel direito — vídeo */
+.hero__right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Video */
 .hero__video {
   position: absolute;
   inset: 0;
@@ -283,41 +306,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
 }
 
+/* Vinheta subtil no lado esquerdo do vídeo */
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(10,8,6,.52) 0%, rgba(249,115,22,.28) 100%);
+  background: linear-gradient(to right, rgba(10,8,6,.45) 0%, transparent 35%);
   pointer-events: none;
 }
 
-.hero__shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-
-.shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: .25;
-}
-.shape--1 {
-  width: 600px;
-  height: 600px;
-  background: var(--primary);
-  top: -200px;
-  right: -150px;
-}
-.shape--2 {
-  width: 400px;
-  height: 400px;
-  background: #7c3aed;
-  bottom: -100px;
-  left: -100px;
-}
-
 .hero__content {
-  position: relative;
-  z-index: 1;
-  padding: 80px 24px;
-  max-width: 720px;
+  padding: 100px 48px 72px 44px;
+  max-width: none;
+  width: 100%;
 }
 
 .hero__badge {
@@ -346,7 +346,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .hero__desc {
   font-size: 1.1rem;
-  color: var(--dark);
+  color: rgba(255,255,255,.65);
   margin-bottom: 36px;
   max-width: 540px;
   line-height: 1.7;
@@ -373,7 +373,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: 'Poppins', sans-serif;
   font-size: 1.9rem;
   font-weight: 800;
-  color: var(--dark);
+  color: var(--white);
   line-height: 1;
 }
 .stat__plus {
@@ -382,7 +382,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .stat__label {
   font-size: .78rem;
-  color: rgba(28,28,30,.55);
+  color: rgba(255,255,255,.42);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: .5px;
@@ -2528,7 +2528,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .contact__grid { grid-template-columns: 1fr 1fr; }
   .option-grid--4 { grid-template-columns: repeat(2, 1fr); }
   .option-grid--3 { grid-template-columns: 1fr; }
-  .hero__content { padding: 64px 24px; }
+  /* Hero split: empilhar vídeo em cima, texto em baixo */
+  .hero { flex-direction: column-reverse; min-height: auto; }
+  .hero__left { flex: unset; width: 100%; }
+  .hero__left::after { display: none; }
+  .hero__right { flex: unset; height: 48svh; width: 100%; }
+  .hero__content { padding: 48px max(16px, env(safe-area-inset-left,0px)) 48px max(16px, env(safe-area-inset-left,0px)); }
   .modal__img-col { border-radius: 0; }
   .modal__img-wrap { height: 260px; }
   .modal__details-grid { grid-template-columns: 1fr; }
