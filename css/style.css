@@ -487,7 +487,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .services__grid {
   display: flex;
-  gap: 6px;
+  gap: 0;
   align-items: stretch;
 }
 /* Setas só aparecem no mobile */
