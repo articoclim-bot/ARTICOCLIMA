@@ -751,28 +751,29 @@ function seriesCardHTML(group) {
           </div>` : ''}
         <img src="${first.image}" alt="${BRAND_LABEL[first.brand]} ${first.series}" class="series-card__photo" onerror="this.style.display='none'">
         <div class="series-card__fallback">${AC_ICON}</div>
-      </div>
-      <div class="series-card__body">
-        <div class="series-card__header-row">
-          <span class="series-card__brand">${BRAND_LABEL[first.brand]}</span>
+        <div class="series-card__img-overlay">
+          <div class="series-card__img-overlay-left">
+            <span class="series-card__brand">${BRAND_LABEL[first.brand]}</span>
+            <h3 class="series-card__name">${first.series}</h3>
+          </div>
           <span id="sc-energy-${sk}">${energyBadge(first.energyCool)}</span>
-        </div>
-        <h3 class="series-card__name">${first.series}</h3>
-        <p class="series-card__tagline">${tagline}</p>
-        <div class="series-card__btu-section">
-          <span class="series-card__btu-label">Potência disponível</span>
-          <div class="btu-pills">${btuPills}</div>
-        </div>
-        ${hasColors ? `
-        <div class="series-card__color-row">
-          <span class="series-card__color-label">Cores</span>
-          <div class="series-card__color-dots">${colorDots}</div>
-        </div>` : ''}
-        <div class="series-card__footer">
-          <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
-          <button class="sc-compare-btn" data-sk="${sk}">+ Comparar</button>
+          <p class="series-card__tagline">${tagline}</p>
+          <div class="series-card__btu-section">
+            <span class="series-card__btu-label">Potência disponível</span>
+            <div class="btu-pills">${btuPills}</div>
+          </div>
+          ${hasColors ? `
+          <div class="series-card__color-row">
+            <span class="series-card__color-label">Cores</span>
+            <div class="series-card__color-dots">${colorDots}</div>
+          </div>` : ''}
+          <div class="series-card__footer">
+            <button class="btn btn--primary btn--sm sc-detail-btn" data-sk="${sk}" data-idx="0">Ver detalhes →</button>
+            <button class="sc-compare-btn" data-sk="${sk}">+ Comparar</button>
+          </div>
         </div>
       </div>
+      <div class="series-card__body"></div>
     </article>`;
 }
 

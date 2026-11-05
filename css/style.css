@@ -270,28 +270,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
 }
 
-/* Painel esquerdo — texto */
+/* Painel esquerdo — texto (full screen video por baixo) */
 .hero__left {
-  flex: 0 0 44%;
+  flex: 0 0 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   z-index: 1;
 }
-/* linha de separação subtil */
 .hero__left::after {
-  content: '';
-  position: absolute;
-  top: 12%; right: -1px; bottom: 12%;
-  width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(249,115,22,.4), transparent);
-  z-index: 2;
+  display: none;
 }
 
-/* Painel direito — vídeo */
+/* Painel direito — vídeo full screen em fundo */
 .hero__right {
-  flex: 1;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
 }
 
@@ -310,7 +305,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(10,8,6,.45) 0%, transparent 35%);
+  background: linear-gradient(to right, rgba(10,8,6,.88) 0%, rgba(10,8,6,.72) 40%, rgba(10,8,6,.35) 65%, transparent 90%);
   pointer-events: none;
 }
 
@@ -320,6 +315,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex: 1;
   padding: 100px 48px 56px 44px;
   width: 100%;
+  max-width: 52%;
 }
 
 .hero__badge {
@@ -1558,15 +1554,48 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* --- Product Grid --- */
+.catalog__scroll-wrap {
+  position: relative;
+}
 .catalog__grid {
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
-  gap: 8px;
+  gap: 12px;
   align-items: flex-start;
   padding-bottom: 4px;
+  scroll-snap-type: x mandatory;
 }
 .catalog__grid::-webkit-scrollbar { display: none; }
+.series-card { scroll-snap-align: start; }
+
+/* Setas de scroll do catálogo */
+.catalog__arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px; height: 46px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-light);
+  box-shadow: 0 4px 18px rgba(0,0,0,.13);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--dark);
+  z-index: 3;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  line-height: 1;
+  padding: 0;
+}
+.catalog__arrow-btn--left  { left: -18px; }
+.catalog__arrow-btn--right { right: -18px; }
+.catalog__arrow-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
 
 /* --- Series Card --- */
 .series-card {
@@ -1574,18 +1603,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 0;
   overflow: hidden;
   border: 1.5px solid var(--gray-light);
-  transition: flex-basis .5s cubic-bezier(.4,0,.2,1), filter .4s ease, box-shadow var(--transition), border-color var(--transition), max-height .4s ease;
+  transition: box-shadow var(--transition), border-color var(--transition);
   cursor: pointer;
-  max-height: 220px;
-  filter: grayscale(100%);
-  flex: 0 0 220px;
+  flex: 0 0 480px;
+  height: 400px;
+  position: relative;
 }
 .series-card:hover {
-  box-shadow: 0 10px 32px rgba(0,0,0,.13);
-  border-color: rgba(249,115,22,.45);
-  max-height: 560px;
-  filter: grayscale(0%);
-  flex-basis: 420px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.2);
+  border-color: rgba(249,115,22,.55);
 }
 
 /* Badge row (Novo Modelo + botão) */
@@ -2017,14 +2043,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Image area — fixed height, always visible */
 .series-card__img {
   position: relative;
-  height: 220px;
+  height: 100%;
   flex-shrink: 0;
   background: #fff;
-  border-bottom: 1px solid var(--gray-light);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  filter: grayscale(100%);
+  transition: filter .6s ease;
+}
+.series-card:hover .series-card__img {
+  filter: grayscale(0%);
 }
 .series-card__photo {
   position: absolute;
@@ -2061,13 +2091,43 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   opacity: 0.28;
 }
 
-/* Body emerges below the image on hover */
-.series-card__body {
-  padding: 14px 18px 18px;
+/* Overlay de texto sobre a imagem — aparece no hover */
+.series-card__img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.45) 45%, transparent 75%);
+  padding: 20px 20px 22px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   gap: 10px;
-  background: var(--white);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.series-card:hover .series-card__img-overlay {
+  opacity: 1;
+}
+.series-card__img-overlay-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.series-card__img-overlay > *,
+.series-card__img-overlay-left > * {
+  transform: translateY(10px);
+  opacity: 0;
+  transition: opacity .4s ease .1s, transform .4s ease .1s;
+}
+.series-card:hover .series-card__img-overlay > *,
+.series-card:hover .series-card__img-overlay-left > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Body oculto — conteúdo fica no overlay da imagem */
+.series-card__body {
+  display: none;
 }
 .series-card__header-row {
   display: flex;
@@ -2076,22 +2136,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 8px;
 }
 .series-card__brand {
-  font-size: .7rem;
+  font-size: .68rem;
   font-weight: 700;
-  color: var(--primary);
-  letter-spacing: .07em;
+  color: rgba(255,255,255,.65);
+  letter-spacing: .1em;
   text-transform: uppercase;
 }
 .series-card__name {
   font-size: 1.1rem;
   font-weight: 800;
-  color: var(--dark);
+  color: #fff;
   margin: 0;
   line-height: 1.2;
 }
 .series-card__tagline {
   font-size: .78rem;
-  color: var(--gray);
+  color: rgba(255,255,255,.75);
   margin: 0;
   line-height: 1.4;
 }
@@ -2105,7 +2165,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .series-card__btu-label {
   font-size: .66rem;
   font-weight: 700;
-  color: var(--gray);
+  color: rgba(255,255,255,.55);
   text-transform: uppercase;
   letter-spacing: .05em;
 }
@@ -2145,7 +2205,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .series-card__color-label {
   font-size: .66rem;
   font-weight: 700;
-  color: var(--gray);
+  color: rgba(255,255,255,.55);
   text-transform: uppercase;
   letter-spacing: .05em;
 }
@@ -2538,8 +2598,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hero { flex-direction: column-reverse; min-height: auto; }
   .hero__left { flex: unset; width: 100%; }
   .hero__left::after { display: none; }
-  .hero__right { flex: unset; height: 48svh; width: 100%; }
-  .hero__content { padding: 48px max(16px, env(safe-area-inset-left,0px)) 48px max(16px, env(safe-area-inset-left,0px)); }
+  .hero__right { position: relative; inset: auto; flex: unset; height: 48svh; width: 100%; }
+  .hero__content { padding: 48px max(16px, env(safe-area-inset-left,0px)) 48px max(16px, env(safe-area-inset-left,0px)); max-width: 100%; }
   .modal__img-col { border-radius: 0; }
   .modal__img-wrap { height: 260px; }
   .modal__details-grid { grid-template-columns: 1fr; }
@@ -2589,10 +2649,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     padding-bottom: 10px;
   }
   .series-card {
-    flex: 0 0 72vw;
+    flex: 0 0 82vw;
+    height: 320px;
     scroll-snap-align: start;
-    max-height: none;
-    filter: grayscale(0%);
   }
   .catalog__btu-select { width: 100%; }
   .modal__btn-row { flex-direction: column; }

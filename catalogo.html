@@ -135,7 +135,11 @@
       </div>
 
       <!-- Grid (rendered by catalog.js) -->
-      <div class="catalog__grid" id="catalogGrid"></div>
+      <div class="catalog__scroll-wrap">
+        <button class="catalog__arrow-btn catalog__arrow-btn--left" id="catalogScrollLeft" aria-label="Modelos anteriores">‹</button>
+        <div class="catalog__grid" id="catalogGrid"></div>
+        <button class="catalog__arrow-btn catalog__arrow-btn--right" id="catalogScrollRight" aria-label="Ver mais modelos">›</button>
+      </div>
 
     </div>
   </main>
@@ -225,6 +229,14 @@
         e.preventDefault();
         a.closest('.nav__item--has-sub').classList.toggle('open');
       });
+    });
+
+    // Catalog scroll arrows
+    document.getElementById('catalogScrollRight').addEventListener('click', () => {
+      document.getElementById('catalogGrid').scrollBy({ left: 500, behavior: 'smooth' });
+    });
+    document.getElementById('catalogScrollLeft').addEventListener('click', () => {
+      document.getElementById('catalogGrid').scrollBy({ left: -500, behavior: 'smooth' });
     });
   </script>
   <!-- ===== COMPARE BAR ===== -->
