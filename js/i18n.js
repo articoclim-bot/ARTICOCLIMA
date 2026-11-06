@@ -1452,7 +1452,7 @@ function applyLang(lang, isInitialLoad = false) {
   var FLAG_CODES = { pt: 'pt', en: 'gb', fr: 'fr', es: 'es', de: 'de' };
   if (btn) {
     var fc = FLAG_CODES[lang] || lang;
-    btn.innerHTML = '<span class="fi fi-' + fc + '"></span> ' + lang.toUpperCase() + ' ▾';
+    btn.innerHTML = '<span class="fi fi-' + fc + ' lang-flag"></span>';
   }
 
   // Mark active lang in dropdown

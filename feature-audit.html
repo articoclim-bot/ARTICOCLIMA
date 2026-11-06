@@ -1,0 +1,510 @@
+﻿<title>ComparaÃ§Ã£o de Features AC</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* â”€â”€ tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+:root {
+  --bg:       #f9f8f6;
+  --surface:  #ffffff;
+  --border:   #e4e1da;
+  --fg:       #1a1916;
+  --muted:    #6b6860;
+  --ok:       #166534;
+  --ok-bg:    #dcfce7;
+  --warn:     #92400e;
+  --warn-bg:  #fef3c7;
+  --err:      #991b1b;
+  --err-bg:   #fee2e2;
+  --info:     #1e40af;
+  --info-bg:  #dbeafe;
+  --acc:      #c2410c;
+  --acc-dim:  #fff1ec;
+  --radius:   8px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #181714;
+    --surface: #242320;
+    --border:  #363430;
+    --fg:      #f0ece3;
+    --muted:   #8c8880;
+    --ok:      #86efac;
+    --ok-bg:   #052e16;
+    --warn:    #fde68a;
+    --warn-bg: #1c1000;
+    --err:     #fca5a5;
+    --err-bg:  #1e0000;
+    --info:    #93c5fd;
+    --info-bg: #0d1a40;
+    --acc:     #fb923c;
+    --acc-dim: #1a0d00;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #181714;
+  --surface: #242320;
+  --border:  #363430;
+  --fg:      #f0ece3;
+  --muted:   #8c8880;
+  --ok:      #86efac;
+  --ok-bg:   #052e16;
+  --warn:    #fde68a;
+  --warn-bg: #1c1000;
+  --err:     #fca5a5;
+  --err-bg:  #1e0000;
+  --info:    #93c5fd;
+  --info-bg: #0d1a40;
+  --acc:     #fb923c;
+  --acc-dim: #1a0d00;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px;
+}
+
+h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 4px; }
+.subtitle { color: var(--muted); font-size: .85rem; margin-bottom: 20px; }
+
+/* filters */
+.filters {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; align-items: center;
+}
+.filters label { font-size: .78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.chip {
+  padding: 4px 12px; border-radius: 20px; border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--fg); font-size: .8rem; cursor: pointer;
+  transition: all .15s;
+}
+.chip:hover { border-color: var(--acc); }
+.chip.active { background: var(--acc); border-color: var(--acc); color: #fff; }
+
+/* summary bar */
+.summary {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
+}
+.stat {
+  display: flex; align-items: center; gap: 6px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 8px 14px; font-size: .82rem;
+}
+.stat-num { font-size: 1.1rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stat-ok   { color: var(--ok); }
+.stat-warn { color: var(--warn); }
+.stat-err  { color: var(--err); }
+.stat-info { color: var(--info); }
+
+/* brand section */
+.brand-section { margin-bottom: 28px; }
+.brand-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: 2px solid var(--acc);
+}
+.brand-name { font-size: 1rem; font-weight: 700; }
+.brand-badge { font-size: .72rem; color: var(--muted); font-weight: 500; }
+
+/* series card */
+.series-card {
+  border: 1px solid var(--border); border-top: none;
+  background: var(--surface); padding: 14px 16px;
+  border-radius: 0;
+}
+.series-card:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.series-title {
+  font-weight: 700; font-size: .95rem; margin-bottom: 10px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.models-tag { font-size: .72rem; color: var(--muted); font-weight: 500; }
+.fonte-tag {
+  margin-left: auto; font-size: .68rem; padding: 2px 7px;
+  border-radius: 10px; border: 1px solid var(--border); color: var(--muted);
+}
+
+/* comparison rows */
+.rows { display: flex; flex-direction: column; gap: 6px; }
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr 90px;
+  gap: 8px;
+  align-items: start;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+.row:hover { background: var(--bg); }
+.row.ok   { background: var(--ok-bg);   border-color: transparent; }
+.row.warn { background: var(--warn-bg); border-color: transparent; }
+.row.diff { background: var(--err-bg);  border-color: transparent; }
+.row.miss { background: var(--info-bg); border-color: transparent; }
+
+.row-label { font-size: .76rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); padding-top: 2px; }
+.row-val   { font-size: .84rem; }
+.row-ref   { font-size: .84rem; color: var(--muted); }
+.row-ref.highlight { color: var(--fg); font-weight: 600; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  white-space: nowrap;
+}
+.badge-ok   { background: var(--ok-bg);   color: var(--ok); }
+.badge-warn { background: var(--warn-bg); color: var(--warn); }
+.badge-diff { background: var(--err-bg);  color: var(--err); }
+.badge-miss { background: var(--info-bg); color: var(--info); }
+
+.col-header {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr 90px;
+  gap: 8px; padding: 4px 10px 8px;
+}
+.col-h { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+
+/* fonte nota */
+.fonte-nota { font-size: .74rem; color: var(--muted); margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border); }
+.fonte-nota strong { color: var(--fg); }
+
+/* hidden */
+.series-card.hidden { display: none; }
+.brand-section.all-hidden { display: none; }
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .col-header { display: none; }
+  .row-label { margin-bottom: 2px; }
+  .row-ref { color: var(--muted); }
+  .row-ref::before { content: "â†³ Online: "; font-size: .72rem; }
+  .row { padding: 10px 12px; }
+}
+</style>
+
+<h1>ComparaÃ§Ã£o de Features AC</h1>
+<p class="subtitle">Backoffice vs. informaÃ§Ã£o oficial dos fabricantes â€” <strong>31 outubro 2026</strong></p>
+
+<div class="summary" id="summary"></div>
+
+<div class="filters">
+  <label>Marca:</label>
+  <button class="chip active" onclick="setFilter('marca','all',this)">Todas</button>
+  <button class="chip" onclick="setFilter('marca','Daikin',this)">Daikin</button>
+  <button class="chip" onclick="setFilter('marca','Bosch',this)">Bosch</button>
+  <button class="chip" onclick="setFilter('marca','Daitsu',this)">Daitsu</button>
+  <label style="margin-left:12px;">Ver:</label>
+  <button class="chip active" onclick="setFilter('status','all',this)">Tudo</button>
+  <button class="chip" onclick="setFilter('status','diff',this)">âŒ Errado</button>
+  <button class="chip" onclick="setFilter('status','warn',this)">âš ï¸ Incompleto</button>
+  <button class="chip" onclick="setFilter('status','ok',this)">âœ“ Correto</button>
+</div>
+
+<div id="content"></div>
+
+<script>
+const DATA = [
+  {
+    marca: 'Daikin',
+    series: 'Sensira (FTXF / CTXF)',
+    modelos: 'FTXF20â€“71 Â· Kit Multi Sensira',
+    fonte: 'Backoffice + conhecimento Daikin PT',
+    fonte_status: 'parcial',
+    rows: [
+      { label:'WiFi',        bo:'Integrado de sÃ©rie â€” Daikin Mobile Controller', online:'Integrado de sÃ©rie â€” App Daikin Mobile Controller', status:'ok' },
+      { label:'Filtro',      bo:'Filtro de limpeza fÃ¡cil', online:'Filtro de limpeza fÃ¡cil (easy clean)', status:'ok' },
+      { label:'Auto-limpeza',bo:'NÃ£o mencionada', online:'NÃ£o disponÃ­vel nesta sÃ©rie', status:'ok' },
+      { label:'I Feel',      bo:'NÃ£o mencionado', online:'NÃ£o disponÃ­vel nesta sÃ©rie', status:'ok' },
+      { label:'Streamer',    bo:'NÃ£o mencionado', online:'NÃ£o disponÃ­vel nesta sÃ©rie', status:'ok' },
+      { label:'Temp. Arref.',bo:'-10Â°C a +46Â°C (exterior)', online:'-10Â°C a +46Â°C (exterior)', status:'ok' },
+      { label:'Temp. Aquec.',bo:'-15Â°C a +18Â°C (exterior)', online:'-15Â°C a +18Â°C (exterior)', status:'ok' },
+      { label:'Som interior', bo:'22 dB(A)', online:'~22 dB(A)', status:'ok' },
+      { label:'Garantia',    bo:'3 anos Daikin', online:'3 anos Daikin', status:'ok' },
+    ]
+  },
+  {
+    marca: 'Daikin',
+    series: 'Confora (FTXP)',
+    modelos: 'FTXP20â€“71 Â· Kit Multi Confora',
+    fonte: 'Backoffice + conhecimento Daikin PT',
+    fonte_status: 'parcial',
+    rows: [
+      { label:'WiFi',        bo:'MÃ³dulo Wi-Fi opcional/integrado â€” App Onecta', online:'WiFi integrado de sÃ©rie em todos os modelos â€” App Onecta', status:'warn', nota:'Backoffice diz "opcional/integrado" â€” confirmar se todos os tamanhos tÃªm WiFi integrado ou sÃ³ alguns' },
+      { label:'Filtro',      bo:'Filtro prata (remoÃ§Ã£o pÃ³len e Ã¡caros)', online:'Filtro prata com iÃµes de prata (anti-alergÃ©nico)', status:'ok' },
+      { label:'Auto-limpeza',bo:'NÃ£o mencionada', online:'NÃ£o disponÃ­vel nesta sÃ©rie', status:'ok' },
+      { label:'3D Airflow',  bo:'DistribuiÃ§Ã£o de ar 3D (vertical + horizontal)', online:'OscilaÃ§Ã£o 3D (vertical + horizontal)', status:'ok' },
+      { label:'Temp. Arref.',bo:'-10Â°C a +46Â°C (exterior)', online:'-10Â°C a +46Â°C (exterior)', status:'ok' },
+      { label:'Temp. Aquec.',bo:'-15Â°C a +18Â°C (exterior)', online:'-15Â°C a +18Â°C (exterior)', status:'ok' },
+      { label:'Som interior', bo:'19 dB(A) (modo mÃ­nimo)', online:'~19 dB(A)', status:'ok' },
+      { label:'Garantia',    bo:'3 anos Daikin', online:'3 anos Daikin', status:'ok' },
+    ]
+  },
+  {
+    marca: 'Daikin',
+    series: 'Perfera (FTXM)',
+    modelos: 'FTXM20â€“71 Â· Kit Multi Perfera',
+    fonte: 'Backoffice + conhecimento Daikin PT',
+    fonte_status: 'parcial',
+    rows: [
+      { label:'WiFi',        bo:'Integrado de sÃ©rie â€” Daikin Mobile Controller', online:'Integrado de sÃ©rie â€” App Daikin Mobile Controller', status:'ok' },
+      { label:'Filtro',      bo:'Flash Streamer + filtro PM2.5', online:'Flash Streamer (purificador) + filtro PM2.5', status:'ok' },
+      { label:'I Feel',      bo:'I-Feel â€” mede temperatura na posiÃ§Ã£o do utilizador', online:'I Feel â€” sensor no telecomando', status:'ok' },
+      { label:'Streamer',    bo:'Flash Streamer â€” purificador de alta eficiÃªncia', online:'Flash Streamer integrado', status:'ok' },
+      { label:'Auto-limpeza',bo:'NÃ£o mencionada', online:'NÃ£o disponÃ­vel nesta sÃ©rie', status:'ok' },
+      { label:'Temp. Arref.',bo:'-10Â°C a +50Â°C (exterior)', online:'-10Â°C a +50Â°C (exterior)', status:'ok' },
+      { label:'Temp. Aquec.',bo:'-20Â°C a +18Â°C (exterior)', online:'-20Â°C a +18Â°C (exterior)', status:'ok' },
+      { label:'Som interior', bo:'19 dB(A)', online:'19 dB(A)', status:'ok' },
+      { label:'Garantia',    bo:'3 anos Daikin', online:'3 anos Daikin', status:'ok' },
+    ]
+  },
+  {
+    marca: 'Daikin',
+    series: 'Stylish (FTXA)',
+    modelos: 'FTXA20â€“50 Â· 8 cores disponÃ­veis',
+    fonte: 'Backoffice + conhecimento Daikin PT',
+    fonte_status: 'parcial',
+    rows: [
+      { label:'WiFi',        bo:'Integrado de sÃ©rie â€” Daikin Online Controller', online:'Integrado de sÃ©rie â€” App Daikin Online Controller', status:'ok' },
+      { label:'Filtro',      bo:'Flash Streamer + filtro premium PM2.5', online:'Flash Streamer + filtro PM2.5', status:'ok' },
+      { label:'I Feel',      bo:'I-Feel â€” sensor no telecomando', online:'I Feel sensor', status:'ok' },
+      { label:'Streamer',    bo:'Flash Streamer integrado', online:'Flash Streamer integrado', status:'ok' },
+      { label:'Fluxo 360Â°',  bo:'Fluxo de ar 360Â° horizontal + vertical', online:'Fluxo horizontal e vertical 360Â°', status:'ok' },
+      { label:'Temp. Arref.',bo:'-10Â°C a +46Â°C (exterior)', online:'-10Â°C a +46Â°C (exterior)', status:'ok' },
+      { label:'Temp. Aquec.',bo:'-15Â°C a +18Â°C (exterior)', online:'-15Â°C a +18Â°C (exterior)', status:'ok' },
+      { label:'Som interior', bo:'19 dB(A)', online:'19 dB(A)', status:'ok' },
+      { label:'Garantia',    bo:'3 anos Daikin', online:'3 anos Daikin', status:'ok' },
+    ]
+  },
+  {
+    marca: 'Daikin',
+    series: 'Emura (FTXJ)',
+    modelos: 'FTXJ20â€“50 Â· Branco, Prateado, Preto',
+    fonte: 'Backoffice + conhecimento Daikin PT',
+    fonte_status: 'parcial',
+    rows: [
+      { label:'WiFi',        bo:'Integrado de sÃ©rie â€” Daikin Online Controller', online:'Integrado de sÃ©rie', status:'ok' },
+      { label:'Filtro',      bo:'Flash Streamer + filtro premium', online:'Flash Streamer + filtro premium', status:'ok' },
+      { label:'I Feel',      bo:'I-Feel â€” sensor no telecomando', online:'I Feel sensor', status:'ok' },
+      { label:'Streamer',    bo:'Flash Streamer integrado', online:'Flash Streamer integrado', status:'ok' },
+      { label:'Temp. Arref.',bo:'-10Â°C a +46Â°C (exterior)', online:'-10Â°C a +46Â°C (exterior)', status:'ok' },
+      { label:'Temp. Aquec.',bo:'-15Â°C a +18Â°C (exterior)', online:'-15Â°C a +18Â°C (exterior)', status:'ok' },
+      { label:'Som interior', bo:'19 dB(A)', online:'19 dB(A)', status:'ok' },
+      { label:'Garantia',    bo:'3 anos Daikin', online:'3 anos Daikin', status:'ok' },
+    ]
+  },
+  {
+    marca: 'Bosch',
+    series: 'Climate 3200i',
+    modelos: 'CL3200i-Set 26/35/53/70 WE',
+    fonte: 'bosch-homecomfort.com/pt/pt â€” verificado',
+    fonte_status: 'ok',
+    rows: [
+      { label:'WiFi',        bo:'Opcional â€” mÃ³dulo Home Connect', online:'Opcional â€” mÃ³dulo IP-Gateway G10-3 (app HomeCom Easy, nÃ£o Home Connect)', status:'warn', nota:'App Ã© HomeCom Easy, nÃ£o Home Connect. Home Connect Ã© outra linha Bosch.' },
+      { label:'Filtro',      bo:'Filtro catalÃ­tico + Golden Fin anticorrosivo', online:'Filtro HD (alta densidade) + filtro catalÃ­tico', status:'diff', nota:'Golden Fin nÃ£o confirmado no 3200i. Pode ser sÃ³ HD + catalÃ­tico.' },
+      { label:'Auto-limpeza',bo:'iClean a 56Â°C', online:'iClean â€” aquece evaporador a 56Â°C (confirmado)', status:'ok' },
+      { label:'Follow Me',   bo:'NÃ£o mencionado', online:'Follow Me â€” sensor de temperatura no telecomando', status:'miss', nota:'Feature confirmada â€” em falta no backoffice' },
+      { label:'Ionizador',   bo:'NÃ£o mencionado', online:'Sim â€” ionizador integrado', status:'miss', nota:'Feature confirmada â€” em falta no backoffice' },
+      { label:'3D Airflow',  bo:'NÃ£o mencionado', online:'3D Swing (vertical + horizontal) + Gentle Air + Gear', status:'miss', nota:'Feature confirmada â€” em falta no backoffice' },
+      { label:'Temp. Arref.',bo:'-15Â°C a +43Â°C (exterior)', online:'-15Â°C a +50Â°C (exterior)', status:'diff', nota:'DiferenÃ§a de +7Â°C. Fonte oficial PT confirma +50Â°C.' },
+      { label:'Temp. Aquec.',bo:'-20Â°C a +24Â°C (exterior)', online:'-20Â°C a +24Â°C (exterior)', status:'ok' },
+      { label:'Som interior', bo:'26 dB(A)', online:'20 dB(A) em modo super-silencioso', status:'diff', nota:'26 dB pode ser o mÃ¡ximo; o modo super-silencioso chega a 20 dB(A).' },
+      { label:'Garantia',    bo:'3 anos Bosch', online:'5 anos Bosch (confirmado)', status:'diff', nota:'IMPORTANTE: Bosch oferece 5 anos de garantia, nÃ£o 3.' },
+    ]
+  },
+  {
+    marca: 'Bosch',
+    series: 'Climate 6000i',
+    modelos: 'CL6001i-Set 26/35/53/70 WE',
+    fonte: 'bosch-homecomfort.com/pt/pt â€” verificado',
+    fonte_status: 'ok',
+    rows: [
+      { label:'WiFi',        bo:'Opcional â€” mÃ³dulo Home Connect', online:'Opcional â€” mÃ³dulo IP-Gateway G10-3 (app HomeCom Easy)', status:'warn', nota:'App Ã© HomeCom Easy, nÃ£o Home Connect.' },
+      { label:'Filtro',      bo:'Filtro HEPA + ionizador', online:'Filtro multicamada (elimina bolor, bactÃ©rias, vÃ­rus) + ionizador', status:'warn', nota:'HEPA nÃ£o confirmado explicitamente â€” pode ser mais genÃ©rico "multicamada".' },
+      { label:'Auto-limpeza',bo:'NÃ£o mencionada', online:'iClean mencionada (elimina bactÃ©rias) â€” a confirmar', status:'warn', nota:'Pode ter iClean como o 3200i â€” confirmar no produto.' },
+      { label:'Sensor presenÃ§a',bo:'Sensor de movimento', online:'Sensor de presenÃ§a/movimento + sensor de humidade', status:'warn', nota:'Sensor de humidade em falta.' },
+      { label:'Ionizador',   bo:'Ionizador integrado', online:'Ionizador por iÃ£o-aglomeraÃ§Ã£o', status:'ok' },
+      { label:'Temp. Arref.',bo:'-15Â°C a +46Â°C (exterior)', online:'-15Â°C a +50Â°C (exterior)', status:'diff', nota:'DiferenÃ§a de +4Â°C. Fonte oficial PT confirma +50Â°C.' },
+      { label:'Temp. Aquec.',bo:'-20Â°C a +24Â°C (exterior)', online:'-20Â°C a +24Â°C (exterior)', status:'ok' },
+      { label:'Som interior', bo:'24 dB(A)', online:'58 dB potÃªncia sonora (valor diferente â€” pode ser comparaÃ§Ã£o errada)', status:'warn', nota:'AtenÃ§Ã£o: dB(A) de pressÃ£o sonora e dB de potÃªncia sonora sÃ£o valores diferentes. 24 dB(A) parece plausÃ­vel.' },
+      { label:'Garantia',    bo:'3 anos Bosch', online:'5 anos Bosch (confirmado)', status:'diff', nota:'IMPORTANTE: 5 anos, nÃ£o 3.' },
+    ]
+  },
+  {
+    marca: 'Bosch',
+    series: 'Climate 7000i',
+    modelos: 'CL7000i-Set 20/26/35/41/53 WE',
+    fonte: 'bosch-homecomfort.com â€” verificado',
+    fonte_status: 'ok',
+    rows: [
+      { label:'WiFi',        bo:'Opcional â€” mÃ³dulo Home Connect', online:'WiFi INTEGRADO na unidade interior (app HomeCom Easy, Matter: Alexa, Google, Apple Home)', status:'diff', nota:'IMPORTANTE: 7000i tem WiFi integrado de sÃ©rie, nÃ£o Ã© mÃ³dulo opcional.' },
+      { label:'Filtro',      bo:'Filtro duplo premium + ionizador', online:'Filtro multiestÃ¡gio (elimina vÃ­rus, bactÃ©rias, mofo) + ionizador', status:'warn', nota:'"Duplo premium" pode nÃ£o ser o nome correto.' },
+      { label:'Auto-limpeza',bo:'NÃ£o mencionada', online:'iClean â€” elimina pÃ³, mofo e gordura do permutador', status:'miss', nota:'iClean confirmado no 7000i â€” em falta no backoffice.' },
+      { label:'Sensor presenÃ§a',bo:'Sensor de presenÃ§a', online:'Sensor de presenÃ§a + sensor de humidade + Follow Me', status:'warn', nota:'Follow Me e sensor de humidade em falta.' },
+      { label:'Wind Avoid',  bo:'NÃ£o mencionado', online:'Wind Avoid â€” direciona ar para o tecto', status:'miss', nota:'Feature exclusiva â€” em falta.' },
+      { label:'Temp. Arref.',bo:'-15Â°C a +46Â°C (exterior)', online:'-15Â°C a +50Â°C (exterior)', status:'diff', nota:'+4Â°C de diferenÃ§a.' },
+      { label:'Temp. Aquec.',bo:'-20Â°C a +24Â°C (exterior)', online:'-30Â°C a +30Â°C (exterior) â€” a confirmar', status:'diff', nota:'Valor apurado de resumo automÃ¡tico â€” confirmar no site oficial.' },
+      { label:'Som interior', bo:'20 dB(A)', online:'~53 dB potÃªncia sonora (unidade diferente)', status:'warn', nota:'20 dB(A) parece plausÃ­vel para pressÃ£o sonora.' },
+      { label:'Garantia',    bo:'3 anos Bosch', online:'5 anos Bosch (confirmado)', status:'diff', nota:'IMPORTANTE: 5 anos, nÃ£o 3.' },
+    ]
+  },
+  {
+    marca: 'Daitsu',
+    series: 'ARTIC (DS-KZ)',
+    modelos: 'DS-9KZ Â· DS-12KZ Â· DS-18KZ Â· DS-24KZ',
+    fonte: 'Eurofred + Daitsu â€” verificado',
+    fonte_status: 'ok',
+    rows: [
+      { label:'WiFi',        bo:'NÃ£o especificado no backoffice', online:'WiFi incluÃ­do â€” App Daitsu Connect', status:'miss', nota:'WiFi incluÃ­do confirmado (pelo menos no DS-12KZ).' },
+      { label:'Filtro',      bo:'NÃ£o especificado no backoffice', online:'Filtro de ar (tipo nÃ£o especificado)', status:'warn', nota:'Sem detalhe de filtro no backoffice nem online.' },
+      { label:'Auto-limpeza',bo:'NÃ£o mencionada', online:'NÃ£o disponÃ­vel â€” sÃ³ descongelaÃ§Ã£o inteligente', status:'ok' },
+      { label:'I Feel',      bo:'NÃ£o mencionado', online:'I Feel â€” sensor temperatura no telecomando', status:'miss', nota:'Feature confirmada â€” em falta.' },
+      { label:'Ionizador',   bo:'NÃ£o mencionado', online:'NÃ£o disponÃ­vel', status:'ok' },
+      { label:'Temp. Arref.',bo:'NÃ£o especificado no backoffice', online:'-15Â°C a +53Â°C (exterior)', status:'miss', nota:'Em falta no backoffice.' },
+      { label:'Temp. Aquec.',bo:'NÃ£o especificado no backoffice', online:'-25Â°C a +30Â°C (exterior)', status:'miss', nota:'Em falta no backoffice.' },
+      { label:'Som interior', bo:'NÃ£o especificado', online:'Alto 36 / MÃ©dio 33 / Baixo 27 / Super-silencioso 22 dB(A)', status:'miss', nota:'Em falta no backoffice.' },
+      { label:'Garantia',    bo:'NÃ£o especificado', online:'NÃ£o confirmada (distribuidor oferece extensÃ£o atÃ© 5 anos)', status:'warn' },
+    ]
+  },
+  {
+    marca: 'Daitsu',
+    series: 'ARTIC Plus (DS-KTP)',
+    modelos: 'DS-9KTP-6 Â· DS-12KTP-6 Â· DS-18KTP-6 Â· DS-24KTP-6',
+    fonte: 'Eurofred + Daitsu â€” verificado',
+    fonte_status: 'ok',
+    rows: [
+      { label:'WiFi',        bo:'Integrado â€” App Smart Life', online:'Integrado â€” App Daitsu Connect', status:'diff', nota:'App Ã© Daitsu Connect, nÃ£o Smart Life.' },
+      { label:'Filtro',      bo:'5 filtros: PÃ³ PM10 Â· IÃµes prata Â· Catequina Â· CarvÃ£o ativo Â· Vitamina C', online:'5 filtros de alta eficiÃªncia (composiÃ§Ã£o confirmada)', status:'ok' },
+      { label:'Auto-limpeza',bo:'Auto-limpeza a 56Â°C', online:'Auto-limpeza: escarcha â†’ degelo â†’ secagem â†’ esterilizaÃ§Ã£o 56Â°C (confirmado)', status:'ok' },
+      { label:'I Feel',      bo:'Sensor I Feel', online:'I Feel â€” sensor temperatura no telecomando', status:'ok' },
+      { label:'Gentle Air',  bo:'Gentle Air â€” 14 lÃ¢minas 1.106 micro-furos', online:'Gentle Air confirmado', status:'ok' },
+      { label:'3D Airflow',  bo:'3D Airflow horizontal + vertical', online:'Swing H+V confirmado', status:'ok' },
+      { label:'Temp. Arref.',bo:'-15Â°C a +53Â°C (exterior)', online:'-15Â°C a +53Â°C (exterior)', status:'ok' },
+      { label:'Temp. Aquec.',bo:'-25Â°C a +30Â°C (exterior)', online:'-20Â°C a +30Â°C (exterior) â€” modelo KTP5 (geraÃ§Ã£o anterior)', status:'diff', nota:'AtenÃ§Ã£o: pesquisa encontrou DS-KTP5 (descontinuado). Confirmar se DS-KTP-6 mantÃ©m -25Â°C ou vai sÃ³ a -20Â°C.' },
+      { label:'Som interior', bo:'19 dB(A) (modo silencioso)', online:'Super-silencioso 21 dB(A) (geraÃ§Ã£o anterior DS-KTP5)', status:'warn', nota:'Valor apurado de modelo anterior. Confirmar no DS-KTP-6.' },
+      { label:'Garantia',    bo:'3 anos', online:'NÃ£o confirmada (distribuidor pode oferecer atÃ© 5 anos)', status:'warn' },
+    ]
+  },
+];
+
+// â”€â”€ render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+let filterMarca = 'all', filterStatus = 'all';
+
+function statusInfo(s) {
+  const map = {
+    ok:   { label:'âœ“ Correto',    cls:'badge-ok',   rowCls:'ok' },
+    diff: { label:'âŒ Diferente', cls:'badge-diff',  rowCls:'diff' },
+    warn: { label:'âš ï¸ Verificar', cls:'badge-warn',  rowCls:'warn' },
+    miss: { label:'ï¼‹ Em falta',  cls:'badge-miss',  rowCls:'miss' },
+  };
+  return map[s] || map.ok;
+}
+
+function render() {
+  const el = document.getElementById('content');
+  let html = '';
+  let totOk=0, totDiff=0, totWarn=0, totMiss=0;
+
+  DATA.forEach(brand => {
+    if (filterMarca !== 'all' && brand.marca !== filterMarca) return;
+
+    const rows = brand.rows.filter(r => filterStatus === 'all' || r.status === filterStatus);
+    const vis = rows.length > 0;
+
+    DATA.forEach(b => {
+      b.rows.forEach(r => {
+        if (r.status==='ok')   totOk++;
+        else if (r.status==='diff') totDiff++;
+        else if (r.status==='warn') totWarn++;
+        else if (r.status==='miss') totMiss++;
+      });
+    });
+
+    if (!vis) return;
+
+    html += `<div class="brand-section" data-marca="${brand.marca}">
+      <div class="brand-header">
+        <span class="brand-name">${brand.marca}</span>
+        <span class="brand-badge">${brand.series}</span>
+        <span class="fonte-tag">${brand.fonte_status === 'ok' ? 'âœ“ Fonte verificada' : 'âš  Dados parciais'}</span>
+      </div>
+      <div class="series-card">
+        <div class="series-title">
+          <span>${brand.series}</span>
+          <span class="models-tag">${brand.modelos}</span>
+        </div>
+        <div class="col-header">
+          <span class="col-h">Campo</span>
+          <span class="col-h">Backoffice (atual)</span>
+          <span class="col-h">Online (verificado)</span>
+          <span class="col-h">Estado</span>
+        </div>
+        <div class="rows">`;
+    rows.forEach(r => {
+      const si = statusInfo(r.status);
+      html += `<div class="row ${si.rowCls}">
+        <span class="row-label">${r.label}</span>
+        <span class="row-val">${r.bo}</span>
+        <span class="row-ref ${r.status !== 'ok' ? 'highlight' : ''}">${r.online}</span>
+        <span><span class="badge ${si.cls}">${si.label}</span></span>
+      </div>`;
+      if (r.nota) html += `<div style="padding:2px 10px 6px 150px;font-size:.76rem;color:var(--muted);">ðŸ’¬ ${r.nota}</div>`;
+    });
+    html += `</div>
+        <div class="fonte-nota">Fonte: <strong>${brand.fonte}</strong></div>
+      </div>
+    </div>`;
+  });
+
+  el.innerHTML = html || '<p style="color:var(--muted);padding:20px">Nenhum resultado para os filtros selecionados.</p>';
+
+  // summary
+  const s = document.getElementById('summary');
+  s.innerHTML = `
+    <div class="stat"><span class="stat-num stat-ok">${totOk}</span> <span>Corretos</span></div>
+    <div class="stat"><span class="stat-num stat-diff">${totDiff}</span> <span>Diferentes</span></div>
+    <div class="stat"><span class="stat-num stat-warn">${totWarn}</span> <span>A verificar</span></div>
+    <div class="stat"><span class="stat-num stat-info">${totMiss}</span> <span>Em falta</span></div>
+  `;
+}
+
+// recalculate totals properly
+function calcTotals() {
+  let ok=0, diff=0, warn=0, miss=0;
+  DATA.forEach(b => b.rows.forEach(r => {
+    if (r.status==='ok') ok++;
+    else if (r.status==='diff') diff++;
+    else if (r.status==='warn') warn++;
+    else if (r.status==='miss') miss++;
+  }));
+  document.getElementById('summary').innerHTML = `
+    <div class="stat"><span class="stat-num stat-ok">${ok}</span> <span>Corretos</span></div>
+    <div class="stat"><span class="stat-num stat-diff">${diff}</span> <span>Diferentes</span></div>
+    <div class="stat"><span class="stat-num stat-warn">${warn}</span> <span>A verificar</span></div>
+    <div class="stat"><span class="stat-num stat-info">${miss}</span> <span>Em falta</span></div>
+  `;
+}
+
+function setFilter(type, val, btn) {
+  if (type === 'marca') {
+    filterMarca = val;
+    document.querySelectorAll('.filters button').forEach((b,i) => { if(i<4) b.classList.toggle('active', b===btn); });
+  } else {
+    filterStatus = val;
+    document.querySelectorAll('.filters button').forEach((b,i) => { if(i>=4) b.classList.toggle('active', b===btn); });
+  }
+  render();
+}
+
+render();
+calcTotals();
+</script>
+
