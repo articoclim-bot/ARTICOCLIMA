@@ -153,8 +153,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .header--transparent:not(.scrolled) .nav__toggle span { background: #fff; }
 .header--transparent:not(.scrolled) .nav__logo svg { filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255,255,255,.25)); }
-.header--transparent:not(.scrolled) .lang-toggle { color: rgba(255,255,255,.85); border-color: rgba(255,255,255,.35); }
-.header--transparent:not(.scrolled) .lang-toggle:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.1); }
 
 .nav {
   display: flex;
@@ -2828,30 +2826,30 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   z-index: 1001;
 }
 .lang-toggle {
-  background: transparent;
-  border: 1.5px solid rgba(28,28,30,.22);
-  color: var(--dark);
-  font-family: 'Inter', sans-serif;
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .5px;
-  padding: 5px 11px;
-  border-radius: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  overflow: hidden;
   cursor: pointer;
-  transition: background .2s, border-color .2s, color .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: box-shadow .2s;
 }
 .lang-toggle:hover {
-  background: rgba(249,115,22,.08);
-  border-color: var(--primary);
-  color: var(--primary);
+  box-shadow: 0 0 0 2.5px var(--primary);
 }
-.header.scrolled .lang-toggle {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-.header.scrolled .lang-toggle:hover {
-  background: rgba(249,115,22,.10);
-  border-color: var(--primary);
+.lang-flag {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  display: block !important;
+  border-radius: 0 !important;
 }
 /* Dropdown panel */
 .lang-dropdown {
