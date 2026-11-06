@@ -537,7 +537,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #fff;
   box-shadow: 0 4px 18px rgba(249,115,22,.65);
 }
-.service-card.service-card--bg-img h3 { color: #fff; }
+.service-card.service-card--bg-img h3 {
+  color: #fff;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+  margin: 0;
+}
 .service-card.service-card--bg-img p  { color: rgba(255,255,255,.85); }
 .service-card.service-card--bg-img .service-card__link,
 .service-card.service-card--bg-img .service-card__link--secondary {
