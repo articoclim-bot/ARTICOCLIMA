@@ -233,10 +233,14 @@
 
     // Catalog scroll arrows
     document.getElementById('catalogScrollRight').addEventListener('click', () => {
-      document.getElementById('catalogGrid').scrollBy({ left: 500, behavior: 'smooth' });
+      const g = document.getElementById('catalogGrid');
+      const c = g.querySelector('.series-card');
+      g.scrollBy({ left: c ? c.offsetWidth + 16 : 400, behavior: 'smooth' });
     });
     document.getElementById('catalogScrollLeft').addEventListener('click', () => {
-      document.getElementById('catalogGrid').scrollBy({ left: -500, behavior: 'smooth' });
+      const g = document.getElementById('catalogGrid');
+      const c = g.querySelector('.series-card');
+      g.scrollBy({ left: -(c ? c.offsetWidth + 16 : 400), behavior: 'smooth' });
     });
   </script>
   <!-- ===== COMPARE BAR ===== -->

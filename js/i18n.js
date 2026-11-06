@@ -20,6 +20,7 @@ const TRANSLATIONS = {
     '← Voltar ao Site': '← Back to Site',
     '← Voltar ao início': '← Back to Home',
     'Simulador AC': 'AC Simulator',
+    'Quanto vou poupar?': 'How much will I save?',
 
     // ── HERO ──
     '✦ Venda · Instalação · Assistência Técnica': '✦ Sales · Installation · Technical Support',
@@ -35,6 +36,7 @@ const TRANSLATIONS = {
     'em boas mãos.': 'in good hands.',
     'Venda, instalação e assistência especializada': 'Professional sales, installation and support',
     'em climatização em Tavira e em todo o Algarve.': 'in air conditioning in Tavira and throughout the Algarve.',
+    'O conforto térmico da sua casa': 'The thermal comfort of your home',
 
     // ── SERVICES ──
     'O que fazemos': 'What We Do',
@@ -106,6 +108,7 @@ const TRANSLATIONS = {
     // ── CHOOSE ──
     'Qual é a certa para si?': 'Which one is right for you?',
     'Ajude-me a Escolher': 'Help Me Choose',
+    'Ajudamos a escolher a certa para si': 'We help you choose the right one',
     'Cada marca tem o seu perfil. Descubra qual se adapta melhor ao seu projeto e ao seu orçamento.': 'Each brand has its profile. Find out which best suits your project and budget.',
     'Eficiência e Silêncio': 'Efficiency and Silence',
     'A Daikin é líder mundial em climatização, reconhecida pela elevada eficiência energética, funcionamento silencioso e fiabilidade a longo prazo. Para quem quer o melhor, sem compromissos.': 'Daikin is the world leader in air conditioning, recognised for high energy efficiency, quiet operation and long-term reliability. For those who want the best, without compromise.',
@@ -368,6 +371,7 @@ const TRANSLATIONS = {
     '← Voltar ao Site': '← Retour au Site',
     '← Voltar ao início': '← Retour à l\'Accueil',
     'Simulador AC': 'Simulateur CA',
+    'Quanto vou poupar?': 'Combien vais-je économiser ?',
 
     // ── HERO ──
     '✦ Venda · Instalação · Assistência Técnica': '✦ Vente · Installation · Assistance Technique',
@@ -383,6 +387,7 @@ const TRANSLATIONS = {
     'em boas mãos.': 'entre de bonnes mains.',
     'Venda, instalação e assistência especializada': 'Vente, installation et assistance spécialisée',
     'em climatização em Tavira e em todo o Algarve.': 'en climatisation à Tavira et dans tout l\'Algarve.',
+    'O conforto térmico da sua casa': 'Le confort thermique de votre maison',
 
     // ── SERVICES ──
     'O que fazemos': 'Ce que nous faisons',
@@ -454,6 +459,7 @@ const TRANSLATIONS = {
     // ── CHOOSE ──
     'Qual é a certa para si?': 'Laquelle vous convient ?',
     'Ajude-me a Escolher': 'Aidez-moi à Choisir',
+    'Ajudamos a escolher a certa para si': 'Nous vous aidons à choisir la bonne',
     'Cada marca tem o seu perfil. Descubra qual se adapta melhor ao seu projeto e ao seu orçamento.': 'Chaque marque a son profil. Découvrez laquelle convient le mieux à votre projet et à votre budget.',
     'Eficiência e Silêncio': 'Efficacité et Silence',
     'A Daikin é líder mundial em climatização, reconhecida pela elevada eficiência energética, funcionamento silencioso e fiabilidade a longo prazo. Para quem quer o melhor, sem compromissos.': 'Daikin est le leader mondial de la climatisation, reconnu pour sa haute efficacité énergétique, son fonctionnement silencieux et sa fiabilité à long terme. Pour ceux qui veulent le meilleur, sans compromis.',
@@ -716,6 +722,7 @@ const TRANSLATIONS = {
     '← Voltar ao Site': '← Volver al Sitio',
     '← Voltar ao início': '← Volver al Inicio',
     'Simulador AC': 'Simulador AC',
+    'Quanto vou poupar?': '¿Cuánto voy a ahorrar?',
 
     // ── HERO ──
     '✦ Venda · Instalação · Assistência Técnica': '✦ Venta · Instalación · Asistencia Técnica',
@@ -731,6 +738,7 @@ const TRANSLATIONS = {
     'em boas mãos.': 'en buenas manos.',
     'Venda, instalação e assistência especializada': 'Venta, instalación y asistencia especializada',
     'em climatização em Tavira e em todo o Algarve.': 'en climatización en Tavira y en todo el Algarve.',
+    'O conforto térmico da sua casa': 'El confort térmico de su casa',
 
     // ── SERVICES ──
     'O que fazemos': 'Lo que hacemos',
@@ -802,6 +810,7 @@ const TRANSLATIONS = {
     // ── CHOOSE ──
     'Qual é a certa para si?': '¿Cuál es la adecuada para usted?',
     'Ajude-me a Escolher': 'Ayúdame a Elegir',
+    'Ajudamos a escolher a certa para si': 'Le ayudamos a elegir la adecuada',
     'Cada marca tem o seu perfil. Descubra qual se adapta melhor ao seu projeto e ao seu orçamento.': 'Cada marca tiene su perfil. Descubra cuál se adapta mejor a su proyecto y presupuesto.',
     'Eficiência e Silêncio': 'Eficiencia y Silencio',
     'A Daikin é líder mundial em climatização, reconhecida pela elevada eficiência energética, funcionamento silencioso e fiabilidade a longo prazo. Para quem quer o melhor, sem compromissos.': 'Daikin es el líder mundial en climatización, reconocida por su alta eficiencia energética, funcionamiento silencioso y fiabilidad a largo plazo. Para quienes quieren lo mejor, sin compromisos.',
@@ -1062,6 +1071,7 @@ const TRANSLATIONS = {
     '← Voltar ao Site': '← Zurück zur Seite',
     '← Voltar ao início': '← Zurück zur Startseite',
     'Simulador AC': 'Klimasimulator',
+    'Quanto vou poupar?': 'Wie viel spare ich?',
 
     // ── HERO ──
     '✦ Venda · Instalação · Assistência Técnica': '✦ Verkauf · Installation · Technischer Service',
@@ -1077,6 +1087,7 @@ const TRANSLATIONS = {
     'em boas mãos.': 'in guten Händen.',
     'Venda, instalação e assistência especializada': 'Verkauf, Installation und spezialisierter Service',
     'em climatização em Tavira e em todo o Algarve.': 'für Klimaanlagen in Tavira und im gesamten Algarve.',
+    'O conforto térmico da sua casa': 'Der Wärmekomfort Ihres Hauses',
 
     // ── SERVICES ──
     'O que fazemos': 'Was wir tun',
@@ -1148,6 +1159,7 @@ const TRANSLATIONS = {
     // ── CHOOSE ──
     'Qual é a certa para si?': 'Welche ist die Richtige für Sie?',
     'Ajude-me a Escolher': 'Hilf mir zu Wählen',
+    'Ajudamos a escolher a certa para si': 'Wir helfen Ihnen, die Richtige zu wählen',
     'Cada marca tem o seu perfil. Descubra qual se adapta melhor ao seu projeto e ao seu orçamento.': 'Jede Marke hat ihr Profil. Finden Sie heraus, welche am besten zu Ihrem Projekt und Budget passt.',
     'Eficiência e Silêncio': 'Effizienz und Stille',
     'A Daikin é líder mundial em climatização, reconhecida pela elevada eficiência energética, funcionamento silencioso e fiabilidade a longo prazo. Para quem quer o melhor, sem compromissos.': 'Daikin ist der Weltmarktführer in der Klimatisierung, bekannt für hohe Energieeffizienz, leisen Betrieb und langfristige Zuverlässigkeit. Für alle, die das Beste wollen, ohne Kompromisse.',

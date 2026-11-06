@@ -1087,6 +1087,18 @@ function modalHTML(p) {
 
   /* ---- Card interactions (event delegation) ---- */
   grid.addEventListener('click', e => {
+    /* Mobile: tap on card image area to reveal overlay */
+    if (window.matchMedia('(hover: none)').matches) {
+      const card = e.target.closest('.series-card');
+      if (card && !e.target.closest('.sc-detail-btn, .sc-compare-btn, .btu-pill, .badge-whats-new, .color-dot, a, button')) {
+        if (!card.classList.contains('is-tapped')) {
+          grid.querySelectorAll('.series-card.is-tapped').forEach(c => c.classList.remove('is-tapped'));
+          card.classList.add('is-tapped');
+          return;
+        }
+      }
+    }
+
     /* Compare button */
     const cmpBtn = e.target.closest('.sc-compare-btn');
     if (cmpBtn) {
@@ -1619,6 +1631,18 @@ function solarModalHTML(p) {
   }
 
   grid.addEventListener('click', e => {
+    /* Mobile: tap on card image area to reveal overlay */
+    if (window.matchMedia('(hover: none)').matches) {
+      const card = e.target.closest('.series-card');
+      if (card && !e.target.closest('.sc-detail-btn, .btu-pill, a, button')) {
+        if (!card.classList.contains('is-tapped')) {
+          grid.querySelectorAll('.series-card.is-tapped').forEach(c => c.classList.remove('is-tapped'));
+          card.classList.add('is-tapped');
+          return;
+        }
+      }
+    }
+
     const pill = e.target.closest('.btu-pill');
     if (pill) {
       const sk = pill.dataset.sk;

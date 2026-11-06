@@ -231,10 +231,14 @@
     });
 
     document.getElementById('solarScrollRight').addEventListener('click', () => {
-      document.getElementById('solarGrid').scrollBy({ left: 500, behavior: 'smooth' });
+      const g = document.getElementById('solarGrid');
+      const c = g.querySelector('.series-card');
+      g.scrollBy({ left: c ? c.offsetWidth + 16 : 400, behavior: 'smooth' });
     });
     document.getElementById('solarScrollLeft').addEventListener('click', () => {
-      document.getElementById('solarGrid').scrollBy({ left: -500, behavior: 'smooth' });
+      const g = document.getElementById('solarGrid');
+      const c = g.querySelector('.series-card');
+      g.scrollBy({ left: -(c ? c.offsetWidth + 16 : 400), behavior: 'smooth' });
     });
   </script>
   <script src="js/catalog.js"></script>
