@@ -3329,6 +3329,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .service-card__book-toggle {
   background: none;
   border: none;
+  padding: 0;
+  text-align: left;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   cursor: pointer;
