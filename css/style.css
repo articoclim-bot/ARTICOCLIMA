@@ -2651,7 +2651,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
     gap: 10px;
     padding-bottom: 10px;
   }
@@ -2691,6 +2690,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     flex: 0 0 82vw;
     height: 320px;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .series-card:not(.is-tapped) .series-card__img-overlay {
+    pointer-events: none;
   }
   .series-card .series-card__img {
     filter: grayscale(0%);

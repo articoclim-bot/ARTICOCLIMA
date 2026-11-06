@@ -1087,15 +1087,14 @@ function modalHTML(p) {
 
   /* ---- Card interactions (event delegation) ---- */
   grid.addEventListener('click', e => {
-    /* Mobile: tap on card image area to reveal overlay */
-    if (window.matchMedia('(hover: none)').matches) {
+    /* Mobile: tap on card toggles the description overlay */
+    if (window.matchMedia('(max-width: 720px)').matches) {
       const card = e.target.closest('.series-card');
-      if (card && !e.target.closest('.sc-detail-btn, .sc-compare-btn, .btu-pill, .badge-whats-new, .color-dot, a, button')) {
-        if (!card.classList.contains('is-tapped')) {
-          grid.querySelectorAll('.series-card.is-tapped').forEach(c => c.classList.remove('is-tapped'));
-          card.classList.add('is-tapped');
-          return;
-        }
+      if (card && !e.target.closest('a, button, .color-dot')) {
+        const wasTapped = card.classList.contains('is-tapped');
+        grid.querySelectorAll('.series-card.is-tapped').forEach(c => c.classList.remove('is-tapped'));
+        if (!wasTapped) card.classList.add('is-tapped');
+        return;
       }
     }
 
@@ -1631,16 +1630,22 @@ function solarModalHTML(p) {
   }
 
   grid.addEventListener('click', e => {
-    /* Mobile: tap on card image area to reveal overlay */
-    if (window.matchMedia('(hover: none)').matches) {
+    /* Mobile: tap on card toggles the description overlay */
+    if (window.matchMedia('(max-width: 720px)').matches) {
       const card = e.target.closest('.series-card');
-      if (card && !e.target.closest('.sc-detail-btn, .btu-pill, a, button')) {
-        if (!card.classList.contains('is-tapped')) {
-          grid.querySelectorAll('.series-card.is-tapped').forEach(c => c.classList.remove('is-tapped'));
-          card.classList.add('is-tapped');
-          return;
-        }
+      if (card && !e.target.closest('a, button')) {
+        const wasTapped = card.classList.contains('is-tapped');
+        grid.querySelectorAll('.series-card.is-tapped').forEach(c => c.classList.remove('is-tapped'));
+        if (!wasTapped) card.classList.add('is-tapped');
+        return;
       }
+    }
+
+    const detailBtn = e.target.closest('.sc-detail-btn');
+    if (detailBtn) {
+      const group = allGroups.find(g => solarSeriesKey(g[0]) === detailBtn.dataset.sk);
+      if (group) openSolarModal(group[parseInt(detailBtn.dataset.idx, 10)].id);
+      return;
     }
 
     const pill = e.target.closest('.btu-pill');
