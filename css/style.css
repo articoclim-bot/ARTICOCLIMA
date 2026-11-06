@@ -558,7 +558,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .service-card--bg-img .service-card__book-toggle {
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity .6s ease .8s, transform .6s ease .8s;
+  transition: opacity .2s ease, transform .2s ease;
   pointer-events: none;
 }
 .service-card--bg-img.is-active,
