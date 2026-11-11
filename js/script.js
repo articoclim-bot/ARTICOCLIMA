@@ -114,11 +114,18 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   const obs = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
+        const el = entry.target;
         setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          // Estilos inline bloqueiam as transições do CSS (ex.: acordeão dos serviços)
+          setTimeout(() => {
+            el.style.removeProperty('opacity');
+            el.style.removeProperty('transform');
+            el.style.removeProperty('transition');
+          }, 600);
         }, i * 80);
-        obs.unobserve(entry.target);
+        obs.unobserve(el);
       }
     });
   }, { threshold: 0.12 });

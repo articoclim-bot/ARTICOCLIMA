@@ -529,7 +529,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex: 1 1 80px;
   min-width: 0;
   overflow: hidden;
-  transition: flex-basis 2.2s cubic-bezier(.4,0,.2,1), filter 1.8s ease, border-color 1s ease;
+  transition: flex-basis .6s cubic-bezier(.4,0,.2,1), filter .6s ease, border-color .6s ease;
+}
+/* Sem a elevação genérica do .service-card:hover, que faria o acordeão saltar */
+.service-card--bg-img:hover {
+  transform: none;
+  box-shadow: none;
 }
 .service-card--bg-img::before {
   content: '';
@@ -574,7 +579,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .service-card--bg-img .service-card__book-toggle {
   opacity: 0;
   transform: translateY(10px);
-  transition: none;
+  transition: opacity .15s ease, transform .15s ease;
   pointer-events: none;
 }
 .service-card--bg-img.is-active,
@@ -598,7 +603,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .service-card--bg-img:hover .service-card__book-toggle {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity .5s ease .9s, transform .5s ease .9s;
+  transition: opacity .3s ease .3s, transform .3s ease .3s;
   pointer-events: auto;
 }
 
