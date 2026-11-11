@@ -118,9 +118,9 @@ const TRANSLATIONS = {
     '✓ Design premiado — Stylish e Emura': '✓ Award-winning design — Stylish and Emura',
     'Ideal para: lar familiar, escritórios, quem valoriza qualidade e design a longo prazo': 'Ideal for: family homes, offices, those who value long-term quality and design',
     'Robustez e Tecnologia': 'Robustness and Technology',
-    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean, tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri (via acessório WiFi). Durabilidade comprovada em condições exigentes.': 'Bosch combines German robustness with cutting-edge technology, featuring iClean auto-cleaning, Golden Fin anti-corrosion treatment and Alexa, Google and Siri integration (via WiFi accessory). Proven durability in demanding conditions.',
-    '✓ Alexa, Google e Siri (via acessório WiFi)': '✓ Alexa, Google and Siri (via WiFi accessory)',
-    '✓ Auto-limpeza iClean + Super Ionizador': '✓ iClean auto-cleaning + Super Ioniser',
+    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean (em monosplit), tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri através do módulo WiFi, vendido à parte. Durabilidade comprovada em condições exigentes.': 'Bosch combines German robustness with cutting-edge technology, featuring iClean self-cleaning (monosplit only), Golden Fin anti-corrosion treatment and Alexa, Google and Siri integration through the WiFi module, sold separately. Proven durability in demanding conditions.',
+    '✓ Alexa, Google e Siri (módulo WiFi vendido à parte)': '✓ Alexa, Google and Siri (WiFi module sold separately)',
+    '✓ Auto-limpeza iClean (só em monosplit) + Super Ionizador': '✓ iClean self-cleaning (monosplit only) + Super Ioniser',
     '✓ Golden Fin anticorrosivo (resistente ao sal e humidade)': '✓ Golden Fin anti-corrosion (resistant to salt and humidity)',
     '✓ Ionizador, sensor de movimento e Swing 3D (Climate 6000i)': '✓ Ioniser, motion sensor and 3D Swing (Climate 6000i)',
     '✓ Marca alemã de confiança': '✓ Trusted German brand',
@@ -469,9 +469,9 @@ const TRANSLATIONS = {
     '✓ Design premiado — Stylish e Emura': '✓ Design primé — Stylish et Emura',
     'Ideal para: lar familiar, escritórios, quem valoriza qualidade e design a longo prazo': 'Idéal pour : maisons familiales, bureaux, ceux qui valorisent la qualité et le design à long terme',
     'Robustez e Tecnologia': 'Robustesse et Technologie',
-    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean, tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri (via acessório WiFi). Durabilidade comprovada em condições exigentes.': 'Bosch allie la robustesse allemande à la technologie de pointe, avec l\'auto-nettoyage iClean, le traitement anticorrosion Golden Fin et l\'intégration Alexa, Google et Siri (via accessoire WiFi). Durabilité prouvée dans des conditions exigeantes.',
-    '✓ Alexa, Google e Siri (via acessório WiFi)': '✓ Alexa, Google et Siri (via accessoire WiFi)',
-    '✓ Auto-limpeza iClean + Super Ionizador': '✓ Auto-nettoyage iClean + Super Ioniseur',
+    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean (em monosplit), tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri através do módulo WiFi, vendido à parte. Durabilidade comprovada em condições exigentes.': 'Bosch allie la robustesse allemande à la technologie de pointe, avec l\'auto-nettoyage iClean (en monosplit uniquement), le traitement anticorrosion Golden Fin et l\'intégration Alexa, Google et Siri via le module WiFi, vendu séparément. Durabilité prouvée dans des conditions exigeantes.',
+    '✓ Alexa, Google e Siri (módulo WiFi vendido à parte)': '✓ Alexa, Google et Siri (module WiFi vendu séparément)',
+    '✓ Auto-limpeza iClean (só em monosplit) + Super Ionizador': '✓ Auto-nettoyage iClean (monosplit uniquement) + Super Ioniseur',
     '✓ Golden Fin anticorrosivo (resistente ao sal e humidade)': '✓ Golden Fin anticorrosion (résistant au sel et à l\'humidité)',
     '✓ Ionizador, sensor de movimento e Swing 3D (Climate 6000i)': '✓ Ioniseur, détecteur de mouvement et Swing 3D (Climate 6000i)',
     '✓ Marca alemã de confiança': '✓ Marque allemande de confiance',
@@ -820,9 +820,9 @@ const TRANSLATIONS = {
     '✓ Design premiado — Stylish e Emura': '✓ Diseño premiado — Stylish y Emura',
     'Ideal para: lar familiar, escritórios, quem valoriza qualidade e design a longo prazo': 'Ideal para: hogares familiares, oficinas, quienes valoran la calidad y el diseño a largo plazo',
     'Robustez e Tecnologia': 'Robustez y Tecnología',
-    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean, tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri (via acessório WiFi). Durabilidade comprovada em condições exigentes.': 'Bosch combina la robustez alemana con la tecnología punta, con auto-limpieza iClean, tratamiento anticorrosión Golden Fin e integración con Alexa, Google y Siri (via accesorio WiFi). Durabilidad probada en condiciones exigentes.',
-    '✓ Alexa, Google e Siri (via acessório WiFi)': '✓ Alexa, Google y Siri (via accesorio WiFi)',
-    '✓ Auto-limpeza iClean + Super Ionizador': '✓ Auto-limpieza iClean + Super Ionizador',
+    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean (em monosplit), tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri através do módulo WiFi, vendido à parte. Durabilidade comprovada em condições exigentes.': 'Bosch combina la robustez alemana con la tecnología punta, con autolimpieza iClean (solo en monosplit), tratamiento anticorrosión Golden Fin e integración con Alexa, Google y Siri a través del módulo WiFi, que se vende por separado. Durabilidad probada en condiciones exigentes.',
+    '✓ Alexa, Google e Siri (módulo WiFi vendido à parte)': '✓ Alexa, Google y Siri (módulo WiFi se vende por separado)',
+    '✓ Auto-limpeza iClean (só em monosplit) + Super Ionizador': '✓ Autolimpieza iClean (solo monosplit) + Super Ionizador',
     '✓ Golden Fin anticorrosivo (resistente ao sal e humidade)': '✓ Golden Fin anticorrosión (resistente a la sal y la humedad)',
     '✓ Ionizador, sensor de movimento e Swing 3D (Climate 6000i)': '✓ Ionizador, sensor de movimiento y Swing 3D (Climate 6000i)',
     '✓ Marca alemã de confiança': '✓ Marca alemana de confianza',
@@ -1169,9 +1169,9 @@ const TRANSLATIONS = {
     '✓ Design premiado — Stylish e Emura': '✓ Preisgekröntes Design — Stylish und Emura',
     'Ideal para: lar familiar, escritórios, quem valoriza qualidade e design a longo prazo': 'Ideal für: Familienhäuser, Büros, alle, die Qualität und Design langfristig schätzen',
     'Robustez e Tecnologia': 'Robustheit und Technologie',
-    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean, tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri (via acessório WiFi). Durabilidade comprovada em condições exigentes.': 'Bosch verbindet deutsche Robustheit mit Spitzentechnologie: iClean-Selbstreinigung, Golden-Fin-Korrosionsschutz und Integration mit Alexa, Google und Siri (via WLAN-Zubehör). Bewährte Langlebigkeit unter anspruchsvollen Bedingungen.',
-    '✓ Alexa, Google e Siri (via acessório WiFi)': '✓ Alexa, Google und Siri (via WLAN-Zubehör)',
-    '✓ Auto-limpeza iClean + Super Ionizador': '✓ iClean-Selbstreinigung + Super-Ionisator',
+    'A Bosch alia a robustez alemã à tecnologia de ponta, com auto-limpeza iClean (em monosplit), tratamento anticorrosivo Golden Fin e integração com Alexa, Google e Siri através do módulo WiFi, vendido à parte. Durabilidade comprovada em condições exigentes.': 'Bosch verbindet deutsche Robustheit mit Spitzentechnologie: iClean-Selbstreinigung (nur bei Monosplit), Golden-Fin-Korrosionsschutz und Integration mit Alexa, Google und Siri über das separat erhältliche WLAN-Modul. Bewährte Langlebigkeit unter anspruchsvollen Bedingungen.',
+    '✓ Alexa, Google e Siri (módulo WiFi vendido à parte)': '✓ Alexa, Google und Siri (WLAN-Modul separat erhältlich)',
+    '✓ Auto-limpeza iClean (só em monosplit) + Super Ionizador': '✓ iClean-Selbstreinigung (nur Monosplit) + Super-Ionisator',
     '✓ Golden Fin anticorrosivo (resistente ao sal e humidade)': '✓ Golden Fin Korrosionsschutz (salz- und feuchtigkeitsbeständig)',
     '✓ Ionizador, sensor de movimento e Swing 3D (Climate 6000i)': '✓ Ionisator, Bewegungssensor und 3D-Swing (Climate 6000i)',
     '✓ Marca alemã de confiança': '✓ Vertrauenswürdige deutsche Marke',
@@ -1406,6 +1406,14 @@ const TRANSLATIONS = {
   },
 };
 
+// ─── Linhas [pt, en, fr, es, de] — formato usado nos ficheiros js/i18n-*.js ───
+function addTranslationRows(rows) {
+  const langs = ['en', 'fr', 'es', 'de'];
+  for (const [pt, ...vals] of rows) {
+    langs.forEach((l, i) => { TRANSLATIONS[l][pt] = vals[i]; });
+  }
+}
+
 // ─── t() — helper para conteúdo gerado dinamicamente por JS ───
 function t(str) {
   if (currentLang !== 'pt' && TRANSLATIONS[currentLang]) {
@@ -1417,20 +1425,38 @@ function t(str) {
 
 // ─── Armazenar textos originais (PT) para poder voltar atrás ───
 const originalTexts = new Map(); // node → original text
+const originalAttrs = new Map(); // element → { attr: original value }
+const TRANSLATABLE_ATTRS = ['placeholder', 'title', 'aria-label'];
+let originalTitle = null;
+
+function translateAttrs(el, dict) {
+  for (const attr of TRANSLATABLE_ATTRS) {
+    const val = el.getAttribute(attr);
+    if (!val) continue;
+    const key = val.trim().replace(/\s+/g, ' ');
+    if (dict[key] === undefined) continue;
+    const saved = originalAttrs.get(el) || {};
+    if (!(attr in saved)) saved[attr] = val;
+    originalAttrs.set(el, saved);
+    el.setAttribute(attr, dict[key]);
+  }
+}
 
 function walkAndReplace(node, dict, storeOriginal) {
   if (node.nodeType === Node.TEXT_NODE) {
     const trimmed = node.textContent.trim();
-    if (trimmed && dict[trimmed] !== undefined) {
+    // Quebras de linha/indentação do HTML não contam para a chave
+    const key = trimmed.replace(/\s+/g, ' ');
+    if (key && dict[key] !== undefined) {
       if (storeOriginal) originalTexts.set(node, node.textContent);
-      node.textContent = node.textContent.replace(trimmed, dict[trimmed]);
+      node.textContent = node.textContent.replace(trimmed, () => dict[key]);
     }
     return;
   }
-  if (!node.childNodes) return;
-  // Não traduzir conteúdo de scripts/styles ou elements escondidos
+  if (node.nodeType !== Node.ELEMENT_NODE) return;
   if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE' ||
       node.tagName === 'CODE' || node.tagName === 'PRE') return;
+  translateAttrs(node, dict);
   for (const child of node.childNodes) {
     walkAndReplace(child, dict, storeOriginal);
   }
@@ -1441,14 +1467,33 @@ function restoreOriginal() {
     node.textContent = text;
   }
   originalTexts.clear();
+  for (const [el, attrs] of originalAttrs) {
+    for (const attr in attrs) el.setAttribute(attr, attrs[attr]);
+  }
+  originalAttrs.clear();
 }
 
+// Conteúdo criado por JS depois do carregamento (modais, filtros, chat, etc.)
+const i18nObserver = new MutationObserver(mutations => {
+  if (currentLang === 'pt' || !TRANSLATIONS[currentLang]) return;
+  const dict = TRANSLATIONS[currentLang];
+  for (const m of mutations) {
+    for (const n of m.addedNodes) walkAndReplace(n, dict, true);
+  }
+  if (originalTexts.size > 5000) {
+    for (const n of originalTexts.keys()) if (!n.isConnected) originalTexts.delete(n);
+  }
+});
+
 // ─── Estado e aplicação ───
-let currentLang = localStorage.getItem('artico-lang') || 'pt';
+function readStoredLang() {
+  try { return localStorage.getItem('artico-lang') || 'pt'; } catch (e) { return 'pt'; }
+}
+let currentLang = readStoredLang();
 
 function applyLang(lang, isInitialLoad = false) {
   currentLang = lang;
-  localStorage.setItem('artico-lang', lang);
+  try { localStorage.setItem('artico-lang', lang); } catch (e) { /* armazenamento indisponível */ }
 
   const btn = document.getElementById('langToggle');
   const dropdown = document.getElementById('langDropdown');
@@ -1459,6 +1504,10 @@ function applyLang(lang, isInitialLoad = false) {
   } else {
     restoreOriginal();
   }
+
+  if (originalTitle === null) originalTitle = document.title;
+  const titleDict = TRANSLATIONS[lang];
+  document.title = (lang !== 'pt' && titleDict && titleDict[originalTitle] !== undefined) ? titleDict[originalTitle] : originalTitle;
 
   // Update button label
   var FLAG_CODES = { pt: 'pt', en: 'gb', fr: 'fr', es: 'es', de: 'de' };
@@ -1511,6 +1560,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('click', function() {
     if (dropdown) dropdown.classList.remove('open');
   });
+
+  i18nObserver.observe(document.body, { childList: true, subtree: true });
 
   // Apply stored language
   if (currentLang !== 'pt') {

@@ -181,7 +181,7 @@ const BOSCH_MONO = {
   '3200i': {
     label: 'Climate 3200i', tier: 'entrada', badge: '🆕 Novo Modelo',
     energyCool: 'A++', energyHeat: 'A+', noise: '26 dB(A)', wifiStatus: 'optional',
-    desc: 'Novo design — iClean · Super Ionizador · Golden Fin · WiFi via acessório',
+    desc: 'Novo design — iClean (só monosplit) · Super Ionizador · Golden Fin · WiFi vendido à parte',
     prices: { 9000:916, 12000:996, 18000:1470, 24000:1784 },
     models: { 9000:'CL3200i-Set 26WE', 12000:'CL3200i-Set 35WE', 18000:'CL3200i-Set 53WE', 24000:'CL3200i-Set 70WE' },
     features: ['Inverter', 'R-32', 'Auto-limpeza iClean', 'Super Ionizador', 'Golden Fin anticorrosivo'],
@@ -191,7 +191,7 @@ const BOSCH_MONO = {
   '6000i': {
     label: 'Climate 6000i', tier: 'premium', badge: '⚡ Alta Eficiência',
     energyCool: 'A+++', energyHeat: 'A++', noise: '24 dB(A)', wifiStatus: 'optional',
-    desc: 'Gama premium — A+++ · Ionizador · Sensor de movimento · Golden Fin · Swing 3D · WiFi via acessório',
+    desc: 'Gama premium — A+++ · Ionizador · Sensor de movimento · Golden Fin · Swing 3D · WiFi vendido à parte',
     prices: { 9000:1107, 12000:1218, 18000:1790, 24000:2220 },
     models: { 9000:'CL6000i-Set 26WE', 12000:'CL6000i-Set 35WE', 18000:'CL6000i-Set 53WE', 24000:'CL6000i-Set 70WE' },
     features: ['Inverter', 'R-32', 'A+++', 'Ionizador', 'Sensor de movimento', 'Golden Fin anticorrosivo'],
@@ -201,7 +201,7 @@ const BOSCH_MONO = {
   '7000i': {
     label: 'Climate 7000i', tier: 'premium', badge: '🏆 Topo de Gama',
     energyCool: 'A+++', energyHeat: 'A+++', noise: '20 dB(A)', wifiStatus: 'optional',
-    desc: 'Topo de gama — A+++ · Sensor presença · Ionizador · iF Design 2025 · WiFi via acessório',
+    desc: 'Topo de gama — A+++ · Sensor presença · Ionizador · iF Design 2025 · WiFi vendido à parte',
     prices: { 9000:1550, 12000:1667, 18000:2731 },
     models: { 9000:'CL7000i-Set 26WE', 12000:'CL7000i-Set 35WE', 18000:'CL7000i-Set 53WE' },
     features: ['Inverter', 'R-32', 'A+++', 'Sensor de presença', 'Ionizador avançado'],
