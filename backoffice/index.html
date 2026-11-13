@@ -1121,6 +1121,10 @@ const CATALOG_AC = [
   {id:'daitsu-artic-12',brand:'Daitsu',series:'ARTIC',model:'DS-12KZ',kw:3.5,btu:12000,pvp:800,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',pc:257},
   {id:'daitsu-artic-18',brand:'Daitsu',series:'ARTIC',model:'DS-18KZ',kw:5.1,btu:18000,pvp:1300,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',pc:450},
   {id:'daitsu-artic-24',brand:'Daitsu',series:'ARTIC',model:'DS-24KZ',kw:6.5,btu:24000,pvp:1555,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-kz-6.jpg',pc:616},
+  // Daitsu ARTIC Lite (DS-KLF)
+  {id:'daitsu-artic-lite-9', brand:'Daitsu',series:'ARTIC Lite',model:'DS-9KLF', kw:2.6,btu:9000, pvp:760, classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-lite-1.jpg',pc:209},
+  {id:'daitsu-artic-lite-12',brand:'Daitsu',series:'ARTIC Lite',model:'DS-12KLF',kw:3.5,btu:12000,pvp:800, classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-lite-1.jpg',pc:227},
+  {id:'daitsu-artic-lite-18',brand:'Daitsu',series:'ARTIC Lite',model:'DS-18KLF',kw:5.1,btu:18000,pvp:1300,classe:'A++ Frio / A+++ Quente',img:'../assets/products/daitsu-artic-lite-1.jpg',pc:420},
   // Daitsu ARTIC Plus (DS-KTP-6)
   {id:'daitsu-artic-plus-9',brand:'Daitsu',series:'ARTIC Plus',model:'DS-9KTP-6',kw:2.6,btu:9000,pvp:858,classe:'A+++ Frio / A++ Quente',img:'../assets/products/daitsu-artic-plus-2.webp',pc:318},
   {id:'daitsu-artic-plus-12',brand:'Daitsu',series:'ARTIC Plus',model:'DS-12KTP-6',kw:3.5,btu:12000,pvp:893,classe:'A+++ Frio / A++ Quente',img:'../assets/products/daitsu-artic-plus-2.webp',pc:333},
@@ -1259,9 +1263,9 @@ const CATALOG_AC = [
    CATÁLOGO SOLAR (preços COM IVA)
 ═══════════════════════════════════════════ */
 const CATALOG_SOLAR = [
-  {id:'bosch-solar-fcc-150',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 150L',capacity:'150 L',pvp:2128,pc:1113,img:'../assets/products/bosch-solar-fcc-150.webp',tag:'1 painel · termossifão',grupo:'termossifao'},
-  {id:'bosch-solar-fcc-200',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 200L',capacity:'200 L',pvp:2256,pc:1186,img:'../assets/products/bosch-solar-fcc-200.webp',tag:'1 painel · termossifão',grupo:'termossifao'},
-  {id:'bosch-solar-fcc-300',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 300L',capacity:'300 L',pvp:3448,img:'../assets/products/bosch-solar-fcc-300.webp',tag:'2 painéis · termossifão',grupo:'termossifao'},
+  {id:'bosch-solar-fcc-150',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 150L',capacity:'150 L',pvp:1960,pc:1077.78,img:'../assets/products/bosch-solar-fcc-150.webp',tag:'1 painel · termossifão',grupo:'termossifao'},
+  {id:'bosch-solar-fcc-200',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 200L',capacity:'200 L',pvp:2085,pc:1158.75,img:'../assets/products/bosch-solar-fcc-200.webp',tag:'1 painel · termossifão',grupo:'termossifao'},
+  {id:'bosch-solar-fcc-300',serie:'FCC 220 Termossifão',model:'FCC 220 Kit 300L',capacity:'300 L',pvp:2370,pc:1714.29,img:'../assets/products/bosch-solar-fcc-300.webp',tag:'2 painéis · termossifão',grupo:'termossifao'},
   {id:'bosch-solar-fcc-forcado-300',serie:'FCC 220 Forçado',model:'FCC 220 Kit Forçado 300L',capacity:'300 L',pvp:5427,img:'../assets/products/bosch-solar-fcc-forcado.jpg',tag:'2 painéis · circuito forçado',grupo:'forcado',componentes:[
     {qty:2, ref:'FCC220-2V CTE', desc:'Colector Solar Bosch FCC220-2V CTE'},
     {qty:1, ref:'WFS18', desc:'Conjunto de Ligações WFS18'},
@@ -1670,6 +1674,7 @@ const CATALOG_MS_INTERIOR = [
    ANEXO — GALERIA DE FOTOS POR SÉRIE
 ═══════════════════════════════════════════ */
 const GALLERY = {
+  'ARTIC Lite':     ['daitsu-artic-lite-1.jpg','daitsu-artic-lite-ext.jpg'],
   'ARTIC':          ['daitsu-artic-kz-6.jpg','daitsu-artic-kz-2.jpg','daitsu-artic-kz-3.jpg','daitsu-artic-kz-4.jpg','daitsu-artic-kz-5.jpg','daitsu-artic-kz-7.jpg','daitsu-artic-kz-8.jpg','daitsu-artic-kz-9.jpg'],
   'Climate 3200i':  ['bosch-3200i-new-2.jpg','bosch-3200i-new-3.jpg','bosch-3200i-new-4.jpg','bosch-3200i-new-5.jpg','bosch-3200i-new-6.jpg'],
   'Climate 6000i':  ['bosch-6000i-2.webp','bosch-6000i-3.webp','bosch-6000i-4.webp'],
@@ -1756,6 +1761,16 @@ const ANNEX_SPECS = {
     som_int:'19 dB(A) (modo silencioso)', som_ext:'52 dB(A)',
     awards:[],
     extras:['Inteligência Artificial — aprende e adapta-se aos hábitos do utilizador','Sensor I Feel — mede temperatura real na posição do utilizador','Modo noite silencioso — reduz até 2 dB(A) para favorecer o descanso','Timer semanal programável via App e timer 24h via telecomando'],
+  },
+  'ARTIC Lite': {
+    refrigerante:'R32', garantia:'3 anos',
+    filtros:'Filtro de ar de alta eficiência',
+    wifi:'Integrado de série — App My Daitsu (Daitsu Connect)',
+    voz:'Google Home, Amazon Alexa, Apple Siri',
+    range_arref:'-15°C a +53°C (exterior)', range_aquec:'-20°C a +30°C (exterior)',
+    som_int:'22 dB(A) (modo silencioso)', som_ext:'52 dB(A)',
+    awards:[],
+    extras:['Sensor I Feel — mede temperatura real na posição do utilizador','Controlo por voz — Google Home, Amazon Alexa, Apple Siri','Swing lama vertical automático','Modo noite silencioso — operação reduzida e temperatura confortável','Timer horário programável 24h'],
   },
   'ARTIC Plus': {
     refrigerante:'R32', garantia:'3 anos',
@@ -1962,6 +1977,14 @@ const ANNEX_SPECS_I18N = {
     it:{garantia:'3 anni',filtros:'Filtro aria ad alta efficienza',wifi:'Integrato di serie — App My Daitsu (Daitsu Connect)',range_arref:'-15°C a +53°C (esterno)',range_aquec:'-25°C a +30°C (esterno)',som_int:'19 dB(A) (modalità silenziosa)',extras:['Intelligenza Artificiale — apprende e si adatta alle abitudini dell\'utente','Sensore I Feel — misura la temperatura reale nella posizione dell\'utente','Modalità notte silenziosa — riduce fino a 2 dB(A)','Timer settimanale programmabile tramite App e timer 24h tramite telecomando']},
     nl:{garantia:'3 jaar',filtros:'Hoogrendement luchtfilter',wifi:'Standaard ingebouwd — My Daitsu App (Daitsu Connect)',range_arref:'-15°C tot +53°C (buiten)',range_aquec:'-25°C tot +30°C (buiten)',som_int:'19 dB(A) (stille modus)',extras:['Kunstmatige intelligentie — leert en past zich aan de gewoonten van de gebruiker aan','I Feel-sensor — meet de werkelijke temperatuur op de positie van de gebruiker','Stille nachtmodus — vermindert tot 2 dB(A)','Programmeerbare wekelijkse timer via App en 24u-timer via afstandsbediening']},
   },
+  'ARTIC Lite': {
+    en:{garantia:'3 years',filtros:'High-efficiency air filter',wifi:'Built-in as standard — My Daitsu App (Daitsu Connect)',range_arref:'-15°C to +53°C (outdoor)',range_aquec:'-20°C to +30°C (outdoor)',som_int:'22 dB(A) (silent mode)',extras:['I Feel sensor — measures real temperature at the user\'s position','Voice control — Google Home, Amazon Alexa, Apple Siri','Automatic vertical swing','Silent night mode — reduced operation for comfortable rest','Programmable 24h timer']},
+    fr:{garantia:'3 ans',filtros:'Filtre à air haute efficacité',wifi:'Intégré de série — application My Daitsu (Daitsu Connect)',range_arref:'-15°C à +53°C (extérieur)',range_aquec:'-20°C à +30°C (extérieur)',som_int:'22 dB(A) (mode silencieux)',extras:['Capteur I Feel — mesure la température réelle à la position de l\'utilisateur','Contrôle vocal — Google Home, Amazon Alexa, Apple Siri','Oscillation verticale automatique','Mode nuit silencieux — opération réduite pour un repos confortable','Minuterie 24h programmable']},
+    de:{garantia:'3 Jahre',filtros:'Hocheffizienter Luftfilter',wifi:'Serienmäßig integriert — My Daitsu App (Daitsu Connect)',range_arref:'-15°C bis +53°C (außen)',range_aquec:'-20°C bis +30°C (außen)',som_int:'22 dB(A) (Flüstermodus)',extras:['I Feel-Sensor — misst die tatsächliche Temperatur an der Position des Nutzers','Sprachsteuerung — Google Home, Amazon Alexa, Apple Siri','Automatische vertikale Lamelle','Stiller Nachtmodus — reduzierter Betrieb für komfortablen Schlaf','Programmierbarer 24h-Timer']},
+    es:{garantia:'3 años',filtros:'Filtro de aire de alta eficiencia',wifi:'Integrado de serie — App My Daitsu (Daitsu Connect)',range_arref:'-15°C a +53°C (exterior)',range_aquec:'-20°C a +30°C (exterior)',som_int:'22 dB(A) (modo silencioso)',extras:['Sensor I Feel — mide la temperatura real en la posición del usuario','Control por voz — Google Home, Amazon Alexa, Apple Siri','Oscilación vertical automática','Modo noche silencioso — operación reducida para descanso confortable','Temporizador 24h programable']},
+    it:{garantia:'3 anni',filtros:'Filtro aria ad alta efficienza',wifi:'Integrato di serie — App My Daitsu (Daitsu Connect)',range_arref:'-15°C a +53°C (esterno)',range_aquec:'-20°C a +30°C (esterno)',som_int:'22 dB(A) (modalità silenziosa)',extras:['Sensore I Feel — misura la temperatura reale nella posizione dell\'utente','Controllo vocale — Google Home, Amazon Alexa, Apple Siri','Oscillazione verticale automatica','Modalità notte silenziosa — funzionamento ridotto per un riposo confortevole','Timer 24h programmabile']},
+    nl:{garantia:'3 jaar',filtros:'Hoogrendement luchtfilter',wifi:'Standaard ingebouwd — My Daitsu App (Daitsu Connect)',range_arref:'-15°C tot +53°C (buiten)',range_aquec:'-20°C tot +30°C (buiten)',som_int:'22 dB(A) (stille modus)',extras:['I Feel-sensor — meet de werkelijke temperatuur op de positie van de gebruiker','Stembesturing — Google Home, Amazon Alexa, Apple Siri','Automatische verticale lamellen','Stille nachtmodus — gereduceerde werking voor comfortabele rust','Programmeerbare 24u-timer']},
+  },
   'ARTIC Plus': {
     en:{garantia:'3 years',filtros:'5 filters: Dust (PM10) · Silver ions · Catechin · Activated carbon · Vitamin C',wifi:'Built-in as standard — Smart Life App',voz:'Amazon Alexa & Google Assistant',range_arref:'-15°C to +53°C (outdoor)',range_aquec:'-25°C to +30°C (outdoor)',som_int:'19 dB(A) (silent mode)',extras:['Gentle Air — 14 blades with 1,106 micro-holes for gentle breeze without direct airflow','Evaporator self-cleaning — sterilisation at 56°C eliminates bacteria and viruses','I Feel sensor — measures real temperature at the user\'s position','Dry contact ON/OFF — built-in as standard, compatible with automation systems','3D Airflow — horizontal and vertical air diffusion simultaneously','Super silent mode — reduces up to 2 dB(A)']},
     fr:{garantia:'3 ans',filtros:'5 filtres : Poussière (PM10) · Ions d\'argent · Catéchine · Charbon actif · Vitamine C',wifi:'Intégré de série — application Smart Life',voz:'Amazon Alexa et Google Assistant',range_arref:'-15°C à +53°C (extérieur)',range_aquec:'-25°C à +30°C (extérieur)',som_int:'19 dB(A) (mode silencieux)',extras:['Gentle Air — 14 lames avec 1 106 micro-trous pour une brise douce sans courants d\'air','Auto-nettoyage de l\'évaporateur — stérilisation à 56°C élimine bactéries et virus','Capteur I Feel — mesure la température réelle à la position de l\'utilisateur','Contact sec ON/OFF — intégré de série, compatible avec les systèmes domotiques','3D Airflow — diffusion de l\'air horizontale et verticale simultanément','Mode super silencieux — réduit jusqu\'à 2 dB(A)']},
@@ -2141,6 +2164,8 @@ const I18N = {
     svc_reinstal:'Desmontagem e Reinstalação de AC do Cliente (retirada do equipamento existente e reinstalação no novo local)',
     nota_bosch_wifi:'💡 <strong>WiFi Bosch Home Connect (opcional):</strong> O módulo WiFi não está incluído neste orçamento. Caso pretenda controlo remoto via app Home Connect (iOS/Android), é necessário adicionar o módulo IP-Gateway G10-3 — <strong>+111 € por unidade interior</strong>. Indique-nos na adjudicação se pretender incluir este acessório.',
     nota_preinstal:'⚠️ <strong>Nota — Pré-instalação:</strong> O presente orçamento não inclui o fornecimento nem a instalação de calhas técnicas de acabamento. Caso sejam necessárias para encaminhamento estético das tubagens ou cablagens, a sua necessidade e custo deverão ser avaliados e acordados separadamente antes do início dos trabalhos. A obra deverá apresentar as condições necessárias para a execução da pré-instalação, nomeadamente acessos desimpedidos, paredes em condições de receber fixações e disponibilidade de energia elétrica no local.',
+    wa_instrucao:'Aprovar via WhatsApp — clique no botão da opção escolhida e envie a mensagem:',
+    wa_aprovar:'Aprovar Opção',
   },
   en: {
     locale:'en-GB', cliente:'Client', nif_label:'Tel.',
@@ -2169,6 +2194,8 @@ const I18N = {
     svc_reinstal:'Client AC Removal and Reinstallation (removal of existing unit and reinstallation at new location)',
     nota_bosch_wifi:'💡 <strong>Bosch Home Connect WiFi (optional):</strong> The WiFi module is not included in this quote. If you wish to control the unit remotely via the Home Connect app (iOS/Android), the IP-Gateway G10-3 module must be added — <strong>+€111 per indoor unit</strong>. Please let us know at the time of order if you would like to include this accessory.',
     nota_preinstal:'⚠️ <strong>Note — Pre-Installation:</strong> This quote does not include the supply or installation of technical cable/pipe trunking. If trunking is required for a neat finish, the need and cost must be assessed and agreed separately before work begins. The site must be ready for pre-installation work, with clear access, walls suitable for fixings, and electrical power available on site.',
+    wa_instrucao:'Approve via WhatsApp — click the button for the chosen option and send the message:',
+    wa_aprovar:'Approve Option',
   },
   fr: {
     locale:'fr-FR', cliente:'Client', nif_label:'Tél.',
@@ -2197,6 +2224,8 @@ const I18N = {
     svc_reinstal:'Démontage et Réinstallation de Climatiseur Client (dépose de l\'équipement existant et réinstallation au nouvel emplacement)',
     nota_bosch_wifi:'💡 <strong>WiFi Bosch Home Connect (en option) :</strong> Le module WiFi n\'est pas inclus dans ce devis. Si vous souhaitez piloter l\'appareil à distance via l\'app Home Connect (iOS/Android), il est nécessaire d\'ajouter le module IP-Gateway G10-3 — <strong>+111 € par unité intérieure</strong>. Merci de nous le signaler lors de l\'adjudication si vous souhaitez inclure cet accessoire.',
     nota_preinstal:'⚠️ <strong>Note — Pré-installation :</strong> Ce devis n\'inclut pas la fourniture ni la pose de goulottes techniques de finition. Si des goulottes sont nécessaires pour le passage esthétique des tuyauteries ou câblages, leur nécessité et leur coût devront être évalués et convenus séparément avant le début des travaux. Le chantier devra présenter les conditions nécessaires à l\'exécution de la pré-installation, notamment des accès dégagés, des murs aptes à recevoir des fixations et la disponibilité d\'une alimentation électrique sur place.',
+    wa_instrucao:'Approuver via WhatsApp — cliquez sur le bouton de l\'option choisie et envoyez le message :',
+    wa_aprovar:'Approuver Option',
   },
   de: {
     locale:'de-DE', cliente:'Kunde', nif_label:'Tel.',
@@ -2225,6 +2254,8 @@ const I18N = {
     svc_reinstal:'Demontage und Neuinstallation Kunden-Klimaanlage (Ausbau der bestehenden Anlage und Neuinstallation am neuen Standort)',
     nota_bosch_wifi:'💡 <strong>Bosch Home Connect WLAN (optional):</strong> Das WLAN-Modul ist in diesem Angebot nicht enthalten. Für eine Fernsteuerung über die Home Connect App (iOS/Android) ist das Modul IP-Gateway G10-3 erforderlich — <strong>+111 € pro Inneneinheit</strong>. Bitte teilen Sie uns bei der Auftragserteilung mit, ob Sie dieses Zubehör einschließen möchten.',
     nota_preinstal:'⚠️ <strong>Hinweis — Vorinstallation:</strong> Dieses Angebot beinhaltet nicht die Lieferung oder Montage von technischen Kabelkanälen. Sollten Kabelkanäle für eine ordentliche Leitungsführung erforderlich sein, sind Bedarf und Kosten vor Arbeitsbeginn gesondert zu prüfen und zu vereinbaren. Die Baustelle muss die notwendigen Voraussetzungen für die Vorinstallation erfüllen: freie Zugänge, zur Befestigung geeignete Wände und verfügbare Stromversorgung vor Ort.',
+    wa_instrucao:'Per WhatsApp genehmigen — klicken Sie auf die Schaltfläche der gewählten Option und senden Sie die Nachricht:',
+    wa_aprovar:'Option genehmigen',
   },
   es: {
     locale:'es-ES', cliente:'Cliente', nif_label:'Tel.',
@@ -2253,6 +2284,8 @@ const I18N = {
     svc_reinstal:'Desmontaje y Reinstalación de AC del Cliente (retirada del equipo existente y reinstalación en el nuevo lugar)',
     nota_bosch_wifi:'💡 <strong>WiFi Bosch Home Connect (opcional):</strong> El módulo WiFi no está incluido en este presupuesto. Si desea controlar el equipo a distancia mediante la app Home Connect (iOS/Android), es necesario añadir el módulo IP-Gateway G10-3 — <strong>+111 € por unidad interior</strong>. Indíquenos en el momento de la adjudicación si desea incluir este accesorio.',
     nota_preinstal:'⚠️ <strong>Nota — Pre-instalación:</strong> El presente presupuesto no incluye el suministro ni la instalación de canaletas técnicas de acabado. En caso de ser necesarias para el encaminamiento estético de tuberías o cableados, su necesidad y coste deberán ser evaluados y acordados por separado antes del inicio de los trabajos. La obra deberá presentar las condiciones necesarias para la ejecución de la pre-instalación, en particular accesos despejados, paredes aptas para recibir fijaciones y disponibilidad de suministro eléctrico en el lugar.',
+    wa_instrucao:'Aprobar por WhatsApp — haga clic en el botón de la opción elegida y envíe el mensaje:',
+    wa_aprovar:'Aprobar Opción',
   },
   it: {
     locale:'it-IT', cliente:'Cliente', nif_label:'Tel.',
@@ -2281,6 +2314,8 @@ const I18N = {
     svc_reinstal:'Smontaggio e Reinstallazione AC Cliente (rimozione dell\'apparecchio esistente e reinstallazione nel nuovo sito)',
     nota_bosch_wifi:'💡 <strong>WiFi Bosch Home Connect (opzionale):</strong> Il modulo WiFi non è incluso in questo preventivo. Per il controllo remoto tramite l\'app Home Connect (iOS/Android), è necessario aggiungere il modulo IP-Gateway G10-3 — <strong>+111 € per unità interna</strong>. Indicatecelo al momento dell\'accettazione se desiderate includere questo accessorio.',
     nota_preinstal:'⚠️ <strong>Nota — Pre-installazione:</strong> Il presente preventivo non include la fornitura né la posa di canalette tecniche di finitura. Qualora fossero necessarie per un percorso estetico di tubazioni o cavi, la loro necessità e il relativo costo dovranno essere valutati e concordati separatamente prima dell\'inizio dei lavori. Il cantiere dovrà presentare le condizioni necessarie per l\'esecuzione della pre-installazione, in particolare accessi liberi, pareti idonee a ricevere fissaggi e disponibilità di alimentazione elettrica in loco.',
+    wa_instrucao:'Approva via WhatsApp — fai clic sul pulsante dell\'opzione scelta e invia il messaggio:',
+    wa_aprovar:'Approva Opzione',
   },
   nl: {
     locale:'nl-NL', cliente:'Klant', nif_label:'Tel.',
@@ -2309,6 +2344,8 @@ const I18N = {
     svc_reinstal:'Verwijdering en Herinstallatie Klant-Airco (verwijdering bestaande apparatuur en herinstallatie op nieuwe locatie)',
     nota_bosch_wifi:'💡 <strong>Bosch Home Connect WiFi (optioneel):</strong> De WiFi-module is niet inbegrepen in deze offerte. Voor bediening op afstand via de Home Connect app (iOS/Android) dient de module IP-Gateway G10-3 te worden toegevoegd — <strong>+€ 111 per binnenunit</strong>. Geef bij akkoord aan of u dit accessoire wenst toe te voegen.',
     nota_preinstal:'⚠️ <strong>Opmerking — Voorinstallatie:</strong> Deze offerte omvat niet de levering of plaatsing van technische kabelgoten. Indien kabelgoten nodig zijn voor een nette leidingdoorvoer, dienen de noodzaak en kosten afzonderlijk te worden beoordeeld en overeengekomen vóór aanvang van de werkzaamheden. De locatie dient klaar te zijn voor de voorinstallatie: vrije toegang, wanden geschikt voor bevestigingen en beschikbaarheid van elektriciteit ter plaatse.',
+    wa_instrucao:'Goedkeuren via WhatsApp — klik op de knop van de gekozen optie en verstuur het bericht:',
+    wa_aprovar:'Optie goedkeuren',
   },
 };
 
@@ -4337,7 +4374,7 @@ function buildSeriesSheet(series, lang) {
 
   const BRAND_LOGOS = { daikin:'../assets/logo-daikin.jpg', bosch:'../assets/logo-bosch.jpg', daitsu:'../assets/logo-daitsu.jpg', samsung:'../assets/logo-samsung.svg' };
   function brandOf(s) {
-    if (s === 'ARTIC' || s === 'ARTIC Plus' || s.startsWith('FREE MAX')) return 'daitsu';
+    if (s === 'ARTIC' || s === 'ARTIC Lite' || s === 'ARTIC Plus' || s.startsWith('FREE MAX')) return 'daitsu';
     if (s.startsWith('Climate') || s.startsWith('Multi 3') || s.startsWith('Multi 6')) return 'bosch';
     if (s.startsWith('WindFree') || s === 'Cebu S2' || s.startsWith('AR35') || s === 'FJM') return 'samsung';
     return 'daikin';
@@ -4441,7 +4478,7 @@ function buildAnnex(opcoes, lang='pt') {
 
   const BRAND_LOGOS = { daikin:'../assets/logo-daikin.jpg', bosch:'../assets/logo-bosch.jpg', daitsu:'../assets/logo-daitsu.jpg', samsung:'../assets/logo-samsung.svg' };
   function brandOf(series) {
-    if (series === 'ARTIC' || series === 'ARTIC Plus' || series.startsWith('FREE MAX')) return 'daitsu';
+    if (series === 'ARTIC' || series === 'ARTIC Lite' || series === 'ARTIC Plus' || series.startsWith('FREE MAX')) return 'daitsu';
     if (series.startsWith('Climate') || series.startsWith('Multi 3') || series.startsWith('Multi 6')) return 'bosch';
     if (series.startsWith('WindFree') || series === 'Cebu S2' || series.startsWith('AR35') || series === 'FJM') return 'samsung';
     return 'daikin';
@@ -4883,15 +4920,14 @@ function preencherPrintArea(orc) {
               <div style="border-bottom:1.5pt solid #333;height:22pt;"></div>
             </div>
           </div>
-          <div style="margin-top:14pt;border-top:1pt solid #eee;padding-top:12pt;display:flex;align-items:center;gap:12pt;">
-            <a href="https://wa.me/351964501776?text=${encodeURIComponent('Olá Fábio, analisei o orçamento ' + orc.numero_formatado + ' e quero avançar com a Opção _____.')}" target="_blank"
-              style="display:inline-flex;align-items:center;gap:7pt;background:#25D366;color:#fff;font-size:9pt;font-weight:700;padding:7pt 14pt;border-radius:3pt;text-decoration:none;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.843L.057 23.428a.5.5 0 0 0 .609.61l5.693-1.485A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.031-1.388l-.36-.214-3.733.974.997-3.63-.235-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-              Aprovar via WhatsApp
-            </a>
-            <div style="font-size:7.5pt;color:#555;line-height:1.5;">
-              <strong>Como aprovar:</strong> clique no botão → a mensagem abre pré-preenchida no WhatsApp →<br>
-              <span style="color:#f97316;font-weight:700;">substitua _____ pela letra da opção escolhida</span> (${opcaoGroups.map(g=>g.letra).join(', ')}) → envie.
+          <div style="margin-top:14pt;border-top:1pt solid #eee;padding-top:12pt;">
+            <div style="font-size:7.5pt;color:#555;margin-bottom:8pt;"><strong>${T.wa_instrucao}</strong></div>
+            <div style="display:flex;flex-wrap:wrap;gap:7pt;">
+              ${opcaoGroups.map(g => { const resumo = (() => { const counts = {}; g.items.forEach(it => { if (/_int\d*$/.test(it.productId)) return; const baseId = it.productId.replace(/_ext$/, ''); const prod = CATALOG_AC.find(p => p.id === baseId); let label; if (prod) { if (prod.tipo === 'multi_split') { label = prod.model; } else { const btuStr = prod.btu ? Math.round(prod.btu/1000)+'K' : ''; label = prod.series + (btuStr ? ' '+btuStr : ''); } } else { const nome = it.opcao?.series || baseId; const btu = it.opcao?.btu; const btuStr = btu ? Math.round(btu/1000)+'K' : (it.opcao?.kw ? it.opcao.kw+'kW' : ''); label = nome + (btuStr ? ' '+btuStr : ''); } counts[label] = (counts[label]||0) + (it.qty||1); }); return Object.entries(counts).map(([k,q]) => q>1?`${k} ×${q}`:k).join(' + '); })(); return `<a href="https://wa.me/351964501776?text=${encodeURIComponent('Olá Fábio, analisei o orçamento ' + orc.numero_formatado + ' e quero avançar com a Opção ' + g.letra + (resumo ? ' (' + resumo + ')' : '') + '.')}" target="_blank"
+                style="display:inline-flex;align-items:center;gap:6pt;background:#25D366;color:#fff;font-size:9pt;font-weight:700;padding:7pt 13pt;border-radius:3pt;text-decoration:none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.843L.057 23.428a.5.5 0 0 0 .609.61l5.693-1.485A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.808 9.808 0 0 1-5.031-1.388l-.36-.214-3.733.974.997-3.63-.235-.374A9.818 9.818 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+                ${T.wa_aprovar} ${g.letra}
+              </a>`; }).join('')}
             </div>
           </div>
         </div>
