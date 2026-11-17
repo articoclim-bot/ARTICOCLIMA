@@ -687,7 +687,7 @@
       </label>
       <div id="ac-adjud-wrap" style="margin-bottom:8px;display:none;">
         <label style="font-size:.74rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Texto da adjudicação <span style="font-weight:400;">(editável — deixa em branco para usar o padrão)</span></label>
-        <textarea id="ac-adjud-texto" rows="2" placeholder="O orçamento só é considerado válido após adjudicação de 80% do seu valor…" style="width:100%;font-size:.82rem;padding:6px 8px;border:1px solid var(--border);border-radius:4px;resize:vertical;font-family:var(--font);"></textarea>
+        <textarea id="ac-adjud-texto" rows="2" placeholder="O orçamento só é considerado válido após adjudicação de 80% do seu valor. O restante deverá ser pago no dia da instalação, em dinheiro, Multibanco ou transferência bancária, mediante entrega de comprovativo." style="width:100%;font-size:.82rem;padding:6px 8px;border:1px solid var(--border);border-radius:4px;resize:vertical;font-family:var(--font);"></textarea>
       </div>
       <!-- ── Serviços adicionais no orçamento AC ── -->
       <div style="margin-bottom:16px;">
@@ -2155,7 +2155,7 @@ const I18N = {
     validade:(n)=>`Este orçamento tem validade de <strong>${n} dias</strong> a contar da data de emissão.`,
     pagamento:'O pagamento pode ser efectuado por transferência bancária:',
     garantia:'Garantia conforme a legislação em vigor (3 anos para particulares / 6 meses para empresas).',
-    cond_adjud:'O montante em falta deverá ser liquidado no <strong>dia da instalação</strong>, em dinheiro ou Multibanco, antes do início dos trabalhos.',
+    cond_adjud:'O orçamento só é considerado válido após adjudicação de 80% do seu valor. O montante em falta deverá ser liquidado no <strong>dia da instalação</strong>, em dinheiro, Multibanco ou transferência bancária, após conclusão dos trabalhos. O comprovativo de transferência deverá ser enviado por WhatsApp ou para artico.clim@gmail.com.',
     acesso:'<strong>Acesso:</strong> O cliente deve garantir acesso ao local da instalação e disponibilidade de energia elétrica no local durante a execução do serviço.',
     rgpd:'Os dados pessoais recolhidos neste documento serão tratados exclusivamente para fins de faturação e gestão de garantia, em conformidade com o RGPD (Regulamento Geral sobre a Proteção de Dados).',
     eic_cert:'Certif. EIC nº GF-0879 &nbsp;·&nbsp; Gases Fluorados &nbsp;·&nbsp; Técnicos Certificados',
@@ -2186,7 +2186,7 @@ const I18N = {
     validade:(n)=>`This quote is valid for <strong>${n} days</strong> from the date of issue.`,
     pagamento:'Payment can be made by bank transfer:',
     garantia:'Warranty as per applicable law (3 years for consumers / 6 months for businesses).',
-    cond_adjud:'The outstanding balance must be settled on the <strong>day of installation</strong>, by cash or card (Multibanco), before work begins.',
+    cond_adjud:'This quote is only considered valid upon payment of an 80% deposit. The outstanding balance must be settled on the <strong>day of installation</strong>, by cash, Multibanco or bank transfer, upon completion of the work. Proof of transfer must be sent via WhatsApp or to artico.clim@gmail.com.',
     acesso:'<strong>Access:</strong> The client must ensure access to the installation site and availability of electrical power during the work.',
     rgpd:'Personal data collected in this document will be processed exclusively for invoicing and warranty management purposes, in compliance with GDPR (General Data Protection Regulation).',
     eic_cert:'EIC Cert. nº GF-0879 &nbsp;·&nbsp; Fluorinated Gases &nbsp;·&nbsp; Certified Technicians',
@@ -2217,7 +2217,7 @@ const I18N = {
     validade:(n)=>`Ce devis est valable <strong>${n} jours</strong> à compter de sa date d'émission.`,
     pagamento:'Le règlement peut être effectué par virement bancaire :',
     garantia:'Garantie conformément à la législation en vigueur (3 ans pour les particuliers / 6 mois pour les entreprises).',
-    cond_adjud:"Le solde restant doit être réglé le <strong>jour de l'installation</strong>, en espèces ou par carte (Multibanco), avant le début des travaux.",
+    cond_adjud:"Ce devis n'est considéré valide qu'après le versement d'un acompte de 80 %. Le solde restant doit être réglé le <strong>jour de l'installation</strong>, en espèces, par carte (Multibanco) ou virement bancaire, à la fin des travaux. Le justificatif de virement doit être envoyé par WhatsApp ou à artico.clim@gmail.com.",
     acesso:"<strong>Accès :</strong> Le client doit garantir l'accès au lieu d'installation et la disponibilité de l'électricité sur place lors des travaux.",
     rgpd:'Les données personnelles collectées dans ce document seront traitées exclusivement à des fins de facturation et de gestion de garantie, conformément au RGPD.',
     eic_cert:'Cert. EIC nº GF-0879 &nbsp;·&nbsp; Gaz Fluorés &nbsp;·&nbsp; Techniciens Certifiés',
@@ -2248,7 +2248,7 @@ const I18N = {
     validade:(n)=>`Dieses Angebot ist <strong>${n} Tage</strong> ab Ausstellungsdatum gültig.`,
     pagamento:'Die Zahlung kann per Banküberweisung erfolgen:',
     garantia:'Garantie gemäß geltendem Recht (3 Jahre für Privatpersonen / 6 Monate für Unternehmen).',
-    cond_adjud:'Der ausstehende Restbetrag ist <strong>am Installationstag</strong> in bar oder per Karte (Multibanco) vor Beginn der Arbeiten zu begleichen.',
+    cond_adjud:'Das Angebot gilt erst nach Zahlung einer Anzahlung von 80 % als verbindlich. Der ausstehende Restbetrag ist <strong>am Installationstag</strong> in bar, per Karte (Multibanco) oder Banküberweisung nach Abschluss der Arbeiten zu begleichen. Der Zahlungsbeleg ist per WhatsApp oder an artico.clim@gmail.com zu senden.',
     acesso:'<strong>Zugang:</strong> Der Kunde muss den Zugang zum Installationsort und die Verfügbarkeit von Strom während der Arbeiten sicherstellen.',
     rgpd:'Die in diesem Dokument erhobenen personenbezogenen Daten werden gemäß DSGVO ausschließlich für Rechnungsstellung und Garantieverwaltung verarbeitet.',
     eic_cert:'EIC-Zert. Nr. GF-0879 &nbsp;·&nbsp; Fluorierte Gase &nbsp;·&nbsp; Zertifizierte Techniker',
@@ -2279,7 +2279,7 @@ const I18N = {
     validade:(n)=>`Este presupuesto tiene una validez de <strong>${n} días</strong> a partir de la fecha de emisión.`,
     pagamento:'El pago puede realizarse mediante transferencia bancaria:',
     garantia:'Garantía según la legislación vigente (3 años para particulares / 6 meses para empresas).',
-    cond_adjud:'El importe pendiente deberá liquidarse el <strong>día de la instalación</strong>, en efectivo o con tarjeta (Multibanco), antes del inicio de los trabajos.',
+    cond_adjud:'El presupuesto solo se considera válido tras el pago de una señal del 80 %. El importe pendiente deberá liquidarse el <strong>día de la instalación</strong>, en efectivo, Multibanco o transferencia bancaria, tras la conclusión de los trabajos. El justificante de transferencia deberá enviarse por WhatsApp o a artico.clim@gmail.com.',
     acesso:'<strong>Acceso:</strong> El cliente debe garantizar el acceso al lugar de instalación y la disponibilidad de energía eléctrica durante la ejecución del servicio.',
     rgpd:'Los datos personales recogidos en este documento se tratarán exclusivamente para fines de facturación y gestión de garantía, de conformidad con el RGPD.',
     eic_cert:'Cert. EIC nº GF-0879 &nbsp;·&nbsp; Gases Fluorados &nbsp;·&nbsp; Técnicos Certificados',
@@ -2310,7 +2310,7 @@ const I18N = {
     validade:(n)=>`Questo preventivo è valido per <strong>${n} giorni</strong> dalla data di emissione.`,
     pagamento:'Il pagamento può essere effettuato tramite bonifico bancario:',
     garantia:'Garanzia secondo la normativa vigente (3 anni per i privati / 6 mesi per le aziende).',
-    cond_adjud:"Il saldo residuo dovrà essere corrisposto il <strong>giorno dell'installazione</strong>, in contanti o con carta (Multibanco), prima dell'inizio dei lavori.",
+    cond_adjud:"Il preventivo è considerato valido solo dopo il pagamento di un acconto dell'80%. Il saldo residuo dovrà essere corrisposto il <strong>giorno dell'installazione</strong>, in contanti, con carta (Multibanco) o tramite bonifico bancario, al termine dei lavori. La ricevuta del bonifico dovrà essere inviata via WhatsApp o a artico.clim@gmail.com.",
     acesso:"<strong>Accesso:</strong> Il cliente deve garantire l'accesso al luogo di installazione e la disponibilità di energia elettrica durante i lavori.",
     rgpd:'I dati personali raccolti in questo documento saranno trattati esclusivamente per la fatturazione e la gestione della garanzia, in conformità con il GDPR.',
     eic_cert:'Cert. EIC n° GF-0879 &nbsp;·&nbsp; Gas Fluorurati &nbsp;·&nbsp; Tecnici Certificati',
@@ -2341,7 +2341,7 @@ const I18N = {
     validade:(n)=>`Deze offerte is geldig voor <strong>${n} dagen</strong> vanaf de uitgiftedatum.`,
     pagamento:'Betaling kan worden gedaan via bankoverschrijving:',
     garantia:'Garantie conform de geldende wetgeving (3 jaar voor particulieren / 6 maanden voor bedrijven).',
-    cond_adjud:'Het openstaande saldo dient te worden voldaan op de <strong>dag van installatie</strong>, contant of met betaalkaart (Multibanco), vóór aanvang van de werkzaamheden.',
+    cond_adjud:'De offerte is pas geldig na betaling van een aanbetaling van 80%. Het openstaande saldo dient te worden voldaan op de <strong>dag van installatie</strong>, contant, met betaalkaart (Multibanco) of via bankoverschrijving, na afronding van de werkzaamheden. Het betalingsbewijs dient te worden verstuurd via WhatsApp of naar artico.clim@gmail.com.',
     acesso:'<strong>Toegang:</strong> De klant dient toegang tot de installatielocatie en beschikbaarheid van elektriciteit tijdens de werkzaamheden te garanderen.',
     rgpd:'De in dit document verzamelde persoonsgegevens worden uitsluitend verwerkt voor facturatie- en garantiebeheerdoeleinden, conform de AVG (Algemene Verordening Gegevensbescherming).',
     eic_cert:'EIC Cert. nr. GF-0879 &nbsp;·&nbsp; Gefluoreerde Gassen &nbsp;·&nbsp; Gecertificeerde Technici',
