@@ -3078,6 +3078,20 @@ function removeGroup(id) {
   updateFormAC();
 }
 
+function sortOpcoesByPrice() {
+  const install = parseFloat(document.getElementById('ac-instalacao').value) || 0;
+  const deslocacao = parseFloat(document.getElementById('ac-deslocacao').value) || 0;
+  const getTotal = g => {
+    const sub = g.items.reduce((s, it) => s + it.opcao.pvp_unitario * it.qty, 0);
+    const desc = g.desconto > 0 ? sub * g.desconto / 100 : 0;
+    return sub - desc + install + deslocacao;
+  };
+  opcaoGroups.sort((a, b) => getTotal(a) - getTotal(b));
+  opcaoGroups.forEach((g, i) => { g.letra = String.fromCharCode(65 + i); });
+  updateCardStates();
+  updateFormAC();
+}
+
 function removeItemFromGroup(groupId, itemIdx) {
   const g = opcaoGroups.find(g => g.id === groupId);
   if (g) { g.items.splice(itemIdx, 1); updateCardStates(); updateFormAC(); }
@@ -3456,7 +3470,7 @@ function initMSMode() {
   msFiltroMarca = 'todos';
   msFiltroSlots = 'todos';
   // reset filter chips
-  ['todos','daikin','bosch','daitsu'].forEach(m => {
+  ['todos','daikin','bosch','daitsu','samsung'].forEach(m => {
     const el = document.getElementById('ms-f-' + m);
     if (el) el.classList.toggle('active', m === 'todos');
   });
@@ -3470,7 +3484,7 @@ function initMSMode() {
 
 function setMSFiltro(marca) {
   msFiltroMarca = marca;
-  ['todos','daikin','bosch','daitsu'].forEach(m => {
+  ['todos','daikin','bosch','daitsu','samsung'].forEach(m => {
     const el = document.getElementById('ms-f-' + m);
     if (el) el.classList.toggle('active', m === marca.toLowerCase() || (marca === 'todos' && m === 'todos'));
   });
@@ -3533,15 +3547,17 @@ function renderMSInteriorGrid() {
     return !u.compat;
   });
   const slotsUsed = msInteriors.reduce((s, it) => s + it.qty, 0);
+  const chosenSeries = msInteriors.length > 0 ? msInteriors[0].unit.series : null;
   const seriesList = [...new Set(lista.map(u => u.series))];
 
   document.getElementById('ms-interior-grid').innerHTML = seriesList.map(s => {
     const units = lista.filter(u => u.series === s);
-    return `<div class="ms-int-series-label">${s}</div>
+    const seriesLocked = chosenSeries !== null && s !== chosenSeries;
+    return `<div class="ms-int-series-label"${seriesLocked ? ' style="opacity:.35"' : ''}>${s}</div>
     <div class="ms-int-grid">${units.map(u => {
       const existing = msInteriors.find(it => it.unit.id === u.id);
       const qty = existing?.qty || 0;
-      const full = slotsUsed >= msExterior.slots && !existing;
+      const full = (slotsUsed >= msExterior.slots && !existing) || seriesLocked;
       const isNovo = CATALOG_MS_NOVOS.has(u.id);
       return `<div class="ms-int-card ${qty > 0 ? 'has-qty' : ''} ${full ? 'disabled' : ''}" onclick="${full ? '' : `addMSInterior('${u.id}')`}">
         ${qty > 0 ? `<div class="ms-int-badge">${qty}×</div>` : (isNovo ? `<div class="ms-int-badge" style="background:#22c55e;font-size:.62rem;padding:0 5px;">NOVO</div>` : '')}
@@ -3568,6 +3584,7 @@ function addMSInterior(id) {
   if (!unit || !msExterior) return;
   const slotsUsed = msInteriors.reduce((s, it) => s + it.qty, 0);
   if (slotsUsed >= msExterior.slots) return;
+  if (msInteriors.length > 0 && unit.series !== msInteriors[0].unit.series) { showToast('Numa composição multi-split todas as unidades interiores devem ser da mesma série.', true); return; }
   if (!_msKwOk(unit.kw)) { showToast(`Capacidade total excede ${(msExterior.kw * 1.5).toFixed(1)} kW (150% da exterior Samsung)`, true); return; }
   const existing = msInteriors.find(it => it.unit.id === id);
   if (existing) existing.qty++;
@@ -3820,10 +3837,12 @@ function updateFormAC() {
     </button>`).join('');
   const appendButtons = ag ? `
     <button class="btn-new-group" onclick="openManualModal()" title="Adiciona produto escrito manualmente">+ Manual</button>` : '';
+  const sortBtn = opcaoGroups.length > 1 ? `
+    <button class="btn-new-group" onclick="sortOpcoesByPrice()" title="Ordenar opções por preço crescente" style="margin-left:6px;">↑ Ordenar por preço</button>` : '';
   document.getElementById('grupos-header').innerHTML =
     `<span class="groups-header-label">Propostas:</span>${tabsHtml}` +
     `<button class="btn-new-group" onclick="addMonoSplitOption(false)" style="background:var(--orange);color:#fff;border-color:var(--orange);">+ Nova Opção</button>` +
-    appendButtons;
+    appendButtons + sortBtn;
 
   // Hint
   document.getElementById('grupos-hint').innerHTML = ag
