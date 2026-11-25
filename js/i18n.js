@@ -1575,3 +1575,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
+
+// ─── Traduções adicionais — linhas [pt, en, fr, es, de] ───
+addTranslationRows([
+  // Vídeos das marcas (index)
+  ['Smart Auto Mode — a nova tecnologia Daikin', 'Smart Auto Mode — the new Daikin technology', 'Smart Auto Mode — la nouvelle technologie Daikin', 'Smart Auto Mode — la nueva tecnología de Daikin', 'Smart Auto Mode — die neue Daikin-Technologie'],
+  ['Tecnologia Climate ao serviço do seu conforto', 'Climate technology at the service of your comfort', 'La technologie Climate au service de votre confort', 'Tecnología Climate al servicio de su confort', 'Climate-Technologie im Dienst Ihres Komforts'],
+  ['Qualidade e tecnologia a preço acessível', 'Quality and technology at an affordable price', 'Qualité et technologie à prix abordable', 'Calidad y tecnología a un precio asequible', 'Qualität und Technologie zu einem erschwinglichen Preis'],
+]);
